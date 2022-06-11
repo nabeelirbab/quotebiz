@@ -1,0 +1,243 @@
+.nk-content {
+	 background: white;
+}
+.nk-menu-link:hover,  .active>.nk-menu-link {
+    background: #2f3741e0 !important;
+    color: white !important;
+}
+
+.nk-menu-link:hover .nk-menu-icon, .nk-menu-item.active > .nk-menu-link .nk-menu-icon, .nk-menu-item.current-menu > .nk-menu-link .nk-menu-icon {
+    color: white;
+}
+.nk-menu{
+	padding: 8px 12px 8px 12px
+}
+.nk-menu-link {
+    padding: 0.625rem 28px 0.625rem 12px;
+    color: #6e82a5;
+    font-family: "DM Sans",sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .01em;
+    text-transform: none;
+    line-height: 1.25rem;
+    border-radius: 6px;
+}
+.nkchatbody{
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(89vh - (65px + 112px));
+}
+.kanban-item {
+    border-radius: 4px;
+    border: 1px solid #e5e9f2;
+    padding: 1rem 0.8rem;
+    margin-bottom: 0.75rem;
+    background: #fff;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+   #box {
+    opacity: 1;
+    background-color: #626262a6;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 66%;
+    width: 100%;
+    text-align: center;
+}
+.card { border-radius: 12px; }
+.tb-ticket-id a, .tb-ticket-desc a {
+    display: block;
+    padding: 0.50rem 0;
+    color: inherit;
+}
+.tb-ticket-item .date, .tb-ticket-item .date-last {
+    white-space: nowrap;
+}
+.card .table tr:first-child th, .card .table tr:first-child td {
+    border-top: none;
+}
+
+.tb-ticket-item td {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+.tb-ticket-item td, .tb-ticket-item th {
+    vertical-align: middle;
+}
+.table th, .table td {
+    
+    border-top: 1px solid #dbdfea;
+}
+.tb-ticket-date, .tb-ticket-seen, .tb-ticket-status {
+    width: 115px;
+}
+.tb-ticket-item .date, .tb-ticket-item .date-last {
+    white-space: nowrap;
+}
+.tb-ticket-item.is-unread {
+    background: #f5f6fa;
+}
+@media (min-width: 768px){
+.tb-col-md {
+    display: table-cell !important;
+}
+}
+@media only screen and (max-width: 600px) {
+  .col-sm-4{
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+}
+
+@media (min-width: 992px) {
+  .nkmsgbody {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+      max-height: calc(100vh - (65px + 112px));
+  }
+}
+.nkmsgbody {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: padding .3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+    border: 1px solid #e5e9f2;
+    border-radius: 4px;
+}
+ .sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  height: auto;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.panelWidth{
+        width: 35%;
+    }
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color:#444;
+}
+@media only screen and (max-width: 600px) {
+    .sidepanel  {
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      height: auto;
+      top: 0;
+      right: 0;
+      background-color: #fff;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .panelWidth{
+        width: 100%;
+        top: 50px;
+        padding: 50px;
+    }
+}
+
+ .hidden svg {
+  height: 100%;
+  max-width: 4% !important;
+}
+.hidden{
+    width: 15%
+}
+/*.hidden p{
+    margin-bottom: 15px;
+    margin-top: 12px;
+}*/
+.flex.justify-between.flex-1.sm\:hidden {
+    opacity: 0;
+}
+.unreadmsg{
+    background: #2593b9;
+    border-radius: 19px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    color: white;
+}
+.opacity{
+  opacity: 1;
+}
+
+.msgnotifications{
+    border: 0;
+    font-size: 11px;
+    background: green;
+    color: white;
+    width: auto;
+    height: auto;
+    border-radius: 13px;
+    align-items: center;
+    position: absolute;
+    left: 22px;
+    bottom: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  #chatPanel{
+    display: none !important;
+}
+.nk-msg-body{
+  top: 63px;
+}
+.nkchatbody {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(108vh - (65px + 112px));
+}
+}
