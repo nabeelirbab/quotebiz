@@ -29,7 +29,6 @@ Route::group(['middleware' => ['installed']], function () {
 });
 
 
-
 /*
  * The following routes
  * + customer_files
