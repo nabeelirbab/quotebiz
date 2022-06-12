@@ -22,9 +22,7 @@
         </div>
     </div>
 
-    <a href="{{ url('account/payment/edit', [
-        'redirect' => isset($redirect) ? $redirect : url('account/billing'),
-    ]) }}" class="btn btn-secondary payment-method-edit mt-4">
+    <a href="{{ url('account/payment/edit') }}" class="btn btn-secondary payment-method-edit mt-4">
         {{ trans('messages.change_payment_method') }}
     </a>
 @else

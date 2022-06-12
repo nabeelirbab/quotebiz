@@ -143,8 +143,10 @@ class QuestionController extends Controller
      * @param  \Acelle\Model\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($id)
     {
-        //
+        $question = Question::find($id);
+        $question->delete();
+        return redirect()->back()->with('success', 'your message,here'); 
     }
 }

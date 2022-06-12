@@ -268,7 +268,7 @@ class AccountController extends Controller
         }
 
         return view('account.editPaymentMethod', [
-            'redirect' => $request->redirect ? $request->redirect : action('AccountController@billing'),
+            'redirect' => $request->redirect ? $request->redirect : url('account/billing'),
         ]);
     }
 

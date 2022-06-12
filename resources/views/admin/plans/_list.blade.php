@@ -53,12 +53,12 @@
                     </h5>
                     <span class="text-muted">{{ $plan->displayFrequencyTime() }}</span>
                 </td>
-                <td>
+               <!--  <td>
                     <h5 class="no-margin text-bold kq_search">
                         {{ $plan->displayTotalQuota() }}
                     </h5>
                     <span class="text-muted">{{ trans('messages.sending_total_quota_label') }}</span>
-                </td>
+                </td> -->
                 <td>
                     <span class="text-muted2 list-status pull-left">
                         <span class="label label-flat bg-{{ $plan->status }}">{{ trans('messages.plan_status_' . $plan->status) }}</span>

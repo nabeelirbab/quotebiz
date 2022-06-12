@@ -60,13 +60,13 @@
                                 'unit' => trans('messages.' . $plan->frequency_unit),
                             ]) }}</p>
                         </div>
-                        <div class="width1of4 stats-box">
+                       <!--  <div class="width1of4 stats-box">
                             <h3>
                                 <a href="{{ action('Admin\PlanController@quota', $plan->uid) }}">{{ $plan->displayTotalQuota() }}</a>
                             </h3>
                             <p>{{ trans('messages.plan.sending_credits') }}</p>
-                        </div>
-                        <div class="width1of4 stats-box">
+                        </div> -->
+                        <!-- <div class="width1of4 stats-box">
                             <h3>
                                 @if ($plan->getOption('sending_server_option') == \Acelle\Model\Plan::SENDING_SERVER_OPTION_SYSTEM)
                                     @if ($plan->primarySendingServer())
@@ -92,7 +92,7 @@
                                 @endif
                             </h3>
                             <p>{{ trans('messages.plan.delivery') }}</p>
-                        </div>
+                        </div> -->
                     </div>
                         
                     <h2>{{ trans('messages.plan.general.details') }}</h2>

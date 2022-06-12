@@ -76,11 +76,19 @@ $subdomain= request("account");
     </div>
 
     @if (\Acelle\Model\Setting::get('enable_user_registration') == 'yes')
+       @if(request('account'))
         <div class="text-center mt-4 text-white small">
             {!! trans('messages.need_a_account_create_an_one', [
 	'link' => url('users/register')
             ]) !!}
         </div>
+        @else
+      <div class="text-center mt-4 text-white small">
+                {!! trans('messages.need_a_account_create_an_one', [
+        'link' => url('admin/register')
+                ]) !!}
+        </div>
+        @endif
     @endif
 </form>
 <!-- /advanced login -->

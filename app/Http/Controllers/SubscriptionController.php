@@ -43,9 +43,7 @@ class SubscriptionController extends Controller
         if ($subscription->isNew()) {
             $invoice = $subscription->getItsOnlyUnpaidInitInvoice();
 
-            return redirect()->action('SubscriptionController@payment', [
-                'invoice_uid' => $invoice->uid,
-            ]);
+            return redirect('account/subscription/payment/'.$invoice->uid);
         }
 
         // 3. SUBSCRIPTION IS ACTIVE, SHOW DETAILS PAGE

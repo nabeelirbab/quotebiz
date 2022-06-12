@@ -126,7 +126,7 @@
                                                                
                                                                 <li class="divider"></li>
                                                                
-                                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
+                                                                <li><a href="{{ url('admin/questions/delete/'.$question->id)}}"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
