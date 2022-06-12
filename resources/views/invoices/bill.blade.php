@@ -13,7 +13,7 @@
                         <div class="mr-auto">
                             <p class="mb-0 font-weight-semibold">{{ trans('messages.invoice.price') }}</p>
                             <p class="mb-0">({{ $item['title'] }})</p>
-                            <p class="mb-0">{!! $item['description'] !!}</p>
+                            <!-- <p class="mb-0">{!! $item['description'] !!}</p> -->
                         </div>
                         <div class="font-weight-semibold fs-6"><span>{{ $item['price'] }}</span></div>
                     </div>

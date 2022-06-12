@@ -18,8 +18,8 @@ import socketio from 'socket.io-client';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
-// const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
-const SocketInstance = socketio.connect('http://'+subdomain+'.shopgrabthis.com:3000');
+const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
+// const SocketInstance = socketio.connect('http://'+subdomain+'.shopgrabthis.com:3000');
 
 Vue.use(new VueSocketIO({
     debug: true,
@@ -31,11 +31,11 @@ Vue.use(VEmojiPicker);
 Vue.use(wysiwyg, {});
 //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Vue.config.productionTip = false;
-// window.axios.defaults.baseURL = 'http://'+subdomain+'.quotebiz.local:8000/';
-// Vue.prototype.$hostname = 'http://'+subdomain+'.quotebiz.local:8000/'
+window.axios.defaults.baseURL = 'http://'+subdomain+'.quotebiz.local:8000/';
+Vue.prototype.$hostname = 'http://'+subdomain+'.quotebiz.local:8000/'
 
-window.axios.defaults.baseURL = 'http://'+subdomain+'.shopgrabthis.com/';
-Vue.prototype.$hostname = 'http://'+subdomain+'.shopgrabthis.com/'
+// window.axios.defaults.baseURL = 'http://'+subdomain+'.shopgrabthis.com/';
+// Vue.prototype.$hostname = 'http://'+subdomain+'.shopgrabthis.com/'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

@@ -1,29 +1,72 @@
 @if ($customers->count() > 0)
+
     <table class="table table-box pml-table mt-2"
         current-page="{{ empty(request()->page) ? 1 : empty(request()->page) }}"
     >
+    
+    <thead class="tb-ticket-head">
+            <tr class="tb-ticket-title">
+                <th class="tb-ticket-id"><span>#ID</span></th>
+                <th class="tb-ticket-desc text-center">
+                    <span>User</span>
+                </th>
+                <th class="tb-ticket-desc">
+                    <span>Subdomain</span>
+                </th>
+                <th class="tb-ticket-desc">
+                    <span>City</span>
+                </th>
+                <th class="tb-ticket-desc">
+                    <span>Zip Code</span>
+                </th>
+                <th class="tb-ticket-date tb-col-md">
+                    <span>Created At</span>
+                </th>
+                <th class="tb-ticket-status">
+                    <span>Status</span>
+                </th>
+                <!-- <th class="tb-ticket-action">Action</th> -->
+            </tr><!-- .tb-ticket-title -->
+        </thead>
         @foreach ($customers as $key => $item)
             <tr>
                 <td width="1%">
-                    <img width="50" class="rounded-circle me-2" src="{{ $item->getProfileImageUrl() }}" alt="">
+                   {{$item->id}}
                 </td>
                 <td>
+                    <div class="text-center">
+                     <span>   
+                     <img width="50" class="rounded-circle me-2" src="{{ $item->getProfileImageUrl() }}" alt="">
+                    </span>
                     <h5 class="m-0 text-bold">
                         <a class="kq_search d-block" href="{{ action('Admin\CustomerController@edit', $item->uid) }}">{{ $item->displayName() }}</a>
                     </h5>
                     <span class="text-muted kq_search">{{ $item->email }}</span><br>
                 
-                    <br />
-                    <span class="text-muted2">{{ trans('messages.created_at') }}: {{ Tool::formatDateTime($item->created_at) }}</span>
+                </div>
                 </td>
-              
-              
                 <td>
-                    <span class="text-muted2 list-status pull-left">
-                        <span class="label label-flat bg-{{ $item->status }}">{{ trans('messages.user_status_' . $item->status) }}</span>
-                    </span>
+                    
+                 {{$item->subdomain }}
                 </td>
-             
+              <td>
+                 {{$item->city }}
+                  
+              </td>
+              <td>
+                 {{$item->zipcode }}
+              </td>
+                <td>
+                   {{ Tool::formatDateTime($item->created_at) }}
+                </td>
+             <td>
+                 @if($item->activated == 1)
+                 <span class="badge badge-primary">Active</span>
+                 @else
+                 <span class="badge badge-warning">Inactive</span>
+                 @endif
+             </td>
+                         
             </tr>
         @endforeach
     </table>

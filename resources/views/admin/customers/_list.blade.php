@@ -2,25 +2,58 @@
     <table class="table table-box pml-table mt-2"
         current-page="{{ empty(request()->page) ? 1 : empty(request()->page) }}"
     >
+    <thead class="tb-ticket-head">
+            <tr class="tb-ticket-title">
+                <th class="tb-ticket-id"><span>#ID</span></th>
+                <th class="tb-ticket-desc text-center">
+                    <span>User</span>
+                </th>
+                <th class="tb-ticket-desc">
+                    <span>Subdomain</span>
+                </th>
+                <th class="tb-ticket-desc">
+                    <span>Current Plan</span>
+                </th>
+                <th class="tb-ticket-desc">
+                    <span>City</span>
+                </th>
+                <th class="tb-ticket-date tb-col-md">
+                    <span>Created At</span>
+                </th>
+                <th class="tb-ticket-status">
+                    <span>Status</span>
+                </th>
+                <th class="tb-ticket-status text-center">
+                    <span>Action</span>
+                </th>
+                <!-- <th class="tb-ticket-action">Action</th> -->
+            </tr><!-- .tb-ticket-title -->
+        </thead>
         @foreach ($customers as $key => $item)
             <tr>
                 <td width="1%">
-                    <img width="50" class="rounded-circle me-2" src="{{ $item->user->getProfileImageUrl() }}" alt="">
+                    {{$item->user->id}}
                 </td>
                 <td>
+                     <div class="text-center">
+                     <span>   
+                     <img width="50" class="rounded-circle me-2" src="{{ $item->user->getProfileImageUrl() }}" alt="">
+                    </span>
                     <h5 class="m-0 text-bold">
-                        <a class="kq_search d-block" href="{{ action('Admin\CustomerController@edit', $item->uid) }}">{{ $item->user->displayName() }}</a>
+                        <a class="kq_search d-block" href="{{ action('Admin\CustomerController@edit', $item->user->uid) }}">{{ $item->user->displayName() }}</a>
                     </h5>
                     <span class="text-muted kq_search">{{ $item->user->email }}</span><br>
-                    <span class="text-muted kq_search">{{ trans('messages.customer.bounce_feedback_rate') }} <span title="{{ trans('messages.customer.bounce_feedback_rate_desc') }}" class="xtooltip">{{ number_to_percentage($item->readCache('Bounce/FeedbackRate') ?? 0) }}</span></span>
-                    <br />
-                    <span class="text-muted2">{{ trans('messages.created_at') }}: {{ Tool::formatDateTime($item->created_at) }}</span>
+                
+                </div>
+                </td>
+                <td>
+                    {{ $item->user->subdomain}}
                 </td>
                 <td>
                     @if ($item->currentPlanName())
                         <h5 class="no-margin stat-num">
                             <span><i class="material-icons-outlined">
-assignment_turned_in
+ assignment_turned_in
 </i> {{ $item->currentPlanName() }}</span>
                         </h5>
                         <span class="text-muted2">{{ trans('messages.current_plan') }}</span>
@@ -28,31 +61,11 @@ assignment_turned_in
                         <span class="text-muted2">{{ trans('messages.customer.no_active_subscription') }}</span>
                     @endif
                 </td>
-                <td class="stat-fix-size">
-                    @if ($item->activeSubscription())
-                        <div class="d-flex">
-                            <div class="single-stat-box pull-left me-5">
-                                <span class="no-margin text-primary stat-num">{{ format_number($item->activeSubscription()->getCreditsUsedPercentageDuringPlanCycle('send')*100) }}%</span>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-info" style="width: {{ $item->activeSubscription()->getCreditsUsedPercentageDuringPlanCycle('send')*100 }}%">
-                                    </div>
-                                </div>
-                                <span class="text-muted">
-                                    <strong>{{ number_with_delimiter($item->activeSubscription()->getCreditsUsedDuringPlanCycle('send')) }}/{{ ($item->activeSubscription()->getCreditsLimit('send') == -1) ? '∞' : number_with_delimiter($item->activeSubscription()->getCreditsLimit('send')) }}</strong>
-                                    <div class="text-nowrap">{{ trans('messages.sending_credits_used') }}</div>
-                                </span>
-                            </div>
-                            <div class="single-stat-box pull-left">
-                                <span class="no-margin text-primary stat-num">{{ $item->displaySubscribersUsage() }}</span>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-info" style="width: {{ $item->readCache('SubscriberUsage') }}%">
-                                    </div>
-                                </div>
-                                <span class="text-muted"><strong>{{ number_with_delimiter($item->readCache('SubscriberCount')) }}/{{ number_with_delimiter($item->maxSubscribers()) }}</strong>
-                                <br /> {{ trans('messages.subscribers') }}</span>
-                            </div>
-                        </div>
-                    @endif
+                <td>
+                    {{ $item->user->city}}
+                </td>
+                <td>
+                   {{ Tool::formatDateTime($item->created_at) }}
                 </td>
                 <td>
                     <span class="text-muted2 list-status pull-left">
@@ -60,13 +73,13 @@ assignment_turned_in
                     </span>
                 </td>
                 <td class="text-end">
-                    @can('loginAs', $item)
+                   <!--  @can('loginAs', $item)
                         <a href="{{ action('Admin\CustomerController@loginAs', $item->uid) }}" data-popup="tooltip"
                             title="{{ trans('messages.login_as_this_customer') }}" role="button"
                             class="btn btn-primary btn-icon"><span class="material-icons-outlined">
 login
 </span></a>
-                    @endcan
+                    @endcan -->
                     @can('update', $item)
                         <a href="{{ action('Admin\CustomerController@edit', $item->uid) }}"
                             data-popup="tooltip" title="{{ trans('messages.edit') }}"

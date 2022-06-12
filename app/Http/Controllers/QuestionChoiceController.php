@@ -18,6 +18,7 @@ use Acelle\Model\Setting;
 use Acelle\Jobs\HelperJob;
 use Acelle\Mail\OnJobPost;
 use Acelle\Mail\RelatedJob;
+use Carbon\Carbon;
 use Mail;
 
 class QuestionChoiceController extends Controller
@@ -205,7 +206,10 @@ class QuestionChoiceController extends Controller
                     {
 
                 if(Auth::check()){
-                    
+                     User::where('id',Auth::user()->id)->update([
+                        'last_login_at' => Carbon::now()->toDateTimeString(),
+                        'last_login_ip' => $request->getClientIp()
+                         ]);
                     return redirect('customer/my-jobs');
                 }
     }

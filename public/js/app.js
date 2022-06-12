@@ -7347,9 +7347,9 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 
 
- // const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
 
-var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('http://' + subdomain + '.shopgrabthis.com:3000');
+var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('http://' + subdomain + '.quotebiz.local:3000'); // const SocketInstance = socketio.connect('http://'+subdomain+'.shopgrabthis.com:3000');
+
 Vue.use(new (vue_socket_io__WEBPACK_IMPORTED_MODULE_3___default())({
   debug: true,
   connection: SocketInstance
@@ -7359,11 +7359,11 @@ Vue.use(vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(v_emoji_picker__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use((vue_wysiwyg__WEBPACK_IMPORTED_MODULE_1___default()), {}); //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-Vue.config.productionTip = false; // window.axios.defaults.baseURL = 'http://'+subdomain+'.quotebiz.local:8000/';
-// Vue.prototype.$hostname = 'http://'+subdomain+'.quotebiz.local:8000/'
+Vue.config.productionTip = false;
+window.axios.defaults.baseURL = 'http://' + subdomain + '.quotebiz.local:8000/';
+Vue.prototype.$hostname = 'http://' + subdomain + '.quotebiz.local:8000/'; // window.axios.defaults.baseURL = 'http://'+subdomain+'.shopgrabthis.com/';
+// Vue.prototype.$hostname = 'http://'+subdomain+'.shopgrabthis.com/'
 
-window.axios.defaults.baseURL = 'http://' + subdomain + '.shopgrabthis.com/';
-Vue.prototype.$hostname = 'http://' + subdomain + '.shopgrabthis.com/';
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -14498,7 +14498,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_wysiwyg_dist_vueWysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    height: calc(82vh - 75px);\r\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\n    position: relative;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    top: 25%;\r\n    width: 50%;\n}\n.img-fluid {\r\n    max-width: 100%;\r\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\n    font-size: 1.5em;\n}\n.text-light-grey {\r\n    color: #9da0b6!important;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14522,7 +14522,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\ndisplay: flex;\nalign-items: flex-start;\njustify-content: center;\nheight: calc(82vh - 75px);\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\nposition: relative;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\nmin-width: 0;\ntop: 25%;\nwidth: 50%;\n}\n.img-fluid {\n  max-width: 100%;\n  height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\nfont-size: 1.5em;\n}\n.text-light-grey {\ncolor: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n  z-index: 9999;\n  position: absolute;\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n        top: 88px !important;\n        right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\npadding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35822,11 +35822,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -35973,11 +35973,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -36124,11 +36124,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -36651,7 +36651,7 @@ var render = function () {
                                                                         }
                                                                       ),
                                                                       _vm._v(
-                                                                        "\n                        Your browser does not support the video tag.\n                        "
+                                                                        "\r\n                        Your browser does not support the video tag.\r\n                        "
                                                                       ),
                                                                     ]
                                                                   ),
@@ -36695,7 +36695,7 @@ var render = function () {
                                                                           _vm._s(
                                                                             chatData.message
                                                                           ) +
-                                                                          "\n                        "
+                                                                          "\r\n                        "
                                                                       ),
                                                                     ]
                                                                   ),
@@ -36880,7 +36880,7 @@ var render = function () {
                                                                         }
                                                                       ),
                                                                       _vm._v(
-                                                                        "\n                        Your browser does not support the video tag.\n                        "
+                                                                        "\r\n                        Your browser does not support the video tag.\r\n                        "
                                                                       ),
                                                                     ]
                                                                   ),
@@ -36929,7 +36929,7 @@ var render = function () {
                                                                           _vm._s(
                                                                             chatData.message
                                                                           ) +
-                                                                          "\n                        "
+                                                                          "\r\n                        "
                                                                       ),
                                                                     ]
                                                                   ),
@@ -37460,7 +37460,7 @@ var staticRenderFns = [
                     _vm._v(" "),
                     _c("h4", { staticClass: "mt-2" }, [
                       _vm._v(
-                        "\n                    Start Chat\n                "
+                        "\r\n                    Start Chat\r\n                "
                       ),
                     ]),
                     _vm._v(" "),
@@ -39024,11 +39024,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -39169,11 +39169,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -39314,11 +39314,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -39459,11 +39459,11 @@ var render = function () {
                                                 { staticClass: "unreadmsg" },
                                                 [
                                                   _vm._v(
-                                                    "\n                           " +
+                                                    "\r\n                           " +
                                                       _vm._s(
                                                         quote.unread_msg_count
                                                       ) +
-                                                      "\n                        "
+                                                      "\r\n                        "
                                                   ),
                                                 ]
                                               )
@@ -39900,7 +39900,7 @@ var render = function () {
                                                                           }
                                                                         ),
                                                                         _vm._v(
-                                                                          "\n                        Your browser does not support the video tag.\n                        "
+                                                                          "\r\n                        Your browser does not support the video tag.\r\n                        "
                                                                         ),
                                                                       ]
                                                                     ),
@@ -39947,7 +39947,7 @@ var render = function () {
                                                                             _vm._s(
                                                                               chatData.message
                                                                             ) +
-                                                                            "\n                        "
+                                                                            "\r\n                        "
                                                                         ),
                                                                       ]
                                                                     ),
@@ -40135,7 +40135,7 @@ var render = function () {
                                                                           }
                                                                         ),
                                                                         _vm._v(
-                                                                          "\n                        Your browser does not support the video tag.\n                        "
+                                                                          "\r\n                        Your browser does not support the video tag.\r\n                        "
                                                                         ),
                                                                       ]
                                                                     ),
@@ -40187,7 +40187,7 @@ var render = function () {
                                                                             _vm._s(
                                                                               chatData.message
                                                                             ) +
-                                                                            "\n                        "
+                                                                            "\r\n                        "
                                                                         ),
                                                                       ]
                                                                     ),
@@ -40727,7 +40727,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("h4", { staticClass: "mt-2" }, [
-          _vm._v("\n                    Star Chat\n                "),
+          _vm._v("\r\n                    Star Chat\r\n                "),
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "text-center mt-2 text-light-grey" }, [
@@ -62642,7 +62642,7 @@ function hasBinary(obj, toJSON) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","/var/www/html/demos/quotebiz"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/var/www/html/demos/quotebiz","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"D:\\\\reactProject\\\\quoteBiz\\\\quotebiz","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
