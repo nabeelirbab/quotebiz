@@ -11,7 +11,7 @@ class InvoiceController extends Controller
     public function download(Request $request)
     {
         $invoice = Invoice::findByUid($request->uid);
-dd($invoice->exportToPdf());
+//dd($invoice->exportToPdf());
         return \Response::make($invoice->exportToPdf(), 200, [
             'Content-type'        => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="invoice-'.$invoice->uid.'.pdf"',

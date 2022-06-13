@@ -38,7 +38,7 @@ Route::group(['middleware' => ['installed']], function () {
  *
  */
 
-Route::domain('{account}.shopgrabthis.com')->group(function () {
+Route::domain('{account}.quotebiz.local')->group(function () {
 
 Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
     // Helper method to generate other routes for authentication
