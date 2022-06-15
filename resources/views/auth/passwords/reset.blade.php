@@ -59,9 +59,15 @@
             <button type="submit" class="btn btn-secondary">
                 {{ trans('messages.reset_password') }}  <i class="icon-circle-right2 position-right"></i>
             </button>
-            <a href="{{ url("/login") }}" class="btn btn-light">
+            @if(request('account'))
+            <a href="{{ url("/users/login") }}" class="btn btn-light">
                 {{ trans("messages.return_to_login") }}
             </a>
+            @else
+               <a href="{{ url("/login") }}" class="btn btn-light">
+                {{ trans("messages.return_to_login") }}
+            </a>
+            @endif
             
         </div>
     </form>

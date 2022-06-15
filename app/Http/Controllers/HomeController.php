@@ -31,6 +31,11 @@ class HomeController extends Controller
             'sendingCreditsLimit' => $sendingCreditsLimit,
         ]);
     }
+   
+   public function home(){
+
+     return view('index');
+   }
 
     public function quotes(){
 

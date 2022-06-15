@@ -38,7 +38,7 @@ Route::group(['middleware' => ['installed']], function () {
  * are used to retrieved files through filemanager
  *
  */
-
+// Route::get('/', 'HomeController@home');
 Route::domain('{account}.'.config('app.url'))->group(function () {
 
 Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
@@ -731,7 +731,10 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription',
     Route::get('invoices/{uid}/download', 'InvoiceController@download');
 });
 });
+
+Route::get('/', 'HomeController@home');
 // ADMIN AREA
+
 Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 'super_admin']], function () {
     Route::get('admin', 'HomeController@index');
     Route::get('admin/docs/api/v1', 'ApiController@doc');
