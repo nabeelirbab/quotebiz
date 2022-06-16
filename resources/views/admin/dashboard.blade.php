@@ -107,7 +107,40 @@ people_outline
                 <?php
                // dd(Auth::user()->admin->recentCustomers());
                 ?>
-              
+                @forelse(Auth::user()->admin->recentCustomers() as $customer)
+                    <li class="">
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <img width="40" class="rounded-circle shadow-sm me-2 pull-left" src="{{ $customer->user->getProfileImageUrl() }}" alt="">
+                                    </div>
+                                    <div>
+                                        <h6 class="mt-0 mb-0 text-semibold">
+                                            <a href="{{ action('Admin\CustomerController@edit', $customer->uid) }}">
+                                                {{ $customer->user->displayName() }}
+                                            </a>
+                                        </h6>
+                                        <p class="mb-0 admin-line admin-recent-sencond-line" title="{{ $customer->user->email }}">
+                                            {{ $customer->user->email }}
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-4 col-md-4 text-end">
+                                <h6 class="no-margin text-semibold small">
+                                    {{ Tool::formatDateTime($customer->created_at) }}
+                                </h6>
+                                <span class="">{{ trans('messages.created_at') }}</span>
+                            </div>
+                        </div>
+                    </li>
+                @empty
+                    <li class="empty-li">
+                        {{ trans('messages.empty_record_message') }}
+                    </li>
+                @endforelse
             </ul>
         </div>
     </div>
