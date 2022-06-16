@@ -37334,17 +37334,7 @@ var render = function () {
                                   ],
                                   2
                                 ),
-                                _vm._v(" "),
-                                _c("vue-easy-lightbox", {
-                                  attrs: {
-                                    visible: _vm.visible,
-                                    imgs: _vm.imgs,
-                                    index: _vm.index,
-                                  },
-                                  on: { hide: _vm.handleHide },
-                                }),
-                              ],
-                              1
+                              ]
                             ),
                           ]
                         ),
@@ -37352,7 +37342,17 @@ var render = function () {
                     ]),
                   ]
                 ),
-              ]
+                _vm._v(" "),
+                _c("vue-easy-lightbox", {
+                  attrs: {
+                    visible: _vm.visible,
+                    imgs: _vm.imgs,
+                    index: _vm.index,
+                  },
+                  on: { hide: _vm.handleHide },
+                }),
+              ],
+              1
             ),
           ]),
         ]),
@@ -40602,17 +40602,7 @@ var render = function () {
                                   ],
                                   2
                                 ),
-                                _vm._v(" "),
-                                _c("vue-easy-lightbox", {
-                                  attrs: {
-                                    visible: _vm.visible,
-                                    imgs: _vm.imgs,
-                                    index: _vm.index,
-                                  },
-                                  on: { hide: _vm.handleHide },
-                                }),
-                              ],
-                              1
+                              ]
                             ),
                           ]
                         ),
@@ -40620,7 +40610,17 @@ var render = function () {
                     ]),
                   ]
                 ),
-              ]
+                _vm._v(" "),
+                _c("vue-easy-lightbox", {
+                  attrs: {
+                    visible: _vm.visible,
+                    imgs: _vm.imgs,
+                    index: _vm.index,
+                  },
+                  on: { hide: _vm.handleHide },
+                }),
+              ],
+              1
             ),
           ]),
         ]),

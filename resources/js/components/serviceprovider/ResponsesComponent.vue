@@ -450,18 +450,18 @@
                         </template> 
                    
                     </div>
-                    <vue-easy-lightbox
-                    :visible="visible"
-                    :imgs="imgs"
-                    :index="index"
-                    @hide="handleHide"
-                  ></vue-easy-lightbox>
+                   
                 </div>
             </div>
         </div><!-- .chat-profile-group -->
     </div> <!-- .chat-profile -->
 </div><!-- .nk-msg-profile -->
-
+ <vue-easy-lightbox
+    :visible="visible"
+    :imgs="imgs"
+    :index="index"
+    @hide="handleHide"
+  ></vue-easy-lightbox>
 </div><!-- .nk-msg-body -->
 </div><!-- .nk-msg -->
 </div>

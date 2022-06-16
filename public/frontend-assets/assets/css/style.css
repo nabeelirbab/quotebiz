@@ -12,6 +12,9 @@
 .nk-menu{
 	padding: 8px 12px 8px 12px
 }
+.nk-msg-head {
+    padding: 1rem 1.5rem !important;
+}
 .nk-menu-link {
     padding: 0.625rem 28px 0.625rem 12px;
     color: #6e82a5;
