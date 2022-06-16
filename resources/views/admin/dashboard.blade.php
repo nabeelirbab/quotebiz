@@ -107,7 +107,7 @@ people_outline
                 <?php
                // dd(Auth::user()->admin->recentCustomers());
                 ?>
-                @forelse(Auth::user()->admin->recentCustomers() as $customer)
+               <!--  @forelse(Auth::user()->admin->recentCustomers() as $customer)
                     <li class="">
                         <div class="row">
                             <div class="col-sm-8 col-md-8">
@@ -140,7 +140,7 @@ people_outline
                     <li class="empty-li">
                         {{ trans('messages.empty_record_message') }}
                     </li>
-                @endforelse
+                @endforelse -->
             </ul>
         </div>
     </div>
