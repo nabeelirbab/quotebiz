@@ -103,17 +103,17 @@ New Customer Alert
 </tr>
 
 
-<tr>
+<!-- <tr>
 <td align="left" style="line-height:30px;padding:0 0 3px">
 <p style="margin:0;padding:0;color:#61696d;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:16px;font-weight:400">
 <img src="https://ci5.googleusercontent.com/proxy/OL5RgsLd8vY2XNi0-5joSW7pzdKX8R6aXqiKuzGYhG90k8wmte03bRfrflO2a4VfObgHScv6mX5Z7GZarvIFFyo3YeMAucKOaVp9fA=s0-d-e1-ft#https://d18jakcjgoan9.cloudfront.net/img/bark-coins-1.png" width="20" height="20" style="margin-right:1px;vertical-align:middle" alt="Credits" class="CToWUd"> 27 credits to respond
 </p>
 </td>
-</tr>
+</tr> -->
 
-<tr>
+<!-- <tr>
 <td align="left"><img src="https://ci3.googleusercontent.com/proxy/cgC82gh5pP9UXc1AWapr-VMl4ewHp0Z5JFzL4W-l4yXBI5cflpnkRBdBHgR660jP9HWPS7f3W3KlAcNSmwISjg=s0-d-e1-ft#https://www.bark.com/rc/16958276/21973738.png" width="300" height="40" alt="Enable images to see live response information" class="CToWUd"></td>
-</tr>
+</tr> -->
 
 </tbody></table>
 </td>

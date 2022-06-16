@@ -7347,9 +7347,9 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 
 
+ // const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
 
-var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('http://' + subdomain + '.quotebiz.local:3000'); // const SocketInstance = socketio.connect('http://'+subdomain+'.shopgrabthis.com:3000');
-
+var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('http://' + subdomain + '.shopgrabthis.com:3000');
 Vue.use(new (vue_socket_io__WEBPACK_IMPORTED_MODULE_3___default())({
   debug: true,
   connection: SocketInstance
@@ -7359,11 +7359,11 @@ Vue.use(vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(v_emoji_picker__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use((vue_wysiwyg__WEBPACK_IMPORTED_MODULE_1___default()), {}); //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-Vue.config.productionTip = false;
-window.axios.defaults.baseURL = 'http://' + subdomain + '.quotebiz.local:8000/';
-Vue.prototype.$hostname = 'http://' + subdomain + '.quotebiz.local:8000/'; // window.axios.defaults.baseURL = 'http://'+subdomain+'.shopgrabthis.com/';
-// Vue.prototype.$hostname = 'http://'+subdomain+'.shopgrabthis.com/'
+Vue.config.productionTip = false; // window.axios.defaults.baseURL = 'http://'+subdomain+'.quotebiz.local:8000/';
+// Vue.prototype.$hostname = 'http://'+subdomain+'.quotebiz.local:8000/'
 
+window.axios.defaults.baseURL = 'http://' + subdomain + '.shopgrabthis.com/';
+Vue.prototype.$hostname = 'http://' + subdomain + '.shopgrabthis.com/';
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -37334,17 +37334,7 @@ var render = function () {
                                   ],
                                   2
                                 ),
-                                _vm._v(" "),
-                                _c("vue-easy-lightbox", {
-                                  attrs: {
-                                    visible: _vm.visible,
-                                    imgs: _vm.imgs,
-                                    index: _vm.index,
-                                  },
-                                  on: { hide: _vm.handleHide },
-                                }),
-                              ],
-                              1
+                              ]
                             ),
                           ]
                         ),
@@ -37352,7 +37342,17 @@ var render = function () {
                     ]),
                   ]
                 ),
-              ]
+                _vm._v(" "),
+                _c("vue-easy-lightbox", {
+                  attrs: {
+                    visible: _vm.visible,
+                    imgs: _vm.imgs,
+                    index: _vm.index,
+                  },
+                  on: { hide: _vm.handleHide },
+                }),
+              ],
+              1
             ),
           ]),
         ]),
@@ -40602,17 +40602,7 @@ var render = function () {
                                   ],
                                   2
                                 ),
-                                _vm._v(" "),
-                                _c("vue-easy-lightbox", {
-                                  attrs: {
-                                    visible: _vm.visible,
-                                    imgs: _vm.imgs,
-                                    index: _vm.index,
-                                  },
-                                  on: { hide: _vm.handleHide },
-                                }),
-                              ],
-                              1
+                              ]
                             ),
                           ]
                         ),
@@ -40620,7 +40610,17 @@ var render = function () {
                     ]),
                   ]
                 ),
-              ]
+                _vm._v(" "),
+                _c("vue-easy-lightbox", {
+                  attrs: {
+                    visible: _vm.visible,
+                    imgs: _vm.imgs,
+                    index: _vm.index,
+                  },
+                  on: { hide: _vm.handleHide },
+                }),
+              ],
+              1
             ),
           ]),
         ]),
