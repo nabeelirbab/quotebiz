@@ -180,7 +180,8 @@ class QuestionChoiceController extends Controller
            'user' => $user,
            'subject' => 'Job Post'
         ];
-        Mail::to('nabeelirbab@gmail.com')->send(new OnJobPost($jobdata));
+        
+        Mail::to($user->email)->send(new OnJobPost($jobdata));
 
         $users = User::where('zipcode',$request->zip_code)->where('user_type','service_provider')->where('subdomain',request('account'))->where('category_id',$request->category_id)->pluck('email');
         $job = Quote::with('quotations','user')->where('id',$quote->id)->where('user_id',$user->id)->orderBy('id','desc')->first();
