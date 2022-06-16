@@ -589,12 +589,12 @@ public static $itemsPerPage = 25;
 
     public function getProfileImageUrl()
     {
-        // $path = $this->getProfileImagePath();
-        // if (file_exists($path)) {
-        //     return \Acelle\Helpers\generatePublicPath($path);
-        // } else {
+        $path = $this->getProfileImagePath();
+        if (file_exists($path)) {
+            return \Acelle\Helpers\generatePublicPath($path);
+        } else {
             return URL::asset('images/user-placeholder.svg');
-        // }
+        }
     }
 
     public function getProfileThumbUrl()
