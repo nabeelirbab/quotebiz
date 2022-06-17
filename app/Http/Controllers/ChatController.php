@@ -44,10 +44,7 @@ class ChatController extends Controller
     public function storequotation(Request $request)
     {
 
-        $total = Auth::user()->credits - 10;
-        $user = User::find(Auth::user()->id);
-        $user->credits = $total;
-        $user->save();
+        
 
         $quote = new Quotation;
         $quote->user_id = Auth::user()->id;
@@ -68,6 +65,12 @@ class ChatController extends Controller
         $message->messageStart = '1';
         $message->subdomain = request('account');
         $message->save();
+
+        $total = Auth::user()->credits - 10;
+        $user = User::find(Auth::user()->id);
+        $user->credits = $total;
+        $user->save();
+
         $receiver = User::find($request->customer_id);
 
         $quotedata = [

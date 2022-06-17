@@ -180,7 +180,7 @@
                                         </div>
                                     </div>
                                         <div class="row">
-                                        <div class="col-md-12 mt-2 mb-5">
+                                        <div class="col-md-12 mt-2 mb-3">
                                             <p style="font-size: 16px;"><b>Customers appreciate information specific to their job.</b></p>  
                                                
                                                 <div class="card-inner p-0">
@@ -190,7 +190,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                        <div class="col-md-12 mt-5 mb-5">
+                                        <div class="col-md-12 mt-2 mb-5">
                                         <div class="custom-control ">
                                             <input type="checkbox" class="custom-control-input" id="latest-sale">
                                             <label class="custom-control-label" for="latest-sale"><b>Save this comment as a template</b></label>
@@ -218,7 +218,7 @@
                                         <div class="col-md-6 col-xs-6">
                                         <div class="input-group">
                                          <label style="position: absolute;bottom: 41px;">Amount</label>
-                                          <input type="text" class="form-control rounded-left" style="height: 50px" v-model="price" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                          <input type="text" class="form-control rounded-left" v-bind:class="{redborder: isPrice}" style="height: 50px" v-model="price" placeholder="Recipient's username" >
                                           <div class="input-group-append">
                                             <button v-if="isSubmit" class="btn btn-success" @click="sendQuotation"  id="basic-addon2">Send Quote</button>
                                              <button v-if="isLoading" class="btn btn-success" style="background-color: #816bff !important;border-color: #816bff !important">Send Quote <div class="spinner-border text-secondary" role="status"> <span class="sr-only">Loading...</span></div></button>
@@ -270,6 +270,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
              newJob: 0,
              isSubmit: true,
              isLoading: false,
+             isPrice: false,
             };
           },
   
@@ -277,6 +278,24 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                 // let subdomain = location.hostname.split('.').shift();
                 // alert('subdomain is ' + subdomain);
               },
+    watch: {
+            
+            price(){
+              if(this.price.length > 0){
+                  this.isPrice = false;
+              }else{
+                  this.isPrice = true;
+                }
+            },
+
+            comment(){
+              if(this.comment.length > 0){
+                  $('.editr').removeAttr("style")
+              }else{
+                  $('.editr').css('border-color','red');
+              }
+            },
+    },          
               
     methods: {
            closePanel(){
@@ -300,6 +319,37 @@ import 'vue-toast-notification/dist/theme-sugar.css';
             },
 
             sendQuotation(){
+                if(this.price == '' && this.comment == ''){
+                       this.isPrice = true;
+                       $('.editr').css('border-color','red');
+
+                       this.$toast.open({
+                            message: "Please fill all missing fields",
+                            type: "error",
+                            position: 'bottom-right',
+                            duration: 5000,
+                            dismissible: true
+                          });
+                }else if(this.price == ''){
+                    this.isPrice = true;
+                    this.$toast.open({
+                            message: "Please enter price",
+                            type: "error",
+                            position: 'bottom-right',
+                            duration: 5000,
+                            dismissible: true
+                          });
+                }
+                else if(this.comment == ''){
+                  $('.editr').css('border-color','red');
+                  this.$toast.open({
+                            message: "Please enter quote",
+                            type: "error",
+                            position: 'bottom-right',
+                            duration: 5000,
+                            dismissible: true
+                          });
+                }else{
 
                 var csrf_token = $('meta[name="csrf-token"]').attr('content');
                  this.isSubmit = false;
@@ -330,6 +380,8 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                   }).catch((error) => {
                       console.log(error);
                   })
+                }
+                
             },
 
             getQuotes() {
@@ -367,6 +419,9 @@ import 'vue-toast-notification/dist/theme-sugar.css';
     min-width: 0;
     top: 25%;
     width: 50%;
+}
+.redborder{
+  border-color: red;
 }
 .img-fluid {
     max-width: 100%;

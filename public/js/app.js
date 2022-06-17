@@ -6385,11 +6385,28 @@ __webpack_require__.r(__webpack_exports__);
       myQuotation: 0,
       newJob: 0,
       isSubmit: true,
-      isLoading: false
+      isLoading: false,
+      isPrice: false
     };
   },
   created: function created() {// let subdomain = location.hostname.split('.').shift();
     // alert('subdomain is ' + subdomain);
+  },
+  watch: {
+    price: function price() {
+      if (this.price.length > 0) {
+        this.isPrice = false;
+      } else {
+        this.isPrice = true;
+      }
+    },
+    comment: function comment() {
+      if (this.comment.length > 0) {
+        $('.editr').removeAttr("style");
+      } else {
+        $('.editr').css('border-color', 'red');
+      }
+    }
   },
   methods: {
     closePanel: function closePanel() {
@@ -6412,36 +6429,66 @@ __webpack_require__.r(__webpack_exports__);
     sendQuotation: function sendQuotation() {
       var _this = this;
 
-      var csrf_token = $('meta[name="csrf-token"]').attr('content');
-      this.isSubmit = false;
-      this.isLoading = true;
-      axios.post('/service-provider/storequotation', {
-        customer_id: this.quoteQuestions.user_id,
-        quote_id: this.quoteQuestions.id,
-        quote_price: this.price,
-        comment: this.comment,
-        _token: csrf_token
-      }).then(function (response) {
-        console.log(response.data);
-
-        _this.$toast.open({
-          message: "Quotation Send Successfully",
-          type: "success",
-          position: 'top',
+      if (this.price == '' && this.comment == '') {
+        this.isPrice = true;
+        $('.editr').css('border-color', 'red');
+        this.$toast.open({
+          message: "Please fill all missing fields",
+          type: "error",
+          position: 'bottom-right',
           duration: 5000,
           dismissible: true
         });
+      } else if (this.price == '') {
+        this.isPrice = true;
+        this.$toast.open({
+          message: "Please enter price",
+          type: "error",
+          position: 'bottom-right',
+          duration: 5000,
+          dismissible: true
+        });
+      } else if (this.comment == '') {
+        $('.editr').css('border-color', 'red');
+        this.$toast.open({
+          message: "Please enter quote",
+          type: "error",
+          position: 'bottom-right',
+          duration: 5000,
+          dismissible: true
+        });
+      } else {
+        var csrf_token = $('meta[name="csrf-token"]').attr('content');
+        this.isSubmit = false;
+        this.isLoading = true;
+        axios.post('/service-provider/storequotation', {
+          customer_id: this.quoteQuestions.user_id,
+          quote_id: this.quoteQuestions.id,
+          quote_price: this.price,
+          comment: this.comment,
+          _token: csrf_token
+        }).then(function (response) {
+          console.log(response.data);
 
-        _this.isLoading = false;
-        _this.isSubmit = true;
-        _this.quoteQuestions.myquotation = response.data.quote.myquotation;
-        $('#chatPanel').hide();
-        $('#mainView').show();
-        _this.comment = '';
-        _this.quoteQuestions = {};
-      })["catch"](function (error) {
-        console.log(error);
-      });
+          _this.$toast.open({
+            message: "Quotation Send Successfully",
+            type: "success",
+            position: 'top',
+            duration: 5000,
+            dismissible: true
+          });
+
+          _this.isLoading = false;
+          _this.isSubmit = true;
+          _this.quoteQuestions.myquotation = response.data.quote.myquotation;
+          $('#chatPanel').hide();
+          $('#mainView').show();
+          _this.comment = '';
+          _this.quoteQuestions = {};
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     },
     getQuotes: function getQuotes() {
       var _this2 = this;
@@ -14498,7 +14545,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_wysiwyg_dist_vueWysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    height: calc(82vh - 75px);\r\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\n    position: relative;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    top: 25%;\r\n    width: 50%;\n}\n.img-fluid {\r\n    max-width: 100%;\r\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\n    font-size: 1.5em;\n}\n.text-light-grey {\r\n    color: #9da0b6!important;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    height: calc(82vh - 75px);\r\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\n    position: relative;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    top: 25%;\r\n    width: 50%;\n}\n.redborder{\r\n  border-color: red;\n}\n.img-fluid {\r\n    max-width: 100%;\r\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\n    font-size: 1.5em;\n}\n.text-light-grey {\r\n    color: #9da0b6!important;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38362,7 +38409,7 @@ var render = function () {
                                 _c("div", { staticClass: "row" }, [
                                   _c(
                                     "div",
-                                    { staticClass: "col-md-12 mt-2 mb-5" },
+                                    { staticClass: "col-md-12 mt-2 mb-3" },
                                     [
                                       _vm._m(5),
                                       _vm._v(" "),
@@ -38438,6 +38485,10 @@ var render = function () {
                                                         ],
                                                         staticClass:
                                                           "form-control rounded-left",
+                                                        class: {
+                                                          redborder:
+                                                            _vm.isPrice,
+                                                        },
                                                         staticStyle: {
                                                           height: "50px",
                                                         },
@@ -38445,10 +38496,6 @@ var render = function () {
                                                           type: "text",
                                                           placeholder:
                                                             "Recipient's username",
-                                                          "aria-label":
-                                                            "Recipient's username",
-                                                          "aria-describedby":
-                                                            "basic-addon2",
                                                         },
                                                         domProps: {
                                                           value: _vm.price,
@@ -38720,7 +38767,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 mt-5 mb-5" }, [
+      _c("div", { staticClass: "col-md-12 mt-2 mb-5" }, [
         _c("div", { staticClass: "custom-control " }, [
           _c("input", {
             staticClass: "custom-control-input",
