@@ -41,11 +41,11 @@
                             <div class="form-control-wrap">
                                 <select class="form-control" name="dateformet">
                                     @if($formet)
-                                    <option value="USA-m/d/Y" {{($formet->type.'-'.$formet->date_formet == 'USA-m/d/Y') ? 'selected' : ''}}>USA - M/D/YYYY </option>
-                                    <option value="Europe-d/m/Y" {{($formet->type.'-'.$formet->date_formet == 'Europe-d/m/Y') ? 'selected' : ''}}>Europe - D/M/YYYY </option>
+                                    <option value="USA-m/d/Y" {{($formet->type.'-'.$formet->date_formet == 'USA-m/d/Y') ? 'selected' : ''}}>USA - MM/DD/YYYY </option>
+                                    <option value="Europe-d/m/Y" {{($formet->type.'-'.$formet->date_formet == 'Europe-d/m/Y') ? 'selected' : ''}}>Europe - DD/MM/YYYY </option>
                                     @else
-                                    <option value="USA-m/d/Y">USA - M/D/YYYY </option>
-                                    <option value="Europe-d/m/Y">Europe - D/M/YYYY </option>
+                                    <option value="USA-m/d/Y">USA - MM/DD/YYYY </option>
+                                    <option value="Europe-d/m/Y">Australia/Europe - DD/MM/YYYY </option>
                                     @endif
                                 </select>
                             </div>

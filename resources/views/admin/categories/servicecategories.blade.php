@@ -13,7 +13,9 @@
 @endsection
 
 @section('content')
+<?php $arraycalss=['badge-primary','badge-danger','badge-success','badge-info','badge-warning','badge-danger','badge-primary','badge-default','badge-success','badge-info','badge-warning','badge-danger','badge-primary','badge-default','badge-success','badge-info','badge-warning','badge-danger'];
 
+?>
   <!-- content @s -->
                 <div class="nk-content ">
                     <div class="container-fluid">
@@ -21,7 +23,12 @@
                             <div class="nk-content-body">
                             @if(Session::has('message'))
                               <div class="col-12">
-                                  {!!Session::get('message')!!}
+                                 <div class="alert alert-success  fade show mt-5" role="alert">
+                                      {!!Session::get('message')!!}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
                               </div>
                               @endif
                                 <div class="nk-block-head nk-block-head-sm">
@@ -37,18 +44,7 @@
                                                 <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
                                                 <div class="toggle-expand-content" data-content="pageMenu">
                                                     <ul class="nk-block-tools g-3">
-                                                        <li>
-                                                            <div class="drodown">
-                                                                <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-filter-alt"></em><span>Filtered By</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                    <ul class="link-list-opt no-bdr">
-                                                                        <li><a href="#"><span>Web Development</span></a></li>
-                                                                        <li><a href="#"><span>Mobile Application</span></a></li>
-                                                                        <li><a href="#"><span>Graphics Design</span></a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+                                                       <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-outline-light" onclick="opensubcategory()"><em class="icon ni ni-plus"></em><span>Add Sub Category</span></a></li>
                                                         <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em><span>Add Category</span></a></li>
                                                     </ul>
                                                 </div>
@@ -62,13 +58,27 @@
                                         <div class="col-sm-6 col-lg-4 col-xxl-3">
                                             <div class="card h-100">
                                                 <div class="card-inner">
-                                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                                    <div class="d-flex justify-content-between align-items-start mb-3" style="border-bottom: 1px solid gainsboro;">
                                                         <a href="html/lms/courses.html" class="d-flex align-items-center">
+                                                            @if($category->category_icon)
                                                             <div class="" style="width: 60px"><img src="{{asset('frontend-assets/images/categories/'.$category->category_icon)}}">
                                                             </div>
+                                                            @else
+                                                            <div class="user-avatar sq bg-purple"><span><?php $words = explode(' ', $category->category_name);
+                                                            if(count($words) > 1){
+                                                             $result = $words[0][0]. $words[1][0];
+                                                              echo $result;
+                                                          }else
+                                                          {
+                                                            $result = $words[0][0];
+                                                            echo $result;
+                                                            }
+                                                              ?></span></div>
+                                                          
+                                                            @endif
                                                             <div class="ml-3">
                                                                 <h6 class="title mb-1">{{$category->category_name}}</h6>
-                                                                <span class="sub-text">4 SubCategories</span>
+                                                                <span class="sub-text">{{count($category->subcategory)}} SubCategories</span>
                                                             </div>
                                                         </a>
                                                         <div class="dropdown">
@@ -81,13 +91,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <p>{{$category->category_description}}</p>
+                                                    <!-- <p>{{$category->category_description}}</p> -->
                                                     <ul class="d-flex flex-wrap g-1">
-                                                        <li><span class="badge badge-dim badge-primary">Photoshop</span></li>
-                                                        <li><span class="badge badge-dim badge-danger">Adobe Illustrator</span></li>
-                                                        <li><span class="badge badge-dim badge-info">Logo Design</span></li>
-                                                        <li><span class="badge badge-dim badge-warning">Drawing</span></li>
-                                                        <li><span class="badge badge-dim badge-secondary">Figma</span></li>
+                                                        @foreach($category->subcategory as $key=>$subcategory)
+                                                        <li><span class="badge badge-dim {{$arraycalss[$key]}}">{{$subcategory->sub_category}}</span></li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -162,6 +170,7 @@
                          <div id="mySidepanel" class="sidepanel">
                           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                             <div class="preview-block">
+                                <h5 class="text-center">Add Category</h5>
                                      <form action="{{ action('Admin\CategoryController@store') }}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                     <div class="row d-flex justify-content-center gy-4">
@@ -170,7 +179,7 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="default-01">Category Name</label>
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name">
+                                                    <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -184,7 +193,7 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <label class="form-label" for="default-06">Category Icon</label>
+                                                <label class="form-label" for="default-06">Category Icon (optional)</label>
                                                 <div class="form-control-wrap">
                                                     <div class="custom-file">
                                                         <input type="file" name="category_icon" class="custom-file-input" id="customFile">
@@ -195,6 +204,56 @@
                                            
                                         </div>
 
+                                        <div class="col-sm-10 text-center mb-5">
+                                            <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                        </div>
+
+                                       
+                                    </div>
+                                  </form>
+                                </div>
+                               </div>
+
+    <!-- Mopdal Small -->  
+      <!-- Modal Zoom -->
+                         <div id="subSidepanel" class="sidepanel">
+                          <a href="javascript:void(0)" class="closebtn" onclick="closesub()">×</a>
+                            <div class="preview-block">
+                                <h5 class="text-center">Add Sub Category</h5>
+                                     <form action="{{ action('Admin\CategoryController@storesub') }}" method="post" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                    <div class="row d-flex justify-content-center gy-4">
+                                       
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label class="form-label" for="default-01">Select Category</label>
+                                                <div class="form-control-wrap">
+                                                  <select class="form-control" name="category_id" required>
+                                                    <option value="" selected>Select Category</option>
+                                                       @foreach(Acelle\Jobs\HelperJob::supercategories() as $category)
+                                                       <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                                       @endforeach
+                                                         </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label class="form-label" for="default-01">Sub Category Name</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label class="form-label" for="default-01">Category Description</label>
+                                                <div class="form-control-wrap">
+                                                    <textarea class="form-control" name="category_description"></textarea> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
                                         <div class="col-sm-10 text-center mb-5">
                                             <button class="btn btn-success btn-lg" type="submit">Save</button>
                                         </div>
@@ -231,6 +290,18 @@ function openNav() {
 function closeNav() {
   // document.getElementById("mySidepanel").style.width = "0";
   $('#mySidepanel').removeClass('panelWidth');
+}
+function opensubcategory() {
+  // document.getElementById("mySidepanel").style.width = "35%";
+  $('.toggle-expand').removeClass('active');
+  $('.toggle-expand-content').removeClass('expanded');
+  $('.toggle-expand-content').hide();
+  $('#subSidepanel').addClass('panelWidth');
+}
+
+function closesub() {
+  // document.getElementById("mySidepanel").style.width = "0";
+  $('#subSidepanel').removeClass('panelWidth');
 }
 </script>
 @endsection

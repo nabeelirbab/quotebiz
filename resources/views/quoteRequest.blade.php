@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -67,6 +68,9 @@ strong{
 	margin-right: 4px;
 	font-size: 12px;
 }
+.fs-1{
+	color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}};
+}
 /*form.information{
 	margin: 0 280px 0 100px;
 }*/
@@ -86,7 +90,7 @@ p.form-para::after{
 	display: block;
 	width: 8%;
 	height: 4px;
-	background: #6200EA;
+	background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 	margin: 10px 0;
 	transform: translateX(-10px);
 }
@@ -124,7 +128,7 @@ p.form-para::after{
 }
 .btn-primary{
 	border: none!important;
-	background: #6200EA!important;
+	background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
 	height: 46px!important;
 }
 
@@ -134,7 +138,7 @@ p.form-para::after{
 	font-weight: 500;
 }
 .terms a{
-	color: #6200EA!important;
+	color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 }
 
 
@@ -184,7 +188,8 @@ p.form-para::after{
 }
 }
 .dogcFe {
-    background: url(https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg) center bottom / cover no-repeat rgb(238, 238, 238);
+	background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) center bottom / cover no-repeat rgb(238, 238, 238);
+	
 }
 #result{
 	position: absolute;
@@ -201,7 +206,7 @@ p.form-para::after{
 
 	</style>
 </head>
-<body class="dogcFe" style="height: 94vh;">
+<body class="dogcFe" style="min-height: calc(107vh - 116px);">
 	
 <div class="container" >
 		<div class="row justify-content-end" style="height: 750px;align-items: center;">
@@ -212,22 +217,26 @@ p.form-para::after{
 				<p>No need to answer anymore questions, your refreshed quotes are waiting for you!</p>
 			</div> -->
 			<div class="col-md-9 formclass">
+				@if($job_design && $job_design->no_status == '1')
 				<div class="d-flex pt-3 pr-2">
-					<p class="ml-auto mb-0">want to speak with an agent?</p>
+					<p class="ml-auto mb-0">Want to speak with an agent?</p>
 				</div>	
 				<div class="d-flex pr-2">
-					<p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>866.645.0592</strong></p>
+					<p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>{{$job_design->agent_no}}</strong></p>
 				</div>	
+				@endif
 				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 80px ">
 					{{ csrf_field()}}
-					<h4 class="form-heading">Where to-do gets done</h4>
+					<h4 class="form-heading">
+					{{ ($job_design) ? $job_design->title_heading : 'Where to-do gets done'}}</h4>
 					<p class="form-para">
-						Make sure to use the same information you used during your earlier visit,this is how we keep your information secure.
+						{{ ($job_design) ? $job_design->titlesub_heading : 'Make sure to use the same information you used during your earlier visit,this is how we keep your information secure.'}}
+						
 					</p>
 					<div class="row">
 					<div class="col-md-6">
 					<div class="form-group">
-					 <label class="form-control-placeholder" for="search">What service do you need?</label>
+					 <label class="form-control-placeholder" for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
 					 <input type="text" class="form-control" name="category_name" id="search" placeholder="eg DJ, Cleaner, Plumber etc" required>
 					  <ul class="list-group" id="result">
 				        
@@ -236,19 +245,64 @@ p.form-para::after{
 					</div>
                    <div class="col-md-6">
 					<div class="form-group">
-					 <label class="form-control-placeholder" for="zipcode">Where do you need it?</label>
+					 <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where do you need it?'}}</label>
 					 <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Post Code" required>
 					  </div>
 					</div>
 
 					<div class="col-md-5">
-						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span class="fs-1">Get free quotes<i class="fas fa-arrow-right"></i></span></button></div>
+						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span class="fs-1">Get free quotes<i class="fa fa-arrow-right"></i></span></button></div>
 					</div>
 					 
 					</div>
 
-					 <p class="terms mt-4">By clicking "Return to my quotes", you consent to the Zebra storing the information submitted on this page so you can get most up-to-date quotes, no matter what device you are using. You also agree to The Zebra's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy.</a></p>
+					 <p class="terms mt-4">By clicking "Return to my quotes", you consent to the Zebra storing the information submitted on this page so you can get most up-to-date quotes, no matter what device you are using. You also agree to The Zebra's <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a></p>
 				</form>
+			</div>
+			
+			<!-- Terms Modal -->
+			<div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle">Terms of Service</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			      	@if($job_design)
+			        {{$job_design->terms}}
+			        @endif
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			        
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Privacy Modal -->
+			<div class="modal fade" id="privacy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle">Privacy Policy</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			      	@if($job_design)
+			        {{$job_design->privacy_policy}}
+			        @endif
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 		</div>
 	</div>

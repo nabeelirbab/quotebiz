@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers;
 
 use Acelle\Model\Category;
 use Illuminate\Http\Request;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.servicecategories');
+        $categories = Category::where('user_id',Auth::user()->id)->where('cat_parent','!=','0')->orderBy('category_name','asc')->paginate(16);
+        // dd($categories);
+        return view('categories.servicecategories',compact('categories'));
     }
 
     /**
@@ -34,11 +37,45 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
 
+       $category = new Category;
+       if($request->file('category_icon')){
+            $image = $request->file('category_icon');
+            $new_image = time().$image->getClientOriginalName();
+            $destination = 'frontend-assets/images/categories';
+            $image->move(public_path($destination),$new_image);
+            $category->category_icon = $new_image;
+       }
+       $category->user_id = $request->user()->id;
+       $category->category_name = $request->category_name;
+       $category->cat_parent = 1;
+       $category->subdomain = request('account');
+       $category->category_description = $request->category_description;
+       $category->save();
+       return redirect('/service-categories')->with('message', 'Category add successfully');
+       
     }
 
+    public function storesub(Request $request)
+    {
+
+       $category = new SubCategory;
+       // if($request->file('category_icon')){
+       //      $image = $request->file('category_icon');
+       //      $new_image = time().$image->getClientOriginalName();
+       //      $destination = 'frontend-assets/images/categories';
+       //      $image->move(public_path($destination),$new_image);
+       //      $category->category_icon = $new_image;
+       // }
+       $category->sub_category = $request->category_name;
+       $category->category_id = $request->category_id;
+       $category->description = $request->category_description;
+       $category->save();
+       return redirect('/service-categories')->with('message', 'Category add successfully');
+       
+    }
     /**
      * Display the specified resource.
      *
@@ -68,9 +105,21 @@ class CategoryController extends Controller
      * @param  \Acelle\Model\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+     public function update(Request $request, Category $category)
     {
-        //
+        // dd($request->all());
+        $update = Category::find($request->id);
+        if($request->file('category_icon')){
+            $image = $request->file('category_icon');
+            $new_image = time().$image->getClientOriginalName();
+            $destination = 'frontend-assets/images/categories';
+            $image->move(public_path($destination),$new_image);
+            $update->category_icon = $new_image;
+       }
+        $update->category_name = $request->category_name;
+        $update->category_description = $request->category_description; 
+        $update->update();
+        return redirect('/service-categories')->with('message', 'Category update successfully');
     }
 
     /**
@@ -79,8 +128,9 @@ class CategoryController extends Controller
      * @param  \Acelle\Model\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category,$account,$id)
     {
-        //
+        Category::find($id)->delete();
+        return redirect('/service-categories')->with('message', 'Category delete successfully');
     }
 }

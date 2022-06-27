@@ -28,15 +28,23 @@ class QuoteController extends Controller
 
     public function category_search(Request $request){
      
-     $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%") ->get();
+     $category = Category::where('subdomain',request('account'))->count();
+     if($category > 0){
+        $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',request('account'))->get();
+    }else{
+     $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
+    }
 
      // dd($searchDate);
 
      $html = '';
-
+     if(count($searchDate)){
      foreach ($searchDate as $key => $value) {
          $html .='<li class="list-group-item">'.$value->category_name.'</li>';
      }
+ }else{
+    $html = '<li class="list-group-item">Not Found</li>';
+ }
 
      return $html;
 
