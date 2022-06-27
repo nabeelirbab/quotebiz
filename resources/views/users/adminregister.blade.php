@@ -23,17 +23,17 @@
                 <p>{!! trans('messages.register.intro', [
                     'login' => url("/login"),
                 ]) !!}</p>
-
-            <label>
+                <label>
                 <b>Subdomain</b>
                  <span class="text-danger">*</span>
              </label>
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'subdomain',
-                    'value' => $user->subdomain,
-                    'rules' => $user->registerRules()
-                ])
+            <div class="input-group mb-3">
+            
+             <input type="text" class="form-control"  name="subdomain" placeholder="Enter Subdomain" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <span class="input-group-text" style="height: 45px;" id="basic-addon2">.quotebiz.io</span>
+              </div>
+               </div>
                 <input type="hidden" name="user_type" value="admin">
 
                  <div class="form-group control-text">

@@ -39,6 +39,7 @@ class QuestionChoiceController extends Controller
         return view('frontquestion',compact('category','zipcode'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *

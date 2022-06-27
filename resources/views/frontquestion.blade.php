@@ -246,19 +246,26 @@
 	                <h4></h4>
 	                <section>
 	                <h3 style="text-align: center;color: black">{{$question->question}}</h3>
-	                	<div class="mainclass">
-	                @foreach($question->choices as $key => $choices)
+	                	<div class="mainclass justify-content-center">
 		                @if($question->choice_selection == "single")		
+	                     @foreach($question->choices as $key => $choices)
 		                  <div>
 
 						  <input type="radio" id="control_0{{$choices->id}}" name="option[{{$question->id}}]" value="{{$choices->choice }}" @if($key == 0) checked @endif>
 						  <label for="control_0{{$choices->id}}">
-						  	<img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}">
+						  	@if($choices->icon)
+                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}">
+						  	@else
+                             <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
+						  	@endif
+						  	
 						    <h2>{{$choices->choice}}</h2>
 						   
 						  </label>
 						</div>
+						@endforeach
 						@elseif($question->choice_selection == "multiple")
+						@foreach($question->choices as $key => $choices)
 	                     <div>
 						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}" @if($key == 0) checked @endif>
 						  <label for="control_0{{$choices->id}}">
@@ -267,6 +274,7 @@
 						   
 						  </label>
 						</div>
+						@endforeach
 						@elseif($question->choice_selection == "datepicker")
 						<div class="row d-flex justify-content-center" style="max-width: 100%">
                             <div class="form-row col-md-12">
@@ -286,7 +294,7 @@
 	                    </div>
 	                </div>
 						@endif
-					@endforeach
+					
 					
 				</div>
 	                </section>

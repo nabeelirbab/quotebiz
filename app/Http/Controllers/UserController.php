@@ -12,6 +12,7 @@ use Acelle\Model\Creadit;
 use Acelle\Model\CreditAmount;
 use Acelle\Model\BuyCreadit;
 use Acelle\Model\DateFormet;
+use Acelle\Model\JobDesign;
 use Acelle\Library\Facades\Hook;
 use Auth;
 use Carbon\Carbon;
@@ -422,6 +423,47 @@ public function adminregister(Request $request)
         return view('dateformet',compact('formet'));
     }
 
+   public function formdesign(Request $request){
+    if($request->isMethod('post'))
+        {
+
+            if($request->id){
+                $job_design =JobDesign::find($request->id);
+            }else{
+                $job_design = new JobDesign;
+            }
+          
+           if($request->file('backgroup_image')){
+                $image = $request->file('backgroup_image');
+                $new_image = time().$image->getClientOriginalName();
+                $destination = 'frontend-assets/images';
+                $image->move(public_path($destination),$new_image);
+                $job_design->backgroup_image = $new_image;
+           } 
+
+           $job_design->admin_id = Auth::user()->id;
+           $job_design->subdomain = request('account');
+           $job_design->underline_color = $request->underline_color;
+           $job_design->category_heading = $request->category_heading;
+           $job_design->title_heading = $request->title_heading;
+           $job_design->titlesub_heading = $request->titlesub_heading;
+           $job_design->postcode_text = $request->postcode_text;
+           $job_design->button_color = $request->button_color;
+           $job_design->button_text_color = $request->button_text_color;
+           $job_design->agent_no = $request->agent_no;
+           $job_design->no_status = $request->no_status;
+           $job_design->terms = $request->terms;
+           $job_design->privacy_policy = $request->privacy_policy;
+            if($request->preview){
+                return view('previewdesign',compact('job_design'));
+            }else{
+            $job_design->save();
+            }
+
+        }
+      return view('formdesign');
+    
+   }
     public function logout(){
 
       Auth::logout();

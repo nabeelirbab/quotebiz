@@ -6,15 +6,28 @@ use Acelle\Model\StripeKey;
 use Acelle\Model\CreditAmount;
 use Acelle\Model\Setting;
 use Acelle\Model\DateFormet;
+use Acelle\Model\JobDesign;
 use Acelle\Library\ExtendedSwiftMessage;
 
 class HelperJob extends Base
 {
     
-    public static function categories(){
+    public static function supercategories(){
     	// dd(Category::orderBy('category_name','desc')->get());
-        return Category::orderBy('category_name','desc')->get();
+        return Category::where('cat_parent','0')->orderBy('category_name','desc')->get();
     }
+
+    public static function categories(){
+        // dd(Category::orderBy('category_name','desc')->get());
+       $category =  Category::where('subdomain','=',request('account'))->orderBy('category_name','desc')->get();
+       if(count($category)){
+          return $category;
+       }else{
+          return Category::where('cat_parent','0')->orderBy('category_name','desc')->get();
+       }
+
+    }
+
 
     public static function stripekey(){
 
@@ -48,5 +61,11 @@ class HelperJob extends Base
         }else{
             return 'd/m/Y';
         }
+    }
+
+
+   public static function form_design()
+    {
+        return JobDesign::where('subdomain',request('account'))->first();
     }
 }

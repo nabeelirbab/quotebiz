@@ -258,6 +258,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
     
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
+    Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
+    Route::get('/preview-design', 'UserController@formdesign');
     // New subscription
     Route::get('account/subscription/select-plan', 'SubscriptionController@selectPlan');
     Route::get('account/subscription/order-box', 'SubscriptionController@orderBox');
@@ -316,6 +318,16 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/payments-receive', 'UserController@paymentsReceive');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
     Route::get('/deletecredit/{id}', 'UserController@deletecredit');
+    // Category
+    Route::name('service-categories.')->prefix('service-categories/')->group(function () {
+
+    Route::get('/', 'CategoryController@index');
+    Route::post('store', 'CategoryController@store');
+    Route::post('storesub', 'CategoryController@storesub');
+    Route::get('edit/{id}', 'CategoryController@edit');
+    Route::post('update', 'CategoryController@update');
+    Route::get('delete/{id}', 'CategoryController@destroy');
+});
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
     Route::get('frontend/docs/api/v1', 'Controller@docsApiV1');
@@ -1392,6 +1404,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 
     Route::get('/', 'CategoryController@index');
     Route::get('add-categories', 'CategoryController@create');
     Route::post('store', 'CategoryController@store');
+    Route::post('storesub', 'CategoryController@storesub');
     Route::get('edit/{id}', 'CategoryController@edit');
     Route::post('update', 'CategoryController@update');
     Route::get('delete/{id}', 'CategoryController@destroy');
@@ -1404,6 +1417,10 @@ Route::name('admin.questions.')->prefix('admin/questions/')->group(function () {
     Route::post('store', 'QuestionController@store');
     Route::post('searchcategory', 'QuestionController@searchcategory');
     Route::get('delete/{id}', 'QuestionController@destroy');
+    Route::get('editquestion/{id}', 'QuestionController@editquestion');
+    Route::get('deletequestion/{id}', 'QuestionController@deletequestion');
+    Route::get('deleteoption/{id}', 'QuestionController@deleteoption');
+    Route::get('deleteChoice/{id}', 'QuestionController@deletechoice');
 
     
 });

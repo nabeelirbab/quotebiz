@@ -122,7 +122,7 @@
                                                         <div class=" dropdown-menu dropdown-menu-right">
                                                             <ul class="link-list-opt no-bdr">
                                                                 <li><a href="#" data-toggle="modal" data-target="#modalZoom{{$question->id}}"><em class="icon ni ni-eye"></em><span>View Options</span></a></li>
-                                                                <li><a href="#"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
+                                                                <li><a href="{{ url('admin/questions/add-question?category_id='.$question->category_id)}}"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
                                                                
                                                                 <li class="divider"></li>
                                                                
