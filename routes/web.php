@@ -299,7 +299,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
     Route::match(['get', 'post'], 'account/billing/edit', 'AccountController@editBillingAddress');
 });
 
-Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription','stripekey']], function () {
+Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']], function () {
     // Search
     Route::get('/search/subscribers', 'SearchController@subscribers');
     Route::get('/search/templates', 'SearchController@templates');
