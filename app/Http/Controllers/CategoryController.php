@@ -4,6 +4,7 @@ namespace Acelle\Http\Controllers;
 
 
 use Acelle\Model\Category;
+use Acelle\Model\SubCategory;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -73,7 +74,7 @@ class CategoryController extends Controller
        $category->category_id = $request->category_id;
        $category->description = $request->category_description;
        $category->save();
-       return redirect('/service-categories')->with('message', 'Category add successfully');
+       return redirect('/service-categories')->with('message', 'Sub category add successfully');
        
     }
     /**

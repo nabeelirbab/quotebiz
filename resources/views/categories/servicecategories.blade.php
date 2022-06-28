@@ -220,7 +220,7 @@
                           <a href="javascript:void(0)" class="closebtn" onclick="closesub()">×</a>
                             <div class="preview-block">
                                 <h5 class="text-center">Add Sub Category</h5>
-                                     <form action="{{ action('Admin\CategoryController@storesub') }}" method="post" enctype="multipart/form-data">
+                                     <form action="{{ url('service-categories/storesub') }}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                     <div class="row d-flex justify-content-center gy-4">
                                        

@@ -17,9 +17,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::orderBy('id','desc')->get();
-        // dd($questions);
-         return view('admin.questions.questions',compact('questions'));
+        $categories = Category::where('cat_parent','0')->orderBy('category_name','desc')->paginate(10);
+        $questionsCount = Question::where('parent','0')->count();
+        // dd($questionsCount);
+         return view('admin.questions.questions',compact('categories','questionsCount'));
     }
 
     /**
@@ -35,14 +36,10 @@ class QuestionController extends Controller
     }
 
     public function searchcategory(Request $request){
-        if(!$request->id){
-        $questions = Question::where('cat_parent','0')->orderBy('id','desc')->get();
-
-        }else{
-
-        $questions = Question::where('cat_parent','0')->where('category_id',$request->id)->orderBy('id','desc')->get();
-        }
-        return view('admin.questions.questionsFilter',compact('questions'));
+       
+        $categories = Category::where('cat_parent','0')->where('id',$request->id)->orderBy('id','desc')->get();
+        
+        return view('admin.questions.questionsFilter',compact('categories'));
     }
 
     /**
