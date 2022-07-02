@@ -54,10 +54,10 @@
                     </div>
                     <div class="col-sm-4">
                     <div class="form-group">
-                            <label class="form-file-label" for="default-06">Icon</label>
+                            <label class="form-file-label" for="default-06">Icon (optional)</label>
                             <div class="form-control-wrap">
                                 <div class="custom-file">
-                                    <input type="file" name="choice_icon[{{$key}}][]" class="custom-file-input" value="{{$choice->icon}}" >
+                                    <input type="file" accept="image/*" name="choice_icon[{{$key}}][]" class="custom-file-input" value="{{$choice->icon}}" >
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>

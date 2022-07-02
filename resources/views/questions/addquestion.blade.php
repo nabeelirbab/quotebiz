@@ -78,7 +78,7 @@
      }
      });
     function category(data){
-     $.ajax({url: "{{url('admin/questions/editquestion/')}}/"+data.value, success: function(result){
+     $.ajax({url: "{{url('questions/editquestion/')}}/"+data.value, success: function(result){
          $('#addquestion').show();
          $('#appendbox').html(result);
          console.log(data.value);
@@ -294,7 +294,7 @@ $(document).on('click','.deleteChoice',function(e){
                             '<label class="form-label" for="default-06">Icon (optional)</label>'+
                             '<div class="form-control-wrap">'+
                                 '<div class="custom-file">'+
-                                    '<input type="file" accept="image/*" accept="image/*"  name="choice_icon['+conditionid+'][]" class="custom-file-input">'+
+                                    '<input type="file" accept="image/*"  name="choice_icon['+conditionid+'][]" class="custom-file-input">'+
                                     '<label class="custom-file-label" for="customFile">Choose file</label>'+
                                 '</div>'+
                             '</div>'+
