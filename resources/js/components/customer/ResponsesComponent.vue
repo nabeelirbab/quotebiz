@@ -165,7 +165,7 @@
 </div>
 </div>
 
- <div class="nk-msg-head">
+ <div class="nk-msg-head d-none d-lg-block">
     <div class="nk-msg-head-meta" v-if="quoteChat.chatsp">
        <div class=" d-none d-lg-block">
                 <a href="#" class="d-flex align-items-center">
@@ -176,7 +176,7 @@
                 </a>
              
             </div>
-        <div class="d-lg-none" @click="closepanel()"><a href="#" @click="closepanel()" class="btn btn-icon btn-trigger nk-msg-hide ml-n1"><em class="icon ni ni-arrow-left"></em></a></div>
+        <div class="d-lg-none"><a href="#" class="btn btn-icon ml-n1"><em class="icon ni ni-arrow-left"></em></a></div>
         <ul class="nk-msg-actions">
             <li><a href="#" class="btn btn-dim btn-sm btn-outline-light"><em class="icon ni ni-check"></em><span class="text-capitalize"><template v-if="quoteChat.quote.status == 'pending'">Active</template><template v-else>{{quoteChat.quote.status}}</template></span></a></li>
             <li class="dropdown">
@@ -223,15 +223,15 @@
                     <div class="chat-bubble">
                         <div class="chat-msg" v-if="chatData.messageType == '0' && chatData.isDeleted == '0'"> {{ chatData.message | strippedContent}} </div>
                         <div class="chat-msg" v-bind:class="{chatImage: chatData.messageType == '1' }" v-else-if="chatData.messageType == '1' && chatData.isDeleted == '0'">
-                        <a :href="hostname+'frontend-assets/images/chat/'+chatData.message" target="_blank" > <img :src="hostname+'frontend-assets/images/chat/'+chatData.message"></a> </div>
+                        <a :href="hostname+'/frontend-assets/images/chat/'+chatData.message" target="_blank" > <img :src="hostname+'/frontend-assets/images/chat/'+chatData.message"></a> </div>
                         <div class="chat-msg" v-else-if="chatData.messageType == '2' && chatData.isDeleted == '0'">
                          <video width="320" height="240" controls>
-                          <source :src="hostname+'frontend-assets/images/chat/'+chatData.message" type="video/mp4">
+                          <source :src="hostname+'/frontend-assets/images/chat/'+chatData.message" type="video/mp4">
                         Your browser does not support the video tag.
                         </video> 
                        </div>
                         <div class="chat-msg" v-else-if="chatData.messageType == '3' && chatData.isDeleted == '0'"> 
-                        <a :href="hostname+'frontend-assets/images/chat/'+chatData.message" target="_blank" >
+                        <a :href="hostname+'/frontend-assets/images/chat/'+chatData.message" target="_blank" >
                             <em class="icon ni ni-file-docs" style="font-size: 30px;"></em> {{chatData.message}}
                         </a>
                          </div>
@@ -267,15 +267,15 @@
                     <div class="chat-bubble">
                         <div class="chat-msg" v-if="chatData.messageType == '0' && chatData.isDeleted == '0'"> {{ chatData.message | strippedContent}} </div>
                         <div class="chat-msg" v-bind:class="{chatImage: chatData.messageType == '1' }" v-else-if="chatData.messageType == '1' && chatData.isDeleted == '0'">
-                        <a :href="hostname+'frontend-assets/images/chat/'+chatData.message" target="_blank" > <img :src="hostname+'frontend-assets/images/chat/'+chatData.message"></a> </div>
+                        <a :href="hostname+'/frontend-assets/images/chat/'+chatData.message" target="_blank" > <img :src="hostname+'/frontend-assets/images/chat/'+chatData.message"></a> </div>
                         <div class="chat-msg" v-else-if="chatData.messageType == '2' && chatData.isDeleted == '0'">
                          <video width="320" height="240" controls>
-                          <source :src="hostname+'frontend-assets/images/chat/'+chatData.message" type="video/mp4">
+                          <source :src="hostname+'/frontend-assets/images/chat/'+chatData.message" type="video/mp4">
                         Your browser does not support the video tag.
                         </video> 
                        </div>
                         <div class="chat-msg" v-else-if="chatData.messageType == '3' && chatData.isDeleted == '0'"> 
-                        <a :href="hostname+'frontend-assets/images/chat/'+chatData.message" target="_blank" style="color:white">
+                        <a :href="hostname+'/frontend-assets/images/chat/'+chatData.message" target="_blank" style="color:white">
                             <em class="icon ni ni-file-docs" style="font-size: 30px;"></em> {{chatData.message}}
                         </a>
                          </div>
@@ -439,6 +439,40 @@
   ></vue-easy-lightbox>
 </div><!-- .nk-msg-body -->
 </div><!-- .nk-msg -->
+<div class="nk-msg-head d-lg-none" v-if="chatHead" style="
+    position: absolute;
+    z-index: 99;
+    top: 65px;
+    background: white;
+    width: 90%;
+">
+    <div class="nk-msg-head-meta" v-if="quoteChat.chatsp">
+       <div class=" d-none d-lg-block">
+                <a href="#" class="d-flex align-items-center">
+                    <div class="user-avatar sq bg-purple"><span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span></div>
+                    <div class="ml-3">
+                        <h6 class="title mb-1" >{{quoteChat.chatsp.first_name}} {{quoteChat.chatsp.last_name}}</h6>
+                    </div>
+                </a>
+             
+            </div>
+        <div class="d-lg-none"><a href="#" @click="closepanel()" class="btn btn-icon ml-n1"><em class="icon ni ni-arrow-left"></em></a></div>
+        <ul class="nk-msg-actions">
+            <li><a href="#" class="btn btn-dim btn-sm btn-outline-light"><em class="icon ni ni-check"></em><span class="text-capitalize"><template v-if="quoteChat.quote.status == 'pending'">Active</template><template v-else>{{quoteChat.quote.status}}</template></span></a></li>
+            <li class="dropdown">
+                <a href="#" class="btn btn-icon btn-sm btn-white btn-light dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <ul class="link-list-opt no-bdr">
+                        <li><a href="#" @click="changeStatus('won')"><em class="icon ni ni-user-add"></em><span>Mark as Won</span></a></li>
+                        <li><a href="#" @click="changeStatus('lose')"><em class="icon ni ni-archive"></em><span>Mark as Lose</span></a></li>
+                        <li><a href="#" @click="changeStatus('done')"><em class="icon ni ni-done"></em><span>Mark as Done</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <a href="#" @click="msgprofile" class="nk-msg-profile-toggle profile-toggle" v-bind:class="{active: isActive}"><em class="icon ni ni-arrow-left"></em></a>
+</div><!-- .nk-msg-head -->
 </div>
 </div>
 </div>
@@ -483,6 +517,7 @@ data() {
         activeJob: 0,
         wonJob: 0,
         doneJob: 0,
+        chatHead: true,
         };
 },
 sockets: {
@@ -696,6 +731,7 @@ methods: {
             this.isVisible = true;
             this.isActive = true;
             this.isEmoji = false;
+            this.chatHead = true;
             this.imgs = [];
             var container = this.$el.querySelector("#chatpanelbody");
             $("#chatpanelbody").animate({ scrollTop: container.scrollHeight + 7020 }, "fast");
@@ -717,7 +753,7 @@ methods: {
 
               for(var i = 0; i <= this.quoteChat.chat.length; i++){
                 if(this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0'){
-                   this.imgs.push(this.hostname+'frontend-assets/images/chat/'+this.quoteChat.chat[i].message);
+                   this.imgs.push(this.hostname+'/frontend-assets/images/chat/'+this.quoteChat.chat[i].message);
                     }
             }
         },
@@ -793,8 +829,11 @@ methods: {
         },
 
         closepanel(){
-            console.log('hello');
+            // alert('hello');
            this.isActive = false;
+           this.chatHead = false;
+           $('.nk-chat-body').removeClass('nkchatbody');
+
         },
 
         getProviders() {

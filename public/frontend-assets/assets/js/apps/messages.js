@@ -72,8 +72,11 @@
     msg_show();
 
     function msg_hide() {
+      // alert('sss');
       $msg_hide.on('click', function () {
         $msg_aside.removeClass(hide_aside);
+        $('.nk-chat-body').removeClass('nkchatbody');
+        // $('.nk-msg-body').removeClass('opacity');
         $msg_body.removeClass(show_msg);
       });
     }

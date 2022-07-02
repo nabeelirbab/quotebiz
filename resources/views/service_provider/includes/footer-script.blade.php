@@ -1,4 +1,5 @@
- 
+    <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
+    <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
    <!-- 
     <script src="{{ asset('frontend-assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend-assets/js/revolution.min.js') }}"></script>
