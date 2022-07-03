@@ -6580,9 +6580,9 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 
 
-var domainname = window.location.origin;
-var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('http://' + subdomain + '.quotebiz.local:3000'); // const SocketInstance = socketio.connect('http://'+subdomain+'.shopgrabthis.com:3000');
+var domainname = window.location.origin; // const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
 
+var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('http://' + subdomain + '.shopgrabthis.com:3000');
 Vue.use(new (vue_socket_io__WEBPACK_IMPORTED_MODULE_3___default())({
   debug: true,
   connection: SocketInstance
