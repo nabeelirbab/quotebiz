@@ -35,7 +35,12 @@ class QuestionChoiceController extends Controller
         // dd($user->user);
         // $category_id = $user->user->category->id;
         $zipcode = $request->zipcode;
-        $category = Category::where('category_name',$request->category_name)->first();
+        $count = Category::where('subdomain',request('account'))->count();
+        if($count > 0){
+           $category = Category::where('cat_parent','1')->where('subdomain',request('account'))->where('category_name',$request->category_name)->first();
+         }else{
+           $category = Category::where('cat_parent','0')->where('category_name',$request->category_name)->first();
+         }
         return view('frontquestion',compact('category','zipcode'));
     }
 
