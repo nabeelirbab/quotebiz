@@ -27,7 +27,6 @@
                     <label class="custom-control-label" for="date{{$key}}">Date Picker</label>
                 </div>
                 </div>
-                
                 <div class="col-sm-4" style="padding-right: 0;"><span title="Remove Question" class="deleteQuestions material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;">remove_circle</span><input type="hidden" name="question_id[{{$key}}]" value="{{$question->id}}"></div> </div>
                 <div class="row">
                     <div class="col-sm-10 mb-4">
