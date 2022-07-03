@@ -82,7 +82,7 @@
                                             <!-- <span>{{ $plan->displayTotalQuota() }} {{ trans('messages.sending_total_quota_label') }}</span> -->
                                         </div>
                                         <div>
-                                            <span>{{ $plan->displayMaxSubscriber() }} {{ trans('messages.contacts') }}</span>
+                                            <!-- <span>{{ $plan->displayMaxSubscriber() }} {{ trans('messages.contacts') }}</span> -->
                                         </div>
                                     </span>
 
