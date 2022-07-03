@@ -15,7 +15,7 @@
             <mc:flag><strong>{{ Acelle\Library\Tool::format_price($plan->price, $plan->currency->format) }}</strong></mc:flag>
         </div>
     </li>
-    <li class="selfclear">
+   <!--  <li class="selfclear">
         <div class="unit size1of2">
             <strong>{{ trans('messages.sending_quota_label') }}</strong>
         </div>
@@ -91,5 +91,5 @@
         <div class="lastUnit size1of2">
             <mc:flag>{!! $plan->displayAllowCreateEmailVerificationServer() !!}</mc:flag>
         </div>
-    </li>
+    </li> -->
 </ul>

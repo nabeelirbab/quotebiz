@@ -47,14 +47,7 @@
                                             <p class="mt-4">{{ $plan->description }}</p>
                                         </div>
 
-                                        <span class="time-box d-block text-center small py-2 fw-600">
-                                            <div class="mb-1">
-                                                <span>{{ $plan->displayTotalQuota() }} {{ trans('messages.sending_total_quota_label') }}</span>
-                                            </div>
-                                            <div>
-                                                <span>{{ $plan->displayMaxSubscriber() }} {{ trans('messages.contacts') }}</span>
-                                            </div>
-                                        </span>
+                                      
 
                                         @if ($subscription->plan->uid == $plan->uid)
                                             <a

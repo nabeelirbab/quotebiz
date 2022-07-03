@@ -6,7 +6,7 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ action("HomeController@index") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.subscription') }}</li>
         </ul>
     </div>
