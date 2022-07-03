@@ -65,7 +65,7 @@ Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
     Route::get('assets/images/avatar/subscriber-{uid?}.jpg', 'SubscriberController@avatar');
 
     // User resend activation email
-    Route::get('users/resend-activation-email', 'UserController@resendActivationEmail');
+    Route::get('users/resend-activation-email/{uid}', 'UserController@resendActivationEmail');
 
     // Plan
     Route::get('plans/select2', 'PlanController@select2');
