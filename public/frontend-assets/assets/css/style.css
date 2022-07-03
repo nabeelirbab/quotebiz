@@ -244,6 +244,6 @@
     position: relative;
     opacity: 1;
     pointer-events: auto;
-    max-height: calc(108vh - (65px + 112px));
+    max-height: calc(117vh - (65px + 112px));
 }
 }

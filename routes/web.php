@@ -260,6 +260,25 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
     Route::get('/preview-design', 'UserController@formdesign');
+
+        // Question
+  Route::name('questions.')->prefix('questions/')->group(function () {
+    Route::get('/', 'QuestionController@index');
+    Route::get('add-question', 'QuestionController@create');
+    Route::post('store', 'QuestionController@store');
+    Route::post('searchcategory', 'QuestionController@searchcategory');
+    Route::get('delete/{id}', 'QuestionController@destroy');
+    Route::get('editquestion/{id}', 'QuestionController@editquestion');
+    Route::get('deletequestion/{id}', 'QuestionController@deletequestion');
+    Route::get('deleteoption/{id}', 'QuestionController@deleteoption');
+    Route::get('deleteChoice/{id}', 'QuestionController@deletechoice');
+    Route::get('/categories', 'QuestionController@vuedata');
+    Route::get('/categories/{id}', 'QuestionController@categoriesbyid');
+    Route::post('updateOrder', 'QuestionController@updateOrder');
+
+ });
+
+
     // New subscription
     Route::get('account/subscription/select-plan', 'SubscriptionController@selectPlan');
     Route::get('account/subscription/order-box', 'SubscriptionController@orderBox');
@@ -1412,6 +1431,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 
 
     // Question
 Route::name('admin.questions.')->prefix('admin/questions/')->group(function () {
+    // Route::get('/', 'QuestionController@index');
     Route::get('/', 'QuestionController@index');
     Route::get('add-question', 'QuestionController@create');
     Route::post('store', 'QuestionController@store');
@@ -1421,6 +1441,10 @@ Route::name('admin.questions.')->prefix('admin/questions/')->group(function () {
     Route::get('deletequestion/{id}', 'QuestionController@deletequestion');
     Route::get('deleteoption/{id}', 'QuestionController@deleteoption');
     Route::get('deleteChoice/{id}', 'QuestionController@deletechoice');
+    Route::get('/categories', 'QuestionController@vuedata');
+    Route::get('/categories/{id}', 'QuestionController@categoriesbyid');
+    Route::post('updateOrder', 'QuestionController@updateOrder');
+
 
     
 });

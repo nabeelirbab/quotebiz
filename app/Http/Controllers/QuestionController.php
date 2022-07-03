@@ -1,8 +1,7 @@
 <?php
 
-namespace Acelle\Http\Controllers\Admin;
+namespace Acelle\Http\Controllers;
 
-use Acelle\Http\Controllers\Controller;
 use Acelle\Model\Question;
 use Acelle\Model\QuestionChoice;
 use Acelle\Model\Category;
@@ -17,27 +16,26 @@ class QuestionController extends Controller
      */
     // public function index()
     // {
-    //     $categories = Category::where('cat_parent','0')->orderBy('category_name','desc')->paginate(10);
-    //     $questionsCount = Question::where('parent','0')->count();
-    //      return view('admin.questions.questions',compact('categories','questionsCount'));
+    //     $categories = Category::where('cat_parent','1')->orderBy('category_name','desc')->paginate(10);
+    //     $questionsCount = Question::where('subdomain',request('account'))->where('parent','1')->count();
+    //      return view('questions.questions',compact('categories','questionsCount'));
     // }
-   
-   public function index(){
-   
-    return view('admin.questions.questionsvue');
-   } 
+    public function index(){
+        return view('questions.questionsvue');
+       } 
 
    public function vuedata(){
-    $categories = Category::with('questions','questions.choices')->where('cat_parent','0')->orderBy('category_name','desc')->get();
-   $categories = json_decode($categories);
-   // dd($categories);
+    $categories = Category::with('questions','questions.choices')->where('subdomain',request('account'))->where('cat_parent','1')->orderBy('category_name','desc')->get();
+    $categories = json_decode($categories);
+    // dd($categories);
     return $categories;
    } 
 
-   public function categoriesbyid($id){
-    $categories = Category::with('questions','questions.choices')->where('id',$id)->where('cat_parent','0')->orderBy('category_name','desc')->get();
-   $categories = json_decode($categories);
-   // dd($categories);
+   public function categoriesbyid($account,$id){
+   
+    $categories = Category::with('questions','questions.choices')->where('id',$id)->orderBy('category_name','desc')->get();
+    $categories = json_decode($categories);
+    // dd($categories);
     return $categories;
    }
     /**
@@ -48,15 +46,15 @@ class QuestionController extends Controller
     public function create()
     {
         
-        return view('admin.questions.addquestion');
+        return view('questions.addquestion');
         
     }
 
     public function searchcategory(Request $request){
        
-        $categories = Category::where('cat_parent','0')->where('id',$request->id)->orderBy('id','desc')->get();
+        $categories = Category::where('cat_parent','1')->where('id',$request->id)->orderBy('id','desc')->get();
         
-        return view('admin.questions.questionsFilter',compact('categories'));
+        return view('questions.questionsFilter',compact('categories'));
     }
 
     /**
@@ -81,6 +79,8 @@ class QuestionController extends Controller
             $question->category_id = $request->category_id;
             $question->user_id = $request->user()->id;
             $question->choice_selection = $que;
+            $question->parent = '1';
+            $question->subdomain = request('account');
             $question->question = $request->question[$key];
             $question->save();
 
@@ -116,6 +116,8 @@ class QuestionController extends Controller
             $question->category_id = $request->category_id;
             $question->user_id = $request->user()->id;
             $question->choice_selection = $que;
+            $question->parent = '1';
+            $question->subdomain = request('account');
             $question->question = $request->question[$key];
             $question->save();
 
@@ -169,26 +171,26 @@ class QuestionController extends Controller
     }
     }
     }
-           return redirect('admin/questions')->withSuccess(['Success Message here!']);
+           return redirect('questions')->withSuccess(['Success Message here!']);
 
 
     }
 
-    public function editquestion($id){
+    public function editquestion($account,$id){
        $questions = Question::with('choices')->where('category_id',$id)->get();
-       return view('admin.questions.questionappend',compact('questions'));
+       return view('questions.questionappend',compact('questions'));
     }
-    public function deletequestion($id){
+    public function deletequestion($account,$id){
         return Question::where('id',$id)->delete();
     }
-    public function deleteoption($id){
+    public function deleteoption($account,$id){
         return QuestionChoice::where('id',$id)->delete();
     }
-    public function deletechoice($id){
+    public function deletechoice($account,$id){
         return QuestionChoice::where('question_id',$id)->delete();
     }
 
-     public function updateOrder(Request $request)
+    public function updateOrder(Request $request)
         {
             // return $request->all();
             $this->validate($request, [

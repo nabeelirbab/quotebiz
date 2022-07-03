@@ -5,6 +5,8 @@
 		 header("Location: ".$url);
 		die();
 	}
+	$job_design = Acelle\Jobs\HelperJob::form_design();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -208,7 +210,8 @@
 }
 }
 .dogcFe {
-    background: url(https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg) center bottom / cover no-repeat rgb(238, 238, 238);
+	background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) center bottom / cover no-repeat rgb(238, 238, 238);
+	
 }
 /*.actions ul li:nth-child(2) {
    display:none !important;
@@ -254,7 +257,7 @@
 						  <input type="radio" id="control_0{{$choices->id}}" name="option[{{$question->id}}]" value="{{$choices->choice }}" @if($key == 0) checked @endif>
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
-                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}">
+                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" style="height: 185px;">
 						  	@else
                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
@@ -269,7 +272,11 @@
 	                     <div>
 						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}" @if($key == 0) checked @endif>
 						  <label for="control_0{{$choices->id}}">
-						  	<img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}">
+						  	@if($choices->icon)
+                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" style="height: 185px;">
+						  	@else
+                             <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
+						  	@endif
 						    <h2>{{$choices->choice}}</h2>
 						   
 						  </label>
