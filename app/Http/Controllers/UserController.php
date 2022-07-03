@@ -105,7 +105,7 @@ class UserController extends Controller
         $user = User::findByUid($request->uid);
 
         try {
-            $user->sendActivationMail($user->email, action('HomeController@index'));
+            $user->sendActivationMail($user->email, url('/'));
         } catch (\Exception $e) {
             return view('somethingWentWrong', ['message' => trans('messages.something_went_wrong_with_email_service').': '.$e->getMessage() ]);
         }
@@ -118,7 +118,7 @@ class UserController extends Controller
         $user = User::findByUid($request->uid);
 
         try {
-            $user->sendActivationMail($user->email, action('HomeController@index'));
+            $user->sendActivationMail($user->email, url('/'));
         } catch (\Exception $e) {
             return view('somethingWentWrong', ['message' => trans('messages.something_went_wrong_with_email_service').': '.$e->getMessage() ]);
         }
