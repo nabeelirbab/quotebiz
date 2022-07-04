@@ -3093,12 +3093,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -3906,12 +3900,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-easy-lightbox */ "./node_modules/vue-easy-lightbox/dist/vue-easy-lightbox.es5.esm.min.js");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -6922,7 +6910,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n     position: absolute;\n    z-index: 99;\n    top: 65px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6973,7 +6961,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\r\n         position: absolute;\r\n        z-index: 99;\r\n        top: 65px;\r\n        background: white;\r\n        width: 100%;\r\n        left: 0px;\n}\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35676,202 +35664,188 @@ var render = function () {
           ]),
           _vm._v(" "),
           _vm.chatHead
-            ? _c(
-                "div",
-                {
-                  staticClass: "nk-msg-head d-lg-none",
-                  staticStyle: {
-                    position: "absolute",
-                    "z-index": "99",
-                    top: "65px",
-                    background: "white",
-                    width: "90%",
-                  },
-                },
-                [
-                  _vm.quoteChat.chatsp
-                    ? _c("div", { staticClass: "nk-msg-head-meta" }, [
-                        _c("div", { staticClass: " d-none d-lg-block" }, [
+            ? _c("div", { staticClass: "nk-msg-head d-lg-none chathead" }, [
+                _vm.quoteChat.chatsp
+                  ? _c("div", { staticClass: "nk-msg-head-meta" }, [
+                      _c("div", { staticClass: " d-none d-lg-block" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "d-flex align-items-center",
+                            attrs: { href: "#" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "user-avatar sq bg-purple" },
+                              [
+                                _c("span", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.getFirstLetter(
+                                        _vm.quoteChat.chatsp.first_name
+                                      )
+                                    ) +
+                                      _vm._s(
+                                        _vm.getFirstLetter(
+                                          _vm.quoteChat.chatsp.last_name
+                                        )
+                                      )
+                                  ),
+                                ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ml-3" }, [
+                              _c("h6", { staticClass: "title mb-1" }, [
+                                _vm._v(
+                                  _vm._s(_vm.quoteChat.chatsp.first_name) +
+                                    " " +
+                                    _vm._s(_vm.quoteChat.chatsp.last_name)
+                                ),
+                              ]),
+                            ]),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "d-lg-none" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-icon ml-n1",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.closepanel()
+                              },
+                            },
+                          },
+                          [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "nk-msg-actions" }, [
+                        _c("li", [
                           _c(
                             "a",
                             {
-                              staticClass: "d-flex align-items-center",
+                              staticClass:
+                                "btn btn-dim btn-sm btn-outline-light",
                               attrs: { href: "#" },
                             },
                             [
+                              _c("em", { staticClass: "icon ni ni-check" }),
                               _c(
-                                "div",
-                                { staticClass: "user-avatar sq bg-purple" },
+                                "span",
+                                { staticClass: "text-capitalize" },
                                 [
-                                  _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.getFirstLetter(
-                                          _vm.quoteChat.chatsp.first_name
-                                        )
-                                      ) +
-                                        _vm._s(
-                                          _vm.getFirstLetter(
-                                            _vm.quoteChat.chatsp.last_name
-                                          )
-                                        )
-                                    ),
-                                  ]),
-                                ]
+                                  _vm.quoteChat.quote.status == "pending"
+                                    ? [_vm._v("Active")]
+                                    : [
+                                        _vm._v(
+                                          _vm._s(_vm.quoteChat.quote.status)
+                                        ),
+                                      ],
+                                ],
+                                2
                               ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "ml-3" }, [
-                                _c("h6", { staticClass: "title mb-1" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.quoteChat.chatsp.first_name) +
-                                      " " +
-                                      _vm._s(_vm.quoteChat.chatsp.last_name)
-                                  ),
-                                ]),
-                              ]),
                             ]
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "d-lg-none" }, [
+                        _c("li", { staticClass: "dropdown" }, [
+                          _vm._m(16),
+                          _vm._v(" "),
                           _c(
-                            "a",
+                            "div",
                             {
-                              staticClass: "btn btn-icon ml-n1",
-                              attrs: { href: "#" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.closepanel()
-                                },
-                              },
+                              staticClass: "dropdown-menu dropdown-menu-right",
                             },
-                            [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                            [
+                              _c(
+                                "ul",
+                                { staticClass: "link-list-opt no-bdr" },
+                                [
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.changeStatus("won")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("em", {
+                                          staticClass: "icon ni ni-user-add",
+                                        }),
+                                        _c("span", [_vm._v("Mark as Won")]),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.changeStatus("lose")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("em", {
+                                          staticClass: "icon ni ni-archive",
+                                        }),
+                                        _c("span", [_vm._v("Mark as Lose")]),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.changeStatus("done")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("em", {
+                                          staticClass: "icon ni ni-done",
+                                        }),
+                                        _c("span", [_vm._v("Mark as Done")]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]
                           ),
                         ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "nk-msg-actions" }, [
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "btn btn-dim btn-sm btn-outline-light",
-                                attrs: { href: "#" },
-                              },
-                              [
-                                _c("em", { staticClass: "icon ni ni-check" }),
-                                _c(
-                                  "span",
-                                  { staticClass: "text-capitalize" },
-                                  [
-                                    _vm.quoteChat.quote.status == "pending"
-                                      ? [_vm._v("Active")]
-                                      : [
-                                          _vm._v(
-                                            _vm._s(_vm.quoteChat.quote.status)
-                                          ),
-                                        ],
-                                  ],
-                                  2
-                                ),
-                              ]
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "dropdown" }, [
-                            _vm._m(16),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                              },
-                              [
-                                _c(
-                                  "ul",
-                                  { staticClass: "link-list-opt no-bdr" },
-                                  [
-                                    _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.changeStatus("won")
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("em", {
-                                            staticClass: "icon ni ni-user-add",
-                                          }),
-                                          _c("span", [_vm._v("Mark as Won")]),
-                                        ]
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.changeStatus("lose")
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("em", {
-                                            staticClass: "icon ni ni-archive",
-                                          }),
-                                          _c("span", [_vm._v("Mark as Lose")]),
-                                        ]
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.changeStatus("done")
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("em", {
-                                            staticClass: "icon ni ni-done",
-                                          }),
-                                          _c("span", [_vm._v("Mark as Done")]),
-                                        ]
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nk-msg-profile-toggle profile-toggle",
-                      class: { active: _vm.isActive },
-                      attrs: { href: "#" },
-                      on: { click: _vm.msgprofile },
-                    },
-                    [_c("em", { staticClass: "icon ni ni-arrow-left" })]
-                  ),
-                ]
-              )
+                      ]),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "nk-msg-profile-toggle profile-toggle",
+                    class: { active: _vm.isActive },
+                    attrs: { href: "#" },
+                    on: { click: _vm.msgprofile },
+                  },
+                  [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                ),
+              ])
             : _vm._e(),
         ]),
       ]),
@@ -39181,206 +39155,190 @@ var render = function () {
           ]),
           _vm._v(" "),
           _vm.chatHead
-            ? _c(
-                "div",
-                {
-                  staticClass: "nk-msg-head d-lg-none",
-                  staticStyle: {
-                    position: "absolute",
-                    "z-index": "99",
-                    top: "65px",
-                    background: "white",
-                    width: "90%",
-                  },
-                },
-                [
-                  _vm.quoteChat.chatcustomer
-                    ? _c("div", { staticClass: "nk-msg-head-meta" }, [
-                        _c("div", { staticClass: " d-none d-lg-block" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "d-flex align-items-center",
-                              attrs: { href: "#" },
-                            },
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "user-avatar sq bg-purple" },
-                                [
-                                  _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.getFirstLetter(
-                                          _vm.quoteChat.chatcustomer.first_name
-                                        )
-                                      ) +
-                                        _vm._s(
-                                          _vm.getFirstLetter(
-                                            _vm.quoteChat.chatcustomer.last_name
-                                          )
-                                        )
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "ml-3" }, [
-                                _c("h6", { staticClass: "title mb-1" }, [
+            ? _c("div", { staticClass: "nk-msg-head d-lg-none chathead" }, [
+                _vm.quoteChat.chatcustomer
+                  ? _c("div", { staticClass: "nk-msg-head-meta" }, [
+                      _c("div", { staticClass: " d-none d-lg-block" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "d-flex align-items-center",
+                            attrs: { href: "#" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "user-avatar sq bg-purple" },
+                              [
+                                _c("span", [
                                   _vm._v(
                                     _vm._s(
-                                      _vm.quoteChat.chatcustomer.first_name
+                                      _vm.getFirstLetter(
+                                        _vm.quoteChat.chatcustomer.first_name
+                                      )
                                     ) +
-                                      " " +
                                       _vm._s(
-                                        _vm.quoteChat.chatcustomer.last_name
+                                        _vm.getFirstLetter(
+                                          _vm.quoteChat.chatcustomer.last_name
+                                        )
                                       )
                                   ),
                                 ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ml-3" }, [
+                              _c("h6", { staticClass: "title mb-1" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.quoteChat.chatcustomer.first_name
+                                  ) +
+                                    " " +
+                                    _vm._s(_vm.quoteChat.chatcustomer.last_name)
+                                ),
                               ]),
+                            ]),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "d-lg-none" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-icon ml-n1",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.closepanel()
+                              },
+                            },
+                          },
+                          [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "nk-msg-actions" }, [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn btn-dim btn-sm btn-outline-light",
+                              attrs: { href: "#" },
+                            },
+                            [
+                              _c("em", { staticClass: "icon ni ni-check" }),
+                              _c(
+                                "span",
+                                { staticClass: "text-capitalize" },
+                                [
+                                  _vm.quoteChat.quote.status == "pending"
+                                    ? [_vm._v("Active")]
+                                    : [
+                                        _vm._v(
+                                          _vm._s(_vm.quoteChat.quote.status)
+                                        ),
+                                      ],
+                                ],
+                                2
+                              ),
                             ]
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "d-lg-none" }, [
+                        _c("li", { staticClass: "dropdown" }, [
+                          _vm._m(15),
+                          _vm._v(" "),
                           _c(
-                            "a",
+                            "div",
                             {
-                              staticClass: "btn btn-icon ml-n1",
-                              attrs: { href: "#" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.closepanel()
-                                },
-                              },
+                              staticClass: "dropdown-menu dropdown-menu-right",
                             },
-                            [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                            [
+                              _c(
+                                "ul",
+                                { staticClass: "link-list-opt no-bdr" },
+                                [
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.changeStatus("won")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("em", {
+                                          staticClass: "icon ni ni-user-add",
+                                        }),
+                                        _c("span", [_vm._v("Mark as Won")]),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.changeStatus("lose")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("em", {
+                                          staticClass: "icon ni ni-archive",
+                                        }),
+                                        _c("span", [_vm._v("Mark as Lose")]),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.changeStatus("done")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("em", {
+                                          staticClass: "icon ni ni-done",
+                                        }),
+                                        _c("span", [_vm._v("Mark as Done")]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]
                           ),
                         ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "nk-msg-actions" }, [
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "btn btn-dim btn-sm btn-outline-light",
-                                attrs: { href: "#" },
-                              },
-                              [
-                                _c("em", { staticClass: "icon ni ni-check" }),
-                                _c(
-                                  "span",
-                                  { staticClass: "text-capitalize" },
-                                  [
-                                    _vm.quoteChat.quote.status == "pending"
-                                      ? [_vm._v("Active")]
-                                      : [
-                                          _vm._v(
-                                            _vm._s(_vm.quoteChat.quote.status)
-                                          ),
-                                        ],
-                                  ],
-                                  2
-                                ),
-                              ]
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "dropdown" }, [
-                            _vm._m(15),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                              },
-                              [
-                                _c(
-                                  "ul",
-                                  { staticClass: "link-list-opt no-bdr" },
-                                  [
-                                    _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.changeStatus("won")
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("em", {
-                                            staticClass: "icon ni ni-user-add",
-                                          }),
-                                          _c("span", [_vm._v("Mark as Won")]),
-                                        ]
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.changeStatus("lose")
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("em", {
-                                            staticClass: "icon ni ni-archive",
-                                          }),
-                                          _c("span", [_vm._v("Mark as Lose")]),
-                                        ]
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.changeStatus("done")
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("em", {
-                                            staticClass: "icon ni ni-done",
-                                          }),
-                                          _c("span", [_vm._v("Mark as Done")]),
-                                        ]
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nk-msg-profile-toggle profile-toggle",
-                      class: { active: _vm.isActive },
-                      attrs: { href: "#" },
-                      on: { click: _vm.msgprofile },
-                    },
-                    [_c("em", { staticClass: "icon ni ni-arrow-left" })]
-                  ),
-                ]
-              )
+                      ]),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "nk-msg-profile-toggle profile-toggle",
+                    class: { active: _vm.isActive },
+                    attrs: { href: "#" },
+                    on: { click: _vm.msgprofile },
+                  },
+                  [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                ),
+              ])
             : _vm._e(),
         ]),
       ]),

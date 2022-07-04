@@ -259,6 +259,7 @@ class UserController extends Controller
                 $user->password = bcrypt($request->password);
                 $user->city = $request->city;
                 $user->zipcode = $request->zipcode;
+                $user->credits = 50;
                 $user->timezone = $request->timezone;
                 $user->language_id = $request->language_id;
                 $user->save();

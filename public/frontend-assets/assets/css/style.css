@@ -33,7 +33,7 @@
     position: relative;
     opacity: 1;
     pointer-events: auto;
-    max-height: calc(89vh - (65px + 112px));
+    max-height: calc(91vh - (65px + 112px));
 }
 .kanban-item {
     border-radius: 4px;
@@ -198,14 +198,14 @@
   max-width: 4% !important;
 }
 .hidden{
-    width: 15%
+    width: 100%
 }
 /*.hidden p{
     margin-bottom: 15px;
     margin-top: 12px;
 }*/
 .flex.justify-between.flex-1.sm\:hidden {
-    opacity: 0;
+    display: none !important;
 }
 .unreadmsg{
     background: #2593b9;

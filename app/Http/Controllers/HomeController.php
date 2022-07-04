@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Subscription;
 use Acelle\Model\Quote;
 use Acelle\Model\User;
+use Acelle\Model\BuyCreadit;
 use Auth;
 
 class HomeController extends Controller
@@ -20,15 +21,17 @@ class HomeController extends Controller
         event(new \Acelle\Events\UserUpdated($request->user()->customer));
 
         // Last month
-        $customer = $request->user()->customer;
-        $sendingCreditsUsed = $customer->activeSubscription()->getCreditsUsedDuringPlanCycle('send'); // all time sending credits used
-        $sendingCreditsLimit = $customer->activeSubscription()->getCreditsLimit('send');
-        $sendingCreditsUsedPercentage = $customer->activeSubscription()->getCreditsUsedPercentageDuringPlanCycle('send');
-
+      $customerCount = User::where('user_type','client')->where('subdomain',request('account'))->count();
+      $providerCount = User::where('user_type','service_provider')->where('subdomain',request('account'))->count();
+      $quoteCount =  Quote::where('admin_id',request('account'))->count();
+      $quotes =  Quote::where('admin_id',request('account'))->orderBy('created_at','desc')->limit(5)->get();
+      $totalRevenue =  BuyCreadit::where('subdomain',request('account'))->sum('amount');
         return view('dashboard', [
-            'sendingCreditsUsed' => $sendingCreditsUsed,
-            'sendingCreditsUsedPercentage' => $sendingCreditsUsedPercentage,
-            'sendingCreditsLimit' => $sendingCreditsLimit,
+            'customerCount' => $customerCount,
+            'providerCount' => $providerCount,
+            'quoteCount' => $quoteCount,
+            'quotes' => $quotes,
+            'totalRevenue' => $totalRevenue,
         ]);
     }
    
