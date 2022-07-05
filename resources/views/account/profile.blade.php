@@ -68,7 +68,21 @@ delete_outline
                             @include('helpers.form_control', ['type' => 'text', 'name' => 'last_name', 'value' => $user->last_name, 'rules' => $user->rules()])
                         </div>
                     </div>
+               <div class="form-group control-select" data-select2-id="11">
+                    <label>Date Format <span class="text-danger">*</span></label>
+                <select name="date_format" class="select select-search required select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                    <option value="" >Choose</option>
+                       <option value="m/d/Y" {{($user->date_format == 'm/d/Y') ? 'selected' : ''}}>USA - MM/DD/YYYY </option>
+                         <option value="d/m/Y" {{($user->date_format == 'd/m/Y') ? 'selected' : ''}}>Australia/Europe - DD/MM/YYYY </option>
+                                    
+                   
+            </select>
 
+        
+        
+                
+        
+            </div>
                     @include('helpers.form_control', ['type' => 'select', 'name' => 'timezone', 'value' => $customer->timezone, 'options' => Tool::getTimezoneSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => $user->rules()])
 
                     @include('helpers.form_control', ['type' => 'select', 'name' => 'language_id', 'label' => trans('messages.language'), 'value' => $customer->language_id, 'options' => Acelle\Model\Language::getSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => $user->rules()])

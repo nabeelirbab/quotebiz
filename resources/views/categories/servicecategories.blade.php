@@ -59,7 +59,7 @@
                                             <div class="card h-100">
                                                 <div class="card-inner">
                                                     <div class="d-flex justify-content-between align-items-start mb-3" style="border-bottom: 1px solid gainsboro;">
-                                                        <a href="html/lms/courses.html" class="d-flex align-items-center">
+                                                        <a href="#"  data-toggle="modal" data-target="#modalEdit{{$category->id}}" class="d-flex align-items-center">
                                                             @if($category->category_icon)
                                                             <div class="" style="width: 60px"><img src="{{asset('frontend-assets/images/categories/'.$category->category_icon)}}">
                                                             </div>
@@ -94,70 +94,117 @@
                                                     <!-- <p>{{$category->category_description}}</p> -->
                                                     <ul class="d-flex flex-wrap g-1">
                                                         @foreach($category->subcategory as $key=>$subcategory)
-                                                        <li><span class="badge badge-dim {{$arraycalss[$key]}}">{{$subcategory->sub_category}}</span></li>
+                                                        <li data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}"><span class="badge badge-dim {{$arraycalss[$key]}}">{{$subcategory->sub_category}}</span></li>
+                                                         <div class="modal fade zoom" tabindex="-1" id="modalsubEdit{{$subcategory->id}}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Update SubCategory</h5>
+                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <em class="icon ni ni-cross"></em>
+                                                        </a>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                       <div class="preview-block">
+                                                       
+                                                         <form action="{{ url('service-categories/update') }}" method="post" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                        <div class="row d-flex justify-content-center gy-4">
+                                                           <input type="hidden" name="id" value="{{$category->id}}">
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="default-01">Category Name</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" value="{{$subcategory->sub_category}}" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                             <div class="col-sm-10">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="default-01">Category Description</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <textarea class="form-control" name="category_description">{{$subcategory->category_description}}</textarea> 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                            <div class="col-sm-10 text-center">
+                                                                <button class="btn btn-success btn-lg" type="submit">Update</button>
+                                                            </div>
+
+                                                           
+                                                        </div>
+                                                      </form>
+                                                    </div>
+                                                    </div>
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
                                                         @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
                                                            <!-- Modal Zoom -->
-                            <div class="modal fade zoom" tabindex="-1" id="modalEdit{{$category->id}}">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Update Category</h5>
-                                            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                                                <em class="icon ni ni-cross"></em>
-                                            </a>
-                                        </div>
-                                        <div class="modal-body">
-                                           <div class="preview-block">
-                                           
-                                             <form action="{{ url('service-categories/update') }}" method="post" enctype="multipart/form-data">
-                                                {{ csrf_field() }}
-                                            <div class="row d-flex justify-content-center gy-4">
-                                               <input type="hidden" name="id" value="{{$category->id}}">
-                                                <div class="col-sm-10">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="default-01">Category Name</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" value="{{$category->category_name}}" required>
-                                                        </div>
+                                        <div class="modal fade zoom" tabindex="-1" id="modalEdit{{$category->id}}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Update Category</h5>
+                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <em class="icon ni ni-cross"></em>
+                                                        </a>
                                                     </div>
-                                                </div>
-                                                 <div class="col-sm-10">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="default-01">Category Description</label>
-                                                        <div class="form-control-wrap">
-                                                            <textarea class="form-control" name="category_description">{{$category->category_description}}</textarea> 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-10">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="default-06">Category Icon</label>
-                                                        <div class="form-control-wrap">
-                                                            <div class="custom-file">
-                                                                <input type="file" name="category_icon" class="custom-file-input" id="customFile">
-                                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    <div class="modal-body">
+                                                       <div class="preview-block">
+                                                       
+                                                         <form action="{{ url('service-categories/update') }}" method="post" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                        <div class="row d-flex justify-content-center gy-4">
+                                                           <input type="hidden" name="id" value="{{$category->id}}">
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="default-01">Category Name</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" value="{{$category->category_name}}" required>
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                             <div class="col-sm-10">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="default-01">Category Description</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <textarea class="form-control" name="category_description">{{$category->category_description}}</textarea> 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="default-06">Category Icon</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" name="category_icon" class="custom-file-input" id="customFile">
+                                                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                            </div>
+
+                                                            <div class="col-sm-10 text-center">
+                                                                <button class="btn btn-success btn-lg" type="submit">Update</button>
+                                                            </div>
+
+                                                           
                                                         </div>
+                                                      </form>
                                                     </div>
-                                                   
+                                                    </div>
+                                                  
                                                 </div>
-
-                                                <div class="col-sm-10 text-center">
-                                                    <button class="btn btn-success btn-lg" type="submit">Update</button>
-                                                </div>
-
-                                               
                                             </div>
-                                          </form>
                                         </div>
-                                        </div>
-                                      
-                                    </div>
-                                </div>
-                            </div>
+
                                         </div>
                             
     <!-- Mopdal Small -->
