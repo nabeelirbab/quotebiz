@@ -3,279 +3,420 @@
 @section('title', trans('messages.dashboard'))
 
 @section('head')
-    <script type="text/javascript" src="{{ URL::asset('core/echarts/echarts.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('core/echarts/dark.js') }}"></script> 
+    <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}"> 
 @endsection
 
 @section('content')
-    <h2 class="mt-4 pt-2">{!! trans('messages.frontend_dashboard_hello', ['name' => Auth::user()->displayName()]) !!}</h2>
-    <p>{!! trans('messages.frontend_dashboard_welcome') !!}</p>
+  
+    <!-- content @s -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">{!! trans('messages.frontend_dashboard_hello', ['name' => Auth::user()->displayName()]) !!}</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Welcome back to your account dashboard</p>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li>
+                                                            <div class="drodown">
+                                                                <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <ul class="link-list-opt no-bdr">
+                                                                        <li><a href="#"><span>Last 30 Days</span></a></li>
+                                                                        <li><a href="#"><span>Last 6 Months</span></a></li>
+                                                                        <li><a href="#"><span>Last 1 Years</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <div class="row g-gs">
+                                        <div class="col-xxl-3 col-sm-6">
+                                            <div class="card">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Quotes</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount">{{$quoteCount}}</div>
+                                                                <div class="nk-ecwg6-ck">
+                                                                    <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div> -->
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-sm-6">
+                                            <div class="card">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Total Revenue</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount">${{$totalRevenue}}</div>
+                                                                <div class="nk-ecwg6-ck">
+                                                                    <canvas class="ecommerce-line-chart-s3" id="todayRevenue"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div> -->
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-sm-6">
+                                            <div class="card">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Customers</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount">{{$customerCount}}</div>
+                                                                <div class="nk-ecwg6-ck">
+                                                                    <canvas class="ecommerce-line-chart-s3" id="todayCustomers"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div> -->
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-sm-6">
+                                            <div class="card">
+                                                <div class="nk-ecwg nk-ecwg6">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Service Providers</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount">{{$providerCount}}</div>
+                                                                <div class="nk-ecwg6-ck">
+                                                                    <canvas class="ecommerce-line-chart-s3" id="todayVisitors"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div> -->
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-6">
+                                            <div class="card card-full">
+                                                <div class="nk-ecwg nk-ecwg8 h-100">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group mb-3">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Sales Statistics</h6>
+                                                            </div>
+                                                            <div class="card-tools">
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
+                                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li><a href="#"><span>Daily</span></a></li>
+                                                                            <li><a href="#" class="active"><span>Weekly</span></a></li>
+                                                                            <li><a href="#"><span>Monthly</span></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ul class="nk-ecwg8-legends">
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                                                                    <span>Total Quote</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#eb6459"></span>
+                                                                    <span>Canceled Quote</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="nk-ecwg8-ck">
+                                                            <canvas class="ecommerce-line-chart-s4" id="salesStatistics"></canvas>
+                                                        </div>
+                                                        <div class="chart-label-group pl-5">
+                                                            <div class="chart-label">01 Jul, 2020</div>
+                                                            <div class="chart-label">30 Jul, 2020</div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-md-6">
+                                            <div class="card card-full overflow-hidden">
+                                                <div class="nk-ecwg nk-ecwg7 h-100">
+                                                    <div class="card-inner flex-grow-1">
+                                                        <div class="card-title-group mb-4">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Quote Statistics</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-ecwg7-ck">
+                                                            <canvas class="ecommerce-doughnut-s1" id="orderStatistics"></canvas>
+                                                        </div>
+                                                        <ul class="nk-ecwg7-legends">
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                                                                    <span>Completed</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#e85347"></span>
+                                                                    <span>Canclled</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="title">
+                                                                    <span class="dot dot-lg sq" data-bg="#816bff"></span>
+                                                                    <span>Processing</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div><!-- .card-inner -->
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group mb-2">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Store Statistics</h6>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nk-store-statistics">
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Quotes</div>
+                                                                <div class="count">1,795</div>
+                                                            </div>
+                                                            <em class="icon bg-primary-dim ni ni-bag"></em>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Customers</div>
+                                                                <div class="count">2,327</div>
+                                                            </div>
+                                                            <em class="icon bg-info-dim ni ni-users"></em>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Products</div>
+                                                                <div class="count">674</div>
+                                                            </div>
+                                                            <em class="icon bg-pink-dim ni ni-box"></em>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Categories</div>
+                                                                <div class="count">68</div>
+                                                            </div>
+                                                            <em class="icon bg-purple-dim ni ni-server"></em>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- .card-inner -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-8">
+                                            <div class="card card-full">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Recent Quotes</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-tb-list mt-n2">
+                                                    <div class="nk-tb-item nk-tb-head">
+                                                        <div class="nk-tb-col"><span>Quote No.</span></div>
+                                                        <div class="nk-tb-col tb-col-sm"><span>Customer</span></div>
+                                                        <div class="nk-tb-col tb-col-sm"><span>Category</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Created At</span></div>
+                                                        <div class="nk-tb-col"><span>Quotations</span></div>
+                                                        <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
+                                                    </div>
+                                                    @foreach($quotes as $quote)
+                                                    <div class="nk-tb-item">
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-lead"><a href="#">#{{$quote->id}}</a></span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-sm">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar sm bg-purple-dim">
+                                                                    <span>{{mb_substr($quote->user->first_name, 0, 1)}}{{mb_substr($quote->user->last_name, 0, 1)}}</span>
+                                                                </div>
+                                                                <div class="user-name">
+                                                                    <span class="tb-lead">{{$quote->user->first_name}} {{$quote->user->last_name}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-    <h3 class="mt-5 mb-3">
-        <span class="material-icons-outlined me-2">
-            donut_large
-        </span>
-        {{ trans("messages.used_quota") }}
-    </h3>
-    <p>{{ trans('messages.dashboard.credit.wording') }}</p>
-    <div class="row quota_box">
-        <div class="col-12 col-md-6">
-            <div class="content-group-sm mb-3">
-                <div class="d-flex mb-2">
-                    <label class="fw-600 me-auto">{{ trans('messages.sending_quota') }}</label>
-                    <div class="pull-right text-semibold">
-                        <span class="text-muted">{{ number_with_delimiter($sendingCreditsUsed) }}/{{ ($sendingCreditsLimit == -1) ? '∞' : $sendingCreditsLimit }}</span>
-                        &nbsp;&nbsp;&nbsp;<span>{{ number_to_percentage($sendingCreditsUsedPercentage) }}</span>
-                    </div>
-                </div>
-                
-                <div class="progress progress-sm" style="height: 12px;">
-                    <div class="progress-bar progress-bar-striped bg-{{ ($sendingCreditsUsedPercentage >= 0.8) ? 'danger' : 'primary' }}" style="width: {{ $sendingCreditsUsedPercentage*100  }}%">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="content-group-sm mb-3">
-                <div class="d-flex mb-2">
-                    <label class="fw-600 me-auto">{{ trans('messages.list') }}</label>
-                    <div class="pull-right  text-semibold">
-                        <span class="text-muted">{{ \Acelle\Library\Tool::format_number(Auth::user()->customer->listsCount()) }}/{{ \Acelle\Library\Tool::format_number(Auth::user()->customer->maxLists()) }}</span>
-                        &nbsp;&nbsp;&nbsp;<span>{{ Auth::user()->customer->displayListsUsage() }}</span>
-                    </div>
-                </div>
-                <div class="progress progress-sm" style="height: 12px;">
-                    <div class="progress-bar progress-bar-striped bg-{{ Auth::user()->customer->listsUsage() >= 80 ? 'danger' : 'primary' }}" style="width: {{ Auth::user()->customer->listsUsage() }}%">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="content-group-sm mb-3">
-                <div class="d-flex mb-2">
-                    <label class="fw-600 me-auto">{{ trans('messages.campaign') }}</label>
-                    <div class="pull-right  text-semibold">
-                        <span class="text-muted">{{ \Acelle\Library\Tool::format_number(Auth::user()->customer->campaignsCount()) }}/{{ \Acelle\Library\Tool::format_number(Auth::user()->customer->maxCampaigns()) }}</span>
-                        &nbsp;&nbsp;&nbsp;<span>{{ Auth::user()->customer->displayCampaignsUsage() }}</span>
-                    </div>
-                </div>
-                <div class="progress progress-sm" style="height: 12px;">
-                    <div class="progress-bar progress-bar-striped bg-{{ Auth::user()->customer->campaignsUsage() >= 80 ? 'danger' : 'primary' }}" style="width: {{ Auth::user()->customer->campaignsUsage() }}%">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="content-group-sm">
-                <div class="d-flex mb-2">
-                    <label class="fw-600 me-auto">{{ trans('messages.subscriber') }}</label>
-                    <div class="pull-right  text-semibold">
-                        <span class="text-muted">{{ \Acelle\Library\Tool::format_number(Auth::user()->customer->readCache('SubscriberCount', 0)) }}/{{ \Acelle\Library\Tool::format_number(Auth::user()->customer->maxSubscribers()) }}</span>
-                        &nbsp;&nbsp;&nbsp;<span>{{ Auth::user()->customer->displaySubscribersUsage() }}</span>
-                    </div>
-                </div>
-                <div class="progress progress-sm" style="height: 12px;">
-                    <div class="progress-bar progress-bar-striped bg-{{ Auth::user()->customer->subscribersUsage() >= 80 ? 'danger' : 'primary' }}" style="width: {{ Auth::user()->customer->readCache('SubscriberUsage', 0) }}%">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @include('_dashboard_campaigns')
-
-    @include('_dashboard_list_growth')    
-
-
-    @if (isSiteDemo())
-    <h3 class="mt-5 mb-3"><span class="material-icons-outlined me-2">
-        star_half
-        </span> {{ trans('messages.top_5') }}
-    </h3>
-
-    <ul class="nav nav-tabs nav-underline" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="campaign_opens-tab" data-bs-toggle="tab" data-bs-target="#campaign_opens" role="button" role="tab" aria-controls="campaign_opens" aria-selected="true">
-                {{ trans('messages.campaign_opens') }}
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="campaign_clicks-tab" data-bs-toggle="tab" data-bs-target="#campaign_clicks" role="button" role="tab" aria-controls="campaign_clicks" aria-selected="false">
-                {{ trans('messages.campaign_clicks') }}
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="clicked_links-tab" data-bs-toggle="tab" data-bs-target="#clicked_links" role="button" role="tab" aria-controls="clicked_links" aria-selected="false">
-                {{ trans('messages.clicked_links') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="campaign_opens" role="tabpanel" aria-labelledby="campaign_opens-tab">
-            <ul class="modern-listing mt-0 top-border-none">
-                @forelse (Acelle\Model\Campaign::topOpens(5, Auth::user()->customer)->get() as $num => $item)
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-5 col-md-5">
-                                <div class="d-flex align-items-center">
-                                    <i class="number d-inline-block me-3">{{ $num+1 }}</i>
-                                    <div>
-                                        <h6 class="mt-0 mb-0 text-semibold">
-                                            <a href="{{ url('campaigns/'.$item->uid.'/overview') }}">
-                                                {{ $item->name }}
-                                            </a>
-                                        </h6>
-                                        <p class="mb-0">
-                                            {!! $item->displayRecipients() !!}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    {{ number_with_delimiter($item->aggregate) }}
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.opens') }}</span>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    {{ number_with_delimiter($item->readCache('UniqOpenCount')) }}
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.uniq_opens') }}</span>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    {{ (null !== $item->lastOpen()) ? Acelle\Library\Tool::formatDateTime($item->lastOpen()->created_at) : "" }}
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.last_open') }}</span>
+                                                        <div class="nk-tb-col tb-col-md">
+                                                            <span>{{$quote->category->category_name}}</span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-md">
+                                                            <span class="tb-sub">{{\Carbon\Carbon::parse($quote->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub tb-amount">{{count($quote->quotations)}}</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            @if($quote->status == 'pending')
+                                                                <span class="badge badge-light">Open for quoting</span>
+                                                                @else
+                                                                 <span class="badge badge-success">Open</span>
+                                                                @endif
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div>
+                                        <div class="col-xxl-4 col-md-8 col-lg-6">
+                                            <div class="card h-100">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group mb-2">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Top products</h6>
+                                                        </div>
+                                                        <div class="card-tools">
+                                                            <div class="dropdown">
+                                                                <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
+                                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                    <ul class="link-list-opt no-bdr">
+                                                                        <li><a href="#"><span>Daily</span></a></li>
+                                                                        <li><a href="#" class="active"><span>Weekly</span></a></li>
+                                                                        <li><a href="#"><span>Monthly</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nk-top-products">
+                                                        <li class="item">
+                                                            <div class="thumb">
+                                                                <img src="./images/product/a.png" alt="">
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="title">Pink Fitness Tracker</div>
+                                                                <div class="price">$99.00</div>
+                                                            </div>
+                                                            <div class="total">
+                                                                <div class="amount">$990.00</div>
+                                                                <div class="count">10 Sold</div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="thumb">
+                                                                <img src="./images/product/b.png" alt="">
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="title">Purple Smartwatch</div>
+                                                                <div class="price">$99.00</div>
+                                                            </div>
+                                                            <div class="total">
+                                                                <div class="amount">$990.00</div>
+                                                                <div class="count">10 Sold</div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="thumb">
+                                                                <img src="./images/product/c.png" alt="">
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="title">Black Mi Band Smartwatch</div>
+                                                                <div class="price">$99.00</div>
+                                                            </div>
+                                                            <div class="total">
+                                                                <div class="amount">$990.00</div>
+                                                                <div class="count">10 Sold</div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="thumb">
+                                                                <img src="./images/product/d.png" alt="">
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="title">Black Headphones</div>
+                                                                <div class="price">$99.00</div>
+                                                            </div>
+                                                            <div class="total">
+                                                                <div class="amount">$990.00</div>
+                                                                <div class="count">10 Sold</div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="thumb">
+                                                                <img src="./images/product/e.png" alt="">
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="title">iPhone 7 Headphones</div>
+                                                                <div class="price">$99.00</div>
+                                                            </div>
+                                                            <div class="total">
+                                                                <div class="amount">$990.00</div>
+                                                                <div class="count">10 Sold</div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- .card-inner -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                    </div><!-- .row -->
+                                </div><!-- .nk-block -->
                             </div>
                         </div>
-
-                    </li>
-                @empty
-                    <li class="empty-li pt-0">
-                        <div class="empty-list mt-0">
-                            <span class="material-icons-outlined">
-                                auto_awesome
-                            </span>
-                            <span class="line-1">
-                                {{ trans('messages.empty_record_message') }}
-                            </span>
-                        </div>
-                    </li>
-                @endforelse
-            </ul>
-        </div>
-        <div class="tab-pane fade" id="campaign_clicks" role="tabpanel" aria-labelledby="campaign_clicks-tab">
-            <ul class="modern-listing mt-0 top-border-none">
-                @forelse (Acelle\Model\Campaign::topClicks(5, Auth::user()->customer)->get() as $num => $item)
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-5 col-md-5">
-                                <div class="d-flex align-items-center">
-                                    <i class="number d-inline-block me-3">{{ $num+1 }}</i>
-                                    <div>
-                                        <h6 class="mt-0 mb-0 text-semibold">
-                                            <a href="{{ url('campaigns/'.$item->uid.'/overview') }}">
-                                                {{ $item->name }}
-                                            </a>
-                                        </h6>
-                                        <p>
-                                            {!! $item->displayRecipients() !!}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    {{ $item->aggregate }}
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.clicks') }}</span>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    {{ $item->urlCount() }}
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.urls') }}</span>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    #
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.last_clicked') }}</span>
-                            </div>
-                        </div>
-                    </li>
-                @empty
-                    <li class="empty-li pt-0">
-                        <div class="empty-list mt-0">
-                            <span class="material-icons-outlined">
-                                auto_awesome
-                            </span>
-                            <span class="line-1">
-                                {{ trans('messages.empty_record_message') }}
-                            </span>
-                        </div>
-                    </li>
-                @endforelse
-            </ul>
-        </div>
-        <div class="tab-pane fade" id="clicked_links" role="tabpanel" aria-labelledby="clicked_links-tab">
-            <ul class="modern-listing mt-0 top-border-none">
-                @forelse (Acelle\Model\Campaign::topLinks(5, Auth::user()->customer)->get() as $num => $item)
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="number d-inline-block me-3">{{ $num+1 }}</i>
-                                    <div>
-                                        <h6 class="mt-0 mb-0 text-semibold url-truncate">
-                                            <a title="{{ $item->url }}" href="{{ $item->url }}" target="_blank">
-                                                {{ $item->url }}
-                                            </a>
-                                        </h6>
-                                        <p>
-                                            {{ $item->aggregate }} {{ trans('messages.campaigns') }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    {{ $item->aggregate }}
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.clicks') }}</span>
-                            </div>
-                            <div class="col-sm-2 col-md-2 text-left">
-                                <h5 class="m-0 text-bold">
-                                    #
-                                </h5>
-                                <span class="text-muted">{{ trans('messages.last_clicked') }}</span>
-                            </div>
-                        </div>
-                    </li>
-                @empty
-                    <li class="empty-li pt-0">
-                        <div class="empty-list mt-0">
-                            <span class="material-icons-outlined">
-                                auto_awesome
-                            </span>
-                            <span class="line-1">
-                                {{ trans('messages.empty_record_message') }}
-                            </span>
-                        </div>
-                    </li>
-                @endforelse
-            </ul>
-        </div>
-    </div>
-    @endif
-
-    <h3 class="mt-5 mb-3"><span class="material-icons-outlined me-2">
-        group_work
-    </span> {{ trans('messages.activity_log') }}</h3>
-
-
-    <br>
-    <br>
+                    </div>
+                </div>
+                <!-- content @e -->
 @endsection
+@section('script')
+<script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
+    <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+<script src="{{ asset('frontend-assets/assets/js/charts/chart-ecommerce.js?ver=2.9.1') }}"></script>
+@endsection
+

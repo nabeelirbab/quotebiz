@@ -1761,6 +1761,10 @@ ul.automation-confirm li.child-row h5 {
     .dashboard-box {
         height: 110px;
     }
+
+.modal-body {
+    padding: 2rem 1rem !important;
+}
 }
 .admin-dashboard-container h2 {
     color: #555;

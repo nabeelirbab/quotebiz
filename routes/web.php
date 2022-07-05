@@ -320,7 +320,10 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
     Route::match(['get', 'post'], 'account/billing/edit', 'AccountController@editBillingAddress');
 });
 
+
 Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']], function () {
+    Route::get('/', 'HomeController@index');
+
     // Search
     Route::get('/search/subscribers', 'SearchController@subscribers');
     Route::get('/search/templates', 'SearchController@templates');
@@ -329,7 +332,6 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/search/campaigns', 'SearchController@campaigns');
     Route::get('/search/general', 'SearchController@general');
 
-    Route::get('/', 'HomeController@index');
     Route::get('/quotes', 'QuoteController@index');
     Route::get('/support', 'HomeController@support');
     Route::get('/supportchat', 'HomeController@supportchat');

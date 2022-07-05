@@ -439,13 +439,7 @@
   ></vue-easy-lightbox>
 </div><!-- .nk-msg-body -->
 </div><!-- .nk-msg -->
-<div class="nk-msg-head d-lg-none" v-if="chatHead" style="
-    position: absolute;
-    z-index: 99;
-    top: 65px;
-    background: white;
-    width: 90%;
-">
+<div class="nk-msg-head d-lg-none chathead" v-if="chatHead">
     <div class="nk-msg-head-meta" v-if="quoteChat.chatsp">
        <div class=" d-none d-lg-block">
                 <a href="#" class="d-flex align-items-center">
@@ -923,7 +917,14 @@ mounted() {
 };
 </script>
 <style type="text/css">
-
+    .chathead{
+         position: absolute;
+        z-index: 99;
+        top: 65px;
+        background: white;
+        width: 100%;
+        left: 0px;
+    }
     .loexp-no-results-container {
         display: flex;
         align-items: flex-start;
