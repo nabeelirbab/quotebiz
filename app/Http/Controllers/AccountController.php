@@ -17,6 +17,7 @@ class AccountController extends Controller
      **/
     public function profile(Request $request)
     {
+
         // Get current user
         $user = $request->user();
         $customer = $user->customer;
@@ -29,6 +30,7 @@ class AccountController extends Controller
 
         // Save posted data
         if ($request->isMethod('post')) {
+            // dd($request->all());
             $this->validate($request, $user->rules());
 
             // Update user account for customer

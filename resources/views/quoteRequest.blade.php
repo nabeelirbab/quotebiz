@@ -76,7 +76,7 @@ strong{
 }*/
 h4.form-heading{
 	font-weight: bold;
-	font-size: 23px!important
+	font-size: 28px!important
 }
 p.form-para{
 	font-size: 13px;
@@ -216,7 +216,7 @@ p.form-para::after{
 				<h6 class="mt-3 text-center">Your quotes are ready!</h6>
 				<p>No need to answer anymore questions, your refreshed quotes are waiting for you!</p>
 			</div> -->
-			<div class="col-md-9 formclass">
+			<div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 				@if($job_design && $job_design->no_status == '1')
 				<div class="d-flex pt-3 pr-2">
 					<p class="ml-auto mb-0">Want to speak with an agent?</p>
@@ -229,7 +229,7 @@ p.form-para::after{
 					{{ csrf_field()}}
 					<h4 class="form-heading">
 					{{ ($job_design) ? $job_design->title_heading : 'Where to-do gets done'}}</h4>
-					<p class="form-para">
+					<p class="form-para" style="font-size: 16px"> 
 						{{ ($job_design) ? $job_design->titlesub_heading : 'Make sure to use the same information you used during your earlier visit,this is how we keep your information secure.'}}
 						
 					</p>
@@ -251,7 +251,7 @@ p.form-para::after{
 					</div>
 
 					<div class="col-md-5">
-						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span class="fs-1">Get free quotes<i class="fa fa-arrow-right"></i></span></button></div>
+						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px" >Send Me Quotes<i class="fa fa-arrow-right"></i></span></button></div>
 					</div>
 					 
 					</div>

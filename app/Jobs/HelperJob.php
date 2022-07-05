@@ -6,6 +6,7 @@ use Acelle\Model\StripeKey;
 use Acelle\Model\CreditAmount;
 use Acelle\Model\Setting;
 use Acelle\Model\DateFormet;
+use Acelle\Model\User;
 use Acelle\Model\JobDesign;
 use Acelle\Library\ExtendedSwiftMessage;
 
@@ -55,9 +56,10 @@ class HelperJob extends Base
 
     public static function dateFormat(){
 
-       $result =  DateFormet::where('subdomain',request('account'))->first();
+       $result =  User::where('subdomain',request('account'))->where('user_type','admin')->first();
+       // dd($result);
        if($result){
-           return $result->date_formet;
+           return $result->date_format;
         }else{
             return 'd/m/Y';
         }

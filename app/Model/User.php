@@ -65,7 +65,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'first_name', 'last_name','subdomain','user_type','category_id'
+        'email', 'first_name', 'last_name','subdomain','user_type','category_id','date_format'
     ];
 
     /**
@@ -244,6 +244,7 @@ public static $itemsPerPage = 25;
             'last_name' => 'required',
             'timezone' => 'required',
             'language_id' => 'required',
+            'date_format' => 'required',
         );
 
         if (isset($this->id)) {
