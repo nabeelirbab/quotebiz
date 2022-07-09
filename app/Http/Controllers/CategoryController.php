@@ -53,6 +53,7 @@ class CategoryController extends Controller
        $category->category_name = $request->category_name;
        $category->cat_parent = 1;
        $category->subdomain = request('account');
+       $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
        $category->save();
        return redirect('/service-categories')->with('message', 'Category add successfully');
@@ -118,6 +119,7 @@ class CategoryController extends Controller
             $update->category_icon = $new_image;
        }
         $update->category_name = $request->category_name;
+        $update->credit_cost = $request->credit_cost;
         $update->category_description = $request->category_description; 
         $update->update();
         return redirect('/service-categories')->with('message', 'Category update successfully');
