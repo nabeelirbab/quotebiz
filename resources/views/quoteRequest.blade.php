@@ -212,7 +212,7 @@ p.form-para::after{
 
 	</style>
 </head>
-<body class="dogcFe" style="min-height: calc(107vh - 116px);">
+<body class="dogcFe" style="min-height: calc(118vh - 148px);">
 	@if(Auth::user())
 	@if(Auth::user()->user_type == 'client')
 	@else
