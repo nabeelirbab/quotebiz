@@ -17,7 +17,7 @@ body{
 	background: rgba(0,0,0,.075);
 	}
 .container{
-	margin-top: 50px;
+	/*margin-top: 10px;*/
 	margin-bottom: 50px;
 }
 .col-md-4{
@@ -54,7 +54,6 @@ h6.mt-3{
 	background: #fff;
 	border-top-right-radius: 15px;
 	border-bottom-right-radius: 15px;
-	padding-bottom: 80px;
 }
 p.mb-0{
 	color: #6C6D6F;
@@ -98,6 +97,9 @@ p.form-para::after{
     position: relative;
     margin-bottom: 0.5rem;
     /*margin-right: 90px;*/
+}
+.floatright{
+	float: right;
 }
 .form-control {
     border-radius: 0;
@@ -149,6 +151,10 @@ p.form-para::after{
 		border-top-left-radius: 12px;
 		padding: 50px 50px 50px 50px;
 	}
+.floatright{
+	float: none;
+	text-align: center;
+}
 .image{
 	margin-top: 0;
 }
@@ -207,15 +213,22 @@ p.form-para::after{
 	</style>
 </head>
 <body class="dogcFe" style="min-height: calc(107vh - 116px);">
-	
+	@if(Auth::user())
+	@if(Auth::user()->user_type == 'client')
+	@else
+	<div class="floatright p-2">
+	<a href="{{ url('/users/login') }}" class="fs-1">Login In</a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+	</div>
+	@endif
+	@else
+	<div class="floatright p-2">
+	<a href="{{ url('/users/login') }}">Login In</a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+	</div>
+	@endif
 <div class="container" >
+	
 		<div class="row justify-content-end" style="height: 750px;align-items: center;">
-			<!-- <div class="col-md-4">
-				<img class="logo-dark logo-img logo" src="{{asset('images/logo-dark.png') }}" srcset="{{asset('images/logo-dark2x.png 2x') }}" alt="logo-dark">
-				<div class="image"><img src="https://img.icons8.com/color/96/000000/meeting.png"/></div>
-				<h6 class="mt-3 text-center">Your quotes are ready!</h6>
-				<p>No need to answer anymore questions, your refreshed quotes are waiting for you!</p>
-			</div> -->
+		
 			<div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 				@if($job_design && $job_design->no_status == '1')
 				<div class="d-flex pt-3 pr-2">
@@ -225,7 +238,7 @@ p.form-para::after{
 					<p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>{{$job_design->agent_no}}</strong></p>
 				</div>	
 				@endif
-				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 80px ">
+				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 50px ">
 					{{ csrf_field()}}
 					<h4 class="form-heading">
 					{{ ($job_design) ? $job_design->title_heading : 'Where to-do gets done'}}</h4>
@@ -251,7 +264,7 @@ p.form-para::after{
 					</div>
 
 					<div class="col-md-5">
-						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px" >Send Me Quotes<i class="fa fa-arrow-right"></i></span></button></div>
+						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px" >{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i class="fa fa-arrow-right"></i></span></button></div>
 					</div>
 					 
 					</div>

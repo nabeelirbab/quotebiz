@@ -730,7 +730,7 @@
   'copy_list' => 'Copy <span class="fw-600">:name</span> list',
   'copy' => 'Copy',
   'list.copied' => 'List was successfully copied',
-  'api_token' => 'API token',
+  'api_token' => 'Stripe Key',
   'api_url' => 'API url',
   'your_api_token' => 'Your API token',
   'user_api.renewed' => 'Your API token was successfully renewed',

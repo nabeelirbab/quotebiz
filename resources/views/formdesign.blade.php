@@ -7,9 +7,11 @@
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/css/bootstrap-colorpicker.css" integrity="sha512-HcfKB3Y0Dvf+k1XOwAD6d0LXRFpCnwsapllBQIvvLtO2KMTa0nI5MtuTv3DuawpsiA0ztTeu690DnMux/SuXJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('content')
+{{Auth::user()->customer->getContact()->phone}}
 <?php $formdesign = Acelle\Jobs\HelperJob::form_design(); ?>
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head nk-block-head-sm">
@@ -58,28 +60,52 @@
                                 <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->postcode_text}}" @endif name="postcode_text" id="default-01" placeholder="Enter post code heading" required>
                             </div>
                         </div>
-                       
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Button Text</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text}}" @endif name="button_text" id="default-01" placeholder="Enter button text" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                       <div class="col-sm-4">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Color</label>
-                            <div class="form-control-wrap">
-                                <input type="color" class="form-control" @if($formdesign) value="{{$formdesign->button_color}}" @endif name="button_color" id="default-01" placeholder="Enter sun heading" required>
+                              <div id="cp0" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_color}}" @endif name="button_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
                             </div>
+                           
                         </div>
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text Color</label>
-                            <div class="form-control-wrap">
-                                <input type="color" class="form-control" @if($formdesign) value="{{$formdesign->button_text_color}}" @endif name="button_text_color" id="default-01" placeholder="Enter sun heading" required>
+                            <div id="cp1" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text_color}}" @endif name="button_text_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
                             </div>
+                           
                         </div>
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Underline Color</label>
-                            <div class="form-control-wrap">
-                                <input type="color" class="form-control" @if($formdesign) value="{{$formdesign->underline_color}}" @endif name="underline_color" id="default-01" placeholder="Enter sun heading" required>
+                             <div id="cp2" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->underline_color}}" @endif name="underline_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
                             </div>
+                          
                         </div>
-                       
+                       </div>
+                   </div>
                          <div class="form-group">
-                            <label class="form-label" for="default-01">Visibelity Agent No</label>
+                            <label class="form-label" for="default-01">Visibility Business No</label>
                             <div class="form-control-wrap">
                                 <label>
                             <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
@@ -92,9 +118,9 @@
                         </div>
                         <div class="form-group" id="agentno">
                             @if($formdesign && $formdesign->no_status == '1')
-                            <label class="form-label" for="default-01">Agent No</label>
+                            <label class="form-label" for="default-01">Business No</label>
                             <div class="form-control-wrap">
-                            <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->agent_no}}" @endif name="agent_no" id="default-01" required>
+                            <input type="text" class="form-control" @if($formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" required>
                             </div>
                             @endif
                         </div>
@@ -134,6 +160,7 @@
                        <img src="{{asset('frontend-assets/images/demo.png')}}" style="border: 1px solid #253a463b;padding: 9px;border-radius: 6px;">
                    </a>
                    <a class="mt-3 fs-5" href="{{ url('get-quote')}}" target="_blank">Preview Design</a>
+                   
                    </div>
                     <div class="col-sm-7 text-center">
                         <button class="btn btn-success btn-lg" type="submit">@if($formdesign) Update @else Save @endif</button>
@@ -150,6 +177,15 @@
 </div>
 @endsection
 @section('script')
+
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/js/bootstrap-colorpicker.min.js" integrity="sha512-94dgCw8xWrVcgkmOc2fwKjO4dqy/X3q7IjFru6MHJKeaAzCvhkVtOS6S+co+RbcZvvPBngLzuVMApmxkuWZGwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+  $(function () {
+    $('#cp0, #cp1, #cp2').colorpicker({
+        format: 'hex',
+    });
+  });
+</script>
 <script>
   var loadFile = function(event) {
     var output = document.getElementById('output');
@@ -162,9 +198,9 @@
         var val = $(this).val();
         
 
-        var html =  '<label class="form-label" for="default-01">Agent No</label>'+
+        var html =  '<label class="form-label" for="default-01">Business No</label>'+
                     '<div class="form-control-wrap">'+
-                    '<input type="text" class="form-control" @if($formdesign) value="{{$formdesign->agent_no}}" @endif name="agent_no" id="default-01" placeholder="Enter sun heading" required>'+
+                    '<input type="text" class="form-control" @if($formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" placeholder="Enter business phone number" required>'+
                             '</div>';
 
                if(val == 0){

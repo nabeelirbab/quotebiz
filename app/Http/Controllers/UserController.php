@@ -13,6 +13,7 @@ use Acelle\Model\CreditAmount;
 use Acelle\Model\BuyCreadit;
 use Acelle\Model\DateFormet;
 use Acelle\Model\JobDesign;
+use Acelle\Model\QuotePrice;
 use Acelle\Library\Facades\Hook;
 use Auth;
 use Carbon\Carbon;
@@ -379,6 +380,7 @@ public function adminregister(Request $request)
             $update = CreditAmount::find($request->id);
             $update->credit = $request->credit;
             $update->credit_amount = $request->credit_amount;
+            $update->bundel_name = $request->bundel_name;
             $update->update();
             return redirect()->back()->with('success', 'Update Successfully'); 
         }else{
@@ -386,13 +388,34 @@ public function adminregister(Request $request)
             $credit = new CreditAmount;
             $credit->credit_amount = $request->credit_amount;
             $credit->credit = $request->credit;
+            $credit->bundel_name = $request->bundel_name;
             $credit->subdomain = request('account');
             $credit->save();
         }
       }
 
-      $credits = CreditAmount::where('subdomain',request('account'))->orderBy('id','desc')->paginate(15);
+      $credits = CreditAmount::where('subdomain',request('account'))->orderBy('credit_amount','asc')->paginate(15);
       return view('creditamount',compact('credits'));
+
+    }
+
+    public function quoteprice(Request $request){
+       if($request->id){
+           $quoteprice = QuotePrice::find($request->id);
+           $quoteprice->type = $request->input('type');
+           $quoteprice->price = $request->input('price');
+           $quoteprice->save();
+           return redirect()->back()->with('success', 'Update Successfully');
+       }else{
+           $quoteprice = new QuotePrice;
+           $quoteprice->subdomain = request('account');
+           $quoteprice->type = $request->input('type');
+           $quoteprice->price = $request->input('price');
+           $quoteprice->save();
+           return redirect()->back()->with('success', 'Add Successfully');
+       }
+
+       
 
     }
 
@@ -427,7 +450,6 @@ public function adminregister(Request $request)
    public function formdesign(Request $request){
     if($request->isMethod('post'))
         {
-
             if($request->id){
                 $job_design =JobDesign::find($request->id);
             }else{
@@ -450,6 +472,7 @@ public function adminregister(Request $request)
            $job_design->titlesub_heading = $request->titlesub_heading;
            $job_design->postcode_text = $request->postcode_text;
            $job_design->button_color = $request->button_color;
+           $job_design->button_text = $request->button_text;
            $job_design->button_text_color = $request->button_text_color;
            $job_design->agent_no = $request->agent_no;
            $job_design->no_status = $request->no_status;

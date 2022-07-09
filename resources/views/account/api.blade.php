@@ -22,45 +22,56 @@
 
 	@include("account._menu")
 
-	<h4 class="text-semibold">{{ trans('messages.api_docs') }}</h4>
+	<div class="nk-block nk-block-lg">
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <h4 class="nk-block-title page-title">Stripe Payment</h3>
+               
+            </div><!-- .nk-block-head-content -->
+           
+        </div><!-- .nk-block-between -->
+    </div><!-- .nk-block-head -->
+    <div class="card card-preview">
+        <div class="card-inner">
+            <div class="preview-block">
+                <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
+                 <form action="" method="post" enctype="multipart/form-data" style="padding: 40px">
+                    {{ csrf_field() }}
+                <div class="row d-flex justify-content-center gy-4">
+                   
+                    <div class="col-sm-7">
+                        @if(!$stripeData)
+                        <div class="alert alert-danger  fade show mt-5" role="alert">
+                        <strong> For Receive payments from Credit / Debit card to your Stripe account Please enter stripe keys</strong> 
+                        </div>
+                        @endif
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Publishable key </label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" @if($stripeData) value="{{$stripeData->stripe_key}}" @endif name="stripe_key" id="default-01" placeholder="Enter Stripe Key" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Stripe Secret</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" @if($stripeData) value="{{$stripeData->stripe_secret}}" @endif name="stripe_secret" id="default-01" placeholder="Enter Stripe Secret" required>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-sm-7 text-center">
+                        <button class="btn btn-success btn-lg" type="submit">@if($stripeData) Update @else Save @endif</button>
+                    </div>
 
-	<p style="margin-bottom: 30px"><code style="font-size: 18px">
-    <a target="_blank" href="{{ url("frontend/docs/api/v1") }}">{{ url("frontend/docs/api/v1") }} <span class="material-icons-outlined">
-link
-</span></a></code></p>
+                   
+                </div>
+              </form>
+            </div>
+        </div>
+    </div><!-- .card-preview -->
 
-	<h4 class="text-semibold">{{ trans('messages.api_endpoint') }}</h4>
-
-	<p style="margin-bottom: 30px" class="d-flex align-items-center">
-		<code style="font-size: 18px" class="api-enpoint">{{ url('api/v1') }}</code>
-		<button class="btn btn-secondary api-copy-button ml-4"><i class="material-icons-outlined me-2">copy</i>{{ trans('messages.copy') }}</button>
-	</p>
-
-	<h4 class="text-semibold mt-20">{{ trans('messages.your_api_token') }}</h4>
-
-	<p style="margin-bottom: 30px" class="d-flex align-items-center"><code class="api-token" style="font-size: 18px">
-		{{ Auth::user()->api_token }}</code>
-		
-		<button class="btn btn-secondary api-token-copy-button ml-4"><i class="material-icons-outlined me-2">copy</i>Copy</button>
-	</p>
-	<p class="alert alert-info">{!! trans('messages.api_token_guide', ["link" => action("Api\MailListController@index", ["api_token" => "YOUR_API_TOKEN"])]) !!}</p>
-
-	<a class="btn btn-info bg-teal-600" href="{{ url("account/api/renew") }}">{{ trans('messages.renew_token')}}</a>
-
-	<script>
-		$('.api-copy-button').on('click', function() {
-			var code = $('.api-enpoint').html();
-
-			copyToClipboard(code);
-
-			notify('success', '{{ trans('messages.notify.success') }}', '{{ trans('messages.api_endpoint.copied') }}');
-		});
-		$('.api-token-copy-button').on('click', function() {
-			var code = $('.api-token').html();
-
-			copyToClipboard(code);
-
-			notify('success', '{{ trans('messages.notify.success') }}', '{{ trans('messages.api_token.copied') }}');
-		});
-	</script>
+</div>
 @endsection

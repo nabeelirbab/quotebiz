@@ -66,7 +66,7 @@ class ChatController extends Controller
         $message->subdomain = request('account');
         $message->save();
 
-        $total = Auth::user()->credits - 10;
+        $total = Auth::user()->credits - $request->credit_cost;
         $user = User::find(Auth::user()->id);
         $user->credits = $total;
         $user->save();

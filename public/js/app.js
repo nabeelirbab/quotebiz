@@ -2633,7 +2633,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['creaditsum'],
+  props: ['creaditsum', 'quoteprice', 'authuser'],
   data: function data() {
     return {
       quotes: [],
@@ -2644,7 +2644,8 @@ __webpack_require__.r(__webpack_exports__);
       newJob: 0,
       isSubmit: true,
       isLoading: false,
-      isPrice: false
+      isPrice: false,
+      creditcost: ''
     };
   },
   created: function created() {// let subdomain = location.hostname.split('.').shift();
@@ -2687,6 +2688,12 @@ __webpack_require__.r(__webpack_exports__);
     sendQuotation: function sendQuotation() {
       var _this = this;
 
+      if (this.quoteQuestions.category.credit_cost) {
+        var credits_cost = this.quoteQuestions.category.credit_cost;
+      } else {
+        var credits_cost = this.quoteprice;
+      }
+
       if (this.price == '' && this.comment == '') {
         this.isPrice = true;
         $('.editr').css('border-color', 'red');
@@ -2723,6 +2730,7 @@ __webpack_require__.r(__webpack_exports__);
           customer_id: this.quoteQuestions.user_id,
           quote_id: this.quoteQuestions.id,
           quote_price: this.price,
+          credit_cost: credits_cost,
           comment: this.comment,
           _token: csrf_token
         }).then(function (response) {
@@ -2760,7 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log(this.creaditsum);
+    console.log(this.quoteprice);
     this.getQuotes();
   }
 });
@@ -5187,8 +5195,53 @@ var render = function render() {
     }
   })], 1)])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm.quoteQuestions.myquotation ? [_vm._m(7)] : [_vm.creaditsum >= 10 ? _c("div", {
     staticClass: "row mt-3 justify-content-end"
-  }, [_vm._m(8), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6 col-xs-6"
+  }, [_c("div", {
+    staticClass: "col-md-3 col-xs-3 p-0"
+  }, [_vm.quoteQuestions.category && _vm.quoteQuestions.category.credit_cost && _vm.quoteQuestions.category.credit_cost ? [_c("h5", {
+    staticClass: "p-0 mt-3"
+  }, [_vm._v(_vm._s(_vm.quoteQuestions.category.credit_cost) + " Credits")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.quoteQuestions.category.credit_cost,
+      expression: "quoteQuestions.category.credit_cost"
+    }],
+    attrs: {
+      type: "hidden"
+    },
+    domProps: {
+      value: _vm.quoteQuestions.category.credit_cost
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.quoteQuestions.category, "credit_cost", $event.target.value);
+      }
+    }
+  })] : [_c("h5", {
+    staticClass: "p-0 mt-3"
+  }, [_vm._v(_vm._s(_vm.quoteprice) + " Credits")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.quoteprice,
+      expression: "quoteprice"
+    }],
+    attrs: {
+      type: "hidden"
+    },
+    domProps: {
+      value: _vm.quoteprice
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.quoteprice = $event.target.value;
+      }
+    }
+  })]], 2), _vm._v(" "), _c("div", {
+    staticClass: "col-md-7 col-xs-8"
   }, [_c("div", {
     staticClass: "input-group"
   }, [_c("label", {
@@ -5212,7 +5265,7 @@ var render = function render() {
     },
     attrs: {
       type: "text",
-      placeholder: "Recipient's username"
+      placeholder: "What is the full amount you'd like to bid for this job?"
     },
     domProps: {
       value: _vm.price
@@ -5239,9 +5292,9 @@ var render = function render() {
       "background-color": "#816bff !important",
       "border-color": "#816bff !important"
     }
-  }, [_vm._v("Send Quote "), _vm._m(9)]) : _vm._e()])])])]) : _c("div", {
+  }, [_vm._v("Send Quote "), _vm._m(8)]) : _vm._e()])])])]) : _c("div", {
     staticClass: "row mt-3 justify-content-end"
-  }, [_vm._m(10), _vm._v(" "), _vm._m(11)])]], 2)])])])])])])])])])]);
+  }, [_vm._m(9), _vm._v(" "), _vm._m(10)])]], 2)])])])])])])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5420,15 +5473,6 @@ var staticRenderFns = [function () {
       href: "buy-creadits"
     }
   }, [_vm._v("Already Submit")])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "col-md-3 col-xs-3"
-  }, [_c("h4", {
-    staticClass: "p-2"
-  }, [_vm._v("10 Credits")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;

@@ -212,13 +212,21 @@
                                     <template v-else>
                                       
                                     <div class="row mt-3 justify-content-end" v-if="creaditsum >= 10">
-                                        <div class="col-md-3 col-xs-3">
-                                        <h4 class="p-2">10 Credits</h4>
+                                        <div class="col-md-3 col-xs-3 p-0">
+                                          <template v-if="quoteQuestions.category && quoteQuestions.category.credit_cost && quoteQuestions.category.credit_cost">
+                                          <h5 class="p-0 mt-3">{{quoteQuestions.category.credit_cost}} Credits</h5>
+                                          <input type="hidden" v-model="quoteQuestions.category.credit_cost" >
+                                          </template>
+                                        <template v-else>
+                                        <h5 class="p-0 mt-3">{{quoteprice}} Credits</h5>
+                                          <input type="hidden" v-model="quoteprice">
+
+                                        </template>
                                         </div>
-                                        <div class="col-md-6 col-xs-6">
+                                        <div class="col-md-7 col-xs-8">
                                         <div class="input-group">
                                          <label style="position: absolute;bottom: 41px;">Amount</label>
-                                          <input type="text" class="form-control rounded-left" v-bind:class="{redborder: isPrice}" style="height: 50px" v-model="price" placeholder="Recipient's username" >
+                                          <input type="text" class="form-control rounded-left" v-bind:class="{redborder: isPrice}" style="height: 50px" v-model="price" placeholder="What is the full amount you'd like to bid for this job?" >
                                           <div class="input-group-append">
                                             <button v-if="isSubmit" class="btn btn-success" @click="sendQuotation"  id="basic-addon2">Send Quote</button>
                                              <button v-if="isLoading" class="btn btn-success" style="background-color: #816bff !important;border-color: #816bff !important">Send Quote <div class="spinner-border text-secondary" role="status"> <span class="sr-only">Loading...</span></div></button>
@@ -259,6 +267,8 @@ import 'vue-toast-notification/dist/theme-sugar.css';
     export default {
           props: [
           'creaditsum',
+          'quoteprice',
+          'authuser'
           ],
           data() {
             return {
@@ -271,6 +281,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
              isSubmit: true,
              isLoading: false,
              isPrice: false,
+             creditcost: ''
             };
           },
   
@@ -319,6 +330,11 @@ import 'vue-toast-notification/dist/theme-sugar.css';
             },
 
             sendQuotation(){
+              if(this.quoteQuestions.category.credit_cost){
+                 var credits_cost = this.quoteQuestions.category.credit_cost;
+              }else{
+                var credits_cost = this.quoteprice;
+              }
                 if(this.price == '' && this.comment == ''){
                        this.isPrice = true;
                        $('.editr').css('border-color','red');
@@ -358,6 +374,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                  customer_id : this.quoteQuestions.user_id,
                  quote_id : this.quoteQuestions.id,
                  quote_price : this.price,
+                 credit_cost : credits_cost,
                  comment : this.comment,
                  _token : csrf_token
                   }).then((response) => {
@@ -396,7 +413,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
     mounted() {
 
-                console.log(this.creaditsum);
+                console.log(this.quoteprice);
                 this.getQuotes();
             }
         };

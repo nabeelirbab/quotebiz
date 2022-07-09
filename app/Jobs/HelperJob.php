@@ -8,6 +8,7 @@ use Acelle\Model\Setting;
 use Acelle\Model\DateFormet;
 use Acelle\Model\User;
 use Acelle\Model\JobDesign;
+use Acelle\Model\QuotePrice;
 use Acelle\Library\ExtendedSwiftMessage;
 
 class HelperJob extends Base
@@ -69,5 +70,9 @@ class HelperJob extends Base
    public static function form_design()
     {
         return JobDesign::where('subdomain',request('account'))->first();
+    }
+
+    public static function quoteprice(){
+      return QuotePrice::where('subdomain',request('account'))->first();
     }
 }

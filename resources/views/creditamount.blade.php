@@ -1,9 +1,11 @@
 @extends('layouts.core.frontend')
 @section('title', 'Credits Amount')
+@section('head')
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+    @endsection
 @section('content')
 
 
@@ -14,21 +16,11 @@
 <div class="nk-block-head nk-block-head-sm">
 <div class="nk-block-between g-3">
 <div class="nk-block-head-content">
-<h3 class="nk-block-title page-title">Credits Amount</h3>
+<h3 class="nk-block-title page-title">Credits Management</h3>
 <div class="nk-block-des text-soft">
 </div>
 </div><!-- .nk-block-head-content -->
-<div class="nk-block-head-content">
-    <div class="toggle-wrap nk-block-tools-toggle">
-        <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-        <div class="toggle-expand-content" data-content="pageMenu">
-            <ul class="nk-block-tools g-3">
-                
-                <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em><span>Add Amount</span></a></li>
-            </ul>
-        </div>
-    </div><!-- .toggle-wrap -->
-</div><!-- .nk-block-head-content -->
+
 </div><!-- .nk-block-between -->
 </div><!-- .nk-block-head -->
 @if(Session::has('success'))
@@ -40,36 +32,26 @@
     </div>
  @endif
 <div class="nk-block">
-<div class="card card-bordered card-stretch">
-<div class="card-inner-group">
-<div class="card-inner">
-<div class="card-title-group">
+<div class="card-bordered card-stretch  row m-0">
+<div class="card-inner-group col-md-6 border-right p-0" >
+<div class="card-inner text-center">
+   <div class="card-title-group">
     <div class="card-title">
-        <h5 class="title">Credits Amount</h5>
+        <h5 class="title">Credit Bundles</h5>
     </div>
-    <div class="card-tools mr-n1">
-        <ul class="btn-toolbar gx-1">
-            <li>
-                <a href="#" class="search-toggle toggle-search btn btn-icon" data-target="search"><em class="icon ni ni-search"></em></a>
-            </li><!-- li -->
-         
-        </ul><!-- .btn-toolbar -->
+    <div class="nk-block-tools-opt">
+       <a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em><span>Add Amount</span></a>
     </div><!-- .card-tools -->
-    <div class="card-search search-wrap" data-search="search">
-        <div class="search-content">
-            <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-            <input type="text" class="form-control border-transparent form-focus-none" placeholder="Quick search by transaction">
-            <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
-        </div>
-    </div><!-- .card-search -->
+  
 </div><!-- .card-title-group -->
+    
 </div><!-- .card-inner -->
-<div class="card-inner p-0">
+<div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
     <div class="nk-tb-item nk-tb-head">
-        <div class="nk-tb-col"><span>#ID</span></div>
+        <div class="nk-tb-col"><span>Bundel Name</span></div>
         <div class="nk-tb-col tb-col-xxl"><span>Credits</span></div>
-        <div class="nk-tb-col text-right"><span>Amount</span></div>
+        <div class="nk-tb-col text-right"><span>Cost Amount</span></div>
         <div class="nk-tb-col text-right tb-col-sm"><span>Created At</span></div>
         <div class="nk-tb-col text-center tb-col-sm"><span>Actions</span></div>
     </div><!-- .nk-tb-item -->
@@ -79,7 +61,7 @@
             <div class="nk-tnx-type">
                 
                 <div class="nk-tnx-type-text">
-                    <span class="tb-lead">{{$creadit->id}}</span>
+                    <span class="tb-lead">{{$creadit->bundel_name}}</span>
                 </div>
             </div>
         </div>
@@ -90,7 +72,7 @@
             <span class="tb-amount">{{$creadit->credit_amount}} <span>USD</span></span>
         </div>
         <div class="nk-tb-col text-right tb-col-sm">
-            <span class="tb-amount">{{$creadit->created_at}}</span>
+            <span class="tb-amount">{{\Carbon\Carbon::parse($creadit->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
         </div>
         <div class="nk-tb-col text-center">
             
@@ -105,6 +87,14 @@
               {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    <input type="hidden" name="id" value="{{$creadit->id}}">
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label class="form-label" >Bundel Name</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" name="bundel_name"  value="{{$creadit->bundel_name}}" placeholder="Enter Bundel Name">
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label class="form-label" >Credit</label>
@@ -134,7 +124,48 @@
     @endforeach
  
 </div><!-- .nk-tb-list -->
+</div><!-- .card-inner -->
+{{$credits}}
+<div class="card-inner">
+</div><!-- .card-inner -->
+</div><!-- .card-inner-group -->
 
+<div class="card-inner-group col-md-6 border-right p-0" >
+<div class="card-inner text-center" style="padding: 1.5em;">
+    <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice(); ?>
+    <div class="card-title">
+        <h5 class="title">Set Cost Per Quote</h5>
+    </div>
+    
+</div><!-- .card-inner -->
+<div class="card-inner  p-0 ">
+<div class="nk-tb-list nk-tb-tnx">
+ <form action="{{ url('/quoteprice') }}" method="post">
+     {{ csrf_field() }}
+     <input type="hidden" @if($quotePrice) value="{{$quotePrice->id}}" @endif name="id">
+   <div class="form-row p-2">
+     <div class="form-group col-md-12">
+       <label for="inputState">Select option</label>
+       <select id="inputState" class="form-control" name="type" onchange="quoteoption(this)" required>
+         <option selected>Choose...</option>
+         <option value="category" >BY CATEGORY</option>
+         <option disabled>BY BUDGET</option>
+         <option disabled>BY QUOTE AMOUNT</option>
+       </select>
+     </div>
+     <div class="form-group col-md-12"  id="addOption">
+     </div>
+  </form>
+</div><!-- .nk-tb-list -->
+</div><!-- .card-inner -->
+
+</div><!-- .card-inner-group -->
+</div><!-- .card -->
+</div><!-- .nk-block -->
+</div>
+</div>
+</div>
+</div>
         <div id="mySidepanel" class="sidepanel" style="height: 833px;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <div class="preview-block">
@@ -142,6 +173,14 @@
             {{ csrf_field() }}
         <div class="row d-flex justify-content-center gy-4">
            
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label class="form-label" >Bundel Name</label>
+                    <div class="form-control-wrap">
+                        <input type="text" class="form-control" name="bundel_name" placeholder="Enter Bundel Name">
+                    </div>
+                </div>
+            </div> 
             <div class="col-sm-10">
                 <div class="form-group">
                     <label class="form-label" >Credit</label>
@@ -169,24 +208,23 @@
     </div>
    </div>
 
-</div><!-- .card-inner -->
-{{$credits}}
-<div class="card-inner">
-</div><!-- .card-inner -->
-</div><!-- .card-inner-group -->
-</div><!-- .card -->
-</div><!-- .nk-block -->
-</div>
-</div>
-</div>
-</div>
-
-
 
 @endsection
 @section('script')
 
 <script type="text/javascript">
+
+function quoteoption(event){
+   if(event.value == 'category'){
+    var html ='<label for="inputState">Globaly per category quote credits</label>'+
+       '<input type="number" @if($quotePrice) value="{{$quotePrice->price}}" @endif name="price" class="form-control" required ><br>'+
+       '<div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>';
+       $('#addOption').html(html);
+   }else{
+    $('#addOption').html('');
+   }
+  
+}
 function openNav() {
   // document.getElementById("mySidepanel").style.width = "35%";
   $('.toggle-expand').removeClass('active');

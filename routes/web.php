@@ -338,6 +338,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/customers', 'HomeController@customers');
     Route::get('/payments-receive', 'UserController@paymentsReceive');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
+    Route::post('/quoteprice', 'UserController@quoteprice');
     Route::get('/deletecredit/{id}', 'UserController@deletecredit');
     // Category
     Route::name('service-categories.')->prefix('service-categories/')->group(function () {
@@ -354,7 +355,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('frontend/docs/api/v1', 'Controller@docsApiV1');
 
     Route::get('account/api/renew', 'AccountController@renewToken');
-    Route::get('account/api', 'AccountController@api');
+    Route::match(['get','post'],'account/api', 'AccountController@api');
 
     // Mail list
     Route::get('lists/{uid}/email-verification/chart', 'MailListController@emailVerificationChart');
