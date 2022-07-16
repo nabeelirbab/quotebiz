@@ -1,7 +1,7 @@
 @extends('customer.layout.app')
 @section('title', 'Quotes-Chat')
 @section('content')
-      <div id="app" class="mt-4">
+      <div id="app" class="mt-5">
         <customer-responses-component authuser="{{Auth::user()->id}}"></customer-responses-component>
   </div>
 @endsection

@@ -1,4 +1,4 @@
-main header @s -->
+
                 <div class="nk-header nk-header-fixed nk-header-fluid is-light">
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
@@ -11,10 +11,10 @@ main header @s -->
                                     <img class="logo-dark logo-img" src="{{asset('images/logo-dark.png') }}" srcset="{{asset('images/logo-dark2x.png 2x')}}" alt="logo-dark">
                                 </a>
                             </div><!-- .nk-header-brand -->
-                            <div class="nk-header-search ml-3 ml-xl-0">
+                           <!--  <div class="nk-header-search ml-3 ml-xl-0">
                                 <em class="icon ni ni-search"></em>
                                 <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search anything">
-                            </div><!-- .nk-header-news -->
+                            </div> --><!-- .nk-header-news -->
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                    <!--  <li class="nav-item">
