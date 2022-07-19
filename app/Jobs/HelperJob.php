@@ -30,6 +30,14 @@ class HelperJob extends Base
 
     }
 
+    public static function mycategories(){
+        // dd(Category::orderBy('category_name','desc')->get());
+       $category =  Category::where('subdomain','=',request('account'))->orderBy('category_name','desc')->get();
+          return $category;
+      
+
+    }
+
 
     public static function stripekey(){
 

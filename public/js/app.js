@@ -2258,7 +2258,8 @@ __webpack_require__.r(__webpack_exports__);
       activeJob: 0,
       wonJob: 0,
       doneJob: 0,
-      chatHead: true
+      chatHead: true,
+      userSearch: ''
     };
   },
   sockets: {
@@ -2317,6 +2318,13 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     orderedUsers: function orderedUsers() {
       return _.orderBy(this.activeQuotes, 'updated_at', 'desc');
+    },
+    filteredUserlist: function filteredUserlist() {
+      var _this = this;
+
+      return this.orderedUsers.filter(function (post) {
+        return post.chatsp.first_name.toLowerCase().includes(_this.userSearch.toLowerCase()) || post.chatsp.last_name.toLowerCase().includes(_this.userSearch.toLowerCase());
+      });
     }
   },
   watch: {
@@ -2327,7 +2335,8 @@ __webpack_require__.r(__webpack_exports__);
         this.isDisable = true;
         this.editChatid = '';
       }
-    }
+    },
+    userSearch: function userSearch() {}
   },
   methods: {
     showImg: function showImg(index, img) {
@@ -2338,7 +2347,7 @@ __webpack_require__.r(__webpack_exports__);
       this.visible = false;
     },
     chatStart: function chatStart() {
-      var _this = this;
+      var _this2 = this;
 
       this.isEmoji = false;
 
@@ -2349,14 +2358,14 @@ __webpack_require__.r(__webpack_exports__);
           _token: $('meta[name="csrf-token"]').attr('content')
         };
         var post = this.quoteChat.chat.filter(function (obj2) {
-          return _this.editChatid === obj2.id;
+          return _this2.editChatid === obj2.id;
         }).pop(post);
         console.log(post);
         post.message = this.message;
         axios.post('/updateMsg', msgObj).then(function (response) {
           console.log(response.data);
 
-          _this.$socket.emit('updateMsg', response.data);
+          _this2.$socket.emit('updateMsg', response.data);
         }, function (err) {
           console.log('err', err);
         });
@@ -2382,35 +2391,35 @@ __webpack_require__.r(__webpack_exports__);
           scrollTop: container.scrollHeight + 7020
         }, "fast");
         this.userdec = this.activeQuotes.filter(function (obj) {
-          return _this.quoteChat.id === obj.id;
+          return _this2.quoteChat.id === obj.id;
         }).pop();
         this.userdec.last_msg = this.message;
         this.userdec.updated_at = new Date().toISOString();
         this.message = '';
         this.isDisable = true;
         axios.post('/chatstart', obj).then(function (response) {
-          _this.$set(_this.quoteChat.chat[_this.quoteChat.chat.length - 1], 'id', response.data.id);
+          _this2.$set(_this2.quoteChat.chat[_this2.quoteChat.chat.length - 1], 'id', response.data.id);
 
-          _this.$socket.emit('sendMsg', response.data);
+          _this2.$socket.emit('sendMsg', response.data);
         })["catch"](function (error) {
           console.log(error);
         });
       }
     },
     uploadfile: function uploadfile(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       var filesdata = this.$refs.myFiles.files;
       filesdata.forEach(function (file) {
         var formDatas = new FormData();
         formDatas.append('file', file);
-        formDatas.append('sender_id', _this2.loginUser);
-        formDatas.append('receiver_id', _this2.quoteChat.user_id);
+        formDatas.append('sender_id', _this3.loginUser);
+        formDatas.append('receiver_id', _this3.quoteChat.user_id);
         formDatas.append('messageType', 1);
         formDatas.append('messageStart', 0);
         formDatas.append('isDeleted', 0);
-        formDatas.append('quote_id', _this2.quoteChat.quote_id);
-        formDatas.append('quotation_id', _this2.quoteChat.id);
+        formDatas.append('quote_id', _this3.quoteChat.quote_id);
+        formDatas.append('quotation_id', _this3.quoteChat.id);
         formDatas.append('_token', $('meta[name="csrf-token"]').attr('content'));
         var config = {
           header: {
@@ -2420,17 +2429,17 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/chatFilesShare', formDatas, config).then(function (response) {
           console.log(response.data);
 
-          _this2.quoteChat.chat.push(response.data);
+          _this3.quoteChat.chat.push(response.data);
 
-          _this2.userdec = _this2.activeQuotes.filter(function (obj) {
-            return _this2.quoteChat.id === obj.id;
+          _this3.userdec = _this3.activeQuotes.filter(function (obj) {
+            return _this3.quoteChat.id === obj.id;
           }).pop();
-          _this2.userdec.last_msg = response.data.message;
-          _this2.userdec.updated_at = new Date().toISOString();
+          _this3.userdec.last_msg = response.data.message;
+          _this3.userdec.updated_at = new Date().toISOString();
 
-          _this2.$socket.emit('sendMsg', response.data);
+          _this3.$socket.emit('sendMsg', response.data);
 
-          var container = _this2.$el.querySelector("#chatpanelbody");
+          var container = _this3.$el.querySelector("#chatpanelbody");
 
           $("#chatpanelbody").animate({
             scrollTop: container.scrollHeight + 7020
@@ -2469,19 +2478,21 @@ __webpack_require__.r(__webpack_exports__);
       this.readMsg(msgObj);
 
       for (var i = 0; i <= this.quoteChat.chat.length; i++) {
-        if (this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0') {
-          this.imgs.push(this.hostname + '/frontend-assets/images/chat/' + this.quoteChat.chat[i].message);
+        if (this.quoteChat.chat[i]) {
+          if (this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0') {
+            this.imgs.push(this.hostname + '/frontend-assets/images/chat/' + this.quoteChat.chat[i].message);
+          }
         }
       }
     },
     readMsg: function readMsg(msgObj) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('/readmsg', msgObj).then(function (response) {
         console.log(response.data);
 
-        _this3.$socket.emit('readMsg', {
-          id: _this3.loginUser
+        _this4.$socket.emit('readMsg', {
+          id: _this4.loginUser
         });
       }, function (err) {
         console.log('err', err);
@@ -2497,7 +2508,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteMsg: function deleteMsg(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       var post = this.quoteChat.chat.filter(function (obj) {
         return id === obj.id;
@@ -2505,7 +2516,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(post);
       post.isDeleted = 1;
       axios.get('/deleteMsg/' + id).then(function (response) {
-        _this4.$socket.emit('deleteMsg', response.data);
+        _this5.$socket.emit('deleteMsg', response.data);
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -2541,10 +2552,10 @@ __webpack_require__.r(__webpack_exports__);
       $('.nk-chat-body').removeClass('nkchatbody');
     },
     getProviders: function getProviders() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get('/customer/getprovider').then(function (responce) {
-        _this5.activeQuotes = responce.data;
+        _this6.activeQuotes = responce.data;
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -2557,10 +2568,10 @@ __webpack_require__.r(__webpack_exports__);
       this.isDisable = false;
     },
     changeStatus: function changeStatus(status) {
-      var _this6 = this;
+      var _this7 = this;
 
       var post = this.activeQuotes.filter(function (obj) {
-        return _this6.quoteChat.id === obj.id;
+        return _this7.quoteChat.id === obj.id;
       }).pop(post);
       console.log(post);
       post.quote.status = status;
@@ -2574,7 +2585,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/customer/change-status', obj).then(function (response) {
         console.log(response.data);
 
-        _this6.$toast.open({
+        _this7.$toast.open({
           message: "Change Status Successfully",
           type: "success",
           position: 'top',
@@ -2582,7 +2593,7 @@ __webpack_require__.r(__webpack_exports__);
           dismissible: true
         });
 
-        _this6.quoteChat = {};
+        _this7.quoteChat = {};
         $('#mainView').show();
         $('#chatPanel').hide();
       }, function (err) {
@@ -2603,6 +2614,9 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+    },
+    clearSearch: function clearSearch() {
+      this.userSearch = '';
     }
   },
   mounted: function mounted() {
@@ -2817,7 +2831,8 @@ __webpack_require__.r(__webpack_exports__);
       wonJob: 0,
       doneJob: 0,
       loseJob: 0,
-      chatHead: true
+      chatHead: true,
+      userSearch: ''
     };
   },
   sockets: {
@@ -2886,6 +2901,13 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     orderedUsers: function orderedUsers() {
       return _.orderBy(this.activeQuotes, 'updated_at', 'desc');
+    },
+    filteredUserlist: function filteredUserlist() {
+      var _this = this;
+
+      return this.orderedUsers.filter(function (post) {
+        return post.chatcustomer.first_name.toLowerCase().includes(_this.userSearch.toLowerCase()) || post.chatcustomer.last_name.toLowerCase().includes(_this.userSearch.toLowerCase());
+      });
     }
   },
   methods: {
@@ -2897,7 +2919,7 @@ __webpack_require__.r(__webpack_exports__);
       this.visible = false;
     },
     chatStart: function chatStart() {
-      var _this = this;
+      var _this2 = this;
 
       this.isEmoji = false;
 
@@ -2908,14 +2930,14 @@ __webpack_require__.r(__webpack_exports__);
           _token: $('meta[name="csrf-token"]').attr('content')
         };
         var post = this.quoteChat.chat.filter(function (obj2) {
-          return _this.editChatid === obj2.id;
+          return _this2.editChatid === obj2.id;
         }).pop(post);
         console.log(post);
         post.message = this.message;
         axios.post('/updateMsg', msgObj).then(function (response) {
           console.log(response.data);
 
-          _this.$socket.emit('updateMsg', response.data);
+          _this2.$socket.emit('updateMsg', response.data);
         }, function (err) {
           console.log('err', err);
         });
@@ -2942,35 +2964,35 @@ __webpack_require__.r(__webpack_exports__);
         }, "fast");
         this.quoteChat.chat.push(obj);
         this.userdec = this.activeQuotes.filter(function (obj) {
-          return _this.quoteChat.id === obj.id;
+          return _this2.quoteChat.id === obj.id;
         }).pop();
         this.userdec.last_msg = this.message;
         this.userdec.updated_at = new Date().toISOString();
         this.message = '';
         this.isDisable = true;
         axios.post('/chatstart', obj).then(function (response) {
-          _this.$set(_this.quoteChat.chat[_this.quoteChat.chat.length - 1], 'id', response.data.id);
+          _this2.$set(_this2.quoteChat.chat[_this2.quoteChat.chat.length - 1], 'id', response.data.id);
 
-          _this.$socket.emit('sendMsg', response.data);
+          _this2.$socket.emit('sendMsg', response.data);
         })["catch"](function (error) {
           console.log(error);
         });
       }
     },
     uploadfile: function uploadfile(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       var filesdata = this.$refs.myFiles.files;
       filesdata.forEach(function (file) {
         var formDatas = new FormData();
         formDatas.append('file', file);
-        formDatas.append('sender_id', _this2.loginUser);
-        formDatas.append('receiver_id', _this2.quoteChat.customer_id);
+        formDatas.append('sender_id', _this3.loginUser);
+        formDatas.append('receiver_id', _this3.quoteChat.customer_id);
         formDatas.append('messageType', 1);
         formDatas.append('messageStart', 0);
         formDatas.append('isDeleted', 0);
-        formDatas.append('quote_id', _this2.quoteChat.quote_id);
-        formDatas.append('quotation_id', _this2.quoteChat.id);
+        formDatas.append('quote_id', _this3.quoteChat.quote_id);
+        formDatas.append('quotation_id', _this3.quoteChat.id);
         formDatas.append('_token', $('meta[name="csrf-token"]').attr('content'));
         var config = {
           header: {
@@ -2980,26 +3002,26 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/chatFilesShare', formDatas, config).then(function (response) {
           console.log(response);
 
-          _this2.quoteChat.chat.push(response.data);
+          _this3.quoteChat.chat.push(response.data);
 
-          _this2.userdec = _this2.activeQuotes.filter(function (obj) {
-            return _this2.quoteChat.id === obj.id;
+          _this3.userdec = _this3.activeQuotes.filter(function (obj) {
+            return _this3.quoteChat.id === obj.id;
           }).pop();
-          _this2.userdec.last_msg = response.data.message;
-          _this2.userdec.updated_at = new Date().toISOString();
+          _this3.userdec.last_msg = response.data.message;
+          _this3.userdec.updated_at = new Date().toISOString();
 
-          _this2.$socket.emit('sendMsg', response.data);
+          _this3.$socket.emit('sendMsg', response.data);
 
-          var container = _this2.$el.querySelector("#chatpanelbody");
+          var container = _this3.$el.querySelector("#chatpanelbody");
 
           $("#chatpanelbody").animate({
             scrollTop: container.scrollHeight + 7020
           }, "fast");
-          _this2.imgs = [];
+          _this3.imgs = [];
 
-          for (var i = 0; i <= _this2.quoteChat.chat.length; i++) {
-            if (_this2.quoteChat.chat[i].messageType == '1' && _this2.quoteChat.chat[i].isDeleted == '0') {
-              _this2.imgs.push(_this2.hostname + '/frontend-assets/images/chat/' + _this2.quoteChat.chat[i].message);
+          for (var i = 0; i <= _this3.quoteChat.chat.length; i++) {
+            if (_this3.quoteChat.chat[i].messageType == '1' && _this3.quoteChat.chat[i].isDeleted == '0') {
+              _this3.imgs.push(_this3.hostname + '/frontend-assets/images/chat/' + _this3.quoteChat.chat[i].message);
             }
           }
         }, function (err) {
@@ -3036,19 +3058,21 @@ __webpack_require__.r(__webpack_exports__);
       this.readMsg(msgObj);
 
       for (var i = 0; i <= this.quoteChat.chat.length; i++) {
-        if (this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0') {
-          this.imgs.push(this.hostname + '/frontend-assets/images/chat/' + this.quoteChat.chat[i].message);
+        if (this.quoteChat.chat[i]) {
+          if (this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0') {
+            this.imgs.push(this.hostname + '/frontend-assets/images/chat/' + this.quoteChat.chat[i].message);
+          }
         }
       }
     },
     readMsg: function readMsg(msgObj) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('/readmsg', msgObj).then(function (response) {
         console.log(response.data);
 
-        _this3.$socket.emit('readMsg', {
-          id: _this3.loginUser
+        _this4.$socket.emit('readMsg', {
+          id: _this4.loginUser
         });
       }, function (err) {
         console.log('err', err);
@@ -3107,10 +3131,10 @@ __webpack_require__.r(__webpack_exports__);
       $('.nk-chat-body').removeClass('nkchatbody');
     },
     getCustomer: function getCustomer() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('/service-provider/getcustomer').then(function (responce) {
-        _this4.activeQuotes = responce.data;
+        _this5.activeQuotes = responce.data;
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -3141,6 +3165,9 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+    },
+    clearSearch: function clearSearch() {
+      this.userSearch = '';
     },
     closeChat: function closeChat() {
       alert('ddd');
@@ -3955,7 +3982,89 @@ var render = function render() {
         return _vm.donetab();
       }
     }
-  }, [_vm._v("Done")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Done")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
+    staticClass: "search-wrap",
+    attrs: {
+      "data-search": "search"
+    }
+  }, [_c("div", {
+    staticClass: "search-content"
+  }, [_c("a", {
+    staticClass: "search-back btn btn-icon toggle-search",
+    attrs: {
+      href: "#",
+      "data-target": "search"
+    }
+  }, [_c("em", {
+    staticClass: "icon ni ni-arrow-left",
+    on: {
+      click: _vm.clearSearch
+    }
+  })]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.userSearch,
+      expression: "userSearch"
+    }],
+    staticClass: "form-control border-transparent form-focus-none",
+    attrs: {
+      type: "text",
+      placeholder: "Search by user first name or last name"
+    },
+    domProps: {
+      value: _vm.userSearch
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.userSearch = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _vm.userSearch ? _c("div", {
+    staticClass: "nk-msg-list"
+  }, [_vm._l(_vm.filteredUserlist, function (quote) {
+    return quote.quote.status == "pending" ? [_c("div", {
+      staticClass: "nk-msg-item",
+      "class": {
+        current: quote.id == _vm.quoteChat.id
+      },
+      on: {
+        click: function click($event) {
+          return _vm.openChat($event, quote);
+        }
+      }
+    }, [_c("p", {
+      staticStyle: {
+        display: "none"
+      }
+    }, [_vm._v(_vm._s(_vm.activeJob + 1))]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c("div", {
+      staticClass: "nk-msg-info"
+    }, [_c("div", {
+      staticClass: "nk-msg-from"
+    }, [_c("div", {
+      staticClass: "nk-msg-sender"
+    }, [_c("h6", {
+      staticClass: "title"
+    }, [_vm._v(_vm._s(quote.chatsp.first_name) + " " + _vm._s(quote.chatsp.last_name))])]), _vm._v(" "), _c("div", {
+      staticClass: "nk-msg-meta"
+    }, [_c("div", {
+      staticClass: "date"
+    }, [_vm._v(_vm._s(_vm._f("moment")(quote.updated_at, "from", "now")))])])]), _vm._v(" "), _c("div", {
+      staticClass: "nk-msg-context"
+    }, [_c("div", {
+      staticClass: "nk-msg-text"
+    }, [_c("div", {
+      staticClass: "title"
+    }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
+      staticClass: "unreadmsg"
+    }, [_vm._v("\n                           " + _vm._s(quote.unread_msg_count) + "\n                        ")]) : _vm._e()])])])] : _vm._e();
+  }), _vm._v(" "), _vm.filteredUserlist.length == 0 ? _c("p", {
+    staticClass: "text-center mt-5",
+    staticStyle: {
+      "font-size": "16px"
+    }
+  }, [_vm._v(" No User Found")]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), _vm.userSearch == "" ? _c("div", {
     staticClass: "tab-content"
   }, [_c("div", {
     staticClass: "tab-pane active",
@@ -3979,13 +4088,13 @@ var render = function render() {
       staticStyle: {
         display: "none"
       }
-    }, [_vm._v(_vm._s(_vm.activeJob + 1))]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(_vm.activeJob + 1))]), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatsp.first_name) + " " + _vm._s(quote.chatsp.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -3995,7 +4104,7 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
@@ -4022,13 +4131,13 @@ var render = function render() {
       staticStyle: {
         display: "none"
       }
-    }, [_vm._v(_vm._s(_vm.wonJob + 1))]), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(_vm.wonJob + 1))]), _vm._v(" "), _vm._m(4, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatsp.first_name) + " " + _vm._s(quote.chatsp.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -4038,7 +4147,7 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
@@ -4065,13 +4174,13 @@ var render = function render() {
       staticStyle: {
         display: "none"
       }
-    }, [_vm._v(_vm._s(_vm.doneJob + 1))]), _vm._v(" "), _vm._m(4, true), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(_vm.doneJob + 1))]), _vm._v(" "), _vm._m(5, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatsp.first_name) + " " + _vm._s(quote.chatsp.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -4081,19 +4190,19 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
     }, [_vm._v("\n                           " + _vm._s(quote.unread_msg_count) + "\n                        ")]) : _vm._e()])])])] : _vm._e();
-  })], 2)])])]), _vm._v(" "), _c("div", {
+  })], 2)])]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "nk-msg-body bg-white",
     "class": {
       "profile-shown": _vm.isProfileshown,
       startshowProfile: _vm.isStartshowProfile,
       opacity: _vm.isActive
     }
-  }, [_vm._m(5), _vm._v(" "), _c("div", {
+  }, [_vm._m(6), _vm._v(" "), _c("div", {
     staticClass: "nk-msg-head d-none d-lg-block"
   }, [_vm.quoteChat.chatsp ? _c("div", {
     staticClass: "nk-msg-head-meta"
@@ -4110,7 +4219,7 @@ var render = function render() {
     staticClass: "ml-3"
   }, [_c("h6", {
     staticClass: "title mb-1"
-  }, [_vm._v(_vm._s(_vm.quoteChat.chatsp.first_name) + " " + _vm._s(_vm.quoteChat.chatsp.last_name))])])])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _c("ul", {
+  }, [_vm._v(_vm._s(_vm.quoteChat.chatsp.first_name) + " " + _vm._s(_vm.quoteChat.chatsp.last_name))])])])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c("ul", {
     staticClass: "nk-msg-actions"
   }, [_c("li", [_c("a", {
     staticClass: "btn btn-dim btn-sm btn-outline-light",
@@ -4123,7 +4232,7 @@ var render = function render() {
     staticClass: "text-capitalize"
   }, [_vm.quoteChat.quote.status == "pending" ? [_vm._v("Active")] : [_vm._v(_vm._s(_vm.quoteChat.quote.status))]], 2)])]), _vm._v(" "), _c("li", {
     staticClass: "dropdown"
-  }, [_vm._m(7), _vm._v(" "), _c("div", {
+  }, [_vm._m(8), _vm._v(" "), _c("div", {
     staticClass: "dropdown-menu dropdown-menu-right"
   }, [_c("ul", {
     staticClass: "link-list-opt no-bdr"
@@ -4324,9 +4433,9 @@ var render = function render() {
       staticClass: "chat-msg"
     }, [_vm._v(" Message Delete")]), _vm._v(" "), _c("ul", {
       staticClass: "chat-msg-more"
-    }, [_vm._m(8, true), _vm._v(" "), _c("li", [_c("div", {
+    }, [_vm._m(9, true), _vm._v(" "), _c("li", [_c("div", {
       staticClass: "dropdown"
-    }, [_vm._m(9, true), _vm._v(" "), _c("div", {
+    }, [_vm._m(10, true), _vm._v(" "), _c("div", {
       staticClass: "dropdown-menu dropdown-menu-sm"
     }, [_c("ul", {
       staticClass: "link-list-opt no-bdr"
@@ -4368,7 +4477,7 @@ var render = function render() {
     staticClass: "nk-chat-editor"
   }, [_c("div", {
     staticClass: "nk-chat-editor-upload ml-n1"
-  }, [_vm._m(10), _vm._v(" "), _c("div", {
+  }, [_vm._m(11), _vm._v(" "), _c("div", {
     staticClass: "chat-upload-option",
     attrs: {
       "data-content": "chat-upload"
@@ -4377,7 +4486,7 @@ var render = function render() {
     attrs: {
       href: "#"
     }
-  }, [_vm._m(11), _vm._v(" "), _c("input", {
+  }, [_vm._m(12), _vm._v(" "), _c("input", {
     ref: "myFiles",
     staticStyle: {
       display: "none"
@@ -4460,11 +4569,11 @@ var render = function render() {
     staticClass: "user-avatar md bg-purple"
   }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(_vm.quoteChat.chatsp.first_name)) + _vm._s(_vm.getFirstLetter(_vm.quoteChat.chatsp.last_name)))])]), _vm._v(" "), _c("div", {
     staticClass: "user-info"
-  }, [_c("h5", [_vm._v(_vm._s(_vm.quoteChat.chatsp.first_name) + " " + _vm._s(_vm.quoteChat.chatsp.last_name))])]), _vm._v(" "), _vm._m(12)]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("h5", [_vm._v(_vm._s(_vm.quoteChat.chatsp.first_name) + " " + _vm._s(_vm.quoteChat.chatsp.last_name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.quoteChat.chatsp.email))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.quoteChat.chatsp.mobileno))])]), _vm._v(" "), _vm._m(13)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "chat-profile"
-  }, [_vm._m(13), _vm._v(" "), _vm._m(14), _vm._v(" "), _c("div", {
+  }, [_vm._m(14), _vm._v(" "), _vm._m(15), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-group"
-  }, [_vm._m(15), _vm._v(" "), _c("div", {
+  }, [_vm._m(16), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-body collapse",
     attrs: {
       id: "chat-photos"
@@ -4472,10 +4581,14 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "chat-profile-body-inner"
   }, [_c("div", {
-    staticClass: "row row-cols-3 row-cols-sm-6 row-cols-md-3 chat-profile-media"
+    staticClass: "row row-cols-2 row-cols-sm-6 row-cols-md-2 chat-profile-media",
+    staticStyle: {
+      height: "185px",
+      overflow: "auto"
+    }
   }, [_vm._l(_vm.imgs, function (chatImg, index) {
     return [_c("div", {
-      staticClass: "col mb-3",
+      staticClass: "col mb-6 mt-2",
       on: {
         click: function click() {
           return _vm.showImg(index);
@@ -4539,7 +4652,7 @@ var render = function render() {
     staticClass: "text-capitalize"
   }, [_vm.quoteChat.quote.status == "pending" ? [_vm._v("Active")] : [_vm._v(_vm._s(_vm.quoteChat.quote.status))]], 2)])]), _vm._v(" "), _c("li", {
     staticClass: "dropdown"
-  }, [_vm._m(16), _vm._v(" "), _c("div", {
+  }, [_vm._m(17), _vm._v(" "), _c("div", {
     staticClass: "dropdown-menu dropdown-menu-right"
   }, [_c("ul", {
     staticClass: "link-list-opt no-bdr"
@@ -4611,32 +4724,23 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "search-wrap",
-    attrs: {
-      "data-search": "search"
-    }
-  }, [_c("div", {
-    staticClass: "search-content"
-  }, [_c("a", {
-    staticClass: "search-back btn btn-icon toggle-search",
-    attrs: {
-      href: "#",
-      "data-target": "search"
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-arrow-left"
-  })]), _vm._v(" "), _c("input", {
-    staticClass: "form-control border-transparent form-focus-none",
-    attrs: {
-      type: "text",
-      placeholder: "Search by user or message"
-    }
-  }), _vm._v(" "), _c("button", {
+  return _c("button", {
     staticClass: "search-submit btn btn-icon"
   }, [_c("em", {
     staticClass: "icon ni ni-search"
-  })])])]);
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "nk-msg-media user-avatar"
+  }, [_c("img", {
+    attrs: {
+      src: "/images/avatar/b-sm.jpg",
+      alt: ""
+    }
+  })]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -5594,7 +5698,89 @@ var render = function render() {
         return _vm.losetab();
       }
     }
-  }, [_vm._v("Loss")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Loss")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
+    staticClass: "search-wrap",
+    attrs: {
+      "data-search": "search"
+    }
+  }, [_c("div", {
+    staticClass: "search-content"
+  }, [_c("a", {
+    staticClass: "search-back btn btn-icon toggle-search",
+    attrs: {
+      href: "#",
+      "data-target": "search"
+    }
+  }, [_c("em", {
+    staticClass: "icon ni ni-arrow-left",
+    on: {
+      click: _vm.clearSearch
+    }
+  })]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.userSearch,
+      expression: "userSearch"
+    }],
+    staticClass: "form-control border-transparent form-focus-none",
+    attrs: {
+      type: "text",
+      placeholder: "Search by user first name or last name"
+    },
+    domProps: {
+      value: _vm.userSearch
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.userSearch = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _vm.userSearch ? _c("div", {
+    staticClass: "nk-msg-list"
+  }, [_vm._l(_vm.filteredUserlist, function (quote) {
+    return quote.quote.status == "pending" ? [_c("div", {
+      staticClass: "nk-msg-item",
+      "class": {
+        current: quote.id == _vm.quoteChat.id
+      },
+      on: {
+        click: function click($event) {
+          return _vm.openChat($event, quote);
+        }
+      }
+    }, [_c("p", {
+      staticStyle: {
+        display: "none"
+      }
+    }, [_vm._v(_vm._s(_vm.activeJob + 1))]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c("div", {
+      staticClass: "nk-msg-info"
+    }, [_c("div", {
+      staticClass: "nk-msg-from"
+    }, [_c("div", {
+      staticClass: "nk-msg-sender"
+    }, [_c("h6", {
+      staticClass: "name"
+    }, [_vm._v(_vm._s(quote.chatcustomer.first_name) + " " + _vm._s(quote.chatcustomer.last_name))])]), _vm._v(" "), _c("div", {
+      staticClass: "nk-msg-meta"
+    }, [_c("div", {
+      staticClass: "date"
+    }, [_vm._v(_vm._s(_vm._f("moment")(quote.updated_at, "from", "now")))])])]), _vm._v(" "), _c("div", {
+      staticClass: "nk-msg-context"
+    }, [_c("div", {
+      staticClass: "nk-msg-text"
+    }, [_c("div", {
+      staticClass: "title"
+    }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
+      staticClass: "unreadmsg"
+    }, [_vm._v("\n                           " + _vm._s(quote.unread_msg_count) + "\n                        ")]) : _vm._e()])])])] : _vm._e();
+  }), _vm._v(" "), _vm.filteredUserlist.length == 0 ? _c("p", {
+    staticClass: "text-center mt-5",
+    staticStyle: {
+      "font-size": "16px"
+    }
+  }, [_vm._v(" No User Found")]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), _vm.userSearch == "" ? _c("div", {
     staticClass: "tab-content"
   }, [_c("div", {
     staticClass: "tab-pane active",
@@ -5614,13 +5800,13 @@ var render = function render() {
           return _vm.openChat($event, quote);
         }
       }
-    }, [_vm._m(2, true), _vm._v(" "), _c("div", {
+    }, [_vm._m(3, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatcustomer.first_name) + " " + _vm._s(quote.chatcustomer.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -5630,7 +5816,7 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
@@ -5650,13 +5836,13 @@ var render = function render() {
           return _vm.openChat($event, quote);
         }
       }
-    }, [_vm._m(3, true), _vm._v(" "), _c("div", {
+    }, [_vm._m(4, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatcustomer.first_name) + " " + _vm._s(quote.chatcustomer.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -5666,7 +5852,7 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
@@ -5686,13 +5872,13 @@ var render = function render() {
           return _vm.openChat($event, quote);
         }
       }
-    }, [_vm._m(4, true), _vm._v(" "), _c("div", {
+    }, [_vm._m(5, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatcustomer.first_name) + " " + _vm._s(quote.chatcustomer.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -5702,7 +5888,7 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
@@ -5722,13 +5908,13 @@ var render = function render() {
           return _vm.openChat($event, quote);
         }
       }
-    }, [_vm._m(5, true), _vm._v(" "), _c("div", {
+    }, [_vm._m(6, true), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
     }, [_c("div", {
       staticClass: "nk-msg-sender"
-    }, [_c("div", {
+    }, [_c("h6", {
       staticClass: "name"
     }, [_vm._v(_vm._s(quote.chatcustomer.first_name) + " " + _vm._s(quote.chatcustomer.last_name))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-meta"
@@ -5738,12 +5924,12 @@ var render = function render() {
       staticClass: "nk-msg-context"
     }, [_c("div", {
       staticClass: "nk-msg-text"
-    }, [_c("h6", {
+    }, [_c("div", {
       staticClass: "title"
     }, [_vm._v(_vm._s(quote.quote.category.category_name))]), _vm._v(" "), quote.last_msg ? _c("p", [_vm._v(_vm._s(quote.last_msg.substring(0, 100) + ".."))]) : _c("p", [_vm._v("Start Chat")])]), _vm._v(" "), quote.unread_msg_count > 0 ? _c("div", {
       staticClass: "unreadmsg"
     }, [_vm._v("\n                           " + _vm._s(quote.unread_msg_count) + "\n                        ")]) : _vm._e()])])])] : _vm._e();
-  })], 2)])])]), _vm._v(" "), _c("div", {
+  })], 2)])]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "nk-msg-body bg-white",
     "class": {
       "profile-shown": _vm.isProfileshown,
@@ -5765,7 +5951,7 @@ var render = function render() {
     staticClass: "row d-flex justify-content-center"
   }, [_c("div", {
     staticClass: "col-md-12"
-  }, [_c("span", [_vm._v(_vm._s(_vm.$socket.connected ? "Connected" : "Disconnected"))]), _vm._v(" "), _vm._m(6)])])])])]), _vm._v(" "), _c("div", {
+  }, [_c("span", [_vm._v(_vm._s(_vm.$socket.connected ? "Connected" : "Disconnected"))]), _vm._v(" "), _vm._m(7)])])])])]), _vm._v(" "), _c("div", {
     staticClass: "nk-msg-head d-none d-lg-block"
   }, [_vm.quoteChat.chatcustomer ? _c("div", {
     staticClass: "nk-msg-head-meta"
@@ -5960,9 +6146,9 @@ var render = function render() {
       staticClass: "chat-msg"
     }, [_vm._v(" Message Delete")]), _vm._v(" "), _c("ul", {
       staticClass: "chat-msg-more"
-    }, [_vm._m(7, true), _vm._v(" "), _c("li", [_c("div", {
+    }, [_vm._m(8, true), _vm._v(" "), _c("li", [_c("div", {
       staticClass: "dropdown"
-    }, [_vm._m(8, true), _vm._v(" "), _c("div", {
+    }, [_vm._m(9, true), _vm._v(" "), _c("div", {
       staticClass: "dropdown-menu dropdown-menu-sm"
     }, [_c("ul", {
       staticClass: "link-list-opt no-bdr"
@@ -6004,7 +6190,7 @@ var render = function render() {
     staticClass: "nk-chat-editor"
   }, [_c("div", {
     staticClass: "nk-chat-editor-upload ml-n1"
-  }, [_vm._m(9), _vm._v(" "), _c("div", {
+  }, [_vm._m(10), _vm._v(" "), _c("div", {
     staticClass: "chat-upload-option",
     attrs: {
       "data-content": "chat-upload"
@@ -6013,7 +6199,7 @@ var render = function render() {
     attrs: {
       href: "#"
     }
-  }, [_vm._m(10), _vm._v(" "), _c("input", {
+  }, [_vm._m(11), _vm._v(" "), _c("input", {
     ref: "myFiles",
     staticStyle: {
       display: "none"
@@ -6096,11 +6282,11 @@ var render = function render() {
     staticClass: "user-avatar md bg-purple"
   }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(_vm.quoteChat.chatcustomer.first_name)) + _vm._s(_vm.getFirstLetter(_vm.quoteChat.chatcustomer.last_name)))])]), _vm._v(" "), _c("div", {
     staticClass: "user-info"
-  }, [_c("h5", [_vm._v(_vm._s(_vm.quoteChat.chatcustomer.first_name) + " " + _vm._s(_vm.quoteChat.chatcustomer.last_name))])]), _vm._v(" "), _vm._m(11)]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("h5", [_vm._v(_vm._s(_vm.quoteChat.chatcustomer.first_name) + " " + _vm._s(_vm.quoteChat.chatcustomer.last_name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.quoteChat.chatcustomer.email))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.quoteChat.chatcustomer.mobileno))])]), _vm._v(" "), _vm._m(12)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "chat-profile"
-  }, [_vm._m(12), _vm._v(" "), _vm._m(13), _vm._v(" "), _c("div", {
+  }, [_vm._m(13), _vm._v(" "), _vm._m(14), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-group"
-  }, [_vm._m(14), _vm._v(" "), _c("div", {
+  }, [_vm._m(15), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-body collapse",
     attrs: {
       id: "chat-photos"
@@ -6175,7 +6361,7 @@ var render = function render() {
     staticClass: "text-capitalize"
   }, [_vm.quoteChat.quote.status == "pending" ? [_vm._v("Active")] : [_vm._v(_vm._s(_vm.quoteChat.quote.status))]], 2)])]), _vm._v(" "), _c("li", {
     staticClass: "dropdown"
-  }, [_vm._m(15), _vm._v(" "), _c("div", {
+  }, [_vm._m(16), _vm._v(" "), _c("div", {
     staticClass: "dropdown-menu dropdown-menu-right"
   }, [_c("ul", {
     staticClass: "link-list-opt no-bdr"
@@ -6247,32 +6433,23 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "search-wrap",
-    attrs: {
-      "data-search": "search"
-    }
-  }, [_c("div", {
-    staticClass: "search-content"
-  }, [_c("a", {
-    staticClass: "search-back btn btn-icon toggle-search",
-    attrs: {
-      href: "#",
-      "data-target": "search"
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-arrow-left"
-  })]), _vm._v(" "), _c("input", {
-    staticClass: "form-control border-transparent form-focus-none",
-    attrs: {
-      type: "text",
-      placeholder: "Search by user or message"
-    }
-  }), _vm._v(" "), _c("button", {
+  return _c("button", {
     staticClass: "search-submit btn btn-icon"
   }, [_c("em", {
     staticClass: "icon ni ni-search"
-  })])])]);
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "nk-msg-media user-avatar"
+  }, [_c("img", {
+    attrs: {
+      src: "/images/avatar/b-sm.jpg",
+      alt: ""
+    }
+  })]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;

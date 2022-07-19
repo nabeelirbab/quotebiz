@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="nk-content mt-5">
-    <div class="container wide-xl">
+    <div class="container wide-xl mt-4">
         <div class="nk-content-inner">
           
             <div class="nk-content-body">

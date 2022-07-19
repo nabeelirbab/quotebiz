@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Acelle\Mail\SendQuotation;
 use Acelle\Mail\ReceiveQuotation;
 use Mail;
+use File;
 
 
 class ChatController extends Controller
@@ -177,6 +178,12 @@ class ChatController extends Controller
     public function deleteMsg($account,$id){
 
             $delete = Chat::find($id);
+            if($delete->messageType != '0'){
+                $image_path = public_path('/frontend-assets/images/chat/'.$delete->message);
+                if(File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+            }
             $delete->isDeleted = '1';
             $delete->save();
             return $delete;

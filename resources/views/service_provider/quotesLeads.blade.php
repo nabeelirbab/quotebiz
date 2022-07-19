@@ -6,10 +6,18 @@
  <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
 @endsection
 @section('content')
- <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice(); ?>
+ <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice();
+       if($quotePrice){
+           $quotePrice = $quotePrice->price;
+       }else{
+           $quotePrice = 10;
+       }
+
+       // dd($quotePrice);
+  ?>
  <!-- content @s -->
   <div id="app" class="mt-4">
-        <leads-component quoteprice='{!! $quotePrice->price !!}' authuser="{{Auth::user()->id}}" creaditSum="{{Auth::user()->credits}}"></leads-component>
+        <leads-component quoteprice='{{ $quotePrice }}' authuser="{{Auth::user()->id}}" creaditSum="{{Auth::user()->credits}}"></leads-component>
   </div>
 
                 <!-- content @e -->

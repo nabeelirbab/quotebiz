@@ -54,6 +54,7 @@ class CategoryController extends Controller
        $category->user_id = $request->user()->id;
        $category->category_name = $request->category_name;
        $category->cat_parent = 0;
+       $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
        $category->save();
        return redirect('/admin/service-categories')->with('message', 'Category add successfully');
@@ -121,6 +122,7 @@ class CategoryController extends Controller
             $image->move(public_path($destination),$new_image);
             $update->category_icon = $new_image;
        }
+        $update->credit_cost = $request->credit_cost;
         $update->category_name = $request->category_name;
         $update->category_description = $request->category_description; 
         $update->update();

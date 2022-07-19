@@ -26,13 +26,47 @@
     </ul><!-- .nk-msg-menu -->
     <div class="search-wrap" data-search="search">
         <div class="search-content">
-            <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-            <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user or message">
+            <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left" @click="clearSearch"></em></a>
+            <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user first name or last name" v-model="userSearch">
             <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
         </div>
     </div><!-- .search-wrap -->
 </div><!-- .nk-msg-nav -->
-<div class="tab-content">
+<div class="nk-msg-list" v-if="userSearch" >
+            <template v-for="quote in filteredUserlist" v-if="quote.quote.status == 'pending'" >
+            <div class="nk-msg-item " v-bind:class="{current: quote.id == quoteChat.id }" v-on:click="openChat($event,quote)">
+                <p style="display:none">{{activeJob + 1}}</p>
+                <div class="nk-msg-media user-avatar">
+                    <img src="/images/avatar/b-sm.jpg" alt="">
+                </div>
+                <div class="nk-msg-info">
+                    <div class="nk-msg-from">
+                        <div class="nk-msg-sender">
+                            <h6 class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</h6>
+                            
+                        </div>
+                        <div class="nk-msg-meta">
+                            
+                            <div class="date">{{ quote.updated_at | moment("from", "now") }}</div>
+                            
+                        </div>
+                    </div>
+                    <div class="nk-msg-context">
+                        <div class="nk-msg-text">
+                            <div class="title">{{quote.quote.category.category_name}}</div>
+                            <p v-if="quote.last_msg">{{quote.last_msg.substring(0,100)+".." }}</p>
+                            <p v-else>Start Chat</p>
+                        </div>
+                        <div class="unreadmsg" v-if="quote.unread_msg_count > 0">
+                           {{quote.unread_msg_count}}
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .nk-msg-item -->
+           </template>
+            <p class="text-center mt-5" style="font-size: 16px;" v-if="filteredUserlist.length == 0"> No User Found</p>
+        </div><!-- .nk-msg-list -->
+<div class="tab-content" v-if="userSearch == '' ">
     <div class="tab-pane active" id="tabItem0">
         <div class="nk-msg-list" >
             <template v-for="quote in orderedUsers" v-if="quote.quotestatus == null">
@@ -44,7 +78,7 @@
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
-                            <div class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</div>
+                            <h6 class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</h6>
                             
                         </div>
                         <div class="nk-msg-meta">
@@ -54,7 +88,7 @@
                     </div>
                     <div class="nk-msg-context">
                         <div class="nk-msg-text">
-                            <h6 class="title">{{quote.quote.category.category_name}}</h6>
+                            <div class="title">{{quote.quote.category.category_name}}</div>
                              <p v-if="quote.last_msg">{{quote.last_msg.substring(0,100)+".." }}</p>
                             <p v-else>Start Chat</p>
                         </div>
@@ -80,7 +114,7 @@
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
-                            <div class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</div>
+                            <h6 class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</h6>
                             
                         </div>
                         <div class="nk-msg-meta">
@@ -90,7 +124,7 @@
                     </div>
                     <div class="nk-msg-context">
                         <div class="nk-msg-text">
-                            <h6 class="title">{{quote.quote.category.category_name}}</h6>
+                            <div class="title">{{quote.quote.category.category_name}}</div>
                             <p v-if="quote.last_msg">{{quote.last_msg.substring(0,100)+".." }}</p>
                             <p v-else>Start Chat</p>
                         </div>
@@ -117,7 +151,7 @@
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
-                            <div class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</div>
+                            <h6 class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</h6>
                             
                         </div>
                         <div class="nk-msg-meta">
@@ -126,7 +160,7 @@
                     </div>
                     <div class="nk-msg-context">
                         <div class="nk-msg-text">
-                            <h6 class="title">{{quote.quote.category.category_name}}</h6>
+                            <div class="title">{{quote.quote.category.category_name}}</div>
                             <p v-if="quote.last_msg">{{quote.last_msg.substring(0,100)+".." }}</p>
                             <p v-else>Start Chat</p>
                         </div>
@@ -153,7 +187,7 @@
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
-                            <div class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</div>
+                            <h6 class="name">{{quote.chatcustomer.first_name}} {{quote.chatcustomer.last_name}}</h6>
                             
                         </div>
                         <div class="nk-msg-meta">
@@ -162,7 +196,7 @@
                     </div>
                     <div class="nk-msg-context">
                         <div class="nk-msg-text">
-                            <h6 class="title">{{quote.quote.category.category_name}}</h6>
+                            <div class="title">{{quote.quote.category.category_name}}</div>
                             <p v-if="quote.last_msg">{{quote.last_msg.substring(0,100)+".." }}</p>
                             <p v-else>Start Chat</p>
                         </div>
@@ -372,6 +406,8 @@
         </div>
         <div class="user-info">
             <h5>{{quoteChat.chatcustomer.first_name}} {{quoteChat.chatcustomer.last_name}}</h5>
+            <p>{{quoteChat.chatcustomer.email}}</p>
+            <p>{{quoteChat.chatcustomer.mobileno}}</p>
         </div>
         <div class="user-card-menu dropdown">
             <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
@@ -532,7 +568,7 @@ data() {
         doneJob: 0,
         loseJob: 0,
         chatHead: true,
-        
+        userSearch: ''
         };
 },
 
@@ -616,6 +652,12 @@ computed: {
 
         orderedUsers: function() {
           return _.orderBy(this.activeQuotes, 'updated_at', 'desc')
+        },
+        filteredUserlist() {
+
+        return this.orderedUsers.filter(post => {
+          return post.chatcustomer.first_name.toLowerCase().includes(this.userSearch.toLowerCase()) || post.chatcustomer.last_name.toLowerCase().includes(this.userSearch.toLowerCase())
+          })
         },
     },
 
@@ -771,8 +813,10 @@ methods: {
                   };
              this.readMsg(msgObj);
              for(var i = 0; i <= this.quoteChat.chat.length; i++){
-            if(this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0'){
-               this.imgs.push(this.hostname+'/frontend-assets/images/chat/'+this.quoteChat.chat[i].message);
+                if(this.quoteChat.chat[i]){
+                if(this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0'){
+                   this.imgs.push(this.hostname+'/frontend-assets/images/chat/'+this.quoteChat.chat[i].message);
+                    }
                 }
             }
         },
@@ -901,6 +945,10 @@ methods: {
                 this.quoteChat = {};
                 $('#mainView').show();
                 $('#chatPanel').hide();
+         },
+
+         clearSearch(){
+           this.userSearch = '';
          },
 
         closeChat(){

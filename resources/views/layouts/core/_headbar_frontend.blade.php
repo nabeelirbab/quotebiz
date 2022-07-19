@@ -8,7 +8,7 @@
             </a>
         </div>
     @endif
-    <div class="top-search-container"></div>
+    <!-- <div class="top-search-container"></div> -->
 </div>
 
 <script>
