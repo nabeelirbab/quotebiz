@@ -296,7 +296,7 @@
                 <div class="form-control-wrap">
                   <select class="form-control" name="category_id" required>
                     <option value="" selected>Select Category</option>
-                       @foreach(Acelle\Jobs\HelperJob::categories() as $category)
+                       @foreach(Acelle\Jobs\HelperJob::mycategories() as $category)
                        <option value="{{$category->id}}">{{$category->category_name}}</option>
                        @endforeach
                          </select>
