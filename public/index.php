@@ -1,5 +1,4 @@
 <?php
-
 // check if a function is disable
 function f_enabled($name)
 {
@@ -56,5 +55,4 @@ if (!(file_exists('../bootstrap/cache') && is_dir('../bootstrap/cache') && (is_w
     echo "ERROR: The directory [/bootstrap/cache] must be writable by the web server.<br />";
     exit(0);
 }
-
 require 'main.php';
