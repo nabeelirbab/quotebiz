@@ -1,11 +1,28 @@
 const app = require('express')();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http, {
-  cors: {
-    origins: ['http://*.quotebiz.local:8000']
-  }
-});
+const cors = require('cors');
+const sslConfig = require('./ssl-config');
 
+keysOpt = {
+    key: sslConfig.keySSL,
+    cert: sslConfig.crtSSL,
+  };
+
+const server = require('https').Server(keysOpt, app);
+
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+        transports: ['websocket', 'polling'],
+        credentials: true
+    },
+    allowEIO3: true
+});
+const port = 3000;
+server.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.info('listening on %d', port);
+});
 
 io.on('connection', (socket) => {
   // console.log(socket.rooms,'ss');
@@ -38,6 +55,3 @@ io.on('connection', (socket) => {
 
 });
 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
-});

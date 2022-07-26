@@ -20,7 +20,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 var domainname = window.location.origin;
 // const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
-const SocketInstance = socketio.connect('http://'+subdomain+'.shopgrabthis.com:3000');
+const SocketInstance = socketio.connect('https://'+subdomain+'.quotebiz.io:3000');
 Vue.use(new VueSocketIO({
     debug: true,
     connection: SocketInstance

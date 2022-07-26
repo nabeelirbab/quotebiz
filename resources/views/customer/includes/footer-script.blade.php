@@ -1,14 +1,14 @@
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
    
-    <script src="http://<?php echo request('account') ?>.shopgrabthis.com:3000/socket.io/socket.io.js"></script>
+    <script src="https://<?php echo request('account') ?>.quotebiz.io:3000/socket.io/socket.io.js"></script>
 
     <script type="text/javascript">
 
         var getAPIURL = '{{ url('') }}';
         var userid = '{{Auth::user()->id }}';
 
-        const socket = io.connect('http://<?php echo request('account') ?>.shopgrabthis.com:3000');
+        const socket = io.connect('https://<?php echo request('account') ?>.quotebiz.io:3000');
         socket.on('connect', function() {
           console.log("Connected to WS server");
           console.log(socket.connected); 
