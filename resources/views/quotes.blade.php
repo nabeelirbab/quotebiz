@@ -60,6 +60,7 @@
                 <span>{{$quote->id}}</span>
             </div>
               <div class="nk-tb-col">
+                <a href="{{ url('customer_detail/'.$quote->user->id) }}">
                 <div class="user-card">
                     <div class="user-avatar bg-primary">
                         <span>{{mb_substr($quote->user->first_name, 0, 1)}}{{mb_substr($quote->user->last_name, 0, 1)}}</span>
@@ -69,6 +70,7 @@
                         <span>{{$quote->user->email}}</span>
                     </div>
                 </div>
+              </a>
             </div>
             <div class="nk-tb-col tb-col-md">
                 <span>{{$quote->category->category_name}}</span>

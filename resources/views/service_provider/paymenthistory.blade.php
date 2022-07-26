@@ -45,7 +45,7 @@
 </div><!-- .card-inner -->
 <div class="card-inner p-0">
 <div class="nk-tb-list nk-tb-tnx">
-    <div class="nk-tb-item nk-tb-head">
+    <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
         <div class="nk-tb-col"><span>#ID</span></div>
         <div class="nk-tb-col tb-col-xxl"><span>Source</span></div>
         <div class="nk-tb-col tb-col-lg"><span>Payment ID</span></div>

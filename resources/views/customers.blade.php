@@ -53,7 +53,14 @@
 <div class="card-inner position-relative card-tools-toggle">
     <div class="card-title-group">
         <div class="card-tools">
-           
+     @if(Session::has('success'))
+         <div class="alert alert-success  fade show" role="alert">
+          {{Session::get('success')}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+     @endif
         </div><!-- .card-tools -->
         <div class="card-tools mr-n1">
             <ul class="btn-toolbar gx-1">
@@ -78,7 +85,7 @@
 </div><!-- .card-inner -->
 <div class="card-inner p-0">
     <div class="nk-tb-list nk-tb-ulist">
-        <div class="nk-tb-item nk-tb-head">
+        <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
             <!-- <div class="nk-tb-col nk-tb-col-check">
                 <div class="custom-control custom-control-sm custom-checkbox notext">
                     <input type="checkbox" class="custom-control-input" id="uid">
@@ -92,23 +99,8 @@
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Time Zone</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>
             <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
-            <div class="nk-tb-col nk-tb-col-tools">
-                <ul class="nk-tb-actions gx-1 my-n1">
-                    <li>
-                        <div class="drodown">
-                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="link-list-opt no-bdr">
-                                    <li><a href="#"><em class="icon ni ni-mail"></em><span>Send Email to All</span></a></li>
-                                    <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend Selected</span></a></li>
-                                    <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>
-                                    <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Password</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <div class="nk-tb-col tb-col-md"><span class="sub-text">Actions</span></div>
+
         </div><!-- .nk-tb-item -->
         @foreach($users as $user)
         <div class="nk-tb-item">
@@ -122,7 +114,7 @@
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">
-                <a href="admin/user-details-regular.html">
+                <a href="{{ url('customer_detail/'.$user->id) }}">
                     <div class="user-card">
                         <div class="user-avatar bg-primary">
                             <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
@@ -155,28 +147,19 @@
             </div>
             <div class="nk-tb-col nk-tb-col-tools">
                 <ul class="nk-tb-actions gx-1">
-                    <li class="nk-tb-action-hidden">
-                        <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Send Email">
-                            <em class="icon ni ni-mail-fill"></em>
-                        </a>
-                    </li>
-                    <li class="nk-tb-action-hidden">
-                        <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Suspend">
-                            <em class="icon ni ni-user-cross-fill"></em>
-                        </a>
-                    </li>
+                   
                     <li>
                         <div class="drodown">
                             <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="link-list-opt no-bdr">
-                                    <li><a href="admin/user-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                    <li><a href="#"><em class="icon ni ni-repeat"></em><span>Orders</span></a></li>
-                                    <li><a href="#"><em class="icon ni ni-activity-round"></em><span>Activities</span></a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Pass</span></a></li>
-                                    <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend</span></a></li>
-                                </ul>
+                               <ul class="link-list-opt no-bdr">
+                                <li><a href="{{ url('customer_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                  @if($user->activated == '1')
+                                <li><a href="{{ url('account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
+                                @else
+                                <li><a href="{{ url('account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
+                                @endif                         
+                          </ul>
                             </div>
                         </div>
                     </li>
@@ -198,4 +181,8 @@
 </div>
 </div>
 <!-- content @e -->
+@endsection
+@section('script')
+<script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
+<script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 @endsection

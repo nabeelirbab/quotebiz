@@ -16,6 +16,8 @@ use Acelle\Model\JobDesign;
 use Acelle\Model\QuotePrice;
 use Acelle\Library\Facades\Hook;
 use Auth;
+use Mail;
+use Acelle\Mail\SendInvitation;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -260,9 +262,11 @@ class UserController extends Controller
                 $user->password = bcrypt($request->password);
                 $user->city = $request->city;
                 $user->zipcode = $request->zipcode;
-                $user->credits = 50;
                 $user->timezone = $request->timezone;
                 $user->language_id = $request->language_id;
+                if($request->invite){
+                  $user->credits = 50;
+                }
                 $user->save();
 
             
@@ -487,6 +491,17 @@ public function adminregister(Request $request)
         }
       return view('formdesign');
     
+   }
+
+   public function sendInvitation(Request $request){
+
+     $emails = explode(";",$request->email);
+     foreach ($emails as $key => $email) {
+      // dd($email);
+      Mail::to($email)->send(new SendInvitation());
+     }
+
+     return $emails;
    }
     public function logout(){
 

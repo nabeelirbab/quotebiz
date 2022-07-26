@@ -40,7 +40,7 @@
         <h5 class="title">Credit Bundles</h5>
     </div>
     <div class="nk-block-tools-opt">
-       <a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em><span>Add Amount</span></a>
+       <a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em><span>Add Bundle</span></a>
     </div><!-- .card-tools -->
   
 </div><!-- .card-title-group -->
@@ -216,7 +216,7 @@
 
 function quoteoption(event){
    if(event.value == 'category'){
-    var html ='<label for="inputState">Globaly per category quote credits</label>'+
+    var html ='<label for="inputState">Globaly set cost per quote</label>'+
        '<input type="number" @if($quotePrice) value="{{$quotePrice->price}}" @endif name="price" class="form-control" required ><br>'+
        '<div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>';
        $('#addOption').html(html);

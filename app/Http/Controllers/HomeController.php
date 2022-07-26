@@ -8,6 +8,8 @@ use Acelle\Model\Quote;
 use Acelle\Model\User;
 use Acelle\Model\BuyCreadit;
 use Auth;
+use Session;
+use Redirect;
 
 class HomeController extends Controller
 {
@@ -61,7 +63,22 @@ class HomeController extends Controller
         $users = User::where('subdomain',Auth::user()->subdomain)->where('id','<>',Auth::user()->id)->where('user_type','service_provider')->paginate(10);
         return view('serviceproviders',compact('users'));
     }
+    
+    public function provider_detail($account, $id){
+       $userdetail = User::where('subdomain',Auth::user()->subdomain)->where('id',$id)->first();
+       return view('provider_profile',compact('userdetail'));
+    }
 
+    public function customer_detail($account, $id){
+       $userdetail = User::where('subdomain',Auth::user()->subdomain)->where('id',$id)->first();
+       return view('customer_profile',compact('userdetail'));
+    }
+
+    public function accountstatus(Request $request,$account,$id){
+       $update = User::where('id',$id)->update(['activated' => $request->get('status')]);
+        Session::flash('success', 'Account status change successfully!!');
+       return Redirect::back();
+    }
     public function servicecategories(){
          
         return view('servicecategories');
