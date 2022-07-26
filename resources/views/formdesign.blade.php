@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-{{Auth::user()->customer->getContact()->phone}}
+
 <?php $formdesign = Acelle\Jobs\HelperJob::form_design(); ?>
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head nk-block-head-sm">
