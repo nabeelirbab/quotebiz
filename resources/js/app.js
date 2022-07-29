@@ -15,8 +15,9 @@ import wysiwyg from "vue-wysiwyg";
 import VEmojiPicker from 'v-emoji-picker';
 import VueSocketIO from 'vue-socket.io';
 import socketio from 'socket.io-client';
-import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import VueClipboard from 'vue-clipboard2'
+import Toasted from 'vue-toasted';
 
 var domainname = window.location.origin;
 // const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
@@ -25,10 +26,11 @@ Vue.use(new VueSocketIO({
     debug: true,
     connection: SocketInstance
 }));
-Vue.use(VueToast);
+Vue.use(Toasted)
 Vue.use(VueEasyLightbox)
 Vue.use(VEmojiPicker);
 Vue.use(wysiwyg, {});
+Vue.use(VueClipboard)
 //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Vue.config.productionTip = false;
 window.axios.defaults.baseURL = domainname;

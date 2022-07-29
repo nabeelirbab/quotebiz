@@ -9,22 +9,53 @@
                            
                             <div class="nk-msg-nav">
                                 <ul class="nk-msg-menu nav nav-tabs">
-                                   <li class="nk-msg-menu-item  active"><a href="#tabItem0" data-toggle="tab" class="nav-link"> New Jobs</a></li>
+                                   <li class="nk-msg-menu-item  active"><a href="#tabItem0" data-toggle="tab" @click="newjob" class="nav-link"> New Jobs</a></li>
                                    
                                     <li class="nk-msg-menu-item nav-item">
-                                        <a href="#tabItem1" data-toggle="tab" class="nav-link">Quoted Jobs</a>
+                                        <a href="#tabItem1"  @click="quotedjob" data-toggle="tab" class="nav-link">Quoted Jobs</a>
                                     </li>
                                     <li class="nk-msg-menu-item ml-auto"><a href="" class="search-toggle toggle-search" data-target="search"><em class="icon ni ni-search"></em></a></li>
                                 </ul><!-- .nk-msg-menu -->
                                 <div class="search-wrap" data-search="search">
                                     <div class="search-content">
-                                        <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-                                        <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user or message">
+                                        <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left" @click="clearSearch"></em></a>
+                                        <input type="text" class="form-control border-transparent form-focus-none" v-model="quoteSearch" placeholder="Search by user or message">
                                         <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
                                     </div>
                                 </div><!-- .search-wrap -->
                             </div><!-- .nk-msg-nav -->
-                    <div class="tab-content" style="height:100%">
+                          <div class="nk-msg-list" v-if="quoteSearch">
+                             <template v-for="quote in filteredQuotelist">
+                                <div class="nk-msg-item"  v-on:click="openQuote($event,quote)" >
+                                  <!-- <p style="display:none">{{newJob++}}</p> -->
+                                        <div class="nk-msg-media user-avatar">
+                                        <img src="/images/avatar/b-sm.jpg" alt="">
+                                    </div>
+                                    <div class="nk-msg-info">
+                                        <div class="nk-msg-from">
+                                            <div class="nk-msg-sender">
+                                                <h6 class="name">{{quote.user.first_name}} {{quote.user.last_name}}</h6>
+                                            </div>
+                                            <div class="nk-msg-meta">
+                                               
+                                                <div class="date">{{ quote.created_at | moment("from", "now") }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="nk-msg-context">
+                                            <div class="nk-msg-text">
+                                                <div class="title">{{quote.category.category_name}}</div>
+                                                
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                    
+                                </div><!-- .nk-msg-item -->
+                              </template>
+                              <p class="text-center mt-5" style="font-size: 16px;" v-if="filteredQuotelist.length == 0"> Not Found</p>
+                            </div><!-- .nk-msg-list -->
+
+                    <div class="tab-content" style="height:100%" v-if="quoteSearch == '' ">
                         <div class="tab-pane active" id="tabItem0">
                              <div class="nk-msg-list">
                              <template v-for="quote in quotes" v-if="!quote.myquotation">
@@ -36,7 +67,7 @@
                                     <div class="nk-msg-info">
                                         <div class="nk-msg-from">
                                             <div class="nk-msg-sender">
-                                                <div class="name">{{quote.user.first_name}} {{quote.user.last_name}}</div>
+                                                <h6 class="name">{{quote.user.first_name}} {{quote.user.last_name}}</h6>
                                             </div>
                                             <div class="nk-msg-meta">
                                                
@@ -45,12 +76,10 @@
                                         </div>
                                         <div class="nk-msg-context">
                                             <div class="nk-msg-text">
-                                                <h6 class="title">{{quote.category.category_name}}</h6>
+                                                <div class="title">{{quote.category.category_name}}</div>
                                                 
                                             </div>
-                                            <div class="nk-msg-lables">
-                                                <!-- <div class="asterisk"><a href="#"><em class="asterisk-off icon ni ni-star"></em><em class="asterisk-on icon ni ni-star-fill"></em></a></div> -->
-                                            </div>
+                                          
                                         </div>
                                     </div>
                                     
@@ -72,7 +101,7 @@
                                     <div class="nk-msg-info">
                                         <div class="nk-msg-from">
                                             <div class="nk-msg-sender">
-                                                <div class="name">{{quote.user.first_name}} {{quote.user.last_name}}</div>
+                                                <h6 class="name">{{quote.user.first_name}} {{quote.user.last_name}}</h6>
                                             </div>
                                             <div class="nk-msg-meta">
                                                
@@ -81,7 +110,7 @@
                                         </div>
                                         <div class="nk-msg-context">
                                             <div class="nk-msg-text">
-                                                <h6 class="title">{{quote.category.category_name}}</h6>
+                                                <div class="title">{{quote.category.category_name}}</div>
                                                 
                                             </div>
                                             <div class="nk-msg-lables">
@@ -281,14 +310,21 @@ import 'vue-toast-notification/dist/theme-sugar.css';
              isSubmit: true,
              isLoading: false,
              isPrice: false,
-             creditcost: ''
+             creditcost: '',
+             quoteSearch: ''
             };
           },
   
-          created() {
-                // let subdomain = location.hostname.split('.').shift();
-                // alert('subdomain is ' + subdomain);
-              },
+    computed: {
+
+          filteredQuotelist() {
+
+         return this.quotes.filter(post => {
+          return post.user.first_name.toLowerCase().includes(this.quoteSearch.toLowerCase()) || post.user.last_name.toLowerCase().includes(this.quoteSearch.toLowerCase())
+          })
+        },
+    },
+
     watch: {
             
             price(){
@@ -306,6 +342,14 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                   $('.editr').css('border-color','red');
               }
             },
+
+            quoteSearch(){
+              if(this.quoteSearch.length > 0){
+                this.quoteQuestions = {}
+                $('#chatPanel').hide();
+                $('#mainView').show();
+              }
+            }
     },          
               
     methods: {
@@ -326,7 +370,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                 e.currentTarget.className = "nk-msg-item ";
                 e.currentTarget.className += "current";
                 $('#mainView').hide();
-                $('#chatPanel').show();
+                $('#chatPanel').attr("style", "display: block !important");
             },
 
             sendQuotation(){
@@ -400,6 +444,22 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                 }
                 
             },
+            
+            newjob(){
+              this.quoteQuestions = {}
+                $('#chatPanel').hide();
+                $('#mainView').show();
+            },
+
+            quotedjob(){
+              this.quoteQuestions = {}
+                $('#chatPanel').hide();
+                $('#mainView').show();
+            },
+
+            clearSearch(){
+             this.quoteSearch = '';
+             },
 
             getQuotes() {
                 axios.get('/service-provider/leadsquotes')
@@ -420,7 +480,13 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 </script>
 <style type="text/css">
 @import "~vue-wysiwyg/dist/vueWysiwyg.css";
-    .loexp-no-results-container {
+
+.editr--toolbar{
+   width: 100%;
+   overflow: auto;
+}
+
+.loexp-no-results-container {
     display: flex;
     align-items: flex-start;
     justify-content: center;
