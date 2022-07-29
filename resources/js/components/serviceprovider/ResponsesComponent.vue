@@ -296,21 +296,19 @@
                         </a>
                          </div>
                          <div class="chat-msg" v-else> Message Delete</div>
-                       <!--  <ul class="chat-msg-more">
-                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
+                          <ul class="chat-msg-more" v-if="chatData.isDeleted == '0'">
+                            
                             <li>
                                 <div class="dropdown">
                                     <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-sm">
                                         <ul class="link-list-opt no-bdr">
-                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                            <li><a href="#" @click="editMsg(chatData.id,chatData.message)"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                            <li><a href="#" @click="deleteMsg(chatData.id)"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
+                                             <li><a href="#" v-clipboard:copy="chatData.message" v-clipboard:success="onCopy" v-clipboard:error="onError"><em class="icon ni ni-copy"></em> Copy</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                        </ul> -->
+                        </ul>
                     </div>
                     
                 </div>
@@ -338,7 +336,7 @@
                         </a>
                          </div>
                          <div class="chat-msg" v-else> Message Delete</div>
-                        <ul class="chat-msg-more">
+                        <ul class="chat-msg-more" v-if="chatData.isDeleted == '0'">
                             <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
                             <li>
                                 <div class="dropdown">
@@ -347,6 +345,7 @@
                                         <ul class="link-list-opt no-bdr">
                                             <!-- <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li> -->
                                             <li><a href="#" @click="editMsg(chatData.id,chatData.message)"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
+                                            <li><a href="#" v-clipboard:copy="chatData.message" v-clipboard:success="onCopy" v-clipboard:error="onError"><em class="icon ni ni-copy"></em> Copy</a></li>
                                             <li><a href="#" @click="deleteMsg(chatData.id)"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
                                         </ul>
                                     </div>
@@ -384,7 +383,8 @@
         </div>
         <div class="nk-chat-editor-form">
             <div class="form-control-wrap">
-                <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea>
+                <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" @keydown.enter.exact.prevent
+              @keyup.enter.exact="chatStart()" placeholder="Type your message..."></textarea>
             </div>
         </div>
         <ul class="nk-chat-editor-tools g-2">
@@ -537,6 +537,8 @@
 <script>
 
 import VueEasyLightbox from 'vue-easy-lightbox';
+import Toasted from 'vue-toasted';
+
 export default {
  components: {
     VueEasyLightbox
@@ -955,6 +957,20 @@ methods: {
             alert('ddd');
          $('.nk-msg-body').removeClass('opacity');
         },
+
+        onCopy(e) {
+          this.$toasted.show("Copy to clipboard !!", { 
+             theme: "bubble", 
+             position: "top-center", 
+             type: "success",
+             duration : 5000
+             });
+          },
+
+        onError(e) {
+                alert('Failed to copy the text to the clipboard')
+                console.log(e);
+         },
 
    },
 

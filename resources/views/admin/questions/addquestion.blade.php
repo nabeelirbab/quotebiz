@@ -101,7 +101,7 @@
              conditionUp = storageid;
                 conditionUp ++;
      
-        var html= '<div class="removeQuestion mt-5"><div class="row mb-4"><input type="hidden" name="question_id['+storageid+']" value="">'+
+        var html= '<div class="removeQuestion mt-4" style="background: #f5f6fa;padding: 20px;border-radius:15px"><div class="row mb-4"><input type="hidden" name="question_id['+storageid+']" value="">'+
                 '<div class="col-sm-2"><div class="custom-control custom-checkbox">'+
                 '<input type="radio" name="check['+storageid+']" class="custom-control-input checking" id="customCheck'+conditionUp+'" value="single" checked>'+
                 '<label class="custom-control-label" for="customCheck'+conditionUp+'">Radio</label>'+
@@ -116,7 +116,7 @@
                     '<label class="custom-control-label" for="input'+conditionUp+'">Input Box</label>'+
                 '</div>'+
                 '</div>'+
-                '<div class="col-sm-2"><div class="custom-control custom-checkbox">'+
+                '<div class="col-sm-2 pr-0"><div class="custom-control custom-checkbox">'+
                     '<input type="radio" name="check['+storageid+']" class="custom-control-input checking" id="date'+conditionUp+'" value="datepicker">'+
                     '<label class="custom-control-label" for="date'+conditionUp+'">Date Picker</label>'+
                 '</div>'+
@@ -130,8 +130,8 @@
                             '</div>'+
                         '</div>'+
                     '</div>'+
-                    '<span class="appendChoiceInput col-sm-2"><span title="Add Option" class="addChoice material-icons-round add-icon xtooltip tooltipstered  float-end fs-3" style="cursor: pointer;line-height:3!important">add_circle</span><input type="hidden" value="'+storageid+'"></span>'+
-                    '<div class="appendChoice" style="border-bottom:dotted">'+
+                    '<span class="appendChoiceInput col-sm-2 pr-1"><span title="Add Option" class="addChoice material-icons-round add-icon xtooltip tooltipstered  float-end fs-3" style="cursor: pointer;line-height:3!important">add_circle</span><input type="hidden" value="'+storageid+'"></span>'+
+                    '<div class="appendChoice">'+
                     '<input type="hidden" value="" name="choice_id['+storageid+'][]">'+
                     '<div class="row  pr-0"><div class="col-sm-6">'+
                         '<div class="form-group">'+
@@ -143,16 +143,16 @@
                     '</div>'+
                     '<div class="col-sm-4">'+
                     ' <div class="form-group">'+
-                            '<label class="form-label" for="default-06">Icon</label>'+
+                            '<label class="form-label" for="default-06">Icon (optional)</label>'+
                             '<div class="form-control-wrap">'+
                                 '<div class="custom-file">'+
-                                    '<input type="file" name="choice_icon['+storageid+'][]" class="custom-file-input" value="c:/passwords.txt">'+
+                                    '<input type="file" accept="image/*" name="choice_icon['+storageid+'][]" class="custom-file-input" value="c:/passwords.txt">'+
                                     '<label class="custom-file-label" for="customFile">Choose file</label>'+
                                 '</div>'+
                             '</div>'+
                        '</div>'+
                     '</div>'+
-                    '<div class="col-sm-2"><span title="Remove Option" class="removeChoice material-icons-round remove-icon xtooltip tooltipstered  float-end fs-3" style="cursor: pointer;line-height:3!important">remove_circle</span></div></div>'+
+                    '<div class="col-sm-2 pr-1"><span title="Remove Option" class="removeChoice material-icons-round remove-icon xtooltip tooltipstered  float-end fs-3" style="cursor: pointer;line-height:3!important">remove_circle</span></div></div>'+
                   
                 '</div></div></div>';
                 $('.startQuestion').append(html);
@@ -219,7 +219,7 @@ console.log($(e.target).parent().nextAll(".appendChoice").eq(0));
                     '</div>'+
                '</div>'+
             '</div>'+
-            '<div class="col-sm-2"><span title="Remove Option" class="removeChoice material-icons-round remove-icon xtooltip tooltipstered  float-end fs-3" style="cursor: pointer;line-height:3!important">remove_circle</span></div></div>';
+            '<div class="col-sm-2 pr-1"><span title="Remove Option" class="removeChoice material-icons-round remove-icon xtooltip tooltipstered  float-end fs-3" style="cursor: pointer;line-height:3!important">remove_circle</span></div></div>';
 
             $(e.target).parent().nextAll(".appendChoice").eq(0).append(html);
         }

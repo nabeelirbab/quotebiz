@@ -78,16 +78,10 @@
           </span>
           Unused Connects rollover to the next month
           (maximum of 200).
-          <a aria-label="Learn more about Connects" href="https://support.upwork.com/hc/en-us/articles/211062898" rel="noopener noreferrer" target="_blank" class="d-none-mobile-app">
+          <a aria-label="Learn more about Connects" href="" rel="noopener noreferrer" target="_blank" class="d-none-mobile-app">
             Learn more
           </a></div>
-           <div id="note02" class="text-muted d-none-mobile-app">
-          You're authorizing Upwork to charge your account.
-          If you have sufficient funds, we will withdraw from your account balance.
-          If not, the full amount will be charged to your primary billing method.
-          <a aria-label="Learn more about billing methods" href="https://support.upwork.com/hc/en-us/articles/211062918" rel="noopener noreferrer" target="_blank">
-            Learn more
-          </a></div>
+          
       </section> 
           <footer class="cardfooter d-none-mobile-app text-right">
              <form action="{{ url('service-provider/payment') }}" id="paymentForm" method="post">

@@ -1,10 +1,10 @@
 @extends('service_provider.layout.app')
 
 @section('content')
-<div class="container mt-5">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-12">
-            <div class="">
+<div class="container" style="height: 91vh">
+    <div class="row justify-content-center" style="height: 100%; align-content: center">
+        <div class="col-md-6">
+            <div class="mb-3">
                 <h5>You will be charged <b>${{ number_format($creadit->credit_amount, 2) }}</b> </h5>
             </div>
             <div class="card">

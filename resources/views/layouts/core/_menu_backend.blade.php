@@ -120,7 +120,7 @@
 						</ul>
 					</li>
 				  
-                     <li class="nav-item" rel0="Admin\CampaignController">
+                 <!--     <li class="nav-item" rel0="Admin\CampaignController">
 			                <a title="{{ trans('messages.campaigns') }}" href="{{ action('Admin\CampaignController@index') }}" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
 			                    <i class="navbar-icon">
 			                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106.1 92.1"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="Layer_2-2" data-name="Layer 2"><g id="Layer_1-2-2" data-name="Layer 1-2"><path d="M40.8,92.1h-.1a5.2,5.2,0,0,1-5.1-4.8c-1.4-4.5-2.7-9-4-13.4S29,65.3,27.8,61L3.2,50.4a.1.1,0,0,0-.1-.1A5.7,5.7,0,0,1,.5,47.8a5.6,5.6,0,0,1,2.6-7.4.1.1,0,0,0,.1-.1c16-6.8,31.7-13.2,46.9-19.3S82.2,8,98.9.8a4.5,4.5,0,0,1,5.7.4,4.6,4.6,0,0,1,1.5,4.1l-5.4,38.1C99,56.1,97.2,68.8,95.4,81.6a5.5,5.5,0,0,1-2,3.7,5.6,5.6,0,0,1-4.1,1.4l-1.4-.3h-.2L52.1,71.2c-2.2,6-4.2,11.3-6,16.4A5.4,5.4,0,0,1,40.8,92.1ZM9.3,45.4,31.6,55a4.8,4.8,0,0,1,2.6,3c1.3,4.6,2.7,9.2,4.1,13.9L41,81q2.7-7.2,5.7-15.6l.2-.3.2-.4c.1-.2.2-.5.4-.6L89.2,12.6C76.8,17.8,64.6,22.7,52.7,27.5,38.6,33.2,24.1,39.1,9.3,45.4ZM55.6,65.2,88.7,79.1l5.1-36.6L98,12.8ZM27.5,59.9h0Z" style="fill:#f2f2f2"/><path d="M40.1,54.6a3.6,3.6,0,0,1-2.2-6.3l2-1.6a3.6,3.6,0,0,1,5,.6,3.5,3.5,0,0,1-.6,4.9l-2,1.6A3.5,3.5,0,0,1,40.1,54.6Z" style="fill:#ff0"/><path d="M52.4,45.2a3.5,3.5,0,0,1-2.7-1.4,3.4,3.4,0,0,1,.6-4.9L63.4,28.6a3.5,3.5,0,0,1,4.3,5.5L54.6,44.4A3.7,3.7,0,0,1,52.4,45.2Z" style="fill:aqua"/></g></g></g></g></svg>
@@ -143,7 +143,7 @@
                         </i>
                         <span>{{ trans('messages.lists') }}</span>
                     </a>
-                </li>
+                </li> -->
 				@if (
 					Auth::user()->can("read", new Acelle\Model\Plan())
 					|| Auth::user()->can("read", new Acelle\Model\Currency())
@@ -170,13 +170,13 @@
 								</li>
 							@endif
 							@if (Auth::user()->can("read", new Acelle\Model\Currency()))
-								<li class="nav-item" rel0="CurrencyController">
+							<!-- 	<li class="nav-item" rel0="CurrencyController">
 									<a href="{{ action('Admin\CurrencyController@index') }}" class="dropdown-item d-flex align-items-center">
 										<i class="navbar-icon" style="width: 20px;">
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 104.5 104.5" style="enable-background:new 0 0 104.5 104.5;" xml:space="preserve"><style type="text/css">.st0{fill:#333333;}</style><g id="Layer_2_1_"><g id="Layer_1-2"><path class="st0" d="M52.3,104.6C23.5,104.6,0,81.1,0,52.3C0,23.5,23.5,0,52.3,0c28.8,0,52.3,23.5,52.3,52.3 C104.6,81.1,81.1,104.6,52.3,104.6z M52.3,7C27.3,7,7,27.3,7,52.3s20.3,45.3,45.3,45.3s45.3-20.3,45.3-45.3S77.3,7,52.3,7z"/><path class="st0" d="M48.6,82.6v-7.7c-5.1-0.2-10.1-1.6-13-3.6l2.2-7.5c3.8,2.3,8.1,3.5,12.5,3.5c5,0,8.4-2.4,8.4-6.3 s-2.8-5.9-8.7-8.1c-8.4-3-13.8-6.8-13.8-14.3S41,26.5,49.1,25v-7.8h6.5v7.4c3.9,0.1,7.6,1,11.1,2.7l-2.2,7.3 c-3.4-1.8-7.1-2.7-10.9-2.7c-5.6,0-7.6,2.9-7.6,5.6s2.9,5.1,9.7,7.8c9,3.4,13,7.7,13,14.8s-4.8,12.8-13.6,14.3v8.2H48.6z"/></g></g></svg>
 										</i>{{ trans('messages.currencies') }}
 									</a>
-								</li>
+								</li> -->
 							@endif
 							<li class="nav-item" rel0="TaxController">
 								<a href="{{ action('Admin\TaxController@settings') }}" class="dropdown-item d-flex align-items-center">
