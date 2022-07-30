@@ -150,6 +150,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionConfigService(array $args = [])
  * @method \Aws\Connect\ConnectClient createConnect(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionConnect(array $args = [])
+ * @method \Aws\ConnectCampaignService\ConnectCampaignServiceClient createConnectCampaignService(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionConnectCampaignService(array $args = [])
  * @method \Aws\ConnectContactLens\ConnectContactLensClient createConnectContactLens(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionConnectContactLens(array $args = [])
  * @method \Aws\ConnectParticipant\ConnectParticipantClient createConnectParticipant(array $args = [])
@@ -474,6 +476,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionRedshift(array $args = [])
  * @method \Aws\RedshiftDataAPIService\RedshiftDataAPIServiceClient createRedshiftDataAPIService(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionRedshiftDataAPIService(array $args = [])
+ * @method \Aws\RedshiftServerless\RedshiftServerlessClient createRedshiftServerless(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionRedshiftServerless(array $args = [])
  * @method \Aws\Rekognition\RekognitionClient createRekognition(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionRekognition(array $args = [])
  * @method \Aws\ResilienceHub\ResilienceHubClient createResilienceHub(array $args = [])
@@ -484,6 +488,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionResourceGroupsTaggingAPI(array $args = [])
  * @method \Aws\RoboMaker\RoboMakerClient createRoboMaker(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionRoboMaker(array $args = [])
+ * @method \Aws\RolesAnywhere\RolesAnywhereClient createRolesAnywhere(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionRolesAnywhere(array $args = [])
  * @method \Aws\Route53\Route53Client createRoute53(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionRoute53(array $args = [])
  * @method \Aws\Route53Domains\Route53DomainsClient createRoute53Domains(array $args = [])
@@ -619,7 +625,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.225.4';
+    const VERSION = '3.231.16';
 
     /** @var array Arguments for creating clients */
     private $args;
