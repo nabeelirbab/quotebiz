@@ -55,7 +55,10 @@
           <div class="col-lg-5 col-md-6 col-sm-12">
             <select class="form-control" id="getprice">
                 @foreach(Acelle\Jobs\HelperJob::creditAmounts() as $creadit)
-                <option value="{{$creadit->credit}},{{$creadit->credit_amount}},{{$creadit->id}}">{{$creadit->credit}} for ${{$creadit->credit_amount}}</option>
+                <?php 
+                   $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
+                ?>
+                <option value="{{$creadit->credit}},{{$currencyConvert['convert']}},{{$creadit->id}},{{$currencyConvert['currency']}}">{{$creadit->credit}} for {{$currencyConvert['currency']}} {{$currencyConvert['convert']}}</option>
                 @endforeach
             </select>
           </div>
@@ -64,7 +67,6 @@
             Your account will be charged
           </h5>
            <div id="charge-amount">
-            
                 $1.50
               </div> <!----> <!---->
            <h5 id="para04" class="mt-5 mb-10 para">
@@ -128,7 +130,7 @@
                var sum = Number(creadits) + Number(result[0]);
                console.log(sum);
                $('#new-balance').text(sum);
-               $('#charge-amount').text('$'+result[1]);
+               $('#charge-amount').text(result[3]+' '+result[1]);
                $('#paymentValue').val(result[2]);
         });
     </script>

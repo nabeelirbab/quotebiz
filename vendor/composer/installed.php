@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3b4861a419566060b5b93f6696dee41287218bab',
+        'reference' => '91013b42a30f791f094b4a7622b091c8f4c83fd7',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -19,6 +19,24 @@
                 0 => '8.0.x-dev',
             ),
             'reference' => 'f35acd0414b1be0cc29a8c303207419675646ed7',
+            'dev_requirement' => false,
+        ),
+        'amrshawky/currency' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../amrshawky/currency',
+            'aliases' => array(),
+            'reference' => '39f13b6783ef611fd13916d48abd31bca2ab1e54',
+            'dev_requirement' => false,
+        ),
+        'amrshawky/laravel-currency' => array(
+            'pretty_version' => '5.0.0',
+            'version' => '5.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../amrshawky/laravel-currency',
+            'aliases' => array(),
+            'reference' => '34df93d1bc19758fe8bc2be63a0fc1580cb2b3bd',
             'dev_requirement' => false,
         ),
         'aws/aws-crt-php' => array(
@@ -555,7 +573,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3b4861a419566060b5b93f6696dee41287218bab',
+            'reference' => '91013b42a30f791f094b4a7622b091c8f4c83fd7',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(
@@ -1128,8 +1146,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

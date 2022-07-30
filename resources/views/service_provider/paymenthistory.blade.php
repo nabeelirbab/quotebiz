@@ -71,7 +71,11 @@
             <span class="tb-lead-sub">{{$creadit->payment_id}}</span>
         </div>
         <div class="nk-tb-col text-right">
-            <span class="tb-amount">{{$creadit->amount}} <span>USD</span></span>
+            <span class="tb-amount">
+                 <?php 
+                  $currencyConvert = Acelle\Jobs\HelperJob::usdcurrency($creadit->amount); 
+                 ?>
+                {{$currencyConvert['convert']}}<span> {{$currencyConvert['currency']}}</span></span>
         </div>
         <div class="nk-tb-col text-right tb-col-sm">
             <span class="tb-amount">{{$creadit->creadits}}</span>

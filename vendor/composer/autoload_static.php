@@ -8,21 +8,21 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
@@ -238,6 +238,8 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         array (
             'Aws\\Sns\\' => 8,
             'Aws\\' => 4,
+            'AmrShawky\\LaravelCurrency\\' => 26,
+            'AmrShawky\\' => 10,
             'Acelle\\Extra\\LogViewer\\' => 23,
             'Acelle\\Cashier\\' => 15,
             'Acelle\\' => 7,
@@ -441,8 +443,8 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -575,8 +577,8 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         ),
         'Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/php-http/message-factory/src',
-            1 => __DIR__ . '/..' . '/php-http/message/src',
+            0 => __DIR__ . '/..' . '/php-http/message/src',
+            1 => __DIR__ . '/..' . '/php-http/message-factory/src',
         ),
         'Http\\Discovery\\' => 
         array (
@@ -729,6 +731,14 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Aws\\' => 
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+        ),
+        'AmrShawky\\LaravelCurrency\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/amrshawky/laravel-currency/src',
+        ),
+        'AmrShawky\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/amrshawky/currency/src',
         ),
         'Acelle\\Extra\\LogViewer\\' => 
         array (
@@ -960,6 +970,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Http\\Controllers\\PlanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlanController.php',
         'Acelle\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'Acelle\\Http\\Controllers\\QuestionChoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionChoiceController.php',
+        'Acelle\\Http\\Controllers\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionController.php',
         'Acelle\\Http\\Controllers\\QuoteController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuoteController.php',
         'Acelle\\Http\\Controllers\\SamplesController' => __DIR__ . '/../..' . '/app/Http/Controllers/SamplesController.php',
         'Acelle\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/SearchController.php',
@@ -1102,6 +1113,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Mail\\ReceiveQuotation' => __DIR__ . '/../..' . '/app/Mail/ReceiveQuotation.php',
         'Acelle\\Mail\\RegistrationConfirmationMailer' => __DIR__ . '/../..' . '/app/Mail/RegistrationConfirmationMailer.php',
         'Acelle\\Mail\\RelatedJob' => __DIR__ . '/../..' . '/app/Mail/RelatedJob.php',
+        'Acelle\\Mail\\SendInvitation' => __DIR__ . '/../..' . '/app/Mail/SendInvitation.php',
         'Acelle\\Mail\\SendQuotation' => __DIR__ . '/../..' . '/app/Mail/SendQuotation.php',
         'Acelle\\Mail\\SettingMailerTest' => __DIR__ . '/../..' . '/app/Mail/SettingMailerTest.php',
         'Acelle\\Mail\\SubscriptionDoneMailer' => __DIR__ . '/../..' . '/app/Mail/SubscriptionDoneMailer.php',
@@ -1145,6 +1157,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\InvoiceItem' => __DIR__ . '/../..' . '/app/Model/InvoiceItem.php',
         'Acelle\\Model\\IpLocation' => __DIR__ . '/../..' . '/app/Model/IpLocation.php',
         'Acelle\\Model\\Job' => __DIR__ . '/../..' . '/app/Model/Job.php',
+        'Acelle\\Model\\JobDesign' => __DIR__ . '/../..' . '/app/Model/JobDesign.php',
         'Acelle\\Model\\JobMonitor' => __DIR__ . '/../..' . '/app/Model/JobMonitor.php',
         'Acelle\\Model\\Language' => __DIR__ . '/../..' . '/app/Model/Language.php',
         'Acelle\\Model\\Layout' => __DIR__ . '/../..' . '/app/Model/Layout.php',
@@ -1166,6 +1179,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\QuotationStatus' => __DIR__ . '/../..' . '/app/Model/QuotationStatus.php',
         'Acelle\\Model\\Quote' => __DIR__ . '/../..' . '/app/Model/Quote.php',
         'Acelle\\Model\\QuoteChoice' => __DIR__ . '/../..' . '/app/Model/QuoteChoice.php',
+        'Acelle\\Model\\QuotePrice' => __DIR__ . '/../..' . '/app/Model/QuotePrice.php',
         'Acelle\\Model\\QuoteQuestion' => __DIR__ . '/../..' . '/app/Model/QuoteQuestion.php',
         'Acelle\\Model\\Reply' => __DIR__ . '/../..' . '/app/Model/Reply.php',
         'Acelle\\Model\\Segment' => __DIR__ . '/../..' . '/app/Model/Segment.php',
@@ -1195,6 +1209,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\StripeKey' => __DIR__ . '/../..' . '/app/Model/StripeKey.php',
         'Acelle\\Model\\SubAccount' => __DIR__ . '/../..' . '/app/Model/SubAccount.php',
         'Acelle\\Model\\SubAccountSendGrid' => __DIR__ . '/../..' . '/app/Model/SubAccountSendGrid.php',
+        'Acelle\\Model\\SubCategory' => __DIR__ . '/../..' . '/app/Model/SubCategory.php',
         'Acelle\\Model\\Subdomain' => __DIR__ . '/../..' . '/app/Model/Subdomain.php',
         'Acelle\\Model\\Subscriber' => __DIR__ . '/../..' . '/app/Model/Subscriber.php',
         'Acelle\\Model\\SubscriberField' => __DIR__ . '/../..' . '/app/Model/SubscriberField.php',
@@ -1359,6 +1374,21 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'AddVerificationStatusAndLastVerificationAtToSubscribersTable' => __DIR__ . '/../..' . '/database/migrations/2021_10_03_033322_add_verification_status_and_last_verification_at_to_subscribers_table.php',
         'AddVisibilityColumn' => __DIR__ . '/../..' . '/database/migrations/2019_05_17_041704_add_visibility_column.php',
         'AddVisibleToPlans' => __DIR__ . '/../..' . '/database/migrations/2020_02_17_020856_add_visible_to_plans.php',
+        'AmrShawky\\API' => __DIR__ . '/..' . '/amrshawky/currency/src/API.php',
+        'AmrShawky\\Currency' => __DIR__ . '/..' . '/amrshawky/currency/src/Currency.php',
+        'AmrShawky\\CurrencyConversion' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyConversion.php',
+        'AmrShawky\\CurrencyFactory' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyFactory.php',
+        'AmrShawky\\CurrencyFluctuations' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyFluctuations.php',
+        'AmrShawky\\CurrencyHistoricalRates' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyHistoricalRates.php',
+        'AmrShawky\\CurrencyLatestRates' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyLatestRates.php',
+        'AmrShawky\\CurrencyRates' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyRates.php',
+        'AmrShawky\\CurrencyRatesProxy' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyRatesProxy.php',
+        'AmrShawky\\CurrencyTimeSeriesRates' => __DIR__ . '/..' . '/amrshawky/currency/src/CurrencyTimeSeriesRates.php',
+        'AmrShawky\\Exceptions\\RequestException' => __DIR__ . '/..' . '/amrshawky/currency/src/Exceptions/RequestException.php',
+        'AmrShawky\\LaravelCurrency\\CurrencyServiceProvider' => __DIR__ . '/..' . '/amrshawky/laravel-currency/src/CurrencyServiceProvider.php',
+        'AmrShawky\\LaravelCurrency\\Facade\\Currency' => __DIR__ . '/..' . '/amrshawky/laravel-currency/src/Facade/Currency.php',
+        'AmrShawky\\Traits\\HttpRequest' => __DIR__ . '/..' . '/amrshawky/currency/src/Traits/HttpRequest.php',
+        'AmrShawky\\Traits\\ParamsOverload' => __DIR__ . '/..' . '/amrshawky/currency/src/Traits/ParamsOverload.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Aws\\ACMPCA\\ACMPCAClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/ACMPCA/ACMPCAClient.php',
         'Aws\\ACMPCA\\Exception\\ACMPCAException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/ACMPCA/Exception/ACMPCAException.php',

@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "acelle/cashier": "dev-master",
+        "amrshawky/laravel-currency": "^5.0",
         "aws/aws-php-sns-message-validator": "^1.1",
         "aws/aws-sdk-php": "^3.19",
         "braintree/braintree_php": "^3.22",
