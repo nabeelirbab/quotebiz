@@ -492,7 +492,7 @@ public function adminregister(Request $request)
             if($request->preview){
                 return view('previewdesign',compact('job_design'));
             }else{
-            $job_design->save();
+                $job_design->save();
             }
 
         }
