@@ -5,7 +5,10 @@
     <div class="row justify-content-center" style="height: 100%; align-content: center">
         <div class="col-md-6">
             <div class="mb-3">
-                <h5>You will be charged <b>${{ number_format($creadit->credit_amount, 2) }}</b> </h5>
+              <?php 
+                  $currencyConvert = Acelle\Jobs\HelperJob::usdcurrency($creadit->credit_amount); 
+                 ?>
+                <h5>You will be charged <b>{{$currencyConvert['currency']}} {{ number_format($currencyConvert['convert'], 2) }}</b> </h5>
             </div>
             <div class="card">
                 <form action="{{ url('service-provider/stripe')}}" method="post" id="payment-form">

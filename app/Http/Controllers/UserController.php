@@ -4,6 +4,7 @@ namespace Acelle\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Acelle\Library\Log as MailLog;
+use AmrShawky\LaravelCurrency\Facade\Currency;
 use Acelle\Model\Customer;
 use Acelle\Model\User;
 use Acelle\Model\Subdomain;
@@ -378,6 +379,10 @@ public function adminregister(Request $request)
     }
     public function credits(Request $request)
     {
+      // dd(Currency::convert()
+      //   ->from('USD')
+      //   ->to('EUR')->amount(50)
+      //   ->get());
 
       if ($request->isMethod('post')) {
         if($request->id){
@@ -385,6 +390,7 @@ public function adminregister(Request $request)
             $update->credit = $request->credit;
             $update->credit_amount = $request->credit_amount;
             $update->bundel_name = $request->bundel_name;
+            $update->currency = $request->currency;
             $update->update();
             return redirect()->back()->with('success', 'Update Successfully'); 
         }else{
@@ -394,6 +400,7 @@ public function adminregister(Request $request)
             $credit->credit = $request->credit;
             $credit->bundel_name = $request->bundel_name;
             $credit->subdomain = request('account');
+            $credit->currency = $request->currency;
             $credit->save();
         }
       }

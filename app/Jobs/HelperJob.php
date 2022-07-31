@@ -1,6 +1,7 @@
 <?php
 
 namespace Acelle\Jobs;
+use AmrShawky\LaravelCurrency\Facade\Currency;
 use Acelle\Model\Category;
 use Acelle\Model\StripeKey;
 use Acelle\Model\CreditAmount;
@@ -9,6 +10,7 @@ use Acelle\Model\DateFormet;
 use Acelle\Model\User;
 use Acelle\Model\JobDesign;
 use Acelle\Model\QuotePrice;
+use Acelle\Model\AdminCurrency;
 use Acelle\Library\ExtendedSwiftMessage;
 
 class HelperJob extends Base
@@ -82,5 +84,36 @@ class HelperJob extends Base
 
     public static function quoteprice(){
       return QuotePrice::where('subdomain',request('account'))->first();
+    }
+
+    public static function setcurrency($to,$amount){
+      
+      $currency = AdminCurrency::where('subdomain',request('account'))->first();
+        if($currency){
+          $code = $currency->code;
+        }else{
+          $code = 'USD';
+        }
+      $covert = Currency::convert()
+        ->from($to)
+        ->to($code)->amount($amount)->round(2)
+        ->get();
+          // dd(['convert' => $covert, 'currency' => $code]);
+        return ['convert' => $covert, 'currency' => $code] ;
+    }
+
+    public static function usdcurrency($amount){
+      $currency = AdminCurrency::where('subdomain',request('account'))->first();
+        if($currency){
+          $code = $currency->code;
+        }else{
+          $code = 'USD';
+        }
+      $covert = Currency::convert()
+        ->from('USD')
+        ->to($code)->amount($amount)->round(2)
+        ->get();
+          // dd(['convert' => $covert, 'currency' => $code]);
+        return ['convert' => $covert, 'currency' => $code] ;
     }
 }

@@ -58,6 +58,13 @@ vpn_key
                         </a>
                     </li>
                 @endif
+                  <li class="nav-item" rel0="AccountController/currency">
+                        <a href="{{ url("account/currency") }}" class="nav-link">
+                            <span class="material-icons-outlined">
+money
+</span> Currency
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>

@@ -126,6 +126,8 @@ return array(
     'Braintree\\' => array($vendorDir . '/braintree/braintree_php/lib/Braintree'),
     'Aws\\Sns\\' => array($vendorDir . '/aws/aws-php-sns-message-validator/src'),
     'Aws\\' => array($vendorDir . '/aws/aws-sdk-php/src'),
+    'AmrShawky\\LaravelCurrency\\' => array($vendorDir . '/amrshawky/laravel-currency/src'),
+    'AmrShawky\\' => array($vendorDir . '/amrshawky/currency/src'),
     'Acelle\\Extra\\LogViewer\\' => array($vendorDir . '/louis/log-viewer/src'),
     'Acelle\\Cashier\\' => array($vendorDir . '/acelle/cashier/src'),
     'Acelle\\' => array($baseDir . '/app'),

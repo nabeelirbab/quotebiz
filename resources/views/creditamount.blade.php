@@ -68,8 +68,11 @@
         <div class="nk-tb-col tb-col-lg">
             <span class="tb-lead-sub">{{$creadit->credit}}</span>
         </div>
+        <?php 
+          $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
+        ?>
         <div class="nk-tb-col text-right">
-            <span class="tb-amount">{{$creadit->credit_amount}} <span>USD</span></span>
+            <span class="tb-amount">{{$currencyConvert['convert']}}<span> {{$currencyConvert['currency']}}</span></span>
         </div>
         <div class="nk-tb-col text-right tb-col-sm">
             <span class="tb-amount">{{\Carbon\Carbon::parse($creadit->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
@@ -91,7 +94,7 @@
                         <div class="form-group">
                             <label class="form-label" >Bundel Name</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" name="bundel_name"  value="{{$creadit->bundel_name}}" placeholder="Enter Bundel Name">
+                                <input type="text" class="form-control" name="bundel_name"  value="{{$creadit->bundel_name}}" placeholder="Enter Bundel Name" required>
                             </div>
                         </div>
                     </div>
@@ -99,15 +102,29 @@
                         <div class="form-group">
                             <label class="form-label" >Credit</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" name="credit"  value="{{$creadit->credit}}" placeholder="Enter Credit">
+                                <input type="text" class="form-control" name="credit"  value="{{$creadit->credit}}" placeholder="Enter Credit" required>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label class="form-label" >Amount</label>
+                            <label class="form-label" >Currency</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$creadit->credit_amount}}" name="credit_amount"  placeholder="Enter Amount">
+                              <select class="form-control" name="currency" required>
+                                <option value="" selected>Select currency</option>
+                                <option value="USD" {{$creadit && $creadit->currency == 'USD' ? 'selected': ''}}>USD</option>
+                                <option value="EUR" {{$creadit && $creadit->currency == 'EUR' ? 'selected': ''}}>EUR</option>
+                                <option value="AUD" {{$creadit && $creadit->currency == 'AUD' ? 'selected': ''}}>AUD</option>
+                              </select>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label class="form-label" >Cost Amount</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$creadit->credit_amount}}" name="credit_amount"  placeholder="Enter Amount" required>
                             </div>
                         </div>
                     </div>
@@ -177,7 +194,7 @@
                 <div class="form-group">
                     <label class="form-label" >Bundel Name</label>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control" name="bundel_name" placeholder="Enter Bundel Name">
+                        <input type="text" class="form-control" name="bundel_name" placeholder="Enter Bundel Name" required>
                     </div>
                 </div>
             </div> 
@@ -185,15 +202,28 @@
                 <div class="form-group">
                     <label class="form-label" >Credit</label>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control" name="credit" placeholder="Enter Credit">
+                        <input type="text" class="form-control" name="credit" placeholder="Enter Credit" required>
                     </div>
                 </div>
             </div>
             <div class="col-sm-10">
                 <div class="form-group">
-                    <label class="form-label" >Amount</label>
+                    <label class="form-label">Currency</label>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control" name="credit_amount"  placeholder="Enter Amount">
+                          <select class="form-control" name="currency" required>
+                            <option value="" selected>Select currency</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="AUD">AUD</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label class="form-label" >Cost Amount</label>
+                    <div class="form-control-wrap">
+                        <input type="text" class="form-control" name="credit_amount"  placeholder="Enter Amount" required>
                     </div>
                 </div>
             </div>
@@ -216,7 +246,7 @@
 
 function quoteoption(event){
    if(event.value == 'category'){
-    var html ='<label for="inputState">Globaly set cost per quote</label>'+
+    var html ='<label for="inputState">Global credit cost per category</label>'+
        '<input type="number" @if($quotePrice) value="{{$quotePrice->price}}" @endif name="price" class="form-control" required ><br>'+
        '<div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>';
        $('#addOption').html(html);
