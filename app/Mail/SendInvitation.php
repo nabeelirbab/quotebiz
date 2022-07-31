@@ -28,6 +28,6 @@ class SendInvitation extends Mailable
      */
     public function build()
     {
-        return $this->subject('You Have Been Invited')->from('example@example.com', 'Quotebiz Team')->markdown('mail.send-invitation');
+        return $this->subject('You have been invited to join a Quotebiz account')->from('example@example.com', 'Quotebiz Team')->markdown('mail.send-invitation');
     }
 }
