@@ -10,15 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class SendInvitation extends Mailable
 {
     use Queueable, SerializesModels;
-    // public $maildata;
+    public $maildata;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-     public function __construct()
+     public function __construct($maildata)
     {
-        // $this->maildata = $maildata;
+        $this->maildata = $maildata;
     }
 
     /**
