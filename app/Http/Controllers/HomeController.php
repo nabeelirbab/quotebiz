@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Subscription;
 use Acelle\Model\Quote;
 use Acelle\Model\User;
+use Acelle\Model\SiteSetting;
 use Acelle\Model\BuyCreadit;
 use Auth;
 use Session;
@@ -86,5 +87,74 @@ class HomeController extends Controller
 
     public function supportchat(){
         return view('supportchat');
+    }
+
+    public function sitesetting(Request $request){
+
+     $sitesetting = SiteSetting::where('subdomain',request('account'))->first();
+      if($request->isMethod('post')){
+         if($sitesetting){
+
+          $sitesetting->subdomain = request('account');
+          $sitesetting->site_name = $request->site_name;
+          $sitesetting->site_keyword = $request->site_keyword;
+          $sitesetting->site_description = $request->site_description;
+
+          if($request->file('site_smalllogo')){
+             $sitesetting->site_logo_small = $this->fileUpload($request->file('site_smalllogo'),false);
+          }
+          if($request->file('site_largelogo')){
+              $sitesetting->site_logo_big = $this->fileUpload($request->file('site_largelogo'),false);
+          }
+          if($request->file('site_favicon')){
+              $sitesetting->site_favicon = $this->fileUpload($request->file('site_favicon'),false);
+          }
+          $sitesetting->save();
+         }else{
+
+          $sitesetting = new SiteSetting;
+          $sitesetting->subdomain = request('account');
+          $sitesetting->site_name = $request->site_name;
+          $sitesetting->site_keyword = $request->site_keyword;
+          $sitesetting->site_description = $request->site_description;
+
+          if($request->file('site_smalllogo')){
+             $sitesetting->site_logo_small = $this->fileUpload($request->file('site_smalllogo'),false);
+          }
+          if($request->file('site_largelogo')){
+              $sitesetting->site_logo_big = $this->fileUpload($request->file('site_largelogo'),false);
+          }
+          if($request->file('site_favicon')){
+              $sitesetting->site_favicon = $this->fileUpload($request->file('site_favicon'),false);
+          }
+          $sitesetting->save();
+         }
+
+      }
+
+        return view('sitesetting',compact('sitesetting'));
+    }
+
+    public function fileUpload($file,$thumbnail = true){
+
+             $uploadPath = storage_path('app/setting/');
+
+              if (!file_exists($uploadPath)) {
+                  mkdir($uploadPath, 0777, true);
+              }
+
+              $md5file = \md5_file($file);
+
+              $filename = $md5file.'.'.$file->getClientOriginalExtension();
+
+              // save to server
+              $file->move($uploadPath, $filename);
+
+              // create thumbnails
+              if ($thumbnail) {
+                  $img = \Image::make($uploadPath.$filename);
+              }
+
+              return  $filename;
     }
 }

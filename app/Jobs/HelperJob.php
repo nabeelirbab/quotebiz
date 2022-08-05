@@ -11,6 +11,7 @@ use Acelle\Model\User;
 use Acelle\Model\JobDesign;
 use Acelle\Model\QuotePrice;
 use Acelle\Model\AdminCurrency;
+use Acelle\Model\SiteSetting;
 use Acelle\Library\ExtendedSwiftMessage;
 
 class HelperJob extends Base
@@ -114,5 +115,9 @@ class HelperJob extends Base
         ->get();
           // dd(['convert' => $covert, 'currency' => $code]);
         return ['convert' => $covert, 'currency' => $code] ;
+    }
+
+    public static function site_setting(){
+     return  SiteSetting::where('subdomain',request('account'))->first();
     }
 }

@@ -28,7 +28,7 @@
                             <div class="text-center login-header">
                                 <a class="main-logo-big" href="{{ url('/') }}">
                                     @if (\Acelle\Model\Setting::get('site_logo_big'))
-                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" alt="">
+                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" style="width: 220px;" alt="">
                                     @else
                                         <img src="{{ URL::asset('images/logo_big.svg') }}" alt="">
                                     @endif

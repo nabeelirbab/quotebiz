@@ -335,6 +335,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription',
     Route::get('/support', 'HomeController@support');
     Route::get('/supportchat', 'HomeController@supportchat');
     Route::get('/customers', 'HomeController@customers');
+    Route::match(['get', 'post'],'/site-setting', 'HomeController@sitesetting');
     Route::get('/payments-receive', 'UserController@paymentsReceive');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
     Route::post('/quoteprice', 'UserController@quoteprice');
