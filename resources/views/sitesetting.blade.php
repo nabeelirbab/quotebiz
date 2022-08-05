@@ -1,6 +1,6 @@
 @extends('layouts.core.frontend')
 
-@section('title', 'Form Design')
+@section('title', 'Site Setting')
 
 @section('head')
   <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
@@ -126,6 +126,9 @@ $sitefavicon = '';
                      </div>
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-success btn-lg" type="submit">@if($sitesetting) Update @else Save @endif</button>
+                        @if($sitesetting)
+                        <a href="{{ url('removesetting') }}" onclick="return confirm('Are you sure you want to reset setting?');" class="btn btn-warning btn-lg" > Default Setting </a>
+                        @endif
                        <!--  <input type="submit" class="btn btn-default btn-lg" name="preview" value="Preview" type="submit"> -->
                     </div>
                 </div>

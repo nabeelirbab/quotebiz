@@ -157,4 +157,11 @@ class HomeController extends Controller
 
               return  $filename;
     }
+
+    public function removesetting(){
+ 
+     SiteSetting::where('subdomain',request('account'))->delete();
+     return Redirect::back();
+
+    }
 }
