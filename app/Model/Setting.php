@@ -55,9 +55,9 @@ class Setting extends Model
      */
     public static function get($name, $defaultValue=null)
     {
-        
+
         $adminsetting = SiteSetting::where('subdomain',request('account'))->first();
-        if($adminsetting){
+        if($adminsetting && $adminsetting->$name != null){
         if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_favicon'){
             
                 return $adminsetting->$name; 
