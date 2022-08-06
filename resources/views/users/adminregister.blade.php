@@ -28,8 +28,15 @@
                  <span class="text-danger">*</span>
              </label>
             <div class="input-group mb-3">
-            
-             <input type="text" class="form-control"  name="subdomain" placeholder="Enter Subdomain" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div style="width: 77%;">
+              @include('helpers.form_control', [
+                    'type' => 'text',
+                    'name' => 'subdomain',
+                    'value' => $user->subdomain,
+                    'help_class' => 'profile',
+                    'rules' => $user->registerRules()
+                ])
+            </div>
               <div class="input-group-append">
                 <span class="input-group-text" style="height: 45px;" id="basic-addon2">.quotebiz.io</span>
               </div>
