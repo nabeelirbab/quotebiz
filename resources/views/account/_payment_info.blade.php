@@ -28,7 +28,7 @@
 @else
     <p>{{ trans('messages.have_no_payment_method') }}</p>
 
-    <a href="{{ action('account/payment/edit') }}"
+    <a href="{{ url('account/payment/edit') }}"
         class="btn btn-secondary payment-method-edit">
         {{ trans('messages.add_payment_method') }}
     </a>

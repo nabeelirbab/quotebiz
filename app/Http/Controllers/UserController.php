@@ -91,7 +91,7 @@ class UserController extends Controller
             if (isset($request->redirect)) {
                 return redirect()->away(urldecode($request->redirect));
             } else {
-                $url = 'http://'.$userActivation->user->subdomain.'.'.str_replace('http://','', url('/login'));
+                $url = 'https://'.$userActivation->user->subdomain.'.'.str_replace('https://','', url('/login'));
                 // dd($url);
                 return redirect()->away($url);
             }
