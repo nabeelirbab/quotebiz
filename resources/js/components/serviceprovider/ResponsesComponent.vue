@@ -449,7 +449,7 @@
                 <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
             </a>
             <div class="chat-profile-body collapse " id="chat-options">
-                 <div class="preview-block" style="padding: 24px;">
+                 <div class="preview-block" style="padding: 24px;height: 250px;overflow: auto;">
                     <div class="row">
                     <h6>{{quote_category.category_name}} :</h6>
                     <br>
