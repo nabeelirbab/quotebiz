@@ -11,7 +11,7 @@
             <div class="col-md-2 text-end mt-60">
                 <a class="main-logo-big" href="{{ url('/') }}">
                     @if (\Acelle\Model\Setting::get('site_logo_big'))
-                        <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
+                        <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" alt="">
                     @else
                         <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
                     @endif
