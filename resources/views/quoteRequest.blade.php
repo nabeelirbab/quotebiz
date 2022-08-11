@@ -237,7 +237,7 @@ p.form-para::after{
 					<p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>{{$job_design->agent_no}}</strong></p>
 				</div>	
 				@endif
-				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 50px ">
+				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 50px " autocomplete="off">
 					{{ csrf_field()}}
 					<h4 class="form-heading">
 					{{ ($job_design) ? $job_design->title_heading : 'Where to-do gets done'}}</h4>
