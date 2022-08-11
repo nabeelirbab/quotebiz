@@ -6,7 +6,7 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ \Acelle\Cashier\Cashier::lr_action("HomeController@index") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.subscription') }}</li>
         </ul>
     </div>
@@ -28,9 +28,7 @@
                 
             <div class="d-flex align-items-center">
                 <form method="POST"
-                    action="{{ \Acelle\Cashier\Cashier::lr_action('\Acelle\Cashier\Controllers\OfflineController@claim', [
-                        'invoice_uid' => $invoice->uid
-                    ]) }}"
+                    action="{{ url('account/subscription/invoice/'.$invoice->uid.'/cancel') }}"
                 >
                     {{ csrf_field() }}
                     <button
@@ -38,11 +36,9 @@
                     >{{ trans('cashier::messages.offline.claim_payment') }}</button>
                 </form>
 
-                <form id="cancelForm" method="POST" action="{{ action('SubscriptionController@cancelInvoice', [
-                            'invoice_uid' => $invoice->uid,
-                ]) }}">
+                <form id="cancelForm" method="POST" action="{{ url('account/subscription/invoice/'.$invoice->uid.'/cancel') }}">
                     {{ csrf_field() }}
-                    <a href="{{ action('SubscriptionController@index') }}">
+                    <a href="{{ url('account/subscription') }}">
                         {{ trans('cashier::messages.go_back') }}
                     </a>
                 </form>

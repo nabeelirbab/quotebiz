@@ -8,5 +8,5 @@ Accept Invitation
 </a>
 <br>
 Thanks,<br>
-{{ config('app.name') }}
+{{ \Acelle\Model\Setting::get('site_name') }}
 @endcomponent

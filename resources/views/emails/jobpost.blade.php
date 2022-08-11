@@ -7,5 +7,5 @@ Your job post in Quotebiz. We occasionally need to follow up and verify the requ
 </p>
 <br>
 Thanks,<br>
-{{ config('app.name') }}
+{{ \Acelle\Model\Setting::get('site_name') }}
 @endcomponent

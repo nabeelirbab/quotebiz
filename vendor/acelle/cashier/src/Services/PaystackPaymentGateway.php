@@ -40,12 +40,7 @@ class PaystackPaymentGateway implements PaymentGatewayInterface
 
     public function getDescription() : string
     {
-        return trans('cashier::messages.paystack.description');
-    }
-
-    public function getShortDescription() : string
-    {
-        return trans('cashier::messages.paystack.short_description');
+        return 'Receive payments from Credit / Debit card to your Paystack account';
     }
 
     public function getSettingsUrl() : string

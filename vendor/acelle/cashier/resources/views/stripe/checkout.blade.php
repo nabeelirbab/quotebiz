@@ -77,7 +77,7 @@
                 </div>
 
                 <a
-                    href="{{ \Acelle\Cashier\Cashier::lr_action('SubscriptionController@index') }}"
+                    href="{{ url('account/subscription') }}"
                     class="text-muted mt-4" style="text-decoration: underline; display: block"
                 >{{ trans('cashier::messages.stripe.return_back') }}</a>
                 
@@ -162,7 +162,7 @@
                                     payment_method_id: result.paymentIntent.payment_method,
                                 }
                             }).done(function(response) {
-                                window.location = '{{ action('SubscriptionController@index') }}';
+                                window.location = '{{ url('account/subscription') }}';
                             });
             
                         }

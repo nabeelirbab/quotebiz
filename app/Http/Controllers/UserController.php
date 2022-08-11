@@ -524,6 +524,20 @@ public function adminregister(Request $request)
 
      return $emails;
    }
+
+   public function userImage(Request $request){
+     $user = Auth::user();
+     if($request->file('file')){
+        $image = $request->file('file');
+        $new_image = time().$image->getClientOriginalName();
+        $destination = 'frontend-assets/images/users';
+        $image->move(public_path($destination),$new_image);
+        $user->user_img = $new_image; 
+        $user->save();
+        return url($destination).'/'.$new_image;
+     }
+   }
+
     public function logout(){
 
       Auth::logout();

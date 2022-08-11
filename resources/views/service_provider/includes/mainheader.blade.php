@@ -1,4 +1,7 @@
  <!-- main header @s -->
+ <?php
+ $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
+ ?>
                 <div class="nk-header nk-header-fixed nk-header-fluid is-light">
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
@@ -7,8 +10,8 @@
                             </div>
                             <div class="nk-header-brand d-xl-none">
                                 <a href="{{ url('service-providers') }}" class="logo-link">
-                                    <img class="logo-light logo-img" src="{{asset('images/logo.png') }}" srcset="{{asset('images/logo2x.png 2x') }}" alt="logo">
-                                    <img class="logo-dark logo-img" src="{{asset('images/logo-dark.png') }}" srcset="{{asset('images/logo-dark2x.png 2x') }}" alt="logo-dark">
+                                    <img class="logo-light logo-img" src="{{$sitelargelogo }}" >
+                                    <img class="logo-dark logo-img" src="{{$sitelargelogo }}" alt="logo-dark">
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <!-- <div class="nk-header-search ml-3 ml-xl-0">
@@ -144,9 +147,18 @@
                                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                             <div class="dropdown-inner user-card-wrap bg-lighter">
                                                <div class="user-card">
-                                                    <div class="user-avatar">
-                                                        <span>{{mb_substr(Auth::user()->first_name, 0, 1)}}{{mb_substr(Auth::user()->last_name, 0, 1)}}</span>
+                                                <div class="uploadimg">
+                                                    @if(Auth::user()->user_img)
+                                                    <div class="nk-msg-media user-avatar" style="margin-right: 15px;">
+                                                    <img src="{{asset('frontend-assets/images/users/'.Auth::user()->user_img)}}" alt="">
                                                     </div>
+                                                    @else
+                                                    <div class="user-avatar bg-primary" style="margin-right: 15px;">
+                                                    <span>{{mb_substr(Auth::user()->first_name, 0, 1)}}{{mb_substr(Auth::user()->last_name, 0, 1)}}</span>
+                                                    </div>
+                                                    @endif 
+                                                </div>
+                                                  
                                                     <div class="user-info">
                                                         <span class="lead-text">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span>
                                                         <span class="sub-text">{{Auth::user()->email}}</span>

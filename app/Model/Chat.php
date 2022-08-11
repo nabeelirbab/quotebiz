@@ -11,6 +11,6 @@ class Chat extends Model
 
     public function user()
     {
-        return $this->belongsTo('Acelle\Model\User','receiver_id')->select('id','first_name','last_name');
+        return $this->belongsTo('Acelle\Model\User','receiver_id')->select('id','first_name','last_name','user_img');
     }
 }

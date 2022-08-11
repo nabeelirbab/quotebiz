@@ -23,10 +23,17 @@
 @endsection
 
 @section('content')
-
+<?php
+ $date = Acelle\Jobs\HelperJob::dateFormat();
+  if($date == 'd/m/Y'){
+     $date = 'DD/MM/YYYY';
+  }else{
+    $date = 'MM/DD/YYYY';
+  }
+?>
  <!-- content @s -->
  <div id="app" class="mt-4">
-        <question-component></question-component>
+        <question-component dateformat='{{$date}}'></question-component>
   </div>
 <!-- content @e -->
 @endsection

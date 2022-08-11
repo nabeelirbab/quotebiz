@@ -40,12 +40,7 @@ class RazorpayPaymentGateway implements PaymentGatewayInterface
 
     public function getDescription() : string
     {
-        return trans('cashier::messages.razorpay.description');
-    }
-
-    public function getShortDescription() : string
-    {
-        return trans('cashier::messages.razorpay.short_description');
+        return 'Start Accepting Payments Instantly with Razorpay\'s Free Payment Gateway. Supports Netbanking, Credit, Debit Cards etc';
     }
 
     public function validate()

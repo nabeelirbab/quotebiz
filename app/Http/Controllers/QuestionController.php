@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resourcRVe.
      *
      * @return \Illuminate\Http\Response
      */
@@ -181,13 +181,16 @@ class QuestionController extends Controller
        return view('questions.questionappend',compact('questions'));
     }
     public function deletequestion($account,$id){
-        return Question::where('id',$id)->delete();
+        Question::where('id',$id)->delete();
+        return  redirect()->back();
     }
     public function deleteoption($account,$id){
-        return QuestionChoice::where('id',$id)->delete();
+         QuestionChoice::where('id',$id)->delete();
+         return  redirect()->back();
     }
     public function deletechoice($account,$id){
-        return QuestionChoice::where('question_id',$id)->delete();
+        QuestionChoice::where('question_id',$id)->delete();
+        return  redirect()->back();
     }
 
     public function updateOrder(Request $request)
