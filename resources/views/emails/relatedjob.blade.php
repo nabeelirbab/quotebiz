@@ -14,7 +14,7 @@
 				<tr>
 					<td align="center" valign="top" style="padding:20px 10px">
 						<a href="" >
-						   <img alt="Quotebiz.io" src="{{ \Acelle\Model\Setting::get('site_logo_small') }}" width="105" height="30" style="display:block;width:105px;max-width:105px;min-width:105px;font-family:'Lato',Helvetica,Arial,sans-serif;color:#ffffff;font-size:18px" border="0" class="CToWUd">
+						   <img alt="Quotebiz.io" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small')) }}" width="105" height="30" style="display:block;width:105px;max-width:105px;min-width:105px;font-family:'Lato',Helvetica,Arial,sans-serif;color:#ffffff;font-size:18px" border="0" class="CToWUd">
 						</a>
 					    <img src="https://ci5.googleusercontent.com/proxy/a70bhQBaRzSsThqCxZj5fkzkvRW7aIlrCbOo5x0_EcQXEaHqa5sBvLuVN36Q6TYm5IuUehVDUABxq7ZlxZ8xigEWS9_JaDI=s0-d-e1-ft#https://www.bark.com/img_temp/4314881479/tracker.jpg" alt="Bark.com" width="1" height="1" class="CToWUd">
 					</td>
