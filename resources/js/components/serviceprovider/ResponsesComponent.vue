@@ -39,7 +39,7 @@
                     <div class="nk-msg-media user-avatar" v-if="quote.chatcustomer.user_img">
                       <img :src="hostname+'/frontend-assets/images/users/'+quote.chatcustomer.user_img" alt="">
                     </div>
-                    <div class="user-avatar sq bg-purple" v-else>
+                    <div class="user-avatar bg-purple" v-else>
                         <span>{{getFirstLetter(quote.chatcustomer.first_name)}}{{getFirstLetter(quote.chatcustomer.last_name)}}</span>
                     </div>
                 <div class="nk-msg-info">
@@ -78,7 +78,7 @@
                   <div class="nk-msg-media user-avatar" v-if="quote.chatcustomer.user_img">
                       <img :src="hostname+'/frontend-assets/images/users/'+quote.chatcustomer.user_img" alt="">
                     </div>
-                    <div class="user-avatar sq bg-purple" v-else>
+                    <div class="user-avatar bg-purple" v-else>
                         <span>{{getFirstLetter(quote.chatcustomer.first_name)}}{{getFirstLetter(quote.chatcustomer.last_name)}}</span>
                     </div>
                 <div class="nk-msg-info">
@@ -117,7 +117,7 @@
                 <div class="nk-msg-media user-avatar" v-if="quote.chatcustomer.user_img">
                       <img :src="hostname+'/frontend-assets/images/users/'+quote.chatcustomer.user_img" alt="">
                     </div>
-                    <div class="user-avatar sq bg-purple" v-else>
+                    <div class="user-avatar bg-purple" v-else>
                         <span>{{getFirstLetter(quote.chatcustomer.first_name)}}{{getFirstLetter(quote.chatcustomer.last_name)}}</span>
                     </div>
                 <div class="nk-msg-info">
@@ -157,7 +157,7 @@
                <div class="nk-msg-media user-avatar" v-if="quote.chatcustomer.user_img">
                       <img :src="hostname+'/frontend-assets/images/users/'+quote.chatcustomer.user_img" alt="">
                     </div>
-                    <div class="user-avatar sq bg-purple" v-else>
+                    <div class="user-avatar bg-purple" v-else>
                         <span>{{getFirstLetter(quote.chatcustomer.first_name)}}{{getFirstLetter(quote.chatcustomer.last_name)}}</span>
                     </div>
                 <div class="nk-msg-info">
@@ -195,7 +195,7 @@
                 <div class="nk-msg-media user-avatar" v-if="quote.chatcustomer.user_img">
                       <img :src="hostname+'/frontend-assets/images/users/'+quote.chatcustomer.user_img" alt="">
                     </div>
-                    <div class="user-avatar sq bg-purple" v-else>
+                    <div class="user-avatar bg-purple" v-else>
                         <span>{{getFirstLetter(quote.chatcustomer.first_name)}}{{getFirstLetter(quote.chatcustomer.last_name)}}</span>
                     </div>
                 <div class="nk-msg-info">
