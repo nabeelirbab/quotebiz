@@ -1,6 +1,6 @@
 @component('mail::layout')
     {{-- Header --}}
-    @slot('header')
+   @slot('header')
         @component('mail::header', ['url' => config('app.url')])
             {{ \Acelle\Model\Setting::get('site_name') }}
         @endcomponent

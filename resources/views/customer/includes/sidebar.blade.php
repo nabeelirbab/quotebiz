@@ -1,4 +1,8 @@
   <!-- sidebar @s -->
+  <?php
+ $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
+ $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
+ ?>
             <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-menu-trigger">
@@ -7,8 +11,9 @@
                     </div>
                     <div class="nk-sidebar-brand">
                         <a href="{{url('customer')}}" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="{{ asset('/images/logo.png') }}" srcset="{{ asset('/images/logo2x.png 2x') }}" alt="logo">
-                            <img class="logo-dark logo-img" src="{{ asset('/images/logo-dark.png') }}" srcset="{{ asset('/images/logo-dark2x.png 2x') }}" alt="logo-dark">
+                            <img class="logo-light logo-img" src="{{ $sitesmalllogo }}"  alt="logo">
+                             <img class="logo-dark logo-img" src="{{ $sitelargelogo }}" 
+                 alt="logo-dark">
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->

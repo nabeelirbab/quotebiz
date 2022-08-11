@@ -34,9 +34,12 @@
             <template v-for="quote in filteredUserlist" >
             <div class="nk-msg-item " v-bind:class="{current: quote.id == quoteChat.id }" v-on:click="openChat($event,quote)">
                 <p style="display:none">{{activeJob + 1}}</p>
-                <div class="nk-msg-media user-avatar">
-                    <img src="/images/avatar/b-sm.jpg" alt="">
-                </div>
+                 <div class="nk-msg-media user-avatar" v-if="quote.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quote.chatsp.user_img" alt="">
+                    </div>
+                    <div class="user-avatar sq bg-purple" v-else>
+                        <span>{{getFirstLetter(quote.chatsp.first_name)}}{{getFirstLetter(quote.chatsp.last_name)}}</span>
+                    </div>
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
@@ -71,9 +74,12 @@
             <template v-for="quote in orderedUsers" v-if="quote.quote.status == 'pending'" >
             <div class="nk-msg-item " v-bind:class="{current: quote.id == quoteChat.id }" v-on:click="openChat($event,quote)">
                 <p style="display:none">{{activeJob + 1}}</p>
-                <div class="nk-msg-media user-avatar">
-                    <img src="/images/avatar/b-sm.jpg" alt="">
-                </div>
+                <div class="nk-msg-media user-avatar" v-if="quote.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quote.chatsp.user_img" alt="">
+                    </div>
+                    <div class="user-avatar sq bg-purple" v-else>
+                        <span>{{getFirstLetter(quote.chatsp.first_name)}}{{getFirstLetter(quote.chatsp.last_name)}}</span>
+                    </div>
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
@@ -107,9 +113,12 @@
             <template v-for="quote in orderedUsers" v-if="quote.quote.status == 'won'" >
             <div class="nk-msg-item"  v-bind:class="{current: quote.id == quoteChat.id }" v-on:click="openChat($event,quote)">
                 <p style="display:none">{{wonJob + 1}}</p>
-                <div class="nk-msg-media user-avatar">
-                    <img src="/images/avatar/b-sm.jpg" alt="">
-                </div>
+               <div class="nk-msg-media user-avatar" v-if="quote.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quote.chatsp.user_img" alt="">
+                    </div>
+                    <div class="user-avatar sq bg-purple" v-else>
+                        <span>{{getFirstLetter(quote.chatsp.first_name)}}{{getFirstLetter(quote.chatsp.last_name)}}</span>
+                    </div>
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
@@ -143,9 +152,12 @@
             <template v-for="quote in orderedUsers" v-if="quote.quote.status == 'done'" >
             <div class="nk-msg-item " v-bind:class="{current: quote.id == quoteChat.id }" v-on:click="openChat($event,quote)">
                 <p style="display:none">{{doneJob + 1}}</p>
-                <div class="nk-msg-media user-avatar">
-                    <img src="/images/avatar/b-sm.jpg" alt="">
-                </div>
+               <div class="nk-msg-media user-avatar" v-if="quote.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quote.chatsp.user_img" alt="">
+                    </div>
+                    <div class="user-avatar sq bg-purple" v-else>
+                        <span>{{getFirstLetter(quote.chatsp.first_name)}}{{getFirstLetter(quote.chatsp.last_name)}}</span>
+                    </div>
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
@@ -205,7 +217,10 @@
     <div class="nk-msg-head-meta" v-if="quoteChat.chatsp">
        <div class=" d-none d-lg-block">
                 <a href="#" class="d-flex align-items-center">
-                    <div class="user-avatar sq bg-purple"><span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span></div>
+                    <div class="nk-msg-media user-avatar" v-if="quoteChat.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatsp.user_img" alt="">
+                    </div>
+                    <div class="user-avatar sq bg-purple" v-else><span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span></div>
                     <div class="ml-3">
                         <h6 class="title mb-1" >{{quoteChat.chatsp.first_name}} {{quoteChat.chatsp.last_name}}</h6>
                     </div>
@@ -250,7 +265,10 @@
         <template v-if="chatData.messageStart == 0">
           <div class="chat is-you" v-if="loginUser != chatData.sender_id">
             <div class="chat-avatar">
-                <div class="user-avatar bg-purple">
+                <div class="nk-msg-media user-avatar" v-if="quoteChat.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatsp.user_img" alt="">
+                    </div>
+                <div class="user-avatar bg-purple" v-else>
                     <span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span>
                 </div>
             </div>
@@ -345,22 +363,21 @@
    <VEmojiPicker @select="selectEmoji" class="" v-bind:class="{activeemoji: isEmoji}" v-if="isEmoji" />
     <div class="nk-chat-editor">
         <div class="nk-chat-editor-upload  ml-n1">
-            <a href="#" class="btn btn-sm btn-icon btn-trigger text-primary toggle-opt" data-target="chat-upload"><em class="icon ni ni-plus-circle-fill"></em></a>
-            <div class="chat-upload-option" data-content="chat-upload">
+           <div class="chat-upload-option expanded p-0" data-content="chat-upload">
                 <ul class="">
                  <li><a href="#">
                     <label for="fileupload" class="mb-0"> <em class="icon ni ni-img-fill"></em></label>
                     <input type="file" id="fileupload" ref="myFiles" style="display:none" @change="uploadfile($event)" multiple>
                     </a>
                 </li>
-                    <!-- <li><a href="#"><em class="icon ni ni-camera-fill"></em></a></li>
-                    <li><a href="#"><em class="icon ni ni-mic"></em></a></li>
-                    <li><a href="#"><em class="icon ni ni-grid-sq"></em></a></li> -->
+                    <!-- <li><a href="#"><em class="icon ni ni-camera-fill"></em></a></li> -->
+                    <!-- <li><a href="#"><em class="icon ni ni-mic"></em></a></li> -->
+                    <!-- <li><a href="#"><em class="icon ni ni-grid-sq"></em></a></li> -->
                 </ul>
             </div>
         </div>
         <div class="nk-chat-editor-form">
-            <div class="form-control-wrap">
+            <div class="form-control-wrap" style="margin-left:30px">
                 <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" @keydown.enter.exact.prevent
               @keyup.enter.exact="chatStart()"  placeholder="Type your message..."></textarea>
             </div>
@@ -379,7 +396,10 @@
 
 <div class="nk-msg-profile"  id="chatPanel" style="display:none" v-bind:class="{visible: isVisible}" >
   <div class="user-card user-card-s2 my-4"  v-if="quoteChat.chatsp">
-        <div class="user-avatar md bg-purple">
+    <div class="nk-msg-media user-avatar" v-if="quoteChat.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatsp.user_img" alt="">
+                    </div>
+        <div class="user-avatar md bg-purple" v-else>
             <span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span>
         </div>
         <div class="user-info">
@@ -400,16 +420,33 @@
     <div class="chat-profile">
         <div class="chat-profile-group">
             <a href="#" class="chat-profile-head" data-toggle="collapse" data-target="#chat-options">
-                <h6 class="title overline-title">Options</h6>
+                <h6 class="title overline-title">Quote Details</h6>
                 <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
             </a>
             <div class="chat-profile-body collapse " id="chat-options">
-                <div class="chat-profile-body-inner">
-                    <ul class="chat-profile-options">
-                        <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-edit-alt"></em><span class="lead-text">Nickname</span></a></li>
-                        <li><a class="chat-option-link chat-search-toggle" href="#"><em class="icon icon-circle bg-light ni ni-search"></em><span class="lead-text">Search In Conversation</span></a></li>
-                       <!--  <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><span class="lead-text">Change Theme</span></a></li> -->
-                    </ul>
+                <div class="preview-block" style="padding: 24px;">
+                    <div class="row">
+                    <h6>{{quote_category.category_name}} :</h6>
+                    <br>
+
+                       <div class="col-md-12 mt-1 mb-1" v-for="questionall in getquestions">
+                         <h6>{{questionall.questions.question}}</h6>
+                         
+                         <template v-for="choices in questionall.choice">
+                             
+                             <p class="fs-2">{{choices.choice_value}}</p>
+                         </template>
+                         
+                     </div>
+                     
+
+                     <br>
+                      <br>
+                    <div class="mt-4">
+                     <h6>Additional Information</h6>
+                     <p>{{additional_info}}</p>
+                     </div>
+                 </div>
                 </div>
             </div>
         </div><!-- .chat-profile-group -->
@@ -481,7 +518,10 @@
     <div class="nk-msg-head-meta" v-if="quoteChat.chatsp">
        <div class=" d-none d-lg-block">
                 <a href="#" class="d-flex align-items-center">
-                    <div class="user-avatar sq bg-purple"><span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span></div>
+                    <div class="nk-msg-media user-avatar" v-if="quoteChat.chatsp.user_img">
+                      <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatsp.user_img" alt="">
+                    </div>
+                    <div class="user-avatar sq bg-purple" v-else><span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span></div>
                     <div class="ml-3">
                         <h6 class="title mb-1" >{{quoteChat.chatsp.first_name}} {{quoteChat.chatsp.last_name}}</h6>
                     </div>
@@ -549,7 +589,10 @@ data() {
         wonJob: 0,
         doneJob: 0,
         chatHead: true,
-        userSearch: ''
+        userSearch: '',
+        quote_category:'',
+        getquestions:{},
+        additional_info: ''
         };
 },
 sockets: {
@@ -764,6 +807,9 @@ methods: {
         openChat(e,quote){
             console.log(quote);
             this.quoteChat = quote;
+            this.quote_category = this.quoteChat.quote.category;
+            this.getquestions = this.quoteChat.quote.questionsget;
+            this.additional_info = this.quoteChat.quote.additional_info;
             this.quoteChat.unread_msg_count = 0;
             this.isStartshowProfile = false;
             this.isProfileshown = true;

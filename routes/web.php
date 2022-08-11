@@ -164,11 +164,8 @@ Route::name('customer.')->prefix('customer')->group(function () {
     Route::get('/getprovider', 'ChatController@getProviderfriend');
     Route::post('/change-status', 'Customer\QuoteController@changeStatus');
     Route::post('/profile-update', 'Customer\QuoteController@profileUpdate');
+    Route::post('/userImg', 'UserController@userImage');
 
-
-
-      
-  
 
     Route::get('/profile', function () {
         return view('customer.profile');
@@ -220,7 +217,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider']], fu
     Route::get('/leadsquotes','ServiceProvider\QuoteController@leadsquotes');
     Route::get('/newjob/{id}','ServiceProvider\QuoteController@newJob');
     Route::post('/profile-update', 'ServiceProvider\QuoteController@profileUpdate');
-
+    Route::post('/userImg', 'UserController@userImage');
     Route::get('/getcustomer','ChatController@getCustomerfriend');
     Route::post('/storequotation','ChatController@storequotation');
     
@@ -260,6 +257,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
+   
     Route::get('/preview-design', 'UserController@formdesign');
 
         // Question

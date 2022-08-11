@@ -205,9 +205,9 @@
                                 <div class="form-control-wrap">
                                  <input type="text" id="essai" placeholder="Email">
                                 </div>
+                                <span>*Please click enter when add email for send multiple email</span>
                             </div>
                         </div>
-                      
                         <div class="col-sm-10 text-center mb-5">
                             <button class="btn btn-success btn-lg" id="sendemail" type="button">Send</button>
                               <button class="btn btn-primary btn-lg" style="display: none" id="loaderbtn" type="button" disabled>
@@ -242,10 +242,11 @@
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/jquery.email.multiple.js') }}"></script>
 <script>
-        $(document).ready(function($){
-          
-            $("#essai").email_multiple({
-                reset: true
+    $(document).ready(function($){
+           $("#essai").email_multiple({
+                reset: true,
+                theme: 'bootstrap',
+                checkDupEmail: true
             });
 
             $('#sendemail').click(function(){
@@ -274,7 +275,7 @@
                     }
                 });
             }else{
-                alert('Enter email');
+                alert('Please add email and click enter');
             }
             })
         });

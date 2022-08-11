@@ -95,7 +95,7 @@
                                 <span>{{question.choice_selection}}</span>
                             </div>
                             <div class="nk-tb-col tb-col-lg">
-                                <span>{{question.created_at | moment('l')}}</span>
+                                <span>{{dateFormat(question.created_at)}}</span>
                             </div>
                             <div class="nk-tb-col tb-col-md">
                                 <span class="tb-status text-success">Active</span>
@@ -155,7 +155,7 @@
                                                         <span v-else><img :src="hostname+'/frontend-assets/images/icons/option.png'"></span>
                                                     </div>
                                                     <div class="nk-tb-col tb-col-lg">
-                                                        <span>{{option.created_at | moment('l')}}</span>
+                                                        <span>{{dateFormat(option.created_at)}}</span>
                                                     </div>
                                                     
                                                     
@@ -201,13 +201,16 @@ import draggable from 'vuedraggable'
 import VueEasyLightbox from 'vue-easy-lightbox';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import moment from 'moment';
 
 export default {
  components: {
     draggable,
     VueEasyLightbox
   },
-
+props: [
+          'dateformat',
+          ],
 data() {
     return {
       categorieslist: [],
@@ -218,6 +221,10 @@ data() {
 
 
 methods: {
+
+        dateFormat(date) {
+          return moment(date).format(this.dateformat);
+        },
        categories(){
            axios.get('questions/categories')
             .then((response) => {

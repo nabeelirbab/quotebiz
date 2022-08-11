@@ -30,6 +30,6 @@ class ReceiveQuotation extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->maildata['subject'])->from('example@example.com', 'Quotebiz Team')->markdown('emails.receivequotation');
+        return $this->subject($this->maildata['subject'])->from('example@example.com', \Acelle\Model\Setting::get('site_name').' Team')->markdown('emails.receivequotation');
     }
 }

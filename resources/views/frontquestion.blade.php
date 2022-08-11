@@ -286,7 +286,7 @@
 						<div class="row d-flex justify-content-center" style="max-width: 100%">
                             <div class="form-row col-md-12">
 	                    	<div class="form-holder">
-	                    		<span>Where do you need it?</span>
+	                    		<!-- <span>Where do you need it?</span> -->
 	                    		<input type="date" class="form-control zipclass" name="date[]" placeholder="Enter Postcode" required>
 	                    	</div>
 	                    </div>
@@ -295,7 +295,7 @@
 						<div class="row d-flex justify-content-center" style="max-width: 100%">
                          <div class="form-row col-md-12">
 	                    	<div class="form-holder">
-	                    		<span>Where do you need it?</span>
+	                    		<!-- <span>Where do you need it?</span> -->
 	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" required>
 	                    	</div>
 	                    </div>

@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
     <head>
         @include('layouts.core._head')
-
+        <style type="text/css">
+            .dogcFe {
+              background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
+             }
+             .btn-primary{
+                    border: none!important;
+                    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+                    height: 46px!important;
+                }
+        </style>
         @include('layouts.core._script_vars')
     </head>
-    <body class="bg-slate-800">
+    <body class="bg-slate-800 dogcFe">
         <!-- Page container -->
         <div class="page-container login-container">
             @if (\Auth::check())

@@ -124,7 +124,7 @@
                 '<div class="col-sm-4" style="padding-right: 0;"><span title="Remove Question" class="removeQuestions material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;">remove_circle</span></div> </div>'+
                 '<div class="row"><div class="col-sm-10 mb-4">'+
                         '<div class="form-group">'+
-                            '<label class="form-label" for="default-01">Enter Question'+conditionUp+'</label>'+
+                            '<label class="form-label" for="default-01">Enter Question</label>'+
                             '<div class="form-control-wrap">'+
                                 '<input type="text" class="form-control" name="question['+storageid+']"  placeholder="Enter Question" required>'+
                             '</div>'+
