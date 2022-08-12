@@ -5,7 +5,7 @@
 <td class="header">
 <a href="{{ url('') }}" style="display: inline-block;">
 <!-- <h4>{{\Acelle\Model\Setting::get('site_name')}}</h4> -->
-<img src="{{ $sitelargelogo }}">
+<img src="{{ $sitelargelogo }}" style="max-width: 200px !important">
 
 </a>
 </td>
