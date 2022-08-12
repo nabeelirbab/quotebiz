@@ -4119,7 +4119,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatsp.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatsp.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -4178,7 +4178,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatsp.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatsp.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -4230,7 +4230,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatsp.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatsp.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -4282,7 +4282,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatsp.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatsp.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -4782,7 +4782,9 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "preview-block",
     staticStyle: {
-      padding: "24px"
+      padding: "24px",
+      height: "250px",
+      overflow: "auto"
     }
   }, [_c("div", {
     staticClass: "row"
@@ -5976,7 +5978,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatcustomer.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatcustomer.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -6031,7 +6033,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatcustomer.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatcustomer.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -6076,7 +6078,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatcustomer.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatcustomer.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -6121,7 +6123,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatcustomer.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatcustomer.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -6166,7 +6168,7 @@ var render = function render() {
         alt: ""
       }
     })]) : _c("div", {
-      staticClass: "user-avatar sq bg-purple"
+      staticClass: "user-avatar bg-purple"
     }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.chatcustomer.first_name)) + _vm._s(_vm.getFirstLetter(quote.chatcustomer.last_name)))])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
@@ -6645,7 +6647,9 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "preview-block",
     staticStyle: {
-      padding: "24px"
+      padding: "24px",
+      height: "250px",
+      overflow: "auto"
     }
   }, [_c("div", {
     staticClass: "row"
