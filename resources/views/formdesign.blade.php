@@ -200,7 +200,7 @@
 
         var html =  '<label class="form-label" for="default-01">Business No</label>'+
                     '<div class="form-control-wrap">'+
-                    '<input type="text" class="form-control" @if($formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" placeholder="Enter business phone number" required>'+
+                    '<input type="text" class="form-control" @if($formdesign && $formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" placeholder="Enter business phone number" required>'+
                             '</div>';
 
                if(val == 0){
