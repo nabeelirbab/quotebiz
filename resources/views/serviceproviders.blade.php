@@ -205,7 +205,7 @@
                                 <div class="form-control-wrap">
                                  <input type="text" id="essai" placeholder="Email">
                                 </div>
-                                <span>*Please click enter when add email for send multiple email</span>
+                                <span>*Please press enter add email(s)</span>
                             </div>
                         </div>
                         <div class="col-sm-10 text-center mb-5">

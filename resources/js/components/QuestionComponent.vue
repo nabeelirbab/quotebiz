@@ -59,10 +59,11 @@
                  <template v-for="(category, keyIndex) in categoriesData">
                   <div :id="'accordion'+category.id" class="accordion">
                   <div class="accordion-item">
-                      <a href="#" class="accordion-head" data-toggle="collapse" :data-target="'#accordion-item-'+category.id">
+                      <div class="accordion-head" data-toggle="collapse" :data-target="'#accordion-item-'+category.id">
                           <h6 class="title">{{category.category_name}}</h6>
+                         <a :href="hostname+'/questions/add-question?category_id='+category.id"> <em class="icon ni ni-edit-alt edit-icon"></em></a>
                           <span class="accordion-icon"></span>
-                      </a>
+                      </div>
                       <div class="accordion-body collapse" :id="'accordion-item-'+category.id" :data-parent="'#accordion'+category.id">
                           <div class="accordion-inner">
                             <div class="card-inner p-0">
@@ -266,6 +267,13 @@ mounted() {
 };
 </script>
 <style type="text/css">
-
-    
+.edit-icon{
+  position: absolute;
+    right: 4rem;
+    top: 50%;
+    font-size: 1rem;
+    color: #364a63;
+    transform: translateY(-50%);
+    transition: rotate 0.4s;
+}
 </style>

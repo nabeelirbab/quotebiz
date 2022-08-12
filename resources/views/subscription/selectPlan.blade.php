@@ -18,7 +18,7 @@
 @section('content')    
     <div class="container mt-4 mb-5">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <h2 class="mb-4">{{ trans('messages.subscription.choose_a_plan') }}</h2>
                 @if ($subscription)
                     @include('elements._notification', [
@@ -58,7 +58,7 @@
                                     class="new-price-item mb-3 d-inline-block plan-item
                                         {{ $subscription && $subscription->plan->id == $plan->id ? 'current' : '' }}
                                     "
-                                    style="width: calc(33% - 20px)">
+                                    style="width: calc(25% - 20px)">
                                     <div style="height: 100px">
                                         <div class="price">
                                             {!! format_price($plan->price, $plan->currency->format, true) !!}
