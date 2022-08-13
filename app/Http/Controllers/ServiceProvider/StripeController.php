@@ -44,6 +44,7 @@ class StripeController extends Controller
     {
     	$creadit = CreditAmount::find($request->id);
       $user = auth()->user();
+      $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
     	// dd((int)$creadit->amount * 100);
     	$stripeData = StripeKey::where('subdomain',request('account'))->first();
         Stripe\Stripe::setApiKey($stripeData->stripe_secret);
@@ -53,7 +54,7 @@ class StripeController extends Controller
         'description' => "quotebiz.com platform's user",
     ]);
         $payment = Stripe\Charge::create([
-                "amount" => (int)$creadit->credit_amount * 100,
+                "amount" => (int)number_format($currencyConvert['convert'], 2) * 100,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
                 "description" => "This payment is tested purpose quotebiz.com"

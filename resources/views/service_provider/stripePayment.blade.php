@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="mb-3">
               <?php 
-                  $currencyConvert = Acelle\Jobs\HelperJob::usdcurrency($creadit->credit_amount); 
+                 $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount); 
                  ?>
                 <h5>You will be charged <b>{{$currencyConvert['currency']}} {{ number_format($currencyConvert['convert'], 2) }}</b> </h5>
             </div>
