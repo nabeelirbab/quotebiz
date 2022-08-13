@@ -68,7 +68,7 @@ class StripeController extends Controller
 
           $paymentDone = new BuyCreadit;
           $paymentDone->payment_id = $payment->id;
-          $paymentDone->amount = $creadit->credit_amount;
+          $paymentDone->amount = number_format($currencyConvert['convert'], 2);
           $paymentDone->user_id = Auth::user()->id;
           $paymentDone->subdomain = request('account');
           $paymentDone->creadits = $creadit->credit;
