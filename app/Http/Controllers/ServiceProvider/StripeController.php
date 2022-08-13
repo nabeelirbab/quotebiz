@@ -46,7 +46,6 @@ class StripeController extends Controller
       $user = auth()->user();
       $currencyConvert1 = \Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
       $currencyConvert = \Acelle\Jobs\HelperJob::convertusd(number_format($currencyConvert1['convert'], 2));
-      dd($currencyConvert);
     	// dd((int)$creadit->amount * 100);
     	$stripeData = StripeKey::where('subdomain',request('account'))->first();
         Stripe\Stripe::setApiKey($stripeData->stripe_secret);
