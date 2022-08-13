@@ -114,6 +114,21 @@ class HelperJob extends Base
         return ['convert' => $covert, 'currency' => $code] ;
     }
 
+    public static function convertusd($amount){
+      $currency = AdminCurrency::where('subdomain',request('account'))->first();
+        if($currency){
+          $code = $currency->code;
+        }else{
+          $code = 'USD';
+        }
+      $covert = Currency::convert()
+        ->from($code)
+        ->to('USD')->amount($amount)->round(2)
+        ->get();
+          // dd(['convert' => $covert, 'currency' => $code]);
+        return ['convert' => $covert, 'currency' => $code] ;
+    }
+
     public static function site_setting(){
      return  SiteSetting::where('subdomain',request('account'))->first();
     }
