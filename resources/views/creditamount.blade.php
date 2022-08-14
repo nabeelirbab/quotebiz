@@ -50,8 +50,8 @@
 <div class="nk-tb-list nk-tb-tnx">
     <div class="nk-tb-item nk-tb-head">
         <div class="nk-tb-col"><span>Bundel Name</span></div>
-        <div class="nk-tb-col tb-col-xxl"><span>Credits</span></div>
         <div class="nk-tb-col text-right"><span>Cost Amount</span></div>
+        <div class="nk-tb-col tb-col-xxl"><span>Credits</span></div>
         <div class="nk-tb-col text-right tb-col-sm"><span>Created At</span></div>
         <div class="nk-tb-col text-center tb-col-sm"><span>Actions</span></div>
     </div><!-- .nk-tb-item -->
@@ -65,14 +65,15 @@
                 </div>
             </div>
         </div>
-        <div class="nk-tb-col tb-col-lg">
-            <span class="tb-lead-sub">{{$creadit->credit}}</span>
-        </div>
+        
         <?php 
           $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
         ?>
         <div class="nk-tb-col text-right">
             <span class="tb-amount">{{$currencyConvert['convert']}}<span> {{$currencyConvert['currency']}}</span></span>
+        </div>
+        <div class="nk-tb-col tb-col-lg">
+            <span class="tb-lead-sub">{{$creadit->credit}}</span>
         </div>
         <div class="nk-tb-col text-right tb-col-sm">
             <span class="tb-amount">{{\Carbon\Carbon::parse($creadit->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
