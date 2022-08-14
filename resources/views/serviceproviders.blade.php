@@ -205,7 +205,7 @@
                                 <div class="form-control-wrap">
                                  <input type="text" id="essai" placeholder="Email">
                                 </div>
-                                <span>*Please press enter add email(s)</span>
+                                <span>*Press ENTER after adding each email</span>
                             </div>
                         </div>
                         <div class="col-sm-10 text-center mb-5">
@@ -243,15 +243,19 @@
 <script src="{{ asset('frontend-assets/assets/js/jquery.email.multiple.js') }}"></script>
 <script>
     $(document).ready(function($){
-           $("#essai").email_multiple({
-                reset: true,
-                theme: 'bootstrap',
-                checkDupEmail: true
-            });
+           $("#essai").email_multiple();
 
             $('#sendemail').click(function(){
-             if($('#essai').val()){
-
+               
+             if($('#essai').val() || $("input[name=email]").val()){
+             
+                 var emails = '';
+                 if($('#essai').val()){
+                   emails = $('#essai').val();
+                 }else{
+                   emails = $("input[name=email]").val();
+                 } 
+             
                $('#sendemail').hide()
                $('#loaderbtn').show();
                 var _token = $('meta[name="csrf-token"]').attr('content');
@@ -259,7 +263,7 @@
                     url: "{{ url('sendInvitation') }}",
                     type: 'post',
                     data: {
-                        email : $('#essai').val(),
+                        email : emails,
                         _token : _token
                     },
                     dataType: 'json',
@@ -268,7 +272,8 @@
                         $('.toast').toast('show');
                         $('.all-mail').empty();
                         $('#loaderbtn').hide();
-                        $('#sendemail').show()
+                        $("input[name=email]").val('');
+                        $('#sendemail').show();
                     },
                     error: function(data){
                         //error
