@@ -8,6 +8,7 @@ use Acelle\Model\Quote;
 use Acelle\Model\User;
 use Acelle\Model\SiteSetting;
 use Acelle\Model\BuyCreadit;
+use Acelle\Model\Invitation;
 use Auth;
 use Session;
 use Redirect;
@@ -63,6 +64,11 @@ class HomeController extends Controller
     public function serviceproviders(){
         $users = User::where('subdomain',Auth::user()->subdomain)->where('id','<>',Auth::user()->id)->where('user_type','service_provider')->paginate(10);
         return view('serviceproviders',compact('users'));
+    }
+
+    public function invitedserviceproviders(){
+        $users = Invitation::where('subdomain',Auth::user()->subdomain)->paginate(10);
+        return view('inviteserviceproviders',compact('users'));
     }
     
     public function provider_detail($account, $id){
