@@ -111,6 +111,14 @@
                         <div class="form-group">
                             <label class="form-label" >Currency</label>
                             <div class="form-control-wrap">
+                                <input type="text" class="form-control" name="currency" readonly  value="{{\Acelle\Model\AdminCurrency::currency()}}" placeholder="Currency" required>
+                            </div>
+                        </div>
+                    </div>
+                   <!--  <div class="col-sm-10">
+                        <div class="form-group">
+                            <label class="form-label" >Currency</label>
+                            <div class="form-control-wrap">
                               <select class="form-control" name="currency" required>
                                 <option value="" selected>Select currency</option>
                                 <option value="USD" {{$creadit && $creadit->currency == 'USD' ? 'selected': ''}}>USD</option>
@@ -120,7 +128,7 @@
                                
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label class="form-label" >Cost Amount</label>
@@ -207,7 +215,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-10">
+               <div class="col-sm-10">
+                        <div class="form-group">
+                            <label class="form-label" >Currency</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" name="currency" readonly  value="{{\Acelle\Model\AdminCurrency::currency()}}" placeholder="Currency" required>
+                            </div>
+                        </div>
+                    </div>
+       <!--      <div class="col-sm-10">
                 <div class="form-group">
                     <label class="form-label">Currency</label>
                     <div class="form-control-wrap">
@@ -219,7 +235,7 @@
                           </select>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-sm-10">
                 <div class="form-group">
                     <label class="form-label" >Cost Amount</label>

@@ -54,6 +54,7 @@ Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
     Route::get('/validate-token/{api_token}', 'Controller@validateToken');
     Route::get('user/activate/{token}', 'UserController@activate');
     Route::post('sendInvitation', 'UserController@sendInvitation');
+    Route::post('resendInvitation', 'UserController@resendInvitation');
     Route::get('/disabled', 'Controller@userDisabled');
     Route::get('/offline', 'Controller@offline');
     Route::get('/not-authorized', 'Controller@notAuthorized');
@@ -353,6 +354,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
 });
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
+    Route::get('/invitedserviceproviders', 'HomeController@invitedserviceproviders');
     Route::get('/profile_detail/{id}', 'HomeController@provider_detail');
     Route::get('/customer_detail/{id}', 'HomeController@customer_detail');
     Route::get('/account_status/{id}', 'HomeController@accountstatus');

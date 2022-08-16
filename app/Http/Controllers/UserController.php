@@ -269,8 +269,8 @@ class UserController extends Controller
                 if($request->invite){
                    $invite = Invitation::where('subdomain',request('account'))->where('token',$request->invite)->first();
                     if($invite){
-                       $user->credits = 50;
-                       Invitation::where('token',$request->invite)->delete();
+                       $user->credits = $invite->credits;
+                       Invitation::where('token',$request->invite)->update(['status' => 'active']);
                     }
                 }
                 $user->save();
@@ -506,23 +506,43 @@ public function adminregister(Request $request)
    }
 
    public function sendInvitation(Request $request){
-
-     $emails = explode(";",$request->email);
-     foreach ($emails as $key => $email) {
+     foreach ($request->email as $key => $email) {
       $code = rand();
 
       $maildata = [
-                'code' =>  $code
+                'code' => $code,
+                'name' => $request->name[$key]
             ];
       $invite = new Invitation;
       $invite->subdomain = request('account');
+      $invite->email = $email;
+      $invite->name = $request->name[$key];
+      $invite->credits = $request->credits;
       $invite->token =  $code;
       $invite->save();
 
       Mail::to($email)->send(new SendInvitation($maildata));
      }
 
-     return $emails;
+     return $request->email;
+   }
+
+ public function resendInvitation(Request $request){
+
+      $invite = Invitation::find($request->id);
+      $code = rand();
+      $maildata = [
+                'code' => $code,
+                'name' => $invite->name 
+            ];
+
+      $invite->credits = $request->credits;
+      $invite->token =  $code;
+      $invite->save();
+
+      Mail::to($invite->email)->send(new SendInvitation($maildata));
+  
+     return 1;
    }
 
    public function userImage(Request $request){

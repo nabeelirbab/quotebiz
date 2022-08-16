@@ -27,7 +27,7 @@
 <div class="nk-block-head nk-block-head-sm">
 <div class="nk-block-between">
 <div class="nk-block-head-content">
-<h3 class="nk-block-title page-title">Service Providers</h3>
+<h3 class="nk-block-title page-title">Invited Service Providers</h3>
 <div class="nk-block-des text-soft">
     <p>You have total {{count($users)}} users.</p>
 </div>
@@ -35,11 +35,7 @@
 <div class="nk-block-head-content">
 
 </div><!-- .nk-block-head-content -->
-<div class="float-right">
-<a href="{{url('invitedserviceproviders')}}" class="btn btn-info" >Invited Service Providers</a>
-<button class="btn btn-success " data-toggle="modal" data-target="#modalEdit">Invite</button>
-</div>
-
+<button class="btn btn-success float-right" data-toggle="modal" data-target="#modalEdit">Invite</button>
 </div><!-- .nk-block-between -->
 </div><!-- .nk-block-head -->
 <div class="nk-block">
@@ -88,10 +84,7 @@
             </div> -->
             <div class="nk-tb-col tb-col-mb"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
-            <div class="nk-tb-col tb-col-mb"><span class="sub-text">City</span></div>
-            <div class="nk-tb-col tb-col-md"><span class="sub-text">Zip Code</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Time Zone</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Register On</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Invited On</span></div>
             <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col tb-col-md"><span class="sub-text">Actions</span></div>
            
@@ -102,62 +95,113 @@
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">
-                <a href="{{ url('profile_detail/'.$user->id) }}">
+                <a href="">
                     <div class="user-card">
                         <div class="user-avatar bg-primary">
-                            <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
+                            <span>{{mb_substr($user->name, 0, 1)}}</span>
                         </div>
                         <div class="user-info">
-                            <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}<span class="dot dot-success d-md-none ml-1"></span></span>
+                            <span class="tb-lead">{{$user->name}}<span class="dot dot-success d-md-none ml-1"></span></span>
                             <span>{{$user->email}}</span>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="nk-tb-col tb-col-mb">
-                <span >{{$user->city}}</span>
-            </div>
-            <div class="nk-tb-col tb-col-md">
-                <span>{{$user->zipcode}}</span>
-            </div>
-            <div class="nk-tb-col tb-col-lg">
-                <span>{{$user->timezone}}</span>
-            </div>
+            
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
             </div>
             <div class="nk-tb-col tb-col-md">
-                @if($user->activated == 0)
-                <span class="tb-status text-danger">Inactive</span>
+                @if($user->status == 'pending')
+                <span class="tb-status text-danger">Pending</span>
                 @else
                 <span class="tb-status text-success">Active</span>
                 @endif
             </div>
-            <div class="nk-tb-col nk-tb-col-tools">
-                <ul class="nk-tb-actions gx-1">
-                    
-                    <li>
-                        <div class="drodown">
-                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="link-list-opt no-bdr">
-                                    <li><a href="{{ url('profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                  @if($user->activated == '1')
-                                <li><a href="{{ url('account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
-                                @else
-                                <li><a href="{{ url('account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
-                                @endif                         
-                          </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+           <div class="nk-tb-col tb-col-md">
+                @if($user->status == 'pending')
+                <button class="btn btn-sm btn-success"  data-toggle="modal" data-target="#resendInvite{{$user->id}}">Resend Invitation</button>
+                @else
+                @endif
             </div>
         </div><!-- .nk-tb-item -->
+        <!-- Resend Email -->
+         <div class="modal fade zoom" tabindex="-1" id="resendInvite{{$user->id}}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Resend Invitation</h5>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                            <em class="icon ni ni-cross"></em>
+                        </a>
+                    <div class="toast fade hide" id="toast{{$user->id}}" data-autohide="false">
+                    <div class="toast-header">
+                      <strong class="mr-auto text-primary">Alert</strong>
+                      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                    </div>
+                    <div class="toast-body">
+                      Invitation send successfully
+                    </div>
+                  </div>
+                    </div>
+                    <div class="modal-body">
+                       <div class="preview-block">
+                        <form action="{{ url('resendInvitation') }}" class="resendeInvite" method="post">
+                          {{ csrf_field()}}
+                          <input type="hidden" name="id" value="{{ $user->id }}">
+                        <div class="row d-flex justify-content-center gy-4">
+                            <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label" for="default-01">Credits</label>
+                                <div class="form-control-wrap">
+                                 <input type="number" class="form-control" name="credits" value="50" placeholder="Name" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row  d-flex justify-content-center gy-4 mb-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="default-01">Name:</label>
+                                <div class="form-control-wrap">
+                                 <input type="text" class="form-control" readonly placeholder="Enter Name" value="{{$user->name}}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="default-01">Email:</label>
+                                <div class="form-control-wrap">
+                                 <input type="email" class="form-control" value="{{$user->email}}" placeholder="Enter Email" readonly required>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                     <div class="row mt-5">
+                        <div class="col-sm-12 text-center mb-5">
+                            <button class="btn btn-success btn-lg" type="submit" id="resendemail{{$user->id}}" type="button">Send</button>
+                              <button class="btn btn-primary btn-lg" style="display: none" id="reloaderbtn{{$user->id}}" type="button" disabled>
+                          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          <span class="sr-only">Loading...</span>
+                        </button>
+                        </div>
+                      </div>
+
+                        </form>
+                    </div>
+                        </div>
+                    </div>
+                    </div>
+                  
+                </div>
         @endforeach
        
     </div><!-- .nk-tb-list -->
 </div><!-- .card-inner -->
+
+
+
+
 <div class="modal fade zoom" tabindex="-1" id="modalEdit">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -178,7 +222,7 @@
                     </div>
                     <div class="modal-body">
                        <div class="preview-block">
-                        <form action="{{ url('sendInvitation') }}" method="post">
+                        <form action="{{ url('sendInvitation') }}" method="post" class="sendform">
                           {{ csrf_field()}}
                         <div class="row d-flex justify-content-center gy-4">
                             <div class="col-sm-12">
@@ -251,7 +295,7 @@
     $(document).ready(function($){
 
         $('#addemail').click(function(){
-            var html ='<div class="removeQuestion"><div class="col-sm-5">'+
+            var html ='<div class="removeQuestion mb-3"><div class="col-sm-5">'+
                                 '<div class="form-group">'+
                                     '<label class="form-label" for="default-01">Name:</label>'+
                                     '<div class="form-control-wrap">'+
@@ -299,6 +343,39 @@
                     }
                 });
             });
+
+            $(".resendeInvite").submit(function(e){
+                console.log($(this).serialize());
+               e.preventDefault();
+             var id = unserialize($(this).serialize()).id;
+               $('#resendemail'+id).hide()
+               $('#reloaderbtn'+id).show();
+                  $.ajax({
+                    url: "{{ url('resendInvitation') }}",
+                    type: 'post',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        $('#toast'+id).toast('show');
+                        $('#reloaderbtn'+id).hide();
+                        $('#resendemail'+id).show();
+                    },
+                    error: function(data){
+                        //error
+                    }
+                });
+            });
+
+            function unserialize(data) {
+                data = data.split('&');
+                var response = {};
+                for (var k in data){
+                    var newData = data[k].split('=');
+                    response[newData[0]] = newData[1];
+                }
+                return response;
+            }
            
         });
     </script>
