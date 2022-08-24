@@ -1,0 +1,534 @@
+@include('frontend_v2.layouts.newheader')
+@extends('frontend_v2.layouts.app')
+@section('content')
+   @include('frontend_v2.pages.navbar',['pgName'=>'Chat'])
+   <style>
+  
+  </style>
+  <script>
+      $(document).ready(function(){
+      $(".contact_list").click(function(){
+    $(".showhid_for_mobile").show();
+  });
+  
+   $(".contact_list").click(function(){
+    $(".hide_show_f_mob").hide();
+  });
+  
+  
+  $(".left").click(function(){
+    $(".showhid_for_mobile").hide();
+  });
+  
+  
+   $(".left").click(function(){
+    $(".hide_show_f_mob").show();
+  });
+  
+  
+   $(".viewprofile").click(function(){
+    $(".main-description-card").show();
+  });
+  
+   $(".viewprofile").click(function(){
+    $(".showhid_for_mobile").hide();
+  });
+  
+  
+  $("#share").click(function(){
+    $(".main-description-card").hide();
+  });
+  
+   $("#share").click(function(){
+    $(".showhid_for_mobile").show();
+  });
+  
+  
+});
+  </script> 
+<link rel="stylesheet" type="text/css" href="../../../../public/own/dashboardCss/msg.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <div  class="main_container">
+       
+    
+      <div class="row no-gutters">
+        <div class="col-md-3 border-right hide_show_f_mob ">
+          <div class="settings-tray">
+             <div> 
+                
+                <img class="profile-image" src="{{asset('public/frontend_v2/images/avatar.png')}}" id= "auth-id" data-auth_id="{{Auth::user()->id}}"  alt="{{Auth::user()->name}}">
+             
+               
+                 <span>{{Auth::user()->name}}</span>
+              </div>
+               
+            <span class="settings-tray--right">
+             {{-- <a href="{{url('/home')}}"> <i class="material-icons">cached</i> </a>
+              <i class="material-icons">menu</i> --}}
+            </span>
+          </div>
+          <div class="search-box">
+            <div class="input-wrapper">
+              <i class="material-icons">search</i>
+              <input class="search-user" onkeyup="searchUsers(this)"   placeholder="Search here User" type="text" >
+            </div>
+          </div>
+          <div class="row top-user-list">
+                <span class="all-span">All</span> <span class="unread">Unread</span> <span class="archive">Archived</span>
+            </div>
+          {{-- // search users list  --}}
+           <div class="search_users_list contact_list ">
+
+           </div>
+            {{-- /// --}}
+            
+           
+
+        </div>
+        
+        
+        <div class="col-md-6 showhid_for_mobile">
+          <div class="settings-tray">
+             <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-6 leftDiv">
+                      <span class="viewprofile">View Profile <i class="fa fa-info-circle" style="font-size:20px"></i></span>
+                      <span class="left"><i class="fa fa-times" id="left"></i> </span>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="friend-drawer no-gutters friend-drawer--grey  to_use_profile">
+        
+                </div> 
+                  </div>
+                   
+                 
+              </div>  
+            </div>
+              
+               
+              
+          </div>
+
+          <!--<p class="text-muted text-center mt-5 select-message ">-->
+          <!--    Please select a chat to start messaging-->
+          <!--</p>-->
+
+
+          <div class="chat-panel messages_chat" style="display: none">
+
+              {{-- chat history --}}
+                <div  id="yourDivID" class="chat-message-history">
+                    
+                    
+
+                </div>
+                {{-- end --}}
+
+
+
+
+                {{-- textarea --}}
+                <div    class="row" >
+                  <div class="col-12" >
+                      <form class="send_request_form"  enctype="multipart/form-data" >
+
+                            <div  class="chat-box-tray">
+                                
+                             <div class="col-md-12">   
+                            <div class="row">
+                            <div class="col-md-12">
+                                <input type="hidden" id="to_user_id" name="to_user">
+                                <input type="text" name="content" id="messageBox" class="clear_me form-control col-md-12" placeholder="Type your message here..." required>
+                            </div>
+                            </div>
+                                
+                            <div class="row" id="fileselect">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                          <input type="file" id="file" name="file">  
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                 </div>
+                                <div class="col-md-2">
+                                    
+                                </div>
+                                <div class="col-md-4 sendDiv">
+                                   <button class="send-btn" type="submit" id="submit"> <i class="material-icons">send</i></button> 
+                                </div>
+                                  
+                                   
+                               
+                             </div>
+                               
+                             </div>
+                            </div>
+                       </form>
+                   </div>
+                </div>
+                {{-- end --}}
+
+          </div>
+          
+          
+          
+        </div>
+        
+        
+        <div class="col-md-3 main-description-card">
+        <div class="top-description1">
+     		<div class="row">
+     			<div class="col-md-1">
+     			
+     			</div>
+     			<div class="col-md-10 static-side">
+     				<!--<span><i class="fa fa-info-circle" style="color:black"></i> <b>Details</b> </span>&nbsp;&nbsp;<span><i class="fa fa-paperclip" style="color:black"></i> <b>Attachments</b></span>-->
+     			</div>
+     			<div class="col-md-1" style="text-align:end;color:black;font-size:20px">
+     			<i class="fa fa-share" id="share"></i>
+     			</div>
+     		</div>
+     	</div>
+     	<div class="top-description">
+     		<div class="row">
+     			<div class="col-md-3">
+     				<div style="height:63px;border-radius: 50%;">
+     				    <img class="profile-image" src="{{asset('public/frontend_v2/images/avatar.png')}}" id= "auth-id" data-auth_id="{{Auth::user()->id}}"  alt="{{Auth::user()->name}}">
+     				</div>
+     			</div>
+     			<div class="col-md-9 static-side">
+     				<div id ="sidePanelName" >
+     				    <b> User name </b>
+     				</div>
+     				<p id="sidePanelUserDetail" style="color:black">This is your student , below you can find the details about the type of lessons and students contact.</p>
+     			</div>
+     			
+     		</div>
+     	</div>
+     	
+     	<!---
+     	<div class="subject-desc">
+     		<div class="row">
+     			<div class="col-md-3 sub-img">
+     				<div style="height:63px;border-radius: 50%;">
+     				    <i class="fa fa-files-o" style="color:black"></i>
+     				</div>
+     			</div>
+     			<div class="col-md-9">
+     				<p style="color:black"><b>Subject</b></br>
+     					Arabic
+     				</p>
+     			</div>
+     			
+     		</div>
+     	</div>
+     	--->
+     	
+     	<div class="stud-time">
+     		<div class="row ">
+     			<div class="col-md-3 stud-img">
+     				<div style="height:63px;border-radius: 50%;">
+     				    <i class="fa fa-globe" style="color:black"></i>
+     				</div>
+     			</div>
+     			<div class="col-md-9 timezone">
+     			
+     				<b>Time Zone</b>
+     				<div style="color:black" id="sidePanelTimeZone"></div>
+     			</div>
+     			
+     		</div>
+     	</div>
+     	<div style="" id="detailsDiv" class="Details">
+     		<div class="row">
+     			<div class="col-md-3 detail-img">
+     				<div style="height:63px;border-radius: 50%;">
+     				   <i class="fa fa-info-circle" style="color:black"></i>
+     				</div>
+     			</div>
+     			<div  class="col-md-9 timezone">
+     				<b >Details</b>
+     				<div style="color:black" id="sidePanelDetails"></div>
+     			</div>
+     			
+     		</div>
+     	</div>
+     	
+     	<div class="buttons-details">
+     		<button class="btn btn-primary btn-block"><i class="fa fa-eye-slash" style="color:white"></i> Archive student</button>
+     	</div>
+     	<div class="buttons-details">
+     		<button class="btn btn-primary btn-block"><i class="fa fa-video-camera" style="color:white"></i> Enter Classroom</button>
+     	</div>
+     	<div class="buttons-details">
+     		<button class="btn btn-primary btn-block"><i class="fa fa-info-circle" style="color:white"></i> Block Student</button>
+     	</div>
+     	
+     	
+     </div>
+      </div>
+   
+ 
+  </div>
+  <!-- Modal -->
+
+    <!--<script src="../../../../public/frontend_v2/chat/js/azeem-chat.js" type="text/javascript"></script>-->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script>
+        // pass auth user to external js
+            var auth_id = {!! json_encode(Auth::user()->id) !!};
+            
+            $( '.friend-drawer--onhover' ).on( 'click',  function() {
+  
+          $( '.chat-bubble' ).hide('slow').show('slow');
+  
+          });
+          
+         
+         
+          $('#addAttachment').click(function(){
+              console.log("clicked");
+              $('#file').trigger('click');   
+         }); 
+         
+
+  const messagesContainer = $(".chat-message-history")
+  let c = 0
+
+  var login_user =  auth_id
+  var to_user_id_data
+   var thatff;
+    getUserChatHistory(to_user_id_data);
+   
+    setInterval( function() {
+         searchUsers(thatff);
+       
+    },3000);
+       
+   
+
+
+    function scrollBottom(container) {
+        $(container)
+          .stop()
+          .animate({
+            scrollTop: $(container)[0].scrollHeight,
+          });
+      }
+
+
+
+   //search users
+
+//   $(document).ready( function(){
+//      getUserChatHistory(to_user_id_data)
+//          searchUsers(that)
+// })
+
+
+  function searchUsers(that){
+
+
+    thatff=that
+    $value = $(that).val()
+    $.ajax({
+        type:'GET',
+        url:'/search-user',
+        data:{'search_user':$value},
+        dataType:'JSON',
+        success: function(users){
+         var userHTML = ``;
+
+          if(users.contacts.length>0){
+
+              users.contacts.forEach( (row,idx) => {
+                    var picName = row.avatar
+                        userHTML +=
+                            `
+                            <div  onclick="getUserChatHistory(${row.student !=null? row.student.id :row.id})" class="friend-drawer friend-drawer--onhover" data-to-user-id="${row.student !=null ? row.student.id :row.id}"  style="cursor: pointer;">
+                                <img class="profile-image" src="public/frontend_v2/images/avatar.png" alt="${row.student !=null ? row.student.name :row.name}" >
+                                    <div class="text">
+                                        <h6>${row.student !=null ? row.student.name :row.name}</h6>
+                                        <p class="text-muted">${row.latest_message? row.latest_message.content.substring(0, 15):' '}</p>
+                                    </div>
+                                    <div class="text d-flex flex-column">
+                                        <span class="time text-muted small">${row.latest_message? row.latest_message.formatted_date : ''}</span>
+
+                                        ${row.unread_message && row.unread_message.length>0 ? `<a class="notification"><span class="badge">${row.unread_message.length}</span></a>` :` `}
+                                    </div>
+                            </div>
+                             `
+                            
+                })
+            }else{
+                userHTML = `<p class="text-center"><span>Nothing to show.</span></p>`
+            }
+           $('.search_users_list').html(userHTML)
+
+
+        }
+    })
+
+ }
+
+  // save message
+  $(document).on('submit', '.send_request_form', function(event){
+    event.preventDefault();
+
+
+
+    var formData = new FormData(this)
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: '/save-message',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+
+        success: function(response) {
+            if(response){
+                scrollBottom(messagesContainer);
+                getUserChatHistory(to_user_id_data)
+                $(".clear_me").val('')
+            }
+        },
+
+    });
+
+});
+
+
+
+
+
+function getUserChatHistory(id){
+
+   to_user_id_data = id;
+    
+   //$("#sidePanelName").html( `<b>${id}</b>`);
+    
+    
+    $.get('/user-details', {user_id:id}, function (data, textStatus, jqXHR) {
+        $("#sidePanelName").html( `<b>${data.contacts.name}</b>`);
+        $("#sidePanelTimeZone").html( `${data.contacts.zone}`);
+        
+        if (data.contacts.about == "" || data.contacts.about == null){
+        //    $("#sidePanelDetails").html( `No Details found about this user.`);
+        }else{
+            $('#detailsDiv').show();
+            $("#sidePanelDetails").html( `${data.contacts.about}`);
+        }
+    
+        console.log(data);
+    });
+
+    
+   
+    
+    if(to_user_id_data != null){
+        $(".messages_chat").show()
+        $(".select-message").hide()
+        
+    //   $(".hide_show_f_mob").hide()
+    //   $(".showhid_for_mobile").show()
+    //   $(".only-for-mobile").show()
+    }
+
+   $("#to_user_id").val(to_user_id_data)
+   $.ajax({
+       type:'get',
+       url:'/user-chat-history',
+       data:{user_id:to_user_id_data},
+       dataType:'json',
+       success:function(data){
+         var messages = data.messages
+         let chatHTML = ``;
+         messages.forEach( (row,idx) => {
+            if(row.from_user.id == login_user) {
+             chatHTML +=
+
+                `
+                    <div class="row no-gutters">
+                        <div class="col-md-5 offset-md-9  haldel_m_for_mobile">
+                            <div class="chat-bubble chat-bubble--right">
+                                <div class="text-body time_date">${row.formatted_date}</div>
+                                <div>${removeNullValue(row.content)}</div>
+                                ${row.file !=null ? `<a href="public/storage/${row.file}" class="text-dark border-bottom" target="blank" title="${row.file}"><img src="storage/${row.file}" width="100" alt="">  ${row.file.match(/.{1,30}/g).join("<br/>")} </a>`  : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                `
+             }  else{
+                 chatHTML +=
+                 `
+
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <div class="chat-bubble chat-bubble--left text-white">
+                                <div class="text-body time_date">${row.formatted_date}</div>
+                                <div>${removeNullValue(row.content)}</div>
+                                ${row.file !=null ? `<a href="storage/${row.file}"  class="text-dark border-bottom" target="blank" title="${row.file}"><img src="storage/${row.file}" width="100" alt="">  ${row.file.match(/.{1,30}/g).join("<br/>")} </a>`  : ''}
+                            </div>
+                        </div>
+                   </div>
+                `
+             }
+
+         });
+         $(".chat-message-history").html(chatHTML)
+
+
+         // to user profile
+            var userProfileHTML =``;
+            userProfileHTML =
+                 `
+                 <img class="profile-image" src="public/frontend_v2/images/avatar.png"  alt="">
+                 <div class="text">
+                     <h6 class="mt-3">${data.touser.name}</h6>
+                     <p class="text-muted"></p>
+                 </div>
+                 `
+             $('.to_use_profile').html(userProfileHTML)
+         //
+         scrollBottom(messagesContainer);
+
+     },
+   })
+ }
+
+ function removeNullValue(text){
+  var rtn = text?text: ' '
+  return rtn
+ }
+ function backToChat(){
+    //   $(".hide_show_f_mob").show()
+    //   $(".showhid_for_mobile").hide()
+ }
+
+
+
+
+
+
+    </script>
+   
+
+   
+   
+@endsection   
+   
