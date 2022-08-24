@@ -84,6 +84,7 @@ class QuestionChoiceController extends Controller
             $user->password = bcrypt($request->password);
             $user->city = $request->city;
             $user->mobileno = $request->mobileno;
+            $user->activated = 1;
             $user->save(); 
         }
 
@@ -92,6 +93,7 @@ class QuestionChoiceController extends Controller
             $user->fill($request->all());
             $user->password = bcrypt($request->password);
             $user->city = $request->city;
+            $user->activated = 1;
             $user->mobileno = $request->mobileno;
             $user->save(); 
         }
