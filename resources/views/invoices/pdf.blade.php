@@ -204,7 +204,7 @@
                         <tr class="item">
                             <td>
                                 <p class="mb-0"><strong><i>{{ $item['title'] }}</i></strong></p>
-                                <p class="mb-0">{!! $item['description'] !!}</p>
+                                
                             </td>
 
                             <td>
