@@ -255,7 +255,7 @@
                                         <div class="col-md-7 col-xs-8">
                                         <div class="input-group">
                                          <label style="position: absolute;bottom: 41px;">Amount</label>
-                                          <input type="text" class="form-control rounded-left" v-bind:class="{redborder: isPrice}" style="height: 50px" v-model="price" placeholder="What is the full amount you'd like to bid for this job?" >
+                                          <input type="number" class="form-control rounded-left" v-bind:class="{redborder: isPrice}" style="height: 50px" v-model="price" placeholder="What is the full amount you'd like to bid for this job?" >
                                           <div class="input-group-append">
                                             <button v-if="isSubmit" class="btn btn-success" @click="sendQuotation"  id="basic-addon2">Send Quote</button>
                                              <button v-if="isLoading" class="btn btn-success" style="background-color: #816bff !important;border-color: #816bff !important">Send Quote <div class="spinner-border text-secondary" role="status"> <span class="sr-only">Loading...</span></div></button>
@@ -290,8 +290,7 @@
 
 <script>
 
-import VueToast from 'vue-toast-notification';
-import 'vue-toast-notification/dist/theme-sugar.css';
+import Toasted from 'vue-toasted';
 
     export default {
           props: [
@@ -382,33 +381,30 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                 if(this.price == '' && this.comment == ''){
                        this.isPrice = true;
                        $('.editr').css('border-color','red');
-
-                       this.$toast.open({
-                            message: "Please fill all missing fields",
-                            type: "error",
-                            position: 'bottom-right',
-                            duration: 5000,
-                            dismissible: true
-                          });
+                    this.$toasted.show("Please fill all missing fields", { 
+                             theme: "bubble", 
+                             position: "bottom-right", 
+                             type: "error",
+                             duration : 5000
+                             });
+                       
                 }else if(this.price == ''){
                     this.isPrice = true;
-                    this.$toast.open({
-                            message: "Please enter price",
-                            type: "error",
-                            position: 'bottom-right',
-                            duration: 5000,
-                            dismissible: true
-                          });
+                    this.$toasted.show("Please enter price", { 
+                             theme: "bubble", 
+                             position: "bottom-right", 
+                             type: "error",
+                             duration : 5000
+                             });
                 }
                 else if(this.comment == ''){
                   $('.editr').css('border-color','red');
-                  this.$toast.open({
-                            message: "Please enter quote",
-                            type: "error",
-                            position: 'bottom-right',
-                            duration: 5000,
-                            dismissible: true
-                          });
+                    this.$toasted.show("Please enter quote", { 
+                             theme: "bubble", 
+                             position: "bottom-right", 
+                             type: "error",
+                             duration : 5000
+                             });
                 }else{
 
                 var csrf_token = $('meta[name="csrf-token"]').attr('content');
@@ -423,16 +419,17 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                  _token : csrf_token
                   }).then((response) => {
                       console.log(response.data);
-                      this.$toast.open({
-                            message: "Quotation Send Successfully",
-                            type: "success",
-                            position: 'top',
-                            duration: 5000,
-                            dismissible: true
-                          });
+                       this.$toasted.show("Quotation Send Successfully", { 
+                             theme: "bubble", 
+                             position: "top-center", 
+                             type: "success",
+                             duration : 5000
+                             });
+                     
                       this.isLoading = false;
                       this.isSubmit = true;
                       this.comment = '';
+                      this.price = '';
                       this.quoteQuestions = {};
                       this.quoteQuestions.myquotation = response.data.quote.myquotation;
                       $('#chatPanel').hide();
