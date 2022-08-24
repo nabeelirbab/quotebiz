@@ -22,7 +22,7 @@
   border-radius: 15px;
 }
 .nk-content {
-	 background: white;
+	 background: #F5F6FA;
 }
 .nk-menu-link:hover,  .active>.nk-menu-link {
     background: #2f3741e0 !important;
