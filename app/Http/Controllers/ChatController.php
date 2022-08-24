@@ -87,7 +87,7 @@ class ChatController extends Controller
         Mail::to($receiver->email)->send(new ReceiveQuotation($quotedata));
         Mail::to($user->email)->send(new SendQuotation($jobdata));
 
-        return $quote;
+        return response()->json($quote, 200);
     }
 
     public function getCustomerfriend(){
