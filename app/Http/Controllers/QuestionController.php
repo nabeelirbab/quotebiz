@@ -201,7 +201,7 @@ class QuestionController extends Controller
     }
 
     public function editquestion($account,$id){
-       $questions = Question::with('choices')->where('category_id',$id)->where('subcategory_id',null)->get();
+       $questions = Question::with('choices')->where('category_id',$id)->where('subcategory_id',0)->get();
        $category_id = $id;
        return view('questions.questionappend',compact('questions','category_id'));
     }
