@@ -57,7 +57,8 @@ function generatePublicPath($absPath, $withHost = false)
     } else {
         // Make sure the $subdirectory has a leading slash ('/')
         $subdirectory = join_paths('/', $subdirectory);
-        $url = join_paths($subdirectory, route('public_assets', [ 'dirname' => $encodedDirname, 'basename' => $basename ], $withHost));
+        $url = join_paths(route('public_assets', [ 'dirname' => $encodedDirname, 'basename' => $basename ], $withHost));
+
     }
 
     return $url;
