@@ -17,8 +17,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('user_id',Auth::user()->id)->where('cat_parent','!=','0')->orderBy('category_name','asc')->paginate(16);
-        // dd($categories);
+        $categories = Category::where('user_id',Auth::user()->id)->where('cat_parent','!=','0')->where('cat_parent_id',0)->orderBy('category_name','asc')->paginate(16);
+       foreach ($categories as $key => &$value) {
+         $value->subcategory = Category::where('cat_parent_id',$value->id)->get();
+       }
         return view('categories.servicecategories',compact('categories'));
     }
 
@@ -52,6 +54,7 @@ class CategoryController extends Controller
        $category->user_id = $request->user()->id;
        $category->category_name = $request->category_name;
        $category->cat_parent = 1;
+       $category->cat_parent_id = 0;
        $category->subdomain = request('account');
        $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
@@ -63,7 +66,7 @@ class CategoryController extends Controller
     public function storesub(Request $request)
     {
 
-       $category = new SubCategory;
+       $category = new Category;
        // if($request->file('category_icon')){
        //      $image = $request->file('category_icon');
        //      $new_image = time().$image->getClientOriginalName();
@@ -71,9 +74,13 @@ class CategoryController extends Controller
        //      $image->move(public_path($destination),$new_image);
        //      $category->category_icon = $new_image;
        // }
-       $category->sub_category = $request->category_name;
-       $category->category_id = $request->category_id;
-       $category->description = $request->category_description;
+       $category->user_id = $request->user()->id;
+       $category->category_name = $request->category_name;
+       $category->cat_parent_id = $request->category_id;
+       $category->cat_parent = 1;
+       $category->subdomain = request('account');
+       $category->credit_cost = $request->credit_cost;
+       $category->category_description = $request->category_description;
        $category->save();
        return redirect('/service-categories')->with('message', 'Sub category add successfully');
        

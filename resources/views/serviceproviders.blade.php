@@ -172,7 +172,7 @@
                       <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
                     <div class="toast-body">
-                      Invitation send successfully
+                      Invitation sent successfully
                     </div>
                   </div>
                     </div>
@@ -185,7 +185,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="default-01">Credits</label>
                                 <div class="form-control-wrap">
-                                 <input type="number" class="form-control" name="credits" value="50" placeholder="Name" required>
+                                 <input type="number" class="form-control" name="credits" value="50" placeholder="Enter Amount" required>
                                 </div>
                             </div>
                         </div>

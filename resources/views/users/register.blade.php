@@ -1,7 +1,22 @@
 @extends('layouts.core.register')
 
 @section('title', trans('messages.create_your_account'))
-
+<style type="text/css">
+    .btn-group{
+        width: 100%;
+        height: 50px;
+        background-color: transparent;
+    }
+    .btn-lg{
+        width: 100%;
+        background-color: transparent !important;
+        color: black !important;
+        border: 1px solid #bbb !important;
+    }
+    .multiselect-container{
+        width: 100% !important;
+    }
+</style>
 @section('content')
     
     <form enctype="multipart/form-data" action="{{ url('users/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
@@ -27,12 +42,16 @@
                         <b>Category</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <select class="form-control" name="category_id" required>
+                     <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
                          <option value="">Select Category</option>
                          @foreach(Acelle\Jobs\HelperJob::categories() as $category)
                          <option value="{{$category->id}}">{{$category->category_name}}</option>
                          @endforeach
                      </select>
+                  </div>
+                 
+                  <div id="appendbox">
+                      
                   </div>
                    <div class="form-group control-text">
                 
@@ -128,8 +147,29 @@
             <div class="col-md-1"></div>
         </div>
     </form>
-
     <script>
+     
+      function subCategory(e){
+        // alert(e.value);
+         $.ajax({url: "{{url('users/subcategory/')}}/"+e.value, success: function(result){
+         $('#appendbox').html(result);
+            $('#example-getting-started').multiselect({
+              templates: {
+                button: '<button type="button" class="multiselect dropdown-toggle btn btn-primary btn-lg" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+              },
+                header: true,
+                height: 150,
+                allSelectedText: 'Sub Category Selected',
+                selectedList: 3,
+                numberDisplayed: 3,
+                nonSelectedText: "Select Sub Category",
+                minWidth: 410
+            });
+         console.log(result);
+        
+        }});
+      }
+
         @if (isSiteDemo())
             $('.res-button').click(function(e) {
                 e.preventDefault();

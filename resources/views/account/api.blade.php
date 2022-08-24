@@ -4,17 +4,17 @@
 
 @section('page_header')
 
-	<div class="page-title">
-		<ul class="breadcrumb breadcrumb-caret position-right">
-			<li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
-			<li class="breadcrumb-item active">{{ trans('messages.api_token') }}</li>
-		</ul>
-		<h1>
-			<span class="text-semibold"><span class="material-icons-round">
-                            person_outline
-                            </span> {{ Auth::user()->displayName() }}</span>
-		</h1>
-	</div>
+    <div class="page-title">
+    <ul class="breadcrumb breadcrumb-caret position-right">
+    <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
+    <li class="breadcrumb-item active">{{ trans('messages.api_token') }}</li>
+    </ul>
+    <h1>
+    <span class="text-semibold"><span class="material-icons-round">
+    person_outline
+    </span> {{ Auth::user()->displayName() }}</span>
+    </h1>
+    </div>
 
 @endsection
 
@@ -27,6 +27,7 @@
         <div class="nk-block-between">
             <div class="nk-block-head-content">
                 <h4 class="nk-block-title page-title">Stripe Payment</h3>
+                    <p>In order to receive payments from service providers you will need to setup a stripe account.</p>
                
             </div><!-- .nk-block-head-content -->
            

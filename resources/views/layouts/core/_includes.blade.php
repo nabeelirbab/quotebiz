@@ -13,6 +13,11 @@
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('core/select2/css/select2.min.css') }}">
 <script type="text/javascript" src="{{ URL::asset('core/select2/js/select2.min.js') }}"></script>
 
+<!-- Multi Select -->
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/bootstrap-multiselect.min.css') }}">
+<script src="{{ asset('frontend-assets/js/bootstrap-multiselect.min.js') }}"></script>
+
+
 <!-- Validate -->
 <script type="text/javascript" src="{{ URL::asset('core/validate/jquery.validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('core/js/validate.js') }}"></script>

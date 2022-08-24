@@ -25,18 +25,41 @@ class QuestionController extends Controller
        } 
 
    public function vuedata(){
-    $categories = Category::with('questions','questions.choices')->where('subdomain',request('account'))->where('cat_parent','1')->orderBy('category_name','desc')->get();
+    $categories = Category::with('questions','subquestions','questions.choices')->where('subdomain',request('account'))->where('cat_parent','1')->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
     $categories = json_decode($categories);
     // dd($categories);
     return $categories;
    } 
 
    public function categoriesbyid($account,$id){
-   
-    $categories = Category::with('questions','questions.choices')->where('id',$id)->orderBy('category_name','desc')->get();
-    $categories = json_decode($categories);
-    // dd($categories);
-    return $categories;
+
+        if($id == 0){
+            $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent_id',0)->where('cat_parent','1')->orderBy('category_name','desc')->get();
+            $subcategories = [];
+        }
+        else{
+        $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
+        $subcategories = Category::where('cat_parent_id',$id)->where('cat_parent','1')->orderBy('category_name','desc')->get();
+        }
+
+        $categories = json_decode($categories);
+      
+        return ['categories' => $categories, 'subcat' => $subcategories];
+   }
+
+    public function subcategoriesbyid($account,$id){
+
+        if($id == 0){
+            $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->orderBy('category_name','desc')->get();
+        }
+        else{
+           $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
+       
+        }
+
+        $subcategories = json_decode($subcategories);
+      
+        return $subcategories;
    }
     /**
      * Show the form for creating a new resource.
@@ -77,6 +100,7 @@ class QuestionController extends Controller
             $question = new Question;
 
             $question->category_id = $request->category_id;
+            $question->subcategory_id = $request->sub_category_id;
             $question->user_id = $request->user()->id;
             $question->choice_selection = $que;
             $question->parent = '1';
@@ -177,8 +201,20 @@ class QuestionController extends Controller
     }
 
     public function editquestion($account,$id){
-       $questions = Question::with('choices')->where('category_id',$id)->get();
-       return view('questions.questionappend',compact('questions'));
+       $questions = Question::with('choices')->where('category_id',$id)->where('subcategory_id',null)->get();
+       $category_id = $id;
+       return view('questions.questionappend',compact('questions','category_id'));
+    }
+
+    public function subeditquestion($account,$id){
+       $category_id = '';
+       $questions = Question::with('choices')->where('subcategory_id',$id)->get();
+       $catDate = Category::where('id',$id)->first();
+       if($catDate){
+          $category_id = $catDate->cat_parent_id;
+       }
+       $subcategory_id = $id;
+       return view('questions.subquestionappend',compact('questions','category_id','subcategory_id'));
     }
     public function deletequestion($account,$id){
         Question::where('id',$id)->delete();

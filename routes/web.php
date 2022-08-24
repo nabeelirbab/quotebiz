@@ -77,6 +77,7 @@ Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
     Route::get('users/login', 'UserController@login');
     Route::post('users/register', 'UserController@register');
     Route::get('users/register', 'UserController@register');
+    Route::get('users/subcategory/{id}', 'UserController@subcategory');
 });
 
 // Without authentication
@@ -269,11 +270,13 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
     Route::post('searchcategory', 'QuestionController@searchcategory');
     Route::get('delete/{id}', 'QuestionController@destroy');
     Route::get('editquestion/{id}', 'QuestionController@editquestion');
+    Route::get('subeditquestion/{id}', 'QuestionController@subeditquestion');
     Route::get('deletequestion/{id}', 'QuestionController@deletequestion');
     Route::get('deleteoption/{id}', 'QuestionController@deleteoption');
     Route::get('deleteChoice/{id}', 'QuestionController@deletechoice');
     Route::get('/categories', 'QuestionController@vuedata');
     Route::get('/categories/{id}', 'QuestionController@categoriesbyid');
+    Route::get('/subcategories/{id}', 'QuestionController@subcategoriesbyid');
     Route::post('updateOrder', 'QuestionController@updateOrder');
 
  });
@@ -336,7 +339,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/support', 'HomeController@support');
     Route::get('/supportchat', 'HomeController@supportchat');
     Route::get('/customers', 'HomeController@customers');
-    Route::match(['get', 'post'],'/site-setting', 'HomeController@sitesetting');
+    
     Route::get('/removesetting', 'HomeController@removesetting');
     Route::get('/payments-receive', 'UserController@paymentsReceive');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
@@ -363,6 +366,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('account/api/renew', 'AccountController@renewToken');
     Route::match(['get','post'],'account/api', 'AccountController@api');
     Route::match(['get','post'],'account/currency', 'AccountController@currency');
+    Route::match(['get', 'post'],'account/site-setting', 'HomeController@sitesetting');
 
     // Mail list
     Route::get('lists/{uid}/email-verification/chart', 'MailListController@emailVerificationChart');

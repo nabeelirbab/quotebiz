@@ -45,7 +45,11 @@
 
 	</div>
 	<!-- /page container -->
-
+<script type="text/javascript">
+	     $(document).ready(function() {
+     
+    });
+</script>
     {!! \Acelle\Model\Setting::get('custom_script') !!}
 
 </body>

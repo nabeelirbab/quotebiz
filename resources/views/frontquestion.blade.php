@@ -7,6 +7,12 @@
 	}
 	$job_design = Acelle\Jobs\HelperJob::form_design();
 
+	if(count($category->questions) > 0){
+           $questions = $category->questions;
+        }else{
+           $questions = $category->subquestions;
+        }
+     // dd($questions);
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +29,7 @@
 		<style>
 			
 		<?php
-		  $total = count($category->questions)+1;
+		  $total = count($questions)+1;
 		  $mid = 90/$total;
 		  $final = 100/$total;
 		// dd($total,$final,'dddd'); 
@@ -235,7 +241,7 @@
             	</div>
             	<div id="wizard">
             		
-				   @foreach($category->questions as $question)
+				   @foreach($questions as $question)
             		<!-- SECTION 1 -->
             		@if($question->choice_selection == "single")
             		<input type="hidden" name="question_id[]" value="{{$question->id}}">
@@ -463,9 +469,9 @@
 
 
 		<?php
-		$total = count($category->questions)+1;
+		$total = count($questions)+1;
 
-		$subtotal = count($category->questions);
+		$subtotal = count($questions);
 		for($i =1; $i <= $total; $i++){ ?>
 			// alert(<?php echo $total; ?>);
             if ( newIndex === <?php echo $i; ?> ) {

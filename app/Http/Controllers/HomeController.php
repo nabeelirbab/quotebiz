@@ -138,7 +138,7 @@ class HomeController extends Controller
 
       }
 
-        return view('sitesetting',compact('sitesetting'));
+        return view('account/sitesetting',compact('sitesetting'));
     }
 
     public function fileUpload($file,$thumbnail = true){
