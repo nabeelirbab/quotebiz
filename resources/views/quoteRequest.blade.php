@@ -240,9 +240,9 @@ p.form-para::after{
 				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 50px " autocomplete="off">
 					{{ csrf_field()}}
 					<h4 class="form-heading">
-					{{ ($job_design) ? $job_design->title_heading : 'Where to-do gets done'}}</h4>
+					{{ ($job_design) ? $job_design->title_heading : 'What are you looking for?'}}</h4>
 					<p class="form-para" style="font-size: 16px"> 
-						{{ ($job_design) ? $job_design->titlesub_heading : 'Make sure to use the same information you used during your earlier visit,this is how we keep your information secure.'}}
+						{{ ($job_design) ? $job_design->titlesub_heading : 'Let us know what you are looking for and we will provide you up to 3 quotes.'}}
 						
 					</p>
 					<div class="row">
@@ -257,7 +257,7 @@ p.form-para::after{
 					</div>
                    <div class="col-md-6">
 					<div class="form-group">
-					 <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where do you need it?'}}</label>
+					 <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>
 					 <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Post Code" required>
 					  </div>
 					</div>
