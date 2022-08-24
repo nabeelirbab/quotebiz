@@ -16,7 +16,7 @@ class Category extends Model
 
       public function questions()
       {
-        return $this->hasMany('Acelle\Model\Question')->where('subcategory_id','=', null)->orderBy('re_order','asc');
+        return $this->hasMany('Acelle\Model\Question')->where('subcategory_id','=', 0)->orderBy('re_order','asc');
       }
 
       public function subquestions()
