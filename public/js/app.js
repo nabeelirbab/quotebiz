@@ -3735,9 +3735,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification */ "./node_modules/vue-toast-notification/dist/index.min.js");
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
+/* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toasted */ "./node_modules/vue-toasted/dist/vue-toasted.min.js");
+/* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -4028,7 +4027,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['creaditsum', 'quoteprice', 'authuser'],
@@ -4109,30 +4107,27 @@ __webpack_require__.r(__webpack_exports__);
       if (this.price == '' && this.comment == '') {
         this.isPrice = true;
         $('.editr').css('border-color', 'red');
-        this.$toast.open({
-          message: "Please fill all missing fields",
+        this.$toasted.show("Please fill all missing fields", {
+          theme: "bubble",
+          position: "bottom-right",
           type: "error",
-          position: 'bottom-right',
-          duration: 5000,
-          dismissible: true
+          duration: 5000
         });
       } else if (this.price == '') {
         this.isPrice = true;
-        this.$toast.open({
-          message: "Please enter price",
+        this.$toasted.show("Please enter price", {
+          theme: "bubble",
+          position: "bottom-right",
           type: "error",
-          position: 'bottom-right',
-          duration: 5000,
-          dismissible: true
+          duration: 5000
         });
       } else if (this.comment == '') {
         $('.editr').css('border-color', 'red');
-        this.$toast.open({
-          message: "Please enter quote",
+        this.$toasted.show("Please enter quote", {
+          theme: "bubble",
+          position: "bottom-right",
           type: "error",
-          position: 'bottom-right',
-          duration: 5000,
-          dismissible: true
+          duration: 5000
         });
       } else {
         var csrf_token = $('meta[name="csrf-token"]').attr('content');
@@ -4148,17 +4143,17 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           console.log(response.data);
 
-          _this2.$toast.open({
-            message: "Quotation Send Successfully",
+          _this2.$toasted.show("Quotation Send Successfully", {
+            theme: "bubble",
+            position: "top-center",
             type: "success",
-            position: 'top',
-            duration: 5000,
-            dismissible: true
+            duration: 5000
           });
 
           _this2.isLoading = false;
           _this2.isSubmit = true;
           _this2.comment = '';
+          _this2.price = '';
           _this2.quoteQuestions = {};
           _this2.quoteQuestions.myquotation = response.data.quote.myquotation;
           $('#chatPanel').hide();
@@ -60931,7 +60926,7 @@ var render = function () {
                                                           height: "50px",
                                                         },
                                                         attrs: {
-                                                          type: "text",
+                                                          type: "number",
                                                           placeholder:
                                                             "What is the full amount you'd like to bid for this job?",
                                                         },
