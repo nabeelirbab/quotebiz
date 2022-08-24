@@ -34,8 +34,14 @@
                 <div class="form-inline flex-nowrap gx-3">
                 <div class="form-wrap" style="width: 300px;">
                 <select class="form-select" data-search="off" @change="categoriesbyid($event)" data-placeholder="Bulk Action" style="opacity: 1">
-                    <option value="">Select Category</option>
+                    <option value="0">Select Category</option>
                     <option v-for="category in categorieslist" :value="category.id">{{category.category_name}}</option>
+                </select>
+                </div>
+                <div v-if="subCategoriesHtml" class="form-wrap" style="width: 300px;">
+                <select class="form-select" data-search="off" @change="subcategoriesbyid($event)" data-placeholder="Bulk Action" style="opacity: 1">
+                    <option value="0">Select Category</option>
+                    <option v-for="category in subCategories" :value="category.id">{{category.category_name}}</option>
                 </select>
                 </div>
                 </div><!-- .form-inline -->
@@ -79,7 +85,102 @@
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
                             
                         </div><!-- .nk-tb-item -->
-                         
+                          
+                      <template v-if="category.subquestions.length > 0">
+                      <draggable class="drag-area" :list="category.subquestions" :options="{animation:200, group:'status'}" :element="'tbody'"  @change="dragCard($event, keyIndex)">
+                        <div class="nk-tb-item" v-for="question in category.subquestions" style="cursor:pointer">
+                        
+                            <div class="nk-tb-col">
+                               <span>{{question.id}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                <span class="tb-amount">{{question.question}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                <span>{{category.category_name}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span>{{question.choice_selection}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span>{{dateFormat(question.created_at)}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                <span class="tb-status text-success">Active</span>
+                            </div>
+                            <div class="nk-tb-col nk-tb-col-tools">
+                                <ul class="nk-tb-actions gx-1">
+                                  
+                                    <li>
+                                        <div class="drodown">
+                                            <a href="#" class="triggerBtn dropdown-toggle btn btn-icon btn-trigger " data-toggle="dropdown"><em class=" icon ni ni-more-h"></em></a>
+                                            <div class=" dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#" data-toggle="modal" :data-target="'#modalZoom'+question.id"><em class="icon ni ni-eye"></em><span>View Options</span></a></li>
+                                                    <li><a :href="hostname+'/questions/add-question?category_id='+question.category_id+'&sub_category_id='+question.subcategory_id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
+                                                   
+                                                    <li class="divider"></li>
+                                                   
+                                                    <li><a :href="hostname+'/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                             <!-- Modal Zoom -->
+                            <div class="modal fade zoom" tabindex="-1" :id="'modalZoom'+question.id">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"> {{category.category_name}}</h5>
+                                            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                <em class="icon ni ni-cross"></em>
+                                            </a>
+                                        </div>
+                                        <div class="modal-body">
+                                           <div class="card-inner p-0">
+                                            <div class="nk-tb-list nk-tb-ulist">
+                                                <div class="nk-tb-item nk-tb-head" style="background: #253a46e3;">
+                                                  
+                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">ID</span></div>
+                                                    <div class="nk-tb-col"><span class="sub-text">Option</span></div>
+                                                    <div class="nk-tb-col tb-col-mb"><span class="sub-text">Icon</span></div>
+                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>
+                                                    
+                                                </div><!-- .nk-tb-item -->
+                                                
+                                                <div class="nk-tb-item" v-for="option in question.choices">
+                                                
+                                                    <div class="nk-tb-col">
+                                                       <span>{{option.id}}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col tb-col-mb">
+                                                        <span class="tb-amount">{{option.choice}}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col tb-col-mb" style="width: 20%;">
+                                                        <span v-if="option.icon"><img :src="hostname+'/frontend-assets/images/categories/'+option.icon"></span>
+                                                        <span v-else><img :src="hostname+'/frontend-assets/images/icons/option.png'"></span>
+                                                    </div>
+                                                    <div class="nk-tb-col tb-col-lg">
+                                                        <span>{{dateFormat(option.created_at)}}</span>
+                                                    </div>
+                                                    
+                                                    
+                                                </div><!-- .nk-tb-item -->
+                                                
+                                              
+                                            </div><!-- .nk-tb-list -->
+                                        </div><!-- .card-inner -->
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                      <!-- Mopdal Small -->
+                                </div><!-- .nk-tb-item -->
+                             </draggable>
+                      </template>
                         <draggable class="drag-area" :list="category.questions" :options="{animation:200, group:'status'}" :element="'tbody'"  @change="dragCard($event, keyIndex)">
                         <div class="nk-tb-item" v-for="question in category.questions" style="cursor:pointer">
                         
@@ -216,6 +317,8 @@ data() {
     return {
       categorieslist: [],
       categoriesData: [],
+      subCategories: [],
+      subCategoriesHtml : false,
       hostname: '',
         };
 },
@@ -235,11 +338,31 @@ methods: {
             .catch((error) => console.log(error));
        },
 
+       subcategoriesbyid(event){
+        var id = event.target.value;
+           axios.get('questions/subcategories/'+id)
+            .then((response) => {
+              console.log(response.data);
+             this.categoriesData = response.data;
+           
+            })
+            .catch((error) => console.log(error));
+       },
+
        categoriesbyid(event){
         var id = event.target.value;
            axios.get('questions/categories/'+id)
             .then((response) => {
-             this.categoriesData = response.data;
+              console.log(response.data);
+             this.categoriesData = response.data.categories;
+             this.subCategories = response.data.subcat;
+             if(this.subCategories.length > 0 && this.categoriesData.length > 0){
+                 this.subCategoriesHtml = true ;
+             }
+             else{
+
+                 this.subCategoriesHtml = false ;
+             }
             })
             .catch((error) => console.log(error));
        },

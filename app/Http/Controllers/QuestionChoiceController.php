@@ -41,6 +41,8 @@ class QuestionChoiceController extends Controller
          }else{
            $category = Category::where('cat_parent','0')->where('category_name',$request->category_name)->first();
          }
+        
+
         return view('frontquestion',compact('category','zipcode'));
     }
 
@@ -189,7 +191,8 @@ class QuestionChoiceController extends Controller
         
         Mail::to($user->email)->send(new OnJobPost($jobdata));
 
-        $users = User::where('zipcode',$request->zip_code)->where('user_type','service_provider')->where('subdomain',request('account'))->where('category_id',$request->category_id)->pluck('email');
+        $users = User::where('zipcode',$request->zip_code)->where('user_type','service_provider')->where('subdomain',request('account'))->where('category_id','like', '%'. $request->category_id. '%')->pluck('email');
+        // dd($users);
         $job = Quote::with('quotations','user')->where('id',$quote->id)->where('user_id',$user->id)->orderBy('id','desc')->first();
 
         foreach ($users as $key => $value) {

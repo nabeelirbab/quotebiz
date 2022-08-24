@@ -16,6 +16,7 @@ use Acelle\Model\DateFormet;
 use Acelle\Model\JobDesign;
 use Acelle\Model\QuotePrice;
 use Acelle\Model\Invitation;
+use Acelle\Model\Category;
 use Acelle\Library\Facades\Hook;
 use Auth;
 use Mail;
@@ -242,11 +243,10 @@ class UserController extends Controller
 
         // save posted data
         if ($request->isMethod('post')) {
-            $user->fill($request->all());
+          // dd(json_encode($request->input('category_id')));
+               $user->fill($request->all());
             
                 $rules = $user->registerRules2();
-            
-
             // Captcha check
             if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
                 $success = \Acelle\Library\Tool::checkReCaptcha($request);
@@ -263,6 +263,7 @@ class UserController extends Controller
                 $user->fill($request->all());
                 $user->password = bcrypt($request->password);
                 $user->city = $request->city;
+                $user->category_id = json_encode($request->category_id);
                 $user->zipcode = $request->zipcode;
                 $user->timezone = $request->timezone;
                 $user->language_id = $request->language_id;
@@ -274,8 +275,6 @@ class UserController extends Controller
                     }
                 }
                 $user->save();
-
-            
 
             // user email verification
             if (true) {
@@ -300,6 +299,11 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
+
+public function subcategory($account, $id){
+    $subcategories = Category::where('cat_parent_id',$id)->get();
+    return view('users.subcategory',compact('subcategories'));
+}
 
 public function adminregister(Request $request)
     {
@@ -384,9 +388,8 @@ public function adminregister(Request $request)
     }
     public function credits(Request $request)
     {
-      // dd(Currency::convert()
-      //   ->from('USD')
-      //   ->to('EUR')->amount(50)
+      // dd(Currency::rates()
+      //   ->latest()
       //   ->get());
 
       if ($request->isMethod('post')) {

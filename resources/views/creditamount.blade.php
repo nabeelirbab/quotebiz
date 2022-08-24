@@ -49,7 +49,7 @@
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
     <div class="nk-tb-item nk-tb-head">
-        <div class="nk-tb-col"><span>Bundel Name</span></div>
+        <div class="nk-tb-col"><span>Bundle Name</span></div>
         <div class="nk-tb-col text-right"><span>Cost Amount</span></div>
         <div class="nk-tb-col tb-col-xxl"><span>Credits</span></div>
         <div class="nk-tb-col text-right tb-col-sm"><span>Created At</span></div>
@@ -93,9 +93,9 @@
                    <input type="hidden" name="id" value="{{$creadit->id}}">
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label class="form-label" >Bundel Name</label>
+                            <label class="form-label" >Bundle Name</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" name="bundel_name"  value="{{$creadit->bundel_name}}" placeholder="Enter Bundel Name" required>
+                                <input type="text" class="form-control" name="bundel_name"  value="{{$creadit->bundel_name}}" placeholder="Enter Bundle Name" required>
                             </div>
                         </div>
                     </div>
@@ -201,9 +201,9 @@
            
             <div class="col-sm-10">
                 <div class="form-group">
-                    <label class="form-label" >Bundel Name</label>
+                    <label class="form-label" >Bundle Name</label>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control" name="bundel_name" placeholder="Enter Bundel Name" required>
+                        <input type="text" class="form-control" name="bundel_name" placeholder="Enter Bundle Name" required>
                     </div>
                 </div>
             </div> 

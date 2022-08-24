@@ -432,11 +432,12 @@ import 'vue-toast-notification/dist/theme-sugar.css';
                           });
                       this.isLoading = false;
                       this.isSubmit = true;
+                      this.comment = '';
+                      this.quoteQuestions = {};
                       this.quoteQuestions.myquotation = response.data.quote.myquotation;
                       $('#chatPanel').hide();
                       $('#mainView').show();
-                      this.comment = '';
-                      this.quoteQuestions = {};
+                      
 
                   }).catch((error) => {
                       console.log(error);

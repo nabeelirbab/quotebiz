@@ -91,11 +91,15 @@
                         <span class="profile-ud-value">{{$userdetail->email}}</span>
                     </div>
                 </div>
-                @if($userdetail->category)
+                @if(json_decode($userdetail->category_id))
                  <div class="profile-ud-item">
                     <div class="profile-ud wider">
                         <span class="profile-ud-label">Category</span>
-                        <span class="profile-ud-value">{{$userdetail->category->category_name}}</span>
+                        <span class="profile-ud-value">
+                            @foreach(json_decode($userdetail->category_id) as $cat)
+                            {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}<br>
+                            @endforeach
+                        </span>
                     </div>
                 </div>
                 @endif

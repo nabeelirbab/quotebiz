@@ -18,6 +18,11 @@ class Question extends Model
 		    return $this->belongsTo('Acelle\Model\Category','category_id');
 		  }
 
+   public function subcategories()
+      {
+        return $this->belongsTo('Acelle\Model\Category','subcategory_id');
+      }
+
     public function choices()
       {
         return $this->hasMany('Acelle\Model\QuestionChoice');

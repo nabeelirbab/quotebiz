@@ -36,7 +36,7 @@
                             <label class="form-label" for="default-01">Select Category </label>
                             <div class="form-control-wrap">
                                <select class="form-control" name="category_id" onchange="category(this)">
-                                <option value="" selected>Select Category</option>
+                                <option value="0" selected>Select Category</option>
                                    @foreach(Acelle\Jobs\HelperJob::mycategories() as $category)
                                    <option value="{{$category->id}}" {{ $cat_id == $category->id ? 'selected':'' }}>{{$category->category_name}}</option>
                                    @endforeach
@@ -46,7 +46,7 @@
                         </div>
 
                     </div>
-                       <div class="col-sm-7" id="appendbox">
+                       <div class="col-sm-7 mt-2" id="appendbox">
                         
                     </div>
                   
@@ -69,16 +69,35 @@
 
 <script type="text/javascript">
      $(document).ready(function() {
-     var category_id  = {
-        value : '{{Request::get('category_id')}}',
-     };
-      console.log(category_id);
-     if(category_id.value){
-        category(category_id);
-     }
+         var category_id  = {
+            value : '{{Request::get('category_id')}}',
+         };
+
+         var subcategory_id  = {
+            value : '{{Request::get('sub_category_id')}}',
+         };
+
+         if(category_id.value){
+            category(category_id);
+         }
+
+         if(subcategory_id.value){
+            subcategory(subcategory_id);
+         }
      });
+
     function category(data){
      $.ajax({url: "{{url('questions/editquestion/')}}/"+data.value, success: function(result){
+         $('#addquestion').show();
+         $('#appendbox').html(result);
+         console.log(data.value);
+        
+        }});
+        
+    }
+
+    function subcategory(data){
+     $.ajax({url: "{{url('questions/subeditquestion/')}}/"+data.value, success: function(result){
          $('#addquestion').show();
          $('#appendbox').html(result);
          console.log(data.value);

@@ -1,19 +1,18 @@
-               @if($category_id != 0)
                <div class="col-sm-12 p-0 mb-4">
                 <div class="form-group">
                     <label class="form-label" for="default-01">Select Sub Category </label>
                     <div class="form-control-wrap">
                        <select class="form-control" name="sub_category_id" onchange="subcategory(this)">
-                           <option value="0" selected>Select Sub Category</option>
+                           <option selected>Select Sub Category</option>
                            @foreach(Acelle\Jobs\HelperJob::mysubcategories($category_id) as $subcategory)
-                           <option value="{{$subcategory->id}}" >{{$subcategory->category_name}}</option>
+                           <option value="{{$subcategory->id}}" {{ $subcategory_id == $subcategory->id ? 'selected':'' }}>{{$subcategory->category_name}}</option>
                            @endforeach
                         </select>
                     </div>
                     <span title="Add New Question" id="addquestion" class="addQuestions material-icons-round add-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;position: absolute;top: 27px;right: -45px;display: none">add_circle</span>
                 </div>
+
             </div>
-            @endif
             <div class="startQuestion">
             @if(count($questions) > 0)
             <input type="hidden" id="addQuestionIndex0" name="addQuestionIndex0" value="{{count($questions)}}">

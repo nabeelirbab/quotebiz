@@ -1,4 +1,4 @@
-   @foreach($categories as $category)
+                 @foreach($categories as $category)
                   <div id="accordion{{$category->id}}" class="accordion">
                   <div class="accordion-item">
                       <a href="#" class="accordion-head" data-toggle="collapse" data-target="#accordion-item-{{$category->id}}">

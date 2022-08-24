@@ -140,7 +140,7 @@
                       <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
                     <div class="toast-body">
-                      Invitation send successfully
+                      Invitation sent successfully
                     </div>
                   </div>
                     </div>
@@ -154,7 +154,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="default-01">Credits</label>
                                 <div class="form-control-wrap">
-                                 <input type="number" class="form-control" name="credits" value="50" placeholder="Name" required>
+                                 <input type="number" class="form-control" name="credits" value="50" placeholder="Enter Amount" required>
                                 </div>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row  d-flex justify-content-center gy-4 mb-3" id="addsection">
+                    <div class="row  d-flex justify-content-center gy-4 mb-1" id="addsection">
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="form-label" for="default-01">Name:</label>
@@ -296,7 +296,7 @@
 
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion mb-3"><div class="col-sm-5">'+
-                                '<div class="form-group">'+
+                                '<div class="form-group mt-4">'+
                                     '<label class="form-label" for="default-01">Name:</label>'+
                                     '<div class="form-control-wrap">'+
                                     ' <input type="text" class="form-control" name="name[]" placeholder="Enter Name">'+
@@ -304,14 +304,14 @@
                                ' </div>'+
                             '</div>'+
                             '<div class="col-sm-6">'+
-                               ' <div class="form-group">'+
+                               ' <div class="form-group mt-4">'+
                                     '<label class="form-label" for="default-01">Email:</label>'+
                                     '<div class="form-control-wrap">'+
                                     ' <input type="email" class="form-control" name="email[]" placeholder="Enter Email">'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
-                            '<div class="col-sm-1"><span title="Remove Section" class="removeSection material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end" style="cursor: pointer;position: absolute;top: 35px;">remove_circle</span>'+
+                            '<div class="col-sm-1"><span title="Remove Section" class="removeSection material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end" style="cursor: pointer;position: absolute;top: 58px;">remove_circle</span>'+
                             '</div></div>';
           $('#addsection').append(html);
         });

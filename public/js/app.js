@@ -2544,6 +2544,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -2561,6 +2662,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       categorieslist: [],
       categoriesData: [],
+      subCategories: [],
+      subCategoriesHtml: false,
       hostname: ''
     };
   },
@@ -2578,12 +2681,31 @@ __webpack_require__.r(__webpack_exports__);
         return console.log(error);
       });
     },
-    categoriesbyid: function categoriesbyid(event) {
+    subcategoriesbyid: function subcategoriesbyid(event) {
       var _this2 = this;
 
       var id = event.target.value;
-      axios.get('questions/categories/' + id).then(function (response) {
+      axios.get('questions/subcategories/' + id).then(function (response) {
+        console.log(response.data);
         _this2.categoriesData = response.data;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    categoriesbyid: function categoriesbyid(event) {
+      var _this3 = this;
+
+      var id = event.target.value;
+      axios.get('questions/categories/' + id).then(function (response) {
+        console.log(response.data);
+        _this3.categoriesData = response.data.categories;
+        _this3.subCategories = response.data.subcat;
+
+        if (_this3.subCategories.length > 0 && _this3.categoriesData.length > 0) {
+          _this3.subCategoriesHtml = true;
+        } else {
+          _this3.subCategoriesHtml = false;
+        }
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -4036,11 +4158,11 @@ __webpack_require__.r(__webpack_exports__);
 
           _this2.isLoading = false;
           _this2.isSubmit = true;
+          _this2.comment = '';
+          _this2.quoteQuestions = {};
           _this2.quoteQuestions.myquotation = response.data.quote.myquotation;
           $('#chatPanel').hide();
           $('#mainView').show();
-          _this2.comment = '';
-          _this2.quoteQuestions = {};
         })["catch"](function (error) {
           console.log(error);
         });
@@ -55108,7 +55230,7 @@ var render = function () {
                                     },
                                   },
                                   [
-                                    _c("option", { attrs: { value: "" } }, [
+                                    _c("option", { attrs: { value: "0" } }, [
                                       _vm._v("Select Category"),
                                     ]),
                                     _vm._v(" "),
@@ -55131,6 +55253,61 @@ var render = function () {
                                 ),
                               ]
                             ),
+                            _vm._v(" "),
+                            _vm.subCategoriesHtml
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-wrap",
+                                    staticStyle: { width: "300px" },
+                                  },
+                                  [
+                                    _c(
+                                      "select",
+                                      {
+                                        staticClass: "form-select",
+                                        staticStyle: { opacity: "1" },
+                                        attrs: {
+                                          "data-search": "off",
+                                          "data-placeholder": "Bulk Action",
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            return _vm.subcategoriesbyid($event)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "0" } },
+                                          [_vm._v("Select Category")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(
+                                          _vm.subCategories,
+                                          function (category) {
+                                            return _c(
+                                              "option",
+                                              {
+                                                domProps: {
+                                                  value: category.id,
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(category.category_name)
+                                                ),
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                      ],
+                                      2
+                                    ),
+                                  ]
+                                )
+                              : _vm._e(),
                           ]
                         ),
                       ]),
@@ -55217,6 +55394,731 @@ var render = function () {
                                             },
                                             [
                                               _vm._m(3, true),
+                                              _vm._v(" "),
+                                              category.subquestions.length > 0
+                                                ? [
+                                                    _c(
+                                                      "draggable",
+                                                      {
+                                                        staticClass:
+                                                          "drag-area",
+                                                        attrs: {
+                                                          list: category.subquestions,
+                                                          options: {
+                                                            animation: 200,
+                                                            group: "status",
+                                                          },
+                                                          element: "tbody",
+                                                        },
+                                                        on: {
+                                                          change: function (
+                                                            $event
+                                                          ) {
+                                                            return _vm.dragCard(
+                                                              $event,
+                                                              keyIndex
+                                                            )
+                                                          },
+                                                        },
+                                                      },
+                                                      _vm._l(
+                                                        category.subquestions,
+                                                        function (question) {
+                                                          return _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "nk-tb-item",
+                                                              staticStyle: {
+                                                                cursor:
+                                                                  "pointer",
+                                                              },
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col",
+                                                                },
+                                                                [
+                                                                  _c("span", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        question.id
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col tb-col-mb",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "tb-amount",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          question.question
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col tb-col-md",
+                                                                },
+                                                                [
+                                                                  _c("span", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        category.category_name
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col tb-col-lg",
+                                                                },
+                                                                [
+                                                                  _c("span", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        question.choice_selection
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col tb-col-lg",
+                                                                },
+                                                                [
+                                                                  _c("span", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.dateFormat(
+                                                                          question.created_at
+                                                                        )
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col tb-col-md",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "tb-status text-success",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Active"
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "nk-tb-col nk-tb-col-tools",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "ul",
+                                                                    {
+                                                                      staticClass:
+                                                                        "nk-tb-actions gx-1",
+                                                                    },
+                                                                    [
+                                                                      _c("li", [
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "drodown",
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "triggerBtn dropdown-toggle btn btn-icon btn-trigger ",
+                                                                                attrs:
+                                                                                  {
+                                                                                    href: "#",
+                                                                                    "data-toggle":
+                                                                                      "dropdown",
+                                                                                  },
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "em",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      " icon ni ni-more-h",
+                                                                                  }
+                                                                                ),
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "div",
+                                                                              {
+                                                                                staticClass:
+                                                                                  " dropdown-menu dropdown-menu-right",
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "ul",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "link-list-opt no-bdr",
+                                                                                  },
+                                                                                  [
+                                                                                    _c(
+                                                                                      "li",
+                                                                                      [
+                                                                                        _c(
+                                                                                          "a",
+                                                                                          {
+                                                                                            attrs:
+                                                                                              {
+                                                                                                href: "#",
+                                                                                                "data-toggle":
+                                                                                                  "modal",
+                                                                                                "data-target":
+                                                                                                  "#modalZoom" +
+                                                                                                  question.id,
+                                                                                              },
+                                                                                          },
+                                                                                          [
+                                                                                            _c(
+                                                                                              "em",
+                                                                                              {
+                                                                                                staticClass:
+                                                                                                  "icon ni ni-eye",
+                                                                                              }
+                                                                                            ),
+                                                                                            _c(
+                                                                                              "span",
+                                                                                              [
+                                                                                                _vm._v(
+                                                                                                  "View Options"
+                                                                                                ),
+                                                                                              ]
+                                                                                            ),
+                                                                                          ]
+                                                                                        ),
+                                                                                      ]
+                                                                                    ),
+                                                                                    _vm._v(
+                                                                                      " "
+                                                                                    ),
+                                                                                    _c(
+                                                                                      "li",
+                                                                                      [
+                                                                                        _c(
+                                                                                          "a",
+                                                                                          {
+                                                                                            attrs:
+                                                                                              {
+                                                                                                href:
+                                                                                                  _vm.hostname +
+                                                                                                  "/questions/add-question?category_id=" +
+                                                                                                  question.category_id +
+                                                                                                  "&sub_category_id=" +
+                                                                                                  question.subcategory_id,
+                                                                                              },
+                                                                                          },
+                                                                                          [
+                                                                                            _c(
+                                                                                              "em",
+                                                                                              {
+                                                                                                staticClass:
+                                                                                                  "icon ni ni-repeat",
+                                                                                              }
+                                                                                            ),
+                                                                                            _c(
+                                                                                              "span",
+                                                                                              [
+                                                                                                _vm._v(
+                                                                                                  "Edit"
+                                                                                                ),
+                                                                                              ]
+                                                                                            ),
+                                                                                          ]
+                                                                                        ),
+                                                                                      ]
+                                                                                    ),
+                                                                                    _vm._v(
+                                                                                      " "
+                                                                                    ),
+                                                                                    _c(
+                                                                                      "li",
+                                                                                      {
+                                                                                        staticClass:
+                                                                                          "divider",
+                                                                                      }
+                                                                                    ),
+                                                                                    _vm._v(
+                                                                                      " "
+                                                                                    ),
+                                                                                    _c(
+                                                                                      "li",
+                                                                                      [
+                                                                                        _c(
+                                                                                          "a",
+                                                                                          {
+                                                                                            attrs:
+                                                                                              {
+                                                                                                href:
+                                                                                                  _vm.hostname +
+                                                                                                  "/questions/deletequestion/" +
+                                                                                                  question.id,
+                                                                                              },
+                                                                                          },
+                                                                                          [
+                                                                                            _c(
+                                                                                              "em",
+                                                                                              {
+                                                                                                staticClass:
+                                                                                                  "icon ni ni-na",
+                                                                                              }
+                                                                                            ),
+                                                                                            _c(
+                                                                                              "span",
+                                                                                              [
+                                                                                                _vm._v(
+                                                                                                  "Delete"
+                                                                                                ),
+                                                                                              ]
+                                                                                            ),
+                                                                                          ]
+                                                                                        ),
+                                                                                      ]
+                                                                                    ),
+                                                                                  ]
+                                                                                ),
+                                                                              ]
+                                                                            ),
+                                                                          ]
+                                                                        ),
+                                                                      ]),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "modal fade zoom",
+                                                                  attrs: {
+                                                                    tabindex:
+                                                                      "-1",
+                                                                    id:
+                                                                      "modalZoom" +
+                                                                      question.id,
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "modal-dialog",
+                                                                      attrs: {
+                                                                        role: "document",
+                                                                      },
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "modal-content",
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "modal-header",
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "h5",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "modal-title",
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    " " +
+                                                                                      _vm._s(
+                                                                                        category.category_name
+                                                                                      )
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "a",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "close",
+                                                                                  attrs:
+                                                                                    {
+                                                                                      href: "#",
+                                                                                      "data-dismiss":
+                                                                                        "modal",
+                                                                                      "aria-label":
+                                                                                        "Close",
+                                                                                    },
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "em",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "icon ni ni-cross",
+                                                                                    }
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "modal-body",
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "card-inner p-0",
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "div",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "nk-tb-list nk-tb-ulist",
+                                                                                    },
+                                                                                    [
+                                                                                      _c(
+                                                                                        "div",
+                                                                                        {
+                                                                                          staticClass:
+                                                                                            "nk-tb-item nk-tb-head",
+                                                                                          staticStyle:
+                                                                                            {
+                                                                                              background:
+                                                                                                "#253a46e3",
+                                                                                            },
+                                                                                        },
+                                                                                        [
+                                                                                          _c(
+                                                                                            "div",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "nk-tb-col tb-col-lg",
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "span",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "sub-text",
+                                                                                                },
+                                                                                                [
+                                                                                                  _vm._v(
+                                                                                                    "ID"
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                            ]
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " "
+                                                                                          ),
+                                                                                          _c(
+                                                                                            "div",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "nk-tb-col",
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "span",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "sub-text",
+                                                                                                },
+                                                                                                [
+                                                                                                  _vm._v(
+                                                                                                    "Option"
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                            ]
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " "
+                                                                                          ),
+                                                                                          _c(
+                                                                                            "div",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "nk-tb-col tb-col-mb",
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "span",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "sub-text",
+                                                                                                },
+                                                                                                [
+                                                                                                  _vm._v(
+                                                                                                    "Icon"
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                            ]
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " "
+                                                                                          ),
+                                                                                          _c(
+                                                                                            "div",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "nk-tb-col tb-col-lg",
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "span",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "sub-text",
+                                                                                                },
+                                                                                                [
+                                                                                                  _vm._v(
+                                                                                                    "Created At"
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                            ]
+                                                                                          ),
+                                                                                        ]
+                                                                                      ),
+                                                                                      _vm._v(
+                                                                                        " "
+                                                                                      ),
+                                                                                      _vm._l(
+                                                                                        question.choices,
+                                                                                        function (
+                                                                                          option
+                                                                                        ) {
+                                                                                          return _c(
+                                                                                            "div",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "nk-tb-item",
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "div",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "nk-tb-col",
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "span",
+                                                                                                    [
+                                                                                                      _vm._v(
+                                                                                                        _vm._s(
+                                                                                                          option.id
+                                                                                                        )
+                                                                                                      ),
+                                                                                                    ]
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                              _vm._v(
+                                                                                                " "
+                                                                                              ),
+                                                                                              _c(
+                                                                                                "div",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "nk-tb-col tb-col-mb",
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "span",
+                                                                                                    {
+                                                                                                      staticClass:
+                                                                                                        "tb-amount",
+                                                                                                    },
+                                                                                                    [
+                                                                                                      _vm._v(
+                                                                                                        _vm._s(
+                                                                                                          option.choice
+                                                                                                        )
+                                                                                                      ),
+                                                                                                    ]
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                              _vm._v(
+                                                                                                " "
+                                                                                              ),
+                                                                                              _c(
+                                                                                                "div",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "nk-tb-col tb-col-mb",
+                                                                                                  staticStyle:
+                                                                                                    {
+                                                                                                      width:
+                                                                                                        "20%",
+                                                                                                    },
+                                                                                                },
+                                                                                                [
+                                                                                                  option.icon
+                                                                                                    ? _c(
+                                                                                                        "span",
+                                                                                                        [
+                                                                                                          _c(
+                                                                                                            "img",
+                                                                                                            {
+                                                                                                              attrs:
+                                                                                                                {
+                                                                                                                  src:
+                                                                                                                    _vm.hostname +
+                                                                                                                    "/frontend-assets/images/categories/" +
+                                                                                                                    option.icon,
+                                                                                                                },
+                                                                                                            }
+                                                                                                          ),
+                                                                                                        ]
+                                                                                                      )
+                                                                                                    : _c(
+                                                                                                        "span",
+                                                                                                        [
+                                                                                                          _c(
+                                                                                                            "img",
+                                                                                                            {
+                                                                                                              attrs:
+                                                                                                                {
+                                                                                                                  src:
+                                                                                                                    _vm.hostname +
+                                                                                                                    "/frontend-assets/images/icons/option.png",
+                                                                                                                },
+                                                                                                            }
+                                                                                                          ),
+                                                                                                        ]
+                                                                                                      ),
+                                                                                                ]
+                                                                                              ),
+                                                                                              _vm._v(
+                                                                                                " "
+                                                                                              ),
+                                                                                              _c(
+                                                                                                "div",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "nk-tb-col tb-col-lg",
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "span",
+                                                                                                    [
+                                                                                                      _vm._v(
+                                                                                                        _vm._s(
+                                                                                                          _vm.dateFormat(
+                                                                                                            option.created_at
+                                                                                                          )
+                                                                                                        )
+                                                                                                      ),
+                                                                                                    ]
+                                                                                                  ),
+                                                                                                ]
+                                                                                              ),
+                                                                                            ]
+                                                                                          )
+                                                                                        }
+                                                                                      ),
+                                                                                    ],
+                                                                                    2
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          )
+                                                        }
+                                                      ),
+                                                      0
+                                                    ),
+                                                  ]
+                                                : _vm._e(),
                                               _vm._v(" "),
                                               _c(
                                                 "draggable",
@@ -55926,7 +56828,7 @@ var render = function () {
                                                 0
                                               ),
                                             ],
-                                            1
+                                            2
                                           ),
                                         ]
                                       ),

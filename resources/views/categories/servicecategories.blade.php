@@ -94,7 +94,7 @@
                     <!-- <p>{{$category->category_description}}</p> -->
                     <ul class="d-flex flex-wrap g-1">
                         @foreach($category->subcategory as $key=>$subcategory)
-                        <li data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}"><span class="badge badge-dim {{$arraycalss[$key]}}">{{$subcategory->sub_category}}</span></li>
+                        <li data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}"><span class="badge badge-dim {{$arraycalss[$key]}}">{{$subcategory->category_name}}</span></li>
                          <div class="modal fade zoom" tabindex="-1" id="modalsubEdit{{$subcategory->id}}">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -110,12 +110,12 @@
                          <form action="{{ url('service-categories/update') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                         <div class="row d-flex justify-content-center gy-4">
-                           <input type="hidden" name="id" value="{{$category->id}}">
+                           <input type="hidden" name="id" value="{{$subcategory->id}}">
                             <div class="col-sm-10">
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Category Name</label>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" value="{{$subcategory->sub_category}}" required>
+                                        <input type="text" class="form-control" name="category_name" id="default-01" placeholder="Category Name" value="{{$subcategory->category_name}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +319,15 @@
                 </div>
             </div>
         </div>
-      
+        
+       <div class="col-sm-10">
+            <div class="form-group">
+                <label class="form-label" for="default-01">Credits Cost to Quote</label>
+                <div class="form-control-wrap">
+                    <input type="text" class="form-control" name="credit_cost" id="default-01" placeholder="Credits Cost to Quote" >
+                </div>
+            </div>
+        </div>
         <div class="col-sm-10 text-center mb-5">
             <button class="btn btn-success btn-lg" type="submit">Save</button>
         </div>

@@ -25,8 +25,9 @@ class QuoteController extends Controller
 	}
 
 	public function leadsquotes(){
+// dd(Auth::user()->category_id);
+        $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->where('zip_code',Auth::user()->zipcode)->whereIn('category_id',json_decode(Auth::user()->category_id))->where('admin_id',request('account'))->where('status','pending')->orderBy('id','desc')->get();
 
-        $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->where('zip_code',Auth::user()->zipcode)->where('category_id',Auth::user()->category_id)->where('admin_id',request('account'))->where('status','pending')->orderBy('id','desc')->get();
         return $pendingquotes;
 	}
 

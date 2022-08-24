@@ -16,6 +16,13 @@
     </span> {{ trans('messages.contact_information') }}
     </a>
     </li>
+    <li rel0="HomeController/sitesetting" class="nav-item">
+    <a href="{{ url("account/site-setting") }}" class="nav-link">
+        <span class="material-icons-outlined">
+    maps_home_work
+    </span>Site Setting
+    </a>
+    </li>
     @if (config('app.saas'))
     <li rel0="AccountController/billing" class="nav-item">
         <a href="{{ url("account/billing") }}" class="nav-link">

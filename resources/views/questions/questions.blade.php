@@ -106,6 +106,7 @@
                             <div class="nk-tb-col tb-col-lg"><span class="sub-text">ID</span></div>
                             <div class="nk-tb-col"><span class="sub-text">Question</span></div>
                             <div class="nk-tb-col tb-col-mb"><span class="sub-text">Category Name</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Sub Category Name</span></div>
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Selection</span></div>
                             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
@@ -124,6 +125,9 @@
                             </div>
                             <div class="nk-tb-col tb-col-md">
                                 <span>{{$question->categories->category_name}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                <span>{{$question->subcategories->category_name}}</span>
                             </div>
                             <div class="nk-tb-col tb-col-lg">
                                 <span>{{$question->choice_selection}}</span>

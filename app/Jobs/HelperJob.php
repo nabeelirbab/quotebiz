@@ -12,6 +12,7 @@ use Acelle\Model\JobDesign;
 use Acelle\Model\QuotePrice;
 use Acelle\Model\AdminCurrency;
 use Acelle\Model\SiteSetting;
+use Acelle\Model\SubCategory;
 use Acelle\Library\ExtendedSwiftMessage;
 
 class HelperJob extends Base
@@ -24,7 +25,7 @@ class HelperJob extends Base
 
     public static function categories(){
         // dd(Category::orderBy('category_name','desc')->get());
-       $category =  Category::where('subdomain','=',request('account'))->orderBy('category_name','desc')->get();
+       $category =  Category::where('subdomain','=',request('account'))->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
        if(count($category)){
           return $category;
        }else{
@@ -35,7 +36,19 @@ class HelperJob extends Base
 
     public static function mycategories(){
         // dd(Category::orderBy('category_name','desc')->get());
-       $category =  Category::where('subdomain','=',request('account'))->orderBy('category_name','desc')->get();
+       $category =  Category::where('subdomain','=',request('account'))->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
+          return $category;
+    }
+
+    public static function mysubcategories($id){
+        // dd(Category::orderBy('category_name','desc')->get());
+       $category =  Category::where('cat_parent_id','=',$id)->orderBy('category_name','desc')->get();
+          return $category;
+    }
+
+    public static function categoryDetail($id){
+        // dd(Category::orderBy('category_name','desc')->get());
+       $category =  Category::where('id','=',$id)->first();
           return $category;
     }
     public static function stripekey(){
