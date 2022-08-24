@@ -39,31 +39,31 @@
                         <div class="form-group">
                             <label class="form-label" for="default-01">Main Heading </label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->title_heading}}" @endif name="title_heading" id="default-01" placeholder="Enter main heading" required>
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->title_heading}}" @else value="What are you looking for?" @endif name="title_heading" id="default-01" placeholder="Enter main heading" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Sub Heading</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->titlesub_heading}}" @endif name="titlesub_heading" id="default-01" placeholder="Enter sub heading" required>
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->titlesub_heading}}" @else value="Let us know what you are looking for and we will provide you up to 3 quotes." @endif name="titlesub_heading" id="default-01" placeholder="Enter sub heading" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Category Input Heading</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->category_heading}}" @endif name="category_heading" id="default-01" placeholder="Enter category input heading" required>
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->category_heading}}" @else value="Service you require" @endif name="category_heading" id="default-01" placeholder="Enter category input heading" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Post Code Heading</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->postcode_text}}" @endif name="postcode_text" id="default-01" placeholder="Enter post code heading" required>
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->postcode_text}}" @else value="Where you need ?" @endif name="postcode_text" id="default-01" placeholder="Enter post code heading" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text}}" @endif name="button_text" id="default-01" placeholder="Enter button text" required>
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text}}" @else value="Send Me Quotes" @endif name="button_text" id="default-01" placeholder="Enter button text" required>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Color</label>
                               <div id="cp0" class="input-group" title="Using input value">
-                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_color}}" @endif name="button_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_color}}" @else value="#000000" @endif name="button_color" id="default-01" placeholder="Enter sun heading" required/>
                               <span class="input-group-append">
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text Color</label>
                             <div id="cp1" class="input-group" title="Using input value">
-                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text_color}}" @endif name="button_text_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text_color}}" @else value="#FFFFFF" @endif name="button_text_color" id="default-01" placeholder="Enter sun heading" required/>
                               <span class="input-group-append">
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
@@ -95,7 +95,7 @@
                         <div class="form-group">
                             <label class="form-label" for="default-01">Underline Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
-                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->underline_color}}" @endif name="underline_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->underline_color}}" @else value="#C31E1E" @endif name="underline_color" id="default-01" placeholder="Enter sub heading" required/>
                               <span class="input-group-append">
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
