@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers;
 use Illuminate\Http\Request;
 use Acelle\Model\Subscription;
 use Acelle\Model\Quote;
+use Acelle\Model\Quotation;
 use Acelle\Model\User;
 use Acelle\Model\SiteSetting;
 use Acelle\Model\BuyCreadit;
@@ -12,6 +13,7 @@ use Acelle\Model\Invitation;
 use Auth;
 use Session;
 use Redirect;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -22,6 +24,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
+      
+       $date = $request->get('date');
+        if($date == 'daily'){
+          $from = Carbon::now()->subDays(0);
+        }elseif($date == 'monthly'){
+          $from = Carbon::now()->subDays(30);
+        }
+        else{
+         $from = Carbon::now()->subDays(6);
+        }
+
         event(new \Acelle\Events\UserUpdated($request->user()->customer));
 
         // Last month
@@ -30,12 +44,25 @@ class HomeController extends Controller
       $quoteCount =  Quote::where('admin_id',request('account'))->count();
       $quotes =  Quote::where('admin_id',request('account'))->orderBy('created_at','desc')->limit(5)->get();
       $totalRevenue =  BuyCreadit::where('subdomain',request('account'))->sum('amount');
+
+      $topSP = User::has('allQuoteSp')->with(['allQuoteSp' => function($q) use($date,$from) {
+        if($date == 'daily'){
+          $q->where('created_at', Carbon::today());
+        }elseif($date == 'monthly'){
+          $q->whereMonth('created_at', Carbon::now()->month);
+        }
+        else{
+          $q->whereBetween('created_at', [$from,Carbon::today()]);
+        }
+       }])->addSelect(['totalamount' => Quotation::has('wonquote')->selectRaw('sum(quote_price) as total_likes')->whereColumn('user_id', 'users.id')->whereBetween('created_at',[$from,Carbon::today()])->groupBy('user_id')])->where('user_type','service_provider')->orderBy('totalamount', 'DESC')->get();
+        // dd($topSP[0]->allQuoteSp);
         return view('dashboard', [
             'customerCount' => $customerCount,
             'providerCount' => $providerCount,
             'quoteCount' => $quoteCount,
             'quotes' => $quotes,
             'totalRevenue' => $totalRevenue,
+            'topSp' => $topSP
         ]);
     }
    

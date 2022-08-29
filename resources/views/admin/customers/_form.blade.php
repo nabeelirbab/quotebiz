@@ -5,7 +5,7 @@
             <div class="media profile-image">
                 <div class="media-left">
                     <a href="#" class="upload-media-container">
-                        <img preview-for="image" empty-src="{{ URL::asset('images/placeholder.jpg') }}" src="{{ $customer->user->getProfileImageUrl() }}" class="rounded-circle" alt="">
+                        <img preview-for="image" empty-src="{{ URL::asset('images/placeholder.jpg') }}" src="{{ $customer->getProfileImageUrl() }}" class="rounded-circle" alt="">
                     </a>
                     <input type="file" name="image" class="file-styled previewable hide">
                     <input type="hidden" name="_remove_image" value='' />
@@ -28,11 +28,11 @@ delete_outline
         <div class="sub_section">
             <h2 class="text-semibold text-primary">{{ trans('messages.account') }}</h2>
 
-            @include('helpers.form_control', ['type' => 'text', 'name' => 'email', 'value' => $customer->user->email, 'help_class' => 'profile', 'rules' => $customer->user->rules()])
+            @include('helpers.form_control', ['type' => 'text', 'name' => 'email', 'value' => $customer->email, 'help_class' => 'profile', 'rules' => $customer->rules()])
 
-            @include('helpers.form_control', ['type' => 'password', 'label'=> trans('messages.new_password'), 'name' => 'password', 'rules' => $customer->user->rules()])
+            @include('helpers.form_control', ['type' => 'password', 'label'=> trans('messages.new_password'), 'name' => 'password', 'rules' => $customer->rules()])
 
-            @include('helpers.form_control', ['type' => 'password', 'name' => 'password_confirmation', 'rules' => $customer->user->rules()])
+            @include('helpers.form_control', ['type' => 'password', 'name' => 'password_confirmation', 'rules' => $customer->rules()])
 
         </div>
     </div>
@@ -42,16 +42,16 @@ delete_outline
 
             <div class="row">
                 <div class="col-md-6">
-                    @include('helpers.form_control', ['type' => 'text', 'name' => 'first_name', 'value' => $customer->user->first_name, 'rules' => $customer->user->rules()])
+                    @include('helpers.form_control', ['type' => 'text', 'name' => 'first_name', 'value' => $customer->first_name, 'rules' => $customer->rules()])
                 </div>
                 <div class="col-md-6">
-                    @include('helpers.form_control', ['type' => 'text', 'name' => 'last_name', 'value' => $customer->user->last_name, 'rules' => $customer->user->rules()])
+                    @include('helpers.form_control', ['type' => 'text', 'name' => 'last_name', 'value' => $customer->last_name, 'rules' => $customer->rules()])
                 </div>
             </div>
 
-            @include('helpers.form_control', ['type' => 'select', 'name' => 'timezone', 'value' => $customer->timezone, 'options' => Tool::getTimezoneSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => $customer->user->rules()])
+            @include('helpers.form_control', ['type' => 'select', 'name' => 'timezone', 'value' => $customer->timezone, 'options' => Tool::getTimezoneSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => $customer->rules()])
 
-            @include('helpers.form_control', ['type' => 'select', 'name' => 'language_id', 'label' => trans('messages.language'), 'value' => $customer->language_id, 'options' => Acelle\Model\Language::getSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => $customer->user->rules()])
+            @include('helpers.form_control', ['type' => 'select', 'name' => 'language_id', 'label' => trans('messages.language'), 'value' => $customer->language_id, 'options' => Acelle\Model\Language::getSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => $customer->rules()])
 
         </div>
     </div>

@@ -159,8 +159,6 @@
             </div>
         </div>
     </div>
-    
-
     <script>
         var changePlanModal;
 
@@ -182,6 +180,16 @@
                 $(this).parents('li').hide();
             });
         });
+            $(document).ready(function() {
+             var plan  = {
+                value : '{{Request::get('upgrade')}}',
+             };
+             // console.log(plan);
+             if(plan.value){
+                $( '.change_plan_button' ).trigger( "click" );
+             }
+        });
+            
     </script>
 
 @endsection

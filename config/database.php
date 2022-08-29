@@ -56,7 +56,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => env('DB_TABLES_PREFIX', ''),
             'prefix_indexes' => true,
-            'strict' => true,
+            'strict' => false,
             'engine' => 'InnoDB',
             'timezone'  => '+00:00',
             'options' => extension_loaded('pdo_mysql') ? array_filter([

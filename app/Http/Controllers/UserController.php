@@ -17,6 +17,7 @@ use Acelle\Model\JobDesign;
 use Acelle\Model\QuotePrice;
 use Acelle\Model\Invitation;
 use Acelle\Model\Category;
+use Acelle\Model\Subscription;
 use Acelle\Library\Facades\Hook;
 use Auth;
 use Mail;
@@ -353,6 +354,15 @@ public function adminregister(Request $request)
                 $subdomain->user_id =  $user->id;
                 $subdomain->subdomain = $request->subdomain;
                 $subdomain->save();
+                $today = Carbon::today();
+                $subscription = new Subscription;
+                $subscription->uid = uniqid();
+                $subscription->status = 'active';
+                $subscription->current_period_ends_at =  $today->addMonths(3);
+                $subscription->started_at = Carbon::now()->toDateTimeString();
+                $subscription->customer_id = $user->customer_id;
+                $subscription->plan_id = 1;
+                $subscription->save();
 
 
             // user email verification

@@ -77,6 +77,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $with = array('allQuoteSp');
+
 public static $itemsPerPage = 25;
     /**
      * Associations.
@@ -106,6 +108,11 @@ public static $itemsPerPage = 25;
     public function chatsp()
     {
         return $this->hasOne('Acelle\Model\Quotation','user_id','id');
+    }
+
+    public function allQuoteSp()
+    {
+        return $this->hasMany('Acelle\Model\Quotation','user_id','id');
     }
 
     public function stripekey()

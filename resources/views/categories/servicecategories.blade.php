@@ -127,7 +127,15 @@
                                     </div>
                                 </div>
                             </div>
-                           
+                               
+                           <div class="col-sm-10">
+                                <div class="form-group">
+                                    <label class="form-label" for="default-01">Credits Cost to Quote</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" name="credit_cost" value="{{$subcategory->credit_cost}}" placeholder="Credits Cost to Quote" >
+                                    </div>
+                                </div>
+                            </div>
                            
                             <div class="col-sm-10 text-center">
                                 <button class="btn btn-success btn-lg" type="submit">Update</button>
@@ -196,7 +204,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="default-01">Credits Cost to Quote</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" value="{{$category->credit_cost}}" class="form-control" name="credit_cost" id="default-01"  placeholder="Credits Cost to Quote" >
+                                    <input type="text" value="{{$category->credit_cost}}" class="form-control" name="credit_cost"   placeholder="Credits Cost to Quote" >
                                 </div>
                             </div>
                         </div>
