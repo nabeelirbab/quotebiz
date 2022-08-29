@@ -54,7 +54,7 @@ class HomeController extends Controller
         else{
           $q->whereBetween('created_at', [$from,Carbon::today()]);
         }
-       }])->addSelect(['totalamount' => Quotation::has('wonquote')->selectRaw('sum(quote_price) as total_likes')->whereColumn('user_id', 'users.id')->whereBetween('created_at',[$from,Carbon::today()])->groupBy('user_id')])->where('user_type','service_provider')->orderBy('totalamount', 'DESC')->get();
+       }])->addSelect(['totalamount' => Quotation::has('wonquote')->selectRaw('sum(quote_price) as total_likes')->whereColumn('user_id', 'users.id')->whereBetween('created_at',[$from,Carbon::today()])->groupBy('user_id')])->where('user_type','service_provider')->where('subdomain',request('account'))->orderBy('totalamount', 'DESC')->get();
         // dd($topSP[0]->allQuoteSp);
         return view('dashboard', [
             'customerCount' => $customerCount,
