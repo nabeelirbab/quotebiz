@@ -242,13 +242,13 @@ class CustomerController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $customer = \Acelle\Model\Customer::findByUid($id);
+        $customer = \Acelle\Model\User::findByUid($id);
         event(new \Acelle\Events\UserUpdated($customer));
-
+        // dd($customer);
         // authorize
-        if (\Gate::denies('update', $customer)) {
-            return $this->notAuthorized();
-        }
+        // if (\Gate::denies('update', $customer)) {
+        //     return $this->notAuthorized();
+        // }
 
         if (!empty($request->old())) {
             $customer->fill($request->old());
@@ -273,12 +273,12 @@ class CustomerController extends Controller
     {
         // Get current user
         $current_user = $request->user();
-        $customer = \Acelle\Model\Customer::findByUid($id);
+        $customer = \Acelle\Model\User::findByUid($id);
 
         // authorize
-        if (\Gate::denies('update', $customer)) {
-            return $this->notAuthorized();
-        }
+        // if (\Gate::denies('update', $customer)) {
+        //     return $this->notAuthorized();
+        // }
 
         // Prenvent save from demo mod
         if ($this->isDemoMode()) {

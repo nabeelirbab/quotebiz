@@ -20,6 +20,11 @@ class Quotation extends Model
 		    return $this->belongsTo('Acelle\Model\Quote','quote_id');
 		  }
 
+        public function wonquote()
+		  {
+		    return $this->belongsTo('Acelle\Model\Quote','quote_id')->where('status','won');
+		  }
+
         public function quotestatus()
 		  {
 		    return $this->hasOne('Acelle\Model\QuotationStatus','quotation_id')->where('user_id','=', Auth::user()->id);

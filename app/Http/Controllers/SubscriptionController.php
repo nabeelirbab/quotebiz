@@ -132,7 +132,7 @@ class SubscriptionController extends Controller
             } else {
                 // no billing information
                 if (!$invoice->hasBillingInformation()) {
-                    return redirect()->action('SubscriptionController@billingInformation');
+                    return redirect('account/subscription/billing-information');
                 }
 
                 if ($invoice->isFree()) {

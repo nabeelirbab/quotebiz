@@ -155,11 +155,11 @@
                         
                     </div>
                    <div class="col-sm-4">
-                    <p><b>Follow this image for guidence to fill form</b></p>
+                    <p><b>Follow this image for guidence to fill form</b><a class="fs-5 btn btn-sm btn-success float-right" href="{{ url('get-quote')}}" target="_blank">Preview Design</a></p>
+                   
                     <a href="{{asset('frontend-assets/images/demo.png')}}" target="_blank">
                        <img src="{{asset('frontend-assets/images/demo.png')}}" style="border: 1px solid #253a463b;padding: 9px;border-radius: 6px;">
                    </a>
-                   <a class="mt-3 fs-5" href="{{ url('get-quote')}}" target="_blank">Preview Design</a>
                    
                    </div>
                     <div class="col-sm-7 text-center">

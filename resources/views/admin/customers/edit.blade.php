@@ -1,6 +1,6 @@
 @extends('layouts.core.backend')
 
-@section('title', $customer->user->displayName())
+@section('title', $customer->first_name)
     
 @section('page_header')
     
@@ -13,7 +13,7 @@
         <h1>
             <span class="text-semibold"><span class="material-icons-round">
                             person_outline
-                            </span> {{ $customer->user->displayName() }}</span>
+                            </span> {{ $customer->first_name }}</span>
         </h1>
     </div>
                 

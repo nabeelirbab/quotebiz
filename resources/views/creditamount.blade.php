@@ -32,7 +32,7 @@
     </div>
  @endif
 <div class="nk-block">
-<div class="card card-bordered card-stretch  row m-0">
+<div class="card card-bordered card-stretch  row m-0" style="flex-direction: inherit;">
 <div class="card-inner-group col-md-6 border-right p-0" >
 <div class="card-inner text-center">
    <div class="card-title-group">

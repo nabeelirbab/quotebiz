@@ -41,7 +41,13 @@
                     </div>
                 </div>
             </li>
-            <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
+            <?php  
+               $customer =  Request::user()->customer;
+                $subscription = $customer->subscription;
+            ?>
+            @if ($subscription->plan_id == 1)
+            <li class="nk-block-tools-opt"><a href="{{ url('account/subscription?upgrade='.$subscription->plan_id) }}" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Upgrade Plan</span></a></li>
+            @endif            
         </ul>
     </div>
 </div>
@@ -325,87 +331,56 @@
     <div class="card-inner">
         <div class="card-title-group mb-2">
             <div class="card-title">
-                <h6 class="title">Top products</h6>
+                <h6 class="title">Top Service Providers</h6>
             </div>
             <div class="card-tools">
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                         <ul class="link-list-opt no-bdr">
-                            <li><a href="#"><span>Daily</span></a></li>
-                            <li><a href="#" class="active"><span>Weekly</span></a></li>
-                            <li><a href="#"><span>Monthly</span></a></li>
+                            <li><a href=""><span>Daily</span></a></li>
+                            <li><a href="" class="active"><span>Weekly</span></a></li>
+                            <li><a href=""><span>Monthly</span></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <ul class="nk-top-products">
+            @foreach($topSp as $sp)
             <li class="item">
-                <div class="thumb">
-                    <img src="./images/product/a.png" alt="">
+                <div class="uploadimg">
+                    @if($sp->user_img)
+                    <div class="nk-msg-media user-avatar" style="margin-right: 15px;">
+                    <img src="{{asset('frontend-assets/images/users/'.$sp->user_img)}}" alt="">
+                    </div>
+                    @else
+                    <div class="user-avatar bg-primary" style="margin-right: 15px;">
+                    <span>{{mb_substr($sp->first_name, 0, 1)}}{{mb_substr($sp->last_name, 0, 1)}}</span>
+                    </div>
+                    @endif
                 </div>
                 <div class="info">
-                    <div class="title">Pink Fitness Tracker</div>
-                    <div class="price">$99.00</div>
+                    <div class="title">{{$sp->first_name}} {{$sp->last_name}}</div>
+                    <div class="price">{{count($sp->allQuoteSp)}} Quoted</div>
                 </div>
+                <?php
+                 $won = 0;
+                 foreach ($sp->allQuoteSp as $key => $value) {
+                    if($value->wonquote != null){
+                     $won ++;
+                    }
+                 }
+                ?>
                 <div class="total">
-                    <div class="amount">$990.00</div>
-                    <div class="count">10 Sold</div>
+                    @if($sp->totalamount)
+                     <?php $currency = Acelle\Jobs\HelperJob::usdcurrency($sp->totalamount); ?>
+                    <div class="amount">{{$currency['currency']}} {{$currency['convert']}}</div>
+                    @endif
+                    <div class="count">{{$won}} Won</div>
                 </div>
             </li>
-            <li class="item">
-                <div class="thumb">
-                    <img src="./images/product/b.png" alt="">
-                </div>
-                <div class="info">
-                    <div class="title">Purple Smartwatch</div>
-                    <div class="price">$99.00</div>
-                </div>
-                <div class="total">
-                    <div class="amount">$990.00</div>
-                    <div class="count">10 Sold</div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="thumb">
-                    <img src="./images/product/c.png" alt="">
-                </div>
-                <div class="info">
-                    <div class="title">Black Mi Band Smartwatch</div>
-                    <div class="price">$99.00</div>
-                </div>
-                <div class="total">
-                    <div class="amount">$990.00</div>
-                    <div class="count">10 Sold</div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="thumb">
-                    <img src="./images/product/d.png" alt="">
-                </div>
-                <div class="info">
-                    <div class="title">Black Headphones</div>
-                    <div class="price">$99.00</div>
-                </div>
-                <div class="total">
-                    <div class="amount">$990.00</div>
-                    <div class="count">10 Sold</div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="thumb">
-                    <img src="./images/product/e.png" alt="">
-                </div>
-                <div class="info">
-                    <div class="title">iPhone 7 Headphones</div>
-                    <div class="price">$99.00</div>
-                </div>
-                <div class="total">
-                    <div class="amount">$990.00</div>
-                    <div class="count">10 Sold</div>
-                </div>
-            </li>
+            @endforeach
         </ul>
     </div><!-- .card-inner -->
 </div><!-- .card -->
@@ -419,8 +394,9 @@
 <!-- content @e -->
 @endsection
 @section('script')
+
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
-<script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/chart-ecommerce.js?ver=2.9.1') }}"></script>
+
 @endsection
 
