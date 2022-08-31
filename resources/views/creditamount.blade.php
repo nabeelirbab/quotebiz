@@ -5,6 +5,14 @@
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+    <style type="text/css">
+      .editcurrency{
+        padding: 0;
+        font-size: 15px !important;
+        color: #3fbd9a !important;
+        display: contents !important;
+      }
+    </style>
     @endsection
 @section('content')
 
@@ -32,8 +40,10 @@
     </div>
  @endif
 <div class="nk-block">
-<div class="card card-bordered card-stretch  row m-0" style="flex-direction: inherit;">
-<div class="card-inner-group col-md-6 border-right p-0" >
+<div class="row g-gs">
+<div class="col-xxl-6 col-sm-6">
+<div class="card card-bordered card-stretch m-0" style="display: inherit;">
+<div class="card-inner-group border-right p-0" >
 <div class="card-inner text-center">
    <div class="card-title-group">
     <div class="card-title">
@@ -50,14 +60,14 @@
 <div class="nk-tb-list nk-tb-tnx">
     <div class="nk-tb-item nk-tb-head">
         <div class="nk-tb-col"><span>Bundle Name</span></div>
-        <div class="nk-tb-col text-right"><span>Cost Amount</span></div>
-        <div class="nk-tb-col tb-col-xxl"><span>Credits</span></div>
-        <div class="nk-tb-col text-right tb-col-sm"><span>Created At</span></div>
+        <div class="nk-tb-col text-center"><span>Cost Amount</span></div>
+        <div class="nk-tb-col text-center"><span>Credits</span></div>
+        <div class="nk-tb-col text-center tb-col-sm"><span>Created At</span></div>
         <div class="nk-tb-col text-center tb-col-sm"><span>Actions</span></div>
     </div><!-- .nk-tb-item -->
  @foreach($credits as $creadit)
     <div class="nk-tb-item">
-        <div class="nk-tb-col">
+        <div class="nk-tb-col text-center">
             <div class="nk-tnx-type">
                 
                 <div class="nk-tnx-type-text">
@@ -69,13 +79,13 @@
         <?php 
           $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
         ?>
-        <div class="nk-tb-col text-right">
+        <div class="nk-tb-col text-center">
             <span class="tb-amount">{{$currencyConvert['convert']}}<span> {{$currencyConvert['currency']}}</span></span>
         </div>
-        <div class="nk-tb-col tb-col-lg">
+        <div class="nk-tb-col text-center">
             <span class="tb-lead-sub">{{$creadit->credit}}</span>
         </div>
-        <div class="nk-tb-col text-right tb-col-sm">
+        <div class="nk-tb-col text-center tb-col-sm">
             <span class="tb-amount">{{\Carbon\Carbon::parse($creadit->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
         </div>
         <div class="nk-tb-col text-center">
@@ -103,7 +113,7 @@
                         <div class="form-group">
                             <label class="form-label" >Credit</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" name="credit"  value="{{$creadit->credit}}" placeholder="Enter Credit" required>
+                                <input type="number" class="form-control" name="credit"  value="{{$creadit->credit}}" placeholder="Enter Credit" required>
                             </div>
                         </div>
                     </div>
@@ -133,7 +143,7 @@
                         <div class="form-group">
                             <label class="form-label" >Cost Amount</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$creadit->credit_amount}}" name="credit_amount"  placeholder="Enter Amount" required>
+                                <input type="number" class="form-control" value="{{$creadit->credit_amount}}" name="credit_amount"  placeholder="Enter Amount" required>
                             </div>
                         </div>
                     </div>
@@ -155,8 +165,11 @@
 <div class="card-inner">
 </div><!-- .card-inner -->
 </div><!-- .card-inner-group -->
-
-<div class="card-inner-group col-md-6 border-right p-0" >
+</div>
+</div>
+<div class="col-xxl-6 col-sm-6">
+<div class="card">
+<div class="card-inner-group border-right p-0" >
 <div class="card-inner text-center" style="padding: 1.5em;">
     <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice(); ?>
     <div class="card-title">
@@ -173,13 +186,16 @@
      <div class="form-group col-md-12">
        <label for="inputState">Select option</label>
        <select id="inputState" class="form-control" name="type" onchange="quoteoption(this)" required>
-         <option selected>Choose...</option>
-         <option value="category" >BY CATEGORY</option>
+         <option >Choose...</option>
+         <option value="category" selected>BY CATEGORY</option>
          <option disabled>BY BUDGET</option>
          <option disabled>BY QUOTE AMOUNT</option>
        </select>
      </div>
      <div class="form-group col-md-12"  id="addOption">
+      <label for="inputState">Global credit cost per category</label>
+       <input type="number" @if($quotePrice) value="{{$quotePrice->price}}" @else value="10" @endif name="price" class="form-control" required ><br>
+       <div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>
      </div>
   </form>
 </div><!-- .nk-tb-list -->
@@ -187,6 +203,7 @@
 
 </div><!-- .card-inner-group -->
 </div><!-- .card -->
+
 </div><!-- .nk-block -->
 </div>
 </div>
@@ -211,7 +228,7 @@
                 <div class="form-group">
                     <label class="form-label" >Credit</label>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control" name="credit" placeholder="Enter Credit" required>
+                        <input type="number" class="form-control" name="credit" placeholder="Enter Credit" required>
                     </div>
                 </div>
             </div>
@@ -220,6 +237,7 @@
                             <label class="form-label" >Currency</label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" name="currency" readonly  value="{{\Acelle\Model\AdminCurrency::currency()}}" placeholder="Currency" required>
+                            <span ><a href="{{ url('account/currency') }}" target="_blank" class="editcurrency">Update Currency</a></span>
                             </div>
                         </div>
                     </div>
@@ -240,7 +258,7 @@
                 <div class="form-group">
                     <label class="form-label" >Cost Amount</label>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control" name="credit_amount"  placeholder="Enter Amount" required>
+                        <input type="number" class="form-control" name="credit_amount"  placeholder="Enter Amount" required>
                     </div>
                 </div>
             </div>
