@@ -43,7 +43,7 @@
 <div class="row g-gs">
 <div class="col-xxl-6 col-sm-6">
 <div class="card card-bordered card-stretch m-0" style="display: inherit;">
-<div class="card-inner-group border-right p-0" >
+<div class="card-inner-group p-0" >
 <div class="card-inner text-center">
    <div class="card-title-group">
     <div class="card-title">
@@ -94,7 +94,7 @@
             <a href="{{ url('deletecredit/'.$creadit->id) }}" class="badge badge-sm badge-dim badge-outline-danger" style="cursor: pointer;">Delete</a>
         </div>
     </div><!-- .nk-tb-item -->
-    <div id="mySidepanel{{$creadit->id}}" class="sidepanel" style="top: 60px;height: 650px;">
+    <div id="mySidepanel{{$creadit->id}}" class="sidepanel" style="top: 60px;height: 100%;">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavEdit('{{$creadit->id}}')">×</a>
             <div class="preview-block" style="padding: 24px;">
              <form action="{{ url('credit-amount') }}" method="post" enctype="multipart/form-data">
@@ -169,7 +169,7 @@
 </div>
 <div class="col-xxl-6 col-sm-6">
 <div class="card">
-<div class="card-inner-group border-right p-0" >
+<div class="card-inner-group p-0" >
 <div class="card-inner text-center" style="padding: 1.5em;">
     <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice(); ?>
     <div class="card-title">
@@ -209,7 +209,7 @@
 </div>
 </div>
 </div>
-        <div id="mySidepanel" class="sidepanel" style="height: 833px;">
+        <div id="mySidepanel" class="sidepanel" style="height: 100%;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <div class="preview-block">
          <form action="{{ url('credit-amount') }}" method="post" enctype="multipart/form-data">
