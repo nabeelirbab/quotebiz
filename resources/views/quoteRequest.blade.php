@@ -253,7 +253,7 @@ p.form-para::after{
 	@endif
 		<div class="row justify-content-end" style="height: 100%;align-items: center;">
 		
-			<div class="col-md-6 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
+			<div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 				@if($job_design && $job_design->no_status == '1')
 				<div class="d-flex pt-3 pr-2">
 					<p class="ml-auto mb-0">Want to speak with an agent?</p>
@@ -271,7 +271,7 @@ p.form-para::after{
 						
 					</p>
 					<div class="row">
-					<div class="col-md-7">
+					<div class="col-md-6">
 					<div class="form-group">
 					 <label class="form-control-placeholder" for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
 					 <input type="text" class="form-control" name="category_name" id="search" placeholder="eg DJ, Cleaner, Plumber etc" required>
