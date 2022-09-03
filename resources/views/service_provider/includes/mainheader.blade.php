@@ -10,8 +10,8 @@
                             </div>
                             <div class="nk-header-brand d-xl-none">
                                 <a href="{{ url('service-providers') }}" class="logo-link">
-                                    <img class="logo-light logo-img" src="{{$sitelargelogo }}" >
-                                    <img class="logo-dark logo-img" src="{{$sitelargelogo }}" alt="logo-dark">
+                                    <img class="logo-light logo-img" src="{{$sitelargelogo }}" style="max-height: 52px;max-width: 140px;">
+                                    <img class="logo-dark logo-img" src="{{$sitelargelogo }}" alt="logo-dark" style="max-height: 52px;max-width: 140px;">
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <!-- <div class="nk-header-search ml-3 ml-xl-0">

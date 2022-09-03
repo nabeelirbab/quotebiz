@@ -11,9 +11,9 @@
         </div>
         <div class="nk-sidebar-brand">
             <a href="service-providers" class="logo-link nk-sidebar-logo">
-                <img class="logo-light logo-img" src="{{ $sitesmalllogo }}"  alt="logo">
+                <img class="logo-light logo-img" src="{{ $sitesmalllogo }}"  alt="logo" style="max-height: 52px;max-width: 140px;">
                 <img class="logo-dark logo-img" src="{{ $sitelargelogo }}" 
-                 alt="logo-dark">
+                 alt="logo-dark" style="max-height: 52px;max-width: 140px;">
             </a>
         </div>
     </div><!-- .nk-sidebar-element -->
