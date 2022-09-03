@@ -271,7 +271,7 @@ p.form-para::after{
 						
 					</p>
 					<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-7">
 					<div class="form-group">
 					 <label class="form-control-placeholder" for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
 					 <input type="text" class="form-control" name="category_name" id="search" placeholder="eg DJ, Cleaner, Plumber etc" required>
