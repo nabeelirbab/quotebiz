@@ -3299,7 +3299,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -3635,6 +3634,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/customer/getprovider').then(function (responce) {
         _this6.activeQuotes = responce.data;
+        $('#tabactive').addClass('active');
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -3688,11 +3688,13 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     donetab: function donetab() {
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     clearSearch: function clearSearch() {
       this.userSearch = '';
@@ -4027,6 +4029,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['creaditsum', 'quoteprice', 'authuser'],
@@ -4042,7 +4058,8 @@ __webpack_require__.r(__webpack_exports__);
       isLoading: false,
       isPrice: false,
       creditcost: '',
-      quoteSearch: ''
+      quoteSearch: '',
+      hostname: ''
     };
   },
   computed: {
@@ -4172,6 +4189,7 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteQuestions = {};
       $('#chatPanel').hide();
       $('#mainView').show();
+      $('#tabactive').removeClass('active');
     },
     clearSearch: function clearSearch() {
       this.quoteSearch = '';
@@ -4182,12 +4200,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/service-provider/leadsquotes').then(function (responce) {
         console.log(responce.data);
         _this3.quotes = responce.data;
+        $('#tabactive').addClass('active');
       })["catch"](function (error) {
         return console.log(error);
       });
     }
   },
   mounted: function mounted() {
+    this.hostname = this.$hostname;
     console.log(this.quoteprice);
     this.getQuotes();
   }
@@ -4209,7 +4229,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-easy-lightbox */ "./node_modules/vue-easy-lightbox/dist/vue-easy-lightbox.es5.esm.min.js");
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toasted */ "./node_modules/vue-toasted/dist/vue-toasted.min.js");
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_1__);
-//
 //
 //
 //
@@ -5126,6 +5145,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/service-provider/getcustomer').then(function (responce) {
         _this5.activeQuotes = responce.data;
+        $('#tabactive').addClass('active');
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -5146,16 +5166,19 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     donetab: function donetab() {
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     losetab: function losetab() {
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     clearSearch: function clearSearch() {
       this.userSearch = '';
@@ -7371,7 +7394,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n     position: absolute;\n    z-index: 99;\n    top: 65px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7398,7 +7421,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_wysiwyg_dist_vueWysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\r\n   width: 100%;\r\n   overflow: auto;\n}\n.loexp-no-results-container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    height: calc(82vh - 75px);\r\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\n    position: relative;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    top: 25%;\r\n    width: 50%;\n}\n.redborder{\r\n  border-color: red;\n}\n.img-fluid {\r\n    max-width: 100%;\r\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\n    font-size: 1.5em;\n}\n.text-light-grey {\r\n    color: #9da0b6!important;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\r\n   width: 100%;\r\n   overflow: auto;\n}\n.editr--toolbar {\r\n    background: #f6f6f6;\r\n    border-bottom: 1px solid #e4e4e4;\r\n    position: relative;\r\n    display: flex;\r\n    height: 40px;\n}\n.loexp-no-results-container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    height: calc(82vh - 75px);\r\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\n    position: relative;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    top: 25%;\r\n    width: 50%;\n}\n.redborder{\r\n  border-color: red;\n}\n.img-fluid {\r\n    max-width: 100%;\r\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\n    font-size: 1.5em;\n}\n.text-light-grey {\r\n    color: #9da0b6!important;\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -56953,116 +56976,128 @@ var render = function () {
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
             _c("div", { staticClass: "nk-msg-aside" }, [
-              _c("div", { staticClass: "nk-msg-nav" }, [
-                _c("ul", { staticClass: "nk-msg-menu nav nav-tabs" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nk-msg-menu-item nav-item active" },
-                    [
+              _c(
+                "div",
+                {
+                  staticClass: "nk-msg-nav",
+                  staticStyle: { background: "white", "line-height": "5.6" },
+                },
+                [
+                  _c("ul", { staticClass: "nk-msg-menu nav nav-tabs" }, [
+                    _c(
+                      "li",
+                      {
+                        staticClass: "nk-msg-menu-item nav-item active",
+                        attrs: { id: "tabactive" },
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.activetab()
+                              },
+                            },
+                          },
+                          [_vm._v("Active")]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
                       _c(
                         "a",
                         {
                           staticClass: "nav-link",
-                          attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                          attrs: { href: "#tabItem1", "data-toggle": "tab" },
                           on: {
                             click: function ($event) {
-                              return _vm.activetab()
+                              return _vm.wontab()
                             },
                           },
                         },
-                        [_vm._v("Active")]
+                        [_vm._v("Won")]
                       ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem1", "data-toggle": "tab" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.wontab()
-                          },
-                        },
-                      },
-                      [_vm._v("Won")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem2", "data-toggle": "tab" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.donetab()
-                          },
-                        },
-                      },
-                      [_vm._v("Done")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "search-wrap",
-                    attrs: { "data-search": "search" },
-                  },
-                  [
-                    _c("div", { staticClass: "search-content" }, [
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
                       _c(
                         "a",
                         {
-                          staticClass: "search-back btn btn-icon toggle-search",
-                          attrs: { href: "#", "data-target": "search" },
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem2", "data-toggle": "tab" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.donetab()
+                            },
+                          },
                         },
-                        [
-                          _c("em", {
-                            staticClass: "icon ni ni-arrow-left",
-                            on: { click: _vm.clearSearch },
-                          }),
-                        ]
+                        [_vm._v("Done")]
                       ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.userSearch,
-                            expression: "userSearch",
-                          },
-                        ],
-                        staticClass:
-                          "form-control border-transparent form-focus-none",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Search by user first name or last name",
-                        },
-                        domProps: { value: _vm.userSearch },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.userSearch = $event.target.value
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _vm._m(1),
                     ]),
-                  ]
-                ),
-              ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "search-wrap",
+                      attrs: { "data-search": "search" },
+                    },
+                    [
+                      _c("div", { staticClass: "search-content" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "search-back btn btn-icon toggle-search",
+                            attrs: { href: "#", "data-target": "search" },
+                          },
+                          [
+                            _c("em", {
+                              staticClass: "icon ni ni-arrow-left",
+                              on: { click: _vm.clearSearch },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.userSearch,
+                              expression: "userSearch",
+                            },
+                          ],
+                          staticClass:
+                            "form-control border-transparent form-focus-none",
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              "Search by user first name or last name",
+                          },
+                          domProps: { value: _vm.userSearch },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.userSearch = $event.target.value
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm._m(1),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
               _vm.userSearch
                 ? _c(
@@ -59973,33 +60008,47 @@ var render = function () {
           _c("div", { staticClass: "nk-msg" }, [
             _c("div", { staticClass: "nk-msg-aside" }, [
               _c("div", { staticClass: "nk-msg-nav" }, [
-                _c("ul", { staticClass: "nk-msg-menu nav nav-tabs" }, [
-                  _c("li", { staticClass: "nk-msg-menu-item  active" }, [
+                _c(
+                  "ul",
+                  {
+                    staticClass: "nk-msg-menu nav nav-tabs",
+                    staticStyle: { "background-color": "white" },
+                  },
+                  [
                     _c(
-                      "a",
+                      "li",
                       {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem0", "data-toggle": "tab" },
-                        on: { click: _vm.newjob },
+                        staticClass: "nk-msg-menu-item  active",
+                        attrs: { id: "tabactive" },
                       },
-                      [_vm._v(" New Jobs")]
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                            on: { click: _vm.newjob },
+                          },
+                          [_vm._v(" New Jobs")]
+                        ),
+                      ]
                     ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem1", "data-toggle": "tab" },
-                        on: { click: _vm.quotedjob },
-                      },
-                      [_vm._v("Quoted Jobs")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0),
-                ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem1", "data-toggle": "tab" },
+                          on: { click: _vm.quotedjob },
+                        },
+                        [_vm._v("Quoted Jobs")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -60073,7 +60122,46 @@ var render = function () {
                               },
                             },
                             [
-                              _vm._m(2, true),
+                              _c("div", { staticClass: "chat-avatar" }, [
+                                quote.user.user_img
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass: "nk-msg-media user-avatar",
+                                      },
+                                      [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              _vm.hostname +
+                                              "/frontend-assets/images/users/" +
+                                              quote.user.user_img,
+                                            alt: "",
+                                          },
+                                        }),
+                                      ]
+                                    )
+                                  : _c(
+                                      "div",
+                                      { staticClass: "user-avatar bg-purple" },
+                                      [
+                                        _c("span", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.getFirstLetter(
+                                                quote.user.first_name
+                                              )
+                                            ) +
+                                              _vm._s(
+                                                _vm.getFirstLetter(
+                                                  quote.user.last_name
+                                                )
+                                              )
+                                          ),
+                                        ]),
+                                      ]
+                                    ),
+                              ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "nk-msg-info" }, [
                                 _c("div", { staticClass: "nk-msg-from" }, [
@@ -60152,9 +60240,9 @@ var render = function () {
                             { staticClass: "nk-msg-list" },
                             [
                               _vm._l(_vm.quotes, function (quote) {
-                                return !quote.myquotation
-                                  ? [
-                                      _c(
+                                return [
+                                  !quote.myquotation
+                                    ? _c(
                                         "div",
                                         {
                                           staticClass: "nk-msg-item",
@@ -60168,7 +60256,56 @@ var render = function () {
                                           },
                                         },
                                         [
-                                          _vm._m(3, true),
+                                          _c(
+                                            "div",
+                                            { staticClass: "chat-avatar" },
+                                            [
+                                              quote.user.user_img
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-media user-avatar",
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            _vm.hostname +
+                                                            "/frontend-assets/images/users/" +
+                                                            quote.user.user_img,
+                                                          alt: "",
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "user-avatar bg-purple",
+                                                    },
+                                                    [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.getFirstLetter(
+                                                              quote.user
+                                                                .first_name
+                                                            )
+                                                          ) +
+                                                            _vm._s(
+                                                              _vm.getFirstLetter(
+                                                                quote.user
+                                                                  .last_name
+                                                              )
+                                                            )
+                                                        ),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                            ]
+                                          ),
                                           _vm._v(" "),
                                           _c(
                                             "div",
@@ -60266,9 +60403,9 @@ var render = function () {
                                             ]
                                           ),
                                         ]
-                                      ),
-                                    ]
-                                  : _vm._e()
+                                      )
+                                    : _vm._e(),
+                                ]
                               }),
                             ],
                             2
@@ -60278,10 +60415,7 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "div",
-                        {
-                          staticClass: "tab-pane active",
-                          attrs: { id: "tabItem1" },
-                        },
+                        { staticClass: "tab-pane", attrs: { id: "tabItem1" } },
                         [
                           _c(
                             "div",
@@ -60304,7 +60438,56 @@ var render = function () {
                                           },
                                         },
                                         [
-                                          _vm._m(4, true),
+                                          _c(
+                                            "div",
+                                            { staticClass: "chat-avatar" },
+                                            [
+                                              quote.user.user_img
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-media user-avatar",
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            _vm.hostname +
+                                                            "/frontend-assets/images/users/" +
+                                                            quote.user.user_img,
+                                                          alt: "",
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "user-avatar bg-purple",
+                                                    },
+                                                    [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.getFirstLetter(
+                                                              quote.user
+                                                                .first_name
+                                                            )
+                                                          ) +
+                                                            _vm._s(
+                                                              _vm.getFirstLetter(
+                                                                quote.user
+                                                                  .last_name
+                                                              )
+                                                            )
+                                                        ),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                            ]
+                                          ),
                                           _vm._v(" "),
                                           _c(
                                             "div",
@@ -60422,7 +60605,7 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "nk-msg-body bg-white" }, [
-              _vm._m(5),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -60489,7 +60672,7 @@ var render = function () {
                                     attrs: { href: "" },
                                   },
                                   [
-                                    _vm._m(6),
+                                    _vm._m(3),
                                     _vm._v(" "),
                                     _c("div", { staticClass: "ml-3" }, [
                                       _vm.quoteQuestions.category
@@ -60638,7 +60821,7 @@ var render = function () {
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "col-md-9 col-sm-2 mt-3" },
+                              { staticClass: "col-md-9 col-sm-12 mt-3" },
                               [
                                 _c(
                                   "div",
@@ -60714,7 +60897,7 @@ var render = function () {
                                     "div",
                                     { staticClass: "col-md-12 mt-2 mb-3" },
                                     [
-                                      _vm._m(7),
+                                      _vm._m(4),
                                       _vm._v(" "),
                                       _c(
                                         "div",
@@ -60736,10 +60919,10 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
-                                _vm._m(8),
+                                _vm._m(5),
                                 _vm._v(" "),
                                 _vm.quoteQuestions.myquotation
-                                  ? [_vm._m(9)]
+                                  ? [_vm._m(6)]
                                   : [
                                       _vm.creaditsum >= 10
                                         ? _c(
@@ -60766,7 +60949,7 @@ var render = function () {
                                                           "h5",
                                                           {
                                                             staticClass:
-                                                              "p-0 mt-3",
+                                                              "p-0 mt-3 creditsCost",
                                                           },
                                                           [
                                                             _vm._v(
@@ -60995,7 +61178,7 @@ var render = function () {
                                                                   _vm._v(
                                                                     "Send Quote "
                                                                   ),
-                                                                  _vm._m(10),
+                                                                  _vm._m(7),
                                                                 ]
                                                               )
                                                             : _vm._e(),
@@ -61013,11 +61196,7 @@ var render = function () {
                                               staticClass:
                                                 "row mt-3 justify-content-end",
                                             },
-                                            [
-                                              _vm._m(11),
-                                              _vm._v(" "),
-                                              _vm._m(12),
-                                            ]
+                                            [_vm._m(8), _vm._v(" "), _vm._m(9)]
                                           ),
                                     ],
                               ],
@@ -61065,34 +61244,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "nk-msg-media user-avatar" }, [
-      _c("img", { attrs: { src: "/images/avatar/b-sm.jpg", alt: "" } }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "nk-msg-media user-avatar" }, [
-      _c("img", { attrs: { src: "/images/avatar/b-sm.jpg", alt: "" } }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "nk-msg-media user-avatar" }, [
-      _c("img", { attrs: { src: "/images/avatar/b-sm.jpg", alt: "" } }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { attrs: { id: "mainView" } }, [
       _c(
         "div",
-        { staticClass: "nk-chat-body", staticStyle: { height: "752px" } },
+        {
+          staticClass: "nk-chat-body",
+          staticStyle: { "max-height": "calc(100vh - 125px)" },
+        },
         [
           _c("div", { staticClass: "nk-chat-panel" }, [
             _c("div", { staticClass: "row d-flex justify-content-center" }, [
@@ -61259,132 +61417,144 @@ var render = function () {
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
             _c("div", { staticClass: "nk-msg-aside" }, [
-              _c("div", { staticClass: "nk-msg-nav" }, [
-                _c("ul", { staticClass: "nk-msg-menu nav nav-tabs" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nk-msg-menu-item nav-item active" },
-                    [
+              _c(
+                "div",
+                {
+                  staticClass: "nk-msg-nav",
+                  staticStyle: { background: "white", "line-height": "5.6" },
+                },
+                [
+                  _c("ul", { staticClass: "nk-msg-menu nav nav-tabs" }, [
+                    _c(
+                      "li",
+                      {
+                        staticClass: "nk-msg-menu-item nav-item active",
+                        attrs: { id: "tabactive" },
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.activetab()
+                              },
+                            },
+                          },
+                          [_vm._v("Active")]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
                       _c(
                         "a",
                         {
                           staticClass: "nav-link",
-                          attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                          attrs: { href: "#tabItem1", "data-toggle": "tab" },
                           on: {
                             click: function ($event) {
-                              return _vm.activetab()
+                              return _vm.wontab()
                             },
                           },
                         },
-                        [_vm._v("Active")]
+                        [_vm._v("Won")]
                       ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem1", "data-toggle": "tab" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.wontab()
-                          },
-                        },
-                      },
-                      [_vm._v("Won")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem2", "data-toggle": "tab" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.donetab()
-                          },
-                        },
-                      },
-                      [_vm._v("Done")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "#tabItem3", "data-toggle": "tab" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.losetab()
-                          },
-                        },
-                      },
-                      [_vm._v("Loss")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "search-wrap",
-                    attrs: { "data-search": "search" },
-                  },
-                  [
-                    _c("div", { staticClass: "search-content" }, [
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
                       _c(
                         "a",
                         {
-                          staticClass: "search-back btn btn-icon toggle-search",
-                          attrs: { href: "#", "data-target": "search" },
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem2", "data-toggle": "tab" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.donetab()
+                            },
+                          },
                         },
-                        [
-                          _c("em", {
-                            staticClass: "icon ni ni-arrow-left",
-                            on: { click: _vm.clearSearch },
-                          }),
-                        ]
+                        [_vm._v("Done")]
                       ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.userSearch,
-                            expression: "userSearch",
-                          },
-                        ],
-                        staticClass:
-                          "form-control border-transparent form-focus-none",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Search by user first name or last name",
-                        },
-                        domProps: { value: _vm.userSearch },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.userSearch = $event.target.value
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _vm._m(1),
                     ]),
-                  ]
-                ),
-              ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem3", "data-toggle": "tab" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.losetab()
+                            },
+                          },
+                        },
+                        [_vm._v("Loss")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "search-wrap",
+                      attrs: { "data-search": "search" },
+                    },
+                    [
+                      _c("div", { staticClass: "search-content" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "search-back btn btn-icon toggle-search",
+                            attrs: { href: "#", "data-target": "search" },
+                          },
+                          [
+                            _c("em", {
+                              staticClass: "icon ni ni-arrow-left",
+                              on: { click: _vm.clearSearch },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.userSearch,
+                              expression: "userSearch",
+                            },
+                          ],
+                          staticClass:
+                            "form-control border-transparent form-focus-none",
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              "Search by user first name or last name",
+                          },
+                          domProps: { value: _vm.userSearch },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.userSearch = $event.target.value
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm._m(1),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
               _vm.userSearch
                 ? _c(
@@ -62403,38 +62573,7 @@ var render = function () {
                 },
               },
               [
-                _c("div", { attrs: { id: "mainView" } }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "nk-chat-body",
-                      staticStyle: { height: "752px" },
-                    },
-                    [
-                      _c("div", { staticClass: "nk-chat-panel" }, [
-                        _c(
-                          "div",
-                          { staticClass: "row d-flex justify-content-center" },
-                          [
-                            _c("div", { staticClass: "col-md-12" }, [
-                              _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm.$socket.connected
-                                      ? "Connected"
-                                      : "Disconnected"
-                                  )
-                                ),
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(2),
-                            ]),
-                          ]
-                        ),
-                      ]),
-                    ]
-                  ),
-                ]),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("div", { staticClass: "nk-msg-head d-none d-lg-block" }, [
                   _vm.quoteChat.chatcustomer
@@ -64161,32 +64300,52 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "loexp-no-results-container" }, [
-      _c("div", { staticClass: "card-block" }, [
-        _c("img", {
-          staticClass: "img-fluid",
-          attrs: {
-            width: "156",
-            height: "111",
-            src: "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj",
-            srcset:
-              "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj" +
-              " 1x, " +
-              "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=KAYSPp" +
-              " 2x",
-          },
-        }),
-        _vm._v(" "),
-        _c("h4", { staticClass: "mt-2" }, [
-          _vm._v("\r\n                    Star Chat\r\n                "),
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-center mt-2 text-light-grey" }, [
-          _vm._v(
-            "You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here."
-          ),
-        ]),
-      ]),
+    return _c("div", { attrs: { id: "mainView" } }, [
+      _c(
+        "div",
+        { staticClass: "nk-chat-body", staticStyle: { height: "752px" } },
+        [
+          _c("div", { staticClass: "nk-chat-panel" }, [
+            _c("div", { staticClass: "row d-flex justify-content-center" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "loexp-no-results-container" }, [
+                  _c("div", { staticClass: "card-block" }, [
+                    _c("img", {
+                      staticClass: "img-fluid",
+                      attrs: {
+                        width: "156",
+                        height: "111",
+                        src: "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj",
+                        srcset:
+                          "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj" +
+                          " 1x, " +
+                          "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=KAYSPp" +
+                          " 2x",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "mt-2" }, [
+                      _vm._v(
+                        "\r\n                    Star Chat\r\n                "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      { staticClass: "text-center mt-2 text-light-grey" },
+                      [
+                        _vm._v(
+                          "You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here."
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
     ])
   },
   function () {

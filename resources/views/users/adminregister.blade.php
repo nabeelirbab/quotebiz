@@ -10,11 +10,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-2 text-end mt-60">
                 <a class="main-logo-big" href="{{ url('/') }}">
-                    @if (\Acelle\Model\Setting::get('site_logo_big'))
-                        <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" alt="">
-                    @else
-                        <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
-                    @endif
+                    <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
                 </a>
             </div>
             <div class="col-md-5">
@@ -85,6 +81,7 @@
                     'rules' => $user->registerRules(),
                     'eye' => true,
                 ])
+                 @include('helpers.form_control', ['type' => 'select', 'name' => 'country_id', 'label' => trans('messages.country'), 'value' => $customer->country_id, 'options' => Acelle\Model\Country::getSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => Acelle\Model\Contact::$rules])
                 <div class="form-group control-text">
                     <label>
                         <b>City</b>

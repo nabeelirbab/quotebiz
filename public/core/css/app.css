@@ -34,9 +34,10 @@ display: none;
 .modal_link {
     cursor: pointer;
 }
+
 body {
     background-color: #fff;
-    font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif;
+    font-family: sans-serif;
     /* -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision; */
@@ -6005,7 +6006,7 @@ a {
 }
 body {
     padding-top: 53px;
-    font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif;
+    font-family: "DM Sans", sans-serif;
     font-size: 0.92rem;
 }
 .form-control {

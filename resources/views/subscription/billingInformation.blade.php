@@ -37,6 +37,7 @@
                             </div>
                         </div>
                     </a>
+                   
                     <div class="card-body py-4" style="padding-left: 72px;padding-right:72px">
                         <form class="billing-address-form" action="{{ url('account/subscription/billing-information?invoice_uid='.$invoice->uid) }}"
                             method="POST">
@@ -47,7 +48,7 @@
                                     @include('helpers.form_control', [
                                         'type' => 'text',
                                         'name' => 'billing_first_name',
-                                        'value' => request()->billing_first_name ? request()->billing_first_name : ($invoice->hasBillingInformation() ? $invoice->billing_first_name : ($billingAddress ? $billingAddress->first_name : '')),
+                                        'value' => request()->billing_first_name ? request()->billing_first_name : ($invoice->hasBillingInformation() ? $invoice->billing_first_name : ($billingAddress ? $billingAddress->first_name : Auth::user()->first_name)),
                                         'label' => trans('messages.first_name'),
                                         'rules' => ['billing_first_name' => 'required'],
                                     ])
@@ -56,7 +57,7 @@
                                     @include('helpers.form_control', [
                                         'type' => 'text',
                                         'name' => 'billing_last_name',
-                                        'value' => request()->billing_last_name ? request()->billing_last_name : ($invoice->hasBillingInformation() ? $invoice->billing_last_name : ($billingAddress ? $billingAddress->last_name : '')),
+                                        'value' => request()->billing_last_name ? request()->billing_last_name : ($invoice->hasBillingInformation() ? $invoice->billing_last_name : ($billingAddress ? $billingAddress->last_name : Auth::user()->last_name)),
                                         'label' => trans('messages.last_name'),
                                         'rules' => ['billing_last_name' => 'required'],
                                     ])
@@ -68,7 +69,7 @@
                                     @include('helpers.form_control', [
                                         'type' => 'text',
                                         'name' => 'billing_email',
-                                        'value' => request()->billing_email ? request()->billing_email : ($invoice->hasBillingInformation() ? $invoice->billing_email : ($billingAddress ? $billingAddress->email : '')),
+                                        'value' => request()->billing_email ? request()->billing_email : ($invoice->hasBillingInformation() ? $invoice->billing_email : ($billingAddress ? $billingAddress->email : Auth::user()->email)),
                                         'label' => trans('messages.email_address'),
                                         'rules' => ['billing_email' => 'required'],
                                     ])

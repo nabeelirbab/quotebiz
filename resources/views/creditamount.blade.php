@@ -12,6 +12,9 @@
         color: #3fbd9a !important;
         display: contents !important;
       }
+       .form-group:last-child {
+            margin-bottom: 0px !important;
+        }
     </style>
     @endsection
 @section('content')
@@ -94,7 +97,7 @@
             <a href="{{ url('deletecredit/'.$creadit->id) }}" class="badge badge-sm badge-dim badge-outline-danger" style="cursor: pointer;">Delete</a>
         </div>
     </div><!-- .nk-tb-item -->
-    <div id="mySidepanel{{$creadit->id}}" class="sidepanel" style="top: 60px;height: 100%;">
+    <div id="mySidepanel{{$creadit->id}}" class="sidepanel" style="height: 100%;">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavEdit('{{$creadit->id}}')">×</a>
             <div class="preview-block" style="padding: 24px;">
              <form action="{{ url('credit-amount') }}" method="post" enctype="multipart/form-data">

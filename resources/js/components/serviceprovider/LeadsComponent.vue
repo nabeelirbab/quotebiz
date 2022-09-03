@@ -8,8 +8,8 @@
                         <div class="nk-msg-aside">
                            
                             <div class="nk-msg-nav">
-                                <ul class="nk-msg-menu nav nav-tabs">
-                                   <li class="nk-msg-menu-item  active"><a href="#tabItem0" data-toggle="tab" @click="newjob" class="nav-link"> New Jobs</a></li>
+                                <ul class="nk-msg-menu nav nav-tabs" style="background-color: white;">
+                                   <li id="tabactive" class="nk-msg-menu-item  active"><a href="#tabItem0" data-toggle="tab" @click="newjob" class="nav-link"> New Jobs</a></li>
                                    
                                     <li class="nk-msg-menu-item nav-item">
                                         <a href="#tabItem1"  @click="quotedjob" data-toggle="tab" class="nav-link">Quoted Jobs</a>
@@ -28,8 +28,13 @@
                              <template v-for="quote in filteredQuotelist">
                                 <div class="nk-msg-item"  v-on:click="openQuote($event,quote)" >
                                   <!-- <p style="display:none">{{newJob++}}</p> -->
-                                        <div class="nk-msg-media user-avatar">
-                                        <img src="/images/avatar/b-sm.jpg" alt="">
+                                      <div class="chat-avatar">
+                                        <div class="nk-msg-media user-avatar" v-if="quote.user.user_img">
+                                              <img :src="hostname+'/frontend-assets/images/users/'+quote.user.user_img" alt="">
+                                            </div>
+                                        <div class="user-avatar bg-purple" v-else>
+                                            <span>{{getFirstLetter(quote.user.first_name)}}{{getFirstLetter(quote.user.last_name)}}</span>
+                                        </div>
                                     </div>
                                     <div class="nk-msg-info">
                                         <div class="nk-msg-from">
@@ -57,13 +62,18 @@
 
                     <div class="tab-content" style="height:100%" v-if="quoteSearch == '' ">
                         <div class="tab-pane active" id="tabItem0">
-                             <div class="nk-msg-list">
-                             <template v-for="quote in quotes" v-if="!quote.myquotation">
-                                <div class="nk-msg-item"  v-on:click="openQuote($event,quote)" >
+                          <div class="nk-msg-list">
+                             <template v-for="quote in quotes">
+                              <div class="nk-msg-item" v-if="!quote.myquotation" v-on:click="openQuote($event,quote)" >
                                   <!-- <p style="display:none">{{newJob++}}</p> -->
-                                        <div class="nk-msg-media user-avatar">
-                                        <img src="/images/avatar/b-sm.jpg" alt="">
+                                 <div class="chat-avatar">
+                                    <div class="nk-msg-media user-avatar" v-if="quote.user.user_img">
+                                          <img :src="hostname+'/frontend-assets/images/users/'+quote.user.user_img" alt="">
+                                        </div>
+                                    <div class="user-avatar bg-purple" v-else>
+                                        <span>{{getFirstLetter(quote.user.first_name)}}{{getFirstLetter(quote.user.last_name)}}</span>
                                     </div>
+                                </div>
                                     <div class="nk-msg-info">
                                         <div class="nk-msg-from">
                                             <div class="nk-msg-sender">
@@ -89,14 +99,18 @@
                             </div><!-- .nk-msg-list -->
                                 </div>
 
-                           <div class="tab-pane active" id="tabItem1">
+                           <div class="tab-pane" id="tabItem1">
                              <div class="nk-msg-list">
                             <template v-for="quote in quotes" v-if="quote.myquotation">
                                 <div class="nk-msg-item"  v-on:click="openQuote($event,quote)" >
                                   <!-- <p style="display:none">{{myQuotation++}}</p> -->
-
-                                        <div class="nk-msg-media user-avatar">
-                                        <img src="/images/avatar/b-sm.jpg" alt="">
+                                     <div class="chat-avatar">
+                                        <div class="nk-msg-media user-avatar" v-if="quote.user.user_img">
+                                              <img :src="hostname+'/frontend-assets/images/users/'+quote.user.user_img" alt="">
+                                            </div>
+                                        <div class="user-avatar bg-purple" v-else>
+                                            <span>{{getFirstLetter(quote.user.first_name)}}{{getFirstLetter(quote.user.last_name)}}</span>
+                                        </div>
                                     </div>
                                     <div class="nk-msg-info">
                                         <div class="nk-msg-from">
@@ -129,7 +143,7 @@
                         </div><!-- .nk-msg-aside -->
                         <div class="nk-msg-body bg-white">
                         <div class="" id="mainView">
-                            <div class="nk-chat-body" style="height: 752px;">
+                            <div class="nk-chat-body" style="max-height: calc(100vh - 125px);">
                             <div class="nk-chat-panel" >
                                     <div class="row d-flex justify-content-center">
                                           <!--Grid column-->
@@ -193,7 +207,7 @@
                                         </div> 
                                    </div>
                                 
-                                   <div class="col-md-9 col-sm-2 mt-3">
+                                   <div class="col-md-9 col-sm-12 mt-3">
                                     <div class="row">
                                        <div class="col-md-6 mt-1 mb-1" v-for="questions in quoteQuestions.questionsget">
                                          <h6>{{questions.questions.question}}</h6>
@@ -243,7 +257,7 @@
                                     <div class="row mt-3 justify-content-end" v-if="creaditsum >= 10">
                                         <div class="col-md-3 col-xs-3 p-0">
                                           <template v-if="quoteQuestions.category && quoteQuestions.category.credit_cost && quoteQuestions.category.credit_cost">
-                                          <h5 class="p-0 mt-3">{{quoteQuestions.category.credit_cost}} Credits</h5>
+                                          <h5 class="p-0 mt-3 creditsCost">{{quoteQuestions.category.credit_cost}} Credits</h5>
                                           <input type="hidden" v-model="quoteQuestions.category.credit_cost" >
                                           </template>
                                         <template v-else>
@@ -310,7 +324,8 @@ import Toasted from 'vue-toasted';
              isLoading: false,
              isPrice: false,
              creditcost: '',
-             quoteSearch: ''
+             quoteSearch: '',
+             hostname: ''
             };
           },
   
@@ -453,6 +468,7 @@ import Toasted from 'vue-toasted';
               this.quoteQuestions = {}
                 $('#chatPanel').hide();
                 $('#mainView').show();
+                $('#tabactive').removeClass('active');
             },
 
             clearSearch(){
@@ -464,13 +480,14 @@ import Toasted from 'vue-toasted';
                 .then((responce) => {
                   console.log(responce.data);
                   this.quotes = responce.data;
+                  $('#tabactive').addClass('active');
                 })
                 .catch((error) => console.log(error));
                    }
            },
 
     mounted() {
-
+                this.hostname = this.$hostname;
                 console.log(this.quoteprice);
                 this.getQuotes();
             }
@@ -483,7 +500,13 @@ import Toasted from 'vue-toasted';
    width: 100%;
    overflow: auto;
 }
-
+.editr--toolbar {
+    background: #f6f6f6;
+    border-bottom: 1px solid #e4e4e4;
+    position: relative;
+    display: flex;
+    height: 40px;
+}
 .loexp-no-results-container {
     display: flex;
     align-items: flex-start;
@@ -514,5 +537,6 @@ import Toasted from 'vue-toasted';
 .text-light-grey {
     color: #9da0b6!important;
 }
+
 
 </style>
