@@ -273,16 +273,12 @@
 }
 }
 @media only screen and (max-width: 600px) {
- 
-  .chathead{
-         position: absolute;
-        z-index: 99;
-        top: 65px;
-        background: white;
-        width: 100%;
-        left: 0px;
-        display: none;
-    }
+  .card.mb-4{
+    margin-top: 2.75rem !important;
+  }
+.nav-tabs .nav-item {
+    padding-right: 0.5rem;
+}
   #chatPanel{
       display: none !important;
   }

@@ -1036,7 +1036,14 @@ mounted() {
 };
 </script>
 <style type="text/css">
-    
+    .chathead{
+         position: absolute;
+        z-index: 99;
+        top: 65px;
+        background: white;
+        width: 100%;
+        left: 0px;
+    }
     .loexp-no-results-container {
         display: flex;
         align-items: flex-start;
