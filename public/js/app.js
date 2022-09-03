@@ -4173,8 +4173,15 @@ __webpack_require__.r(__webpack_exports__);
           _this2.price = '';
           _this2.quoteQuestions = {};
           _this2.quoteQuestions.myquotation = response.data.quote.myquotation;
-          $('#chatPanel').hide();
-          $('#mainView').show();
+
+          if ($(window).width() < 700) {
+            _this2.closePanel();
+
+            _this2.getQuotes();
+          } else {
+            $('#chatPanel').hide();
+            $('#mainView').show();
+          }
         })["catch"](function (error) {
           console.log(error);
         });
@@ -4229,15 +4236,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-easy-lightbox */ "./node_modules/vue-easy-lightbox/dist/vue-easy-lightbox.es5.esm.min.js");
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toasted */ "./node_modules/vue-toasted/dist/vue-toasted.min.js");
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7445,7 +7443,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\r\n         position: absolute;\r\n        z-index: 99;\r\n        top: 65px;\r\n        background: white;\r\n        width: 100%;\r\n        left: 0px;\n}\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57240,634 +57238,683 @@ var render = function () {
                 : _vm._e(),
               _vm._v(" "),
               _vm.userSearch == ""
-                ? _c("div", { staticClass: "tab-content" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-pane active",
-                        attrs: { id: "tabItem0" },
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quote.status == "pending"
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item ",
-                                        class: {
-                                          current: quote.id == _vm.quoteChat.id,
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "tab-content",
+                      staticStyle: { "max-height": "85%" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane active",
+                          attrs: { id: "tabItem0" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quote.status == "pending"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item ",
+                                          class: {
+                                            current:
+                                              quote.id == _vm.quoteChat.id,
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          { staticStyle: { display: "none" } },
-                                          [_vm._v(_vm._s(_vm.activeJob + 1))]
-                                        ),
-                                        _vm._v(" "),
-                                        quote.chatsp.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatsp.user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
-                                                        quote.chatsp.first_name
-                                                      )
-                                                    ) +
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticStyle: { display: "none" },
+                                            },
+                                            [_vm._v(_vm._s(_vm.activeJob + 1))]
+                                          ),
+                                          _vm._v(" "),
+                                          quote.chatsp.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatsp.user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
-                                                          quote.chatsp.last_name
+                                                          quote.chatsp
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatsp
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatsp
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatsp
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote.chatsp
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane ", attrs: { id: "tabItem1" } },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quote.status == "won"
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item",
-                                        class: {
-                                          current: quote.id == _vm.quoteChat.id,
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem1" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quote.status == "won"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          class: {
+                                            current:
+                                              quote.id == _vm.quoteChat.id,
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          { staticStyle: { display: "none" } },
-                                          [_vm._v(_vm._s(_vm.wonJob + 1))]
-                                        ),
-                                        _vm._v(" "),
-                                        quote.chatsp.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatsp.user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
-                                                        quote.chatsp.first_name
-                                                      )
-                                                    ) +
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticStyle: { display: "none" },
+                                            },
+                                            [_vm._v(_vm._s(_vm.wonJob + 1))]
+                                          ),
+                                          _vm._v(" "),
+                                          quote.chatsp.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatsp.user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
-                                                          quote.chatsp.last_name
+                                                          quote.chatsp
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatsp
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatsp
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatsp
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote.chatsp
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane ", attrs: { id: "tabItem2" } },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quote.status == "done"
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item ",
-                                        class: {
-                                          current: quote.id == _vm.quoteChat.id,
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem2" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quote.status == "done"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item ",
+                                          class: {
+                                            current:
+                                              quote.id == _vm.quoteChat.id,
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          { staticStyle: { display: "none" } },
-                                          [_vm._v(_vm._s(_vm.doneJob + 1))]
-                                        ),
-                                        _vm._v(" "),
-                                        quote.chatsp.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatsp.user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
-                                                        quote.chatsp.first_name
-                                                      )
-                                                    ) +
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticStyle: { display: "none" },
+                                            },
+                                            [_vm._v(_vm._s(_vm.doneJob + 1))]
+                                          ),
+                                          _vm._v(" "),
+                                          quote.chatsp.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatsp.user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
-                                                          quote.chatsp.last_name
+                                                          quote.chatsp
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatsp
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatsp
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatsp
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote.chatsp
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                  ])
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                    ]
+                  )
                 : _vm._e(),
             ]),
             _vm._v(" "),
@@ -60225,7 +60272,7 @@ var render = function () {
                     "div",
                     {
                       staticClass: "tab-content",
-                      staticStyle: { height: "100%" },
+                      staticStyle: { "max-height": "85%" },
                     },
                     [
                       _c(
@@ -61741,824 +61788,872 @@ var render = function () {
                 : _vm._e(),
               _vm._v(" "),
               _vm.userSearch == ""
-                ? _c("div", { staticClass: "tab-content" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-pane active",
-                        attrs: { id: "tabItem0" },
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quotestatus == null
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item",
-                                        class: {
-                                          current: quote.id == _vm.quoteChat.id,
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "tab-content",
+                      staticStyle: { "max-height": "85%" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane active",
+                          attrs: { id: "tabItem0" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus == null
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          class: {
+                                            current:
+                                              quote.id == _vm.quoteChat.id,
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        quote.chatcustomer.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatcustomer
-                                                        .user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
                                                         quote.chatcustomer
-                                                          .first_name
-                                                      )
-                                                    ) +
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
                                                           quote.chatcustomer
-                                                            .last_name
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatcustomer
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatcustomer
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane ", attrs: { id: "tabItem1" } },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quotestatus &&
-                                quote.quotestatus.status == "won"
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item",
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem1" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus &&
+                                  quote.quotestatus.status == "won"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        quote.chatcustomer.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatcustomer
-                                                        .user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
                                                         quote.chatcustomer
-                                                          .first_name
-                                                      )
-                                                    ) +
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
                                                           quote.chatcustomer
-                                                            .last_name
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatcustomer
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatcustomer
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane ", attrs: { id: "tabItem2" } },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quotestatus &&
-                                quote.quotestatus.status == "done"
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item",
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem2" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus &&
+                                  quote.quotestatus.status == "done"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        quote.chatcustomer.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatcustomer
-                                                        .user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
                                                         quote.chatcustomer
-                                                          .first_name
-                                                      )
-                                                    ) +
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
                                                           quote.chatcustomer
-                                                            .last_name
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatcustomer
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatcustomer
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane ", attrs: { id: "tabItem3" } },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "nk-msg-list" },
-                          [
-                            _vm._l(_vm.orderedUsers, function (quote) {
-                              return quote.quotestatus &&
-                                quote.quotestatus.status == "lose"
-                                ? [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "nk-msg-item",
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.openChat($event, quote)
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem3" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus &&
+                                  quote.quotestatus.status == "lose"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        quote.chatcustomer.user_img
-                                          ? _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nk-msg-media user-avatar",
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src:
-                                                      _vm.hostname +
-                                                      "/frontend-assets/images/users/" +
-                                                      quote.chatcustomer
-                                                        .user_img,
-                                                    alt: "",
-                                                  },
-                                                }),
-                                              ]
-                                            )
-                                          : _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "user-avatar bg-purple",
-                                              },
-                                              [
-                                                _c("span", [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm.getFirstLetter(
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
                                                         quote.chatcustomer
-                                                          .first_name
-                                                      )
-                                                    ) +
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
                                                       _vm._s(
                                                         _vm.getFirstLetter(
                                                           quote.chatcustomer
-                                                            .last_name
+                                                            .first_name
                                                         )
-                                                      )
-                                                  ),
-                                                ]),
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "nk-msg-info" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-from" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "nk-msg-sender",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "h6",
-                                                      { staticClass: "name" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
                                                             quote.chatcustomer
-                                                              .first_name
-                                                          ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              quote.chatcustomer
-                                                                .last_name
-                                                            )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-meta",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "date" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm._f("moment")(
-                                                              quote.updated_at,
-                                                              "from",
-                                                              "now"
-                                                            )
+                                                              .last_name
                                                           )
-                                                        ),
-                                                      ]
+                                                        )
                                                     ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "nk-msg-context" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "nk-msg-text",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "title" },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            quote.quote.category
-                                                              .category_name
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    quote.last_msg
-                                                      ? _c("p", [
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
                                                           _vm._v(
                                                             _vm._s(
-                                                              quote.last_msg.substring(
-                                                                0,
-                                                                100
-                                                              ) + ".."
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
                                                             )
                                                           ),
-                                                        ])
-                                                      : _c("p", [
-                                                          _vm._v("Start Chat"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                quote.unread_msg_count > 0
-                                                  ? _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "unreadmsg",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                           " +
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              quote.unread_msg_count
-                                                            ) +
-                                                            "\r\n                        "
-                                                        ),
-                                                      ]
-                                                    )
-                                                  : _vm._e(),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                : _vm._e()
-                            }),
-                          ],
-                          2
-                        ),
-                      ]
-                    ),
-                  ])
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                    ]
+                  )
                 : _vm._e(),
             ]),
             _vm._v(" "),
@@ -64147,109 +64242,13 @@ var render = function () {
                       _vm._v(" "),
                       _c("ul", { staticClass: "nk-msg-actions" }, [
                         _c("li", [
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "btn btn-dim btn-sm btn-outline-light",
-                              attrs: { href: "#" },
-                            },
-                            [
-                              _c("em", { staticClass: "icon ni ni-check" }),
-                              _c(
-                                "span",
-                                { staticClass: "text-capitalize" },
-                                [
-                                  _vm.quoteChat.quote.status == "pending"
-                                    ? [_vm._v("Active")]
-                                    : [
-                                        _vm._v(
-                                          _vm._s(_vm.quoteChat.quote.status)
-                                        ),
-                                      ],
-                                ],
-                                2
-                              ),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "dropdown" }, [
-                          _vm._m(11),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "dropdown-menu dropdown-menu-right",
-                            },
-                            [
-                              _c(
-                                "ul",
-                                { staticClass: "link-list-opt no-bdr" },
-                                [
-                                  _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.changeStatus("won")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("em", {
-                                          staticClass: "icon ni ni-user-add",
-                                        }),
-                                        _c("span", [_vm._v("Mark as Won")]),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.changeStatus("lose")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("em", {
-                                          staticClass: "icon ni ni-archive",
-                                        }),
-                                        _c("span", [_vm._v("Mark as Lose")]),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.changeStatus("done")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("em", {
-                                          staticClass: "icon ni ni-done",
-                                        }),
-                                        _c("span", [_vm._v("Mark as Done")]),
-                                      ]
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]
-                          ),
+                          _c("h6", { staticClass: "title mb-1" }, [
+                            _vm._v(
+                              _vm._s(_vm.quoteChat.chatcustomer.first_name) +
+                                " " +
+                                _vm._s(_vm.quoteChat.chatcustomer.last_name)
+                            ),
+                          ]),
                         ]),
                       ]),
                     ])
@@ -64588,19 +64587,6 @@ var staticRenderFns = [
           _c("em", { staticClass: "icon ni ni-chevron-down" }),
         ]),
       ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-icon btn-sm btn-white btn-light dropdown-toggle",
-        attrs: { href: "#", "data-toggle": "dropdown" },
-      },
-      [_c("em", { staticClass: "icon ni ni-more-h" })]
     )
   },
 ]
