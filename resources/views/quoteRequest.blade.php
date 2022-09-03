@@ -1,3 +1,8 @@
+<?php
+$sitename = \Acelle\Model\Setting::get("site_name");
+$sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>QuoteBiz</title>
+	<title>{{$sitename}}</title>
 	 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
@@ -68,7 +73,9 @@ strong{
 	font-size: 12px;
 }
 .fs-1{
+	font-size:16px;
 	color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}};
+
 }
 /*form.information{
 	margin: 0 280px 0 100px;
@@ -78,7 +85,7 @@ h4.form-heading{
 	font-size: 28px!important
 }
 p.form-para{
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: 500;
 	color: #0000009e;
 	line-height: 17px;
@@ -90,7 +97,7 @@ p.form-para::after{
 	width: 8%;
 	height: 4px;
 	background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
-	margin: 10px 0;
+	margin: 10px 10px;
 	transform: translateX(-10px);
 }
 .form-group {
@@ -117,6 +124,7 @@ p.form-para::after{
     transition: all 200ms;
     opacity: 0.5;
     font-size: 75%;*/
+    font-size: 1.1rem;
     opacity: 0.9;
     margin-bottom: 8px;
 }
@@ -141,6 +149,12 @@ p.form-para::after{
 }
 .terms a{
 	color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+}
+.siteLogo{
+	float: left;
+}
+.siteLogo img{
+	width: 100%;
 }
 
 
@@ -173,6 +187,14 @@ p.form-para::after{
 }
 .logo{
 	transform: translate(-90px,-30px);
+}
+.siteLogo{
+	float: none;
+    text-align: center;
+    margin-bottom: 33px;
+}
+.siteLogo img{
+	width: 50%;
 }
 }
 @media screen and (min-width: 767px)
@@ -212,23 +234,26 @@ p.form-para::after{
 	</style>
 </head>
 <body class="dogcFe" style="min-height: calc(118vh - 148px);">
+	
+<div class="container-fluid" style="height: 100vh;width: 96%;">
+	<div class="siteLogo">
+		<img class="mt-3" id="sitesmall" src="{{$sitesmalllogo}}">
+	</div>
 	@if(Auth::user())
 	@if(Auth::user()->user_type == 'client')
 	@else
-	<div class="floatright p-2">
-	<a href="{{ url('/users/login') }}" class="fs-1">Login In</a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+	<div class="floatright p-2 mt-3">
+	<a href="{{ url('/users/login') }}" class="fs-1 mr-4"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 	</div>
 	@endif
 	@else
 	<div class="floatright p-2">
-	<a href="{{ url('/users/login') }}">Login In</a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+	<a href="{{ url('/users/login') }}" class="fs-1 mr-4"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 	</div>
 	@endif
-<div class="container" >
-	
-		<div class="row justify-content-end" style="height: 750px;align-items: center;">
+		<div class="row justify-content-end" style="height: 100%;align-items: center;">
 		
-			<div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
+			<div class="col-md-6 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 				@if($job_design && $job_design->no_status == '1')
 				<div class="d-flex pt-3 pr-2">
 					<p class="ml-auto mb-0">Want to speak with an agent?</p>
@@ -237,11 +262,11 @@ p.form-para::after{
 					<p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>{{$job_design->agent_no}}</strong></p>
 				</div>	
 				@endif
-				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 50px " autocomplete="off">
+				<form class="information" action="{{ url('questionnaire')}}" method="post" style="padding: 25px " autocomplete="off">
 					{{ csrf_field()}}
-					<h4 class="form-heading">
-					{{ ($job_design) ? $job_design->title_heading : 'What are you looking for?'}}</h4>
-					<p class="form-para" style="font-size: 16px"> 
+					<h3 class="form-heading">
+					{{ ($job_design) ? $job_design->title_heading : 'What are you looking for?'}}</h3>
+					<p class="form-para"> 
 						{{ ($job_design) ? $job_design->titlesub_heading : 'Let us know what you are looking for and we will provide you up to 3 quotes.'}}
 						
 					</p>
@@ -268,7 +293,7 @@ p.form-para::after{
 					 
 					</div>
 
-					 <p class="terms mt-4">By clicking "Return to my quotes", you consent to the Zebra storing the information submitted on this page so you can get most up-to-date quotes, no matter what device you are using. You also agree to The Zebra's <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a></p>
+					 <p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}", you consent to the {{$sitename}} storing the information submitted on this page so you can get most up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a></p>
 				</form>
 			</div>
 			

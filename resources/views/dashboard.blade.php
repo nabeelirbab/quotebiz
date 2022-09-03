@@ -158,7 +158,7 @@
     </div><!-- .nk-ecwg -->
 </div><!-- .card -->
 </div><!-- .col -->
-<div class="col-xxl-6">
+<div class="col-xxl-9">
 <div class="card card-full">
     <div class="nk-ecwg nk-ecwg8 h-100">
         <div class="card-inner">
@@ -240,47 +240,7 @@
     </div>
 </div><!-- .card -->
 </div><!-- .col -->
-<div class="col-xxl-3 col-md-6">
-<div class="card h-100">
-    <div class="card-inner">
-        <div class="card-title-group mb-2">
-            <div class="card-title">
-                <h6 class="title">Store Statistics</h6>
-            </div>
-        </div>
-        <ul class="nk-store-statistics">
-            <li class="item">
-                <div class="info">
-                    <div class="title">Quotes</div>
-                    <div class="count">1,795</div>
-                </div>
-                <em class="icon bg-primary-dim ni ni-bag"></em>
-            </li>
-            <li class="item">
-                <div class="info">
-                    <div class="title">Customers</div>
-                    <div class="count">2,327</div>
-                </div>
-                <em class="icon bg-info-dim ni ni-users"></em>
-            </li>
-            <li class="item">
-                <div class="info">
-                    <div class="title">Products</div>
-                    <div class="count">674</div>
-                </div>
-                <em class="icon bg-pink-dim ni ni-box"></em>
-            </li>
-            <li class="item">
-                <div class="info">
-                    <div class="title">Categories</div>
-                    <div class="count">68</div>
-                </div>
-                <em class="icon bg-purple-dim ni ni-server"></em>
-            </li>
-        </ul>
-    </div><!-- .card-inner -->
-</div><!-- .card -->
-</div><!-- .col -->
+
 <div class="col-xxl-8">
 <div class="card card-full">
     <div class="card-inner">

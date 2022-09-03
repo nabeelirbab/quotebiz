@@ -1,25 +1,5 @@
 <?php
 
-/**
- * Customer class.
- *
- * Model class for customer
- *
- * LICENSE: This product includes software developed at
- * the Acelle Co., Ltd. (http://acellemail.com/).
- *
- * @category   MVC Model
- *
- * @author     N. Pham <n.pham@acellemail.com>
- * @author     L. Pham <l.pham@acellemail.com>
- * @copyright  Acelle Co., Ltd
- * @license    Acelle Co., Ltd
- *
- * @version    1.0
- *
- * @link       http://acellemail.com
- */
-
 namespace Acelle\Model;
 
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +8,7 @@ use Acelle\Cashier\Cashier;
 use Acelle\Model\Subscription;
 use Acelle\Model\SendingDomain;
 use Acelle\Model\Source;
+use Acelle\Model\Contact;
 use Acelle\Model\WooCommerce;
 use Acelle\Model\Lazada;
 use Acelle\Model\MailList;
@@ -728,6 +709,16 @@ class Customer extends Model
             $user->category_id = $request->category_id;
             $user->customer()->associate($this);
             $user->save();
+            $contact = new Contact();
+            $contact->fill($request->all());
+
+            // Save current user info
+            if ($contact->save()) {
+                if (is_object($contact)) {
+                    $this->contact_id = $contact->id;
+                    $this->save();
+                }
+            }
         });
 
         // Important: return the newly created USER

@@ -1,5 +1,12 @@
 @extends('customer.layout.app')
 @section('title', 'My Jobs')
+@section('styling')
+<style type="text/css">
+  .table th {
+    line-height: 4;
+}
+</style>
+@endsection
 @section('content')
 
 <div class="nk-content mt-5">
@@ -85,7 +92,7 @@
                                             <button class="btn btn-sm btn-success" onclick="openNav('{{$request->id}}')">View Details</button>
                                         </td>
                                     </tr><!-- .tb-ticket-item -->
-                                     <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 60px;height: 650px;">
+                                     <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 60px;height: 100%;">
                                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$request->id}}')">×</a>
                                         <div class="preview-block" style="padding: 24px;">
                                             <div class="row">

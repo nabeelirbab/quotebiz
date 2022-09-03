@@ -1,6 +1,7 @@
 <!-- Font -->
 {{-- <link href="{{ URL::asset('core/css/google-open-sans.css') }}" rel="stylesheet"> --}}
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
 
 <!-- jQuery -->
 <script type="text/javascript" src="{{ URL::asset('core/js/jquery-3.6.0.min.js') }}"></script>
@@ -8,7 +9,6 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('core/bootstrap/css/bootstrap.min.css') }}">
 <script type="text/javascript" src="{{ URL::asset('core/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
 <!-- Select2 -->
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('core/select2/css/select2.min.css') }}">
 <script type="text/javascript" src="{{ URL::asset('core/select2/js/select2.min.js') }}"></script>

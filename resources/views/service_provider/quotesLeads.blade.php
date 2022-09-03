@@ -4,6 +4,21 @@
 @section('styling')
  <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/editors/quill.css?ver=2.9.1') }}">
  <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
+ <style type="text/css">
+  @media only screen and (max-width: 600px) {
+   .nkchatbody {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(87vh - (65px + 0px));
+    border-radius: 0px;
+  }
+  .creditsCost{
+    float: right;
+    padding-right: 1rem !important;
+  }
+}
+ </style>
 @endsection
 @section('content')
  <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice();

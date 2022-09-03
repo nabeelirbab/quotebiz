@@ -1,6 +1,9 @@
+
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 3px;
   
 }
 
@@ -56,7 +59,8 @@
     position: relative;
     opacity: 1;
     pointer-events: auto;
-    max-height: calc(91vh - (65px + 112px));
+    max-height: calc(93vh - (65px + 112px));
+    border-radius: 0px;
 }
 .kanban-item {
     border-radius: 4px;
@@ -255,18 +259,58 @@
     left: 22px;
     bottom: 12px;
 }
-
+@media only screen and (min-width: 1200px) {
+  .nk-content {
+      padding: 26px 22px 0px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .nk-msg-item {
+      padding: 1.25rem 0.75rem;
+  }
+  .nav-tabs .nav-item {
+    padding-right: 1.25rem;
+}
+}
 @media only screen and (max-width: 600px) {
+ 
+  .chathead{
+         position: absolute;
+        z-index: 99;
+        top: 65px;
+        background: white;
+        width: 100%;
+        left: 0px;
+        display: none;
+    }
   #chatPanel{
-    display: none !important;
-}
-.nk-msg-body{
-  top: 63px;
-}
-.nkchatbody {
+      display: none !important;
+  }
+  .nk-msg-body{
+    top: 63px;
+  }
+  .nkchatbody {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+  }
+  .editr--toolbar {
+      background: #f6f6f6;
+      border-bottom: 1px solid #e4e4e4;
+      position: relative;
+      display: flex;
+      height: 55px !important;
+  }
+  ::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+  }
+  .nkchatbody{
     position: relative;
     opacity: 1;
     pointer-events: auto;
-    max-height: calc(117vh - (65px + 112px));
+    max-height: calc(115vh - (65px + 112px));
+    border-radius: 0px;
 }
 }

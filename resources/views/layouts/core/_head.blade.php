@@ -16,3 +16,31 @@
 @endif    
 
 @include('layouts.core._includes')
+<style type="text/css">
+		.form-group:last-child {
+	    margin-bottom: 20px !important;
+	}
+	.nav-tabs .nav-item {
+    padding-right: 1rem;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: calc(2.125rem + 2px);
+    position: absolute;
+    top: 5px !important;
+    right: 0;
+    width: calc(2.125rem + 2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a .icon + span{
+    margin-left: 0.25rem;
+    margin-top: 6px;
+}
+.breadcrumb-item {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: inherit !important;
+    letter-spacing: 0.05rem;
+}
+	</style>

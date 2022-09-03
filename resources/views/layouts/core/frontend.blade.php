@@ -6,7 +6,7 @@
 	@include('layouts.core._script_vars')
 
 	@yield('head')
-
+	
 	@if (getThemeMode(Auth::user()->customer->theme_mode, request()->session()->get('customer-auto-theme-mode')) == 'dark')
 		<meta name="theme-color" content="{{ getThemeColor(
 			Auth::user()->customer->getColorScheme()) }}">

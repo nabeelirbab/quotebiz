@@ -6,10 +6,10 @@
 <div class="nk-content-body">
 <div class="nk-msg">
 <div class="nk-msg-aside">
-<div class="nk-msg-nav">
+<div class="nk-msg-nav" style="background: white;line-height: 5.6;">
     <ul class="nk-msg-menu nav nav-tabs">
       
-        <li class="nk-msg-menu-item nav-item active">
+        <li id="tabactive" class="nk-msg-menu-item nav-item active">
             <a href="#tabItem0" data-toggle="tab" @click="activetab()" class="nav-link">Active</a>
         </li>
         <li class="nk-msg-menu-item nav-item">
@@ -195,7 +195,6 @@
     <div class="row d-flex justify-content-center">
           <!--Grid column-->
           <div class="col-md-12">
-           <!-- <span>{{ $socket.connected ? 'Connected' : 'Disconnected' }}</span> -->
             <div class="loexp-no-results-container">
             <div class="card-block">
                 <img class="img-fluid" width="156" height="111" src="https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj" srcset="https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj 1x, https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=KAYSPp 2x">
@@ -928,6 +927,7 @@ methods: {
                axios.get('/customer/getprovider')
                 .then((responce) => {
                   this.activeQuotes = responce.data;
+                  $('#tabactive').addClass('active');
                 })
                 .catch((error) => console.log(error));
 
@@ -990,12 +990,14 @@ methods: {
             this.quoteChat = {};
             $('#mainView').show();
             $('#chatPanel').hide();
+            $('#tabactive').removeClass('active');
      },
 
      donetab(){
             this.quoteChat = {};
             $('#mainView').show();
             $('#chatPanel').hide();
+            $('#tabactive').removeClass('active');
      },
 
      clearSearch(){
@@ -1034,14 +1036,7 @@ mounted() {
 };
 </script>
 <style type="text/css">
-    .chathead{
-         position: absolute;
-        z-index: 99;
-        top: 65px;
-        background: white;
-        width: 100%;
-        left: 0px;
-    }
+    
     .loexp-no-results-container {
         display: flex;
         align-items: flex-start;

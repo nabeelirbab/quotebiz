@@ -2587,6 +2587,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/customer/getprovider').then(function (responce) {
         _this6.activeQuotes = responce.data;
+        $('#tabactive').addClass('active');
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -2640,11 +2641,13 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     donetab: function donetab() {
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     clearSearch: function clearSearch() {
       this.userSearch = '';
@@ -2704,7 +2707,8 @@ __webpack_require__.r(__webpack_exports__);
       isLoading: false,
       isPrice: false,
       creditcost: '',
-      quoteSearch: ''
+      quoteSearch: '',
+      hostname: ''
     };
   },
   computed: {
@@ -2834,6 +2838,7 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteQuestions = {};
       $('#chatPanel').hide();
       $('#mainView').show();
+      $('#tabactive').removeClass('active');
     },
     clearSearch: function clearSearch() {
       this.quoteSearch = '';
@@ -2844,12 +2849,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/service-provider/leadsquotes').then(function (responce) {
         console.log(responce.data);
         _this3.quotes = responce.data;
+        $('#tabactive').addClass('active');
       })["catch"](function (error) {
         return console.log(error);
       });
     }
   },
   mounted: function mounted() {
+    this.hostname = this.$hostname;
     console.log(this.quoteprice);
     this.getQuotes();
   }
@@ -3212,6 +3219,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/service-provider/getcustomer').then(function (responce) {
         _this5.activeQuotes = responce.data;
+        $('#tabactive').addClass('active');
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -3232,16 +3240,19 @@ __webpack_require__.r(__webpack_exports__);
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     donetab: function donetab() {
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     losetab: function losetab() {
       this.quoteChat = {};
       $('#mainView').show();
       $('#chatPanel').hide();
+      $('#tabactive').removeClass('active');
     },
     clearSearch: function clearSearch() {
       this.userSearch = '';
@@ -4219,11 +4230,18 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg-aside"
   }, [_c("div", {
-    staticClass: "nk-msg-nav"
+    staticClass: "nk-msg-nav",
+    staticStyle: {
+      background: "white",
+      "line-height": "5.6"
+    }
   }, [_c("ul", {
     staticClass: "nk-msg-menu nav nav-tabs"
   }, [_c("li", {
-    staticClass: "nk-msg-menu-item nav-item active"
+    staticClass: "nk-msg-menu-item nav-item active",
+    attrs: {
+      id: "tabactive"
+    }
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
@@ -5451,9 +5469,15 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg-nav"
   }, [_c("ul", {
-    staticClass: "nk-msg-menu nav nav-tabs"
+    staticClass: "nk-msg-menu nav nav-tabs",
+    staticStyle: {
+      "background-color": "white"
+    }
   }, [_c("li", {
-    staticClass: "nk-msg-menu-item active"
+    staticClass: "nk-msg-menu-item active",
+    attrs: {
+      id: "tabactive"
+    }
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
@@ -5523,7 +5547,18 @@ var render = function render() {
           return _vm.openQuote($event, quote);
         }
       }
-    }, [_vm._m(2, true), _vm._v(" "), _c("div", {
+    }, [_c("div", {
+      staticClass: "chat-avatar"
+    }, [quote.user.user_img ? _c("div", {
+      staticClass: "nk-msg-media user-avatar"
+    }, [_c("img", {
+      attrs: {
+        src: _vm.hostname + "/frontend-assets/images/users/" + quote.user.user_img,
+        alt: ""
+      }
+    })]) : _c("div", {
+      staticClass: "user-avatar bg-purple"
+    }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.user.first_name)) + _vm._s(_vm.getFirstLetter(quote.user.last_name)))])])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
@@ -5560,14 +5595,25 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg-list"
   }, [_vm._l(_vm.quotes, function (quote) {
-    return !quote.myquotation ? [_c("div", {
+    return [!quote.myquotation ? _c("div", {
       staticClass: "nk-msg-item",
       on: {
         click: function click($event) {
           return _vm.openQuote($event, quote);
         }
       }
-    }, [_vm._m(3, true), _vm._v(" "), _c("div", {
+    }, [_c("div", {
+      staticClass: "chat-avatar"
+    }, [quote.user.user_img ? _c("div", {
+      staticClass: "nk-msg-media user-avatar"
+    }, [_c("img", {
+      attrs: {
+        src: _vm.hostname + "/frontend-assets/images/users/" + quote.user.user_img,
+        alt: ""
+      }
+    })]) : _c("div", {
+      staticClass: "user-avatar bg-purple"
+    }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.user.first_name)) + _vm._s(_vm.getFirstLetter(quote.user.last_name)))])])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
@@ -5585,9 +5631,9 @@ var render = function render() {
       staticClass: "nk-msg-text"
     }, [_c("div", {
       staticClass: "title"
-    }, [_vm._v(_vm._s(quote.category.category_name))])])])])])] : _vm._e();
+    }, [_vm._v(_vm._s(quote.category.category_name))])])])])]) : _vm._e()];
   })], 2)]), _vm._v(" "), _c("div", {
-    staticClass: "tab-pane active",
+    staticClass: "tab-pane",
     attrs: {
       id: "tabItem1"
     }
@@ -5601,7 +5647,18 @@ var render = function render() {
           return _vm.openQuote($event, quote);
         }
       }
-    }, [_vm._m(4, true), _vm._v(" "), _c("div", {
+    }, [_c("div", {
+      staticClass: "chat-avatar"
+    }, [quote.user.user_img ? _c("div", {
+      staticClass: "nk-msg-media user-avatar"
+    }, [_c("img", {
+      attrs: {
+        src: _vm.hostname + "/frontend-assets/images/users/" + quote.user.user_img,
+        alt: ""
+      }
+    })]) : _c("div", {
+      staticClass: "user-avatar bg-purple"
+    }, [_c("span", [_vm._v(_vm._s(_vm.getFirstLetter(quote.user.first_name)) + _vm._s(_vm.getFirstLetter(quote.user.last_name)))])])]), _vm._v(" "), _c("div", {
       staticClass: "nk-msg-info"
     }, [_c("div", {
       staticClass: "nk-msg-from"
@@ -5624,7 +5681,7 @@ var render = function render() {
     })])])])] : _vm._e();
   })], 2)])]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "nk-msg-body bg-white"
-  }, [_vm._m(5), _vm._v(" "), _c("div", {
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticStyle: {
       display: "none"
     },
@@ -5674,7 +5731,7 @@ var render = function render() {
     attrs: {
       href: ""
     }
-  }, [_vm._m(6), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "ml-3"
   }, [_vm.quoteQuestions.category ? _c("h6", {
     staticClass: "title mb-1"
@@ -5712,7 +5769,7 @@ var render = function render() {
   }), _c("span", {
     staticClass: "lead-text text-muted pl-1"
   }, [_vm._v(_vm._s(_vm.quoteQuestions.user.city))])])]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-9 col-sm-2 mt-3"
+    staticClass: "col-md-9 col-sm-12 mt-3"
   }, [_c("div", {
     staticClass: "row"
   }, _vm._l(_vm.quoteQuestions.questionsget, function (questions) {
@@ -5733,7 +5790,7 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12 mt-2 mb-3"
-  }, [_vm._m(7), _vm._v(" "), _c("div", {
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "card-inner p-0"
   }, [_c("wysiwyg", {
     model: {
@@ -5743,12 +5800,12 @@ var render = function render() {
       },
       expression: "comment"
     }
-  })], 1)])]), _vm._v(" "), _vm._m(8), _vm._v(" "), _vm.quoteQuestions.myquotation ? [_vm._m(9)] : [_vm.creaditsum >= 10 ? _c("div", {
+  })], 1)])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm.quoteQuestions.myquotation ? [_vm._m(6)] : [_vm.creaditsum >= 10 ? _c("div", {
     staticClass: "row mt-3 justify-content-end"
   }, [_c("div", {
     staticClass: "col-md-3 col-xs-3 p-0"
   }, [_vm.quoteQuestions.category && _vm.quoteQuestions.category.credit_cost && _vm.quoteQuestions.category.credit_cost ? [_c("h5", {
-    staticClass: "p-0 mt-3"
+    staticClass: "p-0 mt-3 creditsCost"
   }, [_vm._v(_vm._s(_vm.quoteQuestions.category.credit_cost) + " Credits")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -5842,9 +5899,9 @@ var render = function render() {
       "background-color": "#816bff !important",
       "border-color": "#816bff !important"
     }
-  }, [_vm._v("Send Quote "), _vm._m(10)]) : _vm._e()])])])]) : _c("div", {
+  }, [_vm._v("Send Quote "), _vm._m(7)]) : _vm._e()])])])]) : _c("div", {
     staticClass: "row mt-3 justify-content-end"
-  }, [_vm._m(11), _vm._v(" "), _vm._m(12)])]], 2)])])])])])])])])])]);
+  }, [_vm._m(8), _vm._v(" "), _vm._m(9)])]], 2)])])])])])])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5876,49 +5933,13 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "nk-msg-media user-avatar"
-  }, [_c("img", {
-    attrs: {
-      src: "/images/avatar/b-sm.jpg",
-      alt: ""
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "nk-msg-media user-avatar"
-  }, [_c("img", {
-    attrs: {
-      src: "/images/avatar/b-sm.jpg",
-      alt: ""
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "nk-msg-media user-avatar"
-  }, [_c("img", {
-    attrs: {
-      src: "/images/avatar/b-sm.jpg",
-      alt: ""
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
     attrs: {
       id: "mainView"
     }
   }, [_c("div", {
     staticClass: "nk-chat-body",
     staticStyle: {
-      height: "752px"
+      "max-height": "calc(100vh - 125px)"
     }
   }, [_c("div", {
     staticClass: "nk-chat-panel"
@@ -6065,11 +6086,18 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg-aside"
   }, [_c("div", {
-    staticClass: "nk-msg-nav"
+    staticClass: "nk-msg-nav",
+    staticStyle: {
+      background: "white",
+      "line-height": "5.6"
+    }
   }, [_c("ul", {
     staticClass: "nk-msg-menu nav nav-tabs"
   }, [_c("li", {
-    staticClass: "nk-msg-menu-item nav-item active"
+    staticClass: "nk-msg-menu-item nav-item active",
+    attrs: {
+      id: "tabactive"
+    }
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
@@ -6403,22 +6431,7 @@ var render = function render() {
       startshowProfile: _vm.isStartshowProfile,
       opacity: _vm.isActive
     }
-  }, [_c("div", {
-    attrs: {
-      id: "mainView"
-    }
-  }, [_c("div", {
-    staticClass: "nk-chat-body",
-    staticStyle: {
-      height: "752px"
-    }
-  }, [_c("div", {
-    staticClass: "nk-chat-panel"
-  }, [_c("div", {
-    staticClass: "row d-flex justify-content-center"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("span", [_vm._v(_vm._s(_vm.$socket.connected ? "Connected" : "Disconnected"))]), _vm._v(" "), _vm._m(2)])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "nk-msg-head d-none d-lg-block"
   }, [_vm.quoteChat.chatcustomer ? _c("div", {
     staticClass: "nk-msg-head-meta"
@@ -7028,6 +7041,21 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
+    attrs: {
+      id: "mainView"
+    }
+  }, [_c("div", {
+    staticClass: "nk-chat-body",
+    staticStyle: {
+      height: "752px"
+    }
+  }, [_c("div", {
+    staticClass: "nk-chat-panel"
+  }, [_c("div", {
+    staticClass: "row d-flex justify-content-center"
+  }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
     staticClass: "loexp-no-results-container"
   }, [_c("div", {
     staticClass: "card-block"
@@ -7043,7 +7071,7 @@ var staticRenderFns = [function () {
     staticClass: "mt-2"
   }, [_vm._v("\n                    Star Chat\n                ")]), _vm._v(" "), _c("p", {
     staticClass: "text-center mt-2 text-light-grey"
-  }, [_vm._v("You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here.")])])]);
+  }, [_vm._v("You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here.")])])])])])])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -9524,7 +9552,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n     position: absolute;\n    z-index: 99;\n    top: 65px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9551,7 +9579,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_wysiwyg_dist_vueWysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\n   width: 100%;\n   overflow: auto;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.redborder{\n  border-color: red;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\n   width: 100%;\n   overflow: auto;\n}\n.editr--toolbar {\n    background: #f6f6f6;\n    border-bottom: 1px solid #e4e4e4;\n    position: relative;\n    display: flex;\n    height: 40px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.redborder{\n  border-color: red;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

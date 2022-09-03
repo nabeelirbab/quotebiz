@@ -1,7 +1,13 @@
 @extends('layouts.core.frontend')
 
 @section('title', trans('messages.contact_information'))
-
+@section('head')
+<style type="text/css">
+   .btn > span:only-child, .dual-listbox .dual-listbox__button > span:only-child {
+    width: -1% !important;
+}
+</style>
+@endsection
 @section('page_header')
 
     <div class="page-title">
@@ -27,13 +33,26 @@
 
         <div class="row">
             <div class="col-md-6">
+            <?php
 
+            if($contact->first_name){
+               $first_name = $contact->first_name;
+            }else{
+              $first_name = Auth::user()->first_name;
+            }
+            if($contact->last_name){
+               $last_name = $contact->last_name;
+            }else{
+              $last_name = Auth::user()->last_name;
+            }
+
+            ?>
                 <div class="row">
                     <div class="col-md-6">
-                        @include('helpers.form_control', ['type' => 'text', 'name' => 'first_name', 'value' => $contact->first_name, 'rules' => Acelle\Model\Contact::$rules])
+                        @include('helpers.form_control', ['type' => 'text', 'name' => 'first_name', 'value' => $first_name, 'rules' => Acelle\Model\Contact::$rules])
                     </div>
                     <div class="col-md-6">
-                        @include('helpers.form_control', ['type' => 'text', 'name' => 'last_name', 'value' => $contact->last_name, 'rules' => Acelle\Model\Contact::$rules])
+                        @include('helpers.form_control', ['type' => 'text', 'name' => 'last_name', 'value' => $last_name, 'rules' => Acelle\Model\Contact::$rules])
                     </div>
                 </div>
 

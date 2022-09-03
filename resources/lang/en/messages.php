@@ -2544,8 +2544,7 @@
   'subscription.select_a_plan' => 'Select a Plan',
   'plan.current_subscribed' => 'Current subscribed',
   'create_your_account' => 'Create your account',
-  'register.intro' => 'Manage your contacts, generate leads, run a marketing campaign,... Join us to enjoy doing
-    every day sales & marketing without any hassle. If you already have an account? <a href=":login">Login</a>',
+  'register.intro' => 'Generate income from leads by starting your very own Quote Biz. Join us today to enjoy your free trial account and start setting up and customizing your account. If you already have an account? <a href=":login">Login</a>',
   'register.agreement_intro' => 'By clicking the "Get Started!" button, you are creating an account at our system,
     and you agree to our\'s Terms of Use and Privacy Policy.',
   'email_confirmation' => 'Email Confirmation',
