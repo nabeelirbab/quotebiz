@@ -44,4 +44,8 @@ class Quotation extends Model
 		  {
 		    return $this->belongsTo('Acelle\Model\User','customer_id');
 		  }
+        public function sp()
+		  {
+		    return $this->belongsTo('Acelle\Model\User','user_id');
+		  }
 }
