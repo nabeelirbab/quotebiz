@@ -27,7 +27,7 @@
         <div class="nk-block-between">
             <div class="nk-block-head-content">
                 <h4 class="nk-block-title page-title">Stripe Payment</h3>
-                    <p>In order to receive payments from service providers you will need to setup a stripe account.</p>
+                    <p>In order to receive payments from service providers you will need to setup a stripe account <a href="https://dashboard.stripe.com/login" target="_blank">Stripe Account</a>. Manage your API keys to authenticate requests with Stripe. <a href="https://stripe.com/docs/keys" target="_blank">API keys</a></p>
                
             </div><!-- .nk-block-head-content -->
            
