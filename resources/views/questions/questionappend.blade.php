@@ -21,29 +21,29 @@
             <input type="hidden" id="addQuestionIndex" name="addQuestionIndex" value="{{$key}}">
             <input type="hidden" name="category_id" value="{{$question->category_id}}"><div class="removeQuestion mt-4" style="background: #f5f6fa;padding: 20px;border-radius:15px">
              <div class="row mb-4">
-                <div class="col-sm-2"><div class="custom-control custom-checkbox">
+                <div class="col-xs-6 col-md-2"><div class="custom-control custom-checkbox">
                 <input type="radio" name="check[{{$key}}]" class="custom-control-input checking" id="customCheck{{$key}}" value="single" {{($question->choice_selection == 'single') ? 'checked' : ''}} >
                 <label class="custom-control-label" for="customCheck{{$key}}">Radio</label>
                 </div></div>
-                <div class="col-sm-2"><div class="custom-control custom-checkbox">
+                <div class="col-xs-6 col-md-2"><div class="custom-control custom-checkbox">
                     <input type="radio" name="check[{{$key}}]" class="custom-control-input checking" id="customChecks{{$key}}" value="multiple" {{($question->choice_selection == 'multiple') ? 'checked' : ''}}>
                     <label class="custom-control-label" for="customChecks{{$key}}">Checkbox</label>
                 </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-xs-6 col-md-2">
                     <div class="custom-control custom-checkbox">
                     <input type="radio" name="check[{{$key}}]" class="custom-control-input checking" id="input{{$key}}" value="input" {{($question->choice_selection == 'input') ? 'checked' : ''}}>
                     <label class="custom-control-label" for="input{{$key}}">Input Box</label>
                 </div>
                 </div>
-                <div class="col-sm-2 pr-0">
+                <div class="col-xs-6 col-md-2 pr-0">
                     <div class="custom-control custom-checkbox">
                     <input type="radio" name="check[{{$key}}]" class="custom-control-input checking" id="date{{$key}}" value="datepicker" {{($question->choice_selection == 'datepicker') ? 'checked' : ''}}>
                     <label class="custom-control-label" for="date{{$key}}">Date Picker</label>
                 </div>
                 </div>
                 
-                <div class="col-sm-4" style="padding-right: 0;"><span title="Remove Question" class="deleteQuestions material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;">remove_circle</span><input type="hidden" name="question_id[{{$key}}]" value="{{$question->id}}"></div> </div>
+                <div class="col-xs-6 col-md-2" style="padding-right: 0;"><span title="Remove Question" class="deleteQuestions material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;">remove_circle</span><input type="hidden" name="question_id[{{$key}}]" value="{{$question->id}}"></div> </div>
                 <div class="row">
                     <div class="col-sm-10 mb-4">
                         <div class="form-group">

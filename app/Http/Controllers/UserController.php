@@ -23,6 +23,7 @@ use Auth;
 use Mail;
 use Acelle\Mail\SendInvitation;
 use Carbon\Carbon;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -245,6 +246,10 @@ class UserController extends Controller
         // save posted data
         if ($request->isMethod('post')) {
           // dd(json_encode($request->input('category_id')));
+               $subdomain = Subdomain::where('subdomain',$request->subdomain)->first();
+                 if(!$subdomain){
+                  return Redirect::back()->withErrors(['msg' => 'Subdomain not register']);
+                 }
                $user->fill($request->all());
             
                 $rules = $user->registerRules2();

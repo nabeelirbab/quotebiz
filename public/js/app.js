@@ -3839,11 +3839,11 @@ var render = function render() {
       }, [_c("div", {
         staticClass: "nk-tb-col"
       }, [_c("span", [_vm._v(_vm._s(question.id))])]), _vm._v(" "), _c("div", {
-        staticClass: "nk-tb-col tb-col-mb"
+        staticClass: "nk-tb-col"
       }, [_c("span", {
         staticClass: "tb-amount"
       }, [_vm._v(_vm._s(question.question))])]), _vm._v(" "), _c("div", {
-        staticClass: "nk-tb-col tb-col-md"
+        staticClass: "nk-tb-col"
       }, [_c("span", [_vm._v(_vm._s(category.category_name))])]), _vm._v(" "), _c("div", {
         staticClass: "nk-tb-col tb-col-lg"
       }, [_c("span", [_vm._v(_vm._s(question.choice_selection))])]), _vm._v(" "), _c("div", {
@@ -3999,7 +3999,7 @@ var render = function render() {
       }, [_c("span", {
         staticClass: "tb-amount"
       }, [_vm._v(_vm._s(question.question))])]), _vm._v(" "), _c("div", {
-        staticClass: "nk-tb-col tb-col-md"
+        staticClass: "nk-tb-col"
       }, [_c("span", [_vm._v(_vm._s(category.category_name))])]), _vm._v(" "), _c("div", {
         staticClass: "nk-tb-col tb-col-lg"
       }, [_c("span", [_vm._v(_vm._s(question.choice_selection))])]), _vm._v(" "), _c("div", {
@@ -4086,7 +4086,7 @@ var render = function render() {
           background: "#253a46e3"
         }
       }, [_c("div", {
-        staticClass: "nk-tb-col tb-col-lg"
+        staticClass: "nk-tb-col"
       }, [_c("span", {
         staticClass: "sub-text"
       }, [_vm._v("ID")])]), _vm._v(" "), _c("div", {
@@ -4174,7 +4174,7 @@ var staticRenderFns = [function () {
       background: "#253a46e3"
     }
   }, [_c("div", {
-    staticClass: "nk-tb-col tb-col-lg"
+    staticClass: "nk-tb-col"
   }, [_c("span", {
     staticClass: "sub-text"
   }, [_vm._v("ID")])]), _vm._v(" "), _c("div", {
@@ -4198,7 +4198,7 @@ var staticRenderFns = [function () {
   }, [_c("span", {
     staticClass: "sub-text"
   }, [_vm._v("Status")])]), _vm._v(" "), _c("div", {
-    staticClass: "nk-tb-col tb-col-md"
+    staticClass: "nk-tb-col"
   }, [_c("span", {
     staticClass: "sub-text"
   }, [_vm._v("Action")])])]);

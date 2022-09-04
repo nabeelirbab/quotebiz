@@ -273,6 +273,9 @@
 }
 }
 @media only screen and (max-width: 600px) {
+  .form-label{
+    font-size: 0.75rem;
+  }
   .card.mb-4{
     margin-top: 2.75rem !important;
   }
