@@ -7,6 +7,14 @@
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}"> 
+<style type="text/css">
+    .card-title{
+        text-align: center;
+    }
+    .data{
+        text-align: center;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -231,13 +239,13 @@ $currencySymbols = [
 <div class="card">
     <div class="nk-ecwg nk-ecwg6">
         <div class="card-inner">
-            <div class="card-title-group">
+            <div class="">
                 <div class="card-title">
                     <h6 class="title">Quotes</h6>
                 </div>
             </div>
             <div class="data">
-                <div class="data-group">
+                <div class="">
                     <div class="amount">{{$quoteCount}}</div>
                     <!-- <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
@@ -253,13 +261,13 @@ $currencySymbols = [
 <div class="card">
     <div class="nk-ecwg nk-ecwg6">
         <div class="card-inner">
-            <div class="card-title-group">
+            <div class="">
                 <div class="card-title">
                     <h6 class="title">Total Revenue</h6>
                 </div>
             </div>
             <div class="data">
-                <div class="data-group">
+                <div class="">
                     <div class="amount">
                          <?php 
                               $currencyConvert = Acelle\Jobs\HelperJob::usdcurrency($totalRevenue); 
@@ -285,13 +293,13 @@ $currencySymbols = [
 <div class="card">
     <div class="nk-ecwg nk-ecwg6">
         <div class="card-inner">
-            <div class="card-title-group">
+            <div class="">
                 <div class="card-title">
                     <h6 class="title">Customers</h6>
                 </div>
             </div>
             <div class="data">
-                <div class="data-group">
+                <div class="">
                     <div class="amount">{{$customerCount}}</div>
                    <!--  <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayCustomers"></canvas>
@@ -307,13 +315,13 @@ $currencySymbols = [
 <div class="card">
     <div class="nk-ecwg nk-ecwg6">
         <div class="card-inner">
-            <div class="card-title-group">
+            <div class="">
                 <div class="card-title">
                     <h6 class="title">Service Providers</h6>
                 </div>
             </div>
             <div class="data">
-                <div class="data-group">
+                <div class="">
                     <div class="amount">{{$providerCount}}</div>
                    <!--  <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayVisitors"></canvas>
@@ -329,7 +337,7 @@ $currencySymbols = [
 <div class="card card-full">
     <div class="nk-ecwg nk-ecwg8 h-100">
         <div class="card-inner">
-            <div class="card-title-group mb-3">
+            <div class=" mb-3">
                 <div class="card-title">
                     <h6 class="title">Sales Statistics</h6>
                 </div>
@@ -375,7 +383,7 @@ $currencySymbols = [
 <div class="card card-full overflow-hidden">
     <div class="nk-ecwg nk-ecwg7 h-100">
         <div class="card-inner flex-grow-1">
-            <div class="card-title-group mb-4">
+            <div class=" mb-4">
                 <div class="card-title">
                     <h6 class="title">Quote Statistics</h6>
                 </div>
@@ -411,7 +419,7 @@ $currencySymbols = [
 <div class="col-xxl-8">
 <div class="card card-full">
     <div class="card-inner">
-        <div class="card-title-group">
+        <div class="">
             <div class="card-title">
                 <h6 class="title">Recent Quotes</h6>
             </div>
@@ -466,7 +474,7 @@ $currencySymbols = [
 <div class="col-xxl-4 col-md-8 col-lg-6">
 <div class="card h-100">
     <div class="card-inner">
-        <div class="card-title-group mb-2">
+        <div class=" mb-2">
             <div class="card-title">
                 <h6 class="title">Top Service Providers</h6>
             </div>
