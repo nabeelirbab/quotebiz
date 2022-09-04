@@ -68,7 +68,7 @@
             <p class="text-center mt-5" style="font-size: 16px;" v-if="filteredUserlist.length == 0"> No User Found</p>
             
         </div><!-- .nk-msg-list -->
-<div class="tab-content" v-if="userSearch == '' ">
+<div class="tab-content" style="max-height: 85%;" v-if="userSearch == '' ">
     <div class="tab-pane active" id="tabItem0">
         <div class="nk-msg-list" >
             <template v-for="quote in orderedUsers" v-if="quote.quote.status == 'pending'" >

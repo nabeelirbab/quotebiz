@@ -2822,8 +2822,15 @@ __webpack_require__.r(__webpack_exports__);
           _this2.price = '';
           _this2.quoteQuestions = {};
           _this2.quoteQuestions.myquotation = response.data.quote.myquotation;
-          $('#chatPanel').hide();
-          $('#mainView').show();
+
+          if ($(window).width() < 700) {
+            _this2.closePanel();
+
+            _this2.getQuotes();
+          } else {
+            $('#chatPanel').hide();
+            $('#mainView').show();
+          }
         })["catch"](function (error) {
           console.log(error);
         });
@@ -4371,7 +4378,10 @@ var render = function render() {
       "font-size": "16px"
     }
   }, [_vm._v(" No User Found")]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), _vm.userSearch == "" ? _c("div", {
-    staticClass: "tab-content"
+    staticClass: "tab-content",
+    staticStyle: {
+      "max-height": "85%"
+    }
   }, [_c("div", {
     staticClass: "tab-pane active",
     attrs: {
@@ -5585,7 +5595,7 @@ var render = function render() {
   }, [_vm._v(" Not Found")]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), _vm.quoteSearch == "" ? _c("div", {
     staticClass: "tab-content",
     staticStyle: {
-      height: "100%"
+      "max-height": "85%"
     }
   }, [_c("div", {
     staticClass: "tab-pane active",
@@ -6240,7 +6250,10 @@ var render = function render() {
       "font-size": "16px"
     }
   }, [_vm._v(" No User Found")]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), _vm.userSearch == "" ? _c("div", {
-    staticClass: "tab-content"
+    staticClass: "tab-content",
+    staticStyle: {
+      "max-height": "85%"
+    }
   }, [_c("div", {
     staticClass: "tab-pane active",
     attrs: {
@@ -6948,55 +6961,9 @@ var render = function render() {
     staticClass: "icon ni ni-arrow-left"
   })])]), _vm._v(" "), _c("ul", {
     staticClass: "nk-msg-actions"
-  }, [_c("li", [_c("a", {
-    staticClass: "btn btn-dim btn-sm btn-outline-light",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-check"
-  }), _c("span", {
-    staticClass: "text-capitalize"
-  }, [_vm.quoteChat.quote.status == "pending" ? [_vm._v("Active")] : [_vm._v(_vm._s(_vm.quoteChat.quote.status))]], 2)])]), _vm._v(" "), _c("li", {
-    staticClass: "dropdown"
-  }, [_vm._m(11), _vm._v(" "), _c("div", {
-    staticClass: "dropdown-menu dropdown-menu-right"
-  }, [_c("ul", {
-    staticClass: "link-list-opt no-bdr"
-  }, [_c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.changeStatus("won");
-      }
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-user-add"
-  }), _c("span", [_vm._v("Mark as Won")])])]), _vm._v(" "), _c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.changeStatus("lose");
-      }
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-archive"
-  }), _c("span", [_vm._v("Mark as Lose")])])]), _vm._v(" "), _c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.changeStatus("done");
-      }
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-done"
-  }), _c("span", [_vm._v("Mark as Done")])])])])])])])]) : _vm._e(), _vm._v(" "), _c("a", {
+  }, [_c("li", [_c("h6", {
+    staticClass: "title mb-1"
+  }, [_vm._v(_vm._s(_vm.quoteChat.chatcustomer.first_name) + " " + _vm._s(_vm.quoteChat.chatcustomer.last_name))])])])]) : _vm._e(), _vm._v(" "), _c("a", {
     staticClass: "nk-msg-profile-toggle profile-toggle",
     "class": {
       active: _vm.isActive
@@ -7255,19 +7222,6 @@ var staticRenderFns = [function () {
   }, [_c("em", {
     staticClass: "icon ni ni-chevron-down"
   })])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("a", {
-    staticClass: "btn btn-icon btn-sm btn-white btn-light dropdown-toggle",
-    attrs: {
-      href: "#",
-      "data-toggle": "dropdown"
-    }
-  }, [_c("em", {
-    staticClass: "icon ni ni-more-h"
-  })]);
 }];
 render._withStripped = true;
 
@@ -9603,7 +9557,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n         position: absolute;\n        z-index: 99;\n        top: 65px;\n        background: white;\n        width: 100%;\n        left: 0px;\n}\n.loexp-no-results-container {\ndisplay: flex;\nalign-items: flex-start;\njustify-content: center;\nheight: calc(82vh - 75px);\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\nposition: relative;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\nmin-width: 0;\ntop: 25%;\nwidth: 50%;\n}\n.img-fluid {\n  max-width: 100%;\n  height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\nfont-size: 1.5em;\n}\n.text-light-grey {\ncolor: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n  z-index: 9999;\n  position: absolute;\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n        top: 88px !important;\n        right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\npadding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\ndisplay: flex;\nalign-items: flex-start;\njustify-content: center;\nheight: calc(82vh - 75px);\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\nposition: relative;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\nmin-width: 0;\ntop: 25%;\nwidth: 50%;\n}\n.img-fluid {\n  max-width: 100%;\n  height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\nfont-size: 1.5em;\n}\n.text-light-grey {\ncolor: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n  z-index: 9999;\n  position: absolute;\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n        top: 88px !important;\n        right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\npadding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

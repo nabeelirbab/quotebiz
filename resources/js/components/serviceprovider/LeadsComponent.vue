@@ -60,7 +60,7 @@
                               <p class="text-center mt-5" style="font-size: 16px;" v-if="filteredQuotelist.length == 0"> Not Found</p>
                             </div><!-- .nk-msg-list -->
 
-                    <div class="tab-content" style="height:100%" v-if="quoteSearch == '' ">
+                    <div class="tab-content" style="max-height: 85%;" v-if="quoteSearch == '' ">
                         <div class="tab-pane active" id="tabItem0">
                           <div class="nk-msg-list">
                              <template v-for="quote in quotes">
@@ -447,8 +447,15 @@ import Toasted from 'vue-toasted';
                       this.price = '';
                       this.quoteQuestions = {};
                       this.quoteQuestions.myquotation = response.data.quote.myquotation;
-                      $('#chatPanel').hide();
-                      $('#mainView').show();
+                      if ($(window).width() < 700) {
+                        this.closePanel();
+                        this.getQuotes();
+                      }
+                      else{
+                        $('#chatPanel').hide();
+                        $('#mainView').show();
+                      }
+                      
                       
 
                   }).catch((error) => {

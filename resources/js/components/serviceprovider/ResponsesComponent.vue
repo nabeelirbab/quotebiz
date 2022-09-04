@@ -69,7 +69,7 @@
            </template>
             <p class="text-center mt-5" style="font-size: 16px;" v-if="filteredUserlist.length == 0"> No User Found</p>
         </div><!-- .nk-msg-list -->
-<div class="tab-content" v-if="userSearch == '' ">
+<div class="tab-content" style="max-height: 85%;" v-if="userSearch == '' ">
     <div class="tab-pane active" id="tabItem0">
         <div class="nk-msg-list" >
             <template v-for="quote in orderedUsers" v-if="quote.quotestatus == null">
@@ -551,17 +551,8 @@
             </div>
         <div class="d-lg-none"><a href="#" @click="closepanel()" class="btn btn-icon ml-n1"><em class="icon ni ni-arrow-left"></em></a></div>
         <ul class="nk-msg-actions">
-            <li><a href="#" class="btn btn-dim btn-sm btn-outline-light"><em class="icon ni ni-check"></em><span class="text-capitalize"><template v-if="quoteChat.quote.status == 'pending'">Active</template><template v-else>{{quoteChat.quote.status}}</template></span></a></li>
-            <li class="dropdown">
-                <a href="#" class="btn btn-icon btn-sm btn-white btn-light dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <ul class="link-list-opt no-bdr">
-                        <li><a href="#" @click="changeStatus('won')"><em class="icon ni ni-user-add"></em><span>Mark as Won</span></a></li>
-                        <li><a href="#" @click="changeStatus('lose')"><em class="icon ni ni-archive"></em><span>Mark as Lose</span></a></li>
-                        <li><a href="#" @click="changeStatus('done')"><em class="icon ni ni-done"></em><span>Mark as Done</span></a></li>
-                    </ul>
-                </div>
-            </li>
+            <li><h6 class="title mb-1" >{{quoteChat.chatcustomer.first_name}} {{quoteChat.chatcustomer.last_name}}</h6></li>
+           
         </ul>
     </div>
     <a href="#" @click="msgprofile" class="nk-msg-profile-toggle profile-toggle" v-bind:class="{active: isActive}"><em class="icon ni ni-arrow-left"></em></a>
@@ -1033,14 +1024,7 @@ mounted() {
 };
 </script>
 <style type="text/css">
-.chathead{
-         position: absolute;
-        z-index: 99;
-        top: 65px;
-        background: white;
-        width: 100%;
-        left: 0px;
-    }
+
 .loexp-no-results-container {
 display: flex;
 align-items: flex-start;

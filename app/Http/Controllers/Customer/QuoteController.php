@@ -28,7 +28,7 @@ class QuoteController extends Controller
 
     public function myquotes(){
 
-        $myrequests = Quote::with('quotations')->where('user_id',Auth::user()->id)->orderBy('id','desc')->get();
+        $myrequests = Quote::with('quotations')->where('user_id',Auth::user()->id)->orderBy('id','desc')->paginate(10);
         // dd($myrequests[0]->quotations);
         return view('customer.myquotes',compact('myrequests'));
 

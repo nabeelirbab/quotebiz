@@ -130,6 +130,7 @@
                                    
                                 </tbody>
                             </table>
+                            {{$myrequests}}
                         </div>
                     </div><!-- .nk-block -->
                 </div>
