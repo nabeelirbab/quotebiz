@@ -11,6 +11,167 @@
 
 @section('content')
 <?php
+$currencySymbols = [
+    'AED' => 'د.إ',
+    'AFN' => 'Af',
+    'ALL' => 'Lek',
+    'AMD' => 'դ',
+    'ANG' => 'ƒ',
+    'AOA' => 'Kz',
+    'ARS' => '$',
+    'AUD' => '$',
+    'AWG' => 'ƒ',
+    'AZN' => '₼',
+    'BAM' => 'KM',
+    'BBD' => '$',
+    'BDT' => '৳',
+    'BGN' => 'лв',
+    'BHD' => '.د.ب', 
+    'BIF' => 'FBu',
+    'BMD' => '$',
+    'BND' => '$',
+    'BOB' => '$b',
+    'BRL' => 'R$',
+    'BSD' => '$',
+    'BTN' => 'Nu.',
+    'BWP' => 'P',
+    'BYR' => 'p.',
+    'BZD' => 'BZ$',
+    'CAD' => '$',
+    'CDF' => 'FC',
+    'CHF' => 'CHF',
+    'CLF' => 'UF',
+    'CLP' => '$',
+    'CNY' => '¥',
+    'COP' => '$',
+    'CRC' => '₡',
+    'CUP' => '⃌',
+    'CVE' => '$', 
+    'CZK' => 'Kč',
+    'DJF' => 'Fdj',
+    'DKK' => 'kr',
+    'DOP' => 'RD$',
+    'DZD' => 'دج',
+    'EGP' => 'E£',
+    'ETB' => 'Br',
+    'EUR' => '€',
+    'FJD' => '$',
+    'FKP' => '£',
+    'GBP' => '£',
+    'GEL' => 'ლ',
+    'GHS' => '¢',
+    'GIP' => '£',
+    'GMD' => 'D', 
+    'GNF' => 'FG',
+    'GTQ' => 'Q',
+    'GYD' => '$',
+    'HKD' => '$',
+    'HNL' => 'L',
+    'HRK' => 'kn',
+    'HTG' => 'G',
+    'HUF' => 'Ft',
+    'IDR' => 'Rp',
+    'ILS' => '₪',
+    'INR' => '₹',
+    'IQD' => 'ع.د',
+    'IRR' => '﷼',
+    'ISK' => 'kr',
+    'JEP' => '£',
+    'JMD' => 'J$',
+    'JOD' => 'JD',
+    'JPY' => '¥',
+    'KES' => 'KSh',
+    'KGS' => 'лв',
+    'KHR' => '៛',
+    'KMF' => 'CF', 
+    'KPW' => '₩',
+    'KRW' => '₩',
+    'KWD' => 'د.ك',
+    'KYD' => '$',
+    'KZT' => '₸',
+    'LAK' => '₭',
+    'LBP' => '£',
+    'LKR' => '₨',
+    'LRD' => '$',
+    'LSL' => 'L',
+    'LTL' => 'Lt',
+    'LVL' => 'Ls',
+    'LYD' => 'ل.د', 
+    'MAD' => 'د.م.',
+    'MDL' => 'L',
+    'MGA' => 'Ar',
+    'MKD' => 'ден',
+    'MMK' => 'K',
+    'MNT' => '₮',
+    'MOP' => 'MOP$', 
+    'MRO' => 'UM', 
+    'MUR' => '₨', 
+    'MVR' => '.ރ',
+    'MWK' => 'MK',
+    'MXN' => '$',
+    'MYR' => 'RM',
+    'MZN' => 'MT',
+    'NAD' => '$',
+    'NGN' => '₦',
+    'NIO' => 'C$',
+    'NOK' => 'kr',
+    'NPR' => '₨',
+    'NZD' => '$',
+    'OMR' => '﷼',
+    'PAB' => 'B/.',
+    'PEN' => 'S/.',
+    'PGK' => 'K',
+    'PHP' => '₱',
+    'PKR' => '₨',
+    'PLN' => 'zł',
+    'PYG' => 'Gs',
+    'QAR' => '﷼',
+    'RON' => 'lei',
+    'RSD' => 'Дин.',
+    'RUB' => '₽',
+    'RWF' => 'ر.س',
+    'SAR' => '﷼',
+    'SBD' => '$',
+    'SCR' => '₨',
+    'SDG' => '£',
+    'SEK' => 'kr',
+    'SGD' => '$',
+    'SHP' => '£',
+    'SLL' => 'Le', 
+    'SOS' => 'S',
+    'SRD' => '$',
+    'STD' => 'Db',
+    'SVC' => '$',
+    'SYP' => '£',
+    'SZL' => 'L',
+    'THB' => '฿',
+    'TJS' => 'TJS',
+    'TMT' => 'm',
+    'TND' => 'د.ت',
+    'TOP' => 'T$',
+    'TRY' => '₤',
+    'TTD' => '$',
+    'TWD' => 'NT$',
+    'TZS' => 'TSh',
+    'UAH' => '₴',
+    'UGX' => 'USh',
+    'USD' => '$',
+    'UYU' => '$U',
+    'UZS' => 'лв',
+    'VEF' => 'Bs',
+    'VND' => '₫',
+    'VUV' => 'VT',
+    'WST' => 'WS$',
+    'XAF' => 'FCFA',
+    'XCD' => '$',
+    'XDR' => 'SDR',
+    'XOF' => 'FCFA',
+    'XPF' => 'F',
+    'YER' => '﷼',
+    'ZAR' => 'R',
+    'ZMK' => 'ZK', 
+    'ZWL' => 'Z$',
+];
   $dateName = '';
   if(Request::get('date') == 'daily'){
     $dateName = 'Daily';
@@ -78,9 +239,9 @@
             <div class="data">
                 <div class="data-group">
                     <div class="amount">{{$quoteCount}}</div>
-                    <div class="nk-ecwg6-ck">
+                    <!-- <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div> -->
             </div>
@@ -103,10 +264,16 @@
                          <?php 
                               $currencyConvert = Acelle\Jobs\HelperJob::usdcurrency($totalRevenue); 
                              ?>
-                      <span class="fs-5">{{$currencyConvert['currency']}}</span> {{$currencyConvert['convert']}}</div>
-                    <div class="nk-ecwg6-ck">
+                       <?php
+                      foreach($currencySymbols as $key=>$value){
+                                if($key == $currencyConvert['currency']){
+                                  echo $value;
+                                }
+                            }
+                      ?>{{$currencyConvert['convert']}} <span class="fs-5">{{$currencyConvert['currency']}}</span></div>
+                    <!-- <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayRevenue"></canvas>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div> -->
             </div>
@@ -126,9 +293,9 @@
             <div class="data">
                 <div class="data-group">
                     <div class="amount">{{$customerCount}}</div>
-                    <div class="nk-ecwg6-ck">
+                   <!--  <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayCustomers"></canvas>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div> -->
             </div>
@@ -148,9 +315,9 @@
             <div class="data">
                 <div class="data-group">
                     <div class="amount">{{$providerCount}}</div>
-                    <div class="nk-ecwg6-ck">
+                   <!--  <div class="nk-ecwg6-ck">
                         <canvas class="ecommerce-line-chart-s3" id="todayVisitors"></canvas>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div> -->
             </div>
