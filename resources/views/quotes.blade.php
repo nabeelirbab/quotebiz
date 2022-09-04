@@ -84,7 +84,7 @@
                 <span>{{Str::limit($quote->additional_info, 120, '...')}}</span>
             </div>
             <div class="nk-tb-col">
-                <span>{{count($quote->quotations)}}</span>
+                <span  data-toggle="modal" data-target="#modalEdit{{$quote->id}}">{{count($quote->quotations)}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($quote->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
@@ -126,6 +126,58 @@
                      </div>
                     </div>
                    </div>
+                   <div class="modal fade zoom" tabindex="-1" id="modalEdit{{$quote->id}}">
+                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Quotations</h5>
+                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                    </a>
+                    </div>
+                    <div class="modal-body">
+                    <div class="preview-block">
+                    <div class="nk-tb-list nk-tb-ulist border-bottom border-light">
+                    <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
+                       
+                        <div class="nk-tb-col h2"><span class="sub-text">#ID</span></div>
+                        <div class="nk-tb-col h2"><span class="sub-text">Service Provider</span></div>
+                        <div class="nk-tb-col h2"><span class="sub-text">Quote Amount</span></div>
+                        <div class="nk-tb-col h2"><span class="sub-text">Quote</span></div>
+                        <div class="nk-tb-col h2"><span class="sub-text">Created At</span></div>
+                        </div>
+                      @foreach($quote->quotations as $quotation)
+                       <div class="nk-tb-item">
+                          <div class="nk-tb-col">
+                              <span>{{$quotation->id}}</span>
+                          </div>
+                          <div class="nk-tb-col">
+                             <a href="{{ url('customer_detail/'.$quotation->user_id) }}"> <span>{{$quotation->sp->first_name}} {{$quotation->sp->last_name}}</span>
+                             </a>
+                          </div>
+                          <div class="nk-tb-col">
+                            <?php 
+                              $currencyConvert = Acelle\Jobs\HelperJob::usdcurrency($quotation->quote_price); 
+                             ?>
+                            {{$currencyConvert['convert']}}<span> {{$currencyConvert['currency']}}</span></span>
+                          </div>
+                          <div class="nk-tb-col">
+                              <span>{{$quotation->comment}}</span>
+                          </div>
+                          <div class="nk-tb-col">
+                              <span>{{\Carbon\Carbon::parse($quotation->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
+                          </div>
+                        </div>
+                      @endforeach
+                    
+                  </div>
+                 
+                    </div>
+                    </div>
+
+                    </div>
+                    </div>
+                </div>
         @endforeach
        
     </div>
