@@ -154,7 +154,7 @@
                         </div>
                         
                     </div>
-                   <div class="col-sm-4">
+                   <div class="col-sm-4 d-none d-sm-block">
                     <p><b>Follow this image for guidence to fill form</b><a class="fs-5 btn btn-sm btn-success float-right" href="{{ url('get-quote')}}" target="_blank">Preview Design</a></p>
                    
                     <a href="{{asset('frontend-assets/images/demo.png')}}" target="_blank">

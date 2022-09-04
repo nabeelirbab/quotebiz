@@ -42,15 +42,15 @@
     <div class="nk-tb-list nk-tb-ulist border-bottom border-light">
         <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
            
-            <div class="nk-tb-col h2"><span class="sub-text">#ID</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Customer</span></div>
+            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#ID</span></div>
+            <div class="nk-tb-col h2"><span class="sub-text">Customer</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Category</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Zip Code</span></div>
-            <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Additional Information</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Quotations</span></div>
-            <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Posted on</span></div>
+            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Additional Information</span></div>
+            <div class="nk-tb-col h2"><span class="sub-text">Quotations</span></div>
+            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Posted on</span></div>
             <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Status</span></div>
-            <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Action</span></div>
+            <div class="nk-tb-col h2"><span class="sub-text">Action</span></div>
          
         </div>
         <!-- .nk-tb-item -->
@@ -66,7 +66,9 @@
                         <span>{{mb_substr($quote->user->first_name, 0, 1)}}{{mb_substr($quote->user->last_name, 0, 1)}}</span>
                     </div>
                     <div class="user-info">
-                        <span class="tb-lead">{{$quote->user->first_name}} {{$quote->user->last_name}} <span class="dot dot-success d-md-none ml-1"></span></span>
+                        <span class="tb-lead">{{$quote->user->first_name}} {{$quote->user->last_name}} 
+                          <!-- <span class="dot dot-success d-md-none ml-1"></span> -->
+                        </span>
                         <span>{{$quote->user->email}}</span>
                     </div>
                 </div>
@@ -78,10 +80,10 @@
             <div class="nk-tb-col tb-col-md">
                 <span>{{$quote->zip_code}}</span>
             </div>
-            <div class="nk-tb-col tb-col-lg">
+            <div class="nk-tb-col tb-col-md">
                 <span>{{Str::limit($quote->additional_info, 120, '...')}}</span>
             </div>
-            <div class="nk-tb-col tb-col-md">
+            <div class="nk-tb-col">
                 <span>{{count($quote->quotations)}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">
@@ -94,7 +96,7 @@
                      <span class="badge badge-success">Open</span>
                     @endif
             </div>
-            <div class="nk-tb-col tb-col-lg">
+            <div class="nk-tb-col">
                     <span class="badge"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
             </div>
         </div><!-- .nk-tb-item -->

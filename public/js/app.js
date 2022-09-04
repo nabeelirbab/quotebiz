@@ -55472,7 +55472,7 @@ var render = function () {
                                                                 "div",
                                                                 {
                                                                   staticClass:
-                                                                    "nk-tb-col tb-col-mb",
+                                                                    "nk-tb-col",
                                                                 },
                                                                 [
                                                                   _c(
@@ -55496,7 +55496,7 @@ var render = function () {
                                                                 "div",
                                                                 {
                                                                   staticClass:
-                                                                    "nk-tb-col tb-col-md",
+                                                                    "nk-tb-col",
                                                                 },
                                                                 [
                                                                   _c("span", [
@@ -56215,7 +56215,7 @@ var render = function () {
                                                           "div",
                                                           {
                                                             staticClass:
-                                                              "nk-tb-col tb-col-md",
+                                                              "nk-tb-col",
                                                           },
                                                           [
                                                             _c("span", [
@@ -56594,7 +56594,7 @@ var render = function () {
                                                                                       "div",
                                                                                       {
                                                                                         staticClass:
-                                                                                          "nk-tb-col tb-col-lg",
+                                                                                          "nk-tb-col ",
                                                                                       },
                                                                                       [
                                                                                         _c(
@@ -56915,7 +56915,7 @@ var staticRenderFns = [
         staticStyle: { background: "#253a46e3" },
       },
       [
-        _c("div", { staticClass: "nk-tb-col tb-col-lg" }, [
+        _c("div", { staticClass: "nk-tb-col" }, [
           _c("span", { staticClass: "sub-text" }, [_vm._v("ID")]),
         ]),
         _vm._v(" "),
@@ -56939,7 +56939,7 @@ var staticRenderFns = [
           _c("span", { staticClass: "sub-text" }, [_vm._v("Status")]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "nk-tb-col tb-col-md" }, [
+        _c("div", { staticClass: "nk-tb-col" }, [
           _c("span", { staticClass: "sub-text" }, [_vm._v("Action")]),
         ]),
       ]

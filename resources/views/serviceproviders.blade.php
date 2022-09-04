@@ -86,14 +86,14 @@
                     <label class="custom-control-label" for="uid"></label>
                 </div>
             </div> -->
-            <div class="nk-tb-col tb-col-mb"><span class="sub-text">#ID</span></div>
+            <div class="nk-tb-col"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
-            <div class="nk-tb-col tb-col-mb"><span class="sub-text">City</span></div>
-            <div class="nk-tb-col tb-col-md"><span class="sub-text">Zip Code</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Zip Code</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Time Zone</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Register On</span></div>
-            <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
-            <div class="nk-tb-col tb-col-md"><span class="sub-text">Actions</span></div>
+            <div class="nk-tb-col"><span class="sub-text">Status</span></div>
+            <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
            
         </div><!-- .nk-tb-item -->
         @foreach($users as $user)
@@ -108,13 +108,14 @@
                             <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
                         </div>
                         <div class="user-info">
-                            <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}<span class="dot dot-success d-md-none ml-1"></span></span>
+                            <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}
+                            </span>
                             <span>{{$user->email}}</span>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="nk-tb-col tb-col-mb">
+            <div class="nk-tb-col tb-col-lg">
                 <span >{{$user->city}}</span>
             </div>
             <div class="nk-tb-col tb-col-md">
@@ -126,7 +127,7 @@
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
             </div>
-            <div class="nk-tb-col tb-col-md">
+            <div class="nk-tb-col">
                 @if($user->activated == 0)
                 <span class="tb-status text-danger">Inactive</span>
                 @else

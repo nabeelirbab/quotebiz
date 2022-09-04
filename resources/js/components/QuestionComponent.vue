@@ -76,13 +76,13 @@
                            <div class="nk-tb-list nk-tb-ulist">
                             <div class="nk-tb-item nk-tb-head" style="background: #253a46e3;">
                           
-                            <div class="nk-tb-col tb-col-lg"><span class="sub-text">ID</span></div>
+                            <div class="nk-tb-col"><span class="sub-text">ID</span></div>
                             <div class="nk-tb-col"><span class="sub-text">Question</span></div>
                             <div class="nk-tb-col tb-col-mb"><span class="sub-text">Category Name</span></div>
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Selection</span></div>
                             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
-                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
+                            <div class="nk-tb-col"><span class="sub-text">Action</span></div>
                             
                         </div><!-- .nk-tb-item -->
                           
@@ -93,10 +93,10 @@
                             <div class="nk-tb-col">
                                <span>{{question.id}}</span>
                             </div>
-                            <div class="nk-tb-col tb-col-mb">
+                            <div class="nk-tb-col">
                                 <span class="tb-amount">{{question.question}}</span>
                             </div>
-                            <div class="nk-tb-col tb-col-md">
+                            <div class="nk-tb-col">
                                 <span>{{category.category_name}}</span>
                             </div>
                             <div class="nk-tb-col tb-col-lg">
@@ -190,7 +190,7 @@
                             <div class="nk-tb-col tb-col-mb">
                                 <span class="tb-amount">{{question.question}}</span>
                             </div>
-                            <div class="nk-tb-col tb-col-md">
+                            <div class="nk-tb-col">
                                 <span>{{category.category_name}}</span>
                             </div>
                             <div class="nk-tb-col tb-col-lg">
@@ -237,7 +237,7 @@
                                             <div class="nk-tb-list nk-tb-ulist">
                                                 <div class="nk-tb-item nk-tb-head" style="background: #253a46e3;">
                                                   
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">ID</span></div>
+                                                    <div class="nk-tb-col "><span class="sub-text">ID</span></div>
                                                     <div class="nk-tb-col"><span class="sub-text">Option</span></div>
                                                     <div class="nk-tb-col tb-col-mb"><span class="sub-text">Icon</span></div>
                                                     <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>

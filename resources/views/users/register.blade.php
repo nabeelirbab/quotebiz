@@ -18,6 +18,7 @@
     }
 </style>
 @section('content')
+  
     
     <form enctype="multipart/form-data" action="{{ url('users/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
@@ -36,7 +37,12 @@
                 <p>{!! trans('messages.register.intro', [
                     'login' => url("users/login"),
                 ]) !!}</p>
-
+              @if($errors->any())
+                <div class="alert alert-danger alert-block" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button> 
+                    <strong>{{$errors->first()}}</strong>
+                </div>
+                @endif
                 <div class="form-group control-text">
                     <label>
                         <b>Category</b>
