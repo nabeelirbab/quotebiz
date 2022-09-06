@@ -59,16 +59,14 @@
         messaging.requestPermission().then(function () {
             return messaging.getToken()
         }).then(function(token) {
-
              $.ajax({
                type:'POST',
-               url:"{{ url('customer/fcm-token') }}",
+               url:"{{ url('/fcm-token') }}",
                data:{_method:"PATCH", token:token},
                success:function(data){
                   console.log(data.success);
                }
             });
-
 
         }).catch(function (err) {
             console.log(`Token Error :: ${err}`);
