@@ -7,6 +7,8 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+        'reference' => '0040dcf0b09b5fd85d7dda0ab8667a4d75be6195',
+        'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
@@ -549,6 +551,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'kutia-software-company/larafirebase' => array(
+            'pretty_version' => '1.3.5',
+            'version' => '1.3.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kutia-software-company/larafirebase',
+            'aliases' => array(),
+            'reference' => 'd8d10e48338494ba862f340e89dc0579a684927e',
+            'dev_requirement' => false,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v8.83.23',
             'version' => '8.83.23.0',
@@ -574,6 +585,10 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
+<<<<<<< HEAD
+=======
+            'reference' => '0040dcf0b09b5fd85d7dda0ab8667a4d75be6195',
+>>>>>>> 75bcfdba0f1ffd08f7e324f5dbeefb83afe2adb6
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

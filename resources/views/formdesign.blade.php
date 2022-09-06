@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                       <div class="col-sm-4">
+                       <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Color</label>
                               <div id="cp0" class="input-group" title="Using input value">
@@ -76,10 +76,9 @@
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
                             </div>
-                           
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text Color</label>
                             <div id="cp1" class="input-group" title="Using input value">
@@ -88,10 +87,9 @@
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
                             </div>
-                           
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Underline Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
@@ -100,20 +98,29 @@
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
                             </div>
-                          
+                        </div>
+                       </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Login Text Color</label>
+                             <div id="cp2" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->login_color}}" @else value="#C31E1E" @endif name="login_color" id="default-01" placeholder="Login Text Color" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
                         </div>
                        </div>
                    </div>
                          <div class="form-group">
-                            <label class="form-label" for="default-01">Visibility Business No</label>
+                            <label class="form-label" for="default-01">Business Number Visibility</label>
                             <div class="form-control-wrap">
-                                <label>
-                            <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
-                          </label>
-
-                          <label >
-                            <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Show
-                          </label>
+                             <label>
+                              <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
+                            </label>
+                            <label >
+                              <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Show
+                            </label>
                             </div>
                         </div>
                         <div class="form-group" id="agentno">
@@ -152,28 +159,22 @@
                                @endif
                             </div>
                         </div>
-                        
                     </div>
                    <div class="col-sm-4 d-none d-sm-block">
                     <p><b>Follow this image for guidence to fill form</b><a class="fs-5 btn btn-sm btn-success float-right" href="{{ url('get-quote')}}" target="_blank">Preview Design</a></p>
-                   
                     <a href="{{asset('frontend-assets/images/demo.png')}}" target="_blank">
                        <img src="{{asset('frontend-assets/images/demo.png')}}" style="border: 1px solid #253a463b;padding: 9px;border-radius: 6px;">
                    </a>
-                   
                    </div>
                     <div class="col-sm-7 text-center">
                         <button class="btn btn-success btn-lg" type="submit">@if($formdesign) Update @else Save @endif</button>
                        <!--  <input type="submit" class="btn btn-default btn-lg" name="preview" value="Preview" type="submit"> -->
                     </div>
-
-                   
                 </div>
               </form>
             </div>
         </div>
     </div><!-- .card-preview -->
-
 </div>
 @endsection
 @section('script')

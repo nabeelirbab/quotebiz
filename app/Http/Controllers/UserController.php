@@ -507,6 +507,7 @@ public function adminregister(Request $request)
            $job_design->postcode_text = $request->postcode_text;
            $job_design->button_color = $request->button_color;
            $job_design->button_text = $request->button_text;
+           $job_design->login_color = $request->login_color;
            $job_design->button_text_color = $request->button_text_color;
            $job_design->agent_no = $request->agent_no;
            $job_design->no_status = $request->no_status;

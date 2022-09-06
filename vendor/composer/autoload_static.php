@@ -37,6 +37,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        '86b1a3c81386576820df6ff03395c2c7' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Helpers/All.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -161,6 +162,10 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
             'Laravel\\Ui\\' => 11,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\SerializableClosure\\' => 28,
+        ),
+        'K' => 
+        array (
+            'Kutia\\Larafirebase\\' => 19,
         ),
         'J' => 
         array (
@@ -541,6 +546,10 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Laravel\\SerializableClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
+        ),
+        'Kutia\\Larafirebase\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src',
         ),
         'JsonPath\\' => 
         array (
@@ -1153,6 +1162,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\FeedbackLoopHandler' => __DIR__ . '/../..' . '/app/Model/FeedbackLoopHandler.php',
         'Acelle\\Model\\Field' => __DIR__ . '/../..' . '/app/Model/Field.php',
         'Acelle\\Model\\FieldOption' => __DIR__ . '/../..' . '/app/Model/FieldOption.php',
+        'Acelle\\Model\\Invitation' => __DIR__ . '/../..' . '/app/Model/Invitation.php',
         'Acelle\\Model\\Invoice' => __DIR__ . '/../..' . '/app/Model/Invoice.php',
         'Acelle\\Model\\InvoiceItem' => __DIR__ . '/../..' . '/app/Model/InvoiceItem.php',
         'Acelle\\Model\\IpLocation' => __DIR__ . '/../..' . '/app/Model/IpLocation.php',
@@ -1205,6 +1215,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\SendingServerSparkPostApi' => __DIR__ . '/../..' . '/app/Model/SendingServerSparkPostApi.php',
         'Acelle\\Model\\SendingServerSparkPostSmtp' => __DIR__ . '/../..' . '/app/Model/SendingServerSparkPostSmtp.php',
         'Acelle\\Model\\Setting' => __DIR__ . '/../..' . '/app/Model/Setting.php',
+        'Acelle\\Model\\SiteSetting' => __DIR__ . '/../..' . '/app/Model/SiteSetting.php',
         'Acelle\\Model\\Source' => __DIR__ . '/../..' . '/app/Model/Source.php',
         'Acelle\\Model\\StripeKey' => __DIR__ . '/../..' . '/app/Model/StripeKey.php',
         'Acelle\\Model\\SubAccount' => __DIR__ . '/../..' . '/app/Model/SubAccount.php',
@@ -1226,6 +1237,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\UnsubscribeLog' => __DIR__ . '/../..' . '/app/Model/UnsubscribeLog.php',
         'Acelle\\Model\\User' => __DIR__ . '/../..' . '/app/Model/User.php',
         'Acelle\\Model\\UserActivation' => __DIR__ . '/../..' . '/app/Model/UserActivation.php',
+        'Acelle\\Model\\UserCategory' => __DIR__ . '/../..' . '/app/Model/UserCategory.php',
         'Acelle\\Model\\WooCommerce' => __DIR__ . '/../..' . '/app/Model/WooCommerce.php',
         'Acelle\\Model\\WpPost' => __DIR__ . '/../..' . '/app/Model/WpPost.php',
         'Acelle\\Notifications\\ResetPassword' => __DIR__ . '/../..' . '/app/Notifications/ResetPassword.php',
@@ -6520,6 +6532,12 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'JsonPath\\Operation\\GetRecursive' => __DIR__ . '/..' . '/galbar/jsonpath/src/Galbar/JsonPath/Operation/GetRecursive.php',
         'JsonPath\\Operation\\SelectChildren' => __DIR__ . '/..' . '/galbar/jsonpath/src/Galbar/JsonPath/Operation/SelectChildren.php',
         'KubAT\\PhpSimple\\HtmlDomParser' => __DIR__ . '/..' . '/kub-at/php-simple-html-dom-parser/src/KubAT/PhpSimple/HtmlDomParser.php',
+        'Kutia\\Larafirebase\\Channels\\FirebaseChannel' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Channels/FirebaseChannel.php',
+        'Kutia\\Larafirebase\\Exceptions\\UnsupportedTokenFormat' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Exceptions/UnsupportedTokenFormat.php',
+        'Kutia\\Larafirebase\\Facades\\Larafirebase' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Facades/Larafirebase.php',
+        'Kutia\\Larafirebase\\Messages\\FirebaseMessage' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Messages/FirebaseMessage.php',
+        'Kutia\\Larafirebase\\Providers\\LarafirebaseServiceProvider' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Providers/LarafirebaseServiceProvider.php',
+        'Kutia\\Larafirebase\\Services\\Larafirebase' => __DIR__ . '/..' . '/kutia-software-company/larafirebase/src/Services/Larafirebase.php',
         'Laravel\\SerializableClosure\\Contracts\\Serializable' => __DIR__ . '/..' . '/laravel/serializable-closure/src/Contracts/Serializable.php',
         'Laravel\\SerializableClosure\\Contracts\\Signer' => __DIR__ . '/..' . '/laravel/serializable-closure/src/Contracts/Signer.php',
         'Laravel\\SerializableClosure\\Exceptions\\InvalidSignatureException' => __DIR__ . '/..' . '/laravel/serializable-closure/src/Exceptions/InvalidSignatureException.php',

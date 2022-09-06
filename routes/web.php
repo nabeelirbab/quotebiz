@@ -199,6 +199,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider']], fu
     Route::get('/', function () {
         return view('service_provider.index');
     });
+    Route::patch('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
 
     Route::match(['get', 'post'],'payment', 'ServiceProvider\StripeController@stripePayment');
     Route::post('stripe', 'ServiceProvider\StripeController@stripePost')->name('stripe.post');
