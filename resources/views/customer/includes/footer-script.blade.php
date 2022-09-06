@@ -57,7 +57,7 @@
             return messaging.getToken()
         }).then(function(token) {
             
-            axios.post("{{ url('service-provider/fcm-token') }}",{
+            axios.post("{{ url('/fcm-token') }}",{
                 _method:"PATCH",
                 token
             }).then(({data})=>{

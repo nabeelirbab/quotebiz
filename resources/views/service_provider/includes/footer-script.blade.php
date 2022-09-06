@@ -58,7 +58,7 @@
 
              $.ajax({
                type:'POST',
-               url:"{{ url('service-provider/fcm-token') }}",
+               url:"{{ url('/fcm-token') }}",
                data:{_method:"PATCH", token:token},
                success:function(data){
                   console.log(data.success);
