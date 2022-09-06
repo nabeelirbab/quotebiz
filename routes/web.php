@@ -128,7 +128,7 @@ Route::group(['middleware' => ['not_installed']], function () {
     Route::get('/products/widget/products/list', 'ProductController@widgetProductList');
     Route::post('/products/widget/product', 'ProductController@widgetProduct');
 });
-Route::patch('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
+Route::patch('/fcm-token', 'HomeController@updateToken')->name('fcmToken');
 Route::group(['middleware' => ['not_installed', 'auth']], function () {
     // get files from download
     Route::get('/download/{name?}', [ function ($name) {
