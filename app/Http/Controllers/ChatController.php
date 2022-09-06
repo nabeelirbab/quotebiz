@@ -13,7 +13,7 @@ use Acelle\Mail\ReceiveQuotation;
 use Mail;
 use File;
 use Notification;
-use App\Notifications\SendPushNotification;
+use Acelle\Notifications\SendPushNotification;
 
 class ChatController extends Controller
 {
