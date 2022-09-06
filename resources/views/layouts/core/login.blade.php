@@ -5,6 +5,7 @@
         @include('layouts.core._head')
         <style type="text/css">
             .dogcFe {
+                background-size: cover !important;
               background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
              }
              .btn-primary{
@@ -15,9 +16,9 @@
         </style>
         @include('layouts.core._script_vars')
     </head>
-    <body class="bg-slate-800 dogcFe">
+    <body class="bg-slate-800 dogcFe" style="max-height: 100%;padding-bottom: 0px">
         <!-- Page container -->
-        <div class="page-container login-container">
+        <div class="page-container login-container" style="padding-bottom: 0px">
             @if (\Auth::check())
                 <div class="text-end">
                     <a href="{{ url("/logout") }}"  class='text-white ml-20'><i class="icon-switch2"></i> {{ trans('messages.logout') }}</a>

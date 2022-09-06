@@ -79,6 +79,7 @@ return array(
     'Laravel\\Ui\\' => array($vendorDir . '/laravel/ui/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
     'Laravel\\SerializableClosure\\' => array($vendorDir . '/laravel/serializable-closure/src'),
+    'Kutia\\Larafirebase\\' => array($vendorDir . '/kutia-software-company/larafirebase/src'),
     'JsonPath\\' => array($vendorDir . '/galbar/jsonpath/src/Galbar/JsonPath'),
     'JmesPath\\' => array($vendorDir . '/mtdowling/jmespath.php/src'),
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),

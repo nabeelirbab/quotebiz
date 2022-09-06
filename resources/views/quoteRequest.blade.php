@@ -156,6 +156,9 @@ p.form-para::after{
 .siteLogo img{
 	width: 100%;
 }
+.login{
+	color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
+}
 
 
 @media screen and (max-width: 767px){
@@ -216,7 +219,9 @@ p.form-para::after{
 }
 }
 .dogcFe {
+	background-size: cover !important;
 	background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
+   
 }
 #result{
 	position: absolute;
@@ -225,15 +230,12 @@ p.form-para::after{
     max-height: 285px;
     overflow: auto;
 }
-
 #result li{
 	cursor: pointer;
 }
-
-
 	</style>
 </head>
-<body class="dogcFe" style="min-height: calc(118vh - 148px);">
+<body class="dogcFe" style="min-height: 100%;">
 	
 <div class="container-fluid" style="height: 100vh;width: 96%;">
 	<div class="siteLogo">
@@ -243,12 +245,12 @@ p.form-para::after{
 	@if(Auth::user()->user_type == 'client')
 	@else
 	<div class="floatright p-2 mt-3">
-	<a href="{{ url('/users/login') }}" class="fs-1 mr-4"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business </a>
+	<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business </a>
 	</div>
 	@endif
 	@else
 	<div class="floatright p-2">
-	<a href="{{ url('/users/login') }}" class="fs-1 mr-4"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+	<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 	</div>
 	@endif
 		<div class="row justify-content-end" style="height: 100%;align-items: center;">
