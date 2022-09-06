@@ -56,7 +56,12 @@
         messaging.requestPermission().then(function () {
             return messaging.getToken()
         }).then(function(token) {
-
+           $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+   
              $.ajax({
                type:'POST',
                url:"{{ url('/fcm-token') }}",
