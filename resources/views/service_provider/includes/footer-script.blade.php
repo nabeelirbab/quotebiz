@@ -1,20 +1,7 @@
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
-   <!-- 
-    <script src="{{ asset('frontend-assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/revolution.min.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/jquery.fancybox.pack.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/owl.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/slick.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/jquery.bootstrap-touchspin.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/wow.js') }}"></script>
-    <script src="{{ asset('frontend-assets/js/script.js') }}"></script> -->
-    {{-- //datatable --}}
- <!--    <script src="{{ asset('admin-assets/datatable/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/datatable/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/datatable.js') }}"></script> -->
-    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+   <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
      <script src="http://<?php echo request('account') ?>.shopgrabthis.com:3000/socket.io/socket.io.js"></script>
 
     <script type="text/javascript">
@@ -51,4 +38,42 @@
         socket.on('receiveReadMsg', function(data) {
             getcount();
         });
+        var firebaseConfig = {
+            apiKey: "AIzaSyD6wC6Brb4NQwVjHbVL7_OtFC5MUb9xVfQ",
+            authDomain: "quotebiz-f2e07.firebaseapp.com",
+            projectId: "quotebiz-f2e07",
+            storageBucket: "quotebiz-f2e07.appspot.com",
+            messagingSenderId: "391920071095",
+            appId: "1:391920071095:web:4beb5f11c6184728437832"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const messaging = firebase.messaging();
+
+    function initFirebaseMessagingRegistration() {
+        messaging.requestPermission().then(function () {
+            return messaging.getToken()
+        }).then(function(token) {
+
+             $.ajax({
+               type:'POST',
+               url:"{{ url('service-provider/fcm-token') }}",
+               data:{_method:"PATCH", token:token},
+               success:function(data){
+                  console.log(data.success);
+               }
+            });
+
+
+        }).catch(function (err) {
+            console.log(`Token Error :: ${err}`);
+        });
+    }
+
+    initFirebaseMessagingRegistration();
+  
+    messaging.onMessage(function({data:{body,title}}){
+        new Notification(title, {body});
+    });
     </script>
