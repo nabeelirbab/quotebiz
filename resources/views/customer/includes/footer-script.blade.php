@@ -59,15 +59,16 @@
         messaging.requestPermission().then(function () {
             return messaging.getToken()
         }).then(function(token) {
-            
-            axios.post("{{ url('service-provider/fcm-token') }}",{
-                _method:"PATCH",
-                token
-            }).then(({data})=>{
-                console.log(data)
-            }).catch(({response:{data}})=>{
-                console.error(data)
-            })
+
+             $.ajax({
+               type:'POST',
+               url:"{{ url('customer/fcm-token') }}",
+               data:{_method:"PATCH", token:token},
+               success:function(data){
+                  console.log(data.success);
+               }
+            });
+
 
         }).catch(function (err) {
             console.log(`Token Error :: ${err}`);

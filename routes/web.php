@@ -152,7 +152,7 @@ Route::group(['middleware' => ['not_installed', 'auth']], function () {
 });
 Route::group(['middleware' => ['not_installed', 'auth', 'customer']], function () {
 Route::name('customer.')->prefix('customer')->group(function () {
-
+Route::patch('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
     Route::get('/', function () {
         return view('customer.index');
     })->name('home');
