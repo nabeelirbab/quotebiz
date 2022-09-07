@@ -53,7 +53,7 @@ add
 				var new_line = $('.segment-conditions-container .condition-line').last();
 				new_line.find('select').select2({
 					templateResult: formatSelect2TextOption,
-					templateSelection: formatSelect2TextSelected
+					templateSelection: formatSelect2TextSelected,
 				});
 				new_line.find('select').trigger('change');
 			});

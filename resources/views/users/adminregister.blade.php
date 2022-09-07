@@ -149,6 +149,7 @@
                 notify('notice', '{{ trans('messages.notify.notice') }}', '{{ trans('messages.operation_not_allowed_in_demo') }}');
             });
         @endif
+         
     </script>
     
 @endsection
