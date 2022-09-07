@@ -122,12 +122,12 @@ class ChatController extends Controller
            if($receiverUser == $request->sender_id){
              $chat->read_at = Carbon::now();
            }else{
-            $fcmTokens = User::where('id',$request->receiver_id)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-            Notification::send(null,new SendPushNotification(\Acelle\Model\Setting::get("site_name"),$request->message,$fcmTokens));
+            
            }
            $chat->save();
            $chat->load(['user']);
-           
+           $fcmTokens = User::where('id',$request->receiver_id)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+           Notification::send(null,new SendPushNotification(\Acelle\Model\Setting::get("site_name"),$request->message,$fcmTokens));
 
            return $chat;
     }
