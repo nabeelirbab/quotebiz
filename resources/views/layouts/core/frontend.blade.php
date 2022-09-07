@@ -76,7 +76,9 @@
 
 	<script>
 		var wizardUserPopup;
-
+		 $('.select-search').select2().on('select2:open', function(e){
+		    $('.select2-search__field').attr('placeholder', 'Search ....');
+		});
 		$(function() {
 			// auto detect dark mode
 
