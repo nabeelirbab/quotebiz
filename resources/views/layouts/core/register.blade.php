@@ -4,6 +4,12 @@
 	<title>@yield('title') - {{ \Acelle\Model\Setting::get("site_name") }}</title>
 
 	@include('layouts.core._head')
+	<style type="text/css">
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+   </style>
 </head>
 
 <body>
@@ -46,10 +52,7 @@
 	</div>
 	<!-- /page container -->
 <script type="text/javascript">
-	     $(document).ready(function() {
-     
-    });
-
+	 
     $('.select-search').select2().on('select2:open', function(e){
     $('.select2-search__field').attr('placeholder', 'Search ....');
 });

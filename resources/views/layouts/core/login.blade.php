@@ -13,12 +13,16 @@
                     background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
                     height: 46px!important;
                 }
+            .row {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                }
         </style>
         @include('layouts.core._script_vars')
     </head>
     <body class="bg-slate-800 dogcFe" style="max-height: 100%;padding-bottom: 0px">
         <!-- Page container -->
-        <div class="page-container login-container" style="padding-bottom: 0px">
+        <div class="page-container login-container">
             @if (\Auth::check())
                 <div class="text-end">
                     <a href="{{ url("/logout") }}"  class='text-white ml-20'><i class="icon-switch2"></i> {{ trans('messages.logout') }}</a>
