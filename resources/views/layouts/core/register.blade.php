@@ -49,6 +49,10 @@
 	     $(document).ready(function() {
      
     });
+
+    $('.select-search').select2().on('select2:open', function(e){
+    $('.select2-search__field').attr('placeholder', 'Search ....');
+});
 </script>
     {!! \Acelle\Model\Setting::get('custom_script') !!}
 
