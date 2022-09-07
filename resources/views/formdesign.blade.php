@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="form-label" for="default-01">Post Code Heading</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->postcode_text}}" @else value="Where you need ?" @endif name="postcode_text" id="default-01" placeholder="Enter post code heading" required>
+                                <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->postcode_text}}" @else value="Where?" @endif name="postcode_text" id="default-01" placeholder="Enter post code heading" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -119,7 +119,7 @@
                               <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
                             </label>
                             <label >
-                              <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Show
+                              <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
                             </label>
                             </div>
                         </div>
