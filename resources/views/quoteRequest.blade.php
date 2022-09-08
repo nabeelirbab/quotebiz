@@ -125,7 +125,8 @@ p.form-para::after{
     opacity: 0.5;
     font-size: 75%;*/
     font-size: 1.1rem;
-    opacity: 0.9;
+    font-weight: 500;
+    color: #0000009e;
     margin-bottom: 8px;
 }
 

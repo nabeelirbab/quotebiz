@@ -33,6 +33,9 @@
     align-items: center;
     justify-content: center;
 }
+.select2-search__field{
+    font-size: 16px;
+}
 a .icon + span{
     margin-left: 0.25rem;
     margin-top: 6px;

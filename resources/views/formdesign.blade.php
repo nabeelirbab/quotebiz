@@ -3,11 +3,23 @@
 @section('title', 'Form Design')
 
 @section('head')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css" integrity="sha512-SI0aF82pT58nyOjCNfyeE2Y5/KHId8cLIX/1VYzdjTRs0HPNswsJR+aLQYSWpb88GDJieAgR4g1XWZvUROQv1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
-     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/css/bootstrap-colorpicker.css" integrity="sha512-HcfKB3Y0Dvf+k1XOwAD6d0LXRFpCnwsapllBQIvvLtO2KMTa0nI5MtuTv3DuawpsiA0ztTeu690DnMux/SuXJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/css/bootstrap-colorpicker.css" />
+ <style type="text/css">
+   .leftbar .page-container {
+    position: relative;
+    width: 100%!important;
+    max-width: none;
+    padding-left: 265px!important;
+    padding-right: 3px!important;
+    padding-top: 10px!important;
+    min-height: 100vh;
+}
+ </style>
 @endsection
 
 @section('content')
@@ -34,7 +46,7 @@
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    
-                    <div class="col-sm-6">
+                    <div class="col-sm-7">
                       <input type="hidden" name="id" @if($formdesign) value="{{$formdesign->id}}" @endif>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Main Heading </label>
@@ -162,7 +174,8 @@
                     </div>
                    <div class="col-sm-4 d-none d-sm-block">
                     <p><b>Follow this image for guidence to fill form</b><a class="fs-5 btn btn-sm btn-success float-right" href="{{ url('get-quote')}}" target="_blank">Preview Design</a></p>
-                    <a href="{{asset('frontend-assets/images/demo.png')}}" target="_blank">
+
+                    <a class="modal-button" data-target="#modal">
                        <img src="{{asset('frontend-assets/images/demo.png')}}" style="border: 1px solid #253a463b;padding: 9px;border-radius: 6px;">
                    </a>
                    </div>
@@ -174,13 +187,33 @@
               </form>
             </div>
         </div>
+  
     </div><!-- .card-preview -->
-</div>
+    <!-- The Modal -->
+     <div id = "modal" class = "modal">
+       <div class = "modal-background"></div>
+       <div class="modal-content" style="width: 76%;">
+      <p class="text-center">
+        <img src="{{asset('frontend-assets/images/demo.png')}}" alt="" style="height: 654px;">
+      </p>
+    </div>
+       <button class = "modal-close is-large" aria-label = "close"></button>
+    </div> 
 @endsection
 @section('script')
 
  <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/js/bootstrap-colorpicker.min.js" integrity="sha512-94dgCw8xWrVcgkmOc2fwKjO4dqy/X3q7IjFru6MHJKeaAzCvhkVtOS6S+co+RbcZvvPBngLzuVMApmxkuWZGwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+       $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+         
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
   $(function () {
     $('#cp0, #cp1, #cp2').colorpicker({
         format: 'hex',
