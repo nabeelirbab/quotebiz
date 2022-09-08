@@ -3,12 +3,10 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '12f37226415e5da1c6a2195b85be241aab0a3129',
+        'reference' => '2a94eecb3c6ed7600267f34a96250a74490cd90e',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '0040dcf0b09b5fd85d7dda0ab8667a4d75be6195',
-        'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
@@ -554,10 +552,10 @@
         'kutia-software-company/larafirebase' => array(
             'pretty_version' => '1.3.5',
             'version' => '1.3.5.0',
+            'reference' => 'd8d10e48338494ba862f340e89dc0579a684927e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../kutia-software-company/larafirebase',
             'aliases' => array(),
-            'reference' => 'd8d10e48338494ba862f340e89dc0579a684927e',
             'dev_requirement' => false,
         ),
         'laravel/framework' => array(
@@ -581,14 +579,10 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '12f37226415e5da1c6a2195b85be241aab0a3129',
+            'reference' => '2a94eecb3c6ed7600267f34a96250a74490cd90e',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-<<<<<<< HEAD
-=======
-            'reference' => '0040dcf0b09b5fd85d7dda0ab8667a4d75be6195',
->>>>>>> 75bcfdba0f1ffd08f7e324f5dbeefb83afe2adb6
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

@@ -424,6 +424,7 @@ return array(
     'Acelle\\Model\\WooCommerce' => $baseDir . '/app/Model/WooCommerce.php',
     'Acelle\\Model\\WpPost' => $baseDir . '/app/Model/WpPost.php',
     'Acelle\\Notifications\\ResetPassword' => $baseDir . '/app/Notifications/ResetPassword.php',
+    'Acelle\\Notifications\\SendPushNotification' => $baseDir . '/app/Notifications/SendPushNotification.php',
     'Acelle\\Policies\\AdminGroupPolicy' => $baseDir . '/app/Policies/AdminGroupPolicy.php',
     'Acelle\\Policies\\AdminPolicy' => $baseDir . '/app/Policies/AdminPolicy.php',
     'Acelle\\Policies\\Automation2Policy' => $baseDir . '/app/Policies/Automation2Policy.php',

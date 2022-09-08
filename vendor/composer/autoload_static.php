@@ -1241,6 +1241,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Model\\WooCommerce' => __DIR__ . '/../..' . '/app/Model/WooCommerce.php',
         'Acelle\\Model\\WpPost' => __DIR__ . '/../..' . '/app/Model/WpPost.php',
         'Acelle\\Notifications\\ResetPassword' => __DIR__ . '/../..' . '/app/Notifications/ResetPassword.php',
+        'Acelle\\Notifications\\SendPushNotification' => __DIR__ . '/../..' . '/app/Notifications/SendPushNotification.php',
         'Acelle\\Policies\\AdminGroupPolicy' => __DIR__ . '/../..' . '/app/Policies/AdminGroupPolicy.php',
         'Acelle\\Policies\\AdminPolicy' => __DIR__ . '/../..' . '/app/Policies/AdminPolicy.php',
         'Acelle\\Policies\\Automation2Policy' => __DIR__ . '/../..' . '/app/Policies/Automation2Policy.php',
