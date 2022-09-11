@@ -153,10 +153,11 @@ p.form-para::after{
 }
 .siteLogo{
 	float: left;
-}
+	max-width: 9%;
+}/*
 .siteLogo img{
-	width: 100%;
-}
+	height: 75px;
+}*/
 .login{
 	color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
