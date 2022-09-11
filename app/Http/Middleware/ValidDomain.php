@@ -16,7 +16,7 @@ class ValidDomain
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,$account)
     {
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
