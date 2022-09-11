@@ -94,7 +94,7 @@
                                     </tr><!-- .tb-ticket-item -->
                                      <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 60px;height: 100%;">
                                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$request->id}}')">×</a>
-                                        <div class="preview-block" style="padding: 24px;">
+                                        <div class="preview-block" style="padding: 0px;">
                                             <div class="row">
                                             <h5>{{$request->category->category_name}} :</h5>
                                             <br>

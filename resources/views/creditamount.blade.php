@@ -97,7 +97,7 @@
     </div><!-- .nk-tb-item -->
     <div id="mySidepanel{{$creadit->id}}" class="sidepanel" style="height: 100%;">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavEdit('{{$creadit->id}}')">×</a>
-            <div class="preview-block" style="padding: 24px;">
+            <div class="preview-block" style="padding: 0px;">
              <form action="{{ url('admin/credit-amount') }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">

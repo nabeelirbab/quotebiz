@@ -1017,6 +1017,7 @@ class ComposerStaticInit62183e323a9b341c9f535d799f1b275a
         'Acelle\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'Acelle\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'Acelle\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
+        'Acelle\\Http\\Middleware\\ValidDomain' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidDomain.php',
         'Acelle\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'Acelle\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'Acelle\\Jobs\\Base' => __DIR__ . '/../..' . '/app/Jobs/Base.php',

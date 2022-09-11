@@ -200,6 +200,7 @@ return array(
     'Acelle\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'Acelle\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'Acelle\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
+    'Acelle\\Http\\Middleware\\ValidDomain' => $baseDir . '/app/Http/Middleware/ValidDomain.php',
     'Acelle\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'Acelle\\Http\\Requests\\Request' => $baseDir . '/app/Http/Requests/Request.php',
     'Acelle\\Jobs\\Base' => $baseDir . '/app/Jobs/Base.php',
