@@ -21,7 +21,7 @@ class QuoteController extends Controller
           if($subdomain){
             return view('quoteRequest');
           }else{
-            return Redirect::to('www.quotebiz.io');
+            return Redirect::to('https://www.quotebiz.io');
           }
     }
 
