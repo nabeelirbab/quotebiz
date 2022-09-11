@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\Category;
 use Acelle\Model\Subdomain;
+use Redirect;
 
 class QuoteController extends Controller
 {
