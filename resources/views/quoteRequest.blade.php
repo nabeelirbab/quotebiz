@@ -87,7 +87,7 @@ h4.form-heading{
 p.form-para{
 	font-size: 15px;
 	font-weight: 500;
-	color: #0000009e;
+	color: #9f9f9f;
 	line-height: 17px;
 }
 p.form-para::after{
@@ -109,7 +109,8 @@ p.form-para::after{
 	float: right;
 }
 .form-control {
-    border-radius: 0;
+    border-radius: 6px;
+    font-size: 1.1rem;
     outline: 0;
 }
 .form-control:focus{
@@ -126,7 +127,7 @@ p.form-para::after{
     font-size: 75%;*/
     font-size: 1.1rem;
     font-weight: 500;
-    color: #0000009e;
+    color: #444;
     margin-bottom: 8px;
 }
 

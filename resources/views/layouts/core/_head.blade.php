@@ -23,6 +23,21 @@
 	.nav-tabs .nav-item {
     padding-right: 1rem;
 }
+.form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
+    display: block;
+    width: 100%;
+    height: calc(2.125rem + 10px) !important;
+    padding: 0.4375rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: #3c4d62;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #dbdfea;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: calc(2.125rem + 2px);
     position: absolute;
