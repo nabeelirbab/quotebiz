@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Acelle\Model\Subdomain;
 use Redirect;
+use Route;
 
 class ValidDomain
 {
@@ -18,7 +19,7 @@ class ValidDomain
      */
     public function handle(Request $request, Closure $next)
     {
-        dd($request->getHost());
+        dd(Route::input('account'));
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');
