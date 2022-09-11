@@ -19,7 +19,7 @@ class ValidDomain
      */
     public function handle(Request $request, Closure $next)
     {
-        dd(Route::input('account'));
+         $account = Route::input('account');
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');
