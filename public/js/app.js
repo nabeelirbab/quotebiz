@@ -2093,7 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
     categories: function categories() {
       var _this = this;
 
-      axios.get('admin/questions/categories').then(function (response) {
+      axios.get('super-admin/questions/categories').then(function (response) {
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
       })["catch"](function (error) {
@@ -2104,7 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var id = event.target.value;
-      axios.get('admin/questions/categories/' + id).then(function (response) {
+      axios.get('super-admin/questions/categories/' + id).then(function (response) {
         _this2.categoriesData = response.data;
       })["catch"](function (error) {
         return console.log(error);
@@ -2115,7 +2115,7 @@ __webpack_require__.r(__webpack_exports__);
         item.re_order = index + 1;
         console.log(item.re_order);
       });
-      axios.post('admin/questions/updateOrder', {
+      axios.post('super-admin/questions/updateOrder', {
         questions: this.categorieslist[columnIndex].questions
       }).then(function (response) {
         console.log(response.data);
@@ -2180,7 +2180,7 @@ __webpack_require__.r(__webpack_exports__);
     categories: function categories() {
       var _this = this;
 
-      axios.get('questions/categories').then(function (response) {
+      axios.get('admin/questions/categories').then(function (response) {
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
       })["catch"](function (error) {
@@ -2191,7 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var id = event.target.value;
-      axios.get('questions/subcategories/' + id).then(function (response) {
+      axios.get('admin/questions/subcategories/' + id).then(function (response) {
         console.log(response.data);
         _this2.categoriesData = response.data;
       })["catch"](function (error) {
@@ -2202,7 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var id = event.target.value;
-      axios.get('questions/categories/' + id).then(function (response) {
+      axios.get('admin/questions/categories/' + id).then(function (response) {
         console.log(response.data);
         _this3.categoriesData = response.data.categories;
         _this3.subCategories = response.data.subcat;
@@ -2221,7 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
         item.re_order = index + 1;
         console.log(item.re_order);
       });
-      axios.post('questions/updateOrder', {
+      axios.post('admin/questions/updateOrder', {
         questions: this.categorieslist[columnIndex].questions
       }).then(function (response) {
         console.log(response.data);
@@ -3336,7 +3336,7 @@ var render = function render() {
   }, [_c("a", {
     staticClass: "btn btn-primary",
     attrs: {
-      href: _vm.hostname + "/admin/questions/add-question"
+      href: _vm.hostname + "/super-admin/questions/add-question"
     }
   }, [_c("em", {
     staticClass: "icon ni ni-plus"
@@ -3483,7 +3483,7 @@ var render = function render() {
         staticClass: "icon ni ni-eye"
       }), _c("span", [_vm._v("View Options")])])]), _vm._v(" "), _c("li", [_c("a", {
         attrs: {
-          href: _vm.hostname + "/admin/questions/add-question?category_id=" + category.id
+          href: _vm.hostname + "/super-admin/questions/add-question?category_id=" + category.id
         }
       }, [_c("em", {
         staticClass: "icon ni ni-repeat"
@@ -3491,7 +3491,7 @@ var render = function render() {
         staticClass: "divider"
       }), _vm._v(" "), _c("li", [_c("a", {
         attrs: {
-          href: _vm.hostname + "/admin/questions/deletequestion/" + question.id
+          href: _vm.hostname + "/super-admin/questions/deletequestion/" + question.id
         }
       }, [_c("em", {
         staticClass: "icon ni ni-na"
@@ -3699,7 +3699,7 @@ var render = function render() {
   }, [_c("a", {
     staticClass: "btn btn-primary",
     attrs: {
-      href: _vm.hostname + "/questions/add-question"
+      href: _vm.hostname + "/admin/questions/add-question"
     }
   }, [_c("em", {
     staticClass: "icon ni ni-plus"
@@ -3797,7 +3797,7 @@ var render = function render() {
       staticClass: "title"
     }, [_vm._v(_vm._s(category.category_name))]), _vm._v(" "), _c("a", {
       attrs: {
-        href: _vm.hostname + "/questions/add-question?category_id=" + category.id
+        href: _vm.hostname + "/admin/questions/add-question?category_id=" + category.id
       }
     }, [_c("em", {
       staticClass: "icon ni ni-edit-alt edit-icon"
@@ -3855,7 +3855,7 @@ var render = function render() {
       }, [_vm._v("Active")])]), _vm._v(" "), _c("div", {
         staticClass: "nk-tb-col nk-tb-col-tools"
       }, [_c("ul", {
-        staticClass: "nk-tb-actions gx-1"
+        staticClass: "gx-1"
       }, [_c("li", [_c("div", {
         staticClass: "drodown"
       }, [_c("a", {
@@ -3880,7 +3880,7 @@ var render = function render() {
         staticClass: "icon ni ni-eye"
       }), _c("span", [_vm._v("View Options")])])]), _vm._v(" "), _c("li", [_c("a", {
         attrs: {
-          href: _vm.hostname + "/questions/add-question?category_id=" + question.category_id + "&sub_category_id=" + question.subcategory_id
+          href: _vm.hostname + "/admin/questions/add-question?category_id=" + question.category_id + "&sub_category_id=" + question.subcategory_id
         }
       }, [_c("em", {
         staticClass: "icon ni ni-repeat"
@@ -3888,7 +3888,7 @@ var render = function render() {
         staticClass: "divider"
       }), _vm._v(" "), _c("li", [_c("a", {
         attrs: {
-          href: _vm.hostname + "/questions/deletequestion/" + question.id
+          href: _vm.hostname + "/admin/questions/deletequestion/" + question.id
         }
       }, [_c("em", {
         staticClass: "icon ni ni-na"
@@ -4011,7 +4011,7 @@ var render = function render() {
       }, [_vm._v("Active")])]), _vm._v(" "), _c("div", {
         staticClass: "nk-tb-col nk-tb-col-tools"
       }, [_c("ul", {
-        staticClass: "nk-tb-actions gx-1"
+        staticClass: "gx-1"
       }, [_c("li", [_c("div", {
         staticClass: "drodown"
       }, [_c("a", {
@@ -4036,7 +4036,7 @@ var render = function render() {
         staticClass: "icon ni ni-eye"
       }), _c("span", [_vm._v("View Options")])])]), _vm._v(" "), _c("li", [_c("a", {
         attrs: {
-          href: _vm.hostname + "/questions/add-question?category_id=" + category.id
+          href: _vm.hostname + "/admin/questions/add-question?category_id=" + category.id
         }
       }, [_c("em", {
         staticClass: "icon ni ni-repeat"
@@ -4044,7 +4044,7 @@ var render = function render() {
         staticClass: "divider"
       }), _vm._v(" "), _c("li", [_c("a", {
         attrs: {
-          href: _vm.hostname + "/questions/deletequestion/" + question.id
+          href: _vm.hostname + "/admin/questions/deletequestion/" + question.id
         }
       }, [_c("em", {
         staticClass: "icon ni ni-na"

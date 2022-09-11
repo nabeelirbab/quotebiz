@@ -119,7 +119,7 @@
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">
-                <a href="{{ url('customer_detail/'.$user->id) }}">
+                <a href="{{ url('admin/customer_detail/'.$user->id) }}">
                     <div class="user-card">
                         <div class="user-avatar bg-primary">
                             <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
@@ -153,18 +153,18 @@
                 @endif
             </div>
             <div class="nk-tb-col nk-tb-col-tools">
-                <ul class="nk-tb-actions gx-1">
+                <ul class="gx-1">
                    
                     <li>
                         <div class="drodown">
                             <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                <ul class="link-list-opt no-bdr">
-                                <li><a href="{{ url('customer_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                <li><a href="{{ url('admin/customer_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
                                   @if($user->activated == '1')
-                                <li><a href="{{ url('account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
+                                <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
                                 @else
-                                <li><a href="{{ url('account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
+                                <li><a href="{{ url('admin/account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
                                 @endif                         
                           </ul>
                             </div>

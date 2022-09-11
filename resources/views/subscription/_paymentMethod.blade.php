@@ -1,6 +1,6 @@
 <div class="card mt-2 subscription-step">
     @if (($invoice ?? false) && $invoice->hasBillingInformation())
-        <a href="{{ url('account/subscription/payment/'.$invoice->uid) }}"
+        <a href="{{ url('admin/account/subscription/payment/'.$invoice->uid) }}"
         class="card-header py-3 select-plan-tab">
             <div class="d-flex align-items-center">
                 <div class="me-3"><label class="subscription-step-number bg-secondary">3</label></div>

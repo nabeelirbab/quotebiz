@@ -10,7 +10,7 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.contact_information') }}</li>
         </ul>
         <h1>
@@ -30,7 +30,7 @@
             @if (!$customer->getDefaultBillingAddress())
                 <p>{{ trans('messages.has_no_billing_address') }}</p>
                 <div>
-                    <a href="{{ url('account/billing/edit') }}" class="btn btn-secondary billing-address-edit">
+                    <a href="{{ url('admin/account/billing/edit') }}" class="btn btn-secondary billing-address-edit">
                         {{ trans('messages.add_billing_address') }}
                     </a>
                 </div>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div>
-                    <a href="{{ url('account/billing/edit') }}"
+                    <a href="{{ url('admin/account/billing/edit') }}"
                     class="mt-4 pt-4 d-block billing-address-edit">
                         {{ trans('messages.edit_billing_address') }}
                     </a>
@@ -59,7 +59,7 @@
             <h3 class="mb-4">{{ trans('messages.payment_method') }}</h3>
 
             @include('account._payment_info', [
-                'redirect' => url(' account/billing'),
+                'redirect' => url('admin/account/billing'),
             ])
                 
         </div>

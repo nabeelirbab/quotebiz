@@ -57,7 +57,7 @@ class CategoryController extends Controller
        $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
        $category->save();
-       return redirect('/admin/service-categories')->with('message', 'Category add successfully');
+       return redirect('super-admin/admin/service-categories')->with('message', 'Category add successfully');
        
     }
 
@@ -76,7 +76,7 @@ class CategoryController extends Controller
        $category->category_id = $request->category_id;
        $category->description = $request->category_description;
        $category->save();
-       return redirect('/admin/service-categories')->with('message', 'Category add successfully');
+       return redirect('super-admin/service-categories')->with('message', 'Category add successfully');
        
     }
 
@@ -126,7 +126,7 @@ class CategoryController extends Controller
         $update->category_name = $request->category_name;
         $update->category_description = $request->category_description; 
         $update->update();
-        return redirect('/admin/service-categories')->with('message', 'Category update successfully');
+        return redirect('super-admin/service-categories')->with('message', 'Category update successfully');
     }
 
     /**
@@ -138,6 +138,6 @@ class CategoryController extends Controller
     public function destroy(Category $category,$id)
     {
         Category::find($id)->delete();
-        return redirect('/admin/service-categories')->with('message', 'Category delete successfully');
+        return redirect('super-admin/service-categories')->with('message', 'Category delete successfully');
     }
 }

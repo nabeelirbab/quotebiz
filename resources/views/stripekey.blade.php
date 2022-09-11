@@ -56,8 +56,6 @@
                     <div class="col-sm-7 text-center">
                         <button class="btn btn-success btn-lg" type="submit">@if($stripeData) Update @else Save @endif</button>
                     </div>
-
-                   
                 </div>
               </form>
             </div>

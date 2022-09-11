@@ -27,7 +27,7 @@
         <div class="card-inner">
             <div class="preview-block">
                 <span class="preview-title-lg overline-title">Create Questions</span>
-                 <form action="{{ url('questions/store') }}" method="post" enctype="multipart/form-data">
+                 <form action="{{ url('admin/questions/store') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    
@@ -87,7 +87,7 @@
      });
 
     function category(data){
-     $.ajax({url: "{{url('questions/editquestion/')}}/"+data.value, success: function(result){
+     $.ajax({url: "{{url('admin/questions/editquestion/')}}/"+data.value, success: function(result){
          $('#addquestion').show();
          $('#appendbox').html(result);
          console.log(data.value);
@@ -97,7 +97,7 @@
     }
 
     function subcategory(data){
-     $.ajax({url: "{{url('questions/subeditquestion/')}}/"+data.value, success: function(result){
+     $.ajax({url: "{{url('admin/questions/subeditquestion/')}}/"+data.value, success: function(result){
          $('#addquestion').show();
          $('#appendbox').html(result);
          console.log(data.value);

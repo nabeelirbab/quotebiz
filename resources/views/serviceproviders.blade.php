@@ -16,9 +16,7 @@
         }
     </style>
 @endsection
-
 @section('content')
-
 <!-- content @s -->
 <div class="nk-content ">
 <div class="container-fluid mt-4">
@@ -36,7 +34,7 @@
 
 </div><!-- .nk-block-head-content -->
 <div class="float-right">
-<a href="{{url('invitedserviceproviders')}}" class="btn btn-info" >Invited Service Providers</a>
+<a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info" >Invited Service Providers</a>
 <button class="btn btn-success " data-toggle="modal" data-target="#modalEdit">Invite</button>
 </div>
 
@@ -102,7 +100,7 @@
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">
-                <a href="{{ url('profile_detail/'.$user->id) }}">
+                <a href="{{ url('admin/profile_detail/'.$user->id) }}">
                     <div class="user-card">
                         <div class="user-avatar bg-primary">
                             <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
@@ -135,8 +133,7 @@
                 @endif
             </div>
             <div class="nk-tb-col nk-tb-col-tools">
-                <ul class="nk-tb-actions gx-1">
-                    
+                <ul class="gx-1">
                     <li>
                         <div class="drodown">
                             <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
@@ -144,9 +141,9 @@
                                 <ul class="link-list-opt no-bdr">
                                     <li><a href="{{ url('profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
                                   @if($user->activated == '1')
-                                <li><a href="{{ url('account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
+                                <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
                                 @else
-                                <li><a href="{{ url('account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
+                                <li><a href="{{ url('admin/account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
                                 @endif                         
                           </ul>
                             </div>
@@ -179,7 +176,7 @@
                     </div>
                     <div class="modal-body">
                        <div class="preview-block">
-                        <form action="{{ url('sendInvitation') }}" method="post">
+                        <form action="{{ url('admin/sendInvitation') }}" method="post">
                           {{ csrf_field()}}
                         <div class="row d-flex justify-content-center gy-4">
                             <div class="col-sm-12">
@@ -253,37 +250,35 @@
 
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion"><div class="col-sm-5">'+
-                                '<div class="form-group">'+
-                                    '<label class="form-label" for="default-01">Name:</label>'+
-                                    '<div class="form-control-wrap">'+
-                                    ' <input type="text" class="form-control" name="name[]" placeholder="Enter Name">'+
-                                    '</div>'+
-                               ' </div>'+
+                        '<div class="form-group">'+
+                            '<label class="form-label" for="default-01">Name:</label>'+
+                            '<div class="form-control-wrap">'+
+                            ' <input type="text" class="form-control" name="name[]" placeholder="Enter Name">'+
                             '</div>'+
-                            '<div class="col-sm-6">'+
-                               ' <div class="form-group">'+
-                                    '<label class="form-label" for="default-01">Email:</label>'+
-                                    '<div class="form-control-wrap">'+
-                                    ' <input type="email" class="form-control" name="email[]" placeholder="Enter Email">'+
-                                    '</div>'+
-                                '</div>'+
+                       ' </div>'+
+                    '</div>'+
+                    '<div class="col-sm-6">'+
+                       ' <div class="form-group">'+
+                            '<label class="form-label" for="default-01">Email:</label>'+
+                            '<div class="form-control-wrap">'+
+                            ' <input type="email" class="form-control" name="email[]" placeholder="Enter Email">'+
                             '</div>'+
-                            '<div class="col-sm-1"><span title="Remove Section" class="removeSection material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end" style="cursor: pointer;position: absolute;top: 35px;">remove_circle</span>'+
-                            '</div></div>';
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-sm-1"><span title="Remove Section" class="removeSection material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end" style="cursor: pointer;position: absolute;top: 35px;">remove_circle</span>'+
+                    '</div></div>';
           $('#addsection').append(html);
         });
 
         $(document).on('click','.removeSection',function(e){
           $(e.target).closest('.removeQuestion').remove();
- 
          });
-
             $("form").submit(function(e){
                e.preventDefault();
                $('#sendemail').hide()
                $('#loaderbtn').show();
                   $.ajax({
-                    url: "{{ url('sendInvitation') }}",
+                    url: "{{ url('admin/sendInvitation') }}",
                     type: 'post',
                     data: $('form').serialize(),
                     dataType: 'json',

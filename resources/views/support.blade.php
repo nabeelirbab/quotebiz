@@ -52,7 +52,7 @@
                                                     <tr class="tb-ticket-item is-unread">
                                                         <td class="tb-ticket-id"><a href="{{url('supportchat') }}">C506223</a></td>
                                                         <td class="tb-ticket-desc">
-                                                            <a href="{{url('supportchat') }}"><span class="title">Request for approve payment</span></a>
+                                                            <a href="{{url('admin/supportchat') }}"><span class="title">Request for approve payment</span></a>
                                                         </td>
                                                         <td class="tb-ticket-date tb-col-md">
                                                             <span class="date">26 Jan 2020</span>

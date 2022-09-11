@@ -3,10 +3,10 @@
 @section('title', trans('messages.dashboard'))
 
 @section('head')
-  <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
     <style type="text/css">
         .col-sm-12, .col-sm-10, .col-sm-6, .col-sm-5, .col-sm-1 {
             margin: 0px !important;
@@ -16,9 +16,7 @@
         }
     </style>
 @endsection
-
 @section('content')
-
 <!-- content @s -->
 <div class="nk-content ">
 <div class="container-fluid mt-4">
@@ -146,7 +144,7 @@
                     </div>
                     <div class="modal-body">
                        <div class="preview-block">
-                        <form action="{{ url('resendInvitation') }}" class="resendeInvite" method="post">
+                        <form class="resendeInvite" method="post">
                           {{ csrf_field()}}
                           <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="row d-flex justify-content-center gy-4">
@@ -222,7 +220,7 @@
                     </div>
                     <div class="modal-body">
                        <div class="preview-block">
-                        <form action="{{ url('sendInvitation') }}" method="post" class="sendform">
+                        <form action="{{ url('admin/sendInvitation') }}" method="post" class="sendform">
                           {{ csrf_field()}}
                         <div class="row d-flex justify-content-center gy-4">
                             <div class="col-sm-12">
@@ -256,7 +254,7 @@
                         </div>
                         </div>
                      <div class="row mt-5">
-                        <div class="col-sm-10 text-center mb-5">
+                        <div class="col-sm-12 text-center mb-5">
                             <button class="btn btn-success btn-lg" type="submit" id="sendemail" type="button">Send</button>
                               <button class="btn btn-primary btn-lg" style="display: none" id="loaderbtn" type="button" disabled>
                           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -296,23 +294,23 @@
 
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion mb-3"><div class="col-sm-5">'+
-                                '<div class="form-group mt-4">'+
-                                    '<label class="form-label" for="default-01">Name:</label>'+
-                                    '<div class="form-control-wrap">'+
-                                    ' <input type="text" class="form-control" name="name[]" placeholder="Enter Name">'+
-                                    '</div>'+
-                               ' </div>'+
+                        '<div class="form-group mt-4">'+
+                            '<label class="form-label" for="default-01">Name:</label>'+
+                            '<div class="form-control-wrap">'+
+                            ' <input type="text" class="form-control" name="name[]" placeholder="Enter Name">'+
                             '</div>'+
-                            '<div class="col-sm-6">'+
-                               ' <div class="form-group mt-4">'+
-                                    '<label class="form-label" for="default-01">Email:</label>'+
-                                    '<div class="form-control-wrap">'+
-                                    ' <input type="email" class="form-control" name="email[]" placeholder="Enter Email">'+
-                                    '</div>'+
-                                '</div>'+
+                       ' </div>'+
+                    '</div>'+
+                    '<div class="col-sm-6">'+
+                       ' <div class="form-group mt-4">'+
+                            '<label class="form-label" for="default-01">Email:</label>'+
+                            '<div class="form-control-wrap">'+
+                            ' <input type="email" class="form-control" name="email[]" placeholder="Enter Email">'+
                             '</div>'+
-                            '<div class="col-sm-1"><span title="Remove Section" class="removeSection material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end" style="cursor: pointer;position: absolute;top: 58px;">remove_circle</span>'+
-                            '</div></div>';
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-sm-1"><span title="Remove Section" class="removeSection material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end" style="cursor: pointer;position: absolute;top: 58px;">remove_circle</span>'+
+                    '</div></div>';
           $('#addsection').append(html);
         });
 
@@ -321,12 +319,12 @@
  
          });
 
-            $("form").submit(function(e){
+            $(".sendform").submit(function(e){
                e.preventDefault();
                $('#sendemail').hide()
                $('#loaderbtn').show();
                   $.ajax({
-                    url: "{{ url('sendInvitation') }}",
+                    url: "{{ url('admin/sendInvitation') }}",
                     type: 'post',
                     data: $('form').serialize(),
                     dataType: 'json',
@@ -351,7 +349,7 @@
                $('#resendemail'+id).hide()
                $('#reloaderbtn'+id).show();
                   $.ajax({
-                    url: "{{ url('resendInvitation') }}",
+                    url: "{{ url('admin/resendInvitation') }}",
                     type: 'post',
                     data: $(this).serialize(),
                     dataType: 'json',

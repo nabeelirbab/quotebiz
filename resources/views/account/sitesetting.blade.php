@@ -6,7 +6,7 @@
 
 <div class="page-title">
 <ul class="breadcrumb breadcrumb-caret position-right">
-<li class="breadcrumb-item"><a href="{{ url('/') }}">{{ trans('messages.home') }}</a></li>
+<li class="breadcrumb-item"><a href="{{ url('/admin') }}">{{ trans('messages.home') }}</a></li>
 <li class="breadcrumb-item active">Site Setting</li>
 </ul>
 <h1>
@@ -15,12 +15,9 @@ person_outline
 </span> {{ Auth::user()->displayName() }}</span>
 </h1>
 </div>
-
 @endsection
-
 @section('content')
-
-	@include("account._menu")
+@include("account._menu")
 <?php
 
 $sitename = '';
@@ -134,7 +131,7 @@ $sitefavicon = '';
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-success btn-lg" type="submit">@if($sitesetting) Update @else Save @endif</button>
                         @if($sitesetting)
-                        <a href="{{ url('removesetting') }}" onclick="return confirm('Are you sure you want to reset setting?');" class="btn btn-warning btn-lg" > Default Setting </a>
+                        <a href="{{ url('admin/removesetting') }}" onclick="return confirm('Are you sure you want to reset setting?');" class="btn btn-warning btn-lg" > Default Setting </a>
                         @endif
                        <!--  <input type="submit" class="btn btn-default btn-lg" name="preview" value="Preview" type="submit"> -->
                     </div>

@@ -5,7 +5,7 @@
         </div>
     </h3>
     <div>
-        <a href="{{ url("account/logs") }}" class="btn btn-info">{{ trans('messages.all_activities') }}</a>
+        <a href="{{ url("admin/account/logs") }}" class="btn btn-info">{{ trans('messages.all_activities') }}</a>
     </div>
 </div>  
 
@@ -27,7 +27,7 @@
                     <!-- Sales stats -->
                     <div class="d-flex mb-3">
                         <div class="me-3">
-                            <a href="{{ url('account/profile') }}"><img width="40px" class="rounded-circle shadow-sm" src="{{ $log->customer->user->getProfileImageUrl() }}" alt=""></a>
+                            <a href="{{ url('admin/account/profile') }}"><img width="40px" class="rounded-circle shadow-sm" src="{{ $log->customer->user->getProfileImageUrl() }}" alt=""></a>
                         </div>
 
                         <div class="card px-0 shadow-sm container-fluid">
@@ -54,6 +54,6 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="{{ url("account/logs") }}" class="btn btn-info">{{ trans('messages.all_activities') }}</a>
+        <a href="{{ url("admin/account/logs") }}" class="btn btn-info">{{ trans('messages.all_activities') }}</a>
     </div>
 @endif

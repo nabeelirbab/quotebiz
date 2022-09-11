@@ -18,7 +18,7 @@
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                     <ul class="nk-block-tools g-3">
                                      
-                                          <li class="nk-block-tools-opt"><a :href="hostname+'/admin/questions/add-question'" class="btn btn-primary" ><em class="icon ni ni-plus"></em><span>Add Question</span></a></li>
+                                          <li class="nk-block-tools-opt"><a :href="hostname+'/super-admin/questions/add-question'" class="btn btn-primary" ><em class="icon ni ni-plus"></em><span>Add Question</span></a></li>
                                     </ul>
                                 </div>
                             </div><!-- .toggle-wrap -->
@@ -109,11 +109,11 @@
                                             <div class=" dropdown-menu dropdown-menu-right">
                                                 <ul class="link-list-opt no-bdr">
                                                     <li><a href="#" data-toggle="modal" :data-target="'#modalZoom'+question.id"><em class="icon ni ni-eye"></em><span>View Options</span></a></li>
-                                                    <li><a :href="hostname+'/admin/questions/add-question?category_id='+category.id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
+                                                    <li><a :href="hostname+'/super-admin/questions/add-question?category_id='+category.id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
                                                    
                                                     <li class="divider"></li>
                                                    
-                                                    <li><a :href="hostname+'/admin/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
+                                                    <li><a :href="hostname+'/super-admin/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@ data() {
 
 methods: {
        categories(){
-           axios.get('admin/questions/categories')
+           axios.get('super-admin/questions/categories')
             .then((response) => {
              this.categorieslist = response.data;
              this.categoriesData = response.data;
@@ -229,7 +229,7 @@ methods: {
 
        categoriesbyid(event){
         var id = event.target.value;
-           axios.get('admin/questions/categories/'+id)
+           axios.get('super-admin/questions/categories/'+id)
             .then((response) => {
              this.categoriesData = response.data;
             })
@@ -242,7 +242,7 @@ methods: {
                     console.log(item.re_order);
                   });
 
-         axios.post('admin/questions/updateOrder', {
+         axios.post('super-admin/questions/updateOrder', {
                     questions: this.categorieslist[columnIndex].questions
                 }).then((response) => {
                     console.log(response.data);

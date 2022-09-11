@@ -13,7 +13,7 @@
             </div>
             @if (!request()->payment_method && !$invoice->isFree())
                 
-                <form id="checkoutForm" class="" action="{{ $invoice->isFree() ? url('account/subscription/invoice/'.$invoice->uid.'/confirm') : url('account/subscription/checkout') }}"
+                <form id="checkoutForm" class="" action="{{ $invoice->isFree() ? url('admin/account/subscription/invoice/'.$invoice->uid.'/confirm') : url('admin/account/subscription/checkout') }}"
                     method="POST">
                     {{ csrf_field() }}
 
@@ -26,7 +26,7 @@
                 </form>
             @else
 
-                <form id="checkoutForm" class="" action="{{ $invoice->isFree() ? url('account/subscription/invoice/'.$invoice->uid.'/confirm') : url('account/subscription/checkout') }}"
+                <form id="checkoutForm" class="" action="{{ $invoice->isFree() ? url('admin/account/subscription/invoice/'.$invoice->uid.'/confirm') : url('admin/account/subscription/checkout') }}"
                     method="POST">
                     {{ csrf_field() }}
 
@@ -47,7 +47,7 @@
                 style="width:100%"
                 link-method="POST"
                 link-confirm="{{ trans('messages.invoice.cancel.confirm') }}"
-                href="{{ url('account/subscription/invoice/'.$bill['invoice_uid'].'/cancel') }}"
+                href="{{ url('admin/account/subscription/invoice/'.$bill['invoice_uid'].'/cancel') }}"
             >
                 {{ trans('messages.invoice.change_plan.cancel') }}
             </a>

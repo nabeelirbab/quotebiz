@@ -7,7 +7,7 @@
 @section('content')
     <h4 class="mb-2 mt-0">{{ trans('messages.payment.choose_payment') }}</h4>
     <div class="mb-4">{!! trans('messages.payment.choose_payment.desc') !!}</div>
-    <form class="edit-payment" action="{{ url('account/payment/edit') }}"
+    <form class="edit-payment" action="{{ url('admin/account/payment/edit') }}"
         method="POST">
         {{ csrf_field() }}
 

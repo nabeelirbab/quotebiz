@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="billing-address-form" action="{{ url('account/billing/edit') }}"
+    <form class="billing-address-form" action="{{ url('admin/account/billing/edit') }}"
         method="POST">
         {{ csrf_field() }}
         @if (request()->user()->customer->contact)
@@ -105,7 +105,7 @@
             var checked = $(this).is(':checked');
             
             $.ajax({
-                url: '{{ url('account/billing/edit') }}',
+                url: '{{ url('admin/account/billing/edit') }}',
                 method: 'GET',
                 data: {
                     same_as_contact: checked

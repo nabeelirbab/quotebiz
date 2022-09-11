@@ -8,7 +8,7 @@
                 <span class="font-weight-semibold">{{ request()->user()->customer->getPreferredPaymentGateway()->getName() }}</span>
             </div>
             <div class="ml-auto">
-                <a href="{{ url('account/payment/remove') }}" class="payment-method-remove">
+                <a href="{{ url('admin/account/payment/remove') }}" class="payment-method-remove">
                     {{ trans('messages.remove') }}
                 </a>
             </div>
@@ -22,13 +22,13 @@
         </div>
     </div>
 
-    <a href="{{ url('account/payment/edit') }}" class="btn btn-secondary payment-method-edit mt-4">
+    <a href="{{ url('admin/account/payment/edit') }}" class="btn btn-secondary payment-method-edit mt-4">
         {{ trans('messages.change_payment_method') }}
     </a>
 @else
     <p>{{ trans('messages.have_no_payment_method') }}</p>
 
-    <a href="{{ url('account/payment/edit') }}"
+    <a href="{{ url('admin/account/payment/edit') }}"
         class="btn btn-secondary payment-method-edit">
         {{ trans('messages.add_payment_method') }}
     </a>

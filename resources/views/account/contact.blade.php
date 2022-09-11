@@ -12,7 +12,7 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.contact_information') }}</li>
         </ul>
         <h1>
@@ -26,7 +26,7 @@
 
     @include("account._menu")
 
-    <form enctype="multipart/form-data" action="{{ url('account/contact') }}" method="POST" class="form-validate-jqueryz">
+    <form enctype="multipart/form-data" action="{{ url('admin/account/contact') }}" method="POST" class="form-validate-jqueryz">
         {{ csrf_field() }}
 
         <h2 class="text-semibold text-primary mb-4">{{ trans('messages.primary_account_contact') }}</h2>

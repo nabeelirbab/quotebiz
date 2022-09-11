@@ -137,7 +137,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a class="btn btn-secondary text-nowrap" target="_blank" href="{{ url('invoices/'.$invoice->uid.'/download') }}">
+                                    <a class="btn btn-secondary text-nowrap" target="_blank" href="{{ url('admin/invoices/'.$invoice->uid.'/download') }}">
                                         <i class="material-icons-outlined me-1">download</i>{{ trans('messages.download') }}
                                     </a>
                                 </td>
@@ -152,9 +152,6 @@
                     </table>
                 </div>
             </div>
-
-
-            
         </div>
     </div>
 </div>

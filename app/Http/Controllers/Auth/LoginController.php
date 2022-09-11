@@ -80,9 +80,9 @@ class LoginController extends Controller
         }
 
         if($user->can("admin_access", User::class)){
-            return redirect('/admin');
+            return redirect('/super-admin');
         }
 
-        return redirect()->intended('/');
+        return redirect()->intended('/admin');
     }
 }
