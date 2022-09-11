@@ -110,7 +110,7 @@ p.form-para::after{
 }
 .form-control {
     border-radius: 6px;
-    font-size: 1.1rem;
+    font-size: 1.1rem;`
     outline: 0;
 }
 .form-control:focus{
@@ -240,9 +240,9 @@ p.form-para::after{
 </head>
 <body class="dogcFe" style="min-height: 100%;">
 	
-<div class="container-fluid" style="height: 100vh;width: 96%;">
+<div class="container-fluid" style="height: 100vh;width: 99%;">
 	<div class="siteLogo">
-		<img class="mt-3" id="sitesmall" src="{{$sitesmalllogo}}">
+		<img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}">
 	</div>
 	@if(Auth::user())
 	 @if(Auth::user()->user_type == 'client')
@@ -256,7 +256,7 @@ p.form-para::after{
 	 </div>
 	 @endif
 	@else
-	<div class="floatright p-2">
+	<div class="floatright p-2 mt-3">
 	<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 	</div>
 	@endif
