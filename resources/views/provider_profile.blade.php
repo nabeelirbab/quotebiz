@@ -154,9 +154,9 @@
                
                 <li><a href="#" class="btn btn-trigger btn-icon"><em class="icon ni ni-mail"></em></a></li>
                 @if($userdetail->activated == '1')
-                <li><a href="{{ url('account_status/'.$userdetail->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" class="btn btn-trigger btn-icon text-danger" title="Suspend Account"><em class="icon ni ni-na"></em></a></li>
+                <li><a href="{{ url('admin/account_status/'.$userdetail->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" class="btn btn-trigger btn-icon text-danger" title="Suspend Account"><em class="icon ni ni-na"></em></a></li>
                 @else
-                <li><a href="{{ url('account_status/'.$userdetail->id.'?status=1') }}" onclick="return confirm('Are you sure you want to suspend this account?');" class="btn btn-trigger btn-icon" title="Active Account"><em class="icon ni ni-shield-check"></em></a></li>
+                <li><a href="{{ url('admin/account_status/'.$userdetail->id.'?status=1') }}" onclick="return confirm('Are you sure you want to suspend this account?');" class="btn btn-trigger btn-icon" title="Active Account"><em class="icon ni ni-shield-check"></em></a></li>
                 @endif
             </ul>
         </div><!-- .card-inner -->

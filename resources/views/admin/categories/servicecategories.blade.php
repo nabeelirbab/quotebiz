@@ -59,7 +59,7 @@
         <div class="card h-100">
             <div class="card-inner">
                 <div class="d-flex justify-content-between align-items-start mb-3" style="border-bottom: 1px solid gainsboro;">
-                    <a href="html/lms/courses.html" class="d-flex align-items-center">
+                    <a href="" class="d-flex align-items-center">
                         @if($category->category_icon)
                         <div class="" style="width: 60px"><img src="{{asset('frontend-assets/images/categories/'.$category->category_icon)}}">
                         </div>
@@ -174,7 +174,7 @@
 {{$categories}}
 </div><!-- .nk-block -->
 <!-- Modal Zoom -->
-<div id="mySidepanel" class="sidepanel">
+<div id="mySidepanel" class="sidepanel" style="height: 100%;">
 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 <div class="preview-block">
 <h5 class="text-center">Add Category</h5>
@@ -230,7 +230,7 @@
 
 <!-- Mopdal Small -->  
 <!-- Modal Zoom -->
-<div id="subSidepanel" class="sidepanel">
+<div id="subSidepanel" class="sidepanel" style="height: 100%;">
 <a href="javascript:void(0)" class="closebtn" onclick="closesub()">×</a>
 <div class="preview-block">
 <h5 class="text-center">Add Sub Category</h5>

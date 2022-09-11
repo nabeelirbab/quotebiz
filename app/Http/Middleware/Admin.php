@@ -33,8 +33,6 @@ class Admin
             return redirect('/not-authorized');
         }
 
-       
-
         // Site offline
         if (\Acelle\Model\Setting::get('site_online') == 'false' &&
             (isset($user) && $user->customer->getOption('access_when_offline') != 'yes')

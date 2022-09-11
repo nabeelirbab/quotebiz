@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
         if (!$subscription ||
             $subscription->isEnded()
         ) {
-            return redirect('account/subscription/select-plan');
+            return redirect('admin/account/subscription/select-plan');
         }
 
         // @todo không để đây, chỉ test thôi, cần move qua cronjob
@@ -43,7 +43,7 @@ class SubscriptionController extends Controller
         if ($subscription->isNew()) {
             $invoice = $subscription->getItsOnlyUnpaidInitInvoice();
 
-            return redirect('account/subscription/payment/'.$invoice->uid);
+            return redirect('admin/account/subscription/payment/'.$invoice->uid);
         }
 
         // 3. SUBSCRIPTION IS ACTIVE, SHOW DETAILS PAGE
@@ -107,7 +107,7 @@ class SubscriptionController extends Controller
         }
 
         // Check if subscriotion is new
-        return redirect('account/subscription/billing-information');
+        return redirect('admin/account/subscription/billing-information');
     }
 
     public function payment(Request $request)
@@ -119,7 +119,7 @@ class SubscriptionController extends Controller
         $invoice = $customer->invoices()->where('uid', '=', $request->invoice_uid)->first();
 
         if (!$invoice || !$invoice->isNew()) {
-            return redirect('account/subscription');
+            return redirect('admin/account/subscription');
         }
 
         if ($invoice->isNew()) {
@@ -132,7 +132,7 @@ class SubscriptionController extends Controller
             } else {
                 // no billing information
                 if (!$invoice->hasBillingInformation()) {
-                    return redirect('account/subscription/billing-information');
+                    return redirect('admin/account/subscription/billing-information');
                 }
 
                 if ($invoice->isFree()) {
@@ -166,7 +166,7 @@ class SubscriptionController extends Controller
         $invoice->confirmWithoutPayment();
 
         $request->session()->flash('alert-success', trans('messages.invoice.confirmed'));
-        return redirect('account/subscription');
+        return redirect('admin/account/subscription');
     }
 
     public function cancelInvoice(Request $request, $uid)
@@ -181,7 +181,7 @@ class SubscriptionController extends Controller
 
         // Redirect to my subscription page
         $request->session()->flash('alert-success', trans('messages.invoice.cancelled'));
-        return redirect('account/subscription');
+        return redirect('admin/account/subscription');
     }
 
     public function checkout(Request $request)
@@ -224,7 +224,7 @@ class SubscriptionController extends Controller
             $request->session()->flash('alert-success', trans('messages.billing_address.updated'));
 
             // return to subscription
-            return redirect('account/subscription/payment/'.$invoice->uid);
+            return redirect('admin/account/subscription/payment/'.$invoice->uid);
         }
 
         return view('subscription.billingInformation', [
@@ -261,11 +261,11 @@ class SubscriptionController extends Controller
                 $changePlanInvoice = $subscription->createChangePlanInvoice($newPlan);
             } catch (\Exception $e) {
                 $request->session()->flash('alert-error', $e->getMessage());
-                return redirect('account/subscription');
+                return redirect('admin/account/subscription');
             }
 
             // return to subscription
-            return redirect('account/subscription/payment/'.$changePlanInvoice->uid);
+            return redirect('admin/account/subscription/payment/'.$changePlanInvoice->uid);
         }
 
         return view('subscription.change_plan', [
@@ -297,7 +297,7 @@ class SubscriptionController extends Controller
 
         // Redirect to my subscription page
         $request->session()->flash('alert-success', trans('messages.subscription.cancelled'));
-        return redirect('account/subscription');
+        return redirect('admin/account/subscription');
     }
 
 
@@ -319,7 +319,7 @@ class SubscriptionController extends Controller
 
         // Redirect to my subscription page
         $request->session()->flash('alert-success', trans('messages.subscription.resumed'));
-        return redirect('account/subscription');
+        return redirect('admin/account/subscription');
     }
 
     /**
@@ -344,7 +344,7 @@ class SubscriptionController extends Controller
 
         // Redirect to my subscription page
         $request->session()->flash('alert-success', trans('messages.subscription.cancelled_now'));
-        return redirect('account/subscription');
+        return redirect('admin/account/subscription');
     }
 
     public function orderBox(Request $request)

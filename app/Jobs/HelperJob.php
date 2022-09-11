@@ -86,7 +86,6 @@ class HelperJob extends Base
         }
     }
 
-
    public static function form_design()
     {
         return JobDesign::where('subdomain',request('account'))->first();
@@ -102,7 +101,8 @@ class HelperJob extends Base
           $code = $currency->code;
         }else{
           $code = 'USD';
-        }
+        } 
+
       $covert = Currency::convert()
         ->from($to)
         ->to($code)->amount($amount)->round(2)

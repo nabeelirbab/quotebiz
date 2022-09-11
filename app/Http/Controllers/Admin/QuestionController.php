@@ -166,10 +166,10 @@ class QuestionController extends Controller
             } 
         }
         }
+      }
+     }
     }
-    }
-    }
-           return redirect('admin/questions')->withSuccess(['Success Message here!']);
+           return redirect('super-admin/questions')->withSuccess(['Success Message here!']);
 
 
     }

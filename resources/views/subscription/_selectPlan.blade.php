@@ -1,6 +1,6 @@
 <div class="card subscription-step {{ ($invoice->type !== \Acelle\Model\Invoice::TYPE_NEW_SUBSCRIPTION) ? 'disabled' : '' }}">
     <a 
-        href="{{ url('account/subscription/select-plan') }}"
+        href="{{ url('admin/account/subscription/select-plan') }}"
         class="card-header py-3 d-block select-plan-tab">
         <div class="d-flex align-items-center">
             <div class="me-3"><label class="subscription-step-number bg-secondary">1</label></div>

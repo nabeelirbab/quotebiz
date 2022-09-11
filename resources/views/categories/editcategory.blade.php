@@ -27,10 +27,9 @@
         <div class="card-inner">
             <div class="preview-block">
                 <span class="preview-title-lg overline-title">Edit Category</span>
-                 <form action="{{ url('categories/update') }}" method="post" enctype="multipart/form-data">
+                 <form action="{{ url('admin/categories/update') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
-                   
                     <div class="col-sm-7">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Category Name</label>
@@ -39,7 +38,6 @@
                             </div>
                         </div>
                     </div>
-           
                     <div class="col-sm-7">
                         <div class="form-group">
                             <label class="form-label" for="default-06">Category Icon</label>
@@ -50,14 +48,10 @@
                                 </div>
                             </div>
                         </div>
-                       
                     </div>
-
                     <div class="col-sm-7 text-center">
                         <button class="btn btn-success btn-lg" type="submit">Update</button>
                     </div>
-
-                   
                 </div>
               </form>
             </div>

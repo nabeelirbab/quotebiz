@@ -27,7 +27,7 @@
         <div class="card-inner">
             <div class="preview-block">
                 <span class="preview-title-lg overline-title">Create Category</span>
-                 <form action="{{ url('categories/store') }}" method="post" enctype="multipart/form-data">
+                 <form action="{{ url('admin/categories/store') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    
@@ -50,14 +50,10 @@
                                 </div>
                             </div>
                         </div>
-                       
                     </div>
-
                     <div class="col-sm-7 text-center">
                         <button class="btn btn-success btn-lg" type="submit">Save</button>
                     </div>
-
-                   
                 </div>
               </form>
             </div>

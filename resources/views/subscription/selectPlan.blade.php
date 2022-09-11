@@ -54,7 +54,7 @@
 
                             @foreach ($plans as $key => $plan)
                                 <div
-                                    data-url="{{ url('account/subscription/order-box?plan_uid='.$plan->uid) }}"
+                                    data-url="{{ url('admin/account/subscription/order-box?plan_uid='.$plan->uid) }}"
                                     class="new-price-item mb-3 d-inline-block plan-item
                                         {{ $subscription && $subscription->plan->id == $plan->id ? 'current' : '' }}
                                     "
@@ -88,7 +88,7 @@
 
                                     <a
                                         link-method="POST"
-                                        href="{{ url('account/subscription/init?plan_uid='.$plan->uid) }}"
+                                        href="{{ url('admin/account/subscription/init?plan_uid='.$plan->uid) }}"
                                         class="btn btn-primary rounded-3 d-block mt-4 shadow-sm">
                                             {{ trans('messages.plan.select') }}
                                     </a>

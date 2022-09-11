@@ -193,7 +193,7 @@ class UserController extends Controller
                     return redirect('/customer');
                 }
                 else{
-                    return redirect('/');
+                    return redirect('/admin');
                 }
                 
                 }
@@ -238,12 +238,7 @@ class UserController extends Controller
         // $customer = Customer::newCustomer();
 
         $user = new User();
-        // if (!empty($request->old())) {
-        //     $customer->fill($request->old());
-        //     $user->fill($request->old());
-        // }
-
-        // save posted data
+        
         if ($request->isMethod('post')) {
           // dd(json_encode($request->input('category_id')));
                $subdomain = Subdomain::where('subdomain',$request->subdomain)->first();
@@ -260,11 +255,7 @@ class UserController extends Controller
                     $rules['recaptcha_invalid'] = 'required';
                 }
             }
-
- 
             $this->validate($request, $rules);
-
-           
                 $user = new User();
                 $user->fill($request->all());
                 $user->password = bcrypt($request->password);
@@ -338,8 +329,6 @@ public function adminregister(Request $request)
             $user->fill($request->all());
            
                 $rules = $user->registerRules();
-            
-
             // Captcha check
             if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
                 $success = \Acelle\Library\Tool::checkReCaptcha($request);
@@ -347,14 +336,8 @@ public function adminregister(Request $request)
                     $rules['recaptcha_invalid'] = 'required';
                 }
             }
-
- 
             $this->validate($request, $rules);
-
-            // Okay, create it
-           
                 $user = $customer->createAccountAndUser($request);
-
                 $subdomain = new Subdomain;
                 $subdomain->user_id =  $user->id;
                 $subdomain->subdomain = $request->subdomain;
@@ -368,8 +351,6 @@ public function adminregister(Request $request)
                 $subscription->customer_id = $user->customer_id;
                 $subscription->plan_id = 1;
                 $subscription->save();
-
-
             // user email verification
             if (true) {
                 // Send registration confirmation email
@@ -403,10 +384,7 @@ public function adminregister(Request $request)
     }
     public function credits(Request $request)
     {
-      // dd(Currency::rates()
-      //   ->latest()
-      //   ->get());
-
+     
       if ($request->isMethod('post')) {
         if($request->id){
             $update = CreditAmount::find($request->id);

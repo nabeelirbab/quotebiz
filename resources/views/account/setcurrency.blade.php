@@ -6,7 +6,7 @@
 
 <div class="page-title">
 <ul class="breadcrumb breadcrumb-caret position-right">
-<li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
+<li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
 <li class="breadcrumb-item active">Currency</li>
 </ul>
 <h1>
@@ -154,14 +154,10 @@ person_outline
                     </select>
                 </div>
                        </div>
-                   </div>
-                    
-                   
+                   </div>                   
                     <div class="col-sm-7 text-center">
                         <button class="btn btn-success btn-lg" type="submit">Save</button>
                     </div>
-
-                   
                 </div>
               </form>
             </div>

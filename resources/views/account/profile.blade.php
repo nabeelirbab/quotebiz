@@ -11,13 +11,13 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.profile') }}</li>
         </ul>
         <h1>
             <span class="text-semibold"><span class="material-icons-round">
                             person_outline
-                            </span> {{ $user->displayName() }}</span>
+            </span> {{ $user->displayName() }}</span>
         </h1>
     </div>
 
@@ -27,7 +27,7 @@
 
     @include("account._menu")
 
-    <form enctype="multipart/form-data" action="{{ url('account/profile') }}" method="POST" class="form-validate-jqueryz">
+    <form enctype="multipart/form-data" action="{{ url('admin/account/profile') }}" method="POST" class="form-validate-jqueryz">
         {{ csrf_field() }}
 
         <div class="row">

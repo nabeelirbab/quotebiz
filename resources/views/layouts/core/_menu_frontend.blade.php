@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-main py-0">
     <div class="container-fluid ms-0">
-        <a class="navbar-brand d-flex align-items-center me-2" href="{{ url('/') }}">
+        <a class="navbar-brand d-flex align-items-center me-2" href="{{ url('/admin') }}">
             @if (\Acelle\Model\Setting::get('site_logo_small'))
                 <img class="logo" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small')) }}" alt="">
             @else
@@ -20,19 +20,19 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-md-0 main-menu">
                 <li class="nav-item" rel0="HomeController">
-                    <a href="{{ url('/') }}" title="{{ trans('messages.dashboard') }}" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                    <a href="{{ url('/admin') }}" title="{{ trans('messages.dashboard') }}" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                       <em class="icon ni ni-dashboard fs-5 mr-1"></em>
                         <span>{{ trans('messages.dashboard') }}</span>
                     </a>
                 </li>
                 <li class="nav-item" rel0="HomeController">
-                    <a href="{{ url('quotes') }}" title="{{ trans('messages.lists') }}" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                    <a href="{{ url('admin/quotes') }}" title="Quotes" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                        <em class="icon ni ni-folder-list fs-5 mr-1"></em>
                         <span>Quotes</span>
                     </a>
                 </li>
                 <li class="nav-item" rel2="HomeController">
-                    <a href="{{ url('customers') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                    <a href="{{ url('admin/customers') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                        <em class="icon ni ni-users fs-5 mr-1"></em>
                         <span>Customers</span>
                     </a>
@@ -46,13 +46,13 @@
                         </a>
                         <ul class="dropdown-menu">
                              <li class="nav-item" rel0="CustomerController9">
-                                    <a href="{{ url('serviceproviders') }}" class="dropdown-item d-flex align-items-center">
+                                    <a href="{{ url('admin/serviceproviders') }}" class="dropdown-item d-flex align-items-center">
                                         <em class="icon ni ni-users fs-5 mr-1"></em>
                                         Service Providers List
                                     </a>
                                 </li>
                             <li class="nav-item" rel0="CustomerController9">
-                                    <a href="{{ url('service-categories') }}" class="dropdown-item d-flex align-items-center">
+                                    <a href="{{ url('admin/service-categories') }}" class="dropdown-item d-flex align-items-center">
                                        <em class="icon ni ni-property-alt fs-5 mr-1"></em>
                                         Categories List
                                     </a>
@@ -67,19 +67,19 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="nav-item" rel0="CustomerController9">
-                                    <a href="{{ url('questions') }}" class="dropdown-item d-flex align-items-center">
-                                        <em class="icon ni ni-file-text fs-5 mr-1"></em>
-                                        Questions List
-                                    </a>
-                                </li>
-                                    <li class="nav-item" rel0="CustomerController9">
-                                    <a href="{{ url('form-design') }}" class="dropdown-item d-flex align-items-center">
-                                       <em class="icon ni ni-color-palette fs-5 mr-1"></em>
-                                        Design Settings
-                                    </a>
-                                </li>
-                     </ul>
+                        <li class="nav-item" rel0="CustomerController9">
+                              <a href="{{ url('admin/questions') }}" class="dropdown-item d-flex align-items-center">
+                                    <em class="icon ni ni-file-text fs-5 mr-1"></em>
+                                    Questions List
+                                </a>
+                            </li>
+                             <li class="nav-item" rel0="CustomerController9">
+                                <a href="{{ url('admin/form-design') }}" class="dropdown-item d-flex align-items-center">
+                                   <em class="icon ni ni-color-palette fs-5 mr-1"></em>
+                                    Design Settings
+                                </a>
+                            </li>
+                       </ul>
                     </li>
                <li class="nav-item dropdown language-switch"  rel0="CustomerController">
                     <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
@@ -90,13 +90,13 @@
                         <ul class="dropdown-menu">
                               
                           <li class="nav-item" rel2="HomeController">
-                            <a href="{{ url('credit-amount') }}" title="Credits Management" class="dropdown-item d-flex align-items-center">
+                            <a href="{{ url('admin/credit-amount') }}" title="Credits Management" class="dropdown-item d-flex align-items-center">
                                 <em class="icon ni ni-invest fs-5 mr-1"></em>
                                 <span>Credits Management</span>
                             </a>
                         </li>
                         <li class="nav-item" rel2="HomeController">
-                            <a href="{{ url('payments-receive') }}" title="Receive Payments" class="dropdown-item d-flex align-items-center">
+                            <a href="{{ url('admin/payments-receive') }}" title="Receive Payments" class="dropdown-item d-flex align-items-center">
                               <em class="icon ni ni-tranx fs-5 mr-1"></em>
                                 <span>Received Payments</span>
                             </a>
@@ -106,14 +106,14 @@
                     </li>
                      
                <li class="nav-item" rel2="HomeController">
-                    <a href="{{ url('account/profile') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                    <a href="{{ url('admin/account/profile') }}" title="Account" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                       <em class="icon ni ni-account-setting fs-5 mr-1"></em>
                         <span>Account</span>
                     </a>
                 </li>
             
                 <li class="nav-item" rel2="HomeController">
-                    <a href="{{ url('support') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                    <a href="{{ url('admin/support') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                        <em class="icon ni ni-headphone fs-5 mr-1"></em>
                         <span>Support</span>
                     </a>

@@ -88,7 +88,7 @@
     <div class="dropdown-menu dropdown-menu-right">
         <ul class="link-list-opt no-bdr">
             <li><a href="#" data-toggle="modal" data-target="#modalEdit{{$category->id}}"><em class="icon ni ni-edit"></em><span>Edit Category</span></a></li>
-            <li><a  href="{{url('service-categories/delete/'.$category->id) }}" onclick="return confirm('Are you sure you want to delete this item?');"><em class="icon ni ni-delete"></em><span>Delete Category</span></a></li>
+            <li><a  href="{{url('admin/service-categories/delete/'.$category->id) }}" onclick="return confirm('Are you sure you want to delete this item?');"><em class="icon ni ni-delete"></em><span>Delete Category</span></a></li>
         </ul>
     </div>
     </div>
@@ -109,7 +109,7 @@
     <div class="modal-body">
     <div class="preview-block">
 
-    <form action="{{ url('service-categories/update') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/service-categories/update') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row d-flex justify-content-center gy-4">
     <input type="hidden" name="id" value="{{$subcategory->id}}">
@@ -169,7 +169,7 @@
     <div class="modal-body">
     <div class="preview-block">
 
-    <form action="{{ url('service-categories/update') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/service-categories/update') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row d-flex justify-content-center gy-4">
     <input type="hidden" name="id" value="{{$category->id}}">
@@ -238,7 +238,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <div class="preview-block">
     <h5 class="text-center">Add Category</h5>
-    <form action="{{ url('service-categories/store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/service-categories/store') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row d-flex justify-content-center gy-4">
 
@@ -296,7 +296,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closesub()">×</a>
     <div class="preview-block">
     <h5 class="text-center">Add Sub Category</h5>
-    <form action="{{ url('service-categories/storesub') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/service-categories/storesub') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row d-flex justify-content-center gy-4">
 

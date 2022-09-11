@@ -225,7 +225,7 @@ $currencySymbols = [
                 $subscription = $customer->subscription;
             ?>
             @if ($subscription->plan_id == 1)
-            <li class="nk-block-tools-opt"><a href="{{ url('account/subscription?upgrade='.$subscription->plan_id) }}" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Upgrade Plan</span></a></li>
+            <li class="nk-block-tools-opt"><a href="{{ url('admin/account/subscription?upgrade='.$subscription->plan_id) }}" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Upgrade Plan</span></a></li>
             @endif            
         </ul>
     </div>

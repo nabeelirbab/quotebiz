@@ -2289,7 +2289,7 @@ __webpack_require__.r(__webpack_exports__);
     categories: function categories() {
       var _this = this;
 
-      axios.get('admin/questions/categories').then(function (response) {
+      axios.get('super-admin/questions/categories').then(function (response) {
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
       })["catch"](function (error) {
@@ -2300,7 +2300,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var id = event.target.value;
-      axios.get('admin/questions/categories/' + id).then(function (response) {
+      axios.get('super-admin/questions/categories/' + id).then(function (response) {
         _this2.categoriesData = response.data;
       })["catch"](function (error) {
         return console.log(error);
@@ -2311,7 +2311,7 @@ __webpack_require__.r(__webpack_exports__);
         item.re_order = index + 1;
         console.log(item.re_order);
       });
-      axios.post('admin/questions/updateOrder', {
+      axios.post('super-admin/questions/updateOrder', {
         questions: this.categorieslist[columnIndex].questions
       }).then(function (response) {
         console.log(response.data);
@@ -2640,11 +2640,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -2674,7 +2669,7 @@ __webpack_require__.r(__webpack_exports__);
     categories: function categories() {
       var _this = this;
 
-      axios.get('questions/categories').then(function (response) {
+      axios.get('admin/questions/categories').then(function (response) {
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
       })["catch"](function (error) {
@@ -2685,7 +2680,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var id = event.target.value;
-      axios.get('questions/subcategories/' + id).then(function (response) {
+      axios.get('admin/questions/subcategories/' + id).then(function (response) {
         console.log(response.data);
         _this2.categoriesData = response.data;
       })["catch"](function (error) {
@@ -2696,7 +2691,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var id = event.target.value;
-      axios.get('questions/categories/' + id).then(function (response) {
+      axios.get('admin/questions/categories/' + id).then(function (response) {
         console.log(response.data);
         _this3.categoriesData = response.data.categories;
         _this3.subCategories = response.data.subcat;
@@ -2715,7 +2710,7 @@ __webpack_require__.r(__webpack_exports__);
         item.re_order = index + 1;
         console.log(item.re_order);
       });
-      axios.post('questions/updateOrder', {
+      axios.post('admin/questions/updateOrder', {
         questions: this.categorieslist[columnIndex].questions
       }).then(function (response) {
         console.log(response.data);
@@ -54171,7 +54166,7 @@ var render = function () {
                                 attrs: {
                                   href:
                                     _vm.hostname +
-                                    "/admin/questions/add-question",
+                                    "/super-admin/questions/add-question",
                                 },
                               },
                               [
@@ -54580,7 +54575,7 @@ var render = function () {
                                                                                         {
                                                                                           href:
                                                                                             _vm.hostname +
-                                                                                            "/admin/questions/add-question?category_id=" +
+                                                                                            "/super-admin/questions/add-question?category_id=" +
                                                                                             category.id,
                                                                                         },
                                                                                     },
@@ -54627,7 +54622,7 @@ var render = function () {
                                                                                         {
                                                                                           href:
                                                                                             _vm.hostname +
-                                                                                            "/admin/questions/deletequestion/" +
+                                                                                            "/super-admin/questions/deletequestion/" +
                                                                                             question.id,
                                                                                         },
                                                                                     },
@@ -55189,7 +55184,8 @@ var render = function () {
                                 staticClass: "btn btn-primary",
                                 attrs: {
                                   href:
-                                    _vm.hostname + "/questions/add-question",
+                                    _vm.hostname +
+                                    "/admin/questions/add-question",
                                 },
                               },
                               [
@@ -55368,7 +55364,7 @@ var render = function () {
                                       attrs: {
                                         href:
                                           _vm.hostname +
-                                          "/questions/add-question?category_id=" +
+                                          "/admin/questions/add-question?category_id=" +
                                           category.id,
                                       },
                                     },
@@ -55578,7 +55574,7 @@ var render = function () {
                                                                     "ul",
                                                                     {
                                                                       staticClass:
-                                                                        "nk-tb-actions gx-1",
+                                                                        "gx-1",
                                                                     },
                                                                     [
                                                                       _c("li", [
@@ -55677,7 +55673,7 @@ var render = function () {
                                                                                               {
                                                                                                 href:
                                                                                                   _vm.hostname +
-                                                                                                  "/questions/add-question?category_id=" +
+                                                                                                  "/admin/questions/add-question?category_id=" +
                                                                                                   question.category_id +
                                                                                                   "&sub_category_id=" +
                                                                                                   question.subcategory_id,
@@ -55726,7 +55722,7 @@ var render = function () {
                                                                                               {
                                                                                                 href:
                                                                                                   _vm.hostname +
-                                                                                                  "/questions/deletequestion/" +
+                                                                                                  "/admin/questions/deletequestion/" +
                                                                                                   question.id,
                                                                                               },
                                                                                           },
@@ -56293,7 +56289,7 @@ var render = function () {
                                                               "ul",
                                                               {
                                                                 staticClass:
-                                                                  "nk-tb-actions gx-1",
+                                                                  "gx-1",
                                                               },
                                                               [
                                                                 _c("li", [
@@ -56392,7 +56388,7 @@ var render = function () {
                                                                                         {
                                                                                           href:
                                                                                             _vm.hostname +
-                                                                                            "/questions/add-question?category_id=" +
+                                                                                            "/admin/questions/add-question?category_id=" +
                                                                                             category.id,
                                                                                         },
                                                                                     },
@@ -56439,7 +56435,7 @@ var render = function () {
                                                                                         {
                                                                                           href:
                                                                                             _vm.hostname +
-                                                                                            "/questions/deletequestion/" +
+                                                                                            "/admin/questions/deletequestion/" +
                                                                                             question.id,
                                                                                         },
                                                                                     },

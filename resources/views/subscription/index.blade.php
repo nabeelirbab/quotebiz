@@ -10,7 +10,7 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.subscription') }}</li>
         </ul>
         <h1>
@@ -54,7 +54,7 @@
                     @include('elements._notification', [
                         'level' => 'warning',
                         'message' => trans('messages.have_new_change_plan_invoice', [
-                            'link' => url('account/subscription/payment/'.$subscription->getItsOnlyUnpaidChangePlanInvoice()->uid),
+                            'link' => url('admin/account/subscription/payment/'.$subscription->getItsOnlyUnpaidChangePlanInvoice()->uid),
                         ])
                     ])
                 @endif
@@ -97,7 +97,7 @@
 
                     @if (\Auth::user()->customer->can('cancel', $subscription))
                         <a link-method="POST" link-confirm="{{ trans('messages.subscription.cancel.confirm') }}"
-                            href="{{ url('account/subscription/cancel') }}"
+                            href="{{ url('admin/account/subscription/cancel') }}"
                             class="btn btn-secondary me-1"
                         >
                             {{ trans('messages.subscription.cancel') }}
@@ -106,7 +106,7 @@
 
                     @if (\Auth::user()->customer->can('resume', $subscription))
                         <a link-method="POST" link-confirm="{{ trans('messages.subscription.resume.confirm') }}"
-                            href="{{ action('SubscriptionController@resume') }}"
+                            href="{{ url('admin/account/subscription/resume') }}"
                             class="btn btn-secondary me-2"
                         >
                             {{ trans('messages.subscription.resume') }}
@@ -115,7 +115,7 @@
 
                     @if (\Auth::user()->customer->can('changePlan', $subscription))
                         <a
-                            href="{{ url('account/subscription/change-plan?id='.$subscription->uid) }}"
+                            href="{{ url('admin/account/subscription/change-plan?id='.$subscription->uid) }}"
                             class="btn btn-default change_plan_button me-1"
                             data-size="sm"
                         >
@@ -125,7 +125,7 @@
 
                     @if (\Auth::user()->customer->can('cancelNow', $subscription))
                         <a link-method="POST" link-confirm="{{ trans('messages.subscription.cancel_now.confirm') }}"
-                            href="{{ url('account/subscription/cancel-now') }}"
+                            href="{{ url('admin/account/subscription/cancel-now') }}"
                             class="btn btn-danger me-2"
                         >
                             {{ trans('messages.subscription.cancel_now') }}
@@ -154,7 +154,7 @@
 
             <div class="mt-4">
                 @include('account._payment_info', [
-                    'redirect' => url('account/subscription'),
+                    'redirect' => url('admin/account/subscription'),
                 ])
             </div>
         </div>

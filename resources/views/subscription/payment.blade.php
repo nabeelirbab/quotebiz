@@ -13,7 +13,7 @@
 @section('menu_right')
     @if ($invoice->type !== \Acelle\Model\Invoice::TYPE_NEW_SUBSCRIPTION)
         <li class="nav-item">
-            <a  href="{{ url('account/subscription') }}"
+            <a  href="{{ url('admin/account/subscription') }}"
                 class="nav-link d-flex align-items-center py-3 lvl-1">
                 <i class="material-icons-outlined me-2">arrow_back</i>
                 <span>{{ trans('messages.go_back') }}</span>
@@ -47,13 +47,13 @@
                     </div>
                     <div class="card-body py-4" style="padding-left: 72px;padding-right:72px">
                         <form class="edit-payment"
-                            action="{{ url('account/payment/edit') }}"
+                            action="{{ url('admin/account/payment/edit') }}"
                             method="POST">
                             {{ csrf_field() }}
             
                             <p>{{ trans('messages.payment.choose_new_payment_method_to_proceed') }}</p>
             
-                            <input type="hidden" name="return_url" value="{{ url('account/subscription/payment?invoice_uid='.$invoice->uid) }}" />
+                            <input type="hidden" name="return_url" value="{{ url('admin/account/subscription/payment?invoice_uid='.$invoice->uid) }}" />
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -105,7 +105,7 @@
 
             getOrderBox: function() {
                 if (this.orderBox == null) {
-                    this.orderBox = new Box($('.order-box'), '{{ url('account/subscription/order-box') }}');
+                    this.orderBox = new Box($('.order-box'), '{{ url('admin/account/subscription/order-box') }}');
                 }
                 return this.orderBox;
             }

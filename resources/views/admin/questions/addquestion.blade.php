@@ -78,7 +78,7 @@
      }
      });
     function category(data){
-     $.ajax({url: "{{url('admin/questions/editquestion/')}}/"+data.value, success: function(result){
+     $.ajax({url: "{{url('super-admin/questions/editquestion/')}}/"+data.value, success: function(result){
          $('#addquestion').show();
          $('#appendbox').html(result);
          console.log(data.value);
@@ -173,7 +173,7 @@ $(document).on('click','.deleteQuestions',function(e){
     var id = $(e.target).parent().find('input')[0].value;
          var storageid=$('#startQuestions').val();
          $.ajax({
-        url: "{{url('admin/questions/deletequestion')}}/"+id,
+        url: "{{url('super-admin/questions/deletequestion')}}/"+id,
         type:"get",
         success:function(response){
            console.log(response);
@@ -234,7 +234,7 @@ $(document).on('click','.deleteChoice',function(e){
     
     var id = $(e.target).parent().find('input')[0].value;
          $.ajax({
-        url: "{{url('admin/questions/deleteoption')}}/"+id,
+        url: "{{url('super-admin/questions/deleteoption')}}/"+id,
         type:"get",
         success:function(response){
            console.log(response);
@@ -254,7 +254,7 @@ $(document).on('click','.deleteChoice',function(e){
        if(typeof $(e.target).parent().parent().parent().find('.deleteQuestions').next()[0] != 'undefined'){
               var questionid = $(e.target).parent().parent().parent().find('.deleteQuestions').next()[0].value;
               $.ajax({
-                    url: "{{url('admin/questions/deleteChoice')}}/"+questionid,
+                    url: "{{url('super-admin/questions/deleteChoice')}}/"+questionid,
                     type:"get",
                     success:function(response){
                        console.log(response);

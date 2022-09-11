@@ -2,9 +2,9 @@
 @section('title', 'Credits Amount')
 @section('head')
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
     <style type="text/css">
       .editcurrency{
         padding: 0;
@@ -18,8 +18,6 @@
     </style>
     @endsection
 @section('content')
-
-
 <div class="nk-content ">
 <div class="container-fluid">
 <div class="nk-content-inner">
@@ -94,13 +92,13 @@
         <div class="nk-tb-col text-center">
             
             <span class="badge badge-sm badge-dim badge-outline-success" onclick="openNavEdit('{{$creadit->id}}')" style="cursor: pointer;">Edit</span>
-            <a href="{{ url('deletecredit/'.$creadit->id) }}" class="badge badge-sm badge-dim badge-outline-danger" style="cursor: pointer;">Delete</a>
+            <a href="{{ url('admin/deletecredit/'.$creadit->id) }}" class="badge badge-sm badge-dim badge-outline-danger" style="cursor: pointer;">Delete</a>
         </div>
     </div><!-- .nk-tb-item -->
     <div id="mySidepanel{{$creadit->id}}" class="sidepanel" style="height: 100%;">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavEdit('{{$creadit->id}}')">×</a>
             <div class="preview-block" style="padding: 24px;">
-             <form action="{{ url('credit-amount') }}" method="post" enctype="multipart/form-data">
+             <form action="{{ url('admin/credit-amount') }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    <input type="hidden" name="id" value="{{$creadit->id}}">
@@ -178,11 +176,10 @@
     <div class="card-title">
         <h5 class="title">Set Cost Per Quote</h5>
     </div>
-    
 </div><!-- .card-inner -->
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
- <form action="{{ url('/quoteprice') }}" method="post">
+ <form action="{{ url('/admin/quoteprice') }}" method="post">
      {{ csrf_field() }}
      <input type="hidden" @if($quotePrice) value="{{$quotePrice->id}}" @endif name="id">
    <div class="form-row p-2">
@@ -215,7 +212,7 @@
         <div id="mySidepanel" class="sidepanel" style="height: 100%;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <div class="preview-block">
-         <form action="{{ url('credit-amount') }}" method="post" enctype="multipart/form-data">
+         <form action="{{ url('admin/credit-amount') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
         <div class="row d-flex justify-content-center gy-4">
            

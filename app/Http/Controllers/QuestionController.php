@@ -38,8 +38,9 @@ class QuestionController extends Controller
             $subcategories = [];
         }
         else{
-        $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
-        $subcategories = Category::where('cat_parent_id',$id)->where('cat_parent','1')->orderBy('category_name','desc')->get();
+
+            $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
+            $subcategories = Category::where('cat_parent_id',$id)->where('cat_parent','1')->orderBy('category_name','desc')->get();
         }
 
         $categories = json_decode($categories);
@@ -195,7 +196,7 @@ class QuestionController extends Controller
     }
     }
     }
-           return redirect('questions')->withSuccess(['Success Message here!']);
+           return redirect('admin/questions')->withSuccess(['Success Message here!']);
 
 
     }
@@ -240,8 +241,6 @@ class QuestionController extends Controller
                    $question =  Question::find($tasksNew['id']);
                    $question->re_order = $tasksNew['re_order'];
                    $question->save();
-                   
-                
             }
 
             return response('Updated Successfully.', 200);

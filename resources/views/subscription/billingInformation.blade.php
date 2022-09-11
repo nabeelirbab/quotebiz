@@ -39,7 +39,7 @@
                     </a>
                    
                     <div class="card-body py-4" style="padding-left: 72px;padding-right:72px">
-                        <form class="billing-address-form" action="{{ url('account/subscription/billing-information?invoice_uid='.$invoice->uid) }}"
+                        <form class="billing-address-form" action="{{ url('admin/account/subscription/billing-information?invoice_uid='.$invoice->uid) }}"
                             method="POST">
                             {{ csrf_field() }}
 
@@ -130,7 +130,7 @@
 
             getOrderBox: function() {
                 if (this.orderBox == null) {
-                    this.orderBox = new Box($('.order-box'), '{{ url('account/subscription/order-box') }}');
+                    this.orderBox = new Box($('.order-box'), '{{ url('admin/account/subscription/order-box') }}');
                 }
                 return this.orderBox;
             }
@@ -143,7 +143,7 @@
                 var checked = $(this).is(':checked');
                 
                 $.ajax({
-                    url: '{{ url('account/billing/edit') }}',
+                    url: '{{ url('admin/account/billing/edit') }}',
                     method: 'GET',
                     data: {
                         same_as_contact: checked

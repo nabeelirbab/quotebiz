@@ -18,7 +18,7 @@
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                     <ul class="nk-block-tools g-3">
                                      
-                                          <li class="nk-block-tools-opt"><a :href="hostname+'/questions/add-question'" class="btn btn-primary" ><em class="icon ni ni-plus"></em><span>Add Question</span></a></li>
+                                          <li class="nk-block-tools-opt"><a :href="hostname+'/admin/questions/add-question'" class="btn btn-primary" ><em class="icon ni ni-plus"></em><span>Add Question</span></a></li>
                                     </ul>
                                 </div>
                             </div><!-- .toggle-wrap -->
@@ -67,7 +67,7 @@
                   <div class="accordion-item">
                       <div class="accordion-head" data-toggle="collapse" :data-target="'#accordion-item-'+category.id">
                           <h6 class="title">{{category.category_name}}</h6>
-                         <a :href="hostname+'/questions/add-question?category_id='+category.id"> <em class="icon ni ni-edit-alt edit-icon"></em></a>
+                         <a :href="hostname+'/admin/questions/add-question?category_id='+category.id"> <em class="icon ni ni-edit-alt edit-icon"></em></a>
                           <span class="accordion-icon"></span>
                       </div>
                       <div class="accordion-body collapse" :id="'accordion-item-'+category.id" :data-parent="'#accordion'+category.id">
@@ -109,7 +109,7 @@
                                 <span class="tb-status text-success">Active</span>
                             </div>
                             <div class="nk-tb-col nk-tb-col-tools">
-                                <ul class="nk-tb-actions gx-1">
+                                <ul class="gx-1">
                                   
                                     <li>
                                         <div class="drodown">
@@ -117,11 +117,11 @@
                                             <div class=" dropdown-menu dropdown-menu-right">
                                                 <ul class="link-list-opt no-bdr">
                                                     <li><a href="#" data-toggle="modal" :data-target="'#modalZoom'+question.id"><em class="icon ni ni-eye"></em><span>View Options</span></a></li>
-                                                    <li><a :href="hostname+'/questions/add-question?category_id='+question.category_id+'&sub_category_id='+question.subcategory_id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
+                                                    <li><a :href="hostname+'/admin/questions/add-question?category_id='+question.category_id+'&sub_category_id='+question.subcategory_id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
                                                    
                                                     <li class="divider"></li>
                                                    
-                                                    <li><a :href="hostname+'/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
+                                                    <li><a :href="hostname+'/admin/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -165,15 +165,10 @@
                                                     <div class="nk-tb-col tb-col-lg">
                                                         <span>{{dateFormat(option.created_at)}}</span>
                                                     </div>
-                                                    
-                                                    
                                                 </div><!-- .nk-tb-item -->
-                                                
-                                              
                                             </div><!-- .nk-tb-list -->
                                         </div><!-- .card-inner -->
                                         </div>
-                                      
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +198,7 @@
                                 <span class="tb-status text-success">Active</span>
                             </div>
                             <div class="nk-tb-col nk-tb-col-tools">
-                                <ul class="nk-tb-actions gx-1">
+                                <ul class="gx-1">
                                   
                                     <li>
                                         <div class="drodown">
@@ -211,11 +206,11 @@
                                             <div class=" dropdown-menu dropdown-menu-right">
                                                 <ul class="link-list-opt no-bdr">
                                                     <li><a href="#" data-toggle="modal" :data-target="'#modalZoom'+question.id"><em class="icon ni ni-eye"></em><span>View Options</span></a></li>
-                                                    <li><a :href="hostname+'/questions/add-question?category_id='+category.id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
+                                                    <li><a :href="hostname+'/admin/questions/add-question?category_id='+category.id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
                                                    
                                                     <li class="divider"></li>
                                                    
-                                                    <li><a :href="hostname+'/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
+                                                    <li><a :href="hostname+'/admin/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -330,7 +325,7 @@ methods: {
           return moment(date).format(this.dateformat);
         },
        categories(){
-           axios.get('questions/categories')
+           axios.get('admin/questions/categories')
             .then((response) => {
              this.categorieslist = response.data;
              this.categoriesData = response.data;
@@ -340,7 +335,7 @@ methods: {
 
        subcategoriesbyid(event){
         var id = event.target.value;
-           axios.get('questions/subcategories/'+id)
+           axios.get('admin/questions/subcategories/'+id)
             .then((response) => {
               console.log(response.data);
              this.categoriesData = response.data;
@@ -351,7 +346,7 @@ methods: {
 
        categoriesbyid(event){
         var id = event.target.value;
-           axios.get('questions/categories/'+id)
+           axios.get('admin/questions/categories/'+id)
             .then((response) => {
               console.log(response.data);
              this.categoriesData = response.data.categories;
@@ -373,7 +368,7 @@ methods: {
                     console.log(item.re_order);
                   });
 
-         axios.post('questions/updateOrder', {
+         axios.post('admin/questions/updateOrder', {
                     questions: this.categorieslist[columnIndex].questions
                 }).then((response) => {
                     console.log(response.data);
