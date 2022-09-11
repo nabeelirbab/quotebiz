@@ -115,8 +115,8 @@ p.form-para::after{
 }
 .form-control:focus{
 	box-shadow: none;
-    border-radius: 0;
-    border: 1px solid #dae0e5;;
+    border-radius: 6px;
+    border: 1px solid #dae0e5;
 }
 .form-control-placeholder {
     /*position: absolute;
@@ -135,6 +135,7 @@ p.form-para::after{
 .form-control:valid+.form-control-placeholder {
     font-size: 60%;
     transform: translate3d(0, -75%, 0);
+    border-radius: 6px;
     opacity: 1;
     top: 12px;
 }
@@ -243,22 +244,22 @@ p.form-para::after{
 	<div class="siteLogo">
 		<img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}">
 	</div>
-	@if(Auth::user())
-	 @if(Auth::user()->user_type == 'client')
-	 @elseif(Auth::user()->user_type == 'admin')
-	 <div class="floatright mt-4">
-	 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
-	 </div>
-	 @else
-	 <div class="floatright mt-4">
-	 <a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business </a>
-	 </div>
-	 @endif
-	@else
-	<div class="floatright mt-4">
-	<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
-	</div>
-	@endif
+		@if(Auth::user())
+		 @if(Auth::user()->user_type == 'client')
+		 @elseif(Auth::user()->user_type == 'admin')
+			 <div class="floatright mt-4">
+			 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
+			 </div>
+		 @else
+			 <div class="floatright mt-4">
+			 <a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business </a>
+			 </div>
+		 @endif
+		@else
+			<div class="floatright mt-4">
+			<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+			</div>
+		@endif
 		<div class="row justify-content-end" style="height: 100%;align-items: center;">
 		
 			<div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
