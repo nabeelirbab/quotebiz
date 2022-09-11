@@ -18,11 +18,10 @@ class QuoteController extends Controller
     public function home($account)
     {
           $subdomain = Subdomain::where('subdomain',$account)->first();
-          if($subdomain){
-            return view('quoteRequest');
-          }else{
+          if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');
           }
+            return view('quoteRequest');
     }
 
     public function Index(){
