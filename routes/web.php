@@ -13,7 +13,7 @@
 
 Route::domain('{account}.'.config('app.url'))->group(function () {
 
-Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
+Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function () {
     // Helper method to generate other routes for authentication
     Route::get('/', 'QuoteController@home');
     Auth::routes();
@@ -118,7 +118,7 @@ Route::group(['middleware' => ['not_installed', 'auth']], function () {
 
 
 });
-Route::group(['middleware' => ['not_installed', 'auth', 'customer']], function () {
+Route::group(['middleware' => ['not_installed', 'auth', 'customer','validdomain']], function () {
 Route::name('customer.')->prefix('customer')->group(function () {
 
     Route::get('/', function () {
@@ -160,7 +160,7 @@ Route::name('customer.')->prefix('customer')->group(function () {
 });
 
 
-Route::group(['middleware' => ['not_installed', 'auth', 'service_provider']], function () {
+Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','validdomain']], function () {
 
     Route::name('service-provider.')->prefix('service-provider')->group(function () {
 
@@ -217,7 +217,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider']], fu
 Route::get('users/logout', 'UserController@logout');
 
  Route::name('admin.')->prefix('admin')->group(function () {
-  Route::group(['middleware' => ['not_installed', 'auth', 'admin']], function () {
+  Route::group(['middleware' => ['not_installed', 'auth', 'admin','validdomain']], function () {
     
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
