@@ -77,5 +77,6 @@ class Kernel extends HttpKernel
         'not_logged_in' => \Acelle\Http\Middleware\NotLoggedIn::class,
         'subscription' => \Acelle\Http\Middleware\Subscription::class,
         'stripekey' => \Acelle\Http\Middleware\StripeKey::class,
+        'validdomain' => \Acelle\Http\Middleware\ValidDomain::class,
     ];
 }
