@@ -123,6 +123,7 @@
                             <label class="form-label" >Currency</label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" name="currency" readonly  value="{{\Acelle\Model\AdminCurrency::currency()}}" placeholder="Currency" required>
+                                <span ><a href="{{ url('admin/account/currency') }}" target="_blank" class="editcurrency">Update Currency</a></span>
                             </div>
                         </div>
                     </div>
@@ -237,7 +238,7 @@
                             <label class="form-label" >Currency</label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" name="currency" readonly  value="{{\Acelle\Model\AdminCurrency::currency()}}" placeholder="Currency" required>
-                            <span ><a href="{{ url('account/currency') }}" target="_blank" class="editcurrency">Update Currency</a></span>
+                            <span ><a href="{{ url('admin/account/currency') }}" target="_blank" class="editcurrency">Update Currency</a></span>
                             </div>
                         </div>
                     </div>

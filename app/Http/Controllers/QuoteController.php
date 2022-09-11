@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers;
 use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\Category;
+use Acelle\Model\Subdomain;
 
 class QuoteController extends Controller
 {
@@ -13,10 +14,14 @@ class QuoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home($account)
     {
-        
-          return view('quoteRequest');
+          $subdomain = Subdomain::where('subdomain',$account)->first();
+          if($subdomain){
+            return view('quoteRequest');
+          }else{
+            return Redirect::to('www.quotebiz.io');
+          }
     }
 
     public function Index(){
