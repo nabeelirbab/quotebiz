@@ -16,8 +16,9 @@ class ValidDomain
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next,$account)
+    public function handle(Request $request, Closure $next)
     {
+        dd($request->getHost());
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');
