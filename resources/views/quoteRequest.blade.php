@@ -246,16 +246,16 @@ p.form-para::after{
 	@if(Auth::user())
 	 @if(Auth::user()->user_type == 'client')
 	 @elseif(Auth::user()->user_type == 'admin')
-	 <div class="floatright p-2 mt-3">
+	 <div class="floatright mt-4">
 	 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
 	 </div>
 	 @else
-	 <div class="floatright p-2 mt-3">
+	 <div class="floatright mt-4">
 	 <a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business </a>
 	 </div>
 	 @endif
 	@else
-	<div class="floatright p-2 mt-3">
+	<div class="floatright mt-4">
 	<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>	<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 	</div>
 	@endif
