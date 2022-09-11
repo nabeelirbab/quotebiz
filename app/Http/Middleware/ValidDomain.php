@@ -24,5 +24,6 @@ class ValidDomain
           if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');
           }
+           return $next($request);
     }
 }
