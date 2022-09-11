@@ -240,7 +240,7 @@ p.form-para::after{
 </head>
 <body class="dogcFe" style="min-height: 100%;">
 	
-<div class="container-fluid" style="height: 100vh;width: 99%;">
+<div class="container-fluid" style="height: 100vh;width: 99.5%;">
 	<div class="siteLogo">
 		<img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}">
 	</div>
