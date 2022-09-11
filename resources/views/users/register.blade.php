@@ -19,7 +19,6 @@
 </style>
 @section('content')
   
-    
     <form enctype="multipart/form-data" action="{{ url('users/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
         <input type="hidden" name="invite" value="{{Request::get('invite')}}">
@@ -27,12 +26,10 @@
             <div class="col-md-2"></div>
             <div class="col-md-2 text-end mt-60">
                 <a class="main-logo-big" href="{{ url('/') }}">
-                    
-                        <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" alt="">
+                    <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" alt="">
                 </a>
             </div>
             <div class="col-md-5">
-                
                 <h1 class="mb-20">{{ trans('messages.create_your_account') }}</h1>
                 <p>{!! trans('messages.register.intro', [
                     'login' => url("users/login"),
@@ -55,7 +52,6 @@
                          @endforeach
                      </select>
                   </div>
-                 
                   <div id="appendbox">
                       
                   </div>

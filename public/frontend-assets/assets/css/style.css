@@ -47,7 +47,7 @@
 .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
     display: block;
     width: 100%;
-    height: calc(2.125rem + 10px) !important;
+    height: calc(2.9rem + 2px) !important;
     padding: 0.4375rem 1rem;
     font-size: 0.8125rem;
     font-weight: 400;
