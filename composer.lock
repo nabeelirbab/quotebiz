@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b43f2afc97234f12d518187a276e8c60",
+    "content-hash": "40870e74064843c205330617fc111b83",
     "packages": [
         {
             "name": "acelle/cashier",

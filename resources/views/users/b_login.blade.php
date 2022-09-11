@@ -75,9 +75,7 @@ $subdomain= request("account");
             login
             </span></button>
     </div>
- 
-   
-        <div class="text-center mt-4 text-white small">
+         <div class="text-center mt-4 text-white small">
             Need an {{\Acelle\Model\Setting::get("site_name") }} account? <a href="{{url('users/register')}}" class="text-info">Create an account</a>
            
         </div>

@@ -102,7 +102,7 @@
         </div><!-- .nk-tb-item -->
            <div id="mySidepanel{{$quote->id}}" class="sidepanel" style="height: 100%;">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$quote->id}}')">×</a>
-                    <div class="preview-block" style="padding: 24px;">
+                    <div class="preview-block" style="padding: 0px;">
                         <div class="row">
                         <h5>{{$quote->category->category_name}} :</h5>
                         <br>
