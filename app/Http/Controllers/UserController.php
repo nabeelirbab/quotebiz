@@ -240,11 +240,7 @@ class UserController extends Controller
         $user = new User();
         
         if ($request->isMethod('post')) {
-          // dd(json_encode($request->input('category_id')));
-               $subdomain = Subdomain::where('subdomain',$request->subdomain)->first();
-                 if(!$subdomain){
-                  return Redirect::back()->withErrors(['msg' => 'Subdomain not register']);
-                 }
+         
                $user->fill($request->all());
             
                 $rules = $user->registerRules2();
