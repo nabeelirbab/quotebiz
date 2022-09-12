@@ -283,7 +283,7 @@ p.form-para::after{
 					<div class="col-md-6">
 					<div class="form-group">
 					 <label class="form-control-placeholder" for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
-					 <input type="text" class="form-control" name="category_name" id="search" placeholder="eg DJ, Cleaner, Plumber etc" required>
+					 <input type="text" class="form-control" name="category_name" id="search" placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc" required>
 					  <ul class="list-group" id="result">
 				        
 				    </ul>
@@ -295,17 +295,13 @@ p.form-para::after{
 					 <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Post Code" required>
 					  </div>
 					</div>
-
 					<div class="col-md-5">
 						<div class="form-group mt-3"><button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px" >{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i class="fa fa-arrow-right"></i></span></button></div>
 					</div>
-					 
 					</div>
-
 					 <p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}", you consent to the {{$sitename}} storing the information submitted on this page so you can get most up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a></p>
 				</form>
 			</div>
-			
 			<!-- Terms Modal -->
 			<div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			  <div class="modal-dialog modal-lg" role="document">
