@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label class="form-label" >Credit</label>
+                            <label class="form-label" >Credits</label>
                             <div class="form-control-wrap">
                                 <input type="number" class="form-control" name="credit"  value="{{$creadit->credit}}" placeholder="Enter Credit" required>
                             </div>
@@ -227,7 +227,7 @@
             </div> 
             <div class="col-sm-10">
                 <div class="form-group">
-                    <label class="form-label" >Credit</label>
+                    <label class="form-label" >Credits</label>
                     <div class="form-control-wrap">
                         <input type="number" class="form-control" name="credit" placeholder="Enter Credit" required>
                     </div>

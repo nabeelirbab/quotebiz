@@ -19,12 +19,10 @@ class HelperJob extends Base
 {
     
     public static function supercategories(){
-    	// dd(Category::orderBy('category_name','desc')->get());
         return Category::where('cat_parent','0')->orderBy('category_name','desc')->get();
     }
 
     public static function categories(){
-        // dd(Category::orderBy('category_name','desc')->get());
        $category =  Category::where('subdomain','=',request('account'))->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
        if(count($category)){
           return $category;
@@ -35,19 +33,16 @@ class HelperJob extends Base
     }
 
     public static function mycategories(){
-        // dd(Category::orderBy('category_name','desc')->get());
        $category =  Category::where('subdomain','=',request('account'))->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
           return $category;
     }
 
     public static function mysubcategories($id){
-        // dd(Category::orderBy('category_name','desc')->get());
        $category =  Category::where('cat_parent_id','=',$id)->orderBy('category_name','desc')->get();
           return $category;
     }
 
     public static function categoryDetail($id){
-        // dd(Category::orderBy('category_name','desc')->get());
        $category =  Category::where('id','=',$id)->first();
           return $category;
     }
@@ -143,6 +138,10 @@ class HelperJob extends Base
     }
 
     public static function site_setting(){
-     return  SiteSetting::where('subdomain',request('account'))->first();
+      return  SiteSetting::where('subdomain',request('account'))->first();
+    }
+
+    public static function categoryname(){
+      return  User::where('subdomain',request('account'))->where('user_type','admin')->first()->category_id;
     }
 }

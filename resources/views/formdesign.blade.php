@@ -35,13 +35,14 @@
                     <p>Form deisgn for quote page</p>
                 </div>
             </div><!-- .nk-block-head-content -->
-           
+           <div class="nk-block-head-content">
+           <a href="{{ url('/')}}" target="_blank" class="btn btn-primary" ><span>Preview Design</span></a>
+        </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->
     <div class="card card-preview">
         <div class="card-inner">
             <div class="preview-block">
-                
                 <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
                  <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
@@ -136,14 +137,28 @@
                             </label>
                             </div>
                         </div>
-                        <div class="form-group" id="agentno">
+                        <div class="row mb-3" id="businessno">
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
                             @if($formdesign && $formdesign->no_status == '1')
                             <label class="form-label" for="default-01">Business No</label>
+                            <div class="form-control-wrap">
+                            <input type="text" class="form-control" @if($formdesign && $formdesign->business_no) value="{{$formdesign->business_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="business_no" id="default-01" required>
+                            </div>
+                            @endif
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            @if($formdesign && $formdesign->no_status == '1')
+                            <label class="form-label" for="default-01">Agent No</label>
                             <div class="form-control-wrap">
                             <input type="text" class="form-control" @if($formdesign && $formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" required>
                             </div>
                             @endif
                         </div>
+                      </div>
+                    </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Terms & Conditions</label>
                             <div class="form-control-wrap">
@@ -171,7 +186,7 @@
                         </div>
                     </div>
                    <div class="col-sm-4 d-none d-sm-block">
-                    <p><b>Follow this image for guidence to fill form</b><a class="fs-5 btn btn-sm btn-success float-right" href="{{ url('/')}}" target="_blank">Preview Design</a></p>
+                    <p><b>Follow this image for guidence to fill form</b></p>
 
                     <a class="modal-button" data-target="#modal">
                        <img src="{{asset('frontend-assets/images/demo.png')}}" style="border: 1px solid #253a463b;padding: 9px;border-radius: 6px;">
@@ -228,17 +243,29 @@
   };
   $("input[name$='no_status']").click(function() {
         var val = $(this).val();
-        var html =  '<label class="form-label" for="default-01">Business No</label>'+
+        var html = '<div class="col-md-6 col-sm-6">'+
+                        '<div class="form-group">'+
+                          '<label class="form-label" for="default-01">Business No</label>'+
+                          '<div class="form-control-wrap">'+
+                          '<input type="text" class="form-control" @if($formdesign && $formdesign->business_no) value="{{$formdesign->business_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="business_no" id="default-01" placeholder="Enter business phone number" required>'+
+                         '</div>'+
+                        '</div>'+
+                      '</div>'+
+                      '<div class="col-md-6 col-sm-6">'+
+                      '<div class="form-group">'+
+                     '<label class="form-label" for="default-01">Agent No</label>'+
                     '<div class="form-control-wrap">'+
-                    '<input type="text" class="form-control" @if($formdesign && $formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" placeholder="Enter business phone number" required>'+
-                            '</div>';
+                    '<input type="text" class="form-control" @if($formdesign && $formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" placeholder="Enter agent phone number" required>'+
+                      '</div>'+
+                     '</div>'+
+                    '</div>';
 
                if(val == 0){
-               $('#agentno').hide();
+               $('#businessno').hide();
                 // $('#agentno').empty();
                }else{
-                $('#agentno').show();
-                $('#agentno').html(html);
+                $('#businessno').show();
+                $('#businessno').html(html);
                }            
     });
 </script>
