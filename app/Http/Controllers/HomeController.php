@@ -139,6 +139,9 @@ class HomeController extends Controller
           if($request->file('site_largelogo')){
               $sitesetting->site_logo_big = $this->fileUpload($request->file('site_largelogo'),false);
           }
+          if($request->file('site_logo_dark')){
+              $sitesetting->site_logo_dark = $this->fileUpload($request->file('site_logo_dark'),false);
+          }
           if($request->file('site_favicon')){
               $sitesetting->site_favicon = $this->fileUpload($request->file('site_favicon'),false);
           }
@@ -156,6 +159,9 @@ class HomeController extends Controller
           }
           if($request->file('site_largelogo')){
               $sitesetting->site_logo_big = $this->fileUpload($request->file('site_largelogo'),false);
+          }
+          if($request->file('site_logo_dark')){
+              $sitesetting->site_logo_dark = $this->fileUpload($request->file('site_logo_dark'),false);
           }
           if($request->file('site_favicon')){
               $sitesetting->site_favicon = $this->fileUpload($request->file('site_favicon'),false);

@@ -31,6 +31,14 @@
       </button>
     </div>
  @endif
+ @if(Session::has('danger'))
+     <div class="alert alert-danger  fade show mt-5" role="alert">
+      <strong>Payment decline!</strong> {{Session::get('danger')}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+ @endif
 <div class="up-card pt-0 pb-0 maincard mt-5 mb-3">
 
           <header class="up-card-header cardheader">

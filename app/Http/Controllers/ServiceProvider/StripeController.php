@@ -47,6 +47,11 @@ class StripeController extends Controller
       $currencyConvert1 = \Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
       $currencyConvert = \Acelle\Jobs\HelperJob::convertusd(number_format($currencyConvert1['convert'], 2));
     	// dd((int)$creadit->amount * 100);
+      if(((int)number_format($currencyConvert['convert'], 2) * 100) < 100){
+          Session::flash('danger', 'Amount must be grater then 1$');
+          return redirect('service-provider/buy-creadits');
+      }
+      
     	$stripeData = StripeKey::where('subdomain',request('account'))->first();
         Stripe\Stripe::setApiKey($stripeData->stripe_secret);
         $customer = \Stripe\Customer::create([

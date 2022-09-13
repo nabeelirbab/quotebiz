@@ -21,12 +21,13 @@ $sitesmalllogo = '';
 $sitelargelogo = '';
 $sitefavicon = '';
 
-    $sitename = \Acelle\Model\Setting::get("site_name");
-    $sitekeyword = \Acelle\Model\Setting::get("site_keyword");
-    $sitedesc = \Acelle\Model\Setting::get("site_description");
-    $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
-     $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
-     $sitefavicon = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
+$sitename = \Acelle\Model\Setting::get("site_name");
+$sitekeyword = \Acelle\Model\Setting::get("site_keyword");
+$sitedesc = \Acelle\Model\Setting::get("site_description");
+$sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
+$sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
+$sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
+$sitefavicon = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
 
  ?>
 
@@ -99,6 +100,21 @@ $sitefavicon = '';
                              </div>
                             </div>
                             
+                        </div>
+                      </div>
+                      <div class="col-sm-6  mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Site logo (dark) <span class="text-danger">*</span></label>
+                            <div class="row">
+                              <div class="col-sm-9">
+                                <div class="form-control-wrap">
+                                <input accept="image/*" type='file' id="imglarge" class="form-control"  name="site_logo_dark">
+                            </div>
+                              </div>
+                              <div class="col-md-3">
+                              <img style="background-color: #ccc " id="sitelarge" width="100%" src="{{$sitedarklogo}}">
+                             </div>
+                            </div>
                         </div>
                       </div>
                       <div class="col-sm-6  mb-4">
