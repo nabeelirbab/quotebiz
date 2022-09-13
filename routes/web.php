@@ -175,7 +175,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/login', function () {
         return view('service_provider.login');
     });
-    Route::get('/buy-creadits', function () {
+    Route::get('/buy-credits', function () {
         return view('service_provider.buyCreadits');
     });
 

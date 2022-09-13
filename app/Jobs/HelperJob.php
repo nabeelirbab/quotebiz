@@ -131,7 +131,7 @@ class HelperJob extends Base
         }
       $covert = Currency::convert()
         ->from($code)
-        ->to('USD')->amount($amount)->round(2)
+        ->to('USD')->amount((float) str_replace(',', '',$amount))->round(2)
         ->get();
           // dd(['convert' => $covert, 'currency' => $code]);
         return ['convert' => $covert, 'currency' => $code] ;

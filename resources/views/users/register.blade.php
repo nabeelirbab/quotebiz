@@ -26,7 +26,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-2 text-end mt-60">
                 <a class="main-logo-big" href="{{ url('/') }}">
-                    <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" alt="">
+                    <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark')) }}" alt="">
                 </a>
             </div>
             <div class="col-md-5">
