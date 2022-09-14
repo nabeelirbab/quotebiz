@@ -67,13 +67,13 @@ class CategoryController extends Controller
     {
 
        $category = new Category;
-       // if($request->file('category_icon')){
-       //      $image = $request->file('category_icon');
-       //      $new_image = time().$image->getClientOriginalName();
-       //      $destination = 'frontend-assets/images/categories';
-       //      $image->move(public_path($destination),$new_image);
-       //      $category->category_icon = $new_image;
-       // }
+       if($request->file('category_icon')){
+            $image = $request->file('category_icon');
+            $new_image = time().$image->getClientOriginalName();
+            $destination = 'frontend-assets/images/categories';
+            $image->move(public_path($destination),$new_image);
+            $category->category_icon = $new_image;
+       }
        $category->user_id = $request->user()->id;
        $category->category_name = $request->category_name;
        $category->cat_parent_id = $request->category_id;

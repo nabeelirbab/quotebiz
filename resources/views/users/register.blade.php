@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-5">
                 <h1 class="mb-20">{{ trans('messages.create_your_account') }}</h1>
-                <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.<a href="{{url("users/login")}}">Login</a></p>
+                <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.<a href="{{url("users/login")}}"> Login</a></p>
               @if($errors->any())
                 <div class="alert alert-danger alert-block" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button> 
