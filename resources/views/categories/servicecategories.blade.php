@@ -11,12 +11,30 @@
         .form-group:last-child {
             margin-bottom: 0px !important;
         }
+        .sub-categoryli{
+            box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
+            transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+            border: 1px solid;
+            color: #d5d5d5;
+            border-radius: 6px;
+            padding: 10px !important;
+            display: flex;
+            align-items: baseline;
+
+        }
+        .sub-category{
+            font-size: 1rem;
+            color: #252525;
+            padding-left:10px;
+        }
+        li.w-100.sub-categoryli.mt-1.mb-1:hover {
+            border-color: #d756ed;
+        }
     </style>
     @endsection
 
     @section('content')
-    <?php $arraycalss=['badge-primary','badge-danger','badge-success','badge-info','badge-warning','badge-danger','badge-primary','badge-default','badge-success','badge-info','badge-warning','badge-danger','badge-primary','badge-default','badge-success','badge-info','badge-warning','badge-danger'];
-
+    <?php $arraycalss=['bg-indigo','bg-teal','bg-orange','bg-red','bg-cyan','bg-pink','bg-purple','bg-blue','bg-yellow','bg-green']; 
     ?>
     <!-- content @s -->
     <div class="nk-content ">
@@ -60,7 +78,7 @@
     <div class="col-sm-6 col-lg-4 col-xxl-3">
     <div class="card h-100">
     <div class="card-inner">
-    <div class="d-flex justify-content-between align-items-start mb-3" style="border-bottom: 1px solid gainsboro;">
+    <div class="d-flex justify-content-between align-items-start mb-3">
     <a href="#"  data-toggle="modal" data-target="#modalEdit{{$category->id}}" class="d-flex align-items-center">
     @if($category->category_icon)
     <div class="" style="width: 60px"><img src="{{asset('frontend-assets/images/categories/'.$category->category_icon)}}">
@@ -87,6 +105,7 @@
     <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
     <div class="dropdown-menu dropdown-menu-right">
         <ul class="link-list-opt no-bdr">
+            <li><a href="#" onclick="selectVal({{$category->id}})"><em class="icon ni ni-edit"></em><span>Add Sub Category</span></a></li>
             <li><a href="#" data-toggle="modal" data-target="#modalEdit{{$category->id}}"><em class="icon ni ni-edit"></em><span>Edit Category</span></a></li>
             <li><a  href="{{url('admin/service-categories/delete/'.$category->id) }}" onclick="return confirm('Are you sure you want to delete this item?');"><em class="icon ni ni-delete"></em><span>Delete Category</span></a></li>
         </ul>
@@ -96,7 +115,24 @@
     <!-- <p>{{$category->category_description}}</p> -->
     <ul class="d-flex flex-wrap g-1">
     @foreach($category->subcategory as $key=>$subcategory)
-    <li data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}"><span class="badge badge-dim {{$arraycalss[$key]}}">{{$subcategory->category_name}}</span></li>
+    <li data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}" class="w-100 sub-categoryli mt-1 mb-1" style="padding: 10px !important;">
+   @if($subcategory->category_icon)
+   <div class="" style="width: 40px"><img src="{{asset('frontend-assets/images/categories/'.$subcategory->category_icon)}}">
+    </div>
+    @else
+    <div class="user-avatar sq {{$arraycalss[$key]}}"><span><?php $words = explode(' ', $subcategory->category_name);
+    if(count($words) > 1){
+     $result = $words[0][0]. $words[1][0];
+      echo $result;
+    }else
+    {
+    $result = $words[0][0];
+    echo $result;
+    }
+      ?></span></div>
+
+    @endif
+    <span class="sub-category badge-dim ">{{$subcategory->category_name}}</span></li>
     <div class="modal fade zoom" tabindex="-1" id="modalsubEdit{{$subcategory->id}}">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -129,7 +165,17 @@
             </div>
         </div>
     </div>
-       
+        <div class="col-sm-10">
+        <div class="form-group">
+            <label class="form-label" for="default-06">Category Icon</label>
+            <div class="form-control-wrap">
+                <div class="custom-file">
+                    <input type="file" name="category_icon" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-sm-10">
         <div class="form-group">
             <label class="form-label" for="default-01">Credits Cost to Quote</label>
@@ -199,7 +245,6 @@
                 </div>
             </div>
         </div>
-       
     </div>
 
      <div class="col-sm-10">
@@ -304,8 +349,8 @@
     <div class="form-group">
     <label class="form-label" for="default-01">Select Category</label>
     <div class="form-control-wrap">
-    <select class="form-control" name="category_id" required>
-    <option value="" selected>Select Category</option>
+    <select class="form-control" id="dropdownid" name="category_id" required>
+    <option value="">Select Category</option>
     @foreach(Acelle\Jobs\HelperJob::mycategories() as $category)
     <option value="{{$category->id}}">{{$category->category_name}}</option>
     @endforeach
@@ -329,12 +374,24 @@
     </div>
     </div>
     </div>
+       <div class="col-sm-10">
+        <div class="form-group">
+            <label class="form-label" for="default-06">Category Icon</label>
+            <div class="form-control-wrap">
+                <div class="custom-file">
+                    <input type="file" name="category_icon" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+        </div>
+       
+    </div>
 
     <div class="col-sm-10">
     <div class="form-group">
     <label class="form-label" for="default-01">Credits Cost to Quote</label>
     <div class="form-control-wrap">
-    <input type="text" class="form-control" name="credit_cost" id="default-01" placeholder="Credits Cost to Quote" >
+    <input type="text" class="form-control" value="{{( isset(Acelle\Jobs\HelperJob::quoteprice()->price) ? : '10')}}" name="credit_cost" id="default-01" placeholder="Credits Cost to Quote" >
     </div>
     </div>
     </div>
@@ -362,7 +419,10 @@
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 
     <script>
-
+    function selectVal(id){
+     $('#dropdownid').val(id);
+      opensubcategory();
+    }
     function openNav() {
     // document.getElementById("mySidepanel").style.width = "35%";
     $('.toggle-expand').removeClass('active');
