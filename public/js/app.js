@@ -2170,7 +2170,9 @@ __webpack_require__.r(__webpack_exports__);
       categoriesData: [],
       subCategories: [],
       subCategoriesHtml: false,
-      hostname: ''
+      hostname: '',
+      noData: false,
+      noDataMsg: ''
     };
   },
   methods: {
@@ -2193,7 +2195,14 @@ __webpack_require__.r(__webpack_exports__);
       var id = event.target.value;
       axios.get('admin/questions/subcategories/' + id).then(function (response) {
         console.log(response.data);
-        _this2.categoriesData = response.data;
+
+        if (response.data[0].subquestions.length < 1) {
+          _this2.noData = true;
+          _this2.noDataMsg = 'This sub category does not have any questions';
+        } else {
+          _this2.noData = false;
+          _this2.categoriesData = response.data;
+        }
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -3769,13 +3778,17 @@ var render = function render() {
     attrs: {
       value: "0"
     }
-  }, [_vm._v("Select Category")]), _vm._v(" "), _vm._l(_vm.subCategories, function (category) {
+  }, [_vm._v("Select Sub Category")]), _vm._v(" "), _vm._l(_vm.subCategories, function (category) {
     return _c("option", {
       domProps: {
         value: category.id
       }
     }, [_vm._v(_vm._s(category.category_name))]);
-  })], 2)]) : _vm._e()])]), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), _c("div", {
+  })], 2)]) : _vm._e(), _vm._v(" "), _vm.noData ? _c("div", {
+    staticClass: "form-wrap"
+  }, [_c("p", {
+    staticClass: "text-bold text-warning"
+  }, [_vm._v(_vm._s(_vm.noDataMsg))])]) : _vm._e()])]), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), _c("div", {
     attrs: {
       id: "appendQuestion"
     }

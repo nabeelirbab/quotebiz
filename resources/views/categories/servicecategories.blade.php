@@ -19,7 +19,7 @@
             border-radius: 6px;
             padding: 10px !important;
             display: flex;
-            align-items: baseline;
+            align-items: center;
 
         }
         .sub-category{
@@ -27,14 +27,21 @@
             color: #252525;
             padding-left:10px;
         }
+        ul.d-flex.flex-wrap.g-1 {
+            max-height: 230px;
+            overflow: auto;
+        }
         li.w-100.sub-categoryli.mt-1.mb-1:hover {
             border-color: #d756ed;
+        }
+        .user-avatar.sq.bg-purple:hover {
+            border: 1px solid purple;
         }
     </style>
     @endsection
 
     @section('content')
-    <?php $arraycalss=['bg-indigo','bg-teal','bg-orange','bg-red','bg-cyan','bg-pink','bg-purple','bg-blue','bg-yellow','bg-green']; 
+    <?php $arraycalss=['bg-blue','bg-purple','bg-indigo','bg-pink','bg-red','bg-orange','bg-yellow','bg-green','bg-teal','bg-cyan']; 
     ?>
     <!-- content @s -->
     <div class="nk-content ">

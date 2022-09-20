@@ -40,9 +40,12 @@
                 </div>
                 <div v-if="subCategoriesHtml" class="form-wrap" style="width: 300px;">
                 <select class="form-select" data-search="off" @change="subcategoriesbyid($event)" data-placeholder="Bulk Action" style="opacity: 1">
-                    <option value="0">Select Category</option>
+                    <option value="0">Select Sub Category</option>
                     <option v-for="category in subCategories" :value="category.id">{{category.category_name}}</option>
                 </select>
+                </div>
+                <div v-if="noData" class="form-wrap">
+                    <p class="text-bold text-warning">{{noDataMsg}}</p>
                 </div>
                 </div><!-- .form-inline -->
                 </div><!-- .card-tools -->
@@ -118,9 +121,7 @@
                                                 <ul class="link-list-opt no-bdr">
                                                     <li><a href="#" data-toggle="modal" :data-target="'#modalZoom'+question.id"><em class="icon ni ni-eye"></em><span>View Options</span></a></li>
                                                     <li><a :href="hostname+'/admin/questions/add-question?category_id='+question.category_id+'&sub_category_id='+question.subcategory_id"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
-                                                   
                                                     <li class="divider"></li>
-                                                   
                                                     <li><a :href="hostname+'/admin/questions/deletequestion/'+question.id"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                                 </ul>
                                             </div>
@@ -315,6 +316,8 @@ data() {
       subCategories: [],
       subCategoriesHtml : false,
       hostname: '',
+      noData: false,
+      noDataMsg:''
         };
 },
 
@@ -338,7 +341,14 @@ methods: {
            axios.get('admin/questions/subcategories/'+id)
             .then((response) => {
               console.log(response.data);
-             this.categoriesData = response.data;
+              if(response.data[0].subquestions.length < 1){
+                 this.noData = true;
+                 this.noDataMsg = 'This sub category does not have any questions';
+              }
+              else{
+                this.noData = false;
+                this.categoriesData = response.data;
+              }
            
             })
             .catch((error) => console.log(error));

@@ -126,24 +126,38 @@
                         </div>
                        </div>
                    </div>
-                         <div class="form-group">
-                            <label class="form-label" for="default-01">Business Number Visibility</label>
-                            <div class="form-control-wrap">
-                             <label>
-                              <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
-                            </label>
-                            <label >
-                              <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
-                            </label>
-                            </div>
+                     <div class="form-group">
+                        <label class="form-label" for="default-01">Business Number Visibility</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
+                        </label>
+                        <label >
+                          <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
+                        </label>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="form-label" for="default-01">Box Position</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} checked> Left
+                        </label>
+                         <label>
+                          <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
+                        </label>
+                        <label >
+                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
+                        </label>
+                        </div>
                         </div>
                         <div class="row mb-3" id="businessno">
                         <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             @if($formdesign && $formdesign->no_status == '1')
-                            <label class="form-label" for="default-01">Business No</label>
+                            <label class="form-label" for="default-01">Support CTA Text</label>
                             <div class="form-control-wrap">
-                            <input type="text" class="form-control" @if($formdesign && $formdesign->business_no) value="{{$formdesign->business_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="business_no" id="default-01" required>
+                            <input type="text" class="form-control" placeholder="Enter business phone number" @if($formdesign && $formdesign->business_no) value="{{$formdesign->business_no}}" @else value="Want to speak with an agent?" @endif name="business_no" required>
                             </div>
                             @endif
                         </div>
@@ -151,7 +165,7 @@
                       <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             @if($formdesign && $formdesign->no_status == '1')
-                            <label class="form-label" for="default-01">Agent No</label>
+                            <label class="form-label" for="default-01">Support Phone</label>
                             <div class="form-control-wrap">
                             <input type="text" class="form-control" @if($formdesign && $formdesign->agent_no) value="{{$formdesign->agent_no}}" @else value="{{Auth::user()->customer->getContact()->phone}}" @endif name="agent_no" id="default-01" required>
                             </div>
