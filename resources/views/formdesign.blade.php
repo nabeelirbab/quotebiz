@@ -138,7 +138,7 @@
                         </div>
                         </div>
                         <div class="form-group">
-                        <label class="form-label" for="default-01">Box Position</label>
+                        <label class="form-label" for="default-01">Quote Box Position</label>
                         <div class="form-control-wrap">
                          <label>
                           <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} checked> Left
