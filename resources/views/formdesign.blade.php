@@ -141,13 +141,13 @@
                         <label class="form-label" for="default-01">Quote Box Position</label>
                         <div class="form-control-wrap">
                          <label>
-                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} checked> Left
+                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} > Left
                         </label>
                          <label>
                           <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
                         </label>
                         <label >
-                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
+                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off" checked> Right
                         </label>
                         </div>
                         </div>
