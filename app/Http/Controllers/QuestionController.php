@@ -54,8 +54,7 @@ class QuestionController extends Controller
             $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->orderBy('category_name','desc')->get();
         }
         else{
-           $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
-       
+            $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
         }
 
         $subcategories = json_decode($subcategories);

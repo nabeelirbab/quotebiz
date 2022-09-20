@@ -484,6 +484,8 @@ public function adminregister(Request $request)
            $job_design->login_color = $request->login_color;
            $job_design->button_text_color = $request->button_text_color;
            $job_design->agent_no = $request->agent_no;
+           $job_design->position = $request->position;
+           $job_design->business_no = $request->business_no;
            $job_design->no_status = $request->no_status;
            $job_design->terms = $request->terms;
            $job_design->privacy_policy = $request->privacy_policy;
