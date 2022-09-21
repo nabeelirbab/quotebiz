@@ -43,7 +43,7 @@
                 </div>
                 </div>
                 
-                <div class="col-xs-6 col-md-2" style="padding-right: 0;"><span title="Remove Question" class=" removeQuestions material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;color: #44e8bc;">remove_circle</span><input type="hidden" name="question_id[{{$key}}]" value="">
+                <div class="col-xs-6 col-md-2" style="padding-right: 0;"><span title="Remove Question" class=" removeQuestions material-icons-round remove-icon xtooltip tooltipstered lh-1 float-end fs-1" style="cursor: pointer;">remove_circle</span><input type="hidden" name="question_id[{{$key}}]" value="">
                 </div> 
                </div>
                 <div class="row">
