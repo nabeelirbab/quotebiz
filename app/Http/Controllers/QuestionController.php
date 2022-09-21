@@ -191,16 +191,16 @@ class QuestionController extends Controller
                         $questionsub->save();
 
                     if($questionsub->choice_selection != 'input' && $questionsub->choice_selection != 'datepicker' && isset($choices[$key])){
-                      foreach ($choices[$key] as $key1 => $value) {
+                      foreach ($choices[$key] as $key3 => $value2) {
 
                             $question_choice = new QuestionChoice;
                             $question_choice->question_id = $questionsub->id;
                             $question_choice->category_id = $request->category_id;
                             $question_choice->user_id = $request->user()->id;
-                            $question_choice->choice= $value;
+                            $question_choice->choice= $value2;
 
-                            if(isset($choice_icon[$key][$key1])){
-                                $image = $choice_icon[$key][$key1];
+                            if(isset($choice_icon[$key][$key3])){
+                                $image = $choice_icon[$key][$key3];
                                 $new_image = time().$image->getClientOriginalName();
                                 $destination = 'frontend-assets/images/categories';
                                 $image->move(public_path($destination),$new_image);
