@@ -92,129 +92,49 @@ class QuestionController extends Controller
         $choices = $request->choice;
         $choice_icon = $request->choice_icon;
         // dd($choice_icon[0][1]);
-       $sub_categories = Category::where('cat_parent_id',$request->category_id)->get();
         if(isset($request->check)){
         foreach ($request->check as $key => $que) {
 
             if($request->question_id[$key] == null){
-              
-                $question = new Question;
 
-                $question->category_id = $request->category_id;
-                $question->subcategory_id = $request->sub_category_id;
-                $question->user_id = $request->user()->id;
-                $question->choice_selection = $que;
-                $question->parent = '1';
-                $question->subdomain = request('account');
-                $question->question = $request->question[$key];
-                $question->save();
+            $question = new Question;
 
-            if($question->choice_selection != 'input' && $question->choice_selection != 'datepicker' && isset($choices[$key])){
-              foreach ($choices[$key] as $key1 => $value) {
+            $question->category_id = $request->category_id;
+            $question->subcategory_id = $request->sub_category_id;
+            $question->user_id = $request->user()->id;
+            $question->choice_selection = $que;
+            $question->parent = '1';
+            $question->subdomain = request('account');
+            $question->question = $request->question[$key];
+            $question->save();
 
+        if($question->choice_selection != 'input' && $question->choice_selection != 'datepicker' && isset($choices[$key])){
+          foreach ($choices[$key] as $key1 => $value) {
+
+            
+                $question_choice = new QuestionChoice;
+
+                $question_choice->question_id = $question->id;
+                $question_choice->category_id = $request->category_id;
+                $question_choice->user_id = $request->user()->id;
+                $question_choice->choice= $value;
+
+                if(isset($choice_icon[$key][$key1])){
+                    $image = $choice_icon[$key][$key1];
+                    $new_image = time().$image->getClientOriginalName();
+                    $destination = 'frontend-assets/images/categories';
+                    $image->move(public_path($destination),$new_image);
+                    $question_choice->icon = $new_image; 
+                }
                 
-                    $question_choice = new QuestionChoice;
-
-                    $question_choice->question_id = $question->id;
-                    $question_choice->category_id = $request->category_id;
-                    $question_choice->user_id = $request->user()->id;
-                    $question_choice->choice= $value;
-
-                    if(isset($choice_icon[$key][$key1])){
-                        $image = $choice_icon[$key][$key1];
-                        $new_image = time().$image->getClientOriginalName();
-                        $destination = 'frontend-assets/images/categories';
-                        $image->move(public_path($destination),$new_image);
-                        $question_choice->icon = $new_image; 
-                    }
-                    
-                    $question_choice->save();
-                }
+                $question_choice->save();
+            }
 
 
-                }
-             
-                foreach ($sub_categories as $sub_cat) {
-                    // dd(Question::where('subcategory_id', $sub_cat->id)->exists());
-                    if(!Question::where('subcategory_id', $sub_cat->id)->exists()){
-
-                        $questionsub = new Question;
-                        $questionsub->category_id = $request->category_id;
-                        $questionsub->subcategory_id = $sub_cat->id;
-                        $questionsub->user_id = $request->user()->id;
-                        $questionsub->choice_selection = $que;
-                        $questionsub->parent = '1';
-                        $questionsub->subdomain = request('account');
-                        $questionsub->question = $request->question[$key];
-                        $questionsub->save();
-
-                    if($questionsub->choice_selection != 'input' && $questionsub->choice_selection != 'datepicker' && isset($choices[$key])){
-                      foreach ($choices[$key] as $key1 => $value) {
-
-                            $question_choice = new QuestionChoice;
-                            $question_choice->question_id = $questionsub->id;
-                            $question_choice->category_id = $request->category_id;
-                            $question_choice->user_id = $request->user()->id;
-                            $question_choice->choice= $value;
-
-                            if(isset($choice_icon[$key][$key1])){
-                                $image = $choice_icon[$key][$key1];
-                                $new_image = time().$image->getClientOriginalName();
-                                $destination = 'frontend-assets/images/categories';
-                                $image->move(public_path($destination),$new_image);
-                                $question_choice->icon = $new_image; 
-                            }
-                            
-                            $question_choice->save();
-                          }
-
-
-                        }
-
-                    }
-                }
+            }
 
             }else{
 
-                foreach ($sub_categories as $sub_cat) {
-                    // dd(Question::where('subcategory_id', $sub_cat->id)->exists());
-                    if(!Question::where('subcategory_id', $sub_cat->id)->exists()){
-
-                        $questionsub = new Question;
-                        $questionsub->category_id = $request->category_id;
-                        $questionsub->subcategory_id = $sub_cat->id;
-                        $questionsub->user_id = $request->user()->id;
-                        $questionsub->choice_selection = $que;
-                        $questionsub->parent = '1';
-                        $questionsub->subdomain = request('account');
-                        $questionsub->question = $request->question[$key];
-                        $questionsub->save();
-
-                    if($questionsub->choice_selection != 'input' && $questionsub->choice_selection != 'datepicker' && isset($choices[$key])){
-                      foreach ($choices[$key] as $key3 => $value2) {
-
-                            $question_choice = new QuestionChoice;
-                            $question_choice->question_id = $questionsub->id;
-                            $question_choice->category_id = $request->category_id;
-                            $question_choice->user_id = $request->user()->id;
-                            $question_choice->choice= $value2;
-
-                            if(isset($choice_icon[$key][$key3])){
-                                $image = $choice_icon[$key][$key3];
-                                $new_image = time().$image->getClientOriginalName();
-                                $destination = 'frontend-assets/images/categories';
-                                $image->move(public_path($destination),$new_image);
-                                $question_choice->icon = $new_image; 
-                            }
-                            
-                            $question_choice->save();
-                          }
-
-
-                        }
-
-                    }
-                }
              $question = Question::find($request->question_id[$key]);
 
             $question->category_id = $request->category_id;
@@ -290,10 +210,15 @@ class QuestionController extends Controller
        $category_id = '';
        $questions = Question::with('choices')->where('subcategory_id',$id)->get();
        $catDate = Category::where('id',$id)->first();
+       $subcategory_id = $id;
        if($catDate){
           $category_id = $catDate->cat_parent_id;
+          if(count($questions) < 1){
+             $questions = Question::with('choices')->where('category_id',$category_id)->where('subcategory_id',0)->get();
+             return view('questions.maintosubquestionappend',compact('questions','category_id','subcategory_id'));
+          }
        }
-       $subcategory_id = $id;
+       
        return view('questions.subquestionappend',compact('questions','category_id','subcategory_id'));
     }
     public function deletequestion($account,$id){
