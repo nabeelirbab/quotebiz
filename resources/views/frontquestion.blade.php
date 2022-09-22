@@ -221,6 +221,12 @@
  .font-class{
  	font-size: 13px;
  }
+ label img{
+    vertical-align: middle;
+    max-height: 140px !important;
+    max-width: 140px !important;
+
+ }
 }
 .swyft-box-shadow-down {
     box-shadow: 0 6px 6px 0 rgb(0 0 0 / 16%);
