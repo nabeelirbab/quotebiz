@@ -19,7 +19,7 @@ Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']],
     Auth::routes();
 
     Route::get('/login/token/{token}', 'Controller@tokenLogin');
-    Route::match(['get', 'post'],'questionnaire', 'QuestionChoiceController@index');
+    Route::match(['get', 'post'],'quote-form', 'QuestionChoiceController@index');
     Route::post('category-search', 'QuoteController@category_search');
     Route::post('storeform', 'QuestionChoiceController@storeform');
     Route::post('checkEmail', 'QuestionChoiceController@checkEmail');

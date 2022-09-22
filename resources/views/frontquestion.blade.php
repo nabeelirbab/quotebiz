@@ -1,7 +1,7 @@
 <?php
 	if(!$zipcode || !$category){
 // dd($category);
-		$url = url('get-quote');
+		$url = url('/');
 		 header("Location: ".$url);
 		die();
 	}
@@ -12,6 +12,10 @@
         }else{
            $questions = $category->subquestions;
         }
+
+	   $sitename = \Acelle\Model\Setting::get("site_name");
+	   $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
+
      // dd($questions);
 ?>
 <!DOCTYPE html>
@@ -61,8 +65,8 @@
     width: 180px;
     letter-spacing: 1.3px;
     align-items: center;
-    background: #e4bd37;
-    font-family: "Muli-Bold";
+    background: rgb(128 57 242);
+    font-family: "Open-Sans";
     cursor: pointer;
     position: relative;
     padding-left: 34px;
@@ -121,8 +125,8 @@
 		  height: 100%;
 		  display: block;
 		  background: white;
-		  border-radius: 20px;
-		  padding: 1rem;
+		  border-radius: 15px;
+		  /*padding: 1rem;*/
 		  color: black;
 		  margin-bottom: 1rem;
 		  //margin: 1rem;
@@ -212,11 +216,27 @@
   .mainclass > div {
     flex: 1;
     padding: 0.5rem;
-    max-width: 50%;
+    max-width: 100% !important;
+ }
+ .font-class{
+ 	font-size: 13px;
+ }
 }
+.swyft-box-shadow-down {
+    box-shadow: 0 6px 6px 0 rgb(0 0 0 / 16%);
+    z-index: 100;
+}
+.jss3 {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
 }
 .dogcFe {
-	background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) center bottom / cover no-repeat rgb(238, 238, 238);
+	/*background: white*/
+	/*background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) center bottom / cover no-repeat rgb(238, 238, 238);*/
 	
 }
 /*.actions ul li:nth-child(2) {
@@ -225,15 +245,13 @@
 		</style>
 	</head>
 	<body class="dogcFe">
-<?php
-// dd(Acelle\Model\Language::getSelectOptions()[0]);
-?>
+		<div class="MuiBox-root jss3 swyft-box-shadow-down"><a href="{{url('/')}}" target="_blank" rel="noreferrer" style="height: 70%;"><img src="{{$sitesmalllogo}}" alt="Logo" style="height: 100%;max-width: 100%"></a></div>
 		<div class="wrapper">
-			
+		
             <form action="{{ url('storeform') }}" method="post" id="form">
             	 {{ csrf_field() }}
             	<div class="form-header">
-            		<a href="#" style="margin-bottom: 20px;font-size: 20px">#{{$category->category_name}} Quote Questions</a>
+            		
             		<input type="hidden" name="category_id" value="{{$category->id}}">
             		<input type="hidden" name="zip_code" value="{{$zipcode}}">
             		<input type="hidden" name="admin_id" value="{{request('account')}}">
@@ -255,7 +273,7 @@
 	                <h4></h4>
 	                <section>
 	                <h3 style="text-align: center;color: black">{{$question->question}}</h3>
-	                	<div class="mainclass justify-content-center">
+	                	<div class="mainclass justify-content-center" style="padding-bottom: 48px">
 		                @if($question->choice_selection == "single")		
 	                     @foreach($question->choices as $key => $choices)
 		                  <div>
@@ -263,12 +281,12 @@
 						  <input type="radio" id="control_0{{$choices->id}}" name="option[{{$question->id}}]" value="{{$choices->choice }}" @if($key == 0) checked @endif>
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
-                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" style="height: 185px;">
+                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
 						  	@else
                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
 						  	
-						    <h2>{{$choices->choice}}</h2>
+						    <h2 style="padding-top: 10px" class="font-class">{{$choices->choice}}</h2>
 						   
 						  </label>
 						</div>
@@ -279,11 +297,11 @@
 						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}" @if($key == 0) checked @endif>
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
-                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" style="height: 185px;">
+                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
 						  	@else
                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
-						    <h2>{{$choices->choice}}</h2>
+						    <h2 style="padding-top: 10px" class="font-class">{{$choices->choice}}</h2>
 						   
 						  </label>
 						</div>
@@ -315,7 +333,7 @@
                  <h4></h4>
 	                <section>
 	                	<h3 style="text-align: center;color: black">Additional Information</h3>
-	                	<div class="row">
+	                	<div class="row" style="padding: 0 20px;">
 	                		
 	                    <div class="form-row col-md-12">
 	                    	
@@ -333,7 +351,7 @@
 	                <h4></h4>
 	                <section>
 	                	<h3 style="text-align: center;color: black">Alright, let's get your details and create your tailored online estimate!</h3>
-	                	<div class="row">
+	                	<div class="row" style="padding: 0 20px;">
 	                		<input type="hidden" name="user_type" value="client">
 	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
 	                    <div class="form-row col-md-6">
