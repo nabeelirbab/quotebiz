@@ -109,7 +109,7 @@
 
                          @foreach($quote->questionsget as $questions)
                            <div class="col-md-12 mt-1 mb-1">
-                             <h6>{{$questions->questions->question}}</h6>
+                             <h6>{{$questions->questions->question}}  {{$questions->questions->id}}</h6>
                              @foreach($questions->choice as $choices)
                              
                                  <p class="fs-6">{{$choices->choice_value}}</p>
