@@ -70,7 +70,7 @@
     cursor: pointer;
     position: relative;
     padding-left: 34px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: #fff;
     border-radius: 27px;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -251,10 +251,14 @@
 		</style>
 	</head>
 	<body class="dogcFe">
-		<div class="MuiBox-root jss3 swyft-box-shadow-down"><a href="{{url('/')}}" target="_blank" rel="noreferrer" style="height: 70%;"><img src="{{$sitesmalllogo}}" alt="Logo" style="height: 100%;max-width: 100%"></a></div>
+		<div class="MuiBox-root jss3 swyft-box-shadow-down">
+			<a href="{{url('/')}}" rel="noreferrer" style="height: 70%;">
+			  <img src="{{$sitesmalllogo}}" alt="Logo" style="height: 100%;max-width: 100%">
+			</a>
+		</div>
 		<div class="wrapper">
 		
-            <form action="{{ url('storeform') }}" method="post" id="form">
+            <form action="{{ url('storeform') }}" method="post" id="form" autocomplete="off">
             	 {{ csrf_field() }}
             	<div class="form-header">
             		
@@ -305,10 +309,9 @@
 						  	@if($choices->icon)
                               <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
 						  	@else
-                             <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
+                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
-						    <h2 style="padding-top: 10px" class="font-class">{{$choices->choice}}</h2>
-						   
+						      <h2 style="padding-top: 10px" class="font-class">{{$choices->choice}}</h2>
 						  </label>
 						</div>
 						@endforeach
@@ -325,14 +328,12 @@
 						<div  style="max-width: 50%">
                          <div class="form-row">
 	                    	<div class="form-holder">
-	                    		<!-- <span>Where do you need it?</span> -->
+	                    		<!-- <span>{{$question->question}}</span> -->
 	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" required>
 	                    	</div>
 	                    </div>
 	                </div>
 						@endif
-					
-					
 				</div>
 	                </section>
 				@endforeach

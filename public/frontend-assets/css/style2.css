@@ -30,8 +30,9 @@ textarea {
 
 input, textarea, select, button {
   font-family: "Open-Sans";
-  font-size: 15px;
-  color: rgb(116 107 107) }
+  font-size: 18px;
+  color: #333; 
+}
 
 p, h1, h2, h3, h4, h5, h6, ul {
   margin: 0; }
@@ -194,19 +195,24 @@ h3 {
     border: 1px solid rgb(116 107 107); }
   .form-control::-webkit-input-placeholder {
     color: rgb(116 107 107 / 31%);
-    text-transform: uppercase; }
+    /*text-transform: uppercase; */
+  }
   .form-control::-moz-placeholder {
     color: rgb(116 107 107 / 31%);
-    text-transform: uppercase; }
+    /*text-transform: uppercase; */
+  }
   .form-control:-ms-input-placeholder {
     color: rgb(116 107 107 / 31%);
-    text-transform: uppercase; }
+    /*text-transform: uppercase; */
+  }
   .form-control:-moz-placeholder {
     color: rgb(116 107 107 / 31%);
-    text-transform: uppercase; }
+    /*text-transform: uppercase; */
+  }
 
 select.form-control {
-  text-transform: uppercase; }
+  /*text-transform: uppercase; */
+}
 
 .option {
   color: #999; }
@@ -235,7 +241,7 @@ textarea.form-control {
   cursor: pointer;
   position: relative;
   padding-left: 34px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   color: #fff;
   border-radius: 27px;
   -webkit-transform: perspective(1px) translateZ(0);
