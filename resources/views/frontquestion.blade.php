@@ -258,7 +258,7 @@
 		</div>
 		<div class="wrapper">
 		
-            <form action="{{ url('storeform') }}" method="post" id="form">
+            <form action="{{ url('storeform') }}" method="post" id="form" autocomplete="off">
             	 {{ csrf_field() }}
             	<div class="form-header">
             		
@@ -329,7 +329,7 @@
                          <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>{{$question->question}}</span> -->
-	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="new-password[]" >
+	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="false" required>
 	                    	</div>
 	                    </div>
 	                </div>
@@ -479,7 +479,6 @@
 
 		<script>
 		$(function(){
-		$('input[type="text"], textarea').val('');
 	$("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
