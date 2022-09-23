@@ -479,6 +479,7 @@
 
 		<script>
 		$(function(){
+		$('input[type="text"], textarea').val('');
 	$("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
