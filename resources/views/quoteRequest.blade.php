@@ -116,7 +116,7 @@ p.form-para::after{
 .form-control:focus{
 	box-shadow: none;
     border-radius: 6px;
-    border: 1px solid #dae0e5;
+    border: 1px solid #c1c1c1;
 }
 .form-control-placeholder {
     /*position: absolute;
