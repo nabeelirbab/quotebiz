@@ -100,7 +100,7 @@
                     <span class="badge"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
             </div>
         </div><!-- .nk-tb-item -->
-           <div id="mySidepanel{{$quote->id}}" class="sidepanel" style="height: 100%;">
+           <div id="mySidepanel{{$quote->id}}" class="sidepanel" style="height: 100%;padding-left: 18px">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$quote->id}}')">×</a>
                     <div class="preview-block" style="padding: 0px;">
                         <div class="row">
