@@ -258,7 +258,7 @@
 		</div>
 		<div class="wrapper">
 		
-            <form action="{{ url('storeform') }}" method="post" id="form" autocomplete="off">
+            <form action="{{ url('storeform') }}" method="post" id="form">
             	 {{ csrf_field() }}
             	<div class="form-header">
             		
@@ -329,7 +329,7 @@
                          <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>{{$question->question}}</span> -->
-	                    		<input type="text" class="form-control zipclass" name="input[]"  autocomplete="nope" required>
+	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="new-password[]" >
 	                    	</div>
 	                    </div>
 	                </div>
