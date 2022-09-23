@@ -92,7 +92,7 @@
                                             <button class="btn btn-sm btn-success" onclick="openNav('{{$request->id}}')">View Details</button>
                                         </td>
                                     </tr><!-- .tb-ticket-item -->
-                                     <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 60px;height: 100%;margin-left: 20px">
+                                     <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 60px;height: 100%;padding-left: 22px">
                                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$request->id}}')">×</a>
                                         <div class="preview-block" style="padding: 0px;">
                                             <div class="row">
