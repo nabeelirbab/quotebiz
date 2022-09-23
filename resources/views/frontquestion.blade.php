@@ -21,11 +21,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title>QuoteBiz</title>
+		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="quotebiz.com">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
+		<meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
+		<meta name="php-version" content="{{ phpversion() }}" />
 		<link rel="stylesheet" href="{{ asset('frontend-assets/fonts/material-design-iconic-font/css/material-design-iconic-font.css') }}">
 	
 		<!-- STYLE CSS -->
@@ -251,6 +254,7 @@
 		</style>
 	</head>
 	<body class="dogcFe">
+
 		<div class="MuiBox-root jss3 swyft-box-shadow-down">
 			<a href="{{url('/')}}" rel="noreferrer" style="height: 70%;">
 			  <img src="{{$sitesmalllogo}}" alt="Logo" style="height: 100%;max-width: 100%">
@@ -258,14 +262,13 @@
 		</div>
 		<div class="wrapper">
 		
-            <form action="{{ url('storeform') }}" method="post" id="form" autocomplete="off">
+            <form action="{{ url('storeform') }}" method="post" id="form" >
             	 {{ csrf_field() }}
             	<div class="form-header">
             		
             		<input type="hidden" name="category_id" value="{{$category->id}}">
             		<input type="hidden" name="zip_code" value="{{$zipcode}}">
             		<input type="hidden" name="admin_id" value="{{request('account')}}">
-
             	</div>
             	<div id="wizard">
             		
@@ -320,7 +323,7 @@
                             <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>Where do you need it?</span> -->
-	                    		<input type="date" class="form-control zipclass" name="date[]" placeholder="Enter Postcode" autocomplete="off" required>
+	                    		<input type="date" class="form-control zipclass" name="date[]" placeholder="Enter Postcode"  required>
 	                    	</div>
 	                    </div>
 	                </div>
@@ -329,7 +332,9 @@
                          <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>{{$question->question}}</span> -->
-	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="false" required>
+	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="{{$question->question}}" required>
+	                    		<input type="text" style="opacity: 0" id="" 
+                                name="PreventChromeAutocomplete" autocomplete="address-level4" />
 	                    	</div>
 	                    </div>
 	                </div>
@@ -365,42 +370,42 @@
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>First Name</span>
-	                    		<input type="text" class="form-control" name="first_name" placeholder="Enter First Name" autocomplete="off" required>
+	                    		<input type="text" class="form-control" name="first_name" placeholder="Enter First Name"  required>
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Last Name</span>
-	                    		<input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" autocomplete="off" required>
+	                    		<input type="text" class="form-control" name="last_name" placeholder="Enter Last Name"  required>
 	                    	</div>
 	                    </div>	
                      	<div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Email</span>&nbsp;&nbsp;<span id="emailexist" style="color: red"></span>
-	                    		<input type="email" name="email" onblur="myFunction()"  class="form-control formEmail" name="email" placeholder="Enter Email" autocomplete="off" required="">
+	                    		<input type="email" name="email" onblur="myFunction()"  class="form-control formEmail" name="email" placeholder="Enter Email"  required="">
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
-	                    		<input type="password" name="password" class="form-control" placeholder="Enter Password" autocomplete="off" required>
+	                    		<input type="password" name="password" class="form-control" placeholder="Enter Password"  required>
 	                    	</div>
 	                    </div>
 	                    <div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>City</span>
-	                    		<input type="text" name="city" class="form-control" name="email" placeholder="Enter City" autocomplete="off" required>
+	                    		<input type="text" name="city" class="form-control" name="email" placeholder="Enter City"  required>
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Mobile No</span>
-	                    		<input type="text" name="mobileno" class="form-control" placeholder="eg +92xxxxxxxx" autocomplete="off" required>
+	                    		<input type="text" name="mobileno" class="form-control" placeholder="eg +92xxxxxxxx"  required>
 	                    	</div>
 	                    </div>
 	                   		
@@ -479,6 +484,7 @@
 
 		<script>
 		$(function(){
+$('input').attr('autocomplete', 'off');
 	$("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
