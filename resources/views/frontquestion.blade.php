@@ -329,7 +329,7 @@
                          <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>{{$question->question}}</span> -->
-	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="new-password[]" required>
+	                    		<input type="number" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="new-password[]" required>
 	                    	</div>
 	                    </div>
 	                </div>
