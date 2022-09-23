@@ -24,7 +24,7 @@ class QuoteController extends Controller
     public function Index(){
 
         $quotes = Quote::with('quotations','user')->where('admin_id',request('account'))->orderBy('id','desc')->paginate(10);
-        // dd($quotes);
+        dd($quotes);
         return view('quotes',compact('quotes'));
     }
 
