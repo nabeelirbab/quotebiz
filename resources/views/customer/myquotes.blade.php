@@ -27,7 +27,7 @@
                                 <ul class="nk-block-tools g-3">
                                     <li>
                                         <div class="drodown">
-                                            <a href="{{url('get-quote')}}" class="btn btn-icon btn-primary" style="padding: 7px 12px 7px 12px"><span>Post a job </span></a>
+                                            <a href="{{url('/')}}" class="btn btn-icon btn-primary" style="padding: 7px 12px 7px 12px"><span>Post a job </span></a>
                                         </div>
                                     </li>
                                 </ul>
