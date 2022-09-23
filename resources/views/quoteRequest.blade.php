@@ -286,8 +286,7 @@ p.form-para::after{
 					 <label class="form-control-placeholder" for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
 					 <input type="text" class="form-control" name="category_name" id="search" placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc" required>
 					  <ul class="list-group" id="result">
-				        
-				    </ul>
+				      </ul>
 					  </div>
 					</div>
                    <div class="col-md-6">

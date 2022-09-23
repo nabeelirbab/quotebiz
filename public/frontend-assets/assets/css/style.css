@@ -24,6 +24,7 @@
   background: #555; 
   border-radius: 15px;
 }
+
 .nk-content {
 	 background: #F5F6FA;
 }
@@ -55,7 +56,7 @@
     color: #3c4d62;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #dbdfea;
+    border: 1px solid #c1c1c1;
     border-radius: 4px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
