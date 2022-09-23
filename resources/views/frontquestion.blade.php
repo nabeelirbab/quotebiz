@@ -320,7 +320,7 @@
                             <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>Where do you need it?</span> -->
-	                    		<input type="date" class="form-control zipclass" name="date[]" placeholder="Enter Postcode" required>
+	                    		<input type="date" class="form-control zipclass" name="date[]" placeholder="Enter Postcode" autocomplete="off" required>
 	                    	</div>
 	                    </div>
 	                </div>
@@ -329,7 +329,7 @@
                          <div class="form-row">
 	                    	<div class="form-holder">
 	                    		<!-- <span>{{$question->question}}</span> -->
-	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" required>
+	                    		<input type="text" class="form-control zipclass" name="input[]" placeholder="{{$question->question}}" autocomplete="off" required>
 	                    	</div>
 	                    </div>
 	                </div>
@@ -365,42 +365,42 @@
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>First Name</span>
-	                    		<input type="text" class="form-control" name="first_name" placeholder="Enter First Name" required>
+	                    		<input type="text" class="form-control" name="first_name" placeholder="Enter First Name" autocomplete="off" required>
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Last Name</span>
-	                    		<input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required>
+	                    		<input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" autocomplete="off" required>
 	                    	</div>
 	                    </div>	
                      	<div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Email</span>&nbsp;&nbsp;<span id="emailexist" style="color: red"></span>
-	                    		<input type="email" name="email" onblur="myFunction()"  class="form-control formEmail" name="email" placeholder="Enter Email">
+	                    		<input type="email" name="email" onblur="myFunction()"  class="form-control formEmail" name="email" placeholder="Enter Email" autocomplete="off" required="">
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
-	                    		<input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+	                    		<input type="password" name="password" class="form-control" placeholder="Enter Password" autocomplete="off" required>
 	                    	</div>
 	                    </div>
 	                    <div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>City</span>
-	                    		<input type="text" name="city" class="form-control" name="email" placeholder="Enter City" required>
+	                    		<input type="text" name="city" class="form-control" name="email" placeholder="Enter City" autocomplete="off" required>
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Mobile No</span>
-	                    		<input type="text" name="mobileno" class="form-control" placeholder="eg +92xxxxxxxx" required>
+	                    		<input type="text" name="mobileno" class="form-control" placeholder="eg +92xxxxxxxx" autocomplete="off" required>
 	                    	</div>
 	                    </div>
 	                   		
