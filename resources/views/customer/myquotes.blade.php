@@ -18,16 +18,16 @@
                     <div class="nk-block-head">
                         <div class="nk-block-between g-3">
                             <div class="nk-block-head-content">
-                                <h3 class="nk-block-title page-title">My Jobs</h3>
+                                <h3 class="nk-block-title page-title">My Quotes</h3>
                                 <div class="nk-block-des text-soft">
-                                    <p>You have total {{count($myrequests)}} jobs.</p>
+                                    <p>You have total {{count($myrequests)}} quotes.</p>
                                 </div>
                             </div><!-- .nk-block-head-content -->
                            <div class="nk-block-head-content">
                                 <ul class="nk-block-tools g-3">
                                     <li>
                                         <div class="drodown">
-                                            <a href="{{url('/')}}" class="btn btn-icon btn-primary" style="padding: 7px 12px 7px 12px"><span>Post a job </span></a>
+                                            <a href="{{url('/')}}" class="btn btn-icon btn-primary" style="padding: 7px 12px 7px 12px"><span>Get Another Quote</span></a>
                                         </div>
                                     </li>
                                 </ul>

@@ -265,7 +265,7 @@
 .msgnotifications{
     border: 0;
     font-size: 11px;
-    background: green;
+    background: red;
     color: white;
     width: auto;
     height: auto;
@@ -274,6 +274,7 @@
     position: absolute;
     left: 22px;
     bottom: 12px;
+    display: none;
 }
 @media only screen and (min-width: 1200px) {
   .nk-content {

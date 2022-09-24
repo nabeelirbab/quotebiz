@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <meta name="description" content="Quotebiz">
-    <meta name="author" content="Quotebiz">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta name="keywords" content="Quotebiz">
-    <title>Quotebiz - @yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
+    <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
+    <title>@yield('title') - {{ \Acelle\Model\Setting::get("site_name") }}</title>
+    @if (\Acelle\Model\Setting::get('site_favicon'))
+        <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
+    @endif 
     @include('customer.includes.head-css')
     @yield('styling')
 </head>

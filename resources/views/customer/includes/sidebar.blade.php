@@ -30,7 +30,7 @@
                                 <li class="nk-menu-item">
                                     <a href="{{url('customer/my-jobs')}}" class="nk-menu-link ">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">My Jobs</span>
+                                        <span class="nk-menu-text">My Quotes</span>
                                     </a>
                                 </li>
                                 <li class="nk-menu-item">
