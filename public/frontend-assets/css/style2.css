@@ -1,6 +1,9 @@
 @font-face {
   font-family: "Open-Sans";
   src: url("../fonts/google/OpenSans-VariableFont_wdth.ttf"); }
+  @font-face {
+  font-family: "Google-Open-Sans";
+  src: url("../fonts/ProductSans-Regular.ttf"); }
 @font-face {
   font-family: "Muli-Bold";
   src: url("../fonts/muli/Muli-Bold.ttf"); }
@@ -16,7 +19,7 @@
   box-sizing: border-box; }
 
 body {
-  font-family: "Open-Sans";
+  font-family: "Google-Open-Sans";
   font-size: 15px;
   color: #fff;
   margin: 0; }
@@ -29,7 +32,7 @@ textarea {
 }
 
 input, textarea, select, button {
-  font-family: "Open-Sans";
+  font-family: "Google-Open-Sans";
   font-size: 18px;
   color: #333; 
 }
@@ -96,7 +99,7 @@ form {
     font-size: 18px;
   }
   .form-header a {
-    font-family: "Open-Sans";
+    font-family: "Google-Open-Sans";
     color: #fff;
     display: inline-block;
     padding: 5px 15px;
@@ -104,7 +107,7 @@ form {
     background: #e4bd37; }
 
 h3 {
-  font-family: "Open-Sans";
+  font-family: "Google-Open-Sans";
   font-size: 22px;
   /*text-transform: uppercase;*/
   margin-bottom: 46px;
@@ -237,7 +240,7 @@ textarea.form-control {
   letter-spacing: 1.3px;
   align-items: center;
   background: rgb(128 57 242);
-  font-family: "Open-Sans";
+  font-family: "Google-Open-Sans";
   cursor: pointer;
   position: relative;
   padding-left: 34px;
