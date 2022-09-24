@@ -5,14 +5,13 @@
     <script src="<?php echo Request::getSchemeAndHttpHost() ?>:3000/socket.io/socket.io.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
- 
 
     <script type="text/javascript">
 
         var getAPIURL = '{{ url('') }}';
         var userid = '{{Auth::user()->id }}';
-
         const socket = io.connect('<?php echo Request::getSchemeAndHttpHost() ?>:3000');
+
         socket.on('connect', function() {
           console.log("Connected to WS server");
           console.log(socket.connected); 
@@ -26,12 +25,17 @@
 
 
         function getcount(){
-            $.ajax({
-                  url: getAPIURL + "/allunreadmsg/"+userid,
-                  type: "GET"
-                }).then(function(res) {
-                  $('.msgnotifications').html(res);
-                })
+        $.ajax({
+              url: getAPIURL + "/allunreadmsg/"+userid,
+              type: "GET"
+            }).then(function(res) {
+                if(res == 0){
+                   $('.msgnotifications').hide();
+                }
+                else{
+                   $('.msgnotifications').html(res);
+                }
+            })
         }
 
         socket.on('receiveMsg', function(data) {

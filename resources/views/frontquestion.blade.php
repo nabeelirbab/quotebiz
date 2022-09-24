@@ -33,6 +33,7 @@
 	
 		<!-- STYLE CSS -->
 		<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/style2.css') }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<style>
 			
 		<?php
@@ -243,14 +244,12 @@
     justify-content: center;
     background-color: rgb(255, 255, 255);
 }
-.dogcFe {
-	/*background: white*/
-	/*background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) center bottom / cover no-repeat rgb(238, 238, 238);*/
-	
+.iti__flag {background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/img/flags.png");
 }
-/*.actions ul li:nth-child(2) {
-   display:none !important;
-}*/
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/img/flags@2x.png");}
+}
 		</style>
 	</head>
 	<body class="dogcFe">
@@ -346,11 +345,9 @@
 	                <section>
 	                	<h3 style="text-align: center;color: black">Additional Information</h3>
 	                	<div class="row" style="padding: 0 20px;">
-	                		
 	                    <div class="form-row col-md-12">
-	                    	
 	                    	<div class="form-holder">
-	                    		<textarea  class="form-control" rows="5" cols="70" name="additional_info"></textarea>
+	                    		<textarea  class="form-control" rows="8" cols="70" name="additional_info"></textarea>
 	                    	</div>
 	                    </div>	
 	                   
@@ -391,7 +388,7 @@
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
-	                    		<input type="password" name="password" class="form-control" placeholder="Enter Password"  required>
+	                    		<input type="password"  name="password" class="form-control" placeholder="Enter Password"  required>
 	                    	</div>
 	                    </div>
 	                    <div class="form-row col-md-6">
@@ -403,9 +400,9 @@
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
 	                    	
-	                    	<div class="form-holder">
+	                    	<div class="form-holder" style="display: grid">
 	                    		<span>Mobile No</span>
-	                    		<input type="text" name="mobileno" class="form-control" placeholder="eg +92xxxxxxxx"  required>
+	                    		<input type="tel" id="phone" name="mobileno" class="form-control" placeholder="Mobile number"  required>
 	                    	</div>
 	                    </div>
 	                   		
@@ -461,9 +458,9 @@
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
 	                    	
-	                    	<div class="form-holder">
+	                    	<div class="form-holder" style="display: grid">
 	                    		<span>Mobile No</span>
-	                    		<input type="text" name="mobileno" class="form-control" placeholder="eg +92xxxxxxxx" required>
+	                    		<input type="tel" id="phone" name="mobileno" class="form-control" placeholder="Mobile number" required>
 	                    	</div>
 	                    </div>
 
@@ -477,7 +474,9 @@
 
 		  
 		<script src="{{ asset('frontend-assets/js/jquery-3.3.1.min.js') }}"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js" integrity="sha512-+gShyB8GWoOiXNwOlBaYXdLTiZt10Iy6xjACGadpqMs20aJOoh+PJt3bwUVA6Cefe7yF7vblX6QwyXZiVwTWGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput-jquery.js" integrity="sha512-/acYLNZxNREFFLiu9TPezQUnMP/n9JTKYJJ/nC5JbW1Cpw8wT2hfV0+StgBnut/dCFxYHitlYdQjKRfkNMj+og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js" integrity="sha512-XGZwM3U4PM6aH04G+9uL3qma2xu2feLpy5qX7WRlFu2Ti3tiRPoY9vuD9bz7wiTVJ139hdogEYBFZtevPPR1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<!-- JQUERY STEP -->
 		<script src="{{ asset('frontend-assets/js/jquery.steps.js') }}"></script>
 
@@ -526,8 +525,6 @@ $('input').attr('autocomplete', 'off');
             }
            
 		<?php } ?>
-		
-
             return true; 
         },
         onFinished: function (event, currentIndex) {
@@ -593,7 +590,10 @@ var _token = $('meta[name="csrf-token"]').attr('content');
         });
 }
 
-
+var input = document.querySelector("#phone");
+  window.intlTelInput(input, {
+    // any initialisation options go here
+  });
 		</script>
 <!-- Template created and distributed by Colorlib -->
 </body>

@@ -40,12 +40,12 @@
                                                                 </svg>
                                                             </div>
                                                             <div class="nk-wg1-text">
-                                                                <h5 class="title">My Jobs</h5>
+                                                                <h5 class="title">My Quotes</h5>
                                                                 <p>See your profile data and manage your Account to choose what is saved in our system.</p>
                                                             </div>
                                                         </div>
                                                         <div class="nk-wg1-action">
-                                                            <a href="{{ url('customer/my-jobs') }}" class="link"><span>My Jobs</span> <em class="icon ni ni-chevron-right"></em></a>
+                                                            <a href="{{ url('customer/my-jobs') }}" class="link"><span>My Quotes</span> <em class="icon ni ni-chevron-right"></em></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,8 +123,8 @@
                                      
                                         <!-- <script src="https://payments.pabbly.com/api/checkout/embed.js?_p=6228da063aecff461d8bb386"></script> -->
                                     </div><!-- .nk-block -->
-                                    <div class="nk-block">
-                                        <div class="card card-bordered">
+                                    <div class="nk-block pt-0">
+                                        <div class="card card-bordered mb-4">
                                             <div class="card-inner">
                                                 <div class="nk-help">
                                                     <div class="nk-help-img">

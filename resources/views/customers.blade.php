@@ -82,7 +82,7 @@
         <div class="card-body">
             <div class="search-content">
                 <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-                <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user or email">
+                <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user or email" id="search">
                 <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
             </div>
         </div>
@@ -192,4 +192,11 @@
 @section('script')
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+<script type="text/javascript">
+    $("#search").on("keyup", function() {
+        
+      var value = $(this).val();
+
+     });
+</script>
 @endsection

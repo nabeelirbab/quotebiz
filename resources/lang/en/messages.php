@@ -3557,8 +3557,8 @@
   'transaction.method.paypal' => 'Paypal',
   'save_payment_method_proceed' => 'Save Payment Method & Proceed',
   'save_payment_method' => 'Save Payment Method',
-  'payment.cannot_charge' => 'Acelle cannot charge the invoice #:id. Error from :service: :error',
-  'payment.cannot_auto_charge' => 'Acelle cannot automatically charge the
+  'payment.cannot_charge' => 'Quote cannot charge the invoice #:id. Error from :service: :error',
+  'payment.cannot_auto_charge' => 'Quote cannot automatically charge the
       invoice #:id. Error from :service: :error',
   'contacts' => 'contacts',
   'payment.you_currenly_payment' => 'Your current payment method is: <strong>:method</strong>',
@@ -3699,7 +3699,7 @@
   'delete_campaign_confirm' => 'You\'re about to delete <span class="fw-600">:name</span> campaign.
     This can not be undone.',
   'geoip.title' => 'GeoIP Management',
-  'geoip.description' => 'Acelle uses a GeoIP dataset in order to resolve users\' location.',
+  'geoip.description' => 'Quote uses a GeoIP dataset in order to resolve users\' location.',
   'invoice.payment_is_being_verified' => 'Payment is being verified',
   'campaign.template.old_ver_error' => 'Campaigns created by previous (older) versions cannot be loaded in the current version
     of the application. Don\'t worry, it will work correctly for new campaigns you create',
@@ -3728,15 +3728,15 @@
   'paypal.user.description' => 'Pay for your subscription & services using your PayPal account.',
   'razorpay.user.description' => 'Pay for your subscription & services using your debit
         or credit cards. Auto billing is not supported',
-  'store.connected_with_acelle' => 'Your store is connected with Acelle',
-  'store.connected_with_acelle.desc' => 'While connected, Acelle can synchronize products
+  'store.connected_with_acelle' => 'Your store is connected with Quote',
+  'store.connected_with_acelle.desc' => 'While connected, Quote can synchronize products
     and contacts from your store to a specified mail list',
   'source.refresh' => 'Refresh',
   'subscription.thanks.click_to_start' => 'Thank you for subscribing to our SAAS. Click the button
     below to get started',
   'subscription.get_started' => 'Get Started',
   'cron_string.copied' => 'Cron string was copied to clipboard',
-  'language.translate.intro' => '<p>Acelle Mail lets you customize the user interface (UI) text in all areas of the web
+  'language.translate.intro' => '<p>Quote Mail lets you customize the user interface (UI) text in all areas of the web
     application like titles, labels, tooltips, links, buttons... You can translate it from the original
     English language to Spanish and/or change these phrases the way you want.</p><p>
       Phrases are organized in different files which you can choose in the list below
