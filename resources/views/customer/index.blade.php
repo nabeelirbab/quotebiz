@@ -41,7 +41,7 @@
                                                             </div>
                                                             <div class="nk-wg1-text">
                                                                 <h5 class="title">My Quotes</h5>
-                                                                <p>See your profile data and manage your Account to choose what is saved in our system.</p>
+                                                                <p>See your quote requests and which service providers have responded so far.</p>
                                                             </div>
                                                         </div>
                                                         <div class="nk-wg1-action">
@@ -107,7 +107,7 @@
                                                             </div>
                                                             <div class="nk-wg1-text">
                                                                 <h5 class="title">Notification Settings</h5>
-                                                                <p>Check out all your payment history. You can also download or print your invoice.</p>
+                                                                <p>Update your notification settings to decide when and how you will be notified of updates.</p>
                                                             </div>
                                                         </div>
                                                         <div class="nk-wg1-action">

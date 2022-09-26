@@ -33,7 +33,8 @@
 	
 		<!-- STYLE CSS -->
 		<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/style2.css') }}">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+		
 		<style>
 			
 		<?php
@@ -388,7 +389,8 @@
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
-	                    		<input type="password"  name="password" class="form-control" placeholder="Enter Password"  required>
+	                    		<input type="password"  name="password" id="id_password" class="form-control" placeholder="Enter Password"  required>
+	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: #8039f2;bottom: 13px"></i>
 	                    	</div>
 	                    </div>
 	                    <div class="form-row col-md-6">
@@ -402,7 +404,7 @@
 	                    	
 	                    	<div class="form-holder" style="display: grid">
 	                    		<span>Mobile No</span>
-	                    		<input type="tel" id="phone" name="mobileno" class="form-control" placeholder="Mobile number"  required>
+	                    		<input type="tel" id="phone" name="mobileno" class="form-control" placeholder="Mobile numbersss"  required>
 	                    	</div>
 	                    </div>
 	                   		
@@ -416,7 +418,7 @@
 <!-- SECTION 3 -->
 	                <h4></h4>
 	                <section>
-	                	<h3 style="text-align: center;color: black">Alright, let's get your details and create your tailored online estimate!1111</h3>
+	                	<h3 style="text-align: center;color: black">Alright, let's get your details and create your tailored online estimate!</h3>
 	                	<div class="row">
 	                		<input type="hidden" name="user_type" value="client">
 	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
@@ -445,7 +447,8 @@
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
-	                    		<input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+	                    		<input type="password" name="password" id="id_password" class="form-control" placeholder="Enter Password" required>
+	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: #8039f2;bottom: 13px;"></i>
 	                    	</div>
 	                    </div>
 
@@ -471,20 +474,32 @@
             	</div>
             </form>
 		</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="{{ asset('frontend-assets/js/jquery.steps.js') }}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.js"></script>
+<script type="text/javascript">
+var jqOld = jQuery.noConflict();
 
-		  
-		<script src="{{ asset('frontend-assets/js/jquery-3.3.1.min.js') }}"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js" integrity="sha512-+gShyB8GWoOiXNwOlBaYXdLTiZt10Iy6xjACGadpqMs20aJOoh+PJt3bwUVA6Cefe7yF7vblX6QwyXZiVwTWGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput-jquery.js" integrity="sha512-/acYLNZxNREFFLiu9TPezQUnMP/n9JTKYJJ/nC5JbW1Cpw8wT2hfV0+StgBnut/dCFxYHitlYdQjKRfkNMj+og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js" integrity="sha512-XGZwM3U4PM6aH04G+9uL3qma2xu2feLpy5qX7WRlFu2Ti3tiRPoY9vuD9bz7wiTVJ139hdogEYBFZtevPPR1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!-- JQUERY STEP -->
-		<script src="{{ asset('frontend-assets/js/jquery.steps.js') }}"></script>
+	jqOld(document).on('click', '#togglePassword', function(e) {
+	  var input = jqOld("#id_password");
+	  if (input.attr("type") === "password") {
+	    input.attr("type", "text");
+	    jqOld(this).removeClass("zmdi-eye");
+	    jqOld(this).addClass("zmdi-eye-off");
+	  } else {
+	    input.attr("type", "password");
+	    jqOld(this).removeClass("zmdi-eye-off");
+	    jqOld(this).addClass("zmdi-eye");
+	  }
 
+	});
 
-		<script>
-		$(function(){
-$('input').attr('autocomplete', 'off');
-	$("#wizard").steps({
+		
+
+		jqOld(function(){
+	jqOld('input').attr('autocomplete', 'off');
+
+	jqOld("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
         transitionEffect: "fade",
@@ -492,9 +507,9 @@ $('input').attr('autocomplete', 'off');
         onStepChanging: function (event, currentIndex, newIndex) { 
         	if ( newIndex === 1 ) {
         	
-                $('.wizard > .steps ul').addClass('step-0');
+                jqOld('.wizard > .steps ul').addClass('step-0');
             }else{
-            	$('.wizard > .steps ul').removeClass('step-0');
+            	jqOld('.wizard > .steps ul').removeClass('step-0');
             }
 
 
@@ -506,29 +521,29 @@ $('input').attr('autocomplete', 'off');
 			// alert(<?php echo $total; ?>);
             if ( newIndex === <?php echo $i; ?> ) {
             	// alert(newIndex);
-                $('.wizard > .steps ul').addClass('step-<?php echo $i; ?>');
+                jqOld('.wizard > .steps ul').addClass('step-<?php echo $i; ?>');
                 // $('#wizard .actions li:last').hide();
 
             } else {
             	if (newIndex === <?php echo $total; ?>) { //if last step
 		   //remove default #finish button
-				   $('#wizard').find('a[href="#finish"]').remove(); 
+				   jqOld('#wizard').find('a[href="#finish"]').remove(); 
 				   //append a submit type button
-				   $('#wizard .actions li:last').show();
-				   $('#wizard .actions li:last').html('<button type="submit">Get Quotes</button>');
+				   jqOld('#wizard .actions li:last').show();
+				   jqOld('#wizard .actions li:last').html('<button type="submit">Get Quotes</button>');
 				}else{
 
-		          $('#wizard .actions li:last').hide();
+		          jqOld('#wizard .actions li:last').hide();
 				}
-				// $(".actions ul li:nth-child(2)").css("cssText", "display: list-item !important;");
-                $('.wizard > .steps ul').removeClass('step-<?php echo $i; ?>');
+				// jqOld(".actions ul li:nth-child(2)").css("cssText", "display: list-item !important;");
+                jqOld('.wizard > .steps ul').removeClass('step-<?php echo $i; ?>');
             }
            
 		<?php } ?>
             return true; 
         },
         onFinished: function (event, currentIndex) {
-		  $("#form").submit();
+		  jqOld("#form").submit();
 		  // alert('hell');
 		},
         labels: {
@@ -538,35 +553,45 @@ $('input').attr('autocomplete', 'off');
         }
     });
     // Custom Button Jquery Steps
-    $('.forward').click(function(){
-    	$("#wizard").steps('next');
+    jqOld('.forward').click(function(){
+    	jqOld("#wizard").steps('next');
     })
-    $('.backward').click(function(){
-        $("#wizard").steps('previous');
+    jqOld('.backward').click(function(){
+        jqOld("#wizard").steps('previous');
     })
-  
+    var input = document.querySelector("#phone");
+	window.intlTelInput(input, {
+	  initialCountry: "auto",
+	  geoIpLookup: function(callback) {
+	    $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+	      var countryCode = (resp && resp.country) ? resp.country : "au";
+	      callback(countryCode);
+	    });
+	  },
+	  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js" // just for formatting/placeholders etc
+	});
 });
 
 function Zipcode(){
 //ajax request
-// console.log($(".actions ul li:nth-child(2)").find());
-	if($('.zipclass').val().length > 3){
-	  $(".actions ul li:nth-child(2)").css("cssText", "display: list-item !important;");
+// console.log(jqOld(".actions ul li:nth-child(2)").find());
+	if(jqOld('.zipclass').val().length > 3){
+	  jqOld(".actions ul li:nth-child(2)").css("cssText", "display: list-item !important;");
 	}else{
-	  $(".actions ul li:nth-child(2)").css("cssText", "display: none !important;");
+	  jqOld(".actions ul li:nth-child(2)").css("cssText", "display: none !important;");
 
 	}
 }
 
 function myFunction(){
 //ajax request
-var _token = $('meta[name="csrf-token"]').attr('content');
+var _token = jqOld('meta[name="csrf-token"]').attr('content');
 // alert(_token);
-        $.ajax({
+        jqOld.ajax({
             url: "{{url('checkEmail')}}",
             type: 'post',
             data: {
-                email : $('.formEmail').val(),
+                email : jqOld('.formEmail').val(),
                 subdomain: "{{request('account')}}",
                 _token : _token
             },
@@ -575,13 +600,13 @@ var _token = $('meta[name="csrf-token"]').attr('content');
             	console.log(data);
                 if(data == true) {
                     console.log('Email exists!');
-                    $('#wizard .actions li:last').hide();
-                    $('#emailexist').html('email already exists');
+                    jqOld('#wizard .actions li:last').hide();
+                    jqOld('#emailexist').html('email already exists');
                 }
                 else {
                     console.log('Email doesnt!');
-                    $('#wizard .actions li:last').show();
-                    $('#emailexist').html('');
+                    jqOld('#wizard .actions li:last').show();
+                    jqOld('#emailexist').html('');
                 }
             },
             error: function(data){
@@ -590,10 +615,7 @@ var _token = $('meta[name="csrf-token"]').attr('content');
         });
 }
 
-var input = document.querySelector("#phone");
-  window.intlTelInput(input, {
-    // any initialisation options go here
-  });
+
 		</script>
 <!-- Template created and distributed by Colorlib -->
 </body>
