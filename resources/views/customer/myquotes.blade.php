@@ -5,6 +5,35 @@
   .table th {
     line-height: 4;
 }
+.button {
+  position: relative;
+  display: inline-block;
+  height: 46px;
+  min-width: 46px;
+  padding: 0 16px !important;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333 !important;
+  font-size: 30px !important;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color .2s ease-in-out,color .2s ease-in-out,opacity .2s ease-in-out;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  background: rgba(0,0,0,.05);
+  border: none;
+  line-height: 44px;
+  color: rgba(0,0,0,.55);
+}
+.card-panel {
+  margin: 12px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1),0 0 4px rgba(0,0,0,.1);
+  max-width: 400px;
+  padding: 24px;
+}
 </style>
 @endsection
 @section('content')
@@ -92,15 +121,23 @@
                                             <button class="btn btn-sm btn-success" onclick="openNav('{{$request->id}}')">View Details</button>
                                         </td>
                                     </tr><!-- .tb-ticket-item -->
-                                     <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 60px;height: 100%;padding-left: 22px">
-                                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$request->id}}')">×</a>
-                                        <div class="preview-block" style="padding: 0px;">
-                                            <div class="row">
-                                            <h5>{{$request->category->category_name}} :</h5>
+                                     <div id="mySidepanel{{$request->id}}" class="sidepanel" style="top: 13px;height: 100%;background: #f3f3f3;">
+                                      <div class="d-flex justify-content-between align-items-center" style="background: white;padding: 12px;">
+                                        <div style="">
+                                      <a href="javascript:void(0)" class="button" onclick="closeNav('{{$request->id}}')">×</a>
+                                      </div>
+                                      <div style="margin-right: 10px;">
+                                       <h5>{{$request->category->category_name}}</h5>
+                                          </div>
+                                          <div>
+                                            
+                                          </div>
+                                       </div>
+                                            <div class="row card-panel">
                                             <br>
 
                                              @foreach($request->questionsget as $questions)
-                                               <div class="col-md-12 mt-1 mb-1">
+                                               <div class="col-md-12 mt-1 mb-1 p-0">
                                                  <h6>{{$questions->questions->question}}</h6>
                                                  @foreach($questions->choice as $choices)
                                                  
@@ -116,7 +153,6 @@
                                              <p>{{$request->additional_info}}</p>
                                              </div>
                                          </div>
-                                        </div>
                                        </div>
                                     @endforeach
 
