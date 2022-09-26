@@ -127,7 +127,7 @@
     white-space: nowrap;
 }
 .tb-ticket-item.is-unread {
-    background: #f5f6fa;
+    background: white;
 }
 @media (min-width: 768px){
 .tb-col-md {

@@ -281,8 +281,10 @@ textarea.form-control {
   width: 136px;
   background: #fff;
   color: #666;
-  font-family: "Muli-Bold";
-  padding-left: 57px; }
+  font-family: "Google-Open-Sans";
+  padding-left: 57px; 
+  box-shadow: rgb(0 0 0 / 35%) 0px 4px 10px;
+}
   .actions li:first-child a:before {
     content: '\f2ea';
     left: 32px;

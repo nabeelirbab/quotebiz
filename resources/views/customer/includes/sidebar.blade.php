@@ -54,12 +54,12 @@
                                         </li>
                                     </ul>
                                 </li> -->
-                                <li class="nk-menu-item">
+                                <!-- <li class="nk-menu-item">
                                     <a href="{{url('customer/profile')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-user-list-fill"></em></span>
                                         <span class="nk-menu-text">My Profile</span>
                                     </a>
-                                 </li><!-- .nk-menu-item -->
+                                 </li> --><!-- .nk-menu-item -->
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{url('customer/support')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-help-alt"></em></span>
