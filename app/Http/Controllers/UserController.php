@@ -536,6 +536,9 @@ public function adminregister(Request $request)
       $invite->save();
 
       Mail::to($invite->email)->send(new SendInvitation($maildata));
+      if(count(Mail::failures()) > 0){
+        dd(Mail::failures());
+    }
   
      return 1;
    }
