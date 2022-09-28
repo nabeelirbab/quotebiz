@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 </head>
-<body>
+<body style="font-family: DM Sans, sans-serif;">
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tbody>

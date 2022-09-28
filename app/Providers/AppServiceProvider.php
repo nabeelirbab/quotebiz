@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
                         'username'   =>     Setting::get('mailer.username'),
                         'password'   =>     Setting::get('mailer.password'),
                         'encryption' =>     Setting::get('mailer.encryption'),
-                        'from'       =>     'nabeelphatak@gmail.com',
+                        'from'       =>     'support@quotebiz.io',
                     );
         Config::set('mail', $config);
     }
