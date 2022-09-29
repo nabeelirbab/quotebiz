@@ -30,7 +30,19 @@ class QuestionChoiceController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->all());
+//        $distance = 10;
+//        $earthRadius = 6371;
+//        $lat1 = deg2rad($request->latitude);
+//        $lon1 = deg2rad($request->longitude);
+//        $bearing = deg2rad(0);
+//
+//        $lat2 = asin(sin($lat1) * cos($distance / $earthRadius) + cos($lat1) * sin($distance / $earthRadius) * cos($bearing));
+//        $lon2 = $lon1 + atan2(sin($bearing) * sin($distance / $earthRadius) * cos($lat1), cos($distance / $earthRadius) - sin($lat1) * sin($lat2));
+//
+//        echo 'LAT: ' . rad2deg($lat2) . '<br >';
+//        echo 'LNG: ' . rad2deg($lon2);
+//
+//        dd($request->all());
         // $user = Subdomain::where('subdomain',request('account'))->first();
         // dd($user->user);
         // $category_id = $user->user->category->id;
