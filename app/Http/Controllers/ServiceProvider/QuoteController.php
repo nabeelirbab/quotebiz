@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\User;
 use Acelle\Model\Country;
+use Acelle\Model\State;
+use Acelle\Model\City;
 use Auth;
 
 class QuoteController extends Controller
@@ -58,10 +60,12 @@ class QuoteController extends Controller
     public function locationUpdate(Request $request)
     {
         $user = User::find(Auth::user()->id);
-        $user->type = $request->user_type;
+        $radius = null;
         if (isset($request->state_radius)) {
-            $user->type_value = $request->state_radius;
+            $radius = $request->state_radius;
         }
+        $user->type = $request->user_type;
+        $user->type_value = $radius;
         $user->save();
 
         return redirect()->back()->with('success', 'Location Update Successfully');
@@ -75,14 +79,55 @@ class QuoteController extends Controller
             <select name="state_radius" id="display-country" class="form-control" required>
                 <option value="" selected disabled> Select Country</option>
                 <?php
-                foreach($countries as $country)
-                {
-                    echo '<option value="'.$country->name.'">'.$country->name.'</option>';
+                foreach ($countries as $country) {
+                    echo '<option value="' . $country->name . '">' . $country->name . '</option>';
                 }
                 ?>
             </select>
         </div>
         <?php
 
+    }
+
+    public function getstates($account, $id)
+    {
+        $countryid = $id;
+        $states = State::where('country_id', $countryid)->get();
+        ?>
+        <option value="" selected disabled>Select State</option>
+        <?php
+        foreach ($states as $state) {
+            echo '<option value="' . $state->id . '">' . $state->name . '</option>';
+        }
+        ?>
+        <?php
+    }
+
+    public function getcities($account, $id)
+    {
+        $stateid = $id;
+        $cities = City::where('state_id', $stateid)->get();
+        ?>
+        <option value="" selected disabled>Select City</option>
+        <?php
+        foreach ($cities as $city) {
+            echo '<option value="' . $city->id . '">' . $city->name . '</option>';
+        }
+        ?>
+        <?php
+    }
+
+    public function addressupdate(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $user->country = $request->country;
+        $user->state = $request->state;
+        $user->city = $request->city;
+        $user->address = $request->address;
+        $user->latitude = $request->latitude;
+        $user->longitude = $request->longitude;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile Update Successfully');
     }
 }

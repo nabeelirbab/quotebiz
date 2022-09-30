@@ -1,3 +1,9 @@
+<?php $countries = Acelle\Jobs\HelperJob::countries(); ?>
+<?php $countryname = Acelle\Jobs\HelperJob::countryname(Auth::user()->country); ?>
+<?php $statename = Acelle\Jobs\HelperJob::statename(Auth::user()->state); ?>
+<?php $cityname = Acelle\Jobs\HelperJob::cityname(Auth::user()->city); ?>
+
+
 @extends('service_provider.layout.app')
 @section('title', 'Profile')
 @section('styling')
@@ -22,6 +28,7 @@
         }
     </style>
 @endsection
+
 @section('content')
 
     <!-- content @s -->
@@ -63,29 +70,95 @@
                                             <div class="data-head">
                                                 <h6 class="overline-title">Basics</h6>
                                             </div>
-                                            <div class="data-item">
-                                                <div class="data-col">
-                                                    <span class="data-label">Type</span>
-                                                    <span class="data-value"
-                                                          style="text-transform:capitalize">{{ (Auth::user()->type) ? Auth::user()->type : '--' }}</span>
-                                                </div>
-                                            </div><!-- data-item -->
 
-                                            <div class="data-item">
-                                                <div class="data-col">
-                                                    <span class="data-label" style="text-transform:capitalize">
-                                                        {{ (Auth::user()->type) ? Auth::user()->type : '--' }}
-                                                    </span>
-                                                    <span class="data-value">
-                                                        @if(Auth::user()->type=="local business")
-                                                            {{ (Auth::user()->type_value) ? Auth::user()->type_value : '--' }}
-                                                            KM
-                                                        @else
-                                                            {{ (Auth::user()->type_value) ? Auth::user()->type_value : '--' }}
-                                                        @endif
-                                                    </span>
+                                            <br>
+                                            <form action="{{ url('service-provider/address-update') }}" method="post"
+                                                  id="AddressUpdateForm">
+                                                {{ csrf_field() }}
+                                                <div class="row">
+                                                    <div class="col-md-6 mt-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="full-name">Country<span
+                                                                        style="color: red">*</span></label>
+                                                            <select name="country" id="country"
+                                                                    class="form-control select2"
+                                                                    required
+                                                                    onchange="GetStates(this.value)">
+                                                                <option disabled selected value="">Select Country
+                                                                </option>
+                                                                @forelse($countries as $country)
+                                                                    @if(Auth::user()->country==$country->id)
+                                                                        <option selected
+                                                                                value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                    @else
+                                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                    @endif
+                                                                @empty
+                                                                @endforelse
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 mt-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="full-name">State<span
+                                                                        style="color: red">*</span></label>
+                                                            <select name="state" id="state" class="form-control select2"
+                                                                    required onchange="GetCities(this.value)">
+                                                                @if($statename)
+                                                                    <option selected
+                                                                            value="{{ Auth::user()->state }}">{{ ($statename) ? $statename->name : '' }}</option>
+                                                                @else
+                                                                    <option disabled selected value="">Select Country
+                                                                        First
+                                                                    </option>
+                                                                @endif
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 mt-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="full-name">City<span
+                                                                        style="color: red">*</span></label>
+                                                            <select name="city" id="city" class="form-control select2"
+                                                                    required>
+                                                                @if($cityname)
+                                                                    <option value="{{ Auth::user()->city }}">{{ ($cityname) ? $cityname->name : '' }}</option>
+                                                                @else
+                                                                    <option disabled selected value="">Select State
+                                                                        First
+                                                                    </option>
+                                                                @endif
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 mt-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="address">Address<span
+                                                                        style="color: red">*</span></label>
+                                                            <input type="text" name="address" id="address" required
+                                                                   class="form-control autocomplete=" off"
+                                                            placeholder="Enter Your Address"
+                                                            value="{{ (Auth::user()->address) ? Auth::user()->address : '' }}
+                                                            ">
+                                                            <input type="hidden" id="latitude" name="latitude"
+                                                                   value="{{ (Auth::user()->latitude) ? Auth::user()->latitude : '' }}">
+                                                            <input type="hidden" id="longitude" name="longitude"
+                                                                   value="{{ (Auth::user()->longitude) ? Auth::user()->longitude : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 mt-4">
+                                                        <center>
+                                                            <button class="btn btn-outline-success">Save</button>
+                                                        </center>
+                                                    </div>
+
                                                 </div>
-                                            </div><!-- data-item -->
+                                            </form>
+
 
                                         </div><!-- data-list -->
 
@@ -179,7 +252,7 @@
             <div class="modal-content">
                 <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
                 <div class="modal-body modal-body-md">
-                    <h5 class="title">Update Service Location</h5>
+                    <h5 class="title">Update Service Location Radius(KM)</h5>
                     <ul class="nk-nav nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#personal">Service Location</a>
@@ -193,19 +266,48 @@
                             <form action="{{ url('service-provider/location-update') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row gy-4">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="full-name">Type</label>
                                             <select name="user_type" class="form-control" required
                                                     onchange="GetTypeData(this.value)">
                                                 <option disabled selected value="">Select Type</option>
-                                                <option value="local business">local business</option>
-                                                <option value="state">state</option>
-                                                <option value="country">country</option>
+                                                <option {{ (Auth::user()->type=="local business") ? "selected" : '' }} value="local business">
+                                                    local business
+                                                </option>
+                                                <option {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
+                                                    country
+                                                </option>
+                                                <option {{ (Auth::user()->type=="state") ? "selected" : '' }} value="state">
+                                                    state
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6" id="appendType"></div>
+                                    <div class="col-md-6" id="appendType">
+                                        @if(Auth::user()->type=="local business")
+                                            <div class="form-group">
+                                                <label class="form-label" for="display-radius">Radius(KM)</label>
+                                                <input type="number" class="form-control" id="display-radius"
+                                                       name="state_radius" placeholder="Enter Radius"
+                                                       value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
+                                            </div>
+                                        @elseif(Auth::user()->type=="country")
+                                            <div class="form-group">
+                                                <label class="form-label" for="display-State">Country</label> <input
+                                                        type="text" class="form-control" id="display-State"
+                                                        placeholder="Country" readonly
+                                                        value="{{ ($countryname) ? $countryname->name : '' }}"></div>
+                                        @elseif(Auth::user()->type=="state")
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="display-State">State</label> <input
+                                                        type="text" class="form-control" id="display-State"
+                                                        placeholder="State" readonly
+                                                        value="{{ ($statename) ? $statename->name : '' }}"></div>
+                                        @endif
+                                    </div>
 
                                     <div class="col-12">
                                         <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
@@ -228,65 +330,76 @@
     <!-- language modal -->
 
 @endsection
+
 @section('script')
 
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&libraries=places"></script>
+
     <script type="text/javascript">
-        function uploadImg(e) {
-            console.log(e.files);
-            var form_data = new FormData();
 
-            var oFReader = new FileReader();
-            oFReader.readAsDataURL(e.files[0]);
-            var f = e.files[0];
-            var fsize = f.size || f.fileSize;
-            if (fsize > 2000000) {
-                alert("Image File Size is very big");
-            } else {
-                form_data.append("file", e.files[0]);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "{{ url('service-provider/userImg') }}",
-                    method: "POST",
-                    data: form_data,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-
-                    success: function (data) {
-                        $('.uploadimg').html('<div style="margin-right: 15px;" class="nk-msg-media user-avatar"><img src="' + data + '" alt=""></div>');
-                    }
-                });
-            }
-
-        }
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
 
         function GetTypeData(val) {
             $("#appendType").empty();
             if (val == "local business") {
-                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-radius">Radius</label> <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius"></div>');
+                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-radius">Radius(KM)</label> <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}"></div>');
             }
             if (val == "state") {
-                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-State">State</label> <input type="text" class="form-control" id="display-State" name="state_radius" placeholder="Enter State"></div>');
+                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-State">State</label> <input type="text" class="form-control" id="display-State" placeholder="State" readonly value="{{ ($statename) ? $statename->name : '' }}"></div>');
             }
             if (val == "country") {
-                form_data = "country";
-                $.ajax({
-                    url: "{{ url('service-provider/userCountries') }}",
-                    method: "get",
-                    data: form_data,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-
-                    success: function (data) {
-                        $("#appendType").html(data);
-                    }
-                });
+                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-State">Country</label> <input type="text" class="form-control" id="display-State" placeholder="Country" readonly value="{{ ($countryname) ? $countryname->name : '' }}"></div>');
             }
         }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        function initialize() {
+            var input = document.getElementById('address');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                console.log(place);
+                $("#latitude").val(place.geometry['location'].lat());
+                $("#longitude").val(place.geometry['location'].lng());
+            });
+        }
+
+        function GetStates(val) {
+            $("#state").empty();
+            $("#city").empty();
+            $("#city").html("<option value='' selected disabled>Select State First</option>");
+            $.ajax({
+                url: "{{ url('service-provider/getstates') }}/" + val,
+                method: "get",
+                success: function (data) {
+                    $("#state").html(data);
+                }
+            });
+        }
+
+        function GetCities(val) {
+            $.ajax({
+                url: "{{ url('service-provider/getcities') }}/" + val,
+                method: "get",
+                success: function (data) {
+                    $("#city").html(data);
+                }
+            });
+        }
+
+        $("#AddressUpdateForm").submit(function (event) {
+            var lat = $("#latitude").val();
+            var long = $("#longitude").val();
+            if (lat == "" || long == "") {
+                alert("Please Enter Valid Address !");
+                event.preventDefault();
+                return false;
+            }
+        });
+
+
     </script>
 @endsection
