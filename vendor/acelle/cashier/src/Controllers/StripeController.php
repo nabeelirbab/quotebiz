@@ -105,7 +105,7 @@ class StripeController extends Controller
                 return new TransactionVerificationResult(TransactionVerificationResult::RESULT_DONE);
             });
 
-            return redirect('admin/account/subscription');
+            return redirect()->action('SubscriptionController@index');
         }
 
         if ($request->isMethod('post')) {
@@ -118,7 +118,7 @@ class StripeController extends Controller
                     $invoice->checkout($service, function($invoice) {
                         return new TransactionVerificationResult(TransactionVerificationResult::RESULT_FAILED, $e->getMessage());
                     });
-                    return redirect('admin/account/subscription');
+                    return redirect()->action('SubscriptionController@index');
                 }
 
                 try {
@@ -130,7 +130,7 @@ class StripeController extends Controller
                         return new TransactionVerificationResult(TransactionVerificationResult::RESULT_DONE);
                     });
 
-                    return redirect('admin/account/subscription');
+                    return redirect()->action('SubscriptionController@index');
                 } catch (\Stripe\Exception\CardException $e) {
                     $payment_intent_id = $e->getError()->payment_intent->id;
                     
@@ -143,7 +143,7 @@ class StripeController extends Controller
                     $invoice->checkout($service, function($invoice) use ($e) {
                         return new TransactionVerificationResult(TransactionVerificationResult::RESULT_FAILED, $e->getMessage());
                     });
-                    return redirect('admin/account/subscription');
+                    return redirect()->action('SubscriptionController@index');
                 }
 
             // Use new card
@@ -187,6 +187,6 @@ class StripeController extends Controller
 
     public function autoBillingDataUpdate(Request $request)
     {
-        return redirect('admin/account/subscription');
+        return redirect()->action('SubscriptionController@index');
     }
 }

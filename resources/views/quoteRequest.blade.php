@@ -336,11 +336,21 @@ $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('si
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-{{--                            <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>--}}
+                            {{--                            <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>--}}
                             <label class="form-control-placeholder" for="zipcode">Location</label>
-                            <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location" required>
+                            <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
+                                   required>
+                            @if(Session::has('error'))
+                                <strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
+                            @endif
+                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                <input type="checkbox" class="custom-control-input" id="local_business"
+                                       name="local_business" value="local business">
+                                <label class="custom-control-label" for="local_business">local business</label>
+                            </div>
                             <input type="hidden" id="latitude" name="latitude">
                             <input type="hidden" id="longitude" name="longitude">
+                            <input type="hidden" id="state" name="state">
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -454,8 +464,17 @@ $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('si
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
+            var components = place.address_components;
             $("#latitude").val(place.geometry['location'].lat());
             $("#longitude").val(place.geometry['location'].lng());
+
+            for(i=0;i<components.length;i++){
+                if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
+                    var state = place.address_components[i].long_name;
+                    $("#state").val(state);
+                }
+            }
+
         });
     }
 

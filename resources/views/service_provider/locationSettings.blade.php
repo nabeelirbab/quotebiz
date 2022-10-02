@@ -46,32 +46,40 @@
                                     </button>
                                 </div>
                             @endif
+                                @if(Session::has('error'))
+                                <div class="alert alert-danger  fade show mt-5" role="alert">
+                                    <strong>Service Location Information !</strong> {{Session::get('error')}}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             <div class="card-aside-wrap">
                                 <div class="card-inner card-inner-lg">
                                     <div class="nk-block-head">
                                         <div class="nk-block-between d-flex justify-content-between">
                                             <div class="nk-block-head-content">
                                                 <h4 class="nk-block-title">Service Location Information</h4>
-                                                <div class="nk-block-des">
-                                                    <p>Basic info, like your Address , Country and State, that you use
-                                                        on Nio Platform.</p>
+                                                {{--                                                <div class="nk-block-des">--}}
+                                                {{--                                                    <p>Basic info, like your Address , Country and State.</p>--}}
+                                                {{--                                                </div>--}}
+                                            </div>
+                                            @if(!empty(Auth::user()->country))
+                                                <div class="nk-tab-actions mr-n1">
+                                                    <a href="#" class="btn btn-icon btn-trigger" data-toggle="modal"
+                                                       data-target="#profile-edit">
+                                                        <em class="icon ni ni-edit"></em>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                            <div class="nk-tab-actions mr-n1">
-                                                <a href="#" class="btn btn-icon btn-trigger" data-toggle="modal"
-                                                   data-target="#profile-edit">
-                                                    <em class="icon ni ni-edit"></em>
-                                                </a>
-                                            </div>
+                                            @endif
                                         </div>
                                     </div><!-- .nk-block-head -->
                                     <div class="nk-block">
                                         <div class="nk-data data-list">
-                                            <div class="data-head">
-                                                <h6 class="overline-title">Basics</h6>
-                                            </div>
-
-                                            <br>
+                                            {{--                                            <div class="data-head">--}}
+                                            {{--                                                <h6 class="overline-title">Basics</h6>--}}
+                                            {{--                                            </div>--}}
+                                            {{--                                            <br>--}}
                                             <form action="{{ url('service-provider/address-update') }}" method="post"
                                                   id="AddressUpdateForm">
                                                 {{ csrf_field() }}
@@ -139,10 +147,9 @@
                                                             <label class="form-label" for="address">Address<span
                                                                         style="color: red">*</span></label>
                                                             <input type="text" name="address" id="address" required
-                                                                   class="form-control autocomplete=" off"
+                                                                   class="form-control" autocomplete="off"
                                                             placeholder="Enter Your Address"
-                                                            value="{{ (Auth::user()->address) ? Auth::user()->address : '' }}
-                                                            ">
+                                                            value="{{ Auth::user()->address }}">
                                                             <input type="hidden" id="latitude" name="latitude"
                                                                    value="{{ (Auth::user()->latitude) ? Auth::user()->latitude : '' }}">
                                                             <input type="hidden" id="longitude" name="longitude"
@@ -217,18 +224,18 @@
                                         <div class="card-inner p-0">
                                             <ul class="link-list-menu">
                                                 <li><a
-                                                            href="service_providers/lms/admin-profile.html"><em
+                                                            href="{{url('service-provider/settings')}}"><em
                                                                 class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a>
                                                 </li>
-                                                <li><a href="service_providers/lms/admin-profile-notification.html"><em
-                                                                class="icon ni ni-bell-fill"></em><span>Notifications</span></a>
-                                                </li>
-                                                <li><a href="service_providers/lms/admin-profile-activity.html"><em
-                                                                class="icon ni ni-activity-round-fill"></em><span>Account Activity</span></a>
-                                                </li>
-                                                <li><a href="service_providers/lms/admin-profile-setting.html"><em
-                                                                class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a>
-                                                </li>
+                                                {{--                                                <li><a href="service_providers/lms/admin-profile-notification.html"><em--}}
+                                                {{--                                                                class="icon ni ni-bell-fill"></em><span>Notifications</span></a>--}}
+                                                {{--                                                </li>--}}
+                                                {{--                                                <li><a href="service_providers/lms/admin-profile-activity.html"><em--}}
+                                                {{--                                                                class="icon ni ni-activity-round-fill"></em><span>Account Activity</span></a>--}}
+                                                {{--                                                </li>--}}
+                                                {{--                                                <li><a href="service_providers/lms/admin-profile-setting.html"><em--}}
+                                                {{--                                                                class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a>--}}
+                                                {{--                                                </li>--}}
                                                 <li><a class="active"
                                                        href="{{url('service-provider/locationSetting')}}"><em
                                                                 class="icon ni ni-location"></em><span>Service Location Settings</span></a>
@@ -252,7 +259,7 @@
             <div class="modal-content">
                 <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
                 <div class="modal-body modal-body-md">
-                    <h5 class="title">Update Service Location Radius(KM)</h5>
+                    <h5 class="title">Update Service Location</h5>
                     <ul class="nk-nav nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#personal">Service Location</a>
