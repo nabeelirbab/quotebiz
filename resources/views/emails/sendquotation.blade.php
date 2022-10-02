@@ -1,6 +1,6 @@
 @component('mail::message')
 # 
-<h3>Hi {{$maildata['user']->first_name}} {{$maildata['user']->last_name}}</h3>
+<h3>Hi {{$maildata['user']->first_name}},</h3>
 
 
 <p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
