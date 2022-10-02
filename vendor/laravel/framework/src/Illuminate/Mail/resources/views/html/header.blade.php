@@ -1,12 +1,11 @@
-<?php
- $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
- ?>
 <tr>
 <td class="header">
-<a href="{{ url('') }}" style="display: inline-block;">
-<!-- <h4>{{\Acelle\Model\Setting::get('site_name')}}</h4> -->
-<img src="{{ $sitelargelogo }}" style="max-width: 200px !important">
-
+<a href="{{ $url }}" style="display: inline-block;">
+@if (trim($slot) === 'Laravel')
+<img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
+@else
+{{ $slot }}
+@endif
 </a>
 </td>
 </tr>

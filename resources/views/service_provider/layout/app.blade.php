@@ -12,6 +12,8 @@
     @if (\Acelle\Model\Setting::get('site_favicon'))
         <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
     @endif
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdnout.com/toastr.js/css/base.css" rel="stylesheet" media="all">
     @include('service_provider.includes.head-css')  
     @yield('styling')
 </head>
