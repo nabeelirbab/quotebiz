@@ -13,6 +13,9 @@ use Acelle\Model\QuotePrice;
 use Acelle\Model\AdminCurrency;
 use Acelle\Model\SiteSetting;
 use Acelle\Model\SubCategory;
+use Acelle\Model\Country;
+use Acelle\Model\State;
+use Acelle\Model\City;
 use Acelle\Library\ExtendedSwiftMessage;
 
 class HelperJob extends Base
@@ -143,4 +146,18 @@ class HelperJob extends Base
     public static function categoryname(){
       return  User::where('subdomain',request('account'))->where('user_type','admin')->first()->category_id;
     }
+    public static function countries(){
+        return  Country::all();
+    }
+    public static function countryname($id){
+        return  Country::where('id',$id)->first();
+    }
+    public static function statename($id){
+
+        return  State::where('id',$id)->first();
+    }
+    public static function cityname($id){
+        return  City::where('id',$id)->first();
+    }
+
 }

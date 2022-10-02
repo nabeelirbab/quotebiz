@@ -1,8 +1,10 @@
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
-     <script src="http://<?php echo request('account') ?>.shopgrabthis.com:3000/socket.io/socket.io.js"></script>
+{{--   <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>--}}
+{{--    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>--}}
+{{--     <script src="http://<?php echo request('account') ?>.shopgrabthis.com:3000/socket.io/socket.io.js"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnout.com/toastr.js"></script>
 
     <script type="text/javascript">
 
@@ -81,4 +83,5 @@
     messaging.onMessage(function({data:{body,title}}){
         new Notification(title, {body});
     });
+
     </script>

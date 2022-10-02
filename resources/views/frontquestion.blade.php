@@ -268,6 +268,10 @@
             		
             		<input type="hidden" name="category_id" value="{{$category->id}}">
             		<input type="hidden" name="zip_code" value="{{$zipcode}}">
+            		<input type="hidden" name="state" value="{{$state}}">
+            		<input type="hidden" name="latitude" value="{{$latitude}}">
+            		<input type="hidden" name="longitude" value="{{$longitude}}">
+            		<input type="hidden" name="local_business" value="{{$local_business}}">
             		<input type="hidden" name="admin_id" value="{{request('account')}}">
             	</div>
             	<div id="wizard">
@@ -305,6 +309,7 @@
 						</div>
 						@endforeach
 						@elseif($question->choice_selection == "multiple")
+{{--							{{ dd($question->choices) }}--}}
 						@foreach($question->choices as $key => $choices)
 	                     <div>
 						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}" @if($key == 0) checked @endif>
@@ -530,7 +535,7 @@ var jqOld = jQuery.noConflict();
 				   jqOld('#wizard').find('a[href="#finish"]').remove(); 
 				   //append a submit type button
 				   jqOld('#wizard .actions li:last').show();
-				   jqOld('#wizard .actions li:last').html('<button type="submit">Get Quotes</button>');
+				   jqOld('#wizard .actions li:last').html('<button id="FinalSubmit" type="submit">Get Quotes</button>');
 				}else{
 
 		          jqOld('#wizard .actions li:last').hide();
@@ -615,8 +620,12 @@ var _token = jqOld('meta[name="csrf-token"]').attr('content');
         });
 }
 
+jqOld("#form").submit(function( event ) {
+	jqOld("#FinalSubmit").prop('disabled', true);
+	jqOld("#FinalSubmit").css('cursor', 'not-allowed');
+});
 
-		</script>
+</script>
 <!-- Template created and distributed by Colorlib -->
 </body>
 </html>
