@@ -30,7 +30,6 @@
                                         <a href="{{ url('service-provider/quotes-responses') }}" class="le nk-quick-nav-icon">
                                             <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em><span class="badge msgnotifications">0</span></div>
                                         </a>
-                                        
                                     </li>
                                     <!-- <li class="dropdown language-dropdown d-none d-sm-block mr-n1">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
