@@ -73,7 +73,7 @@
                                             <span>Category</span>
                                         </th>
                                         <th class="tb-ticket-desc">
-                                            <span>Zip Code</span>
+                                            <span>Address</span>
                                         </th>
                                         <th class="tb-ticket-desc" colspan="2">
                                             <span>Additional Information</span>

@@ -188,12 +188,21 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/leadsquotes','ServiceProvider\QuoteController@leadsquotes');
     Route::get('/newjob/{id}','ServiceProvider\QuoteController@newJob');
     Route::post('/profile-update', 'ServiceProvider\QuoteController@profileUpdate');
+    Route::post('/location-update', 'ServiceProvider\QuoteController@locationUpdate');
+    Route::post('/address-update', 'ServiceProvider\QuoteController@addressupdate');
     Route::post('/userImg', 'UserController@userImage');
     Route::get('/getcustomer','ChatController@getCustomerfriend');
     Route::post('/storequotation','ChatController@storequotation');
+    Route::get('/userCountries','ServiceProvider\QuoteController@userCountries');
+    Route::get('/getstates/{id}','ServiceProvider\QuoteController@getstates')->name("getstates");
+    Route::get('/getcities/{id}','ServiceProvider\QuoteController@getcities')->name("getcities");
+
     Route::get('/settings', function () {
         return view('service_provider.settings');
     });
+    Route::get('/locationSetting', function () {
+        return view('service_provider.locationSettings');
+    })->name('locationSetting');
 
     Route::get('/support', function () {
         return view('service_provider.support');

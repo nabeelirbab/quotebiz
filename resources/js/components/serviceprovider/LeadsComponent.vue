@@ -247,7 +247,7 @@
                                     <div class="row mt-3 justify-content-end" >
                                     
                                        <div class="col-md-4">
-                                         <button href="buy-creadits" class="btn btn-success">Already Submit</button>
+                                         <button href="buy-credits" class="btn btn-success">Already Submit</button>
                                        </div>
                                    </div>
                                    </template>
@@ -282,7 +282,7 @@
                                         <span>Before send quotation you need to buy credits.</span>
                                     </div>
                                        <div class="col-md-4">
-                                         <a href="buy-creadits" class="btn btn-success">Buy Credits</a>
+                                         <a href="buy-credits" class="btn btn-success">Buy Credits</a>
                                        </div>
                                    </div>
 
@@ -490,7 +490,22 @@ import Toasted from 'vue-toasted';
                   $('#tabactive').addClass('active');
                 })
                 .catch((error) => console.log(error));
-                   }
+
+                },
+            getFirstLetter(str){
+     
+              if(str){
+              //   var acronym = str.replace(/\s/g, '').split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
+              // return acronym;
+                var matchess = str.match(/\b(\w)/g); // ['J','S','O','N']
+                var matches = matchess.slice(0, 2);
+                var acronym = matches.join(''); // JSON
+
+              return acronym;
+              }
+          
+        },
+
            },
 
     mounted() {

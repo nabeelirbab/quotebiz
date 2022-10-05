@@ -32,7 +32,7 @@
                     new Dialog('alert', {
                         message: result.error.message,
                         ok: function() {
-                            window.location = '{{ urk('account/subscription') }}';
+                            window.location = '{{ url('admin/account/subscription') }}';
                         }
                     });
                 } else {
@@ -48,7 +48,7 @@
                                 payment_method_id: result.paymentIntent.payment_method,
                             }
                         }).done(function(response) {
-                            window.location = '{{ url('account/subscription') }}';
+                            window.location = '{{ url('admin/account/subscription') }}';
                         });
                     }
                 }

@@ -24,7 +24,7 @@ class Subscription
 
         // Check if customer dose not have subscription
         if (!is_object($subscription) || !$subscription->isActive() || !$subscription->plan->isActive()) {
-            return redirect('account/subscription');
+            return redirect('admin/account/subscription');
         }
 
         // If sending server not available

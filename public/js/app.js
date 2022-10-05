@@ -2869,6 +2869,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    getFirstLetter: function getFirstLetter(str) {
+      if (str) {
+        //   var acronym = str.replace(/\s/g, '').split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
+        // return acronym;
+        var matchess = str.match(/\b(\w)/g); // ['J','S','O','N']
+
+        var matches = matchess.slice(0, 2);
+        var acronym = matches.join(''); // JSON
+
+        return acronym;
+      }
     }
   },
   mounted: function mounted() {
@@ -56151,7 +56163,4562 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ResponsesComponent_vue_vue_type_style_index_0_id_83df2902_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ResponsesComponent.vue?vue&type=style&index=0&id=83df2902&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/serviceprovider/ResponsesComponent.vue?vue&type=style&index=0&id=83df2902&lang=css&");
+=======
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "nk-content mt-5" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "nk-content-inner" }, [
+        _c("div", { staticClass: "nk-content-body" }, [
+          _c("div", { staticClass: "nk-msg" }, [
+            _c("div", { staticClass: "nk-msg-aside" }, [
+              _c("div", { staticClass: "nk-msg-nav" }, [
+                _c(
+                  "ul",
+                  {
+                    staticClass: "nk-msg-menu nav nav-tabs",
+                    staticStyle: { "background-color": "white" },
+                  },
+                  [
+                    _c(
+                      "li",
+                      {
+                        staticClass: "nk-msg-menu-item  active",
+                        attrs: { id: "tabactive" },
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                            on: { click: _vm.newjob },
+                          },
+                          [_vm._v(" New Jobs")]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem1", "data-toggle": "tab" },
+                          on: { click: _vm.quotedjob },
+                        },
+                        [_vm._v("Quoted Jobs")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "search-wrap",
+                    attrs: { "data-search": "search" },
+                  },
+                  [
+                    _c("div", { staticClass: "search-content" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "search-back btn btn-icon toggle-search",
+                          attrs: { href: "#", "data-target": "search" },
+                        },
+                        [
+                          _c("em", {
+                            staticClass: "icon ni ni-arrow-left",
+                            on: { click: _vm.clearSearch },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.quoteSearch,
+                            expression: "quoteSearch",
+                          },
+                        ],
+                        staticClass:
+                          "form-control border-transparent form-focus-none",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Search by user or message",
+                        },
+                        domProps: { value: _vm.quoteSearch },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.quoteSearch = $event.target.value
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm._m(1),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _vm.quoteSearch
+                ? _c(
+                    "div",
+                    { staticClass: "nk-msg-list" },
+                    [
+                      _vm._l(_vm.filteredQuotelist, function (quote) {
+                        return [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "nk-msg-item",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.openQuote($event, quote)
+                                },
+                              },
+                            },
+                            [
+                              _c("div", { staticClass: "chat-avatar" }, [
+                                quote.user.user_img
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass: "nk-msg-media user-avatar",
+                                      },
+                                      [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              _vm.hostname +
+                                              "/frontend-assets/images/users/" +
+                                              quote.user.user_img,
+                                            alt: "",
+                                          },
+                                        }),
+                                      ]
+                                    )
+                                  : _c(
+                                      "div",
+                                      { staticClass: "user-avatar bg-purple" },
+                                      [
+                                        _c("span", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.getFirstLetter(
+                                                quote.user.first_name
+                                              )
+                                            ) +
+                                              _vm._s(
+                                                _vm.getFirstLetter(
+                                                  quote.user.last_name
+                                                )
+                                              )
+                                          ),
+                                        ]),
+                                      ]
+                                    ),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "nk-msg-info" }, [
+                                _c("div", { staticClass: "nk-msg-from" }, [
+                                  _c("div", { staticClass: "nk-msg-sender" }, [
+                                    _c("h6", { staticClass: "name" }, [
+                                      _vm._v(
+                                        _vm._s(quote.user.first_name) +
+                                          " " +
+                                          _vm._s(quote.user.last_name)
+                                      ),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "nk-msg-meta" }, [
+                                    _c("div", { staticClass: "date" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("moment")(
+                                            quote.created_at,
+                                            "from",
+                                            "now"
+                                          )
+                                        )
+                                      ),
+                                    ]),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "nk-msg-context" }, [
+                                  _c("div", { staticClass: "nk-msg-text" }, [
+                                    _c("div", { staticClass: "title" }, [
+                                      _vm._v(
+                                        _vm._s(quote.category.category_name)
+                                      ),
+                                    ]),
+                                  ]),
+                                ]),
+                              ]),
+                            ]
+                          ),
+                        ]
+                      }),
+                      _vm._v(" "),
+                      _vm.filteredQuotelist.length == 0
+                        ? _c(
+                            "p",
+                            {
+                              staticClass: "text-center mt-5",
+                              staticStyle: { "font-size": "16px" },
+                            },
+                            [_vm._v(" Not Found")]
+                          )
+                        : _vm._e(),
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.quoteSearch == ""
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "tab-content",
+                      staticStyle: { "max-height": "85%" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane active",
+                          attrs: { id: "tabItem0" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.quotes, function (quote) {
+                                return [
+                                  !quote.myquotation
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openQuote(
+                                                $event,
+                                                quote
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "chat-avatar" },
+                                            [
+                                              quote.user.user_img
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-media user-avatar",
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            _vm.hostname +
+                                                            "/frontend-assets/images/users/" +
+                                                            quote.user.user_img,
+                                                          alt: "",
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "user-avatar bg-purple",
+                                                    },
+                                                    [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.getFirstLetter(
+                                                              quote.user
+                                                                .first_name
+                                                            )
+                                                          ) +
+                                                            _vm._s(
+                                                              _vm.getFirstLetter(
+                                                                quote.user
+                                                                  .last_name
+                                                              )
+                                                            )
+                                                        ),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.user
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote.user
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.created_at,
+                                                                "from",
+                                                                "now"
+                                                              )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                ]
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane", attrs: { id: "tabItem1" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.quotes, function (quote) {
+                                return quote.myquotation
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openQuote(
+                                                $event,
+                                                quote
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "chat-avatar" },
+                                            [
+                                              quote.user.user_img
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-media user-avatar",
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            _vm.hostname +
+                                                            "/frontend-assets/images/users/" +
+                                                            quote.user.user_img,
+                                                          alt: "",
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "user-avatar bg-purple",
+                                                    },
+                                                    [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.getFirstLetter(
+                                                              quote.user
+                                                                .first_name
+                                                            )
+                                                          ) +
+                                                            _vm._s(
+                                                              _vm.getFirstLetter(
+                                                                quote.user
+                                                                  .last_name
+                                                              )
+                                                            )
+                                                        ),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.user
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote.user
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.created_at,
+                                                                "from",
+                                                                "now"
+                                                              )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("div", {
+                                                    staticClass:
+                                                      "nk-msg-lables",
+                                                  }),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                    ]
+                  )
+                : _vm._e(),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "nk-msg-body bg-white" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: { display: "none" },
+                  attrs: { id: "chatPanel" },
+                },
+                [
+                  _c("div", { staticClass: "nk-msg-head" }, [
+                    _c("div", { staticClass: "nk-msg-head-meta" }, [
+                      _c("div", { staticClass: "d-none d-lg-block" }, [
+                        _c("ul", { staticClass: "nk-msg-tags" }, [
+                          _c("li", [
+                            _vm.quoteQuestions.user
+                              ? _c("h5", [
+                                  _vm._v(
+                                    _vm._s(_vm.quoteQuestions.user.first_name) +
+                                      " " +
+                                      _vm._s(_vm.quoteQuestions.user.last_name)
+                                  ),
+                                ])
+                              : _vm._e(),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "d-lg-none" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "btn btn-icon btn-trigger nk-msg-hide ml-n1",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.closePanel()
+                              },
+                            },
+                          },
+                          [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "nk-chat-body", attrs: { id: "chatbody" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "nk-chat-panel",
+                          staticStyle: { background: "white" },
+                        },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-3" }, [
+                              _c("div", { staticClass: " d-none d-lg-block" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "d-flex align-items-center",
+                                    attrs: { href: "" },
+                                  },
+                                  [
+                                    _vm._m(3),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "ml-3" }, [
+                                      _vm.quoteQuestions.category
+                                        ? _c(
+                                            "h6",
+                                            { staticClass: "title mb-1" },
+                                            [
+                                              _vm._v(
+                                                "\n                                                    " +
+                                                  _vm._s(
+                                                    _vm.quoteQuestions.category
+                                                      .category_name
+                                                  )
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c("span", { staticClass: "sub-text" }, [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              _vm._f("moment")(
+                                                _vm.quoteQuestions.created_at,
+                                                "from",
+                                                "now"
+                                              )
+                                            )
+                                        ),
+                                      ]),
+                                    ]),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "mt-3" }, [
+                                  _c(
+                                    "ul",
+                                    {
+                                      staticClass: "chat-profile-options pl-1",
+                                    },
+                                    [
+                                      _vm.quoteQuestions.user
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass: "chat-option-link",
+                                                attrs: { href: "#" },
+                                              },
+                                              [
+                                                _c("em", {
+                                                  staticClass:
+                                                    "icon icon-circle bg-light ni ni-edit-alt",
+                                                }),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "lead-text text-muted pl-1",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.quoteQuestions.user
+                                                          .mobileno
+                                                      )
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c("li", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "chat-option-link chat-search-toggle",
+                                            attrs: { href: "#" },
+                                          },
+                                          [
+                                            _c("em", {
+                                              staticClass:
+                                                "icon icon-circle bg-light ni ni-search",
+                                            }),
+                                            _vm.quoteQuestions.user
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "lead-text text-muted pl-1",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.quoteQuestions.user
+                                                          .email
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                          ]
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm.quoteQuestions.user
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass: "chat-option-link",
+                                                attrs: { href: "#" },
+                                              },
+                                              [
+                                                _c("em", {
+                                                  staticClass:
+                                                    "icon icon-circle bg-light ni ni-circle-fill",
+                                                }),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "lead-text text-muted pl-1",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.quoteQuestions.user
+                                                          .city
+                                                      )
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ])
+                                        : _vm._e(),
+                                    ]
+                                  ),
+                                ]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-9 col-sm-12 mt-3" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "row" },
+                                  _vm._l(
+                                    _vm.quoteQuestions.questionsget,
+                                    function (questions) {
+                                      return _c(
+                                        "div",
+                                        { staticClass: "col-md-6 mt-1 mb-1" },
+                                        [
+                                          _c("h6", [
+                                            _vm._v(
+                                              _vm._s(
+                                                questions.questions.question
+                                              )
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm._l(
+                                            questions.choice,
+                                            function (choices) {
+                                              return [
+                                                _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      choices.choice_value
+                                                    ) + ","
+                                                  ),
+                                                ]),
+                                              ]
+                                            }
+                                          ),
+                                        ],
+                                        2
+                                      )
+                                    }
+                                  ),
+                                  0
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _vm.quoteQuestions.additional_info
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "col-md-12 mt-2" },
+                                        [
+                                          _c(
+                                            "h6",
+                                            { staticClass: "title mb-1" },
+                                            [_vm._v("Comment")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "sub-text" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.quoteQuestions
+                                                    .additional_info
+                                                )
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 mt-2 mb-3" },
+                                    [
+                                      _vm._m(4),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "card-inner p-0" },
+                                        [
+                                          _c("wysiwyg", {
+                                            model: {
+                                              value: _vm.comment,
+                                              callback: function ($$v) {
+                                                _vm.comment = $$v
+                                              },
+                                              expression: "comment",
+                                            },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                    ]
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(5),
+                                _vm._v(" "),
+                                _vm.quoteQuestions.myquotation
+                                  ? [_vm._m(6)]
+                                  : [
+                                      _vm.creaditsum >= 10
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "row mt-3 justify-content-end",
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "col-md-3 col-xs-3 p-0",
+                                                },
+                                                [
+                                                  _vm.quoteQuestions.category &&
+                                                  _vm.quoteQuestions.category
+                                                    .credit_cost &&
+                                                  _vm.quoteQuestions.category
+                                                    .credit_cost
+                                                    ? [
+                                                        _c(
+                                                          "h5",
+                                                          {
+                                                            staticClass:
+                                                              "p-0 mt-3 creditsCost",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm
+                                                                  .quoteQuestions
+                                                                  .category
+                                                                  .credit_cost
+                                                              ) + " Credits"
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .quoteQuestions
+                                                                  .category
+                                                                  .credit_cost,
+                                                              expression:
+                                                                "quoteQuestions.category.credit_cost",
+                                                            },
+                                                          ],
+                                                          attrs: {
+                                                            type: "hidden",
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.quoteQuestions
+                                                                .category
+                                                                .credit_cost,
+                                                          },
+                                                          on: {
+                                                            input: function (
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm
+                                                                  .quoteQuestions
+                                                                  .category,
+                                                                "credit_cost",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            },
+                                                          },
+                                                        }),
+                                                      ]
+                                                    : [
+                                                        _c(
+                                                          "h5",
+                                                          {
+                                                            staticClass:
+                                                              "p-0 mt-3",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm.quoteprice
+                                                              ) + " Credits"
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm.quoteprice,
+                                                              expression:
+                                                                "quoteprice",
+                                                            },
+                                                          ],
+                                                          attrs: {
+                                                            type: "hidden",
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.quoteprice,
+                                                          },
+                                                          on: {
+                                                            input: function (
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.quoteprice =
+                                                                $event.target.value
+                                                            },
+                                                          },
+                                                        }),
+                                                      ],
+                                                ],
+                                                2
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "col-md-7 col-xs-8",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "input-group",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          staticStyle: {
+                                                            position:
+                                                              "absolute",
+                                                            bottom: "41px",
+                                                          },
+                                                        },
+                                                        [_vm._v("Amount")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value: _vm.price,
+                                                            expression: "price",
+                                                          },
+                                                        ],
+                                                        staticClass:
+                                                          "form-control rounded-left",
+                                                        class: {
+                                                          redborder:
+                                                            _vm.isPrice,
+                                                        },
+                                                        staticStyle: {
+                                                          height: "50px",
+                                                        },
+                                                        attrs: {
+                                                          type: "number",
+                                                          placeholder:
+                                                            "What is the full amount you'd like to bid for this job?",
+                                                        },
+                                                        domProps: {
+                                                          value: _vm.price,
+                                                        },
+                                                        on: {
+                                                          input: function (
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.price =
+                                                              $event.target.value
+                                                          },
+                                                        },
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group-append",
+                                                        },
+                                                        [
+                                                          _vm.isSubmit
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-success",
+                                                                  attrs: {
+                                                                    id: "basic-addon2",
+                                                                  },
+                                                                  on: {
+                                                                    click:
+                                                                      _vm.sendQuotation,
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Send Quote"
+                                                                  ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _vm.isLoading
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-success",
+                                                                  staticStyle: {
+                                                                    "background-color":
+                                                                      "#816bff !important",
+                                                                    "border-color":
+                                                                      "#816bff !important",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Send Quote "
+                                                                  ),
+                                                                  _vm._m(7),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          )
+                                        : _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "row mt-3 justify-content-end",
+                                            },
+                                            [_vm._m(8), _vm._v(" "), _vm._m(9)]
+                                          ),
+                                    ],
+                              ],
+                              2
+                            ),
+                          ]),
+                        ]
+                      ),
+                    ]
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nk-msg-menu-item ml-auto" }, [
+      _c(
+        "a",
+        {
+          staticClass: "search-toggle toggle-search",
+          attrs: { href: "", "data-target": "search" },
+        },
+        [_c("em", { staticClass: "icon ni ni-search" })]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "search-submit btn btn-icon" }, [
+      _c("em", { staticClass: "icon ni ni-search" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "mainView" } }, [
+      _c(
+        "div",
+        {
+          staticClass: "nk-chat-body",
+          staticStyle: { "max-height": "calc(100vh - 125px)" },
+        },
+        [
+          _c("div", { staticClass: "nk-chat-panel" }, [
+            _c("div", { staticClass: "row d-flex justify-content-center" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "loexp-no-results-container" }, [
+                  _c("div", { staticClass: "card-block" }, [
+                    _c("img", {
+                      staticClass: "img-fluid",
+                      attrs: {
+                        width: "156",
+                        height: "111",
+                        src: "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj",
+                        srcset:
+                          "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj" +
+                          " 1x, " +
+                          "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=KAYSPp" +
+                          " 2x",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "mt-2" }, [
+                      _vm._v(
+                        "\n                                                    Welcome\n                                                "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      { staticClass: "text-center mt-2 text-light-grey" },
+                      [
+                        _vm._v(
+                          "You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here."
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "/sellers/dashboard/" } }, [
+                      _vm._v("View leads"),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "user-avatar sq bg-purple" }, [
+      _c("span", [_vm._v("GD")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticStyle: { "font-size": "16px" } }, [
+      _c("b", [
+        _vm._v("Customers appreciate information specific to their job."),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 mt-2 mb-5" }, [
+        _c("div", { staticClass: "custom-control " }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: { type: "checkbox", id: "latest-sale" },
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "custom-control-label",
+              attrs: { for: "latest-sale" },
+            },
+            [_c("b", [_vm._v("Save this comment as a template")])]
+          ),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3 justify-content-end" }, [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-success", attrs: { href: "buy-credits" } },
+          [_vm._v("Already Submit")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "spinner-border text-secondary",
+        attrs: { role: "status" },
+      },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-7" }, [
+      _c("span", [_vm._v("Before send quotation you need to buy credits.")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c(
+        "a",
+        { staticClass: "btn btn-success", attrs: { href: "buy-credits" } },
+        [_vm._v("Buy Credits")]
+      ),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/serviceprovider/ResponsesComponent.vue?vue&type=template&id=83df2902&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/serviceprovider/ResponsesComponent.vue?vue&type=template&id=83df2902& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "nk-content mt-5" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "nk-content-inner" }, [
+        _c("div", { staticClass: "nk-content-body" }, [
+          _c("div", { staticClass: "nk-msg" }, [
+            _c("div", { staticClass: "nk-msg-aside" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "nk-msg-nav",
+                  staticStyle: { background: "white", "line-height": "5.6" },
+                },
+                [
+                  _c("ul", { staticClass: "nk-msg-menu nav nav-tabs" }, [
+                    _c(
+                      "li",
+                      {
+                        staticClass: "nk-msg-menu-item nav-item active",
+                        attrs: { id: "tabactive" },
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#tabItem0", "data-toggle": "tab" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.activetab()
+                              },
+                            },
+                          },
+                          [_vm._v("Active")]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem1", "data-toggle": "tab" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.wontab()
+                            },
+                          },
+                        },
+                        [_vm._v("Won")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem2", "data-toggle": "tab" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.donetab()
+                            },
+                          },
+                        },
+                        [_vm._v("Done")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nk-msg-menu-item nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#tabItem3", "data-toggle": "tab" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.losetab()
+                            },
+                          },
+                        },
+                        [_vm._v("Loss")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "search-wrap",
+                      attrs: { "data-search": "search" },
+                    },
+                    [
+                      _c("div", { staticClass: "search-content" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "search-back btn btn-icon toggle-search",
+                            attrs: { href: "#", "data-target": "search" },
+                          },
+                          [
+                            _c("em", {
+                              staticClass: "icon ni ni-arrow-left",
+                              on: { click: _vm.clearSearch },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.userSearch,
+                              expression: "userSearch",
+                            },
+                          ],
+                          staticClass:
+                            "form-control border-transparent form-focus-none",
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              "Search by user first name or last name",
+                          },
+                          domProps: { value: _vm.userSearch },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.userSearch = $event.target.value
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm._m(1),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _vm.userSearch
+                ? _c(
+                    "div",
+                    { staticClass: "nk-msg-list" },
+                    [
+                      _vm._l(_vm.filteredUserlist, function (quote) {
+                        return quote.quote.status == "pending"
+                          ? [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "nk-msg-item ",
+                                  class: {
+                                    current: quote.id == _vm.quoteChat.id,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.openChat($event, quote)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "p",
+                                    { staticStyle: { display: "none" } },
+                                    [_vm._v(_vm._s(_vm.activeJob + 1))]
+                                  ),
+                                  _vm._v(" "),
+                                  quote.chatcustomer.user_img
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "nk-msg-media user-avatar",
+                                        },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              src:
+                                                _vm.hostname +
+                                                "/frontend-assets/images/users/" +
+                                                quote.chatcustomer.user_img,
+                                              alt: "",
+                                            },
+                                          }),
+                                        ]
+                                      )
+                                    : _c(
+                                        "div",
+                                        {
+                                          staticClass: "user-avatar bg-purple",
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.getFirstLetter(
+                                                  quote.chatcustomer.first_name
+                                                )
+                                              ) +
+                                                _vm._s(
+                                                  _vm.getFirstLetter(
+                                                    quote.chatcustomer.last_name
+                                                  )
+                                                )
+                                            ),
+                                          ]),
+                                        ]
+                                      ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "nk-msg-info" }, [
+                                    _c("div", { staticClass: "nk-msg-from" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "nk-msg-sender" },
+                                        [
+                                          _c("h6", { staticClass: "name" }, [
+                                            _vm._v(
+                                              _vm._s(
+                                                quote.chatcustomer.first_name
+                                              ) +
+                                                " " +
+                                                _vm._s(
+                                                  quote.chatcustomer.last_name
+                                                )
+                                            ),
+                                          ]),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "nk-msg-meta" },
+                                        [
+                                          _c("div", { staticClass: "date" }, [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm._f("moment")(
+                                                  quote.updated_at,
+                                                  "from",
+                                                  "now"
+                                                )
+                                              )
+                                            ),
+                                          ]),
+                                        ]
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "nk-msg-context" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "nk-msg-text" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "title" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    quote.quote.category
+                                                      .category_name
+                                                  )
+                                                ),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            quote.last_msg
+                                              ? _c("p", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      quote.last_msg.substring(
+                                                        0,
+                                                        100
+                                                      ) + ".."
+                                                    )
+                                                  ),
+                                                ])
+                                              : _c("p", [_vm._v("Start Chat")]),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        quote.unread_msg_count > 0
+                                          ? _c(
+                                              "div",
+                                              { staticClass: "unreadmsg" },
+                                              [
+                                                _vm._v(
+                                                  "\r\n                           " +
+                                                    _vm._s(
+                                                      quote.unread_msg_count
+                                                    ) +
+                                                    "\r\n                        "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ]
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm.filteredUserlist.length == 0
+                        ? _c(
+                            "p",
+                            {
+                              staticClass: "text-center mt-5",
+                              staticStyle: { "font-size": "16px" },
+                            },
+                            [_vm._v(" No User Found")]
+                          )
+                        : _vm._e(),
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.userSearch == ""
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "tab-content",
+                      staticStyle: { "max-height": "85%" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane active",
+                          attrs: { id: "tabItem0" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus == null
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          class: {
+                                            current:
+                                              quote.id == _vm.quoteChat.id,
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatcustomer
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.getFirstLetter(
+                                                          quote.chatcustomer
+                                                            .first_name
+                                                        )
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
+                                                            quote.chatcustomer
+                                                              .last_name
+                                                          )
+                                                        )
+                                                    ),
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem1" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus &&
+                                  quote.quotestatus.status == "won"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatcustomer
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.getFirstLetter(
+                                                          quote.chatcustomer
+                                                            .first_name
+                                                        )
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
+                                                            quote.chatcustomer
+                                                              .last_name
+                                                          )
+                                                        )
+                                                    ),
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem2" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus &&
+                                  quote.quotestatus.status == "done"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatcustomer
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.getFirstLetter(
+                                                          quote.chatcustomer
+                                                            .first_name
+                                                        )
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
+                                                            quote.chatcustomer
+                                                              .last_name
+                                                          )
+                                                        )
+                                                    ),
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-pane ", attrs: { id: "tabItem3" } },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nk-msg-list" },
+                            [
+                              _vm._l(_vm.orderedUsers, function (quote) {
+                                return quote.quotestatus &&
+                                  quote.quotestatus.status == "lose"
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "nk-msg-item",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.openChat($event, quote)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          quote.chatcustomer.user_img
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "nk-msg-media user-avatar",
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.hostname +
+                                                        "/frontend-assets/images/users/" +
+                                                        quote.chatcustomer
+                                                          .user_img,
+                                                      alt: "",
+                                                    },
+                                                  }),
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "user-avatar bg-purple",
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.getFirstLetter(
+                                                          quote.chatcustomer
+                                                            .first_name
+                                                        )
+                                                      ) +
+                                                        _vm._s(
+                                                          _vm.getFirstLetter(
+                                                            quote.chatcustomer
+                                                              .last_name
+                                                          )
+                                                        )
+                                                    ),
+                                                  ]),
+                                                ]
+                                              ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "nk-msg-info" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "nk-msg-from" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-sender",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h6",
+                                                        { staticClass: "name" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.chatcustomer
+                                                                .first_name
+                                                            ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                quote
+                                                                  .chatcustomer
+                                                                  .last_name
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-meta",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "date" },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm._f("moment")(
+                                                                quote.updated_at,
+                                                                "from",
+                                                                "now"
+                                                              )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.quote
+                                                                .category
+                                                                .category_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      quote.last_msg
+                                                        ? _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                quote.last_msg.substring(
+                                                                  0,
+                                                                  100
+                                                                ) + ".."
+                                                              )
+                                                            ),
+                                                          ])
+                                                        : _c("p", [
+                                                            _vm._v(
+                                                              "Start Chat"
+                                                            ),
+                                                          ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  quote.unread_msg_count > 0
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "unreadmsg",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                           " +
+                                                              _vm._s(
+                                                                quote.unread_msg_count
+                                                              ) +
+                                                              "\r\n                        "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  : _vm._e()
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                    ]
+                  )
+                : _vm._e(),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "nk-msg-body bg-white",
+                class: {
+                  "profile-shown": _vm.isProfileshown,
+                  startshowProfile: _vm.isStartshowProfile,
+                  opacity: _vm.isActive,
+                },
+              },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "nk-msg-head d-none d-lg-block" }, [
+                  _vm.quoteChat.chatcustomer
+                    ? _c("div", { staticClass: "nk-msg-head-meta" }, [
+                        _c("div", { staticClass: " d-none d-lg-block" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "d-flex align-items-center",
+                              attrs: { href: "" },
+                            },
+                            [
+                              _vm.quoteChat.chatcustomer.user_img
+                                ? _c(
+                                    "div",
+                                    { staticClass: "nk-msg-media user-avatar" },
+                                    [
+                                      _c("img", {
+                                        attrs: {
+                                          src:
+                                            _vm.hostname +
+                                            "/frontend-assets/images/users/" +
+                                            _vm.quoteChat.chatcustomer.user_img,
+                                          alt: "",
+                                        },
+                                      }),
+                                    ]
+                                  )
+                                : _c(
+                                    "div",
+                                    { staticClass: "user-avatar sq bg-purple" },
+                                    [
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.getFirstLetter(
+                                              _vm.quoteChat.chatcustomer
+                                                .first_name
+                                            )
+                                          ) +
+                                            _vm._s(
+                                              _vm.getFirstLetter(
+                                                _vm.quoteChat.chatcustomer
+                                                  .last_name
+                                              )
+                                            )
+                                        ),
+                                      ]),
+                                    ]
+                                  ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "ml-3" }, [
+                                _c("h6", { staticClass: "title mb-1" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.quoteChat.chatcustomer.first_name
+                                    ) +
+                                      " " +
+                                      _vm._s(
+                                        _vm.quoteChat.chatcustomer.last_name
+                                      )
+                                  ),
+                                ]),
+                              ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-lg-none" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn btn-icon btn-trigger nk-msg-hide ml-n1",
+                              attrs: { href: "#" },
+                            },
+                            [
+                              _c("em", {
+                                staticClass: "icon ni ni-arrow-left",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.closeChat()
+                                  },
+                                },
+                              }),
+                            ]
+                          ),
+                        ]),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nk-msg-profile-toggle profile-toggle",
+                      class: { active: _vm.isActive },
+                      attrs: { href: "#" },
+                      on: { click: _vm.msgprofile },
+                    },
+                    [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "nk-chat-body",
+                    staticStyle: { height: "550px" },
+                    attrs: { id: "chatbody" },
+                  },
+                  [
+                    _vm.loginUser
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "nk-chat-panel",
+                            attrs: { id: "chatpanelbody" },
+                          },
+                          [
+                            _vm._l(
+                              _vm.quoteChat.chat,
+                              function (chatData, index) {
+                                return [
+                                  chatData.messageStart == 1
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "card text-white bg-primary mb-4",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "card-header" },
+                                            [_vm._v("Quote Sent")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "card-inner row",
+                                              staticStyle: {
+                                                display: "flex",
+                                                "justify-content":
+                                                  "space-between",
+                                              },
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-8" },
+                                                [
+                                                  _c(
+                                                    "h5",
+                                                    {
+                                                      staticClass: "card-title",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.quoteChat.quote
+                                                            .category
+                                                            .category_name
+                                                        )
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass: "card-text",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "strippedContent"
+                                                          )(
+                                                            _vm.quoteChat
+                                                              .comment
+                                                          )
+                                                        )
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-3" },
+                                                [
+                                                  _c(
+                                                    "h5",
+                                                    {
+                                                      staticClass: "card-title",
+                                                    },
+                                                    [_vm._v("Price")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "card-text mb-4",
+                                                    },
+                                                    [
+                                                      _c("b", [
+                                                        _vm._v(
+                                                          "$" +
+                                                            _vm._s(
+                                                              _vm.quoteChat
+                                                                .quote_price
+                                                            )
+                                                        ),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("p", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm._f("moment")(
+                                                          _vm.quoteChat
+                                                            .created_at,
+                                                          "from",
+                                                          "now"
+                                                        )
+                                                      )
+                                                    ),
+                                                  ]),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  chatData.messageStart == 0
+                                    ? [
+                                        _vm.loginUser != chatData.sender_id
+                                          ? _c(
+                                              "div",
+                                              { staticClass: "chat is-you" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "chat-avatar",
+                                                  },
+                                                  [
+                                                    _vm.quoteChat.chatcustomer
+                                                      .user_img
+                                                      ? _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "nk-msg-media user-avatar",
+                                                          },
+                                                          [
+                                                            _c("img", {
+                                                              attrs: {
+                                                                src:
+                                                                  _vm.hostname +
+                                                                  "/frontend-assets/images/users/" +
+                                                                  _vm.quoteChat
+                                                                    .chatcustomer
+                                                                    .user_img,
+                                                                alt: "",
+                                                              },
+                                                            }),
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "user-avatar bg-purple",
+                                                          },
+                                                          [
+                                                            _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.getFirstLetter(
+                                                                    _vm
+                                                                      .quoteChat
+                                                                      .chatcustomer
+                                                                      .first_name
+                                                                  )
+                                                                ) +
+                                                                  _vm._s(
+                                                                    _vm.getFirstLetter(
+                                                                      _vm
+                                                                        .quoteChat
+                                                                        .chatcustomer
+                                                                        .last_name
+                                                                    )
+                                                                  )
+                                                              ),
+                                                            ]),
+                                                          ]
+                                                        ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "chat-content",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "chat-bubbles",
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "chat-bubble",
+                                                          },
+                                                          [
+                                                            chatData.messageType ==
+                                                              "0" &&
+                                                            chatData.isDeleted ==
+                                                              "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      " " +
+                                                                        _vm._s(
+                                                                          _vm._f(
+                                                                            "strippedContent"
+                                                                          )(
+                                                                            chatData.message
+                                                                          )
+                                                                        ) +
+                                                                        " "
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : chatData.messageType ==
+                                                                  "1" &&
+                                                                chatData.isDeleted ==
+                                                                  "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                    class: {
+                                                                      chatImage:
+                                                                        chatData.messageType ==
+                                                                        "1",
+                                                                    },
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "a",
+                                                                      {
+                                                                        attrs: {
+                                                                          href:
+                                                                            _vm.hostname +
+                                                                            "/frontend-assets/images/chat/" +
+                                                                            chatData.message,
+                                                                          target:
+                                                                            "_blank",
+                                                                        },
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "img",
+                                                                          {
+                                                                            attrs:
+                                                                              {
+                                                                                src:
+                                                                                  _vm.hostname +
+                                                                                  "/frontend-assets/images/chat/" +
+                                                                                  chatData.message,
+                                                                              },
+                                                                          }
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : chatData.messageType ==
+                                                                  "2" &&
+                                                                chatData.isDeleted ==
+                                                                  "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "video",
+                                                                      {
+                                                                        attrs: {
+                                                                          width:
+                                                                            "320",
+                                                                          height:
+                                                                            "240",
+                                                                          controls:
+                                                                            "",
+                                                                        },
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "source",
+                                                                          {
+                                                                            attrs:
+                                                                              {
+                                                                                src:
+                                                                                  _vm.hostname +
+                                                                                  "/frontend-assets/images/chat/" +
+                                                                                  chatData.message,
+                                                                                type: "video/mp4",
+                                                                              },
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          "\r\n                        Your browser does not support the video tag.\r\n                        "
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : chatData.messageType ==
+                                                                  "3" &&
+                                                                chatData.isDeleted ==
+                                                                  "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "a",
+                                                                      {
+                                                                        attrs: {
+                                                                          href:
+                                                                            _vm.hostname +
+                                                                            "/frontend-assets/images/chat/" +
+                                                                            chatData.message,
+                                                                          target:
+                                                                            "_blank",
+                                                                        },
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "em",
+                                                                          {
+                                                                            staticClass:
+                                                                              "icon ni ni-file-docs",
+                                                                            staticStyle:
+                                                                              {
+                                                                                "font-size":
+                                                                                  "30px",
+                                                                              },
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " " +
+                                                                            _vm._s(
+                                                                              chatData.message
+                                                                            ) +
+                                                                            "\r\n                        "
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      " Message Delete"
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                            _vm._v(" "),
+                                                            chatData.isDeleted ==
+                                                            "0"
+                                                              ? _c(
+                                                                  "ul",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg-more",
+                                                                  },
+                                                                  [
+                                                                    _c("li", [
+                                                                      _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "dropdown",
+                                                                        },
+                                                                        [
+                                                                          _vm._m(
+                                                                            3,
+                                                                            true
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "dropdown-menu dropdown-menu-sm",
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "ul",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "link-list-opt no-bdr",
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "li",
+                                                                                    [
+                                                                                      _c(
+                                                                                        "a",
+                                                                                        {
+                                                                                          directives:
+                                                                                            [
+                                                                                              {
+                                                                                                name: "clipboard",
+                                                                                                rawName:
+                                                                                                  "v-clipboard:copy",
+                                                                                                value:
+                                                                                                  chatData.message,
+                                                                                                expression:
+                                                                                                  "chatData.message",
+                                                                                                arg: "copy",
+                                                                                              },
+                                                                                              {
+                                                                                                name: "clipboard",
+                                                                                                rawName:
+                                                                                                  "v-clipboard:success",
+                                                                                                value:
+                                                                                                  _vm.onCopy,
+                                                                                                expression:
+                                                                                                  "onCopy",
+                                                                                                arg: "success",
+                                                                                              },
+                                                                                              {
+                                                                                                name: "clipboard",
+                                                                                                rawName:
+                                                                                                  "v-clipboard:error",
+                                                                                                value:
+                                                                                                  _vm.onError,
+                                                                                                expression:
+                                                                                                  "onError",
+                                                                                                arg: "error",
+                                                                                              },
+                                                                                            ],
+                                                                                          attrs:
+                                                                                            {
+                                                                                              href: "#",
+                                                                                            },
+                                                                                        },
+                                                                                        [
+                                                                                          _c(
+                                                                                            "em",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "icon ni ni-copy",
+                                                                                            }
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " Copy"
+                                                                                          ),
+                                                                                        ]
+                                                                                      ),
+                                                                                    ]
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                    ]),
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "ul",
+                                                      {
+                                                        staticClass:
+                                                          "chat-meta",
+                                                      },
+                                                      [
+                                                        _c("li", [
+                                                          _c("span", [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm._f(
+                                                                    "moment"
+                                                                  )(
+                                                                    chatData.created_at,
+                                                                    "from",
+                                                                    "now"
+                                                                  )
+                                                                )
+                                                            ),
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c("em", {
+                                                            staticClass:
+                                                              "icon ni ni-check-circle-fill",
+                                                          }),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            )
+                                          : _c(
+                                              "div",
+                                              { staticClass: "chat is-me" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "chat-content",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "chat-bubbles",
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "chat-bubble",
+                                                          },
+                                                          [
+                                                            chatData.messageType ==
+                                                              "0" &&
+                                                            chatData.isDeleted ==
+                                                              "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      " " +
+                                                                        _vm._s(
+                                                                          _vm._f(
+                                                                            "strippedContent"
+                                                                          )(
+                                                                            chatData.message
+                                                                          )
+                                                                        ) +
+                                                                        " "
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : chatData.messageType ==
+                                                                  "1" &&
+                                                                chatData.isDeleted ==
+                                                                  "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                    class: {
+                                                                      chatImage:
+                                                                        chatData.messageType ==
+                                                                        "1",
+                                                                    },
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "a",
+                                                                      {
+                                                                        attrs: {
+                                                                          href:
+                                                                            _vm.hostname +
+                                                                            "/frontend-assets/images/chat/" +
+                                                                            chatData.message,
+                                                                          target:
+                                                                            "_blank",
+                                                                        },
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "img",
+                                                                          {
+                                                                            attrs:
+                                                                              {
+                                                                                src:
+                                                                                  _vm.hostname +
+                                                                                  "/frontend-assets/images/chat/" +
+                                                                                  chatData.message,
+                                                                              },
+                                                                          }
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : chatData.messageType ==
+                                                                  "2" &&
+                                                                chatData.isDeleted ==
+                                                                  "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "video",
+                                                                      {
+                                                                        attrs: {
+                                                                          width:
+                                                                            "320",
+                                                                          height:
+                                                                            "240",
+                                                                          controls:
+                                                                            "",
+                                                                        },
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "source",
+                                                                          {
+                                                                            attrs:
+                                                                              {
+                                                                                src:
+                                                                                  _vm.hostname +
+                                                                                  "/frontend-assets/images/chat/" +
+                                                                                  chatData.message,
+                                                                                type: "video/mp4",
+                                                                              },
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          "\r\n                        Your browser does not support the video tag.\r\n                        "
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : chatData.messageType ==
+                                                                  "3" &&
+                                                                chatData.isDeleted ==
+                                                                  "0"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "a",
+                                                                      {
+                                                                        staticStyle:
+                                                                          {
+                                                                            color:
+                                                                              "white",
+                                                                          },
+                                                                        attrs: {
+                                                                          href:
+                                                                            _vm.hostname +
+                                                                            "/frontend-assets/images/chat/" +
+                                                                            chatData.message,
+                                                                          target:
+                                                                            "_blank",
+                                                                        },
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "em",
+                                                                          {
+                                                                            staticClass:
+                                                                              "icon ni ni-file-docs",
+                                                                            staticStyle:
+                                                                              {
+                                                                                "font-size":
+                                                                                  "30px",
+                                                                              },
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " " +
+                                                                            _vm._s(
+                                                                              chatData.message
+                                                                            ) +
+                                                                            "\r\n                        "
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              : _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      " Message Delete"
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                            _vm._v(" "),
+                                                            chatData.isDeleted ==
+                                                            "0"
+                                                              ? _c(
+                                                                  "ul",
+                                                                  {
+                                                                    staticClass:
+                                                                      "chat-msg-more",
+                                                                  },
+                                                                  [
+                                                                    _vm._m(
+                                                                      4,
+                                                                      true
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c("li", [
+                                                                      _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "dropdown",
+                                                                        },
+                                                                        [
+                                                                          _vm._m(
+                                                                            5,
+                                                                            true
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "dropdown-menu dropdown-menu-sm",
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "ul",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "link-list-opt no-bdr",
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "li",
+                                                                                    [
+                                                                                      _c(
+                                                                                        "a",
+                                                                                        {
+                                                                                          attrs:
+                                                                                            {
+                                                                                              href: "#",
+                                                                                            },
+                                                                                          on: {
+                                                                                            click:
+                                                                                              function (
+                                                                                                $event
+                                                                                              ) {
+                                                                                                return _vm.editMsg(
+                                                                                                  chatData.id,
+                                                                                                  chatData.message
+                                                                                                )
+                                                                                              },
+                                                                                          },
+                                                                                        },
+                                                                                        [
+                                                                                          _c(
+                                                                                            "em",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "icon ni ni-pen-alt-fill",
+                                                                                            }
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " Edit"
+                                                                                          ),
+                                                                                        ]
+                                                                                      ),
+                                                                                    ]
+                                                                                  ),
+                                                                                  _vm._v(
+                                                                                    " "
+                                                                                  ),
+                                                                                  _c(
+                                                                                    "li",
+                                                                                    [
+                                                                                      _c(
+                                                                                        "a",
+                                                                                        {
+                                                                                          directives:
+                                                                                            [
+                                                                                              {
+                                                                                                name: "clipboard",
+                                                                                                rawName:
+                                                                                                  "v-clipboard:copy",
+                                                                                                value:
+                                                                                                  chatData.message,
+                                                                                                expression:
+                                                                                                  "chatData.message",
+                                                                                                arg: "copy",
+                                                                                              },
+                                                                                              {
+                                                                                                name: "clipboard",
+                                                                                                rawName:
+                                                                                                  "v-clipboard:success",
+                                                                                                value:
+                                                                                                  _vm.onCopy,
+                                                                                                expression:
+                                                                                                  "onCopy",
+                                                                                                arg: "success",
+                                                                                              },
+                                                                                              {
+                                                                                                name: "clipboard",
+                                                                                                rawName:
+                                                                                                  "v-clipboard:error",
+                                                                                                value:
+                                                                                                  _vm.onError,
+                                                                                                expression:
+                                                                                                  "onError",
+                                                                                                arg: "error",
+                                                                                              },
+                                                                                            ],
+                                                                                          attrs:
+                                                                                            {
+                                                                                              href: "#",
+                                                                                            },
+                                                                                        },
+                                                                                        [
+                                                                                          _c(
+                                                                                            "em",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "icon ni ni-copy",
+                                                                                            }
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " Copy"
+                                                                                          ),
+                                                                                        ]
+                                                                                      ),
+                                                                                    ]
+                                                                                  ),
+                                                                                  _vm._v(
+                                                                                    " "
+                                                                                  ),
+                                                                                  _c(
+                                                                                    "li",
+                                                                                    [
+                                                                                      _c(
+                                                                                        "a",
+                                                                                        {
+                                                                                          attrs:
+                                                                                            {
+                                                                                              href: "#",
+                                                                                            },
+                                                                                          on: {
+                                                                                            click:
+                                                                                              function (
+                                                                                                $event
+                                                                                              ) {
+                                                                                                return _vm.deleteMsg(
+                                                                                                  chatData.id
+                                                                                                )
+                                                                                              },
+                                                                                          },
+                                                                                        },
+                                                                                        [
+                                                                                          _c(
+                                                                                            "em",
+                                                                                            {
+                                                                                              staticClass:
+                                                                                                "icon ni ni-trash-fill",
+                                                                                            }
+                                                                                          ),
+                                                                                          _vm._v(
+                                                                                            " Remove"
+                                                                                          ),
+                                                                                        ]
+                                                                                      ),
+                                                                                    ]
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                    ]),
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "ul",
+                                                      {
+                                                        staticClass:
+                                                          "chat-meta",
+                                                      },
+                                                      [
+                                                        _c("li", [
+                                                          _c("span", [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm._f(
+                                                                    "moment"
+                                                                  )(
+                                                                    chatData.created_at,
+                                                                    "from",
+                                                                    "now"
+                                                                  )
+                                                                )
+                                                            ),
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c("em", {
+                                                            staticClass:
+                                                              "icon ni ni-check-circle-fill",
+                                                          }),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                      ]
+                                    : _vm._e(),
+                                ]
+                              }
+                            ),
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isEmoji
+                      ? _c("VEmojiPicker", {
+                          class: { activeemoji: _vm.isEmoji },
+                          on: { select: _vm.selectEmoji },
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "nk-chat-editor" }, [
+                      _c(
+                        "div",
+                        { staticClass: "nk-chat-editor-upload  ml-n1" },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "chat-upload-option expanded p-0",
+                              attrs: { "data-content": "chat-upload" },
+                            },
+                            [
+                              _c("ul", {}, [
+                                _c("li", [
+                                  _c("a", { attrs: { href: "#" } }, [
+                                    _vm._m(6),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      ref: "myFiles",
+                                      staticStyle: { display: "none" },
+                                      attrs: {
+                                        type: "file",
+                                        id: "fileupload",
+                                        multiple: "",
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          return _vm.uploadfile($event)
+                                        },
+                                      },
+                                    }),
+                                  ]),
+                                ]),
+                              ]),
+                            ]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "nk-chat-editor-form" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-control-wrap",
+                            staticStyle: { "margin-left": "30px" },
+                          },
+                          [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.message,
+                                  expression: "message",
+                                },
+                              ],
+                              ref: "afterClick",
+                              staticClass:
+                                "form-control form-control-simple no-resize",
+                              attrs: {
+                                rows: "1",
+                                id: "default-textarea",
+                                placeholder: "Type your message...",
+                              },
+                              domProps: { value: _vm.message },
+                              on: {
+                                keydown: function ($event) {
+                                  if (
+                                    !$event.type.indexOf("key") &&
+                                    _vm._k(
+                                      $event.keyCode,
+                                      "enter",
+                                      13,
+                                      $event.key,
+                                      "Enter"
+                                    )
+                                  ) {
+                                    return null
+                                  }
+                                  if (
+                                    $event.ctrlKey ||
+                                    $event.shiftKey ||
+                                    $event.altKey ||
+                                    $event.metaKey
+                                  ) {
+                                    return null
+                                  }
+                                  $event.preventDefault()
+                                },
+                                keyup: function ($event) {
+                                  if (
+                                    !$event.type.indexOf("key") &&
+                                    _vm._k(
+                                      $event.keyCode,
+                                      "enter",
+                                      13,
+                                      $event.key,
+                                      "Enter"
+                                    )
+                                  ) {
+                                    return null
+                                  }
+                                  if (
+                                    $event.ctrlKey ||
+                                    $event.shiftKey ||
+                                    $event.altKey ||
+                                    $event.metaKey
+                                  ) {
+                                    return null
+                                  }
+                                  return _vm.chatStart()
+                                },
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.message = $event.target.value
+                                },
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "nk-chat-editor-tools g-2" }, [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn btn-sm btn-icon btn-trigger text-primary",
+                              attrs: { href: "#" },
+                              on: { click: _vm.showEmoji },
+                            },
+                            [
+                              _c("em", {
+                                staticClass: "icon ni ni-happyf-fill",
+                              }),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-round btn-primary btn-icon",
+                              attrs: { disabled: _vm.isDisable },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.chatStart()
+                                },
+                              },
+                            },
+                            [_c("em", { staticClass: "icon ni ni-send-alt" })]
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "nk-msg-profile",
+                    class: { visible: _vm.isVisible },
+                    staticStyle: { display: "none" },
+                    attrs: { id: "chatPanel" },
+                  },
+                  [
+                    _vm.quoteChat.chatcustomer
+                      ? _c(
+                          "div",
+                          { staticClass: "user-card user-card-s2 my-4" },
+                          [
+                            _vm.quoteChat.chatcustomer.user_img
+                              ? _c(
+                                  "div",
+                                  { staticClass: "nk-msg-media user-avatar" },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src:
+                                          _vm.hostname +
+                                          "/frontend-assets/images/users/" +
+                                          _vm.quoteChat.chatcustomer.user_img,
+                                        alt: "",
+                                      },
+                                    }),
+                                  ]
+                                )
+                              : _c(
+                                  "div",
+                                  { staticClass: "user-avatar md bg-purple" },
+                                  [
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.getFirstLetter(
+                                            _vm.quoteChat.chatcustomer
+                                              .first_name
+                                          )
+                                        ) +
+                                          _vm._s(
+                                            _vm.getFirstLetter(
+                                              _vm.quoteChat.chatcustomer
+                                                .last_name
+                                            )
+                                          )
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "user-info" }, [
+                              _c("h5", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.quoteChat.chatcustomer.first_name
+                                  ) +
+                                    " " +
+                                    _vm._s(_vm.quoteChat.chatcustomer.last_name)
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _vm._v(
+                                  _vm._s(_vm.quoteChat.chatcustomer.email)
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _vm._v(
+                                  _vm._s(_vm.quoteChat.chatcustomer.mobileno)
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(7),
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "chat-profile" }, [
+                      _c("div", { staticClass: "chat-profile-group" }, [
+                        _vm._m(8),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "chat-profile-body collapse ",
+                            attrs: { id: "chat-options" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "preview-block",
+                                staticStyle: {
+                                  padding: "24px",
+                                  height: "250px",
+                                  overflow: "auto",
+                                },
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "row" },
+                                  [
+                                    _c("h6", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.quote_category.category_name
+                                        ) + " :"
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._l(
+                                      _vm.getquestions,
+                                      function (questionall) {
+                                        return _c(
+                                          "div",
+                                          {
+                                            staticClass: "col-md-12 mt-1 mb-1",
+                                          },
+                                          [
+                                            _c("h6", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  questionall.questions.question
+                                                )
+                                              ),
+                                            ]),
+                                            _vm._v(" "),
+                                            _vm._l(
+                                              questionall.choice,
+                                              function (choices) {
+                                                return [
+                                                  _c(
+                                                    "p",
+                                                    { staticClass: "fs-2" },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          choices.choice_value
+                                                        )
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              }
+                                            ),
+                                          ],
+                                          2
+                                        )
+                                      }
+                                    ),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "mt-4" }, [
+                                      _c("h6", [
+                                        _vm._v("Additional Information"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.additional_info)),
+                                      ]),
+                                    ]),
+                                  ],
+                                  2
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "chat-profile-group" }, [
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "chat-profile-body collapse",
+                            attrs: { id: "chat-photos" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "chat-profile-body-inner" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "row row-cols-3 row-cols-sm-6 row-cols-md-3 chat-profile-media",
+                                  },
+                                  [
+                                    _vm._l(_vm.imgs, function (chatImg, index) {
+                                      return [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "col mb-3",
+                                            on: {
+                                              click: function () {
+                                                return _vm.showImg(index)
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("img", {
+                                              attrs: { src: chatImg },
+                                            }),
+                                          ]
+                                        ),
+                                      ]
+                                    }),
+                                  ],
+                                  2
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("vue-easy-lightbox", {
+                  attrs: {
+                    visible: _vm.visible,
+                    imgs: _vm.imgs,
+                    index: _vm.index,
+                  },
+                  on: { hide: _vm.handleHide },
+                }),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _vm.chatHead
+            ? _c("div", { staticClass: "nk-msg-head d-lg-none chathead" }, [
+                _vm.quoteChat.chatcustomer
+                  ? _c("div", { staticClass: "nk-msg-head-meta" }, [
+                      _c("div", { staticClass: " d-none d-lg-block" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "d-flex align-items-center",
+                            attrs: { href: "#" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "user-avatar sq bg-purple" },
+                              [
+                                _c("span", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.getFirstLetter(
+                                        _vm.quoteChat.chatcustomer.first_name
+                                      )
+                                    ) +
+                                      _vm._s(
+                                        _vm.getFirstLetter(
+                                          _vm.quoteChat.chatcustomer.last_name
+                                        )
+                                      )
+                                  ),
+                                ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ml-3" }, [
+                              _c("h6", { staticClass: "title mb-1" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.quoteChat.chatcustomer.first_name
+                                  ) +
+                                    " " +
+                                    _vm._s(_vm.quoteChat.chatcustomer.last_name)
+                                ),
+                              ]),
+                            ]),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "d-lg-none" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-icon ml-n1",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.closepanel()
+                              },
+                            },
+                          },
+                          [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "nk-msg-actions" }, [
+                        _c("li", [
+                          _c("h6", { staticClass: "title mb-1" }, [
+                            _vm._v(
+                              _vm._s(_vm.quoteChat.chatcustomer.first_name) +
+                                " " +
+                                _vm._s(_vm.quoteChat.chatcustomer.last_name)
+                            ),
+                          ]),
+                        ]),
+                      ]),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "nk-msg-profile-toggle profile-toggle",
+                    class: { active: _vm.isActive },
+                    attrs: { href: "#" },
+                    on: { click: _vm.msgprofile },
+                  },
+                  [_c("em", { staticClass: "icon ni ni-arrow-left" })]
+                ),
+              ])
+            : _vm._e(),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nk-msg-menu-item ml-auto" }, [
+      _c(
+        "a",
+        {
+          staticClass: "search-toggle toggle-search",
+          attrs: { href: "", "data-target": "search" },
+        },
+        [_c("em", { staticClass: "icon ni ni-search" })]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "search-submit btn btn-icon" }, [
+      _c("em", { staticClass: "icon ni ni-search" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "mainView" } }, [
+      _c(
+        "div",
+        { staticClass: "nk-chat-body", staticStyle: { height: "752px" } },
+        [
+          _c("div", { staticClass: "nk-chat-panel" }, [
+            _c("div", { staticClass: "row d-flex justify-content-center" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "loexp-no-results-container" }, [
+                  _c("div", { staticClass: "card-block" }, [
+                    _c("img", {
+                      staticClass: "img-fluid",
+                      attrs: {
+                        width: "156",
+                        height: "111",
+                        src: "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj",
+                        srcset:
+                          "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=PVEswj" +
+                          " 1x, " +
+                          "https://d18jakcjgoan9.cloudfront.net/s/img/frontend-v2/seller-dashboard/noresults-illustration.png!d=KAYSPp" +
+                          " 2x",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "mt-2" }, [
+                      _vm._v(
+                        "\r\n                    Star Chat\r\n                "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      { staticClass: "text-center mt-2 text-light-grey" },
+                      [
+                        _vm._v(
+                          "You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here."
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-icon btn-sm btn-trigger dropdown-toggle",
+        attrs: { href: "#", "data-toggle": "dropdown" },
+      },
+      [_c("em", { staticClass: "icon ni ni-more-h" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "d-none d-sm-block" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-icon btn-sm btn-trigger",
+          attrs: { href: "#" },
+        },
+        [_c("em", { staticClass: "icon ni ni-reply-fill" })]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-icon btn-sm btn-trigger dropdown-toggle",
+        attrs: { href: "#", "data-toggle": "dropdown" },
+      },
+      [_c("em", { staticClass: "icon ni ni-more-h" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "mb-0", attrs: { for: "fileupload" } }, [
+      _c("em", { staticClass: "icon ni ni-img-fill" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "user-card-menu dropdown" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-icon btn-sm btn-trigger dropdown-toggle",
+          attrs: { href: "#", "data-toggle": "dropdown" },
+        },
+        [_c("em", { staticClass: "icon ni ni-more-h" })]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "dropdown-menu dropdown-menu-right" }, [
+        _c("ul", { staticClass: "link-list-opt no-bdr" }, [
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("em", { staticClass: "icon ni ni-eye" }),
+              _c("span", [_vm._v("View Profile")]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("em", { staticClass: "icon ni ni-na" }),
+              _c("span", [_vm._v("Block Messages")]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "chat-profile-head",
+        attrs: {
+          href: "#",
+          "data-toggle": "collapse",
+          "data-target": "#chat-options",
+        },
+      },
+      [
+        _c("h6", { staticClass: "title overline-title" }, [
+          _vm._v("Quote Detail"),
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "indicator-icon" }, [
+          _c("em", { staticClass: "icon ni ni-chevron-down" }),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "chat-profile-group" }, [
+      _c(
+        "a",
+        {
+          staticClass: "chat-profile-head",
+          attrs: {
+            href: "#",
+            "data-toggle": "collapse",
+            "data-target": "#chat-settings",
+          },
+        },
+        [
+          _c("h6", { staticClass: "title overline-title" }, [
+            _vm._v("Settings"),
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "indicator-icon" }, [
+            _c("em", { staticClass: "icon ni ni-chevron-down" }),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "chat-profile-body collapse ",
+          attrs: { id: "chat-settings" },
+        },
+        [
+          _c("div", { staticClass: "chat-profile-body-inner" }, [
+            _c("ul", { staticClass: "chat-profile-settings" }, [
+              _c("li", [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "custom-control custom-control-sm custom-switch",
+                  },
+                  [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: { type: "checkbox", id: "customSwitch2" },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "customSwitch2" },
+                      },
+                      [_vm._v("Notifications")]
+                    ),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "chat-option-link", attrs: { href: "#" } },
+                  [
+                    _c("em", {
+                      staticClass:
+                        "icon icon-circle bg-light ni ni-bell-off-fill",
+                    }),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("span", { staticClass: "lead-text" }, [
+                        _vm._v("Ignore Messages"),
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sub-text" }, [
+                        _vm._v("You won’t be notified when message you."),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "chat-option-link", attrs: { href: "#" } },
+                  [
+                    _c("em", {
+                      staticClass: "icon icon-circle bg-light ni ni-alert-fill",
+                    }),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("span", { staticClass: "lead-text" }, [
+                        _vm._v("Something Wrong"),
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sub-text" }, [
+                        _vm._v("Give feedback and report conversion."),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "chat-profile-head",
+        attrs: {
+          href: "#",
+          "data-toggle": "collapse",
+          "data-target": "#chat-photos",
+        },
+      },
+      [
+        _c("h6", { staticClass: "title overline-title" }, [
+          _vm._v("Shared Photos"),
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "indicator-icon" }, [
+          _c("em", { staticClass: "icon ni ni-chevron-down" }),
+        ]),
+      ]
+    )
+  },
+]
+render._withStripped = true
+
+>>>>>>> a032fd71ce74509c8e64fd1a97d4cf7b6be86bc7
 
 
 /***/ }),
