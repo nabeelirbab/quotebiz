@@ -88,7 +88,7 @@
                 </form>
 
                 <a
-                    href="{{ url('admin/account/subscription') }}"
+                    href="{{ url('account/subscription') }}"
                     class="text-muted mt-4" style="text-decoration: underline; display: block"
                 >{{ trans('cashier::messages.stripe.return_back') }}</a>
                 

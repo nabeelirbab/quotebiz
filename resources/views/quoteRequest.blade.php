@@ -354,8 +354,8 @@ autocomplete="off">
 </div>
 <div class="col-md-6">
 <div class="form-group">
-{{--  <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>--}}
-<label class="form-control-placeholder" for="zipcode"><label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label></label>
+
+<label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>
 <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
        required>
 @if(Session::has('error'))

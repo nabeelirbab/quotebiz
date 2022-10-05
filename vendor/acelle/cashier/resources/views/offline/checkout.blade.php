@@ -28,7 +28,7 @@
                 
             <div class="d-flex align-items-center">
                 <form method="POST"
-                    action="{{ url('admin/account/subscription/invoice/'.$invoice->uid.'/cancel') }}"
+                    action="{{ url('account/subscription/invoice/'.$invoice->uid.'/cancel') }}"
                 >
                     {{ csrf_field() }}
                     <button
@@ -36,9 +36,9 @@
                     >{{ trans('cashier::messages.offline.claim_payment') }}</button>
                 </form>
 
-                <form id="cancelForm" method="POST" action="{{ url('admin/account/subscription/invoice/'.$invoice->uid.'/cancel') }}">
+                <form id="cancelForm" method="POST" action="{{ url('account/subscription/invoice/'.$invoice->uid.'/cancel') }}">
                     {{ csrf_field() }}
-                    <a href="{{ url('admin/account/subscription') }}">
+                    <a href="{{ url('account/subscription') }}">
                         {{ trans('cashier::messages.go_back') }}
                     </a>
                 </form>

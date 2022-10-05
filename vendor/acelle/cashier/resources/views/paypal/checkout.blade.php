@@ -79,7 +79,7 @@
 
                 <div class="my-4">
                     <hr>
-                    <form id="cancelForm" method="POST" action="{{ url('admin/account/subscription/invoice/'.$invoice->uid.'/cancel') }}">
+                    <form id="cancelForm" method="POST" action="{{ url('account/subscription/invoice/'.$invoice->uid.'/cancel') }}">
                         {{ csrf_field() }}
                         <a href="javascript:;" onclick="$('#cancelForm').submit()">
                             {{ trans('messages.subscription.cancel_now_change_other_plan') }}
@@ -93,5 +93,4 @@
         <br />
         <br />
     </body>
-
 </html>
