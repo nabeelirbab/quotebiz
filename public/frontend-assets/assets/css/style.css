@@ -121,7 +121,7 @@
     border-top: 1px solid #dbdfea;
 }
 .tb-ticket-date, .tb-ticket-seen, .tb-ticket-status {
-    width: 115px;
+    width: 165px;
 }
 .tb-ticket-item .date, .tb-ticket-item .date-last {
     white-space: nowrap;

@@ -99,7 +99,7 @@
                                             <span class="title">{{$request->category->category_name}}</span>
                                         </td>
                                         <td class="tb-ticket-date tb-col-md">
-                                            <span class="date">{{$request->zip_code}}</span>
+                                            <span>{{$request->zip_code}}</span>
                                         </td>
                                         <td class="tb-ticket-date tb-col-md" colspan="3">
                                             {{Str::limit($request->additional_info, 120, '...')}}
