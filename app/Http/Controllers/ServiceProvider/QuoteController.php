@@ -11,6 +11,7 @@ use Acelle\Model\Country;
 use Acelle\Model\State;
 use Acelle\Model\City;
 use Auth;
+use DB;
 
 class QuoteController extends Controller
 {
@@ -31,23 +32,15 @@ class QuoteController extends Controller
     public function leadsquotes()
     {
         $pendingquotes = array();
-//        $pendingquotes = Quote::
-//        with('user', 'category', 'myquotation', 'questionsget.questions', 'questionsget.choice.choice')
-//            ->where('zip_code', Auth::user()->zipcode)
-//            ->whereIn('category_id', json_decode(Auth::user()->category_id))
-//            ->where('admin_id', request('account'))
-//            ->where('status', 'pending')
-//            ->orderBy('created_at', 'desc')
-//            ->get();
-
 
         //        if provider is local
         if (Auth::user()->type == "local business") {
 
-            $rawQuery = "( 6371  * acos( cos( radians(" . Auth::user()->latitude . ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" . Auth::user()->longitude . ") ) + sin( radians(" . Auth::user()->latitude . ") ) * sin( radians( latitude ) ) ) ) AS distance";
-            $pendingquotes = Quote::whereIn('category_id', json_decode(Auth::user()->category_id))
+            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'pending')
-                ->selectRaw($rawQuery)
+                ->select(
+                    DB::raw("quotes.*, ( 6371  * acos( cos( radians(" . Auth::user()->latitude . ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" . Auth::user()->longitude . ") ) + sin( radians(" . Auth::user()->latitude . ") ) * sin( radians( latitude ) ) ) ) AS distance")
+                )
                 ->having("distance", "<=", Auth::user()->type_value)
                 ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')

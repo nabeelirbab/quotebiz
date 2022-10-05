@@ -124,6 +124,7 @@ final class PluginClient implements HttpClient, HttpAsyncClient
      */
     private function createPluginChain(array $plugins, callable $clientCallable): callable
     {
+        /** @var callable(RequestInterface): Promise */
         return new PluginChain($plugins, $clientCallable, $this->options);
     }
 }

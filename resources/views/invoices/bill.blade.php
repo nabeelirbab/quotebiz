@@ -39,7 +39,7 @@
             @if ($bill['pending'])
                 <hr>
                 <div class="text-right pe-none">
-                    <a href="{{ url('account/subscription/payment/'.$bill['invoice_uid']) }}" class="btn btn-warning button-loading full-width pr-20 pe-none " style="width:100%;pointer-events: auto;opacity:0.9">
+                    <a href="{{ url('admin/account/subscription/payment/'.$bill['invoice_uid']) }}" class="btn btn-warning button-loading full-width pr-20 pe-none " style="width:100%;pointer-events: auto;opacity:0.9">
                         {{ trans('messages.invoice.payment_is_being_verified') }}
                         <div class="loader"></div>
                     </a>
@@ -53,13 +53,13 @@
             )
                 <hr>
                 <div class="text-left">
-                    <a href="{{ url('account/subscription/payment/'.$bill['invoice_uid']) }}" class="btn btn-secondary">
+                    <a href="{{ url('admin/account/subscription/payment/'.$bill['invoice_uid']) }}" class="btn btn-secondary">
                         {{ trans('messages.invoice.pay_now') }}
                     </a>
 
                     @if ($bill['type'] == Acelle\Model\Invoice::TYPE_CHANGE_PLAN)
                         <a class="btn btn-link" link-method="POST" link-confirm="{{ trans('messages.invoice.cancel.confirm') }}"
-                            href="{{ url('account/subscription/invoice/'.$bill['invoice_uid'].'/cancel') }}">
+                            href="{{ url('admin/account/subscription/invoice/'.$bill['invoice_uid'].'/cancel') }}">
                             {{ trans('messages.invoice.cancel') }}
                         </a>
                     @endif

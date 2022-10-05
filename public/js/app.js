@@ -4216,6 +4216,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    getFirstLetter: function getFirstLetter(str) {
+      if (str) {
+        //   var acronym = str.replace(/\s/g, '').split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
+        // return acronym;
+        var matchess = str.match(/\b(\w)/g); // ['J','S','O','N']
+
+        var matches = matchess.slice(0, 2);
+        var acronym = matches.join(''); // JSON
+
+        return acronym;
+      }
     }
   },
   mounted: function mounted() {
@@ -61412,7 +61424,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-4" }, [
         _c(
           "button",
-          { staticClass: "btn btn-success", attrs: { href: "buy-creadits" } },
+          { staticClass: "btn btn-success", attrs: { href: "buy-credits" } },
           [_vm._v("Already Submit")]
         ),
       ]),
@@ -61446,7 +61458,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-4" }, [
       _c(
         "a",
-        { staticClass: "btn btn-success", attrs: { href: "buy-creadits" } },
+        { staticClass: "btn btn-success", attrs: { href: "buy-credits" } },
         [_vm._v("Buy Credits")]
       ),
     ])

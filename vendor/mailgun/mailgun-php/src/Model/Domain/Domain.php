@@ -25,7 +25,6 @@ final class Domain
     private $wildcard;
     private $spamAction;
     private $state;
-    private $webScheme;
 
     public static function create(array $data): self
     {
@@ -37,7 +36,6 @@ final class Domain
         $model->spamAction = $data['spam_action'] ?? null;
         $model->state = $data['state'] ?? null;
         $model->createdAt = isset($data['created_at']) ? new \DateTimeImmutable($data['created_at']) : null;
-        $model->webScheme = $data['web_scheme'] ?? null;
 
         return $model;
     }

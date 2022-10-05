@@ -79,7 +79,8 @@
                                             <div class="data-item">
                                                 <div class="data-col">
                                                     <span class="data-label">Phone Number</span>
-                                                    <span class="data-value text-soft">@if(Auth::user()->mobileno)
+                                                    <span class="data-value text-soft">
+                                                        @if(Auth::user()->mobileno)
                                                             {{Auth::user()->mobileno}}
                                                         @else
                                                             Not add yet
@@ -90,6 +91,17 @@
                                                 <div class="data-col">
                                                     <span class="data-label">City</span>
                                                     <span class="data-value ">{{Auth::user()->city}}</span>
+                                                </div>
+                                            </div><!-- data-item -->
+                                            <div class="data-item">
+                                                <div class="data-col">
+                                                    <span class="data-label">Address</span>
+                                                    <span class="data-value ">
+                                                        @if(Auth::user()->address)
+                                                            {{Auth::user()->address}}
+                                                        @else
+                                                            Not add yet
+                                                        @endif</span>
                                                 </div>
                                             </div><!-- data-item -->
                                             <div class="data-item">
@@ -135,8 +147,7 @@
                                                                     <input type="file" accept="image/*" name="image"
                                                                            id="uploadImg" onchange="uploadImg(this)"
                                                                            class="d-none">
-                                                                    <label for="uploadImg" class="labelcls"><em
-                                                                                class="icon ni ni-camera-fill cameraicon"></em><span>Change Photo</span></label>
+                                                                    <label for="uploadImg" class="labelcls"><em class="icon ni ni-camera-fill cameraicon"></em><span>Change Photo</span></label>
 
                                                                 </li>
                                                             </ul>
@@ -155,21 +166,14 @@
                                         </div><!-- .card-inner -->
                                         <div class="card-inner p-0">
                                             <ul class="link-list-menu">
-                                                <li><a class="active"
+                                                <li>
+                                                    <a class="active"
                                                        href="{{url('service-provider/settings')}}"><em
                                                                 class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a>
                                                 </li>
-{{--                                                <li><a href="service_providers/lms/admin-profile-notification.html"><em--}}
-{{--                                                                class="icon ni ni-bell-fill"></em><span>Notifications</span></a>--}}
-{{--                                                </li>--}}
-{{--                                                <li><a href="service_providers/lms/admin-profile-activity.html"><em--}}
-{{--                                                                class="icon ni ni-activity-round-fill"></em><span>Account Activity</span></a>--}}
-{{--                                                </li>--}}
-{{--                                                <li><a href="service_providers/lms/admin-profile-setting.html"><em--}}
-{{--                                                                class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a>--}}
-{{--                                                </li>--}}
-                                                <li><a href="{{url('service-provider/locationSetting')}}"><em
-                                                                class="icon ni ni-location"></em><span>Service Location Settings</span></a>
+
+                                                <li><a href="{{url('service-provider/locationSetting')}}">
+                                                    <em class="icon ni ni-location"></em><span>Service Location Settings</span></a>
                                                 </li>
                                             </ul>
                                         </div><!-- .card-inner -->

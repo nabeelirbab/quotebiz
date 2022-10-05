@@ -49,7 +49,7 @@ class StripeController extends Controller
     	// dd((int)$creadit->amount * 100);
       if(((int)number_format($currencyConvert['convert'], 2) * 100) < 100){
           Session::flash('danger', 'Amount must be grater then 1$');
-          return redirect('service-provider/buy-creadits');
+          return redirect('service-provider/buy-credits');
       }
       
     	$stripeData = StripeKey::where('subdomain',request('account'))->first();
@@ -84,7 +84,7 @@ class StripeController extends Controller
         }
         Session::flash('success', 'Your transection complete successfully!!');
            
-        return redirect('service-provider/buy-creadits');
+        return redirect('service-provider/buy-credits');
     }
 
 }

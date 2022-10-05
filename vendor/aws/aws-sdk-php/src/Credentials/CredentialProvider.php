@@ -133,7 +133,7 @@ class CredentialProvider
 
         return self::memoize(
             call_user_func_array(
-                [CredentialProvider::class, 'chain'],
+                'self::chain',
                 array_values($defaultChain)
             )
         );
@@ -900,3 +900,4 @@ class CredentialProvider
         || !empty($_SERVER[EcsCredentialProvider::ENV_FULL_URI]);
     }
 }
+

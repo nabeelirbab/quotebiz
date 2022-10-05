@@ -7,7 +7,7 @@
         notify({
             type: 'warning',
             message: `{!! trans('messages.not_have_any_plan_notification', [
-                'link' => url('account/subscription'),
+                'link' => url('admin/account/subscription'),
             ]) !!}`,
             timeout: false,
         });

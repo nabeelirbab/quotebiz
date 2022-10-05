@@ -22,6 +22,18 @@
    .nav-item.dropdown {
       width: 100%;
   }
+   @media screen and (max-width: 767px) {
+  .leftbar .page-container {
+    position: relative;
+    width: 100%!important;
+    max-width: 100% !important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+    padding-top: 10px!important;
+    min-height: 100vh;
+    margin-top: 30px;
+}
+}
  </style>
 @endsection
 @section('content')
