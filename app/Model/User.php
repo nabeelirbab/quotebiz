@@ -40,19 +40,6 @@ class User extends Authenticatable
     use Notifiable;
     use HasUid;
 
-    /*******
-     * Important: Storage location: User vs Customer
-     * One customer (account) may have one or more users
-     *
-     * User has its own location for storing:
-     * + Lock files
-     * + Assets (which is used by File Manager)
-     *
-     * Customer has a common place to store account's assets (available to all users of the same account)
-     * + Templates
-     * + Attachments (account-wide, not individual user)
-     *
-     */
     public const BASE_DIR = 'app/users';
     public const ASSETS_DIR = 'home/files';
     public const ASSETS_THUMB_DIR = 'home/thumbs';
@@ -108,6 +95,11 @@ public static $itemsPerPage = 25;
     public function chatsp()
     {
         return $this->hasOne('Acelle\Model\Quotation','user_id','id');
+    }
+
+    public function business()
+    {
+        return $this->hasOne('Acelle\Model\SpBusiness','user_id','id');
     }
 
     public function allQuoteSp()
@@ -295,8 +287,6 @@ public static $itemsPerPage = 25;
             'email' => 'required|email|unique:users,email,'.$this->id.',id',
             'first_name' => 'required',
             'last_name' => 'required',
-            'timezone' => 'required',
-            'language_id' => 'required',
             'category_id' => 'required',
         );
 

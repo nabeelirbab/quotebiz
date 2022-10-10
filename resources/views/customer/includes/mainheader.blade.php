@@ -20,7 +20,11 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                    <li class="nav-item d-none d-lg-block">
-                                        <a href="{{ url('service-provider') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to service provider</b></p></a>
+                                     @if(Auth::user()->user_relation == 'both' || Auth::user()->user_type == 'service_provider')
+                                        <a href="{{ url('service-provider') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to Service Provider</b></p></a>
+                                        @else
+                                        <a href="{{ url('customer/sp-register') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Register Your Business</b></p></a>
+                                        @endif
                                     </li>
                                     <li class="dropdown chats-dropdown hide-mb-xs">
                                         <a href="{{ url('customer/inbox') }}" class="le nk-quick-nav-icon">

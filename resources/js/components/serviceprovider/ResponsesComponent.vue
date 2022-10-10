@@ -1,11 +1,11 @@
 <template>
 <!-- content @s -->
-<div class="nk-content mt-5">
-<div class="container-fluid">
+<div class="nk-content mt-5 pt-1 pl-0 pr-0">
+<div class="container-fluid p-0">
 <div class="nk-content-inner">
 <div class="nk-content-body">
 <div class="nk-msg">
-<div class="nk-msg-aside">
+<div class="nk-msg-aside mr-1">
 <div class="nk-msg-nav" style="background: white;line-height: 5.6;">
     <ul class="nk-msg-menu nav nav-tabs">
       
@@ -402,7 +402,7 @@
         </div>
         <div class="nk-chat-editor-form">
             <div class="form-control-wrap" style="margin-left:30px">
-                <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" @keydown.enter.exact.prevent
+                <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize border-0" rows="1" id="default-textarea" @keydown.enter.exact.prevent
               @keyup.enter.exact="chatStart()" placeholder="Type your message..."></textarea>
             </div>
         </div>
@@ -599,7 +599,7 @@ data() {
         wonJob: 0,
         doneJob: 0,
         loseJob: 0,
-        chatHead: true,
+        chatHead: false,
         userSearch: '',
         quote_category:'',
         getquestions:{},
@@ -1029,7 +1029,7 @@ mounted() {
 display: flex;
 align-items: flex-start;
 justify-content: center;
-height: calc(82vh - 75px);
+height: calc(86vh - 75px);
 background: #f9f9fa;
 }
 .loexp-no-results-container .card-block {
@@ -1051,7 +1051,12 @@ width: 50%;
     max-width: 40%;
 }
 .loexp-no-results-container .card-block h4 {
-font-size: 1.5em;
+  font-size: 1.5em;
+}
+#mainView{
+ position: absolute;
+ z-index: 999;
+ width: 100%;
 }
 .text-light-grey {
 color: #9da0b6!important;

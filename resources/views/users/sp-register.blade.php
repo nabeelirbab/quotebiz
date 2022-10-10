@@ -16,19 +16,11 @@
     .multiselect-container{
         width: 100% !important;
     }
-    .mc-form .form-control, .mc-form .select2 {
-        font-size: 100%;
-        border-color: #bbb;
-        border-radius: 2px;
-        border: solid 1px #bbb;
-        height: 46px !important;
-    }
 </style>
 @section('content')
-  
-    <form enctype="multipart/form-data" action="{{ url('users/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
+  <form enctype="multipart/form-data" action="{{ url('customer/sp-register') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
-        <input type="hidden" name="invite" value="{{Request::get('invite')}}">
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
         <div class="row mt-5 mc-form">
             <div class="col-md-2"></div>
             <div class="col-md-2 text-end mt-60">
@@ -37,73 +29,22 @@
                 </a>
             </div>
             <div class="col-md-5">
-                <h1 class="mb-20">{{ trans('messages.create_your_account') }}</h1>
-                <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.<a href="{{url("users/login")}}"> Login</a></p>
-              @if($errors->any())
+                <h1 class="mb-20">Register Your Business</h1>
+                <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.</p>
+                @if($errors->any())
                 <div class="alert alert-danger alert-block" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button> 
                     <strong>{{$errors->first()}}</strong>
                 </div>
                 @endif
-                 <div class="form-group control-text">
+                  <div class="form-group control-text">
                     <label>
                         <b>Business Name</b>
                          <span class="text-danger">*</span>
                      </label>
                      <input type="text" name="business_name" class="form-control" required>
                   </div>
-                <div class="form-group control-text">
-                    <label>
-                        <b>Category</b>
-                         <span class="text-danger">*</span>
-                     </label>
-                     <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
-                         <option value="">Select Category</option>
-                         @foreach(Acelle\Jobs\HelperJob::categories() as $category)
-                         <option value="{{$category->id}}">{{$category->category_name}}</option>
-                         @endforeach
-                     </select>
-                  </div>
-                  <div id="appendbox">
-                      
-                  </div>
-                   <div class="form-group control-text">
-                
-                    <input id="subdomain" placeholder="" value="{{request('account')}}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id  ">
-                <input type="hidden" name="user_type" value="service_provider">
-                    </div>
-
-                
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'email',
-                    'value' => $user->email,
-                    'help_class' => 'profile',
-                    'rules' => $user->registerRules()
-                ])
-                
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'first_name',
-                    'value' => $user->first_name,
-                    'rules' => $user->registerRules()
-                ])
-                
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'last_name',
-                    'value' => $user->last_name,
-                    'rules' => $user->registerRules()
-                ])
-                
-                @include('helpers.form_control', [
-                    'type' => 'password',
-                    'label'=> trans('messages.password'),
-                    'name' => 'password',
-                    'rules' => $user->registerRules(),
-                    'eye' => true,
-                ])
-                 <div class="form-group control-text">
+                  <div class="form-group control-text">
                     <label>
                         <b>Where do you want to receive work</b>
                          <span class="text-danger">*</span>
@@ -121,9 +62,55 @@
                         </option>
                     </select>
                   </div>
-                  <div class="form-group control-text" id="appendType">
+                   <div class="form-group control-text" id="appendType">
+                   
+                  </div>
+                  <div class="form-group control-text">
+                    <label>
+                        <b>Business Category</b>
+                         <span class="text-danger">*</span>
+                     </label>
+                     <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
+                         <option value="">Select Category</option>
+                         @foreach(Acelle\Jobs\HelperJob::categories() as $category)
+                         <option value="{{$category->id}}">{{$category->category_name}}</option>
+                         @endforeach
+                     </select>
+                  </div>
+                  <div id="appendbox">
+                      
                   </div>
                    <div class="form-group control-text">
+                    <input id="subdomain" placeholder="" value="{{request('account')}}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id  ">
+                    <input type="hidden" name="user_type" value="service_provider">
+                    </div>
+                   <div class="form-group control-text">
+                    <label>
+                        <b>Business Registration Number</b>
+                     </label>
+                     <input type="text" name="business_reg" class="form-control" >
+                  </div>
+                   <div class="form-group control-text">
+                    <label>
+                        <b>Business Phone</b>
+                        <span class="text-danger">*</span>
+                     </label>
+                     <input type="text" name="business_phone" class="form-control" required>
+                  </div>
+                   <div class="form-group control-text">
+                    <label>
+                        <b>Business Email</b>
+                        <span class="text-danger">*</span>
+                     </label>
+                     <input type="text" name="business_email" class="form-control" required>
+                  </div>
+                   <div class="form-group control-text">
+                    <label>
+                        <b>Business Website</b>
+                     </label>
+                     <input type="text" name="business_website" class="form-control" >
+                  </div>
+                  <div class="form-group control-text">
                     <label>
                         <b>Country</b>
                          <span class="text-danger">*</span>
@@ -167,13 +154,7 @@
                         <input type="hidden" id="latitude" name="latitude">
                         <input type="hidden" id="longitude" name="longitude">
                   </div>
-                  <div class="form-group control-text">
-                    <label>
-                        <b>Zipcode</b>
-                         <span class="text-danger">*</span>
-                     </label>
-                     <input type="text" name="zipcode" class="form-control" required>
-                  </div>
+               
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -199,7 +180,7 @@
             <div class="col-md-1"></div>
         </div>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnout.com/toastr.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&libraries=places"></script>
 
@@ -263,8 +244,11 @@
                 return false;
             }
         });
+
+
     </script>
     <script>
+     
       function subCategory(e){
         // alert(e.value);
          $.ajax({url: "{{url('users/subcategory/')}}/"+e.value, success: function(result){

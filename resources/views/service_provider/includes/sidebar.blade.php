@@ -32,7 +32,7 @@
                     <li class="nk-menu-item">
                             <a href="{{url('service-provider/quotes-leads')}}" class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                <span class="nk-menu-text">Quote Leads</span>
+                                <span class="nk-menu-text">Quotes</span>
                             </a>
                         </li>
                      <li class="nk-menu-item">

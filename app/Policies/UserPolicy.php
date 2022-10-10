@@ -61,7 +61,7 @@ class UserPolicy
 
     public function service_access(User $user)
     {
-        $service = $user->user_type == 'service_provider' || $user->user_type == 'client';
+        $service = $user->user_type == 'service_provider' || $user->user_relation == 'both';
         return $service;
     }
 

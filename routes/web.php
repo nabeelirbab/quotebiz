@@ -135,30 +135,25 @@ Route::name('customer.')->prefix('customer')->group(function () {
     Route::post('/change-status', 'Customer\QuoteController@changeStatus');
     Route::post('/profile-update', 'Customer\QuoteController@profileUpdate');
     Route::post('/userImg', 'UserController@userImage');
-
-
+    Route::match(['get', 'post'],'sp-register', 'UserController@sp_register');
     Route::get('/profile', function () {
         return view('customer.profile');
     });
-
     Route::get('/support', function () {
         return view('customer.support');
     });
-
     Route::get('/supportchat', function () {
         return view('customer.supportchat');
     });
-    
     Route::get('/createticket', function () {
         return view('customer.createticket');
     });
-
-   
-
 });
 
 });
 
+    Route::get('/getstates/{id}','ServiceProvider\QuoteController@getstates')->name("getstates");
+    Route::get('/getcities/{id}','ServiceProvider\QuoteController@getcities')->name("getcities");
 
 Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','validdomain']], function () {
 
@@ -188,6 +183,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/leadsquotes','ServiceProvider\QuoteController@leadsquotes');
     Route::get('/newjob/{id}','ServiceProvider\QuoteController@newJob');
     Route::post('/profile-update', 'ServiceProvider\QuoteController@profileUpdate');
+    Route::post('/business-update', 'ServiceProvider\QuoteController@businessUpdate');
     Route::post('/location-update', 'ServiceProvider\QuoteController@locationUpdate');
     Route::post('/address-update', 'ServiceProvider\QuoteController@addressupdate');
     Route::post('/userImg', 'UserController@userImage');
@@ -200,9 +196,12 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/settings', function () {
         return view('service_provider.settings');
     });
-    Route::get('/locationSetting', function () {
+    Route::get('/location-setting', function () {
         return view('service_provider.locationSettings');
     })->name('locationSetting');
+    Route::get('/business-setting', function () {
+        return view('service_provider.businessSettings');
+    })->name('businessSetting');
 
     Route::get('/support', function () {
         return view('service_provider.support');

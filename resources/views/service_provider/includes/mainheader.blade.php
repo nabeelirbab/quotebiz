@@ -21,7 +21,7 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="nav-item d-none d-lg-block">
-                                        <a href="{{ url('customer') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to customer</b></p></a>
+                                        <a href="{{ url('customer') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to Customer</b></p></a>
                                     </li>
                                     <li class="nav-item d-none d-lg-block">
                                         <a href="{{ url('service-provider/buy-creadits') }}" class="nk-quick-nav-icon"><p style="font-size: 16px">Credits <b>{{ Auth::user()->credits}}</b></p></a>

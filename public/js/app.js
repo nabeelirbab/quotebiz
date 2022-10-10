@@ -2293,11 +2293,12 @@ __webpack_require__.r(__webpack_exports__);
       activeJob: 0,
       wonJob: 0,
       doneJob: 0,
-      chatHead: true,
+      chatHead: false,
       userSearch: '',
       quote_category: '',
       getquestions: {},
-      additional_info: ''
+      additional_info: '',
+      business: {}
     };
   },
   sockets: {
@@ -2492,6 +2493,7 @@ __webpack_require__.r(__webpack_exports__);
       this.quote_category = this.quoteChat.quote.category;
       this.getquestions = this.quoteChat.quote.questionsget;
       this.additional_info = this.quoteChat.quote.additional_info;
+      this.business = this.quoteChat.chatsp.business;
       this.quoteChat.unread_msg_count = 0;
       this.isStartshowProfile = false;
       this.isProfileshown = true;
@@ -2937,7 +2939,7 @@ __webpack_require__.r(__webpack_exports__);
       wonJob: 0,
       doneJob: 0,
       loseJob: 0,
-      chatHead: true,
+      chatHead: false,
       userSearch: '',
       quote_category: '',
       getquestions: {},
@@ -4250,9 +4252,9 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "nk-content mt-4"
+    staticClass: "nk-content mt-4 pt-1 pl-0 pr-0"
   }, [_c("div", {
-    staticClass: "container-fluid"
+    staticClass: "container-fluid p-0"
   }, [_c("div", {
     staticClass: "nk-content-inner"
   }, [_c("div", {
@@ -4260,7 +4262,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg"
   }, [_c("div", {
-    staticClass: "nk-msg-aside"
+    staticClass: "nk-msg-aside mr-1"
   }, [_c("div", {
     staticClass: "nk-msg-nav",
     staticStyle: {
@@ -4956,7 +4958,7 @@ var render = function render() {
       expression: "message"
     }],
     ref: "afterClick",
-    staticClass: "form-control form-control-simple no-resize",
+    staticClass: "form-control form-control-simple no-resize border-0",
     attrs: {
       rows: "1",
       id: "default-textarea",
@@ -5036,6 +5038,30 @@ var render = function render() {
   }, [_vm._m(9), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-body collapse",
     attrs: {
+      id: "business-options"
+    }
+  }, [_c("div", {
+    staticClass: "preview-block",
+    staticStyle: {
+      padding: "0 24px",
+      height: "150px",
+      overflow: "auto"
+    }
+  }, [_c("ul", {
+    staticClass: "user-contacts"
+  }, [_c("li", [_c("em", {
+    staticClass: "icon ni ni-building"
+  }), _c("span", [_vm._v(_vm._s(_vm.business.business_name))])]), _vm._v(" "), _c("li", [_c("em", {
+    staticClass: "icon ni ni-mail"
+  }), _c("span", [_vm._v(_vm._s(_vm.business.business_email))])]), _vm._v(" "), _c("li", [_c("em", {
+    staticClass: "icon ni ni-call"
+  }), _c("span", [_vm._v(_vm._s(_vm.business.business_phone))])]), _vm._v(" "), _c("li", [_c("em", {
+    staticClass: "icon ni ni-globe"
+  }), _c("span", [_vm._v(_vm._s(_vm.business.business_website))])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "chat-profile-group"
+  }, [_vm._m(10), _vm._v(" "), _c("div", {
+    staticClass: "chat-profile-body collapse",
+    attrs: {
       id: "chat-options"
     }
   }, [_c("div", {
@@ -5057,9 +5083,9 @@ var render = function render() {
     })], 2);
   }), _vm._v(" "), _c("br"), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {
     staticClass: "mt-4"
-  }, [_c("h6", [_vm._v("Additional Information")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.additional_info))])])], 2)])])]), _vm._v(" "), _vm._m(10), _vm._v(" "), _c("div", {
+  }, [_c("h6", [_vm._v("Additional Information")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.additional_info))])])], 2)])])]), _vm._v(" "), _vm._m(11), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-group"
-  }, [_vm._m(11), _vm._v(" "), _c("div", {
+  }, [_vm._m(12), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-body collapse",
     attrs: {
       id: "chat-photos"
@@ -5145,7 +5171,7 @@ var render = function render() {
     staticClass: "text-capitalize"
   }, [_vm.quoteChat.quote.status == "pending" ? [_vm._v("Active")] : [_vm._v(_vm._s(_vm.quoteChat.quote.status))]], 2)])]), _vm._v(" "), _c("li", {
     staticClass: "dropdown"
-  }, [_vm._m(12), _vm._v(" "), _c("div", {
+  }, [_vm._m(13), _vm._v(" "), _c("div", {
     staticClass: "dropdown-menu dropdown-menu-right"
   }, [_c("ul", {
     staticClass: "link-list-opt no-bdr"
@@ -5363,6 +5389,24 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#",
       "data-toggle": "collapse",
+      "data-target": "#business-options"
+    }
+  }, [_c("h6", {
+    staticClass: "title overline-title"
+  }, [_vm._v("Company Details")]), _vm._v(" "), _c("span", {
+    staticClass: "indicator-icon"
+  }, [_c("em", {
+    staticClass: "icon ni ni-chevron-down"
+  })])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("a", {
+    staticClass: "chat-profile-head",
+    attrs: {
+      href: "#",
+      "data-toggle": "collapse",
       "data-target": "#chat-options"
     }
   }, [_c("h6", {
@@ -5490,9 +5534,9 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "nk-content mt-5"
+    staticClass: "nk-content mt-5 pt-1 pl-0 pr-0"
   }, [_c("div", {
-    staticClass: "container-fluid"
+    staticClass: "container-fluid p-0"
   }, [_c("div", {
     staticClass: "nk-content-inner"
   }, [_c("div", {
@@ -5500,7 +5544,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg"
   }, [_c("div", {
-    staticClass: "nk-msg-aside"
+    staticClass: "nk-msg-aside mr-1"
   }, [_c("div", {
     staticClass: "nk-msg-nav"
   }, [_c("ul", {
@@ -5522,7 +5566,7 @@ var render = function render() {
     on: {
       click: _vm.newjob
     }
-  }, [_vm._v(" New Jobs")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v(" New Quotes")])]), _vm._v(" "), _c("li", {
     staticClass: "nk-msg-menu-item nav-item"
   }, [_c("a", {
     staticClass: "nav-link",
@@ -5533,7 +5577,7 @@ var render = function render() {
     on: {
       click: _vm.quotedjob
     }
-  }, [_vm._v("Quoted Jobs")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("My Quotes")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
     staticClass: "search-wrap",
     attrs: {
       "data-search": "search"
@@ -5715,7 +5759,7 @@ var render = function render() {
       staticClass: "nk-msg-lables"
     })])])])] : _vm._e();
   })], 2)])]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "nk-msg-body bg-white"
+    staticClass: "nk-msg-body nk-msg-top bg-white"
   }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticStyle: {
       display: "none"
@@ -5770,7 +5814,7 @@ var render = function render() {
     staticClass: "ml-3"
   }, [_vm.quoteQuestions.category ? _c("h6", {
     staticClass: "title mb-1"
-  }, [_vm._v("\n                                                    " + _vm._s(_vm.quoteQuestions.category.category_name))]) : _vm._e(), _vm._v(" "), _c("span", {
+  }, [_vm._v("\n                              " + _vm._s(_vm.quoteQuestions.category.category_name))]) : _vm._e(), _vm._v(" "), _c("span", {
     staticClass: "sub-text"
   }, [_vm._v(" " + _vm._s(_vm._f("moment")(_vm.quoteQuestions.created_at, "from", "now")))])])]), _vm._v(" "), _c("div", {
     staticClass: "mt-3"
@@ -5838,7 +5882,7 @@ var render = function render() {
   })], 1)])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm.quoteQuestions.myquotation ? [_vm._m(6)] : [_vm.creaditsum >= 10 ? _c("div", {
     staticClass: "row mt-3 justify-content-end"
   }, [_c("div", {
-    staticClass: "col-md-3 col-xs-3 p-0"
+    staticClass: "col-md-3 col-3 p-0"
   }, [_vm.quoteQuestions.category && _vm.quoteQuestions.category.credit_cost && _vm.quoteQuestions.category.credit_cost ? [_c("h5", {
     staticClass: "p-0 mt-3 creditsCost"
   }, [_vm._v(_vm._s(_vm.quoteQuestions.category.credit_cost) + " Credits")]), _vm._v(" "), _c("input", {
@@ -5891,7 +5935,7 @@ var render = function render() {
       position: "absolute",
       bottom: "41px"
     }
-  }, [_vm._v("Amount")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Quote Amount")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5996,13 +6040,9 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("h4", {
     staticClass: "mt-2"
-  }, [_vm._v("\n                                                    Welcome\n                                                ")]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                          Welcome\n                      ")]), _vm._v(" "), _c("p", {
     staticClass: "text-center mt-2 text-light-grey"
-  }, [_vm._v("You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here.")]), _vm._v(" "), _c("a", {
-    attrs: {
-      href: "/sellers/dashboard/"
-    }
-  }, [_vm._v("View leads")])])])])])])])]);
+  }, [_vm._v("This is where you can send quotes and view your previously quoted jobs. After quoting, you’ll be able to contact customers and access their details here.")])])])])])])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -6109,9 +6149,9 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "nk-content mt-5"
+    staticClass: "nk-content mt-5 pt-1 pl-0 pr-0"
   }, [_c("div", {
-    staticClass: "container-fluid"
+    staticClass: "container-fluid p-0"
   }, [_c("div", {
     staticClass: "nk-content-inner"
   }, [_c("div", {
@@ -6119,7 +6159,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg"
   }, [_c("div", {
-    staticClass: "nk-msg-aside"
+    staticClass: "nk-msg-aside mr-1"
   }, [_c("div", {
     staticClass: "nk-msg-nav",
     staticStyle: {
@@ -6819,7 +6859,7 @@ var render = function render() {
       expression: "message"
     }],
     ref: "afterClick",
-    staticClass: "form-control form-control-simple no-resize",
+    staticClass: "form-control form-control-simple no-resize border-0",
     attrs: {
       rows: "1",
       id: "default-textarea",
@@ -9531,7 +9571,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n     position: absolute;\n    z-index: 99;\n    top: 65px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n    position: absolute;\n    z-index: 99;\n    top: 85px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(86vh - 75px);\n    background: #fff;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9558,7 +9598,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_wysiwyg_dist_vueWysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\n   width: 100%;\n   overflow: auto;\n}\n.editr--toolbar {\n    background: #f6f6f6;\n    border-bottom: 1px solid #e4e4e4;\n    position: relative;\n    display: flex;\n    height: 40px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.redborder{\n  border-color: red;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\nwidth: 100%;\noverflow: auto;\n}\n.editr--toolbar {\nbackground: #f6f6f6;\nborder-bottom: 1px solid #e4e4e4;\nposition: relative;\ndisplay: flex;\nheight: 40px;\n}\n.loexp-no-results-container {\ndisplay: flex;\nalign-items: flex-start;\njustify-content: center;\nheight: calc(82vh - 75px);\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\nposition: relative;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\nmin-width: 0;\ntop: 25%;\nwidth: 50%;\n}\n.redborder{\nborder-color: red;\n}\n.img-fluid {\nmax-width: 100%;\nheight: auto;\n}\n.loexp-no-results-container .card-block h4 {\nfont-size: 1.5em;\n}\n.text-light-grey {\ncolor: #9da0b6!important;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9582,7 +9622,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\ndisplay: flex;\nalign-items: flex-start;\njustify-content: center;\nheight: calc(82vh - 75px);\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\nposition: relative;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\nmin-width: 0;\ntop: 25%;\nwidth: 50%;\n}\n.img-fluid {\n  max-width: 100%;\n  height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\nfont-size: 1.5em;\n}\n.text-light-grey {\ncolor: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n  z-index: 9999;\n  position: absolute;\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n        top: 88px !important;\n        right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\npadding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\ndisplay: flex;\nalign-items: flex-start;\njustify-content: center;\nheight: calc(86vh - 75px);\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\nposition: relative;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\nmin-width: 0;\ntop: 25%;\nwidth: 50%;\n}\n.img-fluid {\n  max-width: 100%;\n  height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n  font-size: 1.5em;\n}\n#mainView{\n position: absolute;\n z-index: 999;\n width: 100%;\n}\n.text-light-grey {\ncolor: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n  z-index: 9999;\n  position: absolute;\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n        top: 88px !important;\n        right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\npadding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

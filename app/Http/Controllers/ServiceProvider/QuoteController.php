@@ -10,6 +10,7 @@ use Acelle\Model\User;
 use Acelle\Model\Country;
 use Acelle\Model\State;
 use Acelle\Model\City;
+use Acelle\Model\SpBusiness;
 use Auth;
 use DB;
 
@@ -105,6 +106,20 @@ class QuoteController extends Controller
         return view('service_provider.newQuoteDetail');
     }
 
+    public function businessUpdate(Request $request)
+    {
+
+       $business = SpBusiness::where('user_id',Auth::user()->id)->first();
+       $business->business_name = $request->business_name;
+       $business->business_reg = $request->business_reg;
+       $business->business_phone = $request->business_phone;
+       $business->business_email = $request->business_email;
+       $business->business_website = $request->business_website;
+       $business->save();
+
+       return redirect()->back()->with('success', 'Business Info Update Successfully');
+    }
+
     public function profileUpdate(Request $request)
     {
 
@@ -194,6 +209,12 @@ class QuoteController extends Controller
                 $user->longitude = $request->longitude;
             }
         }
+        $radius = null;
+        if (isset($request->state_radius)) {
+            $radius = $request->state_radius;
+        }
+        $user->type = $request->user_type;
+        $user->type_value = $radius;
         $user->save();
 
         return redirect()->back()->with('success', 'Profile Update Successfully');

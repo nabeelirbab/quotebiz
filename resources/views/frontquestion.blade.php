@@ -501,9 +501,8 @@ var jqOld = jQuery.noConflict();
 
 		
 
-		jqOld(function(){
+ jqOld(function(){
 	jqOld('input').attr('autocomplete', 'off');
-
 	jqOld("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
