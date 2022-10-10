@@ -343,10 +343,10 @@ $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('si
                             @if(Session::has('error'))
                                 <strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
                             @endif
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                            <div class="custom-control custom-control-sm custom-checkbox notext mt-2">
                                 <input type="checkbox" class="custom-control-input" id="local_business"
                                        name="local_business" value="local business">
-                                <label class="custom-control-label" for="local_business">local business</label>
+                                <label class="custom-control-label" for="local_business" style="font-size: 14px">local business</label>
                             </div>
                             <input type="hidden" id="latitude" name="latitude">
                             <input type="hidden" id="longitude" name="longitude">

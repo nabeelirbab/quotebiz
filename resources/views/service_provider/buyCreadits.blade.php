@@ -39,10 +39,9 @@
       </button>
     </div>
  @endif
-<div class="up-card pt-0 pb-0 maincard mt-5 mb-3">
-
-          <header class="up-card-header cardheader">
-            <h3 id="heading" class="mb-0">
+  <div class="up-card pt-0 pb-0 maincard mt-5 mb-3">
+      <header class="up-card-header cardheader">
+        <h3 id="heading" class="mb-0">
           Buy Credits
         </h3>
       </header>
@@ -51,10 +50,7 @@
           Your available Credits
         </h5>
          <div id="connects-balance">
-           
-            
             {{ Auth::user()->credits}}
-           
         </div> <!---->
          <h5 id="para02" class="mt-5 mb-10 para">
           Select the amount to buy

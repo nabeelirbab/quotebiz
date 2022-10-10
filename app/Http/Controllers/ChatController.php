@@ -97,7 +97,7 @@ class ChatController extends Controller
 
     public function getProviderfriend(){
 
-        $sp = Quotation::with('chatsp','chat.user','chat','quote.category','quote.questionsget','quote.questionsget.questions','quote.questionsget.choice')->withCount("unread_msg")->where('subdomain',request('account'))->where('customer_id',Auth::user()->id)->get();
+        $sp = Quotation::with('chatsp.business','chat.user','chat','quote.category','quote.questionsget','quote.questionsget.questions','quote.questionsget.choice')->withCount("unread_msg")->where('subdomain',request('account'))->where('customer_id',Auth::user()->id)->get();
         return $sp;
     }
 

@@ -119,8 +119,8 @@
 
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
-                        <span class="profile-ud-label">City</span>
-                        <span class="profile-ud-value">{{$userdetail->city}}</span>
+                        <span class="profile-ud-label">Address</span>
+                        <span class="profile-ud-value">{{$userdetail->address}}</span>
                     </div>
                 </div>
                 <div class="profile-ud-item">

@@ -25,7 +25,7 @@
 @section('content')
 
     <!-- content @s -->
-    <div class="nk-content ">
+    <div class="nk-content mb-3">
         <div class="container-fluid">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
@@ -46,8 +46,7 @@
                                             <div class="nk-block-head-content">
                                                 <h4 class="nk-block-title">Personal Information</h4>
                                                 <div class="nk-block-des">
-                                                    <p>Basic info, like your name and address, that you use on Nio
-                                                        Platform.</p>
+                                                    <p>Basic info, like your name and address, that you use on {{\Acelle\Model\Setting::get("site_name")}}.</p>
                                                 </div>
                                             </div>
                                             <div class="nk-tab-actions mr-n1">
@@ -90,9 +89,9 @@
                                             <div class="data-item">
                                                 <div class="data-col">
                                                     <span class="data-label">City</span>
-                                                    <span class="data-value ">{{Auth::user()->city}}</span>
+                                                    <span class="data-value ">{{Acelle\Jobs\HelperJob::cityname(Auth::user()->city)->name}}</span>
                                                 </div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item">
                                                 <div class="data-col">
                                                     <span class="data-label">Address</span>
@@ -168,12 +167,22 @@
                                             <ul class="link-list-menu">
                                                 <li>
                                                     <a class="active"
-                                                       href="{{url('service-provider/settings')}}"><em
-                                                                class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a>
+                                                       href="{{url('service-provider/settings')}}">
+                                                       <em class="icon ni ni-user-fill-c"></em>
+                                                       <span>Personal Infomation</span>
+                                                   </a>
                                                 </li>
-
-                                                <li><a href="{{url('service-provider/locationSetting')}}">
-                                                    <em class="icon ni ni-location"></em><span>Service Location Settings</span></a>
+                                                <li>
+                                                    <a href="{{url('service-provider/business-setting')}}">
+                                                        <em class="icon ni ni-user-fill-c"></em>
+                                                        <span>Business Infomation</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{url('service-provider/location-setting')}}">
+                                                        <em class="icon ni ni-location"></em>
+                                                        <span>Service Location Settings</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div><!-- .card-inner -->
@@ -237,13 +246,6 @@
                                             <input type="text" class="form-control" id="phone-no"
                                                    value="{{Auth::user()->mobileno}}" name="mobileno"
                                                    placeholder="Phone Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="birth-day">City</label>
-                                            <input type="text" class="form-control" value="{{Auth::user()->city}}"
-                                                   name="city" placeholder="Enter city">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

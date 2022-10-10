@@ -26,13 +26,47 @@
             width: 1.75rem;
             opacity: .8;
         }
+        .select2-container--default .select2-selection--single {
+            height: calc(2.125rem + 2px);
+            font-family: DM Sans, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            background-color: #fff;
+            border: 1px solid #c1c1c1;
+            border-radius: 4px;
+            box-shadow: none;
+            transition: all 0.3s;
+            height: 49px !important;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #526484;
+            line-height: 2rem !important;
+            padding: 0.4375rem calc(2.125rem + 2px) 0.4375rem 1rem;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(3.125rem + 2px) !important;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: calc(2.125rem + 2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow:after {
+            font-family: "Nioicon";
+            content: "";
+            line-height: 1;
+            font-size: 20px !important;
+            font-weight: 700 !important;
+        }
     </style>
 @endsection
 
 @section('content')
 
     <!-- content @s -->
-    <div class="nk-content ">
+    <div class="nk-content mb-3">
         <div class="container-fluid">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
@@ -40,7 +74,7 @@
                         <div class="card">
                             @if(Session::has('success'))
                                 <div class="alert alert-success  fade show mt-5" role="alert">
-                                    <strong>Service Location Information !</strong> {{Session::get('success')}}
+                                    <strong>Service Location Settings !</strong> {{Session::get('success')}}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -48,7 +82,7 @@
                             @endif
                                 @if(Session::has('error'))
                                 <div class="alert alert-danger  fade show mt-5" role="alert">
-                                    <strong>Service Location Information !</strong> {{Session::get('error')}}
+                                    <strong>Service Location Settings !</strong> {{Session::get('error')}}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -59,114 +93,117 @@
                                     <div class="nk-block-head">
                                         <div class="nk-block-between d-flex justify-content-between">
                                             <div class="nk-block-head-content">
-                                                <h4 class="nk-block-title">Service Location Information</h4>
-                                                {{--                                                <div class="nk-block-des">--}}
-                                                {{--                                                    <p>Basic info, like your Address , Country and State.</p>--}}
-                                                {{--                                                </div>--}}
+                                                <h4 class="nk-block-title">Service Location Settings</h4>
                                             </div>
-                                            @if(!empty(Auth::user()->country))
-                                                <div class="nk-tab-actions mr-n1">
-                                                    <a href="#" class="btn btn-icon btn-trigger" data-toggle="modal"
-                                                       data-target="#profile-edit">
-                                                        <em class="icon ni ni-edit"></em>
-                                                    </a>
-                                                </div>
-                                            @endif
+                                          
                                         </div>
                                     </div><!-- .nk-block-head -->
                                     <div class="nk-block">
                                         <div class="nk-data data-list">
-                                            {{--                                            <div class="data-head">--}}
-                                            {{--                                                <h6 class="overline-title">Basics</h6>--}}
-                                            {{--                                            </div>--}}
-                                            {{--                                            <br>--}}
-                                            <form action="{{ url('service-provider/address-update') }}" method="post"
-                                                  id="AddressUpdateForm">
+                                            <form action="{{ url('service-provider/address-update') }}" method="post" id="AddressUpdateForm">
                                                 {{ csrf_field() }}
                                                 <div class="row">
+                                                     <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="full-name">Where do you want to receive work</label>
+                                                            <select name="user_type" class="form-control" required onchange="GetTypeData(this.value)">
+                                                                <option disabled selected value="">Select Type</option>
+                                                                <option {{ (Auth::user()->type=="local business") ? "selected" : '' }} value="local business">
+                                                                    Local Business
+                                                                </option>
+                                                                <option {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
+                                                                    Country
+                                                                </option>
+                                                                <option {{ (Auth::user()->type=="state") ? "selected" : '' }} value="state">
+                                                                    State
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" id="appendType">
+                                                        @if(Auth::user()->type=="local business")
+                                                            <div class="form-group  mt-3">
+                                                              <label class="form-label" for="display-radius">   Radius(KM)
+                                                              </label>
+                                                              <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
+                                                            </div>
+                                                        @endif
+                                                    </div>
                                                     <div class="col-md-6 mt-4">
                                                         <div class="form-group">
-                                                            <label class="form-label" for="full-name">Country<span
-                                                                        style="color: red">*</span></label>
-                                                            <select name="country" id="country"
-                                                                    class="form-control select2"
-                                                                    required
-                                                                    onchange="GetStates(this.value)">
+                                                            <label class="form-label" for="full-name">Country
+                                                             <span style="color: red">*</span>
+                                                            </label>
+                                                            <select name="country" id="country" class="form-control select2" required onchange="GetStates(this.value)">
                                                                 <option disabled selected value="">Select Country
                                                                 </option>
-                                                                @forelse($countries as $country)
-                                                                    @if(Auth::user()->country==$country->id)
-                                                                        <option selected
-                                                                                value="{{ $country->id }}">{{ $country->name }}</option>
-                                                                    @else
-                                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                                                    @endif
-                                                                @empty
-                                                                @endforelse
+                                                             @forelse($countries as $country)
+                                                                @if(Auth::user()->country==$country->id)
+                                                                    <option selected value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                @else
+                                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                @endif
+                                                             @empty
+                                                             @endforelse
                                                             </select>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6 mt-4">
                                                         <div class="form-group">
-                                                            <label class="form-label" for="full-name">State<span
-                                                                        style="color: red">*</span></label>
+                                                            <label class="form-label" for="full-name">State
+                                                                <span style="color: red">*</span>
+                                                            </label>
                                                             <select name="state" id="state" class="form-control select2"
                                                                     required onchange="GetCities(this.value)">
                                                                 @if($statename)
-                                                                    <option selected
-                                                                            value="{{ Auth::user()->state }}">{{ ($statename) ? $statename->name : '' }}</option>
+                                                                    <option selected value="{{ Auth::user()->state }}">{{ ($statename) ? $statename->name : '' }}
+                                                                    </option>
                                                                 @else
-                                                                    <option disabled selected value="">Select Country
-                                                                        First
+                                                                    <option disabled selected value="">
+                                                                        Select Country First
                                                                     </option>
                                                                 @endif
                                                             </select>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-md-12 mt-4">
+                                                    <div class="col-md-6 mt-4">
                                                         <div class="form-group">
-                                                            <label class="form-label" for="full-name">City<span
-                                                                        style="color: red">*</span></label>
-                                                            <select name="city" id="city" class="form-control select2"
-                                                                    required>
+                                                            <label class="form-label" for="full-name">City
+                                                                <span style="color: red">*</span>
+                                                            </label>
+                                                            <select name="city" id="city" class="form-control select2" required>
                                                                 @if($cityname)
                                                                     <option value="{{ Auth::user()->city }}">{{ ($cityname) ? $cityname->name : '' }}</option>
                                                                 @else
-                                                                    <option disabled selected value="">Select State
-                                                                        First
+                                                                    <option disabled selected value="">Select State First
                                                                     </option>
                                                                 @endif
                                                             </select>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-md-12 mt-4">
+                                                    <div class="col-md-6 mt-4" id="bus_address">
+                                                    @if(Auth::user()->type=="local business")
                                                         <div class="form-group">
-                                                            <label class="form-label" for="address">Address<span
-                                                                        style="color: red">*</span></label>
-                                                            <input type="text" name="address" id="address" required
-                                                                   class="form-control" autocomplete="off"
+                                                            <label class="form-label" for="address">Address
+                                                              <span style="color: red">*</span>
+                                                            </label>
+                                                            <input type="text" name="address" id="address"  class="form-control" autocomplete="off"
                                                             placeholder="Enter Your Address"
                                                             value="{{ Auth::user()->address }}">
                                                             <input type="hidden" id="latitude" name="latitude"
                                                                    value="{{ (Auth::user()->latitude) ? Auth::user()->latitude : '' }}">
-                                                            <input type="hidden" id="longitude" name="longitude"
-                                                                   value="{{ (Auth::user()->longitude) ? Auth::user()->longitude : '' }}">
+                                                            <input type="hidden" id="longitude" name="longitude" value="{{ (Auth::user()->longitude) ? Auth::user()->longitude : '' }}">
                                                         </div>
+                                                    @endif
                                                     </div>
-
                                                     <div class="col-md-12 mt-4">
                                                         <center>
-                                                            <button class="btn btn-outline-success">Save</button>
+                                                            <button class="btn btn-success btn-lg">Save</button>
                                                         </center>
                                                     </div>
-
                                                 </div>
                                             </form>
-
-
                                         </div><!-- data-list -->
 
                                     </div><!-- .nk-block -->
@@ -200,12 +237,11 @@
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <ul class="link-list-opt no-bdr">
                                                                 <li>
-                                                                    <input type="file" accept="image/*" name="image"
-                                                                           id="uploadImg" onchange="uploadImg(this)"
-                                                                           class="d-none">
-                                                                    <label for="uploadImg" class="labelcls"><em
-                                                                                class="icon ni ni-camera-fill cameraicon"></em><span>Change Photo</span></label>
-
+                                                                    <input type="file" accept="image/*" name="image" id="uploadImg" onchange="uploadImg(this)" class="d-none">
+                                                                    <label for="uploadImg" class="labelcls">
+                                                                        <em class="icon ni ni-camera-fill cameraicon"></em>
+                                                                        <span>Change Photo</span>
+                                                                    </label>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -223,22 +259,23 @@
                                         </div><!-- .card-inner -->
                                         <div class="card-inner p-0">
                                             <ul class="link-list-menu">
-                                                <li><a
-                                                            href="{{url('service-provider/settings')}}"><em
-                                                                class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a>
+                                                <li>
+                                                    <a href="{{url('service-provider/settings')}}">
+                                                        <em class="icon ni ni-user-fill-c"></em>
+                                                        <span>Personal Infomation</span>
+                                                    </a>
                                                 </li>
-                                                {{--                                                <li><a href="service_providers/lms/admin-profile-notification.html"><em--}}
-                                                {{--                                                                class="icon ni ni-bell-fill"></em><span>Notifications</span></a>--}}
-                                                {{--                                                </li>--}}
-                                                {{--                                                <li><a href="service_providers/lms/admin-profile-activity.html"><em--}}
-                                                {{--                                                                class="icon ni ni-activity-round-fill"></em><span>Account Activity</span></a>--}}
-                                                {{--                                                </li>--}}
-                                                {{--                                                <li><a href="service_providers/lms/admin-profile-setting.html"><em--}}
-                                                {{--                                                                class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a>--}}
-                                                {{--                                                </li>--}}
-                                                <li><a class="active"
-                                                       href="{{url('service-provider/locationSetting')}}"><em
-                                                                class="icon ni ni-location"></em><span>Service Location Settings</span></a>
+                                                <li>
+                                                    <a href="{{url('service-provider/business-setting')}}">
+                                                        <em class="icon ni ni-user-fill-c"></em>
+                                                        <span>Business Infomation</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="active" href="{{url('service-provider/location-setting')}}">
+                                                        <em class="icon ni ni-location"></em>
+                                                        <span>Service Location Settings</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div><!-- .card-inner -->
@@ -253,88 +290,7 @@
         </div>
     </div>
     <!-- content @e -->
-    <!-- @@ Profile Edit Modal @e -->
-    <div class="modal fade" role="dialog" id="profile-edit">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-                <div class="modal-body modal-body-md">
-                    <h5 class="title">Update Service Location</h5>
-                    <ul class="nk-nav nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#personal">Service Location</a>
-                        </li>
-                        <!--  <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#address">Address</a>
-                        </li> -->
-                    </ul><!-- .nav-tabs -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="personal">
-                            <form action="{{ url('service-provider/location-update') }}" method="post">
-                                {{ csrf_field() }}
-                                <div class="row gy-4">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="full-name">Type</label>
-                                            <select name="user_type" class="form-control" required
-                                                    onchange="GetTypeData(this.value)">
-                                                <option disabled selected value="">Select Type</option>
-                                                <option {{ (Auth::user()->type=="local business") ? "selected" : '' }} value="local business">
-                                                    local business
-                                                </option>
-                                                <option {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
-                                                    country
-                                                </option>
-                                                <option {{ (Auth::user()->type=="state") ? "selected" : '' }} value="state">
-                                                    state
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" id="appendType">
-                                        @if(Auth::user()->type=="local business")
-                                            <div class="form-group">
-                                                <label class="form-label" for="display-radius">Radius(KM)</label>
-                                                <input type="number" class="form-control" id="display-radius"
-                                                       name="state_radius" placeholder="Enter Radius"
-                                                       value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
-                                            </div>
-                                        @elseif(Auth::user()->type=="country")
-                                            <div class="form-group">
-                                                <label class="form-label" for="display-State">Country</label> <input
-                                                        type="text" class="form-control" id="display-State"
-                                                        placeholder="Country" readonly
-                                                        value="{{ ($countryname) ? $countryname->name : '' }}"></div>
-                                        @elseif(Auth::user()->type=="state")
-                                            <div class="form-group">
-                                                <label class="form-label"
-                                                       for="display-State">State</label> <input
-                                                        type="text" class="form-control" id="display-State"
-                                                        placeholder="State" readonly
-                                                        value="{{ ($statename) ? $statename->name : '' }}"></div>
-                                        @endif
-                                    </div>
-
-                                    <div class="col-12">
-                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                            <li>
-                                                <button type="submit" class="btn btn-primary">Update</button>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div><!-- .tab-pane -->
-                    </div><!-- .tab-content -->
-                </div><!-- .modal-body -->
-            </div><!-- .modal-content -->
-        </div><!-- .modal-dialog -->
-    </div><!-- .modal -->
-    <!-- language modal -->
+  
 
 @endsection
 
@@ -351,13 +307,9 @@
         function GetTypeData(val) {
             $("#appendType").empty();
             if (val == "local business") {
-                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-radius">Radius(KM)</label> <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}"></div>');
-            }
-            if (val == "state") {
-                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-State">State</label> <input type="text" class="form-control" id="display-State" placeholder="State" readonly value="{{ ($statename) ? $statename->name : '' }}"></div>');
-            }
-            if (val == "country") {
-                $("#appendType").append('<div class="form-group"><label class="form-label" for="display-State">Country</label> <input type="text" class="form-control" id="display-State" placeholder="Country" readonly value="{{ ($countryname) ? $countryname->name : '' }}"></div>');
+                $("#appendType").append('<div class="form-group mt-3"><label class="form-label" for="display-radius">Radius(KM)</label> <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}"></div>');
+            }else{
+               $('#bus_address').hide();
             }
         }
 
@@ -400,11 +352,11 @@
         $("#AddressUpdateForm").submit(function (event) {
             var lat = $("#latitude").val();
             var long = $("#longitude").val();
-            if (lat == "" || long == "") {
-                alert("Please Enter Valid Address !");
-                event.preventDefault();
-                return false;
-            }
+            // if (lat == "" || long == "") {
+            //     alert("Please Enter Valid Address !");
+            //     return false;
+            // }
+                // event.preventDefault();
         });
 
 

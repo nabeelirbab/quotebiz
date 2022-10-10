@@ -3304,6 +3304,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -3336,11 +3360,12 @@ __webpack_require__.r(__webpack_exports__);
       activeJob: 0,
       wonJob: 0,
       doneJob: 0,
-      chatHead: true,
+      chatHead: false,
       userSearch: '',
       quote_category: '',
       getquestions: {},
-      additional_info: ''
+      additional_info: '',
+      business: {}
     };
   },
   sockets: {
@@ -3535,6 +3560,7 @@ __webpack_require__.r(__webpack_exports__);
       this.quote_category = this.quoteChat.quote.category;
       this.getquestions = this.quoteChat.quote.questionsget;
       this.additional_info = this.quoteChat.quote.additional_info;
+      this.business = this.quoteChat.chatsp.business;
       this.quoteChat.unread_msg_count = 0;
       this.isStartshowProfile = false;
       this.isProfileshown = true;
@@ -3744,10 +3770,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toasted */ "./node_modules/vue-toasted/dist/vue-toasted.min.js");
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
 //
 //
 //
@@ -4850,7 +4872,7 @@ __webpack_require__.r(__webpack_exports__);
       wonJob: 0,
       doneJob: 0,
       loseJob: 0,
-      chatHead: true,
+      chatHead: false,
       userSearch: '',
       quote_category: '',
       getquestions: {},
@@ -7409,7 +7431,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n     position: absolute;\n    z-index: 99;\n    top: 65px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(82vh - 75px);\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chathead{\n    position: absolute;\n    z-index: 99;\n    top: 85px;\n    background: white;\n    width: 100%;\n    left: 0px;\n}\n.loexp-no-results-container {\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    height: calc(86vh - 75px);\n    background: #fff;\n}\n.loexp-no-results-container .card-block {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n    min-width: 0;\n    top: 25%;\n    width: 50%;\n}\n.img-fluid {\n    max-width: 100%;\n    height: auto;\n}\n.chatImage{\n\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\n    font-size: 1.5em;\n}\n.text-light-grey {\n    color: #9da0b6!important;\n}\n.startshowProfile{\n    padding-right: 0px !important;\n}\n.activeemoji {\n    z-index: 9999;\n    position: absolute;\n    bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\n    top: 88px !important;\n    right: 10px;\n}\n.vel-modal{\n    z-index: 9998;\n    position: fixed;\n    top: 0;\n    left: 319px !important;\n    right: 0;\n    bottom: 0;\n    margin: 0;\n    background: rgba(0,0,0,.5);\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\n        padding: 0 0.75rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7436,7 +7458,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_wysiwyg_dist_vueWysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\r\n   width: 100%;\r\n   overflow: auto;\n}\n.editr--toolbar {\r\n    background: #f6f6f6;\r\n    border-bottom: 1px solid #e4e4e4;\r\n    position: relative;\r\n    display: flex;\r\n    height: 40px;\n}\n.loexp-no-results-container {\r\n    display: flex;\r\n    align-items: flex-start;\r\n    justify-content: center;\r\n    height: calc(82vh - 75px);\r\n    background: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\n    position: relative;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    min-width: 0;\r\n    top: 25%;\r\n    width: 50%;\n}\n.redborder{\r\n  border-color: red;\n}\n.img-fluid {\r\n    max-width: 100%;\r\n    height: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\n    font-size: 1.5em;\n}\n.text-light-grey {\r\n    color: #9da0b6!important;\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.editr--toolbar{\r\nwidth: 100%;\r\noverflow: auto;\n}\n.editr--toolbar {\r\nbackground: #f6f6f6;\r\nborder-bottom: 1px solid #e4e4e4;\r\nposition: relative;\r\ndisplay: flex;\r\nheight: 40px;\n}\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.redborder{\r\nborder-color: red;\n}\n.img-fluid {\r\nmax-width: 100%;\r\nheight: auto;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7460,7 +7482,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(82vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\nfont-size: 1.5em;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loexp-no-results-container {\r\ndisplay: flex;\r\nalign-items: flex-start;\r\njustify-content: center;\r\nheight: calc(86vh - 75px);\r\nbackground: #f9f9fa;\n}\n.loexp-no-results-container .card-block {\r\nposition: relative;\r\ndisplay: flex;\r\nalign-items: center;\r\njustify-content: center;\r\nflex-direction: column;\r\nmin-width: 0;\r\ntop: 25%;\r\nwidth: 50%;\n}\n.img-fluid {\r\n  max-width: 100%;\r\n  height: auto;\n}\n.chatImage{\r\n\r\n    max-width: 40%;\n}\n.loexp-no-results-container .card-block h4 {\r\n  font-size: 1.5em;\n}\n#mainView{\r\n position: absolute;\r\n z-index: 999;\r\n width: 100%;\n}\n.text-light-grey {\r\ncolor: #9da0b6!important;\n}\n.startshowProfile{\r\n    padding-right: 0px !important;\n}\n.activeemoji {\r\n  z-index: 9999;\r\n  position: absolute;\r\n  bottom: 70px;\n}\n.vel-btns-wrapper .btn__close {\r\n        top: 88px !important;\r\n        right: 10px;\n}\n.vel-modal{\r\n    z-index: 9998;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 319px !important;\r\n    right: 0;\r\n    bottom: 0;\r\n    margin: 0;\r\n    background: rgba(0,0,0,.5);\r\n    width: 81%;\n}\n@media (min-width: 992px){\n.nk-msg-nav {\r\npadding: 0 0.75rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -56996,12 +57018,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "nk-content mt-4" }, [
-    _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "nk-content mt-4 pt-1 pl-0 pr-0" }, [
+    _c("div", { staticClass: "container-fluid p-0" }, [
       _c("div", { staticClass: "nk-content-inner" }, [
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
-            _c("div", { staticClass: "nk-msg-aside" }, [
+            _c("div", { staticClass: "nk-msg-aside mr-1" }, [
               _c(
                 "div",
                 {
@@ -59159,7 +59181,7 @@ var render = function () {
                               ],
                               ref: "afterClick",
                               staticClass:
-                                "form-control form-control-simple no-resize",
+                                "form-control form-control-simple no-resize border-0",
                               attrs: {
                                 rows: "1",
                                 id: "default-textarea",
@@ -59346,6 +59368,78 @@ var render = function () {
                           "div",
                           {
                             staticClass: "chat-profile-body collapse ",
+                            attrs: { id: "business-options" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "preview-block",
+                                staticStyle: {
+                                  padding: "0 24px",
+                                  height: "150px",
+                                  overflow: "auto",
+                                },
+                              },
+                              [
+                                _c("ul", { staticClass: "user-contacts" }, [
+                                  _c("li", [
+                                    _c("em", {
+                                      staticClass: "icon ni ni-building",
+                                    }),
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(_vm.business.business_name)
+                                      ),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c("em", {
+                                      staticClass: "icon ni ni-mail",
+                                    }),
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(_vm.business.business_email)
+                                      ),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c("em", {
+                                      staticClass: "icon ni ni-call",
+                                    }),
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(_vm.business.business_phone)
+                                      ),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c("em", {
+                                      staticClass: "icon ni ni-globe",
+                                    }),
+                                    _c("span", [
+                                      _vm._v(
+                                        _vm._s(_vm.business.business_website)
+                                      ),
+                                    ]),
+                                  ]),
+                                ]),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "chat-profile-group" }, [
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "chat-profile-body collapse ",
                             attrs: { id: "chat-options" },
                           },
                           [
@@ -59437,10 +59531,10 @@ var render = function () {
                         ),
                       ]),
                       _vm._v(" "),
-                      _vm._m(10),
+                      _vm._m(11),
                       _vm._v(" "),
                       _c("div", { staticClass: "chat-profile-group" }, [
-                        _vm._m(11),
+                        _vm._m(12),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -59617,7 +59711,7 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "dropdown" }, [
-                          _vm._m(12),
+                          _vm._m(13),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -59891,6 +59985,31 @@ var staticRenderFns = [
         attrs: {
           href: "#",
           "data-toggle": "collapse",
+          "data-target": "#business-options",
+        },
+      },
+      [
+        _c("h6", { staticClass: "title overline-title" }, [
+          _vm._v("Company Details"),
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "indicator-icon" }, [
+          _c("em", { staticClass: "icon ni ni-chevron-down" }),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "chat-profile-head",
+        attrs: {
+          href: "#",
+          "data-toggle": "collapse",
           "data-target": "#chat-options",
         },
       },
@@ -60076,12 +60195,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "nk-content mt-5" }, [
-    _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "nk-content mt-5 pt-1 pl-0 pr-0" }, [
+    _c("div", { staticClass: "container-fluid p-0" }, [
       _c("div", { staticClass: "nk-content-inner" }, [
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
-            _c("div", { staticClass: "nk-msg-aside" }, [
+            _c("div", { staticClass: "nk-msg-aside mr-1" }, [
               _c("div", { staticClass: "nk-msg-nav" }, [
                 _c(
                   "ul",
@@ -60104,7 +60223,7 @@ var render = function () {
                             attrs: { href: "#tabItem0", "data-toggle": "tab" },
                             on: { click: _vm.newjob },
                           },
-                          [_vm._v(" New Jobs")]
+                          [_vm._v(" New Quotes")]
                         ),
                       ]
                     ),
@@ -60117,7 +60236,7 @@ var render = function () {
                           attrs: { href: "#tabItem1", "data-toggle": "tab" },
                           on: { click: _vm.quotedjob },
                         },
-                        [_vm._v("Quoted Jobs")]
+                        [_vm._v("My Quotes")]
                       ),
                     ]),
                     _vm._v(" "),
@@ -60679,7 +60798,7 @@ var render = function () {
                 : _vm._e(),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "nk-msg-body bg-white" }, [
+            _c("div", { staticClass: "nk-msg-body nk-msg-top bg-white" }, [
               _vm._m(2),
               _vm._v(" "),
               _c(
@@ -60756,7 +60875,7 @@ var render = function () {
                                             { staticClass: "title mb-1" },
                                             [
                                               _vm._v(
-                                                "\n                                                    " +
+                                                "\r\n                              " +
                                                   _vm._s(
                                                     _vm.quoteQuestions.category
                                                       .category_name
@@ -61011,7 +61130,7 @@ var render = function () {
                                                 "div",
                                                 {
                                                   staticClass:
-                                                    "col-md-3 col-xs-3 p-0",
+                                                    "col-md-3 col-3 p-0",
                                                 },
                                                 [
                                                   _vm.quoteQuestions.category &&
@@ -61162,7 +61281,7 @@ var render = function () {
                                                             bottom: "41px",
                                                           },
                                                         },
-                                                        [_vm._v("Amount")]
+                                                        [_vm._v("Quote Amount")]
                                                       ),
                                                       _vm._v(" "),
                                                       _c("input", {
@@ -61348,7 +61467,7 @@ var staticRenderFns = [
                     _vm._v(" "),
                     _c("h4", { staticClass: "mt-2" }, [
                       _vm._v(
-                        "\n                                                    Welcome\n                                                "
+                        "\r\n                          Welcome\r\n                      "
                       ),
                     ]),
                     _vm._v(" "),
@@ -61357,14 +61476,10 @@ var staticRenderFns = [
                       { staticClass: "text-center mt-2 text-light-grey" },
                       [
                         _vm._v(
-                          "You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here."
+                          "This is where you can send quotes and view your previously quoted jobs. After quoting, you’ll be able to contact customers and access their details here."
                         ),
                       ]
                     ),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "/sellers/dashboard/" } }, [
-                      _vm._v("View leads"),
-                    ]),
                   ]),
                 ]),
               ]),
@@ -61486,12 +61601,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "nk-content mt-5" }, [
-    _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "nk-content mt-5 pt-1 pl-0 pr-0" }, [
+    _c("div", { staticClass: "container-fluid p-0" }, [
       _c("div", { staticClass: "nk-content-inner" }, [
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
-            _c("div", { staticClass: "nk-msg-aside" }, [
+            _c("div", { staticClass: "nk-msg-aside mr-1" }, [
               _c(
                 "div",
                 {
@@ -63850,7 +63965,7 @@ var render = function () {
                               ],
                               ref: "afterClick",
                               staticClass:
-                                "form-control form-control-simple no-resize",
+                                "form-control form-control-simple no-resize border-0",
                               attrs: {
                                 rows: "1",
                                 id: "default-textarea",

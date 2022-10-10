@@ -76,7 +76,7 @@
                 
                 @include('helpers.form_control', [
                     'type' => 'password',
-                    'label'=> trans('messages.new_password'),
+                    'label'=> trans('messages.password'),
                     'name' => 'password',
                     'rules' => $user->registerRules(),
                     'eye' => true,

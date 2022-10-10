@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         // Last month
       $customerCount = User::where('user_type','client')->where('subdomain',request('account'))->count();
-      $providerCount = User::where('user_type','service_provider')->where('subdomain',request('account'))->count();
+      $providerCount = User::where('user_type','service_provider')->orWhere('user_relation','both')->where('subdomain',request('account'))->count();
       $quoteCount =  Quote::where('admin_id',request('account'))->count();
       $quotes =  Quote::where('admin_id',request('account'))->orderBy('created_at','desc')->limit(5)->get();
       $totalRevenue =  BuyCreadit::where('subdomain',request('account'))->sum('amount');
@@ -89,7 +89,7 @@ class HomeController extends Controller
     }
 
     public function serviceproviders(){
-        $users = User::where('subdomain',Auth::user()->subdomain)->where('id','<>',Auth::user()->id)->where('user_type','service_provider')->paginate(10);
+        $users = User::where('subdomain',Auth::user()->subdomain)->where('id','<>',Auth::user()->id)->where('user_type','service_provider')->orWhere('user_relation','both')->paginate(10);
         return view('serviceproviders',compact('users'));
     }
 

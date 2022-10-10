@@ -24,7 +24,13 @@
   background: #555; 
   border-radius: 15px;
 }
-
+.mc-form .form-control, .mc-form .select2 {
+    font-size: 100%;
+    border-color: #bbb;
+    border-radius: 2px;
+    border: solid 1px #bbb;
+    height: 46px !important;
+}
 .nk-content {
 	 background: #F5F6FA;
 }
@@ -43,7 +49,13 @@
     padding: 1rem 1.5rem !important;
 }
 .nk-msg{
-  height: calc(99vh - (59px + 110px));
+  height: calc(100vh - (27px + 111px)) !important;
+}
+.nk-msg-aside {
+    max-height: calc(100vh - (27px + 111px)) !important;
+}
+.nk-msg-body {
+    max-height: calc(100vh - (27px + 112px));
 }
 .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
     display: block;
@@ -75,8 +87,13 @@
     position: relative;
     opacity: 1;
     pointer-events: auto;
-    max-height: calc(93vh - (65px + 112px));
+    max-height: calc(96vh - (65px + 112px));
     border-radius: 0px;
+}
+
+.nk-chat-body {
+    max-height: calc(100vh - (27px + 112px));
+    border-radius: 4px;
 }
 .kanban-item {
     border-radius: 4px;
@@ -138,7 +155,10 @@
   .col-sm-4{
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
-}
+ }
+.nk-msg-body {
+    max-height: calc(100vh - (27px + 112px));
+ }
 }
 
 @media (min-width: 992px) {
@@ -303,8 +323,14 @@
       display: none !important;
   }
   .nk-msg-body{
-    top: 63px;
+    top: 146px;
   }
+  .nk-msg-top{
+    top: 73px;
+  }
+  .nk-msg-top {
+    max-height: calc(100vh - (0px + 70px));
+}
   .nkchatbody {
       position: relative;
       opacity: 1;

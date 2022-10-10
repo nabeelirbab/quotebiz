@@ -1,11 +1,11 @@
 <template>
 <!-- content @s -->
-<div class="nk-content mt-4">
-<div class="container-fluid">
+<div class="nk-content mt-4 pt-1 pl-0 pr-0">
+<div class="container-fluid p-0">
 <div class="nk-content-inner">
 <div class="nk-content-body">
 <div class="nk-msg">
-<div class="nk-msg-aside">
+<div class="nk-msg-aside mr-1">
 <div class="nk-msg-nav" style="background: white;line-height: 5.6;">
     <ul class="nk-msg-menu nav nav-tabs">
       
@@ -377,7 +377,7 @@
         </div>
         <div class="nk-chat-editor-form">
             <div class="form-control-wrap" style="margin-left:30px">
-                <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" @keydown.enter.exact.prevent
+                <textarea v-model="message" ref="afterClick" class="form-control form-control-simple no-resize border-0" rows="1" id="default-textarea" @keydown.enter.exact.prevent
               @keyup.enter.exact="chatStart()"  placeholder="Type your message..."></textarea>
             </div>
         </div>
@@ -396,8 +396,8 @@
 <div class="nk-msg-profile"  id="chatPanel" style="display:none" v-bind:class="{visible: isVisible}" >
   <div class="user-card user-card-s2 my-4"  v-if="quoteChat.chatsp">
     <div class="nk-msg-media user-avatar" v-if="quoteChat.chatsp.user_img">
-                      <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatsp.user_img" alt="">
-                    </div>
+        <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatsp.user_img" alt="">
+          </div>
         <div class="user-avatar md bg-purple" v-else>
             <span>{{getFirstLetter(quoteChat.chatsp.first_name)}}{{getFirstLetter(quoteChat.chatsp.last_name)}}</span>
         </div>
@@ -417,6 +417,30 @@
         </div>
     </div>
     <div class="chat-profile">
+        <div class="chat-profile-group">
+            <a href="#" class="chat-profile-head" data-toggle="collapse" data-target="#business-options">
+                <h6 class="title overline-title">Company Details</h6>
+                <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
+            </a>
+            <div class="chat-profile-body collapse " id="business-options">
+                <div class="preview-block" style="padding: 0 24px;height: 150px;overflow: auto;">
+                  <ul class="user-contacts">
+                    <li>
+                        <em class="icon ni ni-building"></em><span>{{business.business_name}}</span>
+                    </li>
+                    <li>
+                        <em class="icon ni ni-mail"></em><span>{{business.business_email}}</span>
+                    </li>
+                    <li>
+                        <em class="icon ni ni-call"></em><span>{{business.business_phone}}</span>
+                    </li>
+                    <li>
+                        <em class="icon ni ni-globe"></em><span>{{business.business_website}}</span>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
         <div class="chat-profile-group">
             <a href="#" class="chat-profile-head" data-toggle="collapse" data-target="#chat-options">
                 <h6 class="title overline-title">Quote Details</h6>
@@ -587,11 +611,12 @@ data() {
         activeJob: 0,
         wonJob: 0,
         doneJob: 0,
-        chatHead: true,
+        chatHead: false,
         userSearch: '',
         quote_category:'',
         getquestions:{},
-        additional_info: ''
+        additional_info: '',
+        business: {}
         };
 },
 sockets: {
@@ -693,8 +718,8 @@ methods: {
           handleHide () {
             this.visible = false
           },
-        chatStart(){
-           
+
+         chatStart(){
            this.isEmoji = false;
 
            if (this.editChatid) {
@@ -809,6 +834,7 @@ methods: {
             this.quote_category = this.quoteChat.quote.category;
             this.getquestions = this.quoteChat.quote.questionsget;
             this.additional_info = this.quoteChat.quote.additional_info;
+            this.business = this.quoteChat.chatsp.business;
             this.quoteChat.unread_msg_count = 0;
             this.isStartshowProfile = false;
             this.isProfileshown = true;
@@ -1037,9 +1063,9 @@ mounted() {
 </script>
 <style type="text/css">
     .chathead{
-         position: absolute;
+        position: absolute;
         z-index: 99;
-        top: 65px;
+        top: 85px;
         background: white;
         width: 100%;
         left: 0px;
@@ -1048,8 +1074,8 @@ mounted() {
         display: flex;
         align-items: flex-start;
         justify-content: center;
-        height: calc(82vh - 75px);
-        background: #f9f9fa;
+        height: calc(86vh - 75px);
+        background: #fff;
     }
     .loexp-no-results-container .card-block {
         position: relative;

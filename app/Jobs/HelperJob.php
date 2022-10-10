@@ -73,7 +73,7 @@ class HelperJob extends Base
         return substr($number, 0, 2) . '******' . substr($number, -2);
     }
 
-    public static function dateFormat(){
+   public static function dateFormat(){
 
        $result =  User::where('subdomain',request('account'))->where('user_type','admin')->first();
        // dd($result);
@@ -89,11 +89,11 @@ class HelperJob extends Base
         return JobDesign::where('subdomain',request('account'))->first();
     }
 
-    public static function quoteprice(){
+   public static function quoteprice(){
       return QuotePrice::where('subdomain',request('account'))->first();
     }
 
-    public static function setcurrency($to,$amount){
+   public static function setcurrency($to,$amount){
       $currency = AdminCurrency::where('subdomain',request('account'))->first();
         if($currency){
           $code = $currency->code;
@@ -109,7 +109,7 @@ class HelperJob extends Base
         return ['convert' => $covert, 'currency' => $code] ;
     }
 
-    public static function usdcurrency($amount){
+   public static function usdcurrency($amount){
       $currency = AdminCurrency::where('subdomain',request('account'))->first();
         if($currency){
           $code = $currency->code;
@@ -124,7 +124,7 @@ class HelperJob extends Base
         return ['convert' => $covert, 'currency' => $code] ;
     }
 
-    public static function convertusd($amount){
+   public static function convertusd($amount){
       $currency = AdminCurrency::where('subdomain',request('account'))->first();
         if($currency){
           $code = $currency->code;

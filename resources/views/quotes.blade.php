@@ -45,7 +45,7 @@
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col h2"><span class="sub-text">Customer</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Category</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Zip Code</span></div>
+            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Address</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Additional Information</span></div>
             <div class="nk-tb-col h2"><span class="sub-text">Quotations</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Posted on</span></div>

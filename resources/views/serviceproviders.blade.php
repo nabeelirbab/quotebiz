@@ -86,9 +86,9 @@
             </div> -->
             <div class="nk-tb-col"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Zip Code</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Time Zone</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Address</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Register On</span></div>
             <div class="nk-tb-col"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
@@ -114,13 +114,13 @@
                 </a>
             </div>
             <div class="nk-tb-col tb-col-lg">
-                <span >{{$user->city}}</span>
+                <span >{{$user->mobileno}}</span>
             </div>
             <div class="nk-tb-col tb-col-md">
                 <span>{{$user->zipcode}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">
-                <span>{{$user->timezone}}</span>
+                <span>{{$user->address}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
