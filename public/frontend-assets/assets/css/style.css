@@ -56,6 +56,8 @@
 }
 .nk-msg-body {
     max-height: calc(100vh - (27px + 112px));
+    overflow: auto;
+    border-bottom: none !important;
 }
 .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
     display: block;
