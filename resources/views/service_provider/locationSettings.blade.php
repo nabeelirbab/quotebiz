@@ -199,7 +199,11 @@
                                                     </div>
                                                     <div class="col-md-12 mt-4">
                                                         <center>
+                                                            @if(Auth::user()->location_setting=="active")
                                                             <button class="btn btn-success btn-lg">Save</button>
+                                                            @else
+                                                                <strong class="text-bold text-danger">Location Setting Blocked by Admin.</strong>
+                                                            @endif
                                                         </center>
                                                     </div>
                                                 </div>
@@ -295,21 +299,19 @@
 @endsection
 
 @section('script')
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&libraries=places"></script>
-
     <script type="text/javascript">
-
         $(document).ready(function () {
             $('.select2').select2();
         });
-
         function GetTypeData(val) {
             $("#appendType").empty();
             if (val == "local business") {
                 $("#appendType").append('<div class="form-group mt-3"><label class="form-label" for="display-radius">Radius(KM)</label> <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}"></div>');
+                $('#bus_address').show();
+
             }else{
-               $('#bus_address').hide();
+                $('#bus_address').hide();
             }
         }
 

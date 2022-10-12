@@ -329,6 +329,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
     Route::get('/invitedserviceproviders', 'HomeController@invitedserviceproviders');
+    Route::get('/location_setting/{id}', 'HomeController@location_setting');
+    Route::post('/Save_location_setting', 'HomeController@Save_location_setting');
     Route::get('/profile_detail/{id}', 'HomeController@provider_detail');
     Route::get('/customer_detail/{id}', 'HomeController@customer_detail');
     Route::get('/account_status/{id}', 'HomeController@accountstatus');
@@ -746,6 +748,9 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     // Invoice
     Route::get('invoices/{uid}/download', 'InvoiceController@download');
    });
+
+     Route::get('/getstates/{id}','ServiceProvider\QuoteController@getstates')->name("getstates");
+     Route::get('/getcities/{id}','ServiceProvider\QuoteController@getcities')->name("getcities");
 
   });
 
