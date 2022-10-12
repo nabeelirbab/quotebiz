@@ -220,7 +220,7 @@ public function register(Request $request)
      $user = new User();
     if ($request->isMethod('post')) {
         $user->fill($request->all());
-        $rules = $user->registerRules2();
+        $rules = $user->registerRules2($request->subdomain);
     // Captcha check
     if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
         $success = \Acelle\Library\Tool::checkReCaptcha($request);

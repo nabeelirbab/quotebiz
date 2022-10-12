@@ -280,11 +280,11 @@ public static $itemsPerPage = 25;
         return $rules;
     }
 
-    public function registerRules2()
+    public function registerRules2($subdomain)
     {
         $rules = array(
             
-            'email' => 'required|email|unique:users,email,'.$this->id.',id',
+            'email' => 'required|email|unique:users,email,'.$this->id.',id,subdomain,'.$subdomain,
             'first_name' => 'required',
             'last_name' => 'required',
             'category_id' => 'required',

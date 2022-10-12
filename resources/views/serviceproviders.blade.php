@@ -86,6 +86,7 @@
             </div> -->
             <div class="nk-tb-col"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
+            <div class="nk-tb-col"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Zip Code</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Address</span></div>
@@ -114,6 +115,11 @@
                 </a>
             </div>
             <div class="nk-tb-col tb-col-lg">
+                @if($user->business)
+                <span >{{$user->business->business_name}}</span>
+                @endif
+            </div>
+            <div class="nk-tb-col tb-col-lg">
                 <span >{{$user->mobileno}}</span>
             </div>
             <div class="nk-tb-col tb-col-md">
@@ -139,7 +145,8 @@
                             <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <ul class="link-list-opt no-bdr">
-                                    <li><a href="{{ url('profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                    <li><a href="{{ url('admin/profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                    <li><a href="{{ url('admin/location_setting/'.$user->id) }}"><em class="icon ni ni-location"></em><span>Location Setting</span></a></li>
                                   @if($user->activated == '1')
                                 <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
                                 @else
