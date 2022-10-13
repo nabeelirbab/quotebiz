@@ -3,7 +3,13 @@
 
 @section('styling')
  <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/editors/quill.css?ver=2.9.1') }}">
-@endsection
+
+<style type="text/css">
+.nk-msg-head {
+    padding: 1rem 1.5rem !important;
+}
+</style>
+@endsection 
 @section('content')
 
  <div id="app" class="mt-4">

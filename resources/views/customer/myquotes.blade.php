@@ -1,5 +1,5 @@
 @extends('customer.layout.app')
-@section('title', 'My Jobs')
+@section('title', 'My Quotes')
 @section('styling')
 <style type="text/css">
   .table th {

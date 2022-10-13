@@ -46,17 +46,26 @@
 	padding: 8px 12px 8px 12px
 }
 .nk-msg-head {
-    padding: 1rem 1.5rem !important;
+    padding: 1.07rem 1.5rem !important;
 }
 .nk-msg{
-  height: calc(100vh - (27px + 111px)) !important;
+    height: calc(100vh - (27px + 111px)) !important;
+}
+.nk-msg-nav{
+    padding: 0 0.75rem;
+    background-color: white;
+    border-bottom: 1px solid #e5e9f2 !important;
 }
 .nk-msg-aside {
     max-height: calc(100vh - (27px + 111px)) !important;
-}
+    border-radius: 0px !important;
+    border-top: 1px solid #e5e9f2 !important;
+    border: none;
+  }
 .nk-msg-body {
     max-height: calc(100vh - (27px + 112px));
     border-bottom: none !important;
+    border-radius: 0px !important;
 }
 .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
     display: block;
@@ -93,8 +102,14 @@
 }
 
 .nk-chat-body {
-    max-height: calc(100vh - (27px + 112px));
-    border-radius: 4px;
+    max-height: calc(100vh - (26px + 112px));
+    border-radius: 0px !important;
+    border: none !important;
+}
+.nk-msg-menu {
+    display: flex;
+    margin: 0 0.25rem;
+    border-bottom: none !important;
 }
 .kanban-item {
     border-radius: 4px;
@@ -304,13 +319,16 @@
 }
 @media only screen and (min-width: 992px) {
   .nk-msg-item {
-      padding: 1.25rem 0.75rem;
+      padding: 1.25rem 1.75rem;
   }
   .nav-tabs .nav-item {
     padding-right: 1.25rem;
 }
 }
 @media only screen and (max-width: 600px) {
+  .nk-msg-item {
+      padding: 1.25rem 1.75rem;
+  }
   .form-label{
     font-size: 0.75rem;
   }

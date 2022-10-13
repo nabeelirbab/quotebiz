@@ -1,5 +1,12 @@
 @extends('customer.layout.app')
 @section('title', 'Quotes-Chat')
+@section('styling')
+<style type="text/css">
+.nk-msg-head {
+    padding: 1rem 1.5rem !important;
+}
+</style>
+@endsection    
 @section('content')
       <div id="app" class="mt-5">
         <customer-responses-component authuser="{{Auth::user()->id}}"></customer-responses-component>
