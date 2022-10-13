@@ -4262,7 +4262,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg"
   }, [_c("div", {
-    staticClass: "nk-msg-aside mr-1"
+    staticClass: "nk-msg-aside mr-0"
   }, [_c("div", {
     staticClass: "nk-msg-nav",
     staticStyle: {
@@ -5544,7 +5544,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg"
   }, [_c("div", {
-    staticClass: "nk-msg-aside mr-1"
+    staticClass: "nk-msg-aside mr-0"
   }, [_c("div", {
     staticClass: "nk-msg-nav"
   }, [_c("ul", {
@@ -6159,7 +6159,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "nk-msg"
   }, [_c("div", {
-    staticClass: "nk-msg-aside mr-1"
+    staticClass: "nk-msg-aside mr-0"
   }, [_c("div", {
     staticClass: "nk-msg-nav",
     staticStyle: {

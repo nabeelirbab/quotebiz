@@ -4,7 +4,7 @@
 <div class="nk-content-inner">
 <div class="nk-content-body">
 <div class="nk-msg">
-<div class="nk-msg-aside mr-1">
+<div class="nk-msg-aside mr-0">
       <div class="nk-msg-nav">
           <ul class="nk-msg-menu nav nav-tabs" style="background-color: white;">
              <li id="tabactive" class="nk-msg-menu-item  active"><a href="#tabItem0" data-toggle="tab" @click="newjob" class="nav-link"> New Quotes</a></li>

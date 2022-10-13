@@ -5,7 +5,7 @@
 <div class="nk-content-inner">
 <div class="nk-content-body">
 <div class="nk-msg">
-<div class="nk-msg-aside mr-1">
+<div class="nk-msg-aside mr-0">
 <div class="nk-msg-nav" style="background: white;line-height: 5.6;">
     <ul class="nk-msg-menu nav nav-tabs">
       
