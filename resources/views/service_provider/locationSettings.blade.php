@@ -120,16 +120,10 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12" id="appendType">
-                                                        @if(Auth::user()->type=="local business")
-                                                            <div class="form-group  mt-3">
-                                                              <label class="form-label" for="display-radius">   Radius(KM)
-                                                              </label>
-                                                              <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-md-6 mt-4">
+                                                  
+                                                    <div class="col-md-12 mt-4">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-label" for="full-name">Country
                                                              <span style="color: red">*</span>
@@ -148,8 +142,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-md-6 mt-4">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-label" for="full-name">State
                                                                 <span style="color: red">*</span>
@@ -167,7 +160,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 mt-4">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-label" for="full-name">City
                                                                 <span style="color: red">*</span>
@@ -182,7 +175,11 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 mt-4" id="bus_address">
+                                                </div>
+                                                    </div>
+
+                                                    
+                                                    <div class="col-md-8 mt-4" id="bus_address">
                                                     @if(Auth::user()->type=="local business")
                                                         <div class="form-group">
                                                             <label class="form-label" for="address">Address
@@ -196,6 +193,15 @@
                                                             <input type="hidden" id="longitude" name="longitude" value="{{ (Auth::user()->longitude) ? Auth::user()->longitude : '' }}">
                                                         </div>
                                                     @endif
+                                                    </div>
+                                                      <div class="col-md-4 mt-1" id="appendType">
+                                                        @if(Auth::user()->type=="local business")
+                                                            <div class="form-group  mt-3">
+                                                              <label class="form-label" for="display-radius">   Radius(KM)
+                                                              </label>
+                                                              <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-12 mt-4">
                                                         <center>
