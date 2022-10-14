@@ -79,28 +79,28 @@
                     'name' => 'email',
                     'value' => $user->email,
                     'help_class' => 'profile',
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
                 
                 @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'first_name',
                     'value' => $user->first_name,
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
                 
                 @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'last_name',
                     'value' => $user->last_name,
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
                 
                 @include('helpers.form_control', [
                     'type' => 'password',
                     'label'=> trans('messages.password'),
                     'name' => 'password',
-                    'rules' => $user->registerRules(),
+                    'rules' => $user->registerRules($user->subdomain),
                     'eye' => true,
                 ])
                  <div class="form-group control-text">

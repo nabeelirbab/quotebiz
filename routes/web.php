@@ -1534,7 +1534,8 @@ Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
 
     // Plan
     Route::get('plans/select2', 'PlanController@select2');
-
+    Route::get('super/getstates/{id}','ServiceProvider\QuoteController@supergetstates');
+    Route::get('super/getcities/{id}','ServiceProvider\QuoteController@supergetcities');
     // Admin registration
     Route::match(['get', 'post'],'admin/register', 'UserController@adminregister');
     Route::get('admin/activate/{token}', 'UserController@adminActivate');

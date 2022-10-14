@@ -166,6 +166,34 @@ class QuoteController extends Controller
 
     }
 
+    public function supergetstates($id)
+    {
+        $countryid = $id;
+        $states = State::where('country_id', $countryid)->get();
+        ?>
+        <option value="" selected disabled>Select State</option>
+        <?php
+        foreach ($states as $state) {
+            echo '<option value="' . $state->id . '">' . $state->name . '</option>';
+        }
+        ?>
+        <?php
+    }
+
+    public function supergetcities($id)
+    {
+        $stateid = $id;
+        $cities = City::where('state_id', $stateid)->get();
+        ?>
+        <option value="" selected disabled>Select City</option>
+        <?php
+        foreach ($cities as $city) {
+            echo '<option value="' . $city->id . '">' . $city->name . '</option>';
+        }
+        ?>
+        <?php
+    }
+
     public function getstates($account, $id)
     {
         $countryid = $id;

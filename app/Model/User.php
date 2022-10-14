@@ -260,15 +260,13 @@ public static $itemsPerPage = 25;
      *
      * @var array
      */
-    public function registerRules()
+    public function registerRules($subdomain)
     {
         $rules = array(
             'subdomain' => 'required|unique:subdomains,subdomain,'.$this->id.',id',
-            'email' => 'required|email|unique:users,email,'.$this->id.',id',
+            'email' => 'required|email|unique:users,email,'.$this->id.',id,subdomain,'.$subdomain,
             'first_name' => 'required',
             'last_name' => 'required',
-            'timezone' => 'required',
-            'language_id' => 'required',
         );
 
         if (isset($this->id)) {
