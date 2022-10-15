@@ -94,18 +94,6 @@
                         <span class="profile-ud-value">{{$userdetail->email}}</span>
                     </div>
                 </div>
-                @if(json_decode($userdetail->category_id))
-                 <div class="profile-ud-item">
-                    <div class="profile-ud wider">
-                        <span class="profile-ud-label">Category</span>
-                        <span class="profile-ud-value">
-                            @foreach(json_decode($userdetail->category_id) as $cat)
-                            {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}<br>
-                            @endforeach
-                        </span>
-                    </div>
-                </div>
-                @endif
             </div><!-- .profile-ud-list -->
         </div><!-- .nk-block -->
         <div class="nk-block">
@@ -115,21 +103,26 @@
             <div class="profile-ud-list">
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
+                        <span class="profile-ud-label">Country</span>
+                        <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::countryname($userdetail->country)->name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">State</span>
+                        <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::statename($userdetail->state)->name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">City</span>
+                        <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::cityname($userdetail->city)->name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
                         <span class="profile-ud-label">Joining Date</span>
                         <span class="profile-ud-value">{{\Carbon\Carbon::parse($userdetail->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
-                    </div>
-                </div>
-
-                <div class="profile-ud-item">
-                    <div class="profile-ud wider">
-                        <span class="profile-ud-label">Address</span>
-                        <span class="profile-ud-value">{{$userdetail->Address}}</span>
-                    </div>
-                </div>
-                <div class="profile-ud-item">
-                    <div class="profile-ud wider">
-                        <span class="profile-ud-label">Zip Code</span>
-                        <span class="profile-ud-value">{{$userdetail->zipcode}}</span>
                     </div>
                 </div>
             </div><!-- .profile-ud-list -->
@@ -174,6 +167,19 @@
                         <span class="profile-ud-value">{{$userdetail->business->business_website}}</span>
                     </div>
                 </div>
+
+                @if(json_decode($userdetail->category_id))
+                 <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Business Category</span>
+                        <span class="profile-ud-value">
+                            @foreach(json_decode($userdetail->category_id) as $cat)
+                            {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}<br>
+                            @endforeach
+                        </span>
+                    </div>
+                </div>
+                @endif
             </div><!-- .profile-ud-list -->
         </div><!-- .nk-block -->
         <div class="nk-divider divider md"></div>

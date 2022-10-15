@@ -5,35 +5,7 @@
   .table th {
     line-height: 4;
 }
-.button {
-  position: relative;
-  display: inline-block;
-  height: 46px;
-  min-width: 46px;
-  padding: 0 16px !important;
-  border-radius: 6px;
-  background-color: #fff;
-  color: #333 !important;
-  font-size: 30px !important;
-  font-weight: 600;
-  text-align: center;
-  transition: background-color .2s ease-in-out,color .2s ease-in-out,opacity .2s ease-in-out;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  background: rgba(0,0,0,.05);
-  border: none;
-  line-height: 44px;
-  color: rgba(0,0,0,.55);
-}
-.card-panel {
-  margin: 12px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1),0 0 4px rgba(0,0,0,.1);
-  max-width: 400px;
-  padding: 24px;
-}
+
 </style>
 @endsection
 @section('content')

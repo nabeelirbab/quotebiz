@@ -3,18 +3,18 @@
 @section('title', trans('messages.dashboard'))
 
 @section('head')
-  <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
-    <style type="text/css">
-        .col-sm-12, .col-sm-10, .col-sm-6, .col-sm-5, .col-sm-1 {
-            margin: 0px !important;
-        }
-        .removeQuestion{
-            display: contents;
-        }
-    </style>
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+  <style type="text/css">
+    .col-sm-12, .col-sm-10, .col-sm-6, .col-sm-5, .col-sm-1 {
+        margin: 0px !important;
+    }
+    .removeQuestion{
+        display: contents;
+    }
+  </style>
 @endsection
 @section('content')
 <!-- content @s -->
@@ -84,13 +84,15 @@
                     <label class="custom-control-label" for="uid"></label>
                 </div>
             </div> -->
-            <div class="nk-tb-col"><span class="sub-text">#ID</span></div>
+            <div class="nk-tb-col"><span class="sub-text">#</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
-            <div class="nk-tb-col"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Zip Code</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Address</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Register On</span></div>
+            <div class="nk-tb-col"><span class="sub-text">Business Name</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Category</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registered On</span></div>
             <div class="nk-tb-col"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
            
@@ -114,19 +116,28 @@
                     </div>
                 </a>
             </div>
+
+            <div class="nk-tb-col tb-col-lg">
+                <span >{{$user->mobileno}}</span>
+            </div>
             <div class="nk-tb-col tb-col-lg">
                 @if($user->business)
                 <span >{{$user->business->business_name}}</span>
                 @endif
             </div>
-            <div class="nk-tb-col tb-col-lg">
-                <span >{{$user->mobileno}}</span>
-            </div>
             <div class="nk-tb-col tb-col-md">
-                <span>{{$user->zipcode}}</span>
+                 @foreach(json_decode($user->category_id) as $cat)
+                    <span>{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>,
+                 @endforeach
             </div>
             <div class="nk-tb-col tb-col-lg">
-                <span>{{$user->address}}</span>
+                <span>{{Acelle\Jobs\HelperJob::countryname($user->country)->name}}</span>
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                <span>{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
