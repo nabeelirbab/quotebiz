@@ -39,7 +39,10 @@ class HomeController extends Controller
 
         // Last month
         $customerCount = User::where('user_type', 'client')->where('subdomain', request('account'))->count();
-        $providerCount = User::where('user_type', 'service_provider')->orWhere('user_relation', 'both')->where('subdomain', request('account'))->count();
+        $providerCount = User::where(function($q) {
+           $q->where('user_type', 'service_provider')
+           ->orWhere('user_relation', 'both');
+          })->where('subdomain', request('account'))->count();
         $quoteCount = Quote::where('admin_id', request('account'))->count();
         $quotes = Quote::where('admin_id', request('account'))->orderBy('created_at', 'desc')->limit(5)->get();
         $totalRevenue = BuyCreadit::where('subdomain', request('account'))->sum('amount');
