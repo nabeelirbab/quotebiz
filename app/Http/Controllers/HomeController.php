@@ -92,7 +92,10 @@ class HomeController extends Controller
 
     public function serviceproviders()
     {
-        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('user_type', 'service_provider')->orWhere('user_relation', 'both')->paginate(10);
+        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+           $q->where('user_type', 'service_provider')
+           ->orWhere('user_relation', 'both');
+          })->paginate(10);
         return view('serviceproviders', compact('users'));
     }
 
