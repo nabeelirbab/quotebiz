@@ -100,32 +100,38 @@
                     <span class="badge"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
             </div>
         </div><!-- .nk-tb-item -->
-           <div id="mySidepanel{{$quote->id}}" class="sidepanel" style="height: 100%;padding-left: 18px">
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav('{{$quote->id}}')">×</a>
-                    <div class="preview-block" style="padding: 0px;">
-                        <div class="row">
-                        <h5>{{$quote->category->category_name}} :</h5>
-                        <br>
+         <div id="mySidepanel{{$quote->id}}" class="sidepanel" style="top: 0px;height: 100%;background: #f3f3f3;padding-top: 0px;">
+            <div class="d-flex justify-content-between align-items-center" style="background: white;padding: 12px;">
+              <div style="">
+            <a href="javascript:void(0)" class="button" onclick="closeNav('{{$quote->id}}')">×</a>
+            </div>
+            <div style="margin-right: 10px;">
+             <h5>{{$quote->category->category_name}}</h5>
+                </div>
+                <div>
+                  
+                </div>
+             </div>
+                  <div class="row card-panel">
+                  <br>
 
-                         @foreach($quote->questionsget as $questions)
-                           <div class="col-md-12 mt-1 mb-1">
-                             <h6>{{$questions->questions->question}}</h6>
-                             @foreach($questions->choice as $choices)
-                             
-                                 <p class="fs-6">{{$choices->choice_value}}</p>
-                             @endforeach
-                         </div>
-                         @endforeach
-
-                         <br>
-                          <br>
-                        <div class="mt-4">
-                         <h6>Additional Information</h6>
-                         <p>{{$quote->additional_info}}</p>
-                         </div>
-                     </div>
-                    </div>
+                   @foreach($quote->questionsget as $questions)
+                     <div class="col-md-12 mt-1 mb-1 p-0">
+                       <h6>{{$questions->questions->question}}</h6>
+                       @foreach($questions->choice as $choices)
+                           <p class="fs-6">{{$choices->choice_value}}</p>
+                       @endforeach
                    </div>
+                   @endforeach
+                   <br>
+                    <br>
+                  <div class="mt-4 p-0">
+                   <h6>Additional Information</h6>
+                   <p>{{$quote->additional_info}}</p>
+                   </div>
+               </div>
+             </div>
+   
                    <div class="modal fade zoom" tabindex="-1" id="modalEdit{{$quote->id}}">
                     <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
