@@ -319,7 +319,7 @@ cursor: pointer;
 href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 </div>
 @endif
-<div class="row justify-content-{{$job_design->position ? $job_design->position : 'end'}}"
+<div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
 
 <div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
