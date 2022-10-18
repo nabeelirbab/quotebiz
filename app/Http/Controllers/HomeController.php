@@ -34,12 +34,13 @@ class HomeController extends Controller
         } else {
             $from = Carbon::now()->subDays(6);
         }
-
         event(new \Acelle\Events\UserUpdated($request->user()->customer));
-
         // Last month
         $customerCount = User::where('user_type', 'client')->where('subdomain', request('account'))->count();
-        $providerCount = User::where('user_type', 'service_provider')->orWhere('user_relation', 'both')->where('subdomain', request('account'))->count();
+        $providerCount = User::where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->where('subdomain', request('account'))->count();
         $quoteCount = Quote::where('admin_id', request('account'))->count();
         $quotes = Quote::where('admin_id', request('account'))->orderBy('created_at', 'desc')->limit(5)->get();
         $totalRevenue = BuyCreadit::where('subdomain', request('account'))->sum('amount');
@@ -92,7 +93,10 @@ class HomeController extends Controller
 
     public function serviceproviders()
     {
-        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('user_type', 'service_provider')->orWhere('user_relation', 'both')->paginate(10);
+        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->paginate(10);
         return view('serviceproviders', compact('users'));
     }
 
@@ -245,14 +249,14 @@ class HomeController extends Controller
         $user->state = $request->state;
         $user->city = $request->city;
         $user->type = $request->user_type;
-        $user->location_setting = $request->allow_location_setting;
         $radius = null;
         if (isset($request->state_radius)) {
             $radius = $request->state_radius;
         }
         $user->type_value = $radius;
+        $user->location_setting = $request->allow_location_setting;
         $user->save();
 
-        return redirect()->back()->with('success', 'Successfully Updated');
+        return redirect()->back()->with('success', 'Profile Update Successfully');
     }
 }

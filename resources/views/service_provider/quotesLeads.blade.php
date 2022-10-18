@@ -18,6 +18,11 @@
     padding-right: 1rem !important;
   }
 }
+.nk-msg-body {
+    max-height: calc(100vh - (27px + 112px));
+    overflow: auto;
+    border-bottom: none !important;
+    }
  </style>
 @endsection
 @section('content')

@@ -235,24 +235,23 @@
                                         </div><!-- .card-inner -->
                                         <div class="card-inner p-0">
                                             <ul class="link-list-menu">
-                                                <li>
-                                                    <a 
-                                                       href="{{url('service-provider/settings')}}">
-                                                       <em class="icon ni ni-user-fill-c"></em>
-                                                       <span>Personal Infomation</span>
-                                                   </a>
+                                              <li>
+                                                    <a class="active" href="{{url('service-provider/location-setting')}}">
+                                                        <em class="icon ni ni-location"></em>
+                                                        <span>Service Location Settings</span>
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                  <a class="active" href="{{url('service-provider/business-setting')}}">
-                                                    <em class="icon ni ni-user-fill-c"></em>
-                                                    <span>Business Infomation</span>
-                                                  </a>
+                                                    <a href="{{url('service-provider/business-setting')}}">
+                                                        <em class="icon ni ni-user-fill-c"></em>
+                                                        <span>Business Infomation</span>
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                  <a href="{{url('service-provider/location-setting')}}">
-                                                    <em class="icon ni ni-location"></em>
-                                                    <span>Service Location Settings</span>
-                                                  </a>
+                                                    <a href="{{url('service-provider/settings')}}">
+                                                        <em class="icon ni ni-user-fill-c"></em>
+                                                        <span>Personal Infomation</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div><!-- .card-inner -->

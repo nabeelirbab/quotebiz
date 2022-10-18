@@ -1,7 +1,19 @@
 @extends('layouts.core.register')
 
 @section('title', trans('messages.create_your_account'))
-
+<style type="text/css">
+    .subdomain{
+      width: 77%;
+    }
+    @media screen and (max-width: 667px) {
+        .subdomain{
+          width: 72%;
+        }
+    }
+    #countrySection{
+        display: none;
+    }
+</style>
 @section('content')
     
     <form enctype="multipart/form-data" action="{{ url('admin/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
@@ -13,7 +25,7 @@
                     <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
                 </a>
             </div>
-            <div class="col-md-5">
+            <div class="col-12 col-md-5">
                 
                 <h1 class="mb-20">{{ trans('messages.create_your_account') }}</h1>
                 <p>{!! trans('messages.register.intro', [
@@ -24,13 +36,13 @@
                  <span class="text-danger">*</span>
              </label>
             <div class="input-group mb-3">
-                <div style="width: 77%;">
+             <div class="subdomain">
               @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'subdomain',
                     'value' => $user->subdomain,
                     'help_class' => 'profile',
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
             </div>
               <div class="input-group-append">
@@ -57,64 +69,90 @@
                     'name' => 'email',
                     'value' => $user->email,
                     'help_class' => 'profile',
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
                 
                 @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'first_name',
                     'value' => $user->first_name,
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
                 
                 @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'last_name',
                     'value' => $user->last_name,
-                    'rules' => $user->registerRules()
+                    'rules' => $user->registerRules($user->subdomain)
                 ])
                 
                 @include('helpers.form_control', [
                     'type' => 'password',
                     'label'=> trans('messages.password'),
                     'name' => 'password',
-                    'rules' => $user->registerRules(),
+                    'rules' => $user->registerRules($user->subdomain),
                     'eye' => true,
                 ])
-                 @include('helpers.form_control', ['type' => 'select', 'name' => 'country_id', 'label' => trans('messages.country'), 'value' => $customer->country_id, 'options' => Acelle\Model\Country::getSelectOptions(), 'include_blank' => trans('messages.choose'), 'rules' => Acelle\Model\Contact::$rules])
-                <div class="form-group control-text">
+                   <div class="form-group control-text">
                     <label>
-                        <b>City</b>
+                        <b>Where will you quotebiz be located?</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <input type="text" name="city" class="form-control" required>
+                     <select name="business_type" class="form-control" required onchange="GetTypeData(this.value)" required>
+                        <option disabled selected value="">Select Type</option>
+                        <option value="Worldwide">
+                            Worldwide
+                        </option>
+                        <option value="Countrywide">
+                           Countrywide
+                        </option>
+                    </select>
                   </div>
+                <div id="countrySection">
+                 <div class="form-group control-text">
+                    <label>
+                        <b>Country</b>
+                         <span class="text-danger">*</span>
+                     </label>
+                     <select name="country" id="country" class="form-control select2"  onchange="GetStates(this.value)">
+                        <option disabled selected value="">Select Country
+                        </option>
+                        @forelse(Acelle\Jobs\HelperJob::countries() as $country)
+                         <option value="{{ $country->id }}">{{ $country->name }}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                  </div>
+                    <div class="form-group control-text">
+                     <label>
+                        <b>State</b>
+                         <span class="text-danger">*</span>
+                     </label>
+                       <select name="state" id="state" class="form-control select2"  onchange="GetCities(this.value)">
+                        <option disabled selected value="">Select Country
+                            First
+                        </option>
+                     </select>
+                   </div>
+                    <div class="form-group control-text">
+                     <label>
+                        <b>City</b>
+                        <span class="text-danger">*</span>
+                     </label>
+                      <select name="city" id="city" class="form-control select2" >
+                        <option disabled selected value="">Select State
+                            First
+                        </option>
+                    </select>
+                   </div>
                   <div class="form-group control-text">
                     <label>
                         <b>Zipcode</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <input type="text" name="zipcode" class="form-control" required>
+                     <input type="text" name="zipcode" class="form-control" >
                   </div>
-                @include('helpers.form_control', [
-                    'type' => 'select',
-                    'name' => 'timezone',
-                    'value' => $customer->timezone,
-                    'options' => Tool::getTimezoneSelectOptions(),
-                    'include_blank' => trans('messages.choose'),
-                    'rules' => $user->registerRules()
-                ])								
-                
-                @include('helpers.form_control', [
-                    'type' => 'select',
-                    'name' => 'language_id',
-                    'label' => trans('messages.language'),
-                    'value' => $customer->language_id,
-                    'options' => Acelle\Model\Language::getSelectOptions(),
-                    'include_blank' => trans('messages.choose'),
-                    'rules' => $user->registerRules()
-                ])
-                
+               </div>
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -140,8 +178,44 @@
             <div class="col-md-1"></div>
         </div>
     </form>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnout.com/toastr.js"></script>
     <script>
+
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+        
+        function GetTypeData(val){
+           if(val == 'Countrywide'){
+             $('#countrySection').show();
+           }else{
+             $('#countrySection').hide();
+           }
+        }
+
+        function GetStates(val) {
+            $("#state").empty();
+            $("#city").empty();
+            $("#city").html("<option value='' selected disabled>Select State First</option>");
+            $.ajax({
+                url: "{{ url('super/getstates') }}/" + val,
+                method: "get",
+                success: function (data) {
+                    $("#state").html(data);
+                }
+            });
+        }
+
+        function GetCities(val) {
+            $.ajax({
+                url: "{{ url('super/getcities') }}/" + val,
+                method: "get",
+                success: function (data) {
+                    $("#city").html(data);
+                }
+            });
+        }
         @if (isSiteDemo())
             $('.res-button').click(function(e) {
                 e.preventDefault();

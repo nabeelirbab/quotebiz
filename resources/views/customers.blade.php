@@ -102,7 +102,7 @@
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
             <div class="nk-tb-col tb-col-md"><span class="sub-text">Zip Code</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Register On</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registered On</span></div>
             <div class="nk-tb-col"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
 

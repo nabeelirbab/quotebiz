@@ -305,7 +305,7 @@ public function register(Request $request)
     if ($request->isMethod('post')) {
         $user->fill($request->all());
 
-        $rules = $user->registerRules();
+        $rules = $user->registerRules($request->subdomain);
         // Captcha check
         if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
             $success = \Acelle\Library\Tool::checkReCaptcha($request);

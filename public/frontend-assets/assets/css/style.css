@@ -46,18 +46,26 @@
 	padding: 8px 12px 8px 12px
 }
 .nk-msg-head {
-    padding: 1rem 1.5rem !important;
+    padding: 1.07rem 1.5rem !important;
 }
 .nk-msg{
-  height: calc(100vh - (27px + 111px)) !important;
+    height: calc(100vh - (27px + 111px)) !important;
+}
+.nk-msg-nav{
+    padding: 0 0.75rem;
+    background-color: white;
+    border-bottom: 1px solid #e5e9f2 !important;
 }
 .nk-msg-aside {
     max-height: calc(100vh - (27px + 111px)) !important;
-}
+    border-radius: 0px !important;
+    border-top: 1px solid #e5e9f2 !important;
+    border: none;
+  }
 .nk-msg-body {
     max-height: calc(100vh - (27px + 112px));
-    overflow: auto;
     border-bottom: none !important;
+    border-radius: 0px !important;
 }
 .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
     display: block;
@@ -94,8 +102,14 @@
 }
 
 .nk-chat-body {
-    max-height: calc(100vh - (27px + 112px));
-    border-radius: 4px;
+    max-height: calc(100vh - (26px + 112px));
+    border-radius: 0px !important;
+    border: none !important;
+}
+.nk-msg-menu {
+    display: flex;
+    margin: 0 0.25rem;
+    border-bottom: none !important;
 }
 .kanban-item {
     border-radius: 4px;
@@ -115,7 +129,38 @@
     width: 100%;
     text-align: center;
 }
-.card { border-radius: 12px; }
+.card {
+    border-radius: 12px; 
+}
+.button {
+  position: relative;
+  display: inline-block;
+  height: 46px;
+  min-width: 46px;
+  padding: 0 16px !important;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333 !important;
+  font-size: 30px !important;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color .2s ease-in-out,color .2s ease-in-out,opacity .2s ease-in-out;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  background: rgba(0,0,0,.05);
+  border: none;
+  line-height: 44px;
+  color: rgba(0,0,0,.55);
+}
+.card-panel {
+  margin: 12px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1),0 0 4px rgba(0,0,0,.1);
+  max-width: 400px;
+  padding: 24px;
+}
 .tb-ticket-id a, .tb-ticket-desc a {
     display: block;
     padding: 0.50rem 0;
@@ -147,6 +192,9 @@
 }
 .tb-ticket-item.is-unread {
     background: white;
+}
+.nk-quick-nav-icon:before {
+    border-radius: 0% !important;
 }
 @media (min-width: 768px){
 .tb-col-md {
@@ -305,13 +353,16 @@
 }
 @media only screen and (min-width: 992px) {
   .nk-msg-item {
-      padding: 1.25rem 0.75rem;
+      padding: 1.25rem 1.75rem;
   }
   .nav-tabs .nav-item {
     padding-right: 1.25rem;
 }
 }
 @media only screen and (max-width: 600px) {
+  .nk-msg-item {
+      padding: 1.25rem 1.75rem;
+  }
   .form-label{
     font-size: 0.75rem;
   }

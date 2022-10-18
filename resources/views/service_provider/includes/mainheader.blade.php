@@ -24,7 +24,7 @@
                                         <a href="{{ url('customer') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to Customer</b></p></a>
                                     </li>
                                     <li class="nav-item d-none d-lg-block">
-                                        <a href="{{ url('service-provider/buy-creadits') }}" class="nk-quick-nav-icon"><p style="font-size: 16px">Credits <b>{{ Auth::user()->credits}}</b></p></a>
+                                        <a href="{{ url('service-provider/buy-credits') }}" class="nk-quick-nav-icon"><p style="font-size: 16px">Credits <b>{{ Auth::user()->credits}}</b></p></a>
                                     </li>
                                     <li class="dropdown chats-dropdown hide-mb-xs">
                                         <a href="{{ url('service-provider/quotes-responses') }}" class="le nk-quick-nav-icon">

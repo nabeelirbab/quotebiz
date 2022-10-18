@@ -57023,7 +57023,7 @@ var render = function () {
       _c("div", { staticClass: "nk-content-inner" }, [
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
-            _c("div", { staticClass: "nk-msg-aside mr-1" }, [
+            _c("div", { staticClass: "nk-msg-aside mr-0" }, [
               _c(
                 "div",
                 {
@@ -60200,7 +60200,7 @@ var render = function () {
       _c("div", { staticClass: "nk-content-inner" }, [
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
-            _c("div", { staticClass: "nk-msg-aside mr-1" }, [
+            _c("div", { staticClass: "nk-msg-aside mr-0" }, [
               _c("div", { staticClass: "nk-msg-nav" }, [
                 _c(
                   "ul",
@@ -61606,7 +61606,7 @@ var render = function () {
       _c("div", { staticClass: "nk-content-inner" }, [
         _c("div", { staticClass: "nk-content-body" }, [
           _c("div", { staticClass: "nk-msg" }, [
-            _c("div", { staticClass: "nk-msg-aside mr-1" }, [
+            _c("div", { staticClass: "nk-msg-aside mr-0" }, [
               _c(
                 "div",
                 {

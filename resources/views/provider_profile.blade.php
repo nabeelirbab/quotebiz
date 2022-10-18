@@ -52,14 +52,17 @@
 <div class="card-content">
     <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
         <li class="nav-item">
-            <a class="nav-link active" href="#"><em class="icon ni ni-user-circle"></em><span>Personal</span></a>
+            <a class="nav-link active" id="personal-tab" data-toggle="tab" onclick="personal()" href="#personal" role="tab" aria-controls="personal" aria-selected="true" href="#"><em class="icon ni ni-user-circle"></em><span>Personal</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="business-tab" data-toggle="tab" href="#business" onclick="business()" role="tab" aria-controls="business" aria-selected="true" href="#"><em class="icon ni ni-building"></em><span>Busniess</span></a>
         </li>
         
         <li class="nav-item nav-item-trigger ">
             <a href="#" class="toggle btn btn-icon btn-trigger" data-target="userAside"><em class="icon ni ni-user-list-fill"></em></a>
         </li>
     </ul><!-- .nav-tabs -->
-    <div class="card-inner">
+    <div class="card-inner tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
         <div class="nk-block">
             <div class="nk-block-head">
                 <h5 class="title">Personal Information</h5>
@@ -91,18 +94,6 @@
                         <span class="profile-ud-value">{{$userdetail->email}}</span>
                     </div>
                 </div>
-                @if(json_decode($userdetail->category_id))
-                 <div class="profile-ud-item">
-                    <div class="profile-ud wider">
-                        <span class="profile-ud-label">Category</span>
-                        <span class="profile-ud-value">
-                            @foreach(json_decode($userdetail->category_id) as $cat)
-                            {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}<br>
-                            @endforeach
-                        </span>
-                    </div>
-                </div>
-                @endif
             </div><!-- .profile-ud-list -->
         </div><!-- .nk-block -->
         <div class="nk-block">
@@ -112,23 +103,83 @@
             <div class="profile-ud-list">
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
+                        <span class="profile-ud-label">Country</span>
+                        <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::countryname($userdetail->country)->name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">State</span>
+                        <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::statename($userdetail->state)->name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">City</span>
+                        <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::cityname($userdetail->city)->name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
                         <span class="profile-ud-label">Joining Date</span>
                         <span class="profile-ud-value">{{\Carbon\Carbon::parse($userdetail->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
                     </div>
                 </div>
+            </div><!-- .profile-ud-list -->
+        </div><!-- .nk-block -->
+        <div class="nk-divider divider md"></div>
+       
+    </div><!-- .card-inner -->
+    <div class="card-inner tab-pane fade" style="display: none" id="business" role="tabpanel" aria-labelledby="business-tab">
+        <div class="nk-block">
+            <div class="nk-block-head">
+                <h5 class="title">Business Information</h5>
+            </div><!-- .nk-block-head -->
+            <div class="profile-ud-list">
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Business Name</span>
+                        <span class="profile-ud-value">{{$userdetail->business->business_name}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Business Registration Number</span>
+                        <span class="profile-ud-value">{{$userdetail->business->business_reg}}</span>
+                    </div>
+                </div>
+               
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Business Phone</span>
+                        <span class="profile-ud-value">{{$userdetail->business->business_phone}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Business Email</span>
+                        <span class="profile-ud-value">{{$userdetail->business->business_email}}</span>
+                    </div>
+                </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Business Website</span>
+                        <span class="profile-ud-value">{{$userdetail->business->business_website}}</span>
+                    </div>
+                </div>
 
-                <div class="profile-ud-item">
+                @if(json_decode($userdetail->category_id))
+                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
-                        <span class="profile-ud-label">Address</span>
-                        <span class="profile-ud-value">{{$userdetail->address}}</span>
+                        <span class="profile-ud-label">Business Category</span>
+                        <span class="profile-ud-value">
+                            @foreach(json_decode($userdetail->category_id) as $cat)
+                            {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}<br>
+                            @endforeach
+                        </span>
                     </div>
                 </div>
-                <div class="profile-ud-item">
-                    <div class="profile-ud wider">
-                        <span class="profile-ud-label">Zip Code</span>
-                        <span class="profile-ud-value">{{$userdetail->zipcode}}</span>
-                    </div>
-                </div>
+                @endif
             </div><!-- .profile-ud-list -->
         </div><!-- .nk-block -->
         <div class="nk-divider divider md"></div>
@@ -219,4 +270,15 @@
 @section('script')
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+<script type="text/javascript">
+    function personal(){
+        $('#business').hide(); 
+        $('#personal').show();
+    }
+
+    function business(){
+        $('#personal').hide();
+        $('#business').show();
+    }
+</script>
 @endsection
