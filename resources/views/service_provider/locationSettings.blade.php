@@ -199,7 +199,11 @@
                                                     </div>
                                                     <div class="col-md-12 mt-4">
                                                         <center>
+                                                            @if(Auth::user()->location_setting=="active")
                                                             <button class="btn btn-success btn-lg">Save</button>
+                                                            @else
+                                                                <strong class="text-bold text-danger">location Setting Blocked by admin.</strong>
+                                                            @endif
                                                         </center>
                                                     </div>
                                                 </div>

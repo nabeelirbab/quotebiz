@@ -86,7 +86,7 @@ Route::group(['middleware' => ['not_installed']], function () {
 
     // Verify a sender
     Route::get('senders/verify/{token}', 'SenderController@verify');
-    Route::get('senders/verify/{uid}/result', 'SenderController@verifyResult'); 
+    Route::get('senders/verify/{uid}/result', 'SenderController@verifyResult');
     // Get Application Key
     Route::get('appkey', 'Controller@appkey')->name('appkey');
     // Campaign test links
@@ -127,7 +127,7 @@ Route::name('customer.')->prefix('customer')->group(function () {
 
     Route::get('/login', function () {
         return view('customer.login');
-    }); 
+    });
 
     Route::get('/inbox', 'Customer\QuoteController@index');
     Route::get('/my-jobs', 'Customer\QuoteController@myquotes');
@@ -214,7 +214,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/createticket', function () {
         return view('service_provider.createticket');
     });
-    
+
     Route::get('/payment-history','ServiceProvider\StripeController@paymenthistory');
 
 });
@@ -226,11 +226,11 @@ Route::get('users/logout', 'UserController@logout');
 
  Route::name('admin.')->prefix('admin')->group(function () {
   Route::group(['middleware' => ['not_installed', 'auth', 'admin','validdomain']], function () {
-    
+
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
-   
+
     Route::post('sendInvitation', 'UserController@sendInvitation');
     Route::post('resendInvitation', 'UserController@resendInvitation');
     Route::get('/preview-design', 'UserController@formdesign');
@@ -272,7 +272,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::get('account/subscription', 'SubscriptionController@index');
 
     // Customer login back
-   
+
     Route::get('customers/login-back', 'CustomerController@loginBack');
     Route::get('customers/admin-area', 'CustomerController@adminArea');
 
@@ -310,7 +310,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/support', 'HomeController@support');
     Route::get('/supportchat', 'HomeController@supportchat');
     Route::get('/customers', 'HomeController@customers');
-    
+
     Route::get('/removesetting', 'HomeController@removesetting');
     Route::get('/payments-receive', 'UserController@paymentsReceive');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
@@ -329,6 +329,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
     Route::get('/invitedserviceproviders', 'HomeController@invitedserviceproviders');
+    Route::get('/location_setting/{id}', 'HomeController@location_setting');
+    Route::post('/Save_location_setting', 'HomeController@Save_location_setting');
     Route::get('/profile_detail/{id}', 'HomeController@provider_detail');
     Route::get('/customer_detail/{id}', 'HomeController@customer_detail');
     Route::get('/account_status/{id}', 'HomeController@accountstatus');
@@ -337,6 +339,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('account/api/renew', 'AccountController@renewToken');
     Route::match(['get','post'],'account/api', 'AccountController@api');
     Route::match(['get','post'],'account/currency', 'AccountController@currency');
+    Route::match(['get','post'],'account/location-setting', 'AccountController@locationsetting');
     Route::match(['get', 'post'],'account/site-setting', 'HomeController@sitesetting');
 
     // Mail list
@@ -715,7 +718,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('sample', 'SamplesController@index');
 
     // Products
-    Route::get('/products/widget/products/options', 'ProductController@widgetProductOptions');    
+    Route::get('/products/widget/products/options', 'ProductController@widgetProductOptions');
     Route::get('products/listing', 'ProductController@listing');
     Route::resource('products', 'ProductController');
 
@@ -746,6 +749,9 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     // Invoice
     Route::get('invoices/{uid}/download', 'InvoiceController@download');
    });
+
+     Route::get('/getstates/{id}','ServiceProvider\QuoteController@getstates')->name("getstates");
+     Route::get('/getcities/{id}','ServiceProvider\QuoteController@getcities')->name("getcities");
 
   });
 
@@ -1433,7 +1439,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 
         Route::get('/categories', 'QuestionController@vuedata');
         Route::get('/categories/{id}', 'QuestionController@categoriesbyid');
         Route::post('updateOrder', 'QuestionController@updateOrder');
-        
+
     });
 
 });

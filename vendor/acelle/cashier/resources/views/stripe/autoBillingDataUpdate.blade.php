@@ -88,7 +88,7 @@
                 </form>
 
                 <a
-                    href="{{ url('admin/account/subscription') }}"
+                    href="{{ \Acelle\Cashier\Cashier::lr_action('SubscriptionController@index') }}"
                     class="text-muted mt-4" style="text-decoration: underline; display: block"
                 >{{ trans('cashier::messages.stripe.return_back') }}</a>
                 
