@@ -727,7 +727,7 @@ class Customer extends Model
         return $user;
     }
 
-    
+
     public function sendingServers()
     {
         return $this->hasMany('Acelle\Model\SendingServer');
