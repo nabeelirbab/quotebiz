@@ -150,6 +150,10 @@ class HelperJob extends Base
     public static function countries(){
         return  Country::all();
     }
+
+    public static function citieslist($id){
+        return  City::where('state_id', $id)->get();
+    }
     public static function countryname($id){
         return  Country::where('id',$id)->first();
     }

@@ -191,7 +191,9 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::post('/storequotation','ChatController@storequotation');
     Route::get('/userCountries','ServiceProvider\QuoteController@userCountries');
     Route::get('/getstates/{id}','ServiceProvider\QuoteController@getstates')->name("getstates");
+        Route::get('/getstatesforprovider/{id}','ServiceProvider\QuoteController@getstatesforprovider')->name("getstatesforprovider");
     Route::get('/getcities/{id}','ServiceProvider\QuoteController@getcities')->name("getcities");
+    Route::get('/getprovidercities/{id}','ServiceProvider\QuoteController@getprovidercities')->name("getprovidercities");
 
     Route::get('/settings', function () {
         return view('service_provider.settings');
