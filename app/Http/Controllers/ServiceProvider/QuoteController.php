@@ -208,6 +208,26 @@ class QuoteController extends Controller
         <?php
     }
 
+    public function getstatesforprovider($account, $id)
+    {
+        $countryid = $id;
+        $states = State::where('country_id', $countryid)->get();
+        ?>
+        <option value="" selected disabled>Select State</option>
+        <?php
+        foreach ($states as $state) {
+            if(Auth::user()->state==$state->id)
+            {
+                echo '<option selected value="' . $state->id . '">' . $state->name . '</option>';
+            }
+            else {
+                echo '<option value="' . $state->id . '">' . $state->name . '</option>';
+            }
+        }
+        ?>
+        <?php
+    }
+
     public function getcities($account, $id)
     {
         $stateid = $id;
@@ -222,12 +242,44 @@ class QuoteController extends Controller
         <?php
     }
 
+    public function getprovidercities($account, $id)
+    {
+        $stateid = $id;
+        $cities = City::where('state_id', $stateid)->get();
+        ?>
+        <option value="" selected disabled>Select City</option>
+        <?php
+        foreach ($cities as $city) {
+            if(Auth::user()->state==$state->id)
+            {
+                echo '<option selected value="' . $city->id . '">' . $city->name . '</option>';
+            }
+            else {
+                echo '<option value="' . $city->id . '">' . $city->name . '</option>';
+            }
+        }
+        ?>
+        <?php
+    }
+
     public function addressupdate(Request $request)
     {
         $user = User::find(Auth::user()->id);
-        $user->country = $request->country;
-        $user->state = $request->state;
-        $user->city = $request->city;
+        if(isset($request->country))
+        {
+            $user->country = $request->country;
+        }
+
+        if(isset($request->state))
+        {
+            $user->state = $request->state;
+        }
+
+        if(isset($request->city))
+        {
+            $user->city = $request->city;
+        }
+
         if ($request->address != Auth::user()->address) {
             if (Auth::user()->latitude == $request->latitude && Auth::user()->longitude == $request->longitude) {
                 return redirect()->back()->with('error', 'Please enter valid address !');

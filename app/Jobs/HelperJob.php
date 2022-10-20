@@ -17,6 +17,7 @@ use Acelle\Model\Country;
 use Acelle\Model\State;
 use Acelle\Model\City;
 use Acelle\Library\ExtendedSwiftMessage;
+use Illuminate\Support\Facades\Auth;
 
 class HelperJob extends Base
 {
@@ -149,6 +150,10 @@ class HelperJob extends Base
     public static function countries(){
         return  Country::all();
     }
+
+    public static function citieslist($id){
+        return  City::where('state_id', $id)->get();
+    }
     public static function countryname($id){
         return  Country::where('id',$id)->first();
     }
@@ -158,6 +163,10 @@ class HelperJob extends Base
     }
     public static function cityname($id){
         return  City::where('id',$id)->first();
+    }
+
+    public static function provideradminlocation(){
+        return  User::select('admin_location_type','country','state','city')->where('subdomain',Auth::user()->subdomain)->where('user_type','admin')->first();
     }
 
 }
