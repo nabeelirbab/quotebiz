@@ -67,11 +67,21 @@
 
     <li class="nav-item" rel0="AccountController/currency">
         <a href="{{ url("admin/account/currency") }}" class="nav-link">
-            <span class="material-icons-outlined">
+            <span class="material-icons-locationOn">
     money
     </span> Currency
         </a>
     </li>
+
+        <li class="nav-item" rel0="AccountController/location-setting">
+            <a href="{{ url("admin/account/location-setting") }}" class="nav-link">
+            <span class="material-icons-outlined">map</span>
+                Location Setting
+            </a>
+        </li>
+
+
+
     </ul>
     </div>
     </div>

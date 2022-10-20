@@ -8,7 +8,7 @@ use Acelle\Library\Facades\Billing;
 use Acelle\Model\StripeKey;
 use Acelle\Model\AdminCurrency;
 use Auth;
-
+use Acelle\Model\User;
 
 class AccountController extends Controller
 {
@@ -169,48 +169,49 @@ class AccountController extends Controller
      */
     public function api(Request $request)
     {
-        $stripeData = StripeKey::where('subdomain',request('account'))->first();
-       if($request->isMethod('post')){
-        if($stripeData){
-            $stripeData->stripe_key = $request->stripe_key;
-            $stripeData->stripe_secret = $request->stripe_secret;
-            $stripeData->update();
-        }else{
-            $stripeData = new StripeKey;
-            $stripeData->user_id = Auth::user()->id;
-            $stripeData->subdomain = request('account');
-            $stripeData->stripe_key = $request->stripe_key;
-            $stripeData->stripe_secret = $request->stripe_secret;
-            $stripeData->save();
-            // dd($stripeData);
-        }
-            
-       }
-       return view('account.api',compact('stripeData'));
-
-   }
-
-   public function currency(Request $request){
-
-     $currencyData = AdminCurrency::where('subdomain',request('account'))->first();
-
-     if($request->isMethod('post')){
-        // dd($request->all());
-            if($currencyData){
-                 $currencyData->code = $request->code;
-                 $currencyData->update();
-            }else{
-                 $currencyData = new AdminCurrency;
-                 $currencyData->admin_id = Auth::user()->id;
-                 $currencyData->subdomain = request('account');
-                 $currencyData->code = $request->code;
-                 $currencyData->save();
+        $stripeData = StripeKey::where('subdomain', request('account'))->first();
+        if ($request->isMethod('post')) {
+            if ($stripeData) {
+                $stripeData->stripe_key = $request->stripe_key;
+                $stripeData->stripe_secret = $request->stripe_secret;
+                $stripeData->update();
+            } else {
+                $stripeData = new StripeKey;
+                $stripeData->user_id = Auth::user()->id;
+                $stripeData->subdomain = request('account');
+                $stripeData->stripe_key = $request->stripe_key;
+                $stripeData->stripe_secret = $request->stripe_secret;
+                $stripeData->save();
+                // dd($stripeData);
             }
-         
-     }
 
-     return view('account.setcurrency',compact('currencyData'));
-   }
+        }
+        return view('account.api', compact('stripeData'));
+
+    }
+
+    public function currency(Request $request)
+    {
+
+        $currencyData = AdminCurrency::where('subdomain', request('account'))->first();
+
+        if ($request->isMethod('post')) {
+            // dd($request->all());
+            if ($currencyData) {
+                $currencyData->code = $request->code;
+                $currencyData->update();
+            } else {
+                $currencyData = new AdminCurrency;
+                $currencyData->admin_id = Auth::user()->id;
+                $currencyData->subdomain = request('account');
+                $currencyData->code = $request->code;
+                $currencyData->save();
+            }
+
+        }
+
+        return view('account.setcurrency', compact('currencyData'));
+    }
 
     /**
      * Renew api token.
@@ -362,4 +363,39 @@ class AccountController extends Controller
     {
         $request->session()->put('customer-auto-theme-mode', $request->theme_mode);
     }
+
+    public function locationsetting(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+            $admin = User::find(Auth::user()->id);
+            if (isset($request->type)) {
+                $admin->admin_location_type = $request->type;
+                $admin->save();
+            }
+
+            if ($request->type!="World Wide") {
+
+                if (isset($request->country)) {
+                    $admin->country = $request->country;
+                    $admin->save();
+                }
+
+                if (isset($request->state)) {
+                    $admin->state = $request->state;
+                    $admin->save();
+                }
+
+                if (isset($request->city)) {
+                    $admin->city = $request->city;
+                    $admin->save();
+                }
+
+            }
+
+            return redirect()->back()->with('success', 'Successfully Updated');
+        }
+        return view('account.locationsetting');
+    }
+
 }

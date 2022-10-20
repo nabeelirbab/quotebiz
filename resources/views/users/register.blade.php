@@ -110,14 +110,15 @@
                      </label>
                      <select name="business_type" class="form-control" required onchange="GetTypeData(this.value)">
                         <option disabled selected value="">Select Type</option>
-                        <option value="local business">
-                            Local Business
-                        </option>
+                        
                         <option value="country">
-                            Country
+                            Countrywide
                         </option>
                         <option value="state">
-                            State
+                            Statewide
+                        </option>
+                        <option value="local business">
+                            Locally
                         </option>
                     </select>
                   </div>
@@ -128,7 +129,7 @@
                         <b>Country</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <select name="country" id="country" class="form-control select2" required onchange="GetStates(this.value)">
+                     <select name="country" id="country" class="form-control select2" onchange="GetStates(this.value)">
                         <option disabled selected value="">Select Country
                         </option>
                         @forelse(Acelle\Jobs\HelperJob::countries() as $country)
@@ -142,7 +143,7 @@
                         <b>State</b>
                          <span class="text-danger">*</span>
                      </label>
-                       <select name="state" id="state" class="form-control select2" required onchange="GetCities(this.value)">
+                       <select name="state" id="state" class="form-control select2"  onchange="GetCities(this.value)">
                         <option disabled selected value="">Select Country
                             First
                         </option>
@@ -153,7 +154,7 @@
                         <b>City</b>
                         <span class="text-danger">*</span>
                      </label>
-                      <select name="city" id="city" class="form-control select2" required>
+                      <select name="city" id="city" class="form-control select2" >
                         <option disabled selected value="">Select State
                             First
                         </option>
@@ -163,7 +164,7 @@
                     <label>
                         <b>Business Address</b>
                      </label>
-                      <input type="text" name="address" id="address" required class="form-control" autocomplete="off" placeholder="Enter Your Address">
+                      <input type="text" name="address" id="address"  class="form-control" autocomplete="off" placeholder="Enter Your Address">
                         <input type="hidden" id="latitude" name="latitude">
                         <input type="hidden" id="longitude" name="longitude">
                   </div>

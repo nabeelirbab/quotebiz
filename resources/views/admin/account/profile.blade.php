@@ -6,7 +6,8 @@
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ action("Admin\HomeController@index") }}">{{ trans('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a
+                        href="{{ action("Admin\HomeController@index") }}">{{ trans('messages.home') }}</a></li>
             <li class="breadcrumb-item active">{{ trans('messages.profile') }}</li>
         </ul>
         <h1>
@@ -22,7 +23,8 @@
 
     @include("admin.account._menu")
 
-    <form enctype="multipart/form-data" action="{{ action('Admin\AccountController@profile') }}" method="POST" class="form-validaate-jquery">
+    <form enctype="multipart/form-data" action="{{ action('Admin\AccountController@profile') }}" method="POST"
+          class="form-validaate-jquery">
         {{ csrf_field() }}
 
         <div class="row">
@@ -32,19 +34,22 @@
                     <div class="media profile-image">
                         <div class="media-left">
                             <a href="#" class="upload-media-container">
-                                <img preview-for="image" empty-src="{{ URL::asset('images/placeholder.jpg') }}" src="{{ $user->getProfileImageUrl() }}" class="rounded-circle" alt="">
+                                <img preview-for="image" empty-src="{{ URL::asset('images/placeholder.jpg') }}"
+                                     src="{{ $user->getProfileImageUrl() }}" class="rounded-circle" alt="">
                             </a>
                             <input type="file" name="image" class="file-styled previewable hide">
-                            <input type="hidden" name="_remove_image" value='' />
+                            <input type="hidden" name="_remove_image" value=''/>
                         </div>
                         <div class="media-body text-center">
                             <h5 class="media-heading text-semibold">{{ trans('messages.upload_your_photo') }}</h5>
                             {{ trans('messages.photo_at_least', ["size" => "300px x 300px"]) }}
-                            <br /><br />
-                            <a href="#upload" onclick="$('input[name=image]').trigger('click')" class="btn btn-primary me-1"><span class="material-icons-outlined">
+                            <br/><br/>
+                            <a href="#upload" onclick="$('input[name=image]').trigger('click')"
+                               class="btn btn-primary me-1"><span class="material-icons-outlined">
 file_download
 </span> {{ trans('messages.upload') }}</a>
-                            <a href="#remove" class="btn btn-secondary remove-profile-image"><span class="material-icons-outlined">
+                            <a href="#remove" class="btn btn-secondary remove-profile-image"><span
+                                        class="material-icons-outlined">
 delete_outline
 </span> {{ trans('messages.remove') }}</a>
                         </div>
@@ -85,7 +90,7 @@ delete_outline
                             @include('layouts.core._theme_mode_control', [
                                 'theme_mode' => $admin->theme_mode,
                             ])
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="row">
@@ -94,7 +99,7 @@ delete_outline
                             <div class="text-left mb-4 profile-scheme-select mt-2">
                                 @include('layouts.core._theme_color_control', [
                                     'theme_color' => Auth::user()->admin->getColorScheme(),
-                                ])  
+                                ])
                             </div>
                         </div>
                     </div>
@@ -135,74 +140,74 @@ delete_outline
             <button class="btn btn-secondary"><i class="icon-check"></i> {{ trans('messages.save') }}</button>
         </div>
 
-    <form>
+        <form>
 
-    <script>
-        function changeSelectColor() {
-            $('.select2 .select2-selection__rendered, .select2-results__option').each(function() {
-                var text = $(this).html();
-                if (text == '{{ trans('messages.default') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-teal-600 theme-option me-2'>padding</i>");
-                    }
+            <script>
+                function changeSelectColor() {
+                    $('.select2 .select2-selection__rendered, .select2-results__option').each(function () {
+                        var text = $(this).html();
+                        if (text == '{{ trans('messages.default') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-teal-600 theme-option me-2'>padding</i>");
+                            }
+                        }
+                        if (text == '{{ trans('messages.blue') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-blue theme-option me-2'>padding</i>");
+                            }
+                        }
+                        if (text == '{{ trans('messages.green') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-green theme-option me-2'>padding</i>");
+                            }
+                        }
+                        if (text == '{{ trans('messages.brown') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-brown theme-option me-2'>padding</i>");
+                            }
+                        }
+                        if (text == '{{ trans('messages.pink') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-pink theme-option me-2'>padding</i>");
+                            }
+                        }
+                        if (text == '{{ trans('messages.grey') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-grey theme-option me-2'>padding</i>");
+                            }
+                        }
+                        if (text == '{{ trans('messages.white') }}') {
+                            if ($(this).find("i").length == 0) {
+                                $(this).prepend("<i class='material-icons-round text-white theme-option me-2'>padding</i>");
+                            }
+                        }
+                    });
                 }
-                if (text == '{{ trans('messages.blue') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-blue theme-option me-2'>padding</i>");
-                    }
-                }
-                if (text == '{{ trans('messages.green') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-green theme-option me-2'>padding</i>");
-                    }
-                }
-                if (text == '{{ trans('messages.brown') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-brown theme-option me-2'>padding</i>");
-                    }
-                }
-                if (text == '{{ trans('messages.pink') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-pink theme-option me-2'>padding</i>");
-                    }
-                }
-                if (text == '{{ trans('messages.grey') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-grey theme-option me-2'>padding</i>");
-                    }
-                }
-                if (text == '{{ trans('messages.white') }}') {
-                    if($(this).find("i").length == 0) {
-                        $(this).prepend("<i class='material-icons-round text-white theme-option me-2'>padding</i>");
-                    }
-                }
-            });
-        }
 
-        $(document).ready(function() {
-            setInterval("changeSelectColor()", 100);
+                $(document).ready(function () {
+                    setInterval("changeSelectColor()", 100);
 
-            // Preview upload image
-            $("input.previewable").on('change', function() {
-                var img = $("img[preview-for='" + $(this).attr("name") + "']");
-                previewImageBrowse(this, img);
-            });
-            $(".remove-profile-image").click(function() {
-                var img = $(this).parents(".profile-image").find("img");
-                var imput = $(this).parents(".profile-image").find("input[name='_remove_image']");
-                img.attr("src", img.attr("empty-src"));
-                imput.val("true");
-            });
+                    // Preview upload image
+                    $("input.previewable").on('change', function () {
+                        var img = $("img[preview-for='" + $(this).attr("name") + "']");
+                        previewImageBrowse(this, img);
+                    });
+                    $(".remove-profile-image").click(function () {
+                        var img = $(this).parents(".profile-image").find("img");
+                        var imput = $(this).parents(".profile-image").find("input[name='_remove_image']");
+                        img.attr("src", img.attr("empty-src"));
+                        imput.val("true");
+                    });
 
-            // change color effects
-            $('.color-scheme-select').on('click', function(e) {
-                var value = $(this).val();
-                $("body").removeClass (function (index, className) {
-                    return (className.match (/(^|\s)theme-\S+/g) || []).join(' ');
+                    // change color effects
+                    $('.color-scheme-select').on('click', function (e) {
+                        var value = $(this).val();
+                        $("body").removeClass(function (index, className) {
+                            return (className.match(/(^|\s)theme-\S+/g) || []).join(' ');
+                        });
+                        $('body').addClass('theme-' + value);
+                    });
                 });
-                $('body').addClass('theme-' + value);
-            });
-        });
-    </script>
+            </script>
 
 @endsection
