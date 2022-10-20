@@ -6,9 +6,12 @@
       width: 77%;
     }
     @media screen and (max-width: 667px) {
-    .subdomain{
-      width: 72%;
+        .subdomain{
+          width: 72%;
+        }
     }
+    #countrySection{
+        display: none;
     }
 </style>
 @section('content')
@@ -91,12 +94,28 @@
                     'rules' => $user->registerRules($user->subdomain),
                     'eye' => true,
                 ])
-                      <div class="form-group control-text">
+                   <div class="form-group control-text">
+                    <label>
+                        <b>Where will you quotebiz be located?</b>
+                         <span class="text-danger">*</span>
+                     </label>
+                     <select name="business_type" class="form-control" required onchange="GetTypeData(this.value)" required>
+                        <option disabled selected value="">Select Type</option>
+                        <option value="Worldwide">
+                            Worldwide
+                        </option>
+                        <option value="Countrywide">
+                           Countrywide
+                        </option>
+                    </select>
+                  </div>
+                <div id="countrySection">
+                 <div class="form-group control-text">
                     <label>
                         <b>Country</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <select name="country" id="country" class="form-control select2" required onchange="GetStates(this.value)">
+                     <select name="country" id="country" class="form-control select2"  onchange="GetStates(this.value)">
                         <option disabled selected value="">Select Country
                         </option>
                         @forelse(Acelle\Jobs\HelperJob::countries() as $country)
@@ -110,7 +129,7 @@
                         <b>State</b>
                          <span class="text-danger">*</span>
                      </label>
-                       <select name="state" id="state" class="form-control select2" required onchange="GetCities(this.value)">
+                       <select name="state" id="state" class="form-control select2"  onchange="GetCities(this.value)">
                         <option disabled selected value="">Select Country
                             First
                         </option>
@@ -121,7 +140,7 @@
                         <b>City</b>
                         <span class="text-danger">*</span>
                      </label>
-                      <select name="city" id="city" class="form-control select2" required>
+                      <select name="city" id="city" class="form-control select2" >
                         <option disabled selected value="">Select State
                             First
                         </option>
@@ -132,9 +151,9 @@
                         <b>Zipcode</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <input type="text" name="zipcode" class="form-control" required>
+                     <input type="text" name="zipcode" class="form-control" >
                   </div>
-                
+               </div>
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -167,6 +186,14 @@
         $(document).ready(function () {
             $('.select2').select2();
         });
+        
+        function GetTypeData(val){
+           if(val == 'Countrywide'){
+             $('#countrySection').show();
+           }else{
+             $('#countrySection').hide();
+           }
+        }
 
         function GetStates(val) {
             $("#state").empty();

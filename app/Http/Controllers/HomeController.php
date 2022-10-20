@@ -34,9 +34,7 @@ class HomeController extends Controller
         } else {
             $from = Carbon::now()->subDays(6);
         }
-
         event(new \Acelle\Events\UserUpdated($request->user()->customer));
-
         // Last month
         $customerCount = User::where('user_type', 'client')->where('subdomain', request('account'))->count();
         $providerCount = User::where(function($q) {
