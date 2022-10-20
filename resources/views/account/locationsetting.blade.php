@@ -56,17 +56,17 @@ person_outline
                                 <select name="type" class="form-control select2" onchange="GetRecord(this.value)"
                                         required>
                                     <option value="">Select Type</option>
+                                    <option {{ (Auth::user()->admin_location_type=="World Wide") ? "selected" : '' }} value="World Wide">
+                                        WorldWide
+                                    </option>
                                     <option {{ (Auth::user()->admin_location_type=="Country Wise") ? "selected" : '' }} value="Country Wise">
-                                        Country Wise
+                                        Countrywide
                                     </option>
                                     <option {{ (Auth::user()->admin_location_type=="State Wise") ? "selected" : '' }} value="State Wise">
-                                        State Wise
+                                        Statewide
                                     </option>
                                     <option {{ (Auth::user()->admin_location_type=="City Wise") ? "selected" : '' }} value="City Wise">
-                                        City Wise
-                                    </option>
-                                    <option {{ (Auth::user()->admin_location_type=="World Wide") ? "selected" : '' }} value="World Wide">
-                                        World Wide
+                                        Citywide
                                     </option>
                                 </select>
                             </div>
