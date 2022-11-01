@@ -264,7 +264,7 @@ background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->
 
 #result {
 position: absolute;
-z-index: 1;
+z-index: 2;
 width: 100%;
 max-height: 285px;
 overflow: auto;
