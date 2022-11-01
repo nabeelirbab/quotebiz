@@ -256,8 +256,8 @@
 	<body class="dogcFe">
 
 		<div class="MuiBox-root jss3 swyft-box-shadow-down">
-			<a href="{{url('/')}}" rel="noreferrer" style="height: 70%;">
-			  <img src="{{$sitesmalllogo}}" alt="Logo" style="height: 100%;max-width: 100%">
+			<a href="{{url('/')}}" rel="noreferrer" style="text-align: center; max-width: 250px">
+			  <img src="{{$sitesmalllogo}}" alt="Logo">
 			</a>
 		</div>
 		<div class="wrapper">
@@ -295,7 +295,7 @@
 	                     @foreach($question->choices as $key => $choices)
 		                  <div>
 
-						  <input type="radio" id="control_0{{$choices->id}}" name="option[{{$question->id}}]" value="{{$choices->choice }}" @if($key == 0) checked @endif>
+						  <input type="radio" id="control_0{{$choices->id}}" name="option[{{$question->id}}]" value="{{$choices->choice }}">
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
                               <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
@@ -312,7 +312,7 @@
 {{--							{{ dd($question->choices) }}--}}
 						@foreach($question->choices as $key => $choices)
 	                     <div>
-						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}" @if($key == 0) checked @endif>
+						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}">
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
                               <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >

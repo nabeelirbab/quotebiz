@@ -471,6 +471,7 @@ $("#longitude").val(place.geometry['location'].lng());
 for(i=0;i<components.length;i++){
 if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
 var state = place.address_components[i].long_name;
+console.log(state);
 $("#state").val(state);
 }
 }
