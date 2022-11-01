@@ -3,21 +3,30 @@
 @section('title', 'Currency')
 
 @section('page_header')
-
     <?php $countries = Acelle\Jobs\HelperJob::countries(); ?>
     <?php $countryname = Acelle\Jobs\HelperJob::countryname(Auth::user()->country); ?>
     <?php $statename = Acelle\Jobs\HelperJob::statename(Auth::user()->state); ?>
     <?php $cityname = Acelle\Jobs\HelperJob::cityname(Auth::user()->city); ?>
-
-
     @section('head')
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+        <style type="text/css">
+             @if(Auth::user()->admin_location_type == "State Wise" || Auth::user()->admin_location_type == "City Wise")
+                #bus_state {
+                    display: block !important;
+                }
+             @endif
+             @if(Auth::user()->admin_location_type == "City Wise")
+                #bus_city {
+                    display: block !important;
+                }
+             @endif
+        </style>
     @endsection
 
     <div class="page-title">
         <ul class="breadcrumb breadcrumb-caret position-right">
             <li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
-            <li class="breadcrumb-item active">Location Setiing</li>
+            <li class="breadcrumb-item active">Location Setting</li>
         </ul>
         <h1>
 <span class="text-semibold"><span class="material-icons-round">
@@ -31,7 +40,18 @@ person_outline
 @section('content')
 
     @include("account._menu")
-
+   <?php
+       $col = '12';
+       if(Auth::user()->admin_location_type == "State Wise"){
+         $col = '6';
+       }
+       elseif(Auth::user()->admin_location_type == "Country Wise"){
+         $col = '12';
+       }
+       elseif(Auth::user()->admin_location_type == "City Wise"){
+         $col = '4';
+       }
+   ?>
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
@@ -51,7 +71,7 @@ person_outline
 
                         <div class="row d-flex justify-content-center gy-4">
 
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label for="">Select Type</label>
                                 <select name="type" class="form-control select2" onchange="GetRecord(this.value)"
                                         required>
@@ -65,21 +85,19 @@ person_outline
                                     <option {{ (Auth::user()->admin_location_type=="State Wise") ? "selected" : '' }} value="State Wise">
                                         Statewide
                                     </option>
-                                    <option {{ (Auth::user()->admin_location_type=="City Wise") ? "selected" : '' }} value="City Wise">
-                                        Citywide
-                                    </option>
                                 </select>
                             </div>
 
                         </div>
 
                         @if(Auth::user()->admin_location_type=="World Wide" || Auth::user()->admin_location_type=="")
-                            <div class="row mt-3" style="display: none" id="country_state_city">
+                            <div class="row mt-3 justify-content-center" style="display: none" id="country_state_city">
                                 @else
-                                    <div class="row mt-3" id="country_state_city">
+                                    <div class="row mt-3 justify-content-center" id="country_state_city">
                                         @endif
-
-                                        <div class="col-md-4">
+                                      <div class="col-md-6">
+                                        <div class="row ">
+                                        <div class="col-md-{{$col}}" id="bus_country">
 
                                             <label class="form-label" for="full-name">Country
                                             </label>
@@ -101,8 +119,7 @@ person_outline
                                             </select>
 
                                         </div>
-
-                                        <div class="col-md-4">
+                                        <div class="col-md-{{$col}}" id="bus_state" style="display: none">
 
                                             <label class="form-label" for="full-name">State
                                                 {{--                                    <span style="color: red">*</span>--}}
@@ -111,9 +128,10 @@ person_outline
                                                     class="form-control select2"
                                                     onchange="GetCities(this.value)">
                                                 @if($statename)
-                                                    <option selected
-                                                            value="{{ Auth::user()->state }}">{{ ($statename) ? $statename->name : '' }}
+                                                   @foreach(Acelle\Jobs\HelperJob::statelist(Auth::user()->country) as $states)
+                                                    <option value="{{ $states->id }}" {{ (Auth::user()->state == $states->id) ? 'selected' : '' }}> {{$states->name}}
                                                     </option>
+                                                    @endforeach
                                                 @else
                                                     <option disabled selected value="">
                                                         Select Country First
@@ -122,8 +140,7 @@ person_outline
                                             </select>
 
                                         </div>
-
-                                        <div class="col-md-4">
+                                        <div class="col-md-{{$col}}" id="bus_city" style="display: none">
 
                                             <label class="form-label" for="full-name">City
                                                 {{--                                    <span style="color: red">*</span>--}}
@@ -131,7 +148,10 @@ person_outline
                                             <select name="city" id="city"
                                                     class="form-control select2">
                                                 @if($cityname)
-                                                    <option value="{{ Auth::user()->city }}">{{ ($cityname) ? $cityname->name : '' }}</option>
+                                                    @foreach(Acelle\Jobs\HelperJob::citieslist(Auth::user()->state) as $cities)
+                                                    <option value="{{ $cities->id }}" {{ (Auth::user()->city == $cities->id) ? 'selected' : '' }}> {{$cities->name}}
+                                                    </option>
+                                                    @endforeach
                                                 @else
                                                     <option disabled selected value="">Select State
                                                         First
@@ -140,7 +160,8 @@ person_outline
                                             </select>
 
                                         </div>
-
+                                     </div>
+                                 </div>
                                     </div>
 
                                     <div class="row justify-content-center gy-4">
@@ -161,7 +182,8 @@ person_outline
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-
+       var countryId = {{Auth::user()->country}};
+       var stateId = {{Auth::user()->state}};
         $(".select2").select2();
 
         function GetStates(val) {
@@ -188,10 +210,41 @@ person_outline
         }
 
         function GetRecord(val) {
-            if (val != "World Wide") {
-                $("#country_state_city").show();
-            } else {
+            if (val == "World Wide") {
                 $("#country_state_city").hide();
+            } else if(val == "Country Wise") {
+                $("#country_state_city").show();
+                $('#bus_state').attr("style", "display: none !important");
+                $('#bus_city').attr("style", "display: none !important");
+                $('#bus_country').removeClass('col-md-4');
+                $('#bus_country').removeClass('col-md-6');
+                $('#bus_country').addClass('col-md-12');
+                $("#bus_state").hide();
+                $("#bus_city").hide();
+            } else if(val == "State Wise") {
+                GetStates(countryId);
+                $("#country_state_city").show();
+                $('#bus_city').attr("style", "display: none !important");
+                $('#bus_country').removeClass('col-md-12');
+                $('#bus_state').removeClass('col-md-12');
+                $('#bus_city').removeClass('col-md-4');
+                $('#bus_state').addClass('col-md-6');
+                $('#bus_country').addClass('col-md-6');
+                $("#bus_state").show();
+            } else if(val == "City Wise") {
+                GetCities(stateId);
+                $('#bus_country').removeClass('col-md-12');
+                $('#bus_state').removeClass('col-md-12');
+                $('#bus_city').removeClass('col-md-12');
+                $('#bus_country').removeClass('col-md-6');
+                $('#bus_state').removeClass('col-md-6');
+                $('#bus_city').removeClass('col-md-6');
+                $('#bus_city').addClass('col-md-4');
+                $('#bus_state').addClass('col-md-4');
+                $('#bus_country').addClass('col-md-4');
+                $("#bus_state").show();
+                $("#bus_city").show();
+                $("#country_state_city").show();
             }
         }
 

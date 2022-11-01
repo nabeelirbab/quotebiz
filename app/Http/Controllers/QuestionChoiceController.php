@@ -246,7 +246,6 @@ class QuestionChoiceController extends Controller
         else {
 
             $users = User::where('user_type', 'service_provider')->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
-
             foreach ($users as $user) {
 
                 if ($user->type == "local business") {
@@ -295,10 +294,12 @@ class QuestionChoiceController extends Controller
                     if ($userstatename == $state) {
                         array_push($SPEmails, $user->email);
                     }
+                }else{
+                    array_push($SPEmails, $user->email);
                 }
             }
         }
-
+// dd($SPEmasils);
         $emailsize = sizeof($SPEmails);
         if ($emailsize > 0) {
             foreach ($SPEmails as $key => $value) {
@@ -306,7 +307,8 @@ class QuestionChoiceController extends Controller
                 $email = $value;
 
                 $maildata = [
-                    'jobdetail' => $job
+                    'jobdetail' => $job,
+                    'location' => $request->zip_code
                 ];
 
                 Mail::to($email)->send(new RelatedJob($maildata));

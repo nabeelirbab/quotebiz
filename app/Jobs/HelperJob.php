@@ -154,6 +154,9 @@ class HelperJob extends Base
     public static function citieslist($id){
         return  City::where('state_id', $id)->get();
     }
+    public static function statelist($id){
+        return  State::where('country_id', $id)->get();
+    }
     public static function countryname($id){
         return  Country::where('id',$id)->first();
     }
@@ -167,6 +170,10 @@ class HelperJob extends Base
 
     public static function provideradminlocation(){
         return  User::select('admin_location_type','country','state','city')->where('subdomain',Auth::user()->subdomain)->where('user_type','admin')->first();
+    }
+
+    public static function provideradminlocationreg($route){
+        return  User::select('admin_location_type','country','state','city')->where('subdomain',$route)->where('user_type','admin')->first();
     }
 
 }
