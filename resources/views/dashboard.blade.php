@@ -483,9 +483,9 @@ $currencySymbols = [
                     <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">{{$dateName}}</a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                         <ul class="link-list-opt no-bdr">
-                            <li><a href="{{ url('/?date=daily') }}" @if(Request::get('date') == 'daily') class="active" @endif><span>Daily</span></a></li>
-                            <li><a href="{{ url('/?date=weekly') }}" @if(Request::get('date') == 'weekly' || Request::get('date') == null) class="active" @endif><span>Weekly</span></a></li>
-                            <li><a href="{{ url('/?date=monthly') }}" @if(Request::get('date') == 'monthly') class="active" @endif><span>Monthly</span></a></li>
+                            <li><a href="{{ url('admin/?date=daily') }}" @if(Request::get('date') == 'daily') class="active" @endif><span>Daily</span></a></li>
+                            <li><a href="{{ url('admin/?date=weekly') }}" @if(Request::get('date') == 'weekly' || Request::get('date') == null) class="active" @endif><span>Weekly</span></a></li>
+                            <li><a href="{{ url('admin/?date=monthly') }}" @if(Request::get('date') == 'monthly') class="active" @endif><span>Monthly</span></a></li>
                         </ul>
                     </div>
                 </div>

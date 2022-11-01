@@ -269,9 +269,15 @@ public function register(Request $request)
         return redirect()->route('users/login');
         }
     }
+    $invite = '';
+    if($request->invite){
+        // dd('hello');
+         $invite = Invitation::where('subdomain',request('account'))->where('token',$request->invite)->first();
+    }
     return view('users.register', [
     // 'customer' => $customer,
     'user' => $user,
+    'invite' => $invite
     ]);
     }
 

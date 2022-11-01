@@ -68,11 +68,48 @@ line-height: 1;
 font-size: 20px !important;
 font-weight: 700 !important;
 }
+@if(Auth::user()->type =='country')
+#bus_state {
+    display: none;
+}
+#bus_city {
+    display: none;
+}
+@endif
+@if(Auth::user()->type =='state')
+#bus_city {
+    display: none;
+}
+@endif
+@if(Auth::user()->type =='world')
+#bus_city {
+    display: block;
+}
+#bus_state {
+    display: block;
+}
+@endif
+@if(Auth::user()->type =="local business")
+#main_div {
+    display: none ;
+}
+@endif
 </style>
 @endsection
 
 @section('content')
-
+  <?php
+       $col = '12';
+       if(Auth::user()->type == "state"){
+         $col = '6';
+       }
+       elseif(Auth::user()->type == "country"){
+         $col = '12';
+       }
+       elseif(Auth::user()->type == "world"){
+         $col = '4';
+       }
+   ?>
 <!-- content @s -->
 <div class="nk-content mb-3">
 <div class="container-fluid">
@@ -123,13 +160,15 @@ method="post" id="AddressUpdateForm">
                 onchange="GetTypeData(this.value)">
             <option disabled selected value="">Select Type
             </option>
+            <option {{ (Auth::user()->type=="world") ? "selected" : '' }} value="world">
+                Worldwide
+            </option>
             <option {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
                 Countrywide
             </option>
             <option {{ (Auth::user()->type=="state") ? "selected" : '' }} value="state">
                 Statewide
             </option>
-
             <option {{ (Auth::user()->type=="local business") ? "selected" : '' }} value="local business">
                 Locally
             </option>
@@ -137,15 +176,15 @@ method="post" id="AddressUpdateForm">
     </div>
 </div>
 
-<div class="col-md-12 mt-4">
+<div class="col-md-12 mt-4" id="main_div">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-{{$col}}" id="bus_country">
             <div class="form-group">
                 <label class="form-label" for="full-name">Country
                     <span style="color: red">*</span>
                 </label>
                 <select name="country" id="country"
-                        class="form-control select2" required
+                        class="form-control select2"
                         onchange="GetStates(this.value)">
                     <option disabled selected value="">Select
                         Country
@@ -162,41 +201,46 @@ method="post" id="AddressUpdateForm">
                 </select>
             </div>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-md-{{$col}}" id="bus_state">
             <div class="form-group">
                 <label class="form-label" for="full-name">State
                     <span style="color: red">*</span>
                 </label>
                 <select name="state" id="state"
                         class="form-control select2"
-                        required
                         onchange="GetCities(this.value)">
                     @if($statename)
-                        <option selected
-                                value="{{ Auth::user()->state }}">{{ ($statename) ? $statename->name : '' }}
+                       @foreach(Acelle\Jobs\HelperJob::statelist(Auth::user()->country) as $states)
+                        <option value="{{ $states->id }}" {{ (Auth::user()->state == $states->id) ? 'selected' : '' }}> {{$states->name}}
                         </option>
+                        @endforeach
                     @else
                         <option disabled selected value="">
                             Select Country First
                         </option>
                     @endif
+                    
                 </select>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-{{$col}}" id="bus_city">
             <div class="form-group">
                 <label class="form-label" for="full-name">City
                     <span style="color: red">*</span>
                 </label>
                 <select name="city" id="city"
-                        class="form-control select2" required>
-                    @if($cityname)
-                        <option value="{{ Auth::user()->city }}">{{ ($cityname) ? $cityname->name : '' }}</option>
-                    @else
-                        <option disabled selected value="">
-                            Select State First
-                        </option>
-                    @endif
+                        class="form-control select2">
+                     @if($cityname)
+                            @foreach(Acelle\Jobs\HelperJob::citieslist(Auth::user()->state) as $cities)
+                            <option value="{{ $cities->id }}" {{ (Auth::user()->city == $cities->id) ? 'selected' : '' }}> {{$cities->name}}
+                            </option>
+                            @endforeach
+                        @else
+                            <option disabled selected value="">Select State
+                                First
+                            </option>
+                        @endif
                 </select>
             </div>
         </div>
@@ -253,6 +297,7 @@ method="post" id="AddressUpdateForm">
         <div class="form-group  mt-3">
             <label class="form-label" for="display-radius">
                 Radius(KM)
+                <span style="color: red">*</span>
             </label>
             <input type="number" class="form-control"
                    id="display-radius" name="state_radius"
@@ -388,8 +433,10 @@ method="post" id="AddressUpdateForm">
 
                 <option disabled selected value="">Select Type
                 </option>
-               
-                <option disabled
+              <!--   <option disabled {{ (Auth::user()->type=="world") ? "selected" : '' }} value="world">
+                    Worldwide
+                </option> -->
+                <option 
                         {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
                     Countrywide
                 </option>
@@ -405,11 +452,14 @@ method="post" id="AddressUpdateForm">
             @if($provideradminlocation->admin_location_type=="State Wise")
                 <option disabled selected value="">Select Type
                 </option>
+              <!--   <option disabled {{ (Auth::user()->type=="world") ? "selected" : '' }} value="world">
+                    Worldwide
+                </option>
                 <option disabled
                         {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
                     Countrywide
-                </option>
-                <option disabled
+                </option> -->
+                <option 
                         {{ (Auth::user()->type=="state") ? "selected" : '' }} value="state">
                     Statewide
                 </option>
@@ -418,38 +468,22 @@ method="post" id="AddressUpdateForm">
                 </option>
             @endif
 
-            @if($provideradminlocation->admin_location_type=="City Wise")
-                <option disabled selected value="">Select Type
-                </option>
-                <option disabled
-                        {{ (Auth::user()->type=="country") ? "selected" : '' }} value="country">
-                    Countrywide
-                </option>
-                <option disabled
-                        {{ (Auth::user()->type=="state") ? "selected" : '' }} value="state">
-                    Statewide
-                </option>
-                 <option {{ (Auth::user()->type=="local business") ? "selected" : '' }} value="local business">
-                    Locally
-                </option>
-            @endif
 
         </select>
     </div>
 </div>
 
-<div class="col-md-12 mt-4">
+<div class="col-md-12 mt-4" id="main_div">
     <div class="row">
 
         @if($provideradminlocation->admin_location_type=="Country Wise")
-            <div class="col-md-4">
+            <div class="col-md-{{$col}}" id="bus_country">
                 <div class="form-group">
                     <label class="form-label" for="full-name">Country
                         <span style="color: red">*</span>
                     </label>
                     <select name="country" id="country"
                             class="form-control select2"
-                            required
                             onchange="GetStates(this.value)">
                         <option disabled selected value="">
                             Select
@@ -467,35 +501,35 @@ method="post" id="AddressUpdateForm">
                     </select>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-{{$col}}" id="bus_state">
                 <div class="form-group">
                     <label class="form-label" for="full-name">State
                         <span style="color: red">*</span>
                     </label>
                     <select name="state" id="state"
                             class="form-control select2"
-                            required
                             onchange="GetCities(this.value)">
-                        @if($statename)
-                            <option selected
-                                    value="{{ Auth::user()->state }}">{{ ($statename) ? $statename->name : '' }}
-                            </option>
-                        @else
-                            <option disabled selected value="">
-                                Select Country First
-                            </option>
-                        @endif
+                          @if($statename)
+                               @foreach(Acelle\Jobs\HelperJob::statelist(Auth::user()->country) as $states)
+                                <option value="{{ $states->id }}" {{ (Auth::user()->state == $states->id) ? 'selected' : '' }}> {{$states->name}}
+                                </option>
+                                @endforeach
+                            @else
+                                <option disabled selected value="">
+                                    Select Country First
+                                </option>
+                            @endif
                     </select>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-{{$col}}" id="bus_city">
                 <div class="form-group">
                     <label class="form-label" for="full-name">City
                         <span style="color: red">*</span>
                     </label>
                     <select name="city" id="city"
                             class="form-control select2"
-                            required>
+                            >
                         @if($cityname)
                             <option value="{{ Auth::user()->city }}">{{ ($cityname) ? $cityname->name : '' }}</option>
                         @else
@@ -509,14 +543,13 @@ method="post" id="AddressUpdateForm">
         @endif
 
         @if($provideradminlocation->admin_location_type=="State Wise")
-            <div class="col-md-4">
+            <div class="col-md-{{$col}}" id="bus_country">
                 <div class="form-group">
                     <label class="form-label" for="full-name">Country
                         <span style="color: red">*</span>
                     </label>
                     <select name="country" id="country"
                             class="form-control select2"
-                            required
                             onchange="GetStates(this.value)">
                         <option disabled selected value="">
                             Select
@@ -534,14 +567,13 @@ method="post" id="AddressUpdateForm">
                     </select>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-{{$col}}" id="bus_state">
                 <div class="form-group">
                     <label class="form-label" for="full-name">State
                         <span style="color: red">*</span>
                     </label>
                     <select name="state" id="state"
                             class="form-control select2"
-                            required
                             onchange="GetCities(this.value)">
                         <option selected
                                 value="{{ ($providerstatename) ? $providerstatename->id : '' }}">{{ ($providerstatename) ? $providerstatename->name : '' }}
@@ -549,7 +581,7 @@ method="post" id="AddressUpdateForm">
                     </select>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-{{$col}}" id="bus_city">
                 <div class="form-group">
                     <label class="form-label" for="full-name">City
                         <span style="color: red">*</span>
@@ -557,7 +589,7 @@ method="post" id="AddressUpdateForm">
                         <?php $citylist = Acelle\Jobs\HelperJob::citieslist($provideradminlocation->state); ?>
                     <select name="city" id="city"
                             class="form-control select2"
-                            required>
+                            >
                         @forelse($citylist as $citylis)
 
                             @if(Auth::user()->city==$citylis->id)
@@ -574,62 +606,6 @@ method="post" id="AddressUpdateForm">
             </div>
         @endif
 
-            @if($provideradminlocation->admin_location_type=="City Wise")
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="form-label" for="full-name">Country
-                            <span style="color: red">*</span>
-                        </label>
-                        <select name="country" id="country"
-                                class="form-control select2"
-                                required
-                                onchange="GetStates(this.value)">
-                            <option disabled selected value="">
-                                Select
-                                Country
-                            </option>
-                            @forelse($countries as $country)
-                                @if($provideradminlocation->country==$country->id)
-                                    <option selected
-                                            value="{{ $country->id }}">{{ $country->name }}</option>
-                                @else
-                                    {{--                                                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>--}}
-                                @endif
-                            @empty
-                            @endforelse
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="form-label" for="full-name">State
-                            <span style="color: red">*</span>
-                        </label>
-                        <select name="state" id="state"
-                                class="form-control select2"
-                                required
-                                onchange="GetCities(this.value)">
-                            <option selected
-                                    value="{{ ($providerstatename) ? $providerstatename->id : '' }}">{{ ($providerstatename) ? $providerstatename->name : '' }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="form-label" for="full-name">City
-                            <span style="color: red">*</span>
-                        </label>
-                            <?php $citylist = Acelle\Jobs\HelperJob::citieslist($provideradminlocation->state); ?>
-                        <select name="city" id="city"
-                                class="form-control select2"
-                                required>
-                            <option value="{{ ($providercityname) ? $providercityname->id : '' }}">{{ ($providercityname) ? $providercityname->name : '' }}</option>
-
-                        </select>
-                    </div>
-                </div>
-            @endif
 
     </div>
 </div>
@@ -650,17 +626,17 @@ method="post" id="AddressUpdateForm">
                    value="{{ (Auth::user()->longitude) ? Auth::user()->longitude : '' }}">
         </div>
     </div>
-    <div class="col-md-4 mt-1" id="appendType">
-        <div class="form-group  mt-3">
-            <label class="form-label" for="display-radius">
-                Radius(KM)
-            </label>
-            <input type="number" class="form-control"
-                   id="display-radius" name="state_radius"
-                   placeholder="Enter Radius"
-                   value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
+        <div class="col-md-4 mt-1" id="appendType">
+            <div class="form-group  mt-3">
+                <label class="form-label" for="display-radius">
+                    Radius(KM)
+                </label>
+                <input type="number" class="form-control"
+                       id="display-radius" name="state_radius"
+                       placeholder="Enter Radius"
+                       value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}">
+            </div>
         </div>
-    </div>
 @else
     <div class="col-md-8 mt-4" style="display: none"
          id="bus_address">
@@ -812,7 +788,7 @@ data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
 <script>
 var countryid = {{ $provideradminlocation->country }};
 GetStatesdata(countryid);
-
+GetStates(countryid);
 function GetStatesdata(val) {
 $("#state").empty();
 $.ajax({
@@ -826,11 +802,12 @@ $("#state").html(data);
 </script>
 @endif
 
-@if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="State Wise")
+@if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="State Wise" )
 <script>
+var countryid = {{ $provideradminlocation->country }};
 var stateid = {{ $provideradminlocation->state }};
 GetCitiesdata(stateid);
-
+GetStates(countryid);
 function GetCitiesdata(val) {
 $.ajax({
 url: "{{ url('service-provider/getprovidercities') }}/" + val,
@@ -900,12 +877,61 @@ $('.select2').select2();
 function GetTypeData(val) {
 // $("#appendType").empty();
 // $("#bus_address").empty();
-if (val == "local business") {
-$("#bus_address").show();
-$("#appendType").show();
-{{--$("#appendType").append('<div class="form-group mt-3"><label class="form-label" for="display-radius">Radius(KM)</label> <input type="number" class="form-control" id="display-radius" name="state_radius" placeholder="Enter Radius" value="{{ (Auth::user()->type_value) ? Auth::user()->type_value : '' }}"></div>');--}}
-{{--$('#bus_address').append('<div class="form-group"> <label class="form-label" for="address">Address <span style="color: red">*</span></label><input type="text" name="address" id="myaddress" class="form-control" autocomplete="off" placeholder="Enter Your Address" value="{{ Auth::user()->address }}"><input type="hidden" id="latitude" name="latitude" value="{{ (Auth::user()->latitude) ? Auth::user()->latitude : '' }}"><input type="hidden" id="longitude" name="longitude" value="{{ (Auth::user()->longitude) ? Auth::user()->longitude : '' }}"></div>');--}}
+if(val == "country"){
+ $("#bus_state").hide();
+ $("#bus_city").hide();
+ $("#bus_address").hide();
+ $("#appendType").hide();
+ $('#main_div').show();
+ $('#bus_country').removeClass('col-md-4');
+ $('#bus_country').removeClass('col-md-6');
+ $('#bus_country').addClass('col-md-12');
+
+}
+else if(val == "state"){
+ @if($provideradminlocation->admin_location_type=="World Wide" || $provideradminlocation->admin_location_type=="Country Wide")
+  var countryid = {{ $provideradminlocation->country }};
+  GetStates(countryid);
+ @endif
+ $("#bus_state").show();
+ $("#bus_city").hide();
+ $("#bus_address").hide();
+ $("#appendType").hide();
+ $('#bus_country').removeClass('col-md-12');
+ $('#bus_state').removeClass('col-md-12');
+ $('#bus_city').removeClass('col-md-4');
+ $('#bus_state').addClass('col-md-6');
+ $('#bus_country').addClass('col-md-6');
+ $('#main_div').show();
+
+}
+else if(val == "city"){
+
+ $('#main_div').show();
+ $("#bus_state").show();
+ $("#bus_city").show();
+ $("#bus_address").hide();
+ $("#appendType").hide();
+}
+else if (val == "local business") {
+ $('#main_div').hide();
+ $("#bus_state").hide();
+ $("#bus_city").hide();
+ $("#bus_address").show();
+ $("#appendType").show();
 } else {
+$('#bus_country').removeClass('col-md-12');
+$('#bus_state').removeClass('col-md-12');
+$('#bus_city').removeClass('col-md-12');
+$('#bus_country').removeClass('col-md-6');
+$('#bus_state').removeClass('col-md-6');
+$('#bus_city').removeClass('col-md-6');
+$('#bus_city').addClass('col-md-4');
+$('#bus_state').addClass('col-md-4');
+$('#bus_country').addClass('col-md-4');
+$('#main_div').show();
+$("#bus_state").show();
+$("#bus_city").show();
 $("#bus_address").hide();
 $("#appendType").hide();
 }

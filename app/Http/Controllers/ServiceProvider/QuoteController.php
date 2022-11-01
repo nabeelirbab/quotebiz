@@ -52,7 +52,7 @@ class QuoteController extends Controller
         //        if provider is country base
         if (Auth::user()->type == "country") {
 
-            $pendingquotesdata = Quote::whereIn('category_id', json_decode(Auth::user()->category_id))
+            $pendingquotesdata = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'pending')
                 ->whereNull('type')
                 ->orderBy('created_at', 'desc')
@@ -90,10 +90,18 @@ class QuoteController extends Controller
         //        if provider is state base
         if (Auth::user()->type == "state") {
 
-            $pendingquotes = Quote::whereIn('category_id', json_decode(Auth::user()->category_id))
+            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'pending')
                 ->whereNull('type')
                 ->where('state',HelperJob::statename(Auth::user()->state)->name)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } 
+         //        if provider is state base
+        if (Auth::user()->type == "world") {
+
+            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+                ->where('status', 'pending')
                 ->orderBy('created_at', 'desc')
                 ->get();
         }

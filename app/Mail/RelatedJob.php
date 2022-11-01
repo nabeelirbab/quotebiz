@@ -17,19 +17,19 @@ class RelatedJob extends Mailable
      * @return void
      */
      public function __construct($maildata)
-    {
-        $this->maildata = $maildata;
-    }
+        {
+            $this->maildata = $maildata;
+        }
 
     /**
      * Build the message.
      *
      * @return $this
-     */
+     */ 
    
         public function build()
     {
-        return $this->markdown('emails.relatedjob')->subject($this->maildata['jobdetail']->user->first_name.' is looking for '.$this->maildata['jobdetail']->category->category_name)->from('support@quotebiz.io', \Acelle\Model\Setting::get('site_name').' Team')->with('maildata', $this->maildata);
+        return $this->markdown('emails.relatedjob')->subject('⭐ '.$this->maildata['jobdetail']->user->first_name.' is looking for '.$this->maildata['jobdetail']->category->category_name.' in '.$this->maildata['location'])->from('support@quotebiz.io', \Acelle\Model\Setting::get('site_name').' Team')->with('maildata', $this->maildata);
     }
     
 }
