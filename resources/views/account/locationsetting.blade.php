@@ -36,7 +36,7 @@ person_outline
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h4 class="nk-block-title page-title">Location Setting</h3>
+                    <h4 class="nk-block-title page-title">Service Location Settings</h3>
 
                 </div><!-- .nk-block-head-content -->
 

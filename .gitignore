@@ -1,10 +1,12 @@
 /node_modules
 /public/hot
 /storage/*.key
-/vendor
 vendor
+/vendor
 .env
 .env.backup
+composer.lock
+/composer.lock
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
