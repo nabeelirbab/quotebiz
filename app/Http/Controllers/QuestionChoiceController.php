@@ -80,7 +80,7 @@ class QuestionChoiceController extends Controller
 
         // $mailer = HelperJob::mailSettings();
         if (Auth::user()) {
-            if (Auth::user()->user_type == 'client') {
+            if (Auth::user()->user_type == 'client' || Auth::user()->user_type == 'service_provider') {
 
                 $user = Auth::user();
 
@@ -224,7 +224,7 @@ class QuestionChoiceController extends Controller
         if ($request->local_business == "local business")
         {
 
-            $users = User::where('user_type', 'service_provider')->where('type', 'local business')->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
+            $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('type', 'local business')->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
             foreach ($users as $user) {
                 $userlat = $user->latitude;
                 $userlang = $user->longitude;
@@ -245,7 +245,7 @@ class QuestionChoiceController extends Controller
         }
         else {
 
-            $users = User::where('user_type', 'service_provider')->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
+            $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
             foreach ($users as $user) {
 
                 if ($user->type == "local business") {

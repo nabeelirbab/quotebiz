@@ -360,7 +360,7 @@
 	                	</div>
 	                </section>
 				@if(Auth::user())
-					@if(Auth::user()->user_type == 'client')
+					@if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'service_provider')
 	       
 	                @else
 	                <h4></h4>
