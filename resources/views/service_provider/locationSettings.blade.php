@@ -268,6 +268,7 @@ method="post" id="AddressUpdateForm">
         <div class="form-group  mt-3">
             <label class="form-label" for="display-radius">
                 Radius(KM)
+                 <span style="color: red">*</span>
             </label>
             <input type="number" class="form-control"
                    id="display-radius" name="state_radius"
@@ -630,6 +631,7 @@ method="post" id="AddressUpdateForm">
             <div class="form-group  mt-3">
                 <label class="form-label" for="display-radius">
                     Radius(KM)
+                     <span style="color: red">*</span>
                 </label>
                 <input type="number" class="form-control"
                        id="display-radius" name="state_radius"
@@ -659,6 +661,7 @@ method="post" id="AddressUpdateForm">
         <div class="form-group  mt-3">
             <label class="form-label" for="display-radius">
                 Radius(KM)
+                 <span style="color: red">*</span>
             </label>
             <input type="number" class="form-control"
                    id="display-radius" name="state_radius"
