@@ -65,23 +65,39 @@ class QuoteController extends Controller
                 {
                     $deal_lat = $pendingquote->latitude;
                     $deal_long = $pendingquote->longitude;
-                    $geocode_stats = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false");
-                    $output = json_decode($geocode_stats);
-                    for ($j = 0; $j < count($output->results[0]->address_components); $j++) {
+                    if($deal_long !=null && $deal_lat !=null){
+                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false";
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                    curl_setopt($ch, CURLOPT_HEADER, false);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_REFERER, $url);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3000); // 3 sec.
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10000); // 10 sec.
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    $output = json_decode($result);
+                   for ($j = 0; $j < count($output->results[0]->address_components); $j++) {
+
                         $cn = array($output->results[0]->address_components[$j]->types[0]);
+
                         if (in_array("country", $cn)) {
                             $country = $output->results[0]->address_components[$j]->long_name;
                         }
                     }
-                    $usercountryname = HelperJob::countryname(Auth::user()->country)->name;
+                   $usercountryname = HelperJob::countryname(Auth::user()->country)->name;
                     if ($usercountryname == $country) {
                         array_push($Quotesids, $pendingquote->id);
                     }
+                    }
+                    
 
                 }
                 if(sizeof($Quotesids)>0)
                 {
-                    $pendingquotes = Quote::whereIn('id', $Quotesids)->get();
+                    $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('id', $Quotesids)->orderBy('created_at', 'desc')->get();
                 }
             }
 

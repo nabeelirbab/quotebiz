@@ -246,6 +246,7 @@ class QuestionChoiceController extends Controller
         else {
 
             $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
+
             foreach ($users as $user) {
 
                 if ($user->type == "local business") {
@@ -267,10 +268,27 @@ class QuestionChoiceController extends Controller
                 elseif ($user->type == "country") {
                     $deal_lat = $request->latitude;
                     $deal_long = $request->longitude;
+                    $arrContextOptions=array(
+                        "ssl"=>array(
+                            "verify_peer"=>false,
+                            "verify_peer_name"=>false,
+                        ),
+                    ); 
+                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false";
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                    curl_setopt($ch, CURLOPT_HEADER, false);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_REFERER, $url);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3000); // 3 sec.
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10000); // 10 sec.
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                   
+                    $output = json_decode($result);
 
-                    $geocode_stats = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false");
-
-                    $output = json_decode($geocode_stats);
 
                     for ($j = 0; $j < count($output->results[0]->address_components); $j++) {
 
@@ -281,9 +299,9 @@ class QuestionChoiceController extends Controller
                         }
                     }
                     $usercountryname = HelperJob::countryname($user->country)->name;
-
                     if ($usercountryname == $country) {
                         array_push($SPEmails, $user->email);
+                             // dd($SPEmails);
                     }
                 }
                 elseif ($user->type == "state") {
