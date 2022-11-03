@@ -79,17 +79,17 @@ New Customer Alert
   </tr>
   @endif
 <tr>
-	<td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><img src="https://ci3.googleusercontent.com/proxy/YEbBZO9qW-Az2kSAXx4wBi8XVa7meg2fn81MRl3MVfrO4_qUPgqjdJhcku8lVg94cDC77XVPeeKKWI4qSASfskJL2AjuJ2ALN54vfASv3xG1GELC35bDc0_l1QE=s0-d-e1-ft#https://d1w7gvu0kpf6fl.cloudfront.net/img/email/icons/location-marker.png" width="12" height="16" style="margin-left:2px;margin-right:11px;vertical-align:middle" alt="Location" class="CToWUd">Nationwide<br><div style="font-size:13px;color:#a4a4a4;padding-left:28px">Happy to receive service online or remotely</div>
+	<td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><img src="{{ asset('frontend-assets/images/email/location.png') }}" width="12" height="16" style="margin-left:2px;margin-right:11px;vertical-align:middle" alt="Location" class="CToWUd">Nationwide<br><div style="font-size:13px;color:#a4a4a4;padding-left:28px">Happy to receive service online or remotely</div>
 	</td>
 </tr>
 
 <tr>
 <td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><table border="0" cellspacing="0" cellpadding="0">
 <tbody><tr>
-<td style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px"><img src="https://ci6.googleusercontent.com/proxy/9aHvnXxvJwdmB0sVEWZX-tMJNjAeI_th2-SR5kCEyj0J3ZRDj66h32LNyl1akCov9S9hn-NnVUG9GSEDr9UKQIWJlVWzTMTFupKPPzRJBPzPgw=s0-d-e1-ft#https://d1w7gvu0kpf6fl.cloudfront.net/img/email/icons/phone.png" width="14" height="14" style="margin-left:2px;margin-right:13px;vertical-align:middle" alt="Phone" class="CToWUd">{{Acelle\Jobs\HelperJob::hide_mobile_no($maildata['jobdetail']->user->mobileno)}}</td>
+<td style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px"><img src="{{ asset('frontend-assets/images/email/phone.png') }}" width="14" height="14" style="margin-left:2px;margin-right:13px;vertical-align:middle" alt="Phone" class="CToWUd">{{Acelle\Jobs\HelperJob::hide_mobile_no($maildata['jobdetail']->user->mobileno)}}</td>
 
 <td>
-<div style="line-height:1.5;text-align:left;background-color:#f3f3f6!important;border-radius:50px;padding-left:8px!important;padding-right:8px!important;color:#47bf9c!important;font-size:12px;margin-left:10px"><img src="https://ci5.googleusercontent.com/proxy/F99v5BNNxXc-ts7IPD_O3sXAM0yMkqtNQ9ZHKiQ5bdCnUuwYpfjp9TGA7edjL67Gyr93Dq641FxTfgRZiIJh1VfRoblcUNVRtUQn3U3lmRoC6ziv2mB0=s0-d-e1-ft#https://d1w7gvu0kpf6fl.cloudfront.net/img/email/icons/green-tick.png" width="12" height="12" style="margin-bottom:2px;vertical-align:middle" alt="Phone" class="CToWUd"> Verified</div>
+<div style="line-height:1.5;text-align:left;background-color:#f3f3f6!important;border-radius:50px;padding-left:8px!important;padding-right:8px!important;color:#47bf9c!important;font-size:12px;margin-left:10px"><img src="{{ asset('frontend-assets/images/email/green.png') }}" width="12" height="12" style="margin-bottom:2px;vertical-align:middle" alt="Phone" class="CToWUd"> Verified</div>
 </td>
 
 </tr>
@@ -98,7 +98,7 @@ New Customer Alert
 </td>
 </tr>
 <tr>
-<td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><img src="https://ci3.googleusercontent.com/proxy/zfN2dRM--4saJwux3hmvkcG2WE_cduyGl3oKmEThdsxFIvKKT7p_1Zl1Qf5fo1YOLOsgfHEqvtTR6SLPp6BPsLfjYnUSUg7td_DxKhVF-aBYqaIxYQ=s0-d-e1-ft#https://d1w7gvu0kpf6fl.cloudfront.net/img/email/icons/envelope.png" width="16" height="12" style="margin-left:2px;margin-right:6px;vertical-align:middle" alt="Email" class="CToWUd"> <a rel="nofollow" href="#m_-8167979757003078776_" style="text-decoration:none;color:inherit">{{Acelle\Jobs\HelperJob::mask_email($maildata['jobdetail']->user->email)}}</a> </td>
+<td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><img src="{{ asset('frontend-assets/images/email/envelope.png') }}" width="16" height="12" style="margin-left:2px;margin-right:6px;vertical-align:middle" alt="Email" class="CToWUd"> <a rel="nofollow" href="#m_-8167979757003078776_" style="text-decoration:none;color:inherit">{{Acelle\Jobs\HelperJob::mask_email($maildata['jobdetail']->user->email)}}</a> </td>
 
 </tr>
 
