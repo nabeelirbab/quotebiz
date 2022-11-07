@@ -381,7 +381,7 @@ class QuestionChoiceController extends Controller
     public function checkEmail(Request $request)
     {
         // return $request->all();
-        $data = User::where('subdomain',$request->subdomain)->where('email',$request->email)->where('user_type','client')->first();
+        $data = User::where('subdomain',$request->subdomain)->where('email',$request->email)->where('user_type','client')->where('user_type','service_provider')->first();
         // $data = User::where('email', $request->email)->first();
 
         if (!$data) {
