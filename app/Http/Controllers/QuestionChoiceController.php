@@ -94,7 +94,27 @@ class QuestionChoiceController extends Controller
                 $user->save();
             }
 
-        } else {
+        } elseif(!$request->first_name && !$request->last_name){
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->subdomain]))
+                    {
+                    if(Auth::check()){
+                     $user = Auth::user();
+                    if (!$user->activated) {
+                        $uid = $user->uid;
+                        auth()->logout();
+                        return view('notActivated', ['uid' => $uid]);
+                    }
+                         User::where('id',$user->id)->update([
+                        'last_login_at' => Carbon::now()->toDateTimeString(),
+                        'last_login_ip' => $request->getClientIp()
+                    ]);
+                   
+
+                    }
+                 }else{
+                    return redirect('/');
+                 }
+        }else {
             $user = new User();
             $user->fill($request->all());
             $user->password = bcrypt($request->password);
@@ -221,6 +241,7 @@ class QuestionChoiceController extends Controller
 //        }
 
         $SPEmails = array();
+        $location = '';
         if ($request->local_business == "local business")
         {
 
@@ -242,10 +263,13 @@ class QuestionChoiceController extends Controller
                 }
             }
 
+            $location = $request->zip_code;
+
         }
         else {
 
             $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
+
             foreach ($users as $user) {
 
                 if ($user->type == "local business") {
@@ -267,10 +291,27 @@ class QuestionChoiceController extends Controller
                 elseif ($user->type == "country") {
                     $deal_lat = $request->latitude;
                     $deal_long = $request->longitude;
+                    $arrContextOptions=array(
+                        "ssl"=>array(
+                            "verify_peer"=>false,
+                            "verify_peer_name"=>false,
+                        ),
+                    ); 
+                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false";
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                    curl_setopt($ch, CURLOPT_HEADER, false);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_REFERER, $url);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3000); // 3 sec.
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10000); // 10 sec.
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                   
+                    $output = json_decode($result);
 
-                    $geocode_stats = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBSIo75YZ1hfbKAQPDvo0Tfyys9Zo6c9hk&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false");
-
-                    $output = json_decode($geocode_stats);
 
                     for ($j = 0; $j < count($output->results[0]->address_components); $j++) {
 
@@ -281,10 +322,11 @@ class QuestionChoiceController extends Controller
                         }
                     }
                     $usercountryname = HelperJob::countryname($user->country)->name;
-
                     if ($usercountryname == $country) {
                         array_push($SPEmails, $user->email);
+                             // dd($SPEmails);
                     }
+                    $location = $country;
                 }
                 elseif ($user->type == "state") {
                     $deal_lat = $request->latitude;
@@ -294,6 +336,7 @@ class QuestionChoiceController extends Controller
                     if ($userstatename == $state) {
                         array_push($SPEmails, $user->email);
                     }
+                    $location = $request->state;
                 }else{
                     array_push($SPEmails, $user->email);
                 }
@@ -308,7 +351,7 @@ class QuestionChoiceController extends Controller
 
                 $maildata = [
                     'jobdetail' => $job,
-                    'location' => $request->zip_code
+                    'location' => $location
                 ];
 
                 Mail::to($email)->send(new RelatedJob($maildata));
