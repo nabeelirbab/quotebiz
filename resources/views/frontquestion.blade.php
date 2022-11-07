@@ -369,22 +369,21 @@
 	                	<div class="row" style="padding: 0 20px;">
 	                		<input type="hidden" name="user_type" value="client">
 	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
-	                	<div id="firslast">
-	                    <div class="form-row col-md-6">
+	                	
+	                    <div class="form-row col-md-6" id="first">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>First Name</span>
 	                    		<input type="text" id="f_name" class="form-control" name="first_name" placeholder="Enter First Name"  required>
 	                    	</div>
 	                    </div>	
-	                    <div class="form-row col-md-6">
+	                    <div class="form-row col-md-6" id="last">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Last Name</span>
 	                    		<input type="text" id="l_name" class="form-control" name="last_name" placeholder="Enter Last Name"  required>
 	                    	</div>
-	                    </div>	
-	                </div>
+	                    </div>
                      	<div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
