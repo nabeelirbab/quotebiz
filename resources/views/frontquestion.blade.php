@@ -369,25 +369,27 @@
 	                	<div class="row" style="padding: 0 20px;">
 	                		<input type="hidden" name="user_type" value="client">
 	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
+	                	<div id="firslast">
 	                    <div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>First Name</span>
-	                    		<input type="text" class="form-control" name="first_name" placeholder="Enter First Name"  required>
+	                    		<input type="text" id="f_name" class="form-control" name="first_name" placeholder="Enter First Name"  required>
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Last Name</span>
-	                    		<input type="text" class="form-control" name="last_name" placeholder="Enter Last Name"  required>
+	                    		<input type="text" id="l_name" class="form-control" name="last_name" placeholder="Enter Last Name"  required>
 	                    	</div>
 	                    </div>	
+	                </div>
                      	<div class="form-row col-md-6">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>Email</span>&nbsp;&nbsp;<span id="emailexist" style="color: red"></span>
-	                    		<input type="email" name="email" onblur="myFunction()"  class="form-control formEmail" name="email" placeholder="Enter Email"  required="">
+	                    		<input type="email" name="email" onblur="myFunction()"  class="form-control formEmail" name="email" placeholder="Enter Email"  mrequired="">
 	                    	</div>
 	                    </div>	
 	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
@@ -398,14 +400,14 @@
 	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: #8039f2;bottom: 13px"></i>
 	                    	</div>
 	                    </div>
-	                    <div class="form-row col-md-6">
+	                    <div class="form-row col-md-6" id="city">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>City</span>
 	                    		<input type="text" name="city" class="form-control" name="email" placeholder="Enter City"  required>
 	                    	</div>
 	                    </div>	
-	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
+	                    <div class="form-row col-md-6" style="margin-bottom: 38px" id="mobileno">
 	                    	
 	                    	<div class="form-holder" style="display: grid">
 	                    		<span>Mobile No</span>
@@ -427,18 +429,16 @@
 	                	<div class="row">
 	                		<input type="hidden" name="user_type" value="client">
 	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
-	                    <div class="form-row col-md-6">
-	                    	
+	                     <div class="form-row col-md-6" id="first">
 	                    	<div class="form-holder">
 	                    		<span>First Name</span>
-	                    		<input type="text" class="form-control" name="first_name" placeholder="Enter First Name" required>
+	                    		<input type="text" id="f_name" class="form-control" name="first_name" placeholder="Enter First Name" required>
 	                    	</div>
 	                    </div>	
-	                    <div class="form-row col-md-6">
-	                    	
+	                    <div class="form-row col-md-6" id="last">
 	                    	<div class="form-holder">
 	                    		<span>Last Name</span>
-	                    		<input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required>
+	                    		<input type="text" id="l_name" class="form-control" name="last_name" placeholder="Enter Last Name" required>
 	                    	</div>
 	                    </div>	
                      	<div class="form-row col-md-6">
@@ -457,14 +457,14 @@
 	                    	</div>
 	                    </div>
 
-	                     <div class="form-row col-md-6">
+	                     <div class="form-row col-md-6" id="city">
 	                    	
 	                    	<div class="form-holder">
 	                    		<span>City</span>
 	                    		<input type="text" name="city" class="form-control" name="email" placeholder="Enter City" required>
 	                    	</div>
 	                    </div>	
-	                    <div class="form-row col-md-6" style="margin-bottom: 38px">
+	                    <div class="form-row col-md-6" style="margin-bottom: 38px" id="mobileno">
 	                    	
 	                    	<div class="form-holder" style="display: grid">
 	                    		<span>Mobile No</span>
@@ -499,7 +499,6 @@ var jqOld = jQuery.noConflict();
 
 	});
 
-		
 
  jqOld(function(){
 	jqOld('input').attr('autocomplete', 'off');
@@ -547,8 +546,8 @@ var jqOld = jQuery.noConflict();
             return true; 
         },
         onFinished: function (event, currentIndex) {
+		  alert('hell');
 		  jqOld("#form").submit();
-		  // alert('hell');
 		},
         labels: {
             finish: "Get Quotes",
@@ -605,7 +604,8 @@ var _token = jqOld('meta[name="csrf-token"]').attr('content');
                 if(data == true) {
                     console.log('Email exists!');
                     jqOld('#wizard .actions li:last').hide();
-                    jqOld('#emailexist').html('email already exists');
+                    var html = "<span style='color:red'>email already exists</span><span style='float:right;cursor:pointer;' id='loginUser'>Login?</span>";
+                    jqOld('#emailexist').html(html);
                 }
                 else {
                     console.log('Email doesnt!');
@@ -623,7 +623,16 @@ jqOld("#form").submit(function( event ) {
 	jqOld("#FinalSubmit").prop('disabled', true);
 	jqOld("#FinalSubmit").css('cursor', 'not-allowed');
 });
-
+jqOld(document).on("click","#loginUser",function() {
+   jqOld('#f_name').val('');
+   jqOld('#l_name').val('');
+   jqOld('#first').remove();
+   jqOld('#last').remove();
+   jqOld('#city').remove();
+   jqOld('#mobileno').remove();
+   jqOld('#wizard .actions li:last').show();
+   jqOld('#emailexist').remove();
+});
 </script>
 <!-- Template created and distributed by Colorlib -->
 </body>

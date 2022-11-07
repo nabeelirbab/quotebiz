@@ -94,7 +94,27 @@ class QuestionChoiceController extends Controller
                 $user->save();
             }
 
-        } else {
+        } elseif(!$request->first_name && !$request->last_name){
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->subdomain]))
+                    {
+                    if(Auth::check()){
+                     $user = Auth::user();
+                    if (!$user->activated) {
+                        $uid = $user->uid;
+                        auth()->logout();
+                        return view('notActivated', ['uid' => $uid]);
+                    }
+                         User::where('id',$user->id)->update([
+                        'last_login_at' => Carbon::now()->toDateTimeString(),
+                        'last_login_ip' => $request->getClientIp()
+                    ]);
+                   
+
+                    }
+                 }else{
+                    return redirect('/');
+                 }
+        }else {
             $user = new User();
             $user->fill($request->all());
             $user->password = bcrypt($request->password);
@@ -221,6 +241,7 @@ class QuestionChoiceController extends Controller
 //        }
 
         $SPEmails = array();
+        $location = '';
         if ($request->local_business == "local business")
         {
 
@@ -241,6 +262,8 @@ class QuestionChoiceController extends Controller
                     array_push($SPEmails, $getusersdata->email);
                 }
             }
+
+            $location = $request->zip_code;
 
         }
         else {
@@ -303,6 +326,7 @@ class QuestionChoiceController extends Controller
                         array_push($SPEmails, $user->email);
                              // dd($SPEmails);
                     }
+                    $location = $country;
                 }
                 elseif ($user->type == "state") {
                     $deal_lat = $request->latitude;
@@ -312,6 +336,7 @@ class QuestionChoiceController extends Controller
                     if ($userstatename == $state) {
                         array_push($SPEmails, $user->email);
                     }
+                    $location = $request->state;
                 }else{
                     array_push($SPEmails, $user->email);
                 }
@@ -326,7 +351,7 @@ class QuestionChoiceController extends Controller
 
                 $maildata = [
                     'jobdetail' => $job,
-                    'location' => $request->zip_code
+                    'location' => $location
                 ];
 
                 Mail::to($email)->send(new RelatedJob($maildata));
