@@ -212,7 +212,7 @@ color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
 
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 667px) {
 .mycol1 {
 border-radius: 0;
 border-top-right-radius: 12px;
@@ -251,7 +251,8 @@ transform: translate(-90px, -30px);
 .siteLogo {
 float: none;
 text-align: center;
-margin-bottom: 33px;
+margin-bottom: 80px;
+max-width: 100%;
 }
 
 .siteLogo img {
