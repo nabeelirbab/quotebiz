@@ -789,9 +789,26 @@ data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
 
 @if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="Country Wise")
 <script>
+var pc = "{{ $providercountry->iso2 }}";
+var loc = pc.toLowerCase();
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function initialize() {
+var options = {
+componentRestrictions: {country: loc}
+};
+
+var input = document.getElementById('address');
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+autocomplete.addListener('place_changed', function () {
+var place = autocomplete.getPlace();
+console.log(place);
+$("#latitude").val(place.geometry['location'].lat());
+$("#longitude").val(place.geometry['location'].lng());
+});
+}
 var countryid = {{ $provideradminlocation->country }};
 GetStatesdata(countryid);
-GetStates(countryid);
 function GetStatesdata(val) {
 $("#state").empty();
 $.ajax({
@@ -807,6 +824,25 @@ $("#state").html(data);
 
 @if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="State Wise" )
 <script>
+var pc = "{{ $providercountry->iso2 }}";
+var loc = pc.toLowerCase();
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function initialize() {
+var options = {
+componentRestrictions: {country: pc}
+};
+
+var input = document.getElementById('address');
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+autocomplete.addListener('place_changed', function () {
+var place = autocomplete.getPlace();
+console.log(place);
+$("#latitude").val(place.geometry['location'].lat());
+$("#longitude").val(place.geometry['location'].lng());
+});
+}
 var countryid = {{ $provideradminlocation->country }};
 var stateid = {{ $provideradminlocation->state }};
 GetCitiesdata(stateid);
@@ -846,13 +882,12 @@ $("#longitude").val(place.geometry['location'].lng());
 
 <script>
 
-var pc = "{{ $providercountry->code }}";
-
+var pc = "{{ $providercountry->iso2 }}";
+var loc = pc.toLowerCase();
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {
 var options = {
-types: ['(cities)'],
 componentRestrictions: {country: pc}
 };
 

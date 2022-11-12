@@ -225,20 +225,7 @@ class QuestionChoiceController extends Controller
 
         Mail::to($user->email)->send(new OnJobPost($jobdata));
 
-//        $users = User::where('zipcode', $request->zip_code)->where('user_type', 'service_provider')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->pluck('email');
-        // dd($users);
         $job = Quote::with('quotations', 'user')->where('id', $quote->id)->where('user_id', $user->id)->orderBy('id', 'desc')->first();
-
-//        foreach ($users as $key => $value) {
-//
-//            $email = $value;
-//
-//            $maildata = [
-//                'jobdetail' => $job
-//            ];
-//
-//            Mail::to($email)->send(new RelatedJob($maildata));
-//        }
 
         $SPEmails = array();
         $location = '';
@@ -288,7 +275,7 @@ class QuestionChoiceController extends Controller
                         array_push($SPEmails, $getusersdata->email);
                     }
                 }
-                elseif ($user->type == "country") {
+                elseif ($user->type == "country" || $user->type == "world") {
                     $deal_lat = $request->latitude;
                     $deal_long = $request->longitude;
                     $arrContextOptions=array(
