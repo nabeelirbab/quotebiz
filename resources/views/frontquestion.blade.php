@@ -567,6 +567,7 @@ var jqOld = jQuery.noConflict();
 	  geoIpLookup: function(callback) {
 	    $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
 	      var countryCode = (resp && resp.country) ? resp.country : "au";
+	      console.log(countryCode)
 	      callback(countryCode);
 	    });
 	  },
