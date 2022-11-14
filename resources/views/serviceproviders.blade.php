@@ -153,7 +153,9 @@
                 <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">
+                @if($user->city)
                 <span>{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span>
+                @endif
             </div>
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
