@@ -86,7 +86,7 @@ class HomeController extends Controller
 
     public function customers()
     {
-        $users = User::where('subdomain', Auth::user()->subdomain)->where('user_type', 'client')->paginate(10);
+        $users = User::where('subdomain', Auth::user()->subdomain)->where('user_type', 'client')->orderBy('id','desc')->paginate(10);
         // dd($users);
         return view('customers', compact('users'));
     }
@@ -102,7 +102,7 @@ class HomeController extends Controller
 
     public function invitedserviceproviders()
     {
-        $users = Invitation::where('subdomain', Auth::user()->subdomain)->paginate(10);
+        $users = Invitation::where('subdomain', Auth::user()->subdomain)->orderBy('id','desc')->paginate(10);
         return view('inviteserviceproviders', compact('users'));
     }
 
