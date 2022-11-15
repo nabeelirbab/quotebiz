@@ -112,7 +112,7 @@ class QuestionChoiceController extends Controller
 
                     }
                  }else{
-                    return redirect('/');
+                    return redirect('/')->withErrors(['msg' => 'Wrong email or password']);
                  }
         }else {
             $user = new User();

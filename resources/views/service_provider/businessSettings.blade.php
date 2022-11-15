@@ -138,7 +138,9 @@
                                             <div class="data-item">
                                                 <div class="data-col">
                                                     <span class="data-label">City</span>
+                                                    @if(Auth::user()->city)
                                                     <span class="data-value ">{{Acelle\Jobs\HelperJob::cityname(Auth::user()->city)->name}}</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="data-item">

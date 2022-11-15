@@ -307,6 +307,13 @@ href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Busi
 style="height: 100%;align-items: center;">
 
 <div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
+@if($errors->any())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{$errors->first()}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  </button>
+</div>
+@endif
 @if($job_design && $job_design->no_status == '1')
 <div class="d-flex pt-3 pr-2">
 <p class="ml-auto mb-0">Want to speak with an agent?</p>
@@ -326,6 +333,7 @@ autocomplete="off">
 </p>
 <div class="row">
 <div class="col-md-6">
+
 <div class="form-group">
 <label class="form-control-placeholder"
 for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
