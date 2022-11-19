@@ -845,17 +845,7 @@ $("#longitude").val(place.geometry['location'].lng());
 }
 var countryid = {{ $provideradminlocation->country }};
 var stateid = {{ $provideradminlocation->state }};
-GetCitiesdata(stateid);
-GetStates(countryid);
-function GetCitiesdata(val) {
-$.ajax({
-url: "{{ url('service-provider/getprovidercities') }}/" + val,
-method: "get",
-success: function (data) {
-$("#city").html(data);
-}
-});
-}
+
 </script>
 @endif
 
