@@ -43,7 +43,7 @@ class QuoteController extends Controller
                     DB::raw("quotes.*, ( 6371  * acos( cos( radians(" . Auth::user()->latitude . ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" . Auth::user()->longitude . ") ) + sin( radians(" . Auth::user()->latitude . ") ) * sin( radians( latitude ) ) ) ) AS distance")
                 )
                 ->having("distance", "<=", Auth::user()->type_value)
-                ->where('type', 'local business')
+                // ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')
                 ->get();
 
