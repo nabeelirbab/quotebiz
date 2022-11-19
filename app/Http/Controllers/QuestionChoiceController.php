@@ -270,7 +270,7 @@ class QuestionChoiceController extends Controller
                         ->having("distance", "<=", $userradius)
                         ->orderBy("distance", 'asc')
                         ->first();
-
+                    $location = $request->zip_code;
                     if ($getusersdata) {
                         array_push($SPEmails, $getusersdata->email);
                     }
