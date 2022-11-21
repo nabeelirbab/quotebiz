@@ -13,7 +13,7 @@
 @section('content')
 
  <div id="app" class="mt-4">
-        <responses-component authuser="{{Auth::user()->id}}"></responses-component>
+        <responses-component authuser="{{Auth::user()->id}}" userdata="{{Auth::user()}}"></responses-component>
   </div>
 @endsection
 @section('script')

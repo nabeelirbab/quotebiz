@@ -113,6 +113,7 @@ Route::group(['middleware' => ['not_installed', 'auth']], function () {
     Route::get('/deleteMsg/{id}', 'ChatController@deleteMsg');
     Route::post('/updateMsg', 'ChatController@updateMsg');
     Route::post('/readmsg', 'ChatController@readMsg');
+    Route::post('/notificationstatus', 'ChatController@notificationStatus');
     Route::post('/emptyrefid', 'ChatController@emptyRefId');
     Route::get('/allunreadmsg/{id}', 'ChatController@allunreadMsg');
 
@@ -1539,7 +1540,7 @@ Route::group(['middleware' => ['not_installed', 'not_logged_in']], function () {
     Route::get('super/getstates/{id}','ServiceProvider\QuoteController@supergetstates');
     Route::get('super/getcities/{id}','ServiceProvider\QuoteController@supergetcities');
     // Admin registration
-    Route::match(['get', 'post'],'admin/register', 'UserController@adminregister');
+    Route::match(['get', 'post'],'signup', 'UserController@adminregister');
     Route::get('admin/activate/{token}', 'UserController@adminActivate');
 
 });

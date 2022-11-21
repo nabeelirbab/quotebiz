@@ -1,5 +1,16 @@
 @extends('service_provider.layout.app')
 @section('title', 'Dashboard')
+@section('styling')
+ 
+<style type="text/css">
+    .card-title{
+        text-align: center;
+    }
+    .data{
+        text-align: center;
+    }
+</style>
+@endsection
 @section('content')
 <!-- content @s -->
 <div class="nk-content ">
@@ -11,7 +22,7 @@
         <div class="nk-block-head-content">
             <h3 class="nk-block-title page-title">Dashboard</h3>
             <div class="nk-block-des text-soft">
-                <p>Welcome to Qutotebiz Dashboard.</p>
+                <p>Welcome to {{\Acelle\Model\Setting::get("site_name")}} Dashboard.</p>
             </div>
         </div><!-- .nk-block-head-content -->
         <div class="nk-block-head-content">
@@ -44,17 +55,17 @@
             <div class="card">
                 <div class="nk-ecwg nk-ecwg6">
                     <div class="card-inner">
-                        <div class="card-title-group">
+                        <div class="">
                             <div class="card-title">
                                 <h6 class="title">Today Quotes</h6>
                             </div>
                         </div>
                         <div class="data">
-                            <div class="data-group">
+                            <div class="">
                                 <div class="amount">0</div>
-                                <div class="nk-ecwg6-ck">
+                              <!--   <div class="nk-ecwg6-ck">
                                     <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
-                                </div>
+                                </div> -->
                             </div>
                            
                         </div>
@@ -66,17 +77,15 @@
             <div class="card">
                 <div class="nk-ecwg nk-ecwg6">
                     <div class="card-inner">
-                        <div class="card-title-group">
+                        <div class="">
                             <div class="card-title">
                                 <h6 class="title">Today Revenue</h6>
                             </div>
                         </div>
                         <div class="data">
-                            <div class="data-group">
+                            <div class="">
                                 <div class="amount">$0</div>
-                                <div class="nk-ecwg6-ck">
-                                    <canvas class="ecommerce-line-chart-s3" id="todayRevenue"></canvas>
-                                </div>
+                              
                             </div>
                         </div>
                     </div><!-- .card-inner -->
@@ -87,17 +96,15 @@
             <div class="card">
                 <div class="nk-ecwg nk-ecwg6">
                     <div class="card-inner">
-                        <div class="card-title-group">
+                        <div class="">
                             <div class="card-title">
                                 <h6 class="title">Today Customers</h6>
                             </div>
                         </div>
                         <div class="data">
-                            <div class="data-group">
+                            <div class="">
                                 <div class="amount">0</div>
-                                <div class="nk-ecwg6-ck">
-                                    <canvas class="ecommerce-line-chart-s3" id="todayCustomers"></canvas>
-                                </div>
+                              
                             </div>
                         </div>
                     </div><!-- .card-inner -->
@@ -108,17 +115,14 @@
             <div class="card">
                 <div class="nk-ecwg nk-ecwg6">
                     <div class="card-inner">
-                        <div class="card-title-group">
+                        <div class="">
                             <div class="card-title">
                                 <h6 class="title">Today Visitors</h6>
                             </div>
                         </div>
                         <div class="data">
-                            <div class="data-group">
+                            <div class="">
                                 <div class="amount">0</div>
-                                <div class="nk-ecwg6-ck">
-                                    <canvas class="ecommerce-line-chart-s3" id="todayVisitors"></canvas>
-                                </div>
                             </div>
                         </div>
                     </div><!-- .card-inner -->
