@@ -707,8 +707,9 @@ class Customer extends Model
             $user->fill($request->all());
             $user->password = bcrypt($request->password);
             $user->category_id = $request->category_id;
+            $user->country = $request->country;
             $user->state = $request->state;
-            $user->admin_location_type = $request->business_type;
+            $user->admin_location_type = $request->admin_location_type;
             $user->customer()->associate($this);
             $user->save();
             $contact = new Contact();

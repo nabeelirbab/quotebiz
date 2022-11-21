@@ -126,7 +126,7 @@ class ChatController extends Controller
            }
            $chat->save();
            $chat->load(['user']);
-           $fcmTokens = User::where('id',$request->receiver_id)->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+           $fcmTokens = User::where('id',$request->receiver_id)->where('notification_status','yes')->whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
            Notification::send(null,new SendPushNotification(\Acelle\Model\Setting::get("site_name"),$request->message,$fcmTokens));
 
            return $chat;
@@ -218,6 +218,13 @@ class ChatController extends Controller
     public function emptyRefId(Request $request){
             
           return  User::where('id',$request->id)->update(['chatWithRefId' => null]);
+             
+    }
+
+    public function notificationStatus(Request $request){
+            
+           User::where('id',Auth::user()->id)->update(['notification_status' => $request->status]);
+           return Auth::user();
              
     }
     /**

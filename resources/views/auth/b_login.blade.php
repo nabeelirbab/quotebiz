@@ -85,7 +85,7 @@ $subdomain= request("account");
         @else
       <div class="text-center mt-4 text-white small">
                 {!! trans('messages.need_a_account_create_an_one', [
-        'link' => url('admin/register')
+        'link' => url('signup')
                 ]) !!}
         </div>
         @endif

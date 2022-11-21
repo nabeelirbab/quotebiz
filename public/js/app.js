@@ -2267,6 +2267,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -2288,7 +2289,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     categories: function categories() {
       var _this = this;
-
       axios.get('super-admin/questions/categories').then(function (response) {
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
@@ -2298,7 +2298,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     categoriesbyid: function categoriesbyid(event) {
       var _this2 = this;
-
       var id = event.target.value;
       axios.get('super-admin/questions/categories/' + id).then(function (response) {
         _this2.categoriesData = response.data;
@@ -2641,6 +2640,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
 
@@ -2671,7 +2671,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     categories: function categories() {
       var _this = this;
-
       axios.get('admin/questions/categories').then(function (response) {
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
@@ -2681,11 +2680,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     subcategoriesbyid: function subcategoriesbyid(event) {
       var _this2 = this;
-
       var id = event.target.value;
       axios.get('admin/questions/subcategories/' + id).then(function (response) {
         console.log(response.data);
-
         if (response.data[0].subquestions.length < 1) {
           _this2.noData = true;
           _this2.noDataMsg = 'This sub category does not have any questions';
@@ -2699,13 +2696,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     categoriesbyid: function categoriesbyid(event) {
       var _this3 = this;
-
       var id = event.target.value;
       axios.get('admin/questions/categories/' + id).then(function (response) {
         console.log(response.data);
         _this3.categoriesData = response.data.categories;
         _this3.subCategories = response.data.subcat;
-
         if (_this3.subCategories.length > 0 && _this3.categoriesData.length > 0) {
           _this3.subCategoriesHtml = true;
         } else {
@@ -3328,19 +3323,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 // import VueSocketIO from 'vue-socket.io';
 // import socketio from 'socket.io-client';
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     VueEasyLightbox: vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['authuser'],
+  props: ['authuser', 'userdata'],
   data: function data() {
     return {
       quotes: [],
       loginUser: this.authuser,
+      userDetail: JSON.parse(this.userdata),
+      notiStatus: '',
       activeQuotes: [],
       quoteChat: {},
       isActive: false,
@@ -3382,11 +3381,9 @@ __webpack_require__.r(__webpack_exports__);
       }).pop();
       userdec.last_msg = data.message;
       userdec.updated_at = new Date().toISOString();
-
       if (data.sender_id == this.quoteChat.user_id && data.quotation_id == this.quoteChat.id) {} else {
         userdec.unread_msg_count += 1;
       }
-
       userdec.chat.push(data);
       var container = this.$el.querySelector("#chatpanelbody");
       $("#chatpanelbody").animate({
@@ -3427,7 +3424,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     filteredUserlist: function filteredUserlist() {
       var _this = this;
-
       return this.orderedUsers.filter(function (post) {
         return post.chatsp.first_name.toLowerCase().includes(_this.userSearch.toLowerCase()) || post.chatsp.last_name.toLowerCase().includes(_this.userSearch.toLowerCase());
       });
@@ -3453,9 +3449,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     chatStart: function chatStart() {
       var _this2 = this;
-
       this.isEmoji = false;
-
       if (this.editChatid) {
         var msgObj = {
           message: this.message,
@@ -3469,7 +3463,6 @@ __webpack_require__.r(__webpack_exports__);
         post.message = this.message;
         axios.post('/updateMsg', msgObj).then(function (response) {
           console.log(response.data);
-
           _this2.$socket.emit('updateMsg', response.data);
         }, function (err) {
           console.log('err', err);
@@ -3504,7 +3497,6 @@ __webpack_require__.r(__webpack_exports__);
         this.isDisable = true;
         axios.post('/chatstart', obj).then(function (response) {
           _this2.$set(_this2.quoteChat.chat[_this2.quoteChat.chat.length - 1], 'id', response.data.id);
-
           _this2.$socket.emit('sendMsg', response.data);
         })["catch"](function (error) {
           console.log(error);
@@ -3513,7 +3505,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     uploadfile: function uploadfile(event) {
       var _this3 = this;
-
       var filesdata = this.$refs.myFiles.files;
       filesdata.forEach(function (file) {
         var formDatas = new FormData();
@@ -3533,19 +3524,14 @@ __webpack_require__.r(__webpack_exports__);
         };
         axios.post('/chatFilesShare', formDatas, config).then(function (response) {
           console.log(response.data);
-
           _this3.quoteChat.chat.push(response.data);
-
           _this3.userdec = _this3.activeQuotes.filter(function (obj) {
             return _this3.quoteChat.id === obj.id;
           }).pop();
           _this3.userdec.last_msg = response.data.message;
           _this3.userdec.updated_at = new Date().toISOString();
-
           _this3.$socket.emit('sendMsg', response.data);
-
           var container = _this3.$el.querySelector("#chatpanelbody");
-
           $("#chatpanelbody").animate({
             scrollTop: container.scrollHeight + 7020
           }, "fast");
@@ -3585,7 +3571,6 @@ __webpack_require__.r(__webpack_exports__);
         _token: $('meta[name="csrf-token"]').attr('content')
       };
       this.readMsg(msgObj);
-
       for (var i = 0; i <= this.quoteChat.chat.length; i++) {
         if (this.quoteChat.chat[i]) {
           if (this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0') {
@@ -3596,10 +3581,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     readMsg: function readMsg(msgObj) {
       var _this4 = this;
-
       axios.post('/readmsg', msgObj).then(function (response) {
         console.log(response.data);
-
         _this4.$socket.emit('readMsg', {
           id: _this4.loginUser
         });
@@ -3618,7 +3601,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteMsg: function deleteMsg(id) {
       var _this5 = this;
-
       var post = this.quoteChat.chat.filter(function (obj) {
         return id === obj.id;
       }).pop(post);
@@ -3642,7 +3624,6 @@ __webpack_require__.r(__webpack_exports__);
         //   var acronym = str.replace(/\s/g, '').split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
         // return acronym;
         var matchess = str.match(/\b(\w)/g); // ['J','S','O','N']
-
         var matches = matchess.slice(0, 2);
         var acronym = matches.join(''); // JSON
 
@@ -3662,7 +3643,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     getProviders: function getProviders() {
       var _this6 = this;
-
       axios.get('/customer/getprovider').then(function (responce) {
         _this6.activeQuotes = responce.data;
         $('#tabactive').addClass('active');
@@ -3679,7 +3659,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeStatus: function changeStatus(status) {
       var _this7 = this;
-
       var post = this.activeQuotes.filter(function (obj) {
         return _this7.quoteChat.id === obj.id;
       }).pop(post);
@@ -3694,7 +3673,6 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.post('/customer/change-status', obj).then(function (response) {
         console.log(response.data);
-
         _this7.$toast.open({
           message: "Change Status Successfully",
           type: "success",
@@ -3702,7 +3680,6 @@ __webpack_require__.r(__webpack_exports__);
           duration: 5000,
           dismissible: true
         });
-
         _this7.quoteChat = {};
         $('#mainView').show();
         $('#chatPanel').hide();
@@ -3741,13 +3718,46 @@ __webpack_require__.r(__webpack_exports__);
     onError: function onError(e) {
       alert('Failed to copy the text to the clipboard');
       console.log(e);
+    },
+    notificationStatus: function notificationStatus(e) {
+      var _this8 = this;
+      if (e.target.checked) {
+        axios.post('/notificationstatus', {
+          'status': 'yes',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+          _this8.$toasted.show("Notifications Enabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      } else {
+        axios.post('/notificationstatus', {
+          'status': 'no',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+          _this8.$toasted.show("Notifications Disabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      }
     } // newline() {
     //   this.message = `${this.message}\n`;
     // },
-
   },
   mounted: function mounted() {
-    console.log(this.loginUser);
+    this.notiStatus = this.userDetail.notification_status == 'yes' ? true : false;
     this.hostname = this.$hostname;
     this.$socket.emit('register', this.loginUser);
     this.getProviders();
@@ -4071,6 +4081,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['creaditsum', 'quoteprice', 'authuser'],
   data: function data() {
@@ -4092,7 +4103,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     filteredQuotelist: function filteredQuotelist() {
       var _this = this;
-
       return this.quotes.filter(function (post) {
         return post.user.first_name.toLowerCase().includes(_this.quoteSearch.toLowerCase()) || post.user.last_name.toLowerCase().includes(_this.quoteSearch.toLowerCase());
       });
@@ -4141,13 +4151,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     sendQuotation: function sendQuotation() {
       var _this2 = this;
-
       if (this.quoteQuestions.category.credit_cost) {
         var credits_cost = this.quoteQuestions.category.credit_cost;
       } else {
         var credits_cost = this.quoteprice;
       }
-
       if (this.price == '' && this.comment == '') {
         this.isPrice = true;
         $('.editr').css('border-color', 'red');
@@ -4186,24 +4194,20 @@ __webpack_require__.r(__webpack_exports__);
           _token: csrf_token
         }).then(function (response) {
           console.log(response.data);
-
           _this2.$toasted.show("Quotation Send Successfully", {
             theme: "bubble",
             position: "top-center",
             type: "success",
             duration: 5000
           });
-
           _this2.isLoading = false;
           _this2.isSubmit = true;
           _this2.comment = '';
           _this2.price = '';
           _this2.quoteQuestions = {};
           _this2.quoteQuestions.myquotation = response.data.quote.myquotation;
-
           if ($(window).width() < 700) {
             _this2.closePanel();
-
             _this2.getQuotes();
           } else {
             $('#chatPanel').hide();
@@ -4230,7 +4234,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     getQuotes: function getQuotes() {
       var _this3 = this;
-
       axios.get('/service-provider/leadsquotes').then(function (responce) {
         console.log(responce.data);
         _this3.quotes = responce.data;
@@ -4244,7 +4247,6 @@ __webpack_require__.r(__webpack_exports__);
         //   var acronym = str.replace(/\s/g, '').split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
         // return acronym;
         var matchess = str.match(/\b(\w)/g); // ['J','S','O','N']
-
         var matches = matchess.slice(0, 2);
         var acronym = matches.join(''); // JSON
 
@@ -4843,15 +4845,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     VueEasyLightbox: vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['authuser'],
+  props: ['authuser', 'userdata'],
   data: function data() {
     return {
       quotes: [],
       loginUser: this.authuser,
+      userDetail: JSON.parse(this.userdata),
+      notiStatus: '',
       activeQuotes: [],
       quoteChat: {},
       isActive: false,
@@ -4893,11 +4898,9 @@ __webpack_require__.r(__webpack_exports__);
       }).pop();
       userdec.last_msg = data.message;
       userdec.updated_at = new Date().toISOString();
-
       if (data.sender_id == this.quoteChat.customer_id && data.quotation_id == this.quoteChat.id) {} else {
         userdec.unread_msg_count += 1;
       }
-
       userdec.chat.push(data);
       var container = this.$el.querySelector("#chatpanelbody");
       $("#chatpanelbody").animate({
@@ -4948,7 +4951,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     filteredUserlist: function filteredUserlist() {
       var _this = this;
-
       return this.orderedUsers.filter(function (post) {
         return post.chatcustomer.first_name.toLowerCase().includes(_this.userSearch.toLowerCase()) || post.chatcustomer.last_name.toLowerCase().includes(_this.userSearch.toLowerCase());
       });
@@ -4964,9 +4966,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     chatStart: function chatStart() {
       var _this2 = this;
-
       this.isEmoji = false;
-
       if (this.editChatid) {
         var msgObj = {
           message: this.message,
@@ -4980,7 +4980,6 @@ __webpack_require__.r(__webpack_exports__);
         post.message = this.message;
         axios.post('/updateMsg', msgObj).then(function (response) {
           console.log(response.data);
-
           _this2.$socket.emit('updateMsg', response.data);
         }, function (err) {
           console.log('err', err);
@@ -5000,8 +4999,9 @@ __webpack_require__.r(__webpack_exports__);
           'quotation_id': this.quoteChat.id,
           '_token': $('meta[name="csrf-token"]').attr('content'),
           'created_at': new Date().toISOString()
-        }; // this.quoteChat.chat.push(obj);
+        };
 
+        // this.quoteChat.chat.push(obj);
         var container = this.$el.querySelector("#chatpanelbody");
         $("#chatpanelbody").animate({
           scrollTop: container.scrollHeight + 7020
@@ -5016,7 +5016,6 @@ __webpack_require__.r(__webpack_exports__);
         this.isDisable = true;
         axios.post('/chatstart', obj).then(function (response) {
           _this2.$set(_this2.quoteChat.chat[_this2.quoteChat.chat.length - 1], 'id', response.data.id);
-
           _this2.$socket.emit('sendMsg', response.data);
         })["catch"](function (error) {
           console.log(error);
@@ -5025,7 +5024,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     uploadfile: function uploadfile(event) {
       var _this3 = this;
-
       var filesdata = this.$refs.myFiles.files;
       filesdata.forEach(function (file) {
         var formDatas = new FormData();
@@ -5045,24 +5043,18 @@ __webpack_require__.r(__webpack_exports__);
         };
         axios.post('/chatFilesShare', formDatas, config).then(function (response) {
           console.log(response);
-
           _this3.quoteChat.chat.push(response.data);
-
           _this3.userdec = _this3.activeQuotes.filter(function (obj) {
             return _this3.quoteChat.id === obj.id;
           }).pop();
           _this3.userdec.last_msg = response.data.message;
           _this3.userdec.updated_at = new Date().toISOString();
-
           _this3.$socket.emit('sendMsg', response.data);
-
           var container = _this3.$el.querySelector("#chatpanelbody");
-
           $("#chatpanelbody").animate({
             scrollTop: container.scrollHeight + 7020
           }, "fast");
           _this3.imgs = [];
-
           for (var i = 0; i <= _this3.quoteChat.chat.length; i++) {
             if (_this3.quoteChat.chat[i].messageType == '1' && _this3.quoteChat.chat[i].isDeleted == '0') {
               _this3.imgs.push(_this3.hostname + '/frontend-assets/images/chat/' + _this3.quoteChat.chat[i].message);
@@ -5103,7 +5095,6 @@ __webpack_require__.r(__webpack_exports__);
         _token: $('meta[name="csrf-token"]').attr('content')
       };
       this.readMsg(msgObj);
-
       for (var i = 0; i <= this.quoteChat.chat.length; i++) {
         if (this.quoteChat.chat[i]) {
           if (this.quoteChat.chat[i].messageType == '1' && this.quoteChat.chat[i].isDeleted == '0') {
@@ -5114,10 +5105,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     readMsg: function readMsg(msgObj) {
       var _this4 = this;
-
       axios.post('/readmsg', msgObj).then(function (response) {
         console.log(response.data);
-
         _this4.$socket.emit('readMsg', {
           id: _this4.loginUser
         });
@@ -5159,7 +5148,6 @@ __webpack_require__.r(__webpack_exports__);
         //   var acronym = str.replace(/\s/g, '').split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'');
         // return acronym;
         var matchess = str.match(/\b(\w)/g); // ['J','S','O','N']
-
         var matches = matchess.slice(0, 2);
         var acronym = matches.join(''); // JSON
 
@@ -5179,7 +5167,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     getCustomer: function getCustomer() {
       var _this5 = this;
-
       axios.get('/service-provider/getcustomer').then(function (responce) {
         _this5.activeQuotes = responce.data;
         $('#tabactive').addClass('active');
@@ -5235,10 +5222,45 @@ __webpack_require__.r(__webpack_exports__);
     onError: function onError(e) {
       alert('Failed to copy the text to the clipboard');
       console.log(e);
+    },
+    notificationStatus: function notificationStatus(e) {
+      var _this6 = this;
+      if (e.target.checked) {
+        axios.post('/notificationstatus', {
+          'status': 'yes',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+          _this6.$toasted.show("Notifications Enabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      } else {
+        axios.post('/notificationstatus', {
+          'status': 'no',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+          _this6.$toasted.show("Notifications Disabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      }
     }
   },
   mounted: function mounted() {
-    console.log(this.loginUser);
+    this.notiStatus = this.userDetail.notification_status == 'yes' ? true : false;
+    console.log(this.notiStatus);
     this.hostname = this.$hostname;
     this.$socket.emit('register', this.loginUser);
     this.getCustomer();
@@ -5273,10 +5295,9 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-var subdomain = location.hostname.split('.').shift(); // alert('subdomain is ' + subdomain);
-
+var subdomain = location.hostname.split('.').shift();
+// alert('subdomain is ' + subdomain);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 Vue.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vue-moment.js"));
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -5288,8 +5309,8 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 
 
-var domainname = window.location.origin; // const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
-
+var domainname = window.location.origin;
+// const SocketInstance = socketio.connect('http://'+subdomain+'.quotebiz.local:3000');
 var SocketInstance = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["default"].connect('https://' + subdomain + '.quotebiz.io:3000');
 Vue.use(new (vue_socket_io__WEBPACK_IMPORTED_MODULE_3___default())({
   debug: true,
@@ -5299,13 +5320,14 @@ Vue.use((vue_toasted__WEBPACK_IMPORTED_MODULE_7___default()));
 Vue.use(vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(v_emoji_picker__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use((vue_wysiwyg__WEBPACK_IMPORTED_MODULE_1___default()), {});
-Vue.use((vue_clipboard2__WEBPACK_IMPORTED_MODULE_6___default())); //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
+Vue.use((vue_clipboard2__WEBPACK_IMPORTED_MODULE_6___default()));
+//window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Vue.config.productionTip = false;
 window.axios.defaults.baseURL = domainname;
-Vue.prototype.$hostname = domainname; // window.axios.defaults.baseURL = 'http://'+subdomain+'.shopgrabthis.com/';
-// Vue.prototype.$hostname = 'http://'+subdomain+'.shopgrabthis.com/'
+Vue.prototype.$hostname = domainname;
 
+// window.axios.defaults.baseURL = 'http://'+subdomain+'.shopgrabthis.com/';
+// Vue.prototype.$hostname = 'http://'+subdomain+'.shopgrabthis.com/'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -5313,18 +5335,24 @@ Vue.prototype.$hostname = domainname; // window.axios.defaults.baseURL = 'http:/
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('leads-component', (__webpack_require__(/*! ./components/serviceprovider/LeadsComponent.vue */ "./resources/js/components/serviceprovider/LeadsComponent.vue")["default"]));
-Vue.component('responses-component', (__webpack_require__(/*! ./components/serviceprovider/ResponsesComponent.vue */ "./resources/js/components/serviceprovider/ResponsesComponent.vue")["default"])); // Customer
+Vue.component('responses-component', (__webpack_require__(/*! ./components/serviceprovider/ResponsesComponent.vue */ "./resources/js/components/serviceprovider/ResponsesComponent.vue")["default"]));
 
-Vue.component('customer-responses-component', (__webpack_require__(/*! ./components/customer/ResponsesComponent.vue */ "./resources/js/components/customer/ResponsesComponent.vue")["default"])); // Question
+// Customer
 
-Vue.component('question-component', (__webpack_require__(/*! ./components/QuestionComponent.vue */ "./resources/js/components/QuestionComponent.vue")["default"])); // Admin Question
+Vue.component('customer-responses-component', (__webpack_require__(/*! ./components/customer/ResponsesComponent.vue */ "./resources/js/components/customer/ResponsesComponent.vue")["default"]));
 
+// Question
+Vue.component('question-component', (__webpack_require__(/*! ./components/QuestionComponent.vue */ "./resources/js/components/QuestionComponent.vue")["default"]));
+
+// Admin Question
 Vue.component('question-admin-component', (__webpack_require__(/*! ./components/QuestionAdminComponent.vue */ "./resources/js/components/QuestionAdminComponent.vue")["default"]));
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -5344,27 +5372,32 @@ var app = new Vue({
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-
-try {// window.Popper = require('popper.js').default;
+try {
+  // window.Popper = require('popper.js').default;
   // window.$ = window.jQuery = require('jquery');
+
   // require('bootstrap');
 } catch (e) {}
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
+
 // import Echo from 'laravel-echo';
+
 // window.Pusher = require('pusher-js');
+
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
@@ -7383,7 +7416,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.v-toast--fade-out{-webkit-animation-name:fadeOut;animation-name:fadeOut}@-webkit-keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}@keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}.v-toast--fade-in-down{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}@-webkit-keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}@keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}.v-toast--fade-in-up{-webkit-animation-name:fadeInUp;animation-name:fadeInUp}.fade-enter-active,.fade-leave-active{transition:opacity 150ms ease-out}.fade-enter,.fade-leave-to{opacity:0}.v-toast{position:fixed;display:flex;top:0;bottom:0;left:0;right:0;padding:2em;overflow:hidden;z-index:1052;pointer-events:none}.v-toast__item{display:inline-flex;align-items:center;-webkit-animation-duration:150ms;animation-duration:150ms;margin:.5em 0;box-shadow:0 1px 4px rgba(0,0,0,.12),0 0 6px rgba(0,0,0,.04);border-radius:.25em;pointer-events:auto;opacity:.92;color:#fff;min-height:3em;cursor:pointer}.v-toast__item--success{background-color:#47d78a}.v-toast__item--info{background-color:#1c85d5}.v-toast__item--warning{background-color:#febc22}.v-toast__item--error{background-color:#f7471c}.v-toast__item--default{background-color:#343a40}.v-toast__item.v-toast__item--top,.v-toast__item.v-toast__item--bottom{align-self:center}.v-toast__item.v-toast__item--top-right,.v-toast__item.v-toast__item--bottom-right{align-self:flex-end}.v-toast__item.v-toast__item--top-left,.v-toast__item.v-toast__item--bottom-left{align-self:flex-start}.v-toast__text{margin:0;padding:.5em 1em;word-break:break-word}.v-toast__icon{display:none}.v-toast.v-toast--top{flex-direction:column}.v-toast.v-toast--bottom{flex-direction:column-reverse}.v-toast.v-toast--custom-parent{position:absolute}@media screen and (max-width: 768px){.v-toast{padding:0;position:fixed !important}}.v-toast__item{opacity:1;min-height:4em}.v-toast__item .v-toast__text{padding:1.5em 1em}.v-toast__item .v-toast__icon{display:block;width:27px;min-width:27px;height:27px;margin-left:1em;background:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45.999 45.999'%3e %3cpath fill='%23fff' d='M39.264 6.736c-8.982-8.981-23.545-8.982-32.528 0-8.982 8.982-8.981 23.545 0 32.528 8.982 8.98 23.545 8.981 32.528 0 8.981-8.983 8.98-23.545 0-32.528zM25.999 33a3 3 0 11-6 0V21a3 3 0 116 0v12zm-3.053-17.128c-1.728 0-2.88-1.224-2.844-2.735-.036-1.584 1.116-2.771 2.879-2.771 1.764 0 2.88 1.188 2.917 2.771-.001 1.511-1.152 2.735-2.952 2.735z'/%3e %3c/svg%3e\") no-repeat}.v-toast__item.v-toast__item--success .v-toast__icon{background:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3e %3cpath fill='%23fff' d='M26 0C11.664 0 0 11.663 0 26s11.664 26 26 26 26-11.663 26-26S40.336 0 26 0zm14.495 17.329l-16 18a1.997 1.997 0 01-2.745.233l-10-8a2 2 0 012.499-3.124l8.517 6.813L37.505 14.67a2.001 2.001 0 012.99 2.659z'/%3e %3c/svg%3e\") no-repeat}.v-toast__item.v-toast__item--error .v-toast__icon{background:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 51.976 51.976'%3e %3cpath fill='%23fff' d='M44.373 7.603c-10.137-10.137-26.632-10.138-36.77 0-10.138 10.138-10.137 26.632 0 36.77s26.632 10.138 36.77 0c10.137-10.138 10.137-26.633 0-36.77zm-8.132 28.638a2 2 0 01-2.828 0l-7.425-7.425-7.778 7.778a2 2 0 11-2.828-2.828l7.778-7.778-7.425-7.425a2 2 0 112.828-2.828l7.425 7.425 7.071-7.071a2 2 0 112.828 2.828l-7.071 7.071 7.425 7.425a2 2 0 010 2.828z'/%3e %3c/svg%3e\") no-repeat}.v-toast__item.v-toast__item--warning .v-toast__icon{background:url(\"data:image/svg+xml,%3csvg viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3e %3cpath fill='%23fff' d='M49.466 41.26L29.216 6.85c-.69-1.16-1.89-1.85-3.22-1.85-1.32 0-2.53.69-3.21 1.85L2.536 41.26c-.71 1.2-.72 2.64-.03 3.85.68 1.18 1.89 1.89 3.24 1.89h40.51c1.35 0 2.56-.71 3.23-1.89.7-1.21.69-2.65-.02-3.85zm-25.53-21.405h3.381v3.187l-.724 8.92H24.66l-.725-8.92v-3.187zm2.97 17.344a1.712 1.712 0 01-1.267.543c-.491 0-.914-.181-1.268-.543a1.788 1.788 0 01-.531-1.297c0-.502.176-.935.53-1.297a1.712 1.712 0 011.269-.544c.49 0 .914.181 1.268.544s.53.795.53 1.297c0 .503-.176.934-.53 1.297z'/%3e %3c/svg%3e\") no-repeat}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@keyframes fadeOut{from{opacity:1}to{opacity:0}}.v-toast--fade-out{animation-name:fadeOut}@keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}.v-toast--fade-in-down{animation-name:fadeInDown}@keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}.v-toast--fade-in-up{animation-name:fadeInUp}.fade-enter-active,.fade-leave-active{transition:opacity 150ms ease-out}.fade-enter,.fade-leave-to{opacity:0}.v-toast{position:fixed;display:flex;top:0;bottom:0;left:0;right:0;padding:2em;overflow:hidden;z-index:1052;pointer-events:none}.v-toast__item{display:inline-flex;align-items:center;animation-duration:150ms;margin:.5em 0;box-shadow:0 1px 4px rgba(0,0,0,.12),0 0 6px rgba(0,0,0,.04);border-radius:.25em;pointer-events:auto;opacity:.92;color:#fff;min-height:3em;cursor:pointer}.v-toast__item--success{background-color:#47d78a}.v-toast__item--info{background-color:#1c85d5}.v-toast__item--warning{background-color:#febc22}.v-toast__item--error{background-color:#f7471c}.v-toast__item--default{background-color:#343a40}.v-toast__item.v-toast__item--top,.v-toast__item.v-toast__item--bottom{align-self:center}.v-toast__item.v-toast__item--top-right,.v-toast__item.v-toast__item--bottom-right{align-self:flex-end}.v-toast__item.v-toast__item--top-left,.v-toast__item.v-toast__item--bottom-left{align-self:flex-start}.v-toast__text{margin:0;padding:.5em 1em;word-break:break-word}.v-toast__icon{display:none}.v-toast.v-toast--top{flex-direction:column}.v-toast.v-toast--bottom{flex-direction:column-reverse}.v-toast.v-toast--custom-parent{position:absolute}@media screen and (max-width: 768px){.v-toast{padding:0;position:fixed !important}}.v-toast__item{opacity:1;min-height:4em}.v-toast__item .v-toast__text{padding:1.5em 1em}.v-toast__item .v-toast__icon{display:block;width:27px;min-width:27px;height:27px;margin-left:1em;background:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45.999 45.999'%3e %3cpath fill='%23fff' d='M39.264 6.736c-8.982-8.981-23.545-8.982-32.528 0-8.982 8.982-8.981 23.545 0 32.528 8.982 8.98 23.545 8.981 32.528 0 8.981-8.983 8.98-23.545 0-32.528zM25.999 33a3 3 0 11-6 0V21a3 3 0 116 0v12zm-3.053-17.128c-1.728 0-2.88-1.224-2.844-2.735-.036-1.584 1.116-2.771 2.879-2.771 1.764 0 2.88 1.188 2.917 2.771-.001 1.511-1.152 2.735-2.952 2.735z'/%3e %3c/svg%3e\") no-repeat}.v-toast__item.v-toast__item--success .v-toast__icon{background:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3e %3cpath fill='%23fff' d='M26 0C11.664 0 0 11.663 0 26s11.664 26 26 26 26-11.663 26-26S40.336 0 26 0zm14.495 17.329l-16 18a1.997 1.997 0 01-2.745.233l-10-8a2 2 0 012.499-3.124l8.517 6.813L37.505 14.67a2.001 2.001 0 012.99 2.659z'/%3e %3c/svg%3e\") no-repeat}.v-toast__item.v-toast__item--error .v-toast__icon{background:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 51.976 51.976'%3e %3cpath fill='%23fff' d='M44.373 7.603c-10.137-10.137-26.632-10.138-36.77 0-10.138 10.138-10.137 26.632 0 36.77s26.632 10.138 36.77 0c10.137-10.138 10.137-26.633 0-36.77zm-8.132 28.638a2 2 0 01-2.828 0l-7.425-7.425-7.778 7.778a2 2 0 11-2.828-2.828l7.778-7.778-7.425-7.425a2 2 0 112.828-2.828l7.425 7.425 7.071-7.071a2 2 0 112.828 2.828l-7.071 7.071 7.425 7.425a2 2 0 010 2.828z'/%3e %3c/svg%3e\") no-repeat}.v-toast__item.v-toast__item--warning .v-toast__icon{background:url(\"data:image/svg+xml,%3csvg viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3e %3cpath fill='%23fff' d='M49.466 41.26L29.216 6.85c-.69-1.16-1.89-1.85-3.22-1.85-1.32 0-2.53.69-3.21 1.85L2.536 41.26c-.71 1.2-.72 2.64-.03 3.85.68 1.18 1.89 1.89 3.24 1.89h40.51c1.35 0 2.56-.71 3.23-1.89.7-1.21.69-2.65-.02-3.85zm-25.53-21.405h3.381v3.187l-.724 8.92H24.66l-.725-8.92v-3.187zm2.97 17.344a1.712 1.712 0 01-1.267.543c-.491 0-.914-.181-1.268-.543a1.788 1.788 0 01-.531-1.297c0-.502.176-.935.53-1.297a1.712 1.712 0 011.269-.544c.49 0 .914.181 1.268.544s.53.795.53 1.297c0 .503-.176.934-.53 1.297z'/%3e %3c/svg%3e\") no-repeat}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -64251,10 +64284,76 @@ var render = function () {
                         ),
                       ]),
                       _vm._v(" "),
-                      _vm._m(9),
+                      _c("div", { staticClass: "chat-profile-group" }, [
+                        _vm._m(9),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "chat-profile-body collapse ",
+                            attrs: { id: "chat-settings" },
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "chat-profile-body-inner" },
+                              [
+                                _c(
+                                  "ul",
+                                  { staticClass: "chat-profile-settings" },
+                                  [
+                                    _c("li", [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "custom-control custom-control-sm custom-switch",
+                                        },
+                                        [
+                                          _c("input", {
+                                            staticClass: "custom-control-input",
+                                            attrs: {
+                                              type: "checkbox",
+                                              id: "customSwitch2",
+                                            },
+                                            domProps: {
+                                              checked: _vm.notiStatus,
+                                            },
+                                            on: {
+                                              change: function ($event) {
+                                                return _vm.notificationStatus(
+                                                  $event
+                                                )
+                                              },
+                                            },
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "custom-control-label",
+                                              attrs: { for: "customSwitch2" },
+                                            },
+                                            [_vm._v("Notifications")]
+                                          ),
+                                        ]
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(10),
+                                    _vm._v(" "),
+                                    _vm._m(11),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "chat-profile-group" }, [
-                        _vm._m(10),
+                        _vm._m(12),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -64601,110 +64700,61 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "chat-profile-group" }, [
-      _c(
-        "a",
-        {
-          staticClass: "chat-profile-head",
-          attrs: {
-            href: "#",
-            "data-toggle": "collapse",
-            "data-target": "#chat-settings",
-          },
+    return _c(
+      "a",
+      {
+        staticClass: "chat-profile-head",
+        attrs: {
+          href: "#",
+          "data-toggle": "collapse",
+          "data-target": "#chat-settings",
         },
-        [
-          _c("h6", { staticClass: "title overline-title" }, [
-            _vm._v("Settings"),
-          ]),
+      },
+      [
+        _c("h6", { staticClass: "title overline-title" }, [_vm._v("Settings")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "indicator-icon" }, [
+          _c("em", { staticClass: "icon ni ni-chevron-down" }),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "chat-option-link", attrs: { href: "#" } }, [
+        _c("em", {
+          staticClass: "icon icon-circle bg-light ni ni-bell-off-fill",
+        }),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "lead-text" }, [_vm._v("Ignore Messages")]),
           _vm._v(" "),
-          _c("span", { staticClass: "indicator-icon" }, [
-            _c("em", { staticClass: "icon ni ni-chevron-down" }),
+          _c("span", { staticClass: "sub-text" }, [
+            _vm._v("You won’t be notified when message you."),
           ]),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "chat-profile-body collapse ",
-          attrs: { id: "chat-settings" },
-        },
-        [
-          _c("div", { staticClass: "chat-profile-body-inner" }, [
-            _c("ul", { staticClass: "chat-profile-settings" }, [
-              _c("li", [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "custom-control custom-control-sm custom-switch",
-                  },
-                  [
-                    _c("input", {
-                      staticClass: "custom-control-input",
-                      attrs: { type: "checkbox", id: "customSwitch2" },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-control-label",
-                        attrs: { for: "customSwitch2" },
-                      },
-                      [_vm._v("Notifications")]
-                    ),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "chat-option-link", attrs: { href: "#" } },
-                  [
-                    _c("em", {
-                      staticClass:
-                        "icon icon-circle bg-light ni ni-bell-off-fill",
-                    }),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("span", { staticClass: "lead-text" }, [
-                        _vm._v("Ignore Messages"),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub-text" }, [
-                        _vm._v("You won’t be notified when message you."),
-                      ]),
-                    ]),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "chat-option-link", attrs: { href: "#" } },
-                  [
-                    _c("em", {
-                      staticClass: "icon icon-circle bg-light ni ni-alert-fill",
-                    }),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("span", { staticClass: "lead-text" }, [
-                        _vm._v("Something Wrong"),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub-text" }, [
-                        _vm._v("Give feedback and report conversion."),
-                      ]),
-                    ]),
-                  ]
-                ),
-              ]),
-            ]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "chat-option-link", attrs: { href: "#" } }, [
+        _c("em", { staticClass: "icon icon-circle bg-light ni ni-alert-fill" }),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "lead-text" }, [_vm._v("Something Wrong")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "sub-text" }, [
+            _vm._v("Give feedback and report conversion."),
           ]),
-        ]
-      ),
+        ]),
+      ]),
     ])
   },
   function () {
@@ -88805,7 +88855,7 @@ function hasBinary(obj, toJSON) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"D:\\\\reactProject\\\\quoteBiz\\\\quotebiz","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","D:\\\\new_version\\\\quotebiz"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"D:\\\\new_version\\\\quotebiz","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
