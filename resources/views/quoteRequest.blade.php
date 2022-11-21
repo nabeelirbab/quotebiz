@@ -517,7 +517,11 @@ $("#result").html('');
 </script>
 @else
 <script>
+	@if($providercountry)
 	var pc = "{{ $providercountry->iso2 }}";
+	@else 
+    var pc = 'au';
+	@endif
 	var loc = pc.toLowerCase();
 	google.maps.event.addDomListener(window, 'load', initialize);
 
