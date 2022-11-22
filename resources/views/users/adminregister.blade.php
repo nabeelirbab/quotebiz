@@ -16,7 +16,7 @@
 </style>
 @section('content')
     
-    <form enctype="multipart/form-data" action="{{ url('admin/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
+    <form enctype="multipart/form-data" action="{{ url('signup') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
         <div class="row mt-5 mc-form">
             <div class="col-md-2"></div>
@@ -99,13 +99,13 @@
                         <b>Where will you quotebiz be located?</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <select name="business_type" class="form-control" required onchange="GetTypeData(this.value)" required>
+                     <select name="admin_location_type" class="form-control" required onchange="GetTypeData(this.value)" required>
                         <option disabled selected value="">Select Type</option>
-                        <option value="Worldwide">
-                            Worldwide
+                        <option value="World Wide">
+                            World Wise
                         </option>
-                        <option value="Countrywide">
-                           Countrywide
+                        <option value="Country Wise">
+                           Country Wise
                         </option>
                     </select>
                   </div>
@@ -188,7 +188,7 @@
         });
         
         function GetTypeData(val){
-           if(val == 'Countrywide'){
+           if(val == 'Country Wise'){
              $('#countrySection').show();
            }else{
              $('#countrySection').hide();

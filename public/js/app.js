@@ -2269,11 +2269,13 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueEasyLightbox: vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['authuser'],
+  props: ['authuser', 'userdata'],
   data: function data() {
     return {
       quotes: [],
       loginUser: this.authuser,
+      userDetail: JSON.parse(this.userdata),
+      notiStatus: '',
       activeQuotes: [],
       quoteChat: {},
       isActive: false,
@@ -2674,13 +2676,50 @@ __webpack_require__.r(__webpack_exports__);
     onError: function onError(e) {
       alert('Failed to copy the text to the clipboard');
       console.log(e);
+    },
+    notificationStatus: function notificationStatus(e) {
+      var _this8 = this;
+
+      if (e.target.checked) {
+        axios.post('/notificationstatus', {
+          'status': 'yes',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+
+          _this8.$toasted.show("Notifications Enabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      } else {
+        axios.post('/notificationstatus', {
+          'status': 'no',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+
+          _this8.$toasted.show("Notifications Disabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      }
     } // newline() {
     //   this.message = `${this.message}\n`;
     // },
 
   },
   mounted: function mounted() {
-    console.log(this.loginUser);
+    this.notiStatus = this.userDetail.notification_status == 'yes' ? true : false;
     this.hostname = this.$hostname;
     this.$socket.emit('register', this.loginUser);
     this.getProviders();
@@ -2914,11 +2953,13 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueEasyLightbox: vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['authuser'],
+  props: ['authuser', 'userdata'],
   data: function data() {
     return {
       quotes: [],
       loginUser: this.authuser,
+      userDetail: JSON.parse(this.userdata),
+      notiStatus: '',
       activeQuotes: [],
       quoteChat: {},
       isActive: false,
@@ -3302,10 +3343,48 @@ __webpack_require__.r(__webpack_exports__);
     onError: function onError(e) {
       alert('Failed to copy the text to the clipboard');
       console.log(e);
+    },
+    notificationStatus: function notificationStatus(e) {
+      var _this6 = this;
+
+      if (e.target.checked) {
+        axios.post('/notificationstatus', {
+          'status': 'yes',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+
+          _this6.$toasted.show("Notifications Enabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      } else {
+        axios.post('/notificationstatus', {
+          'status': 'no',
+          '_token': $('meta[name="csrf-token"]').attr('content')
+        }).then(function (response) {
+          console.log(response.data);
+
+          _this6.$toasted.show("Notifications Disabled", {
+            theme: "bubble",
+            position: "top-center",
+            type: "success",
+            duration: 5000
+          });
+        }, function (err) {
+          console.log('err', err);
+        });
+      }
     }
   },
   mounted: function mounted() {
-    console.log(this.loginUser);
+    this.notiStatus = this.userDetail.notification_status == 'yes' ? true : false;
+    console.log(this.notiStatus);
     this.hostname = this.$hostname;
     this.$socket.emit('register', this.loginUser);
     this.getCustomer();
@@ -6960,9 +7039,41 @@ var render = function render() {
     })], 2);
   }), _vm._v(" "), _c("br"), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {
     staticClass: "mt-4"
-  }, [_c("h6", [_vm._v("Additional Information")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.additional_info))])])], 2)])])]), _vm._v(" "), _vm._m(9), _vm._v(" "), _c("div", {
+  }, [_c("h6", [_vm._v("Additional Information")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.additional_info))])])], 2)])])]), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-group"
-  }, [_vm._m(10), _vm._v(" "), _c("div", {
+  }, [_vm._m(9), _vm._v(" "), _c("div", {
+    staticClass: "chat-profile-body collapse",
+    attrs: {
+      id: "chat-settings"
+    }
+  }, [_c("div", {
+    staticClass: "chat-profile-body-inner"
+  }, [_c("ul", {
+    staticClass: "chat-profile-settings"
+  }, [_c("li", [_c("div", {
+    staticClass: "custom-control custom-control-sm custom-switch"
+  }, [_c("input", {
+    staticClass: "custom-control-input",
+    attrs: {
+      type: "checkbox",
+      id: "customSwitch2"
+    },
+    domProps: {
+      checked: _vm.notiStatus
+    },
+    on: {
+      change: function change($event) {
+        return _vm.notificationStatus($event);
+      }
+    }
+  }), _vm._v(" "), _c("label", {
+    staticClass: "custom-control-label",
+    attrs: {
+      "for": "customSwitch2"
+    }
+  }, [_vm._v("Notifications")])])]), _vm._v(" "), _vm._m(10), _vm._v(" "), _vm._m(11)])])])]), _vm._v(" "), _c("div", {
+    staticClass: "chat-profile-group"
+  }, [_vm._m(12), _vm._v(" "), _c("div", {
     staticClass: "chat-profile-body collapse",
     attrs: {
       id: "chat-photos"
@@ -7209,9 +7320,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "chat-profile-group"
-  }, [_c("a", {
+  return _c("a", {
     staticClass: "chat-profile-head",
     attrs: {
       href: "#",
@@ -7224,29 +7333,12 @@ var staticRenderFns = [function () {
     staticClass: "indicator-icon"
   }, [_c("em", {
     staticClass: "icon ni ni-chevron-down"
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "chat-profile-body collapse",
-    attrs: {
-      id: "chat-settings"
-    }
-  }, [_c("div", {
-    staticClass: "chat-profile-body-inner"
-  }, [_c("ul", {
-    staticClass: "chat-profile-settings"
-  }, [_c("li", [_c("div", {
-    staticClass: "custom-control custom-control-sm custom-switch"
-  }, [_c("input", {
-    staticClass: "custom-control-input",
-    attrs: {
-      type: "checkbox",
-      id: "customSwitch2"
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "custom-control-label",
-    attrs: {
-      "for": "customSwitch2"
-    }
-  }, [_vm._v("Notifications")])])]), _vm._v(" "), _c("li", [_c("a", {
+  })])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("li", [_c("a", {
     staticClass: "chat-option-link",
     attrs: {
       href: "#"
@@ -7257,7 +7349,12 @@ var staticRenderFns = [function () {
     staticClass: "lead-text"
   }, [_vm._v("Ignore Messages")]), _vm._v(" "), _c("span", {
     staticClass: "sub-text"
-  }, [_vm._v("You won’t be notified when message you.")])])])]), _vm._v(" "), _c("li", [_c("a", {
+  }, [_vm._v("You won’t be notified when message you.")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("li", [_c("a", {
     staticClass: "chat-option-link",
     attrs: {
       href: "#"
@@ -7268,7 +7365,7 @@ var staticRenderFns = [function () {
     staticClass: "lead-text"
   }, [_vm._v("Something Wrong")]), _vm._v(" "), _c("span", {
     staticClass: "sub-text"
-  }, [_vm._v("Give feedback and report conversion.")])])])])])])])]);
+  }, [_vm._v("Give feedback and report conversion.")])])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;

@@ -133,7 +133,7 @@ public function resendAdminActivationEmail(Request $request)
 
 public function login(Request $request)
 {
-dd($request->all());
+
     if (\Acelle\Model\Setting::get('enable_user_registration') == 'no') {
       return $this->notAuthorized();
     }
@@ -288,8 +288,7 @@ public function register(Request $request)
 
     public function adminregister(Request $request)
     {
-
-
+        
     if (\Acelle\Model\Setting::get('enable_user_registration') == 'no') {
      return $this->notAuthorized();
     }

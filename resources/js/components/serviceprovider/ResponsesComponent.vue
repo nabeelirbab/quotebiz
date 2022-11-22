@@ -484,7 +484,7 @@
                     <ul class="chat-profile-settings">
                         <li>
                             <div class="custom-control custom-control-sm custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                                <input type="checkbox" class="custom-control-input" @change="notificationStatus($event)" id="customSwitch2" :checked="notiStatus">
                                 <label class="custom-control-label" for="customSwitch2">Notifications</label>
                             </div>
                         </li>
@@ -575,11 +575,14 @@ export default {
   },
 props: [
           'authuser',
+          'userdata'
           ],
 data() {
     return {
         quotes: [],
         loginUser: this.authuser,
+        userDetail: JSON.parse(this.userdata),
+        notiStatus: '',
         activeQuotes : [],
         quoteChat: {},
         isActive : false,
@@ -1011,11 +1014,39 @@ methods: {
                 alert('Failed to copy the text to the clipboard')
                 console.log(e);
          },
+         notificationStatus(e){
+           if (e.target.checked) {
+              axios.post('/notificationstatus',{'status':'yes','_token': $('meta[name="csrf-token"]').attr('content')}).then(response => {
+                  console.log(response.data);
+                   this.$toasted.show("Notifications Enabled", { 
+                     theme: "bubble", 
+                     position: "top-center", 
+                     type: "success",
+                     duration : 5000
+                     });
+              }, function(err) {
+                console.log('err', err);
+              })
+             }else{
+             axios.post('/notificationstatus',{'status':'no','_token': $('meta[name="csrf-token"]').attr('content')}).then(response => {
+                      console.log(response.data);
+                     this.$toasted.show("Notifications Disabled", { 
+                     theme: "bubble", 
+                     position: "top-center", 
+                     type: "success",
+                     duration : 5000
+                     });
+                  }, function(err) {
+                    console.log('err', err);
+             })
+             }
+         }
 
    },
 
 mounted() {
-        console.log(this.loginUser);
+        this.notiStatus = this.userDetail.notification_status == 'yes' ? true : false;
+        console.log(this.notiStatus)
         this.hostname = this.$hostname;
         this.$socket.emit('register',this.loginUser);
         this.getCustomer();

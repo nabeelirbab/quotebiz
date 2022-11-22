@@ -141,7 +141,7 @@ delete_outline
                 <div class="sub_section">
                     <h3 class="text-semibold text-primary mb-4">{{ trans('messages.account') }}</h3>
 
-                    @include('helpers.form_control', ['type' => 'text', 'name' => 'email', 'value' => $customer->user->email, 'help_class' => 'profile', 'rules' => $user->rules()])
+                    @include('helpers.form_control', ['type' => 'text', 'value' => $customer->user->email, 'help_class' => 'profile', 'rules' => $user->rules()])
 
                     @include('helpers.form_control', ['type' => 'password', 'label'=> trans('messages.new_password'), 'name' => 'password', 'rules' => $user->rules()])
 

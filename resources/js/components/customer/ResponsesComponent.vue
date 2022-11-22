@@ -588,11 +588,14 @@ export default {
   },
 props: [
           'authuser',
+          'userdata'
           ],
 data() {
     return {
         quotes: [],
         loginUser: this.authuser,
+        userDetail: JSON.parse(this.userdata),
+        notiStatus: '',
         activeQuotes : [],
         quoteChat: {},
         isActive : false,
@@ -1044,6 +1047,34 @@ methods: {
                 console.log(e);
          },
 
+    notificationStatus(e){
+       if (e.target.checked) {
+          axios.post('/notificationstatus',{'status':'yes','_token': $('meta[name="csrf-token"]').attr('content')}).then(response => {
+              console.log(response.data);
+              this.$toasted.show("Notifications Enabled", { 
+             theme: "bubble", 
+             position: "top-center", 
+             type: "success",
+             duration : 5000
+             });
+          }, function(err) {
+            console.log('err', err);
+          })
+         }else{
+         axios.post('/notificationstatus',{'status':'no','_token': $('meta[name="csrf-token"]').attr('content')}).then(response => {
+                  console.log(response.data);
+                this.$toasted.show("Notifications Disabled", { 
+                 theme: "bubble", 
+                 position: "top-center", 
+                 type: "success",
+                 duration : 5000
+                 });
+              }, function(err) {
+                console.log('err', err);
+         })
+         }
+    }
+
 
      // newline() {
      //   this.message = `${this.message}\n`;
@@ -1053,7 +1084,7 @@ methods: {
    },
 
 mounted() {
-        console.log(this.loginUser);
+        this.notiStatus = this.userDetail.notification_status == 'yes' ? true : false;
         this.hostname = this.$hostname;
         this.$socket.emit('register',this.loginUser);
         this.getProviders();
