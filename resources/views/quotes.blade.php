@@ -47,7 +47,7 @@
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Category</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Address</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Additional Information</span></div>
-            <div class="nk-tb-col h2"><span class="sub-text">Quotations</span></div>
+            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Quotations</span></div>
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Posted on</span></div>
             <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col h2"><span class="sub-text">Action</span></div>
@@ -83,7 +83,7 @@
             <div class="nk-tb-col tb-col-md">
                 <span>{{Str::limit($quote->additional_info, 120, '...')}}</span>
             </div>
-            <div class="nk-tb-col">
+            <div class="nk-tb-col tb-col-md">
                 <span  data-toggle="modal" data-target="#modalEdit{{$quote->id}}">{{count($quote->quotations)}}</span>
             </div>
             <div class="nk-tb-col tb-col-lg">

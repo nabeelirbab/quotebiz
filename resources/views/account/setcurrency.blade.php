@@ -36,7 +36,7 @@ person_outline
         <div class="card-inner">
            <div class="preview-block">
                 <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
-             <form action="" method="post" enctype="multipart/form-data" style="padding: 40px">
+             <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    <div class="col-sm-7">
