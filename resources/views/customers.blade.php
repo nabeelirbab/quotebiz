@@ -97,7 +97,7 @@
                     <label class="custom-control-label" for="uid"></label>
                 </div>
             </div> -->
-            <div class="nk-tb-col"><span class="sub-text">#ID</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
             <div class="nk-tb-col tb-col-md"><span class="sub-text">Zip Code</span></div>
@@ -115,7 +115,7 @@
                     <label class="custom-control-label" for="uid1"></label>
                 </div>
             </div> -->
-             <div class="nk-tb-col">
+             <div class="nk-tb-col tb-col-lg">
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">

@@ -84,10 +84,10 @@
                     <label class="custom-control-label" for="uid"></label>
                 </div>
             </div> -->
-            <div class="nk-tb-col"><span class="sub-text">#</span></div>
+            <div class="nk-tb-col tb-col-mb"><span class="sub-text">#</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
-            <div class="nk-tb-col"><span class="sub-text">Business Name</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Category</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Service Location Setting</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div>
@@ -100,7 +100,7 @@
         </div><!-- .nk-tb-item -->
         @foreach($users as $user)
         <div class="nk-tb-item">
-             <div class="nk-tb-col tb-col-mb">
+             <div class="nk-tb-col  tb-col-mb">
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">

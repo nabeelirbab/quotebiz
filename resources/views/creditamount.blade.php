@@ -64,7 +64,7 @@
         <div class="nk-tb-col text-center"><span>Cost Amount</span></div>
         <div class="nk-tb-col text-center"><span>Credits</span></div>
         <div class="nk-tb-col text-center tb-col-sm"><span>Created At</span></div>
-        <div class="nk-tb-col text-center tb-col-sm"><span>Actions</span></div>
+        <div class="nk-tb-col text-center"><span>Actions</span></div>
     </div><!-- .nk-tb-item -->
  @foreach($credits as $creadit)
     <div class="nk-tb-item">
@@ -89,7 +89,7 @@
         <div class="nk-tb-col text-center tb-col-sm">
             <span class="tb-amount">{{\Carbon\Carbon::parse($creadit->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
         </div>
-        <div class="nk-tb-col text-center">
+        <div class="nk-tb-col text-center pp">
             
             <span class="badge badge-sm badge-dim badge-outline-success" onclick="openNavEdit('{{$creadit->id}}')" style="cursor: pointer;">Edit</span>
             <a href="{{ url('admin/deletecredit/'.$creadit->id) }}" class="badge badge-sm badge-dim badge-outline-danger" style="cursor: pointer;">Delete</a>
