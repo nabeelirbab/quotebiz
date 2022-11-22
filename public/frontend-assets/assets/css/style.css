@@ -201,6 +201,7 @@
     display: table-cell !important;
 }
 }
+
 @media only screen and (max-width: 600px) {
   .col-sm-4{
     flex: 0 0 33.33333%;
@@ -409,3 +410,81 @@
     border-radius: 0px;
 }
 }
+@media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 2) {
+        .col-sm-4{
+            flex: 0 0 33.33333%;
+            max-width: 33.33333%;
+         }
+        .nk-msg-body {
+            max-height: calc(100vh - (27px + 112px));
+         }
+        .sidepanel  {
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          height: auto;
+          top: 0;
+          right: 0;
+          background-color: #fff;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+        }
+
+        .panelWidth{
+            width: 100%;
+            top: 50px;
+            padding: 50px;
+        }
+         .nk-msg-item {
+        padding: 1.25rem 1.75rem;
+        }
+        .form-label{
+          font-size: 0.75rem;
+        }
+        .card.mb-4{
+          margin-top: 2.75rem !important;
+        }
+        .nav-tabs .nav-item {
+            padding-right: 0.5rem;
+        }
+        #chatPanel{
+            display: none !important;
+        }
+        .nk-msg-body{
+          top: 146px;
+        }
+        .nk-msg-top{
+          top: 73px;
+        }
+        .nk-msg-top {
+          max-height: calc(100vh - (0px + 70px));
+         }
+        .nkchatbody {
+            position: relative;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .editr--toolbar {
+            background: #f6f6f6;
+            border-bottom: 1px solid #e4e4e4;
+            position: relative;
+            display: flex;
+            height: 55px !important;
+        }
+        ::-webkit-scrollbar {
+          height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+          width: 4px;               /* width of vertical scrollbar */
+          border: 1px solid #d5d5d5;
+        }
+        .nkchatbody{
+          position: relative;
+          opacity: 1;
+          pointer-events: auto;
+          max-height: calc(115vh - (65px + 112px));
+          border-radius: 0px;
+      }
+     }
