@@ -55,7 +55,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                 <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
                  <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                <div class="row d-flex justify-content-center gy-4" style="padding: 45px;">
+                <div class="row d-flex justify-content-center gy-4">
                    <div class="col-sm-10">
                     <div class="row">
                     <div class="col-sm-6 mb-4">
@@ -144,7 +144,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                       <label class="form-label"> Site description
                             <span class="text-danger">*</span>
                       </label>
-                     <textarea type="text" name="site_description" rows="10" class="form-control required ">{{$sitedesc}}</textarea>  </div>
+                     <textarea type="text" name="site_description" rows="20" class="form-control required ">{{$sitedesc}}</textarea>  </div>
                      </div>
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-success btn-lg" type="submit">@if($sitesetting) Update @else Save @endif</button>
