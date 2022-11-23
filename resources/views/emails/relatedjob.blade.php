@@ -136,7 +136,7 @@ New Customer Alert
 </tr>
 <tr>
 <td bgcolor="#ffffff" align="left" valign="middle" style="padding:0px 0px 0;color:#111111;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
-<a href="" style="font-size:16px;font-family:DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:block;text-align:center;background-color:#48a7fe" >
+<a href="{{url('/service-provider/quotes-leads')}}" style="font-size:16px;font-family:DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:block;text-align:center;background-color:#48a7fe" >
 Contact {{$maildata['jobdetail']->user->first_name}} Now
 </a>
 </td>
@@ -236,7 +236,7 @@ Project Details
 
 <tr>
 <td bgcolor="#ffffff" align="left" style="padding:0px 30px 30px;color:#111111;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
-<a href="" style="font-size:16px;font-family:DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:inline-block;background-color:#48a7fe" >Contact {{$maildata['jobdetail']->user->first_name}} Now</a>
+<a href="{{url('/service-provider/quotes-leads')}}" style="font-size:16px;font-family:DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:inline-block;background-color:#48a7fe" >Contact {{$maildata['jobdetail']->user->first_name}} Now</a>
 </td>
 </tr>
 
@@ -305,7 +305,7 @@ you all your credits back.
 
 <tr>
 <td bgcolor="#ffffff" align="left" style="padding:20px 0px 0;color:#111111;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
-<a href="" style="font-size:16px;font-family:DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:inline-block;background-color:#48a7fe" >Contact {{$maildata['jobdetail']->user->first_name}} Now</a>
+<a href="{{url('/service-provider/quotes-leads')}}" style="font-size:16px;font-family:DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:inline-block;background-color:#48a7fe" >Contact {{$maildata['jobdetail']->user->first_name}} Now</a>
 </td>
 </tr>
 
