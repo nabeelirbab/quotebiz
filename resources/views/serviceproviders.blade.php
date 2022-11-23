@@ -34,8 +34,8 @@
 
 </div><!-- .nk-block-head-content -->
 <div class="float-right">
-<a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info" >Invited Service Providers</a>
-<button class="btn btn-success " data-toggle="modal" data-target="#modalEdit">Invite</button>
+<a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited Service Providers</a>
+<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit">Invite</button>
 </div>
 
 </div><!-- .nk-block-between -->
@@ -84,7 +84,7 @@
                     <label class="custom-control-label" for="uid"></label>
                 </div>
             </div> -->
-            <div class="nk-tb-col tb-col-mb"><span class="sub-text">#</span></div>
+            <div class="nk-tb-col tb-col-md"><span class="sub-text">#</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Business Name</span></div>
@@ -94,13 +94,13 @@
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registered On</span></div>
-            <div class="nk-tb-col"><span class="sub-text">Status</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
            
         </div><!-- .nk-tb-item -->
         @foreach($users as $user)
         <div class="nk-tb-item">
-             <div class="nk-tb-col  tb-col-mb">
+             <div class="nk-tb-col  tb-col-md">
                 <span >{{$user->id}}</span>
             </div>
             <div class="nk-tb-col">
@@ -159,7 +159,7 @@
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
             </div>
-            <div class="nk-tb-col">
+            <div class="nk-tb-col tb-col-lg">
                 @if($user->activated == 0)
                 <span class="tb-status text-danger">Inactive</span>
                 @else
