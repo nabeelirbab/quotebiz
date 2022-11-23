@@ -101,7 +101,7 @@ class CustomerController extends Controller
         //     $request->merge(array("admin_id" => $request->user()->admin->id));
         // }
 
-        $customers = \Acelle\Model\User::where('user_type','service_provider')->orderBy('id','asc')
+        $customers = \Acelle\Model\User::where('user_type','service_provider')->orderBy('id','desc')
             ->paginate($request->per_page);
 
         return view('admin.customers._splist', [
@@ -121,7 +121,7 @@ class CustomerController extends Controller
         //     $request->merge(array("admin_id" => $request->user()->admin->id));
         // }
 
-        $customers = \Acelle\Model\User::where('user_type','client')->orderBy('id','asc')
+        $customers = \Acelle\Model\User::where('user_type','client')->orderBy('id','desc')
             ->paginate($request->per_page);
 
         return view('admin.customers._userlist', [
