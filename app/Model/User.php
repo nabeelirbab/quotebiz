@@ -52,7 +52,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'first_name', 'last_name','subdomain','user_type','date_format','fcm_token'
+        'email', 'first_name', 'last_name','subdomain','user_type','date_format','fcm_token','admin_address'
     ];
 
     /**

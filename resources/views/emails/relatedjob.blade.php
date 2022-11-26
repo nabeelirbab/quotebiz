@@ -1,3 +1,7 @@
+
+<?php 
+  $admindetail =  Acelle\Jobs\HelperJob::admindetail();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -312,7 +316,7 @@ you all your credits back.
 
 <tr>
 <td bgcolor="#ffffff" align="left" style="padding:20px 0px 0;color:#61696d;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
-<p style="margin:0">If you have any questions, please call <a style="color:#3eaefc" href="tel:+442036970237" target="_blank">020 3697 0237</a> (open 24 hours a day, 7 days a week) or email <a href="mailto:team@bark.com" style="color:#48a7fe;text-decoration:underline" target="_blank">team@<span class="il">quote</span>.io</a> and we'll be happy to help.</p>
+<p style="margin:0">If you have any questions, please call <a style="color:#3eaefc" href="tel:+442036970237" target="_blank">020 3697 0237</a> (open 24 hours a day, 7 days a week) or email <a href="mailto:team@bark.com" style="color:#48a7fe;text-decoration:underline" target="_blank">team@<span class="il">{{ \Acelle\Model\Setting::get('site_name') }}</span></a> and we'll be happy to help.</p>
 </td>
 </tr>
 
@@ -340,11 +344,10 @@ you all your credits back.
 </tr>
 <tr>         
  <td bgcolor="#f4f4f4" align="center" style="padding:0px 10px 0px 10px">  
-     <table border="0" cellpadding="0" cellspacing="0" width="600" class="m_-8167979757003078776wrapper"> 
-            	<tbody>
-            	<tr>
-            	<td bgcolor="#f4f4f4" align="center" style="padding:0px 30px 30px 30px;color:#666666;font-family:DM Sans, sans-serif;font-size:14px;font-weight:400;line-height:18px">
-            	 <p style="margin:0"><a style="color:#3eaefc" href=""><span class="il">Quotebiz</span>.io Global Limited</a> 2022 | 85 Great Portland Street, London, England, W1W 7LT (registered in England &amp; Wales, registration number 10614196)</p>    
+     <table border="0" cellpadding="0" cellspacing="0" width="600" class="m_-8167979757003078776wrapper">   <tbody>
+    	<tr>
+    	<td bgcolor="#f4f4f4" align="center" style="padding:0px 30px 30px 30px;color:#666666;font-family:DM Sans, sans-serif;font-size:14px;font-weight:400;line-height:18px">
+    	 <p style="margin:0"><a style="color:#3eaefc" href="{{ url('/') }}"><span class="il">{{ \Acelle\Model\Setting::get('site_name') }}</span></a> {{$admindetail->admin_address}}</p>    
       </td> 
  </tr> 
  </tbody> 
