@@ -128,6 +128,12 @@
                         <span class="profile-ud-value">{{\Carbon\Carbon::parse($userdetail->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
                     </div>
                 </div>
+                <div class="profile-ud-item">
+                    <div class="profile-ud wider">
+                        <span class="profile-ud-label">Credits</span>
+                        <span class="profile-ud-value">{{$userdetail->credits}}</span>
+                    </div>
+                </div>
             </div><!-- .profile-ud-list -->
         </div><!-- .nk-block -->
         <div class="nk-divider divider md"></div>

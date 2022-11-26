@@ -331,6 +331,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
 });
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
+    Route::post('/add-credits', 'UserController@spcredits');
     Route::get('/invitedserviceproviders', 'HomeController@invitedserviceproviders');
     Route::get('/location_setting/{id}', 'HomeController@location_setting');
     Route::post('/Save_location_setting', 'HomeController@Save_location_setting');

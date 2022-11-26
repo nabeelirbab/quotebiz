@@ -393,6 +393,13 @@ return view('creditamount',compact('credits'));
 
 }
 
+public function spcredits(Request $request){
+     $credits = User::find($request->user_id)->credits;
+     $total = $credits + $request->credits;
+     User::where('id',$request->user_id)->update(['credits' => $total]);
+     return redirect()->back()->with('success', 'Creadit add Successfully');   
+}
+
 public function quoteprice(Request $request){
     if($request->id){
         $quoteprice = QuotePrice::find($request->id);
@@ -558,9 +565,8 @@ public function sp_register(Request $request){
   return view('users.sp-register');
 }
 
-public function logout(){
-
-    Auth::logout();
-    return redirect('users/login');
-}
+  public function logout(){
+        Auth::logout();
+        return redirect('users/login');
+  }
 }
