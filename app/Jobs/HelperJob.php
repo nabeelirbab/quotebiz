@@ -176,4 +176,8 @@ class HelperJob extends Base
         return  User::select('admin_location_type','country','state','city')->where('subdomain',$route)->where('user_type','admin')->first();
     }
 
+    public static function admindetail(){
+      return  User::where('subdomain',request('account'))->where('user_type','admin')->first();
+    }
+
 }

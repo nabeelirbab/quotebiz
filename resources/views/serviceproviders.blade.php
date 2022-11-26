@@ -174,6 +174,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <ul class="link-list-opt no-bdr">
                                     <li><a href="{{ url('admin/profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                    <li onclick="addCredits('{{$user->id}}')"><a href="#"><em class="icon ni ni-invest"></em><span>Add Credits</span></a></li>
                                     <li><a href="{{ url('admin/location_setting/'.$user->id) }}"><em class="icon ni ni-location"></em><span>Location Setting</span></a></li>
                                   @if($user->activated == '1')
                                 <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
@@ -211,7 +212,7 @@
                     </div>
                     <div class="modal-body">
                        <div class="preview-block">
-                        <form action="{{ url('admin/sendInvitation') }}" method="post">
+                        <form action="{{ url('admin/sendInvitation') }}" method="post" id="formInvite">
                           {{ csrf_field()}}
                         <div class="row d-flex justify-content-center gy-4">
                             <div class="col-sm-12">
@@ -261,6 +262,33 @@
                     </div>
                   
                 </div>
+
+                <div class="modal fade" id="addcredits" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Credits</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{{ url('admin/add-credits') }}" id="formId" method="post">
+                            {!! csrf_field() !!}
+                         <input type="hidden" id="userId" name="user_id" form="formId">
+                          <div class="form-group">
+                            <label for="inputAddress">Credits</label>
+                            <input type="number" class="form-control" name="credits" form="formId" id="inputAddress" placeholder="Enter Credits" required>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" form="formId" class="btn btn-primary">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
 <div class="card-inner">
@@ -308,7 +336,7 @@
         $(document).on('click','.removeSection',function(e){
           $(e.target).closest('.removeQuestion').remove();
          });
-            $("form").submit(function(e){
+            $("#formInvite").submit(function(e){
                e.preventDefault();
                $('#sendemail').hide()
                $('#loaderbtn').show();
@@ -330,7 +358,11 @@
                     }
                 });
             });
-           
         });
+
+           function addCredits(id){
+            $('#userId').val(id);
+            $('#addcredits').modal('show');
+           }
     </script>
 @endsection
