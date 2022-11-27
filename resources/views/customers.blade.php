@@ -28,7 +28,7 @@
     <p>You have total {{count($users)}} users.</p>
 </div>
 </div><!-- .nk-block-head-content -->
-<!-- <div class="nk-block-head-content">
+<div class="nk-block-head-content">
 <div class="toggle-wrap nk-block-tools-toggle">
     <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
     <div class="toggle-expand-content" data-content="pageMenu">
@@ -40,7 +40,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <ul class="link-list-opt no-bdr">
                             <li><a href="#"><span>Add User</span></a></li>
-                            <li><a href="#"><span>Add Team</span></a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#exampleModal"><span>Import Users</span></a></li>
                             
                         </ul>
                     </div>
@@ -49,7 +49,8 @@
         </ul>
     </div>
 </div>
-</div> --><!-- .nk-block-head-content -->
+</div>
+<!-- .nk-block-head-content -->
 </div><!-- .nk-block-between -->
 </div><!-- .nk-block-head -->
 <div class="nk-block">
@@ -134,7 +135,10 @@
                 </a>
             </div>
             <div class="nk-tb-col tb-col-lg">
-               @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span>@endif
+               @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
+               @else
+               {{$user->city}}
+               @endif
             </div>
             <div class="nk-tb-col tb-col-md">
                 <span>{{$user->zipcode}}</span>
@@ -183,6 +187,50 @@
 </div><!-- .card-inner-group -->
 </div><!-- .card -->
 </div><!-- .nk-block -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content card shadow mb-4">
+      <div class="modal-body card-header py-3" style="background: white">
+         <div class="">
+        <div class="">
+            <h6 class="m-0 font-weight-bold text-primary">Import Users</h6>
+        </div>
+        <form method="POST" action="{{ url('admin/import-customers') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body">
+                <div class="form-group row">
+                    
+                    <div class="col-md-12 mb-3 mt-3">
+                        <p>Please Upload CSV in Given Format <a href="{{ asset('') }}" target="_blank">Sample CSV Format</a></p>
+                    </div>
+                    {{-- File Input --}}
+                    <div class="col-sm-12 mb-3 mt-3 mb-sm-0">
+                        <span style="color:red;">*</span>File Input(Datasheet)</label>
+                        <input 
+                            type="file" 
+                            class="form-control form-control-user @error('file') is-invalid @enderror" 
+                            id="exampleFile"
+                            name="file" 
+                            value="{{ old('file') }}">
+
+                        @error('file')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="p-3">
+                <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload Users</button>
+                <a class="btn btn-primary float-right mr-3 mb-3" href="">Cancel</a>
+            </div>
+        </form>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 </div>
