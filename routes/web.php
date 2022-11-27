@@ -314,6 +314,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/support', 'HomeController@support');
     Route::get('/supportchat', 'HomeController@supportchat');
     Route::get('/customers', 'HomeController@customers');
+    Route::post('/import-customers', 'UserController@uploadUsers');
 
     Route::get('/removesetting', 'HomeController@removesetting');
     Route::get('/payments-receive', 'UserController@paymentsReceive');

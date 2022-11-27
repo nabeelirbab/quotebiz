@@ -23,6 +23,9 @@ use Acelle\Library\Facades\Hook;
 use Auth;
 use Mail;
 use Acelle\Mail\SendInvitation;
+use Acelle\Exports\UsersExport;
+use Acelle\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Redirect;
 
@@ -563,6 +566,13 @@ public function sp_register(Request $request){
    return redirect('/service-provider');
  }
   return view('users.sp-register');
+}
+
+public function uploadUsers(Request $request)
+{
+    Excel::import(new UsersImport, $request->file);
+
+    return redirect()->back()->with('success', 'User Imported Successfully');
 }
 
   public function logout(){
