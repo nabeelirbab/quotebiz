@@ -126,7 +126,10 @@
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
                         <span class="profile-ud-label">City</span>
-                        @if(Acelle\Jobs\HelperJob::cityname($userdetail->city))<span class="profile-ud-value">{{Acelle\Jobs\HelperJob::cityname($userdetail->city)->name}}</span>@endif
+                        @if(Acelle\Jobs\HelperJob::cityname($userdetail->city))<span class="profile-ud-value">{{Acelle\Jobs\HelperJob::cityname($userdetail->city)->name}}</span> 
+                        @else
+                        <span class="profile-ud-value">{{$userdetail->city}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-ud-item">
