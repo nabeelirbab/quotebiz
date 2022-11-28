@@ -94,6 +94,27 @@ font-weight: 700 !important;
     display: none ;
 }
 @endif
+  .toggle-side-menu{
+            display: none !important;
+        }
+        @media only screen and (max-width: 600px) {
+           .side-class{
+            transition: none;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+            position: fixed !important;
+            display: none;
+          }
+          .toggle-side-menu{
+            background: white;
+            margin-bottom: 13px;
+            padding-top: 10px;
+            padding-bottom: 30px;
+            padding-right: 24px;
+            display: block !important;
+          }
+        }
 </style>
 @endsection
 
@@ -116,6 +137,9 @@ font-weight: 700 !important;
 <div class="nk-content-inner">
 <div class="nk-content-body">
 <div class="nk-block">
+     <div class="toggle-side-menu" onclick="showsidebar()">
+        <em class="icon ni ni-menu float-right" style="font-size: 20px"></em>
+    </div>
 <div class="card">
 @if(Session::has('success'))
 <div class="alert alert-success  fade show mt-5" role="alert">
@@ -688,7 +712,7 @@ method="post" id="AddressUpdateForm">
 
 </div><!-- .nk-block -->
 </div>
-<div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg"
+<div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg  side-class"
 data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
 <div class="card-inner-group" data-simplebar>
 <div class="card-inner">
@@ -997,7 +1021,9 @@ var long = $("#longitude").val();
 // }
 // event.preventDefault();
 });
-
+function showsidebar(){
+   $('.side-class').toggle();
+}
 
 </script>
 @endsection

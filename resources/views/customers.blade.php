@@ -223,7 +223,7 @@
 
             <div class="p-3">
                 <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload Users</button>
-                <a class="btn btn-primary float-right mr-3 mb-3" href="">Cancel</a>
+                <a class="btn btn-primary float-right mr-3 mb-3" data-dismiss="modal">Cancel</a>
             </div>
         </form>
     </div>

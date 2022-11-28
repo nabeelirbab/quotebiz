@@ -84,7 +84,27 @@ class QuestionChoiceController extends Controller
 
                 $user = Auth::user();
 
-            } else {
+            } elseif(!$request->first_name && !$request->last_name){
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->subdomain]))
+                    {
+                    if(Auth::check()){
+                     $user = Auth::user();
+                    if (!$user->activated) {
+                        $uid = $user->uid;
+                        auth()->logout();
+                        return view('notActivated', ['uid' => $uid]);
+                    }
+                         User::where('id',$user->id)->update([
+                        'last_login_at' => Carbon::now()->toDateTimeString(),
+                        'last_login_ip' => $request->getClientIp()
+                    ]);
+                   
+
+                    }
+                 }else{
+                    return redirect('/')->withErrors(['msg' => 'Wrong email or password']);
+                 }
+        }else{
                 $user = new User();
                 $user->fill($request->all());
                 $user->password = bcrypt($request->password);

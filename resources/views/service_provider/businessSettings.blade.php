@@ -19,6 +19,27 @@
             width: 1.75rem;
             opacity: .8;
         }
+        .toggle-side-menu{
+            display: none !important;
+        }
+        @media only screen and (max-width: 600px) {
+           .side-class{
+            transition: none;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+            position: fixed !important;
+            display: none;
+          }
+          .toggle-side-menu{
+            background: white;
+            margin-bottom: 13px;
+            padding-top: 10px;
+            padding-bottom: 30px;
+            padding-right: 24px;
+            display: block !important;
+          }
+        }
     </style>
 @endsection
 @section('content')
@@ -28,6 +49,9 @@
             <div class="nk-content-inner">
                 <div class="nk-content-body">
                     <div class="nk-block">
+                         <div class="toggle-side-menu" onclick="showsidebar()">
+                            <em class="icon ni ni-menu float-right" style="font-size: 20px"></em>
+                        </div>
                         <div class="card">
                             @if(Session::has('success'))
                                 <div class="alert alert-success  fade show mt-5" role="alert">
@@ -187,7 +211,7 @@
 
                                     </div><!-- .nk-block -->
                                 </div>
-                                <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg"
+                                <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg side-class"
                                      data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
                                     <div class="card-inner-group" data-simplebar>
                                         <div class="card-inner">
@@ -238,13 +262,13 @@
                                         <div class="card-inner p-0">
                                             <ul class="link-list-menu">
                                               <li>
-                                                    <a class="active" href="{{url('service-provider/location-setting')}}">
+                                                    <a href="{{url('service-provider/location-setting')}}">
                                                         <em class="icon ni ni-location"></em>
                                                         <span>Service Location Settings</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{url('service-provider/business-setting')}}">
+                                                    <a class="active" href="{{url('service-provider/business-setting')}}">
                                                         <em class="icon ni ni-user-fill-c"></em>
                                                         <span>Business Infomation</span>
                                                     </a>
@@ -397,6 +421,9 @@
 @section('script')
 
     <script type="text/javascript">
+        function showsidebar(){
+            $('.side-class').toggle();
+        }
         function uploadImg(e) {
             console.log(e.files);
             var form_data = new FormData();
