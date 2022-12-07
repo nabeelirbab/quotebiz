@@ -29,7 +29,7 @@ background: rgba(0, 0, 0, .075);
 margin-bottom: 50px;
 }
 
-<<<<<<< HEAD
+
 .terms{
 font-size: 10px;
 color: #0000009e;
@@ -48,8 +48,6 @@ height: 75px;
 .login{
 color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
-=======
->>>>>>> 02d85d07af2bfc59e83ffbe92d3f4925bef9b3d0
 .col-md-4 {
 background: #F9F8F4;
 text-align: center;
@@ -457,6 +455,7 @@ aria-hidden="true">
 </body>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
 
 <script type="text/javascript">
