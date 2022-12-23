@@ -1,4 +1,6 @@
 <?php
+
+
 // check if a function is disable
 function f_enabled($name)
 {

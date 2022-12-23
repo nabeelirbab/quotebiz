@@ -17,7 +17,7 @@ class QuoteController extends Controller
      */
     public function home($account)
     {
-         
+         // dd(request()->getHttpHost());
             return view('quoteRequest');
     }
 
