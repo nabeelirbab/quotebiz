@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Acelle\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Acelle\Http\Middleware\TrimStrings::class,
+        \Acelle\Http\Middleware\Cros::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
