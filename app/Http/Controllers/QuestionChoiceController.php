@@ -85,7 +85,7 @@ class QuestionChoiceController extends Controller
                 $user = Auth::user();
 
             } elseif(!$request->first_name && !$request->last_name){
-            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->subdomain]))
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => Setting::subdomain()]))
                     {
                     if(Auth::check()){
                      $user = Auth::user();
@@ -115,7 +115,7 @@ class QuestionChoiceController extends Controller
             }
 
         } elseif(!$request->first_name && !$request->last_name){
-            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->subdomain]))
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => Setting::subdomain()]))
                     {
                     if(Auth::check()){
                      $user = Auth::user();
@@ -388,7 +388,7 @@ class QuestionChoiceController extends Controller
     public function checkEmail(Request $request)
     {
         // return $request->all();
-        $data = User::where('subdomain',$request->subdomain)->where('email',$request->email)->where(function ($query) {
+        $data = User::where('subdomain',Setting::subdomain())->where('email',$request->email)->where(function ($query) {
           $query->orWhere('user_type', '=', 'client')
             ->orWhere('user_type', '=', 'service_provider');
          })->first();
