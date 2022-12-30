@@ -161,7 +161,7 @@ public function login(Request $request)
     }
 
     if($request->isMethod('post')){
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->subdomain]))
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => Setting::subdomain()]))
         {
         if(Auth::check()){
          $user = Auth::user();
@@ -224,7 +224,7 @@ public function register(Request $request)
      $user = new User();
     if ($request->isMethod('post')) {
         $user->fill($request->all());
-        $rules = $user->registerRules2($request->subdomain);
+        $rules = $user->registerRules2(Setting::subdomain());
     // Captcha check
     if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
         $success = \Acelle\Library\Tool::checkReCaptcha($request);
