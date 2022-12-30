@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers;
 use Acelle\Model\Question;
 use Acelle\Model\QuestionChoice;
 use Acelle\Model\Category;
+use Acelle\Model\Setting;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -17,7 +18,7 @@ class QuestionController extends Controller
     // public function index()
     // {
     //     $categories = Category::where('cat_parent','1')->orderBy('category_name','desc')->paginate(10);
-    //     $questionsCount = Question::where('subdomain',request('account'))->where('parent','1')->count();
+    //     $questionsCount = Question::where('subdomain',Setting::subdomain())->where('parent','1')->count();
     //      return view('questions.questions',compact('categories','questionsCount'));
     // }
     public function index(){
@@ -25,7 +26,7 @@ class QuestionController extends Controller
        } 
 
    public function vuedata(){
-    $categories = Category::with('questions','subquestions','questions.choices')->where('subdomain',request('account'))->where('cat_parent','1')->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
+    $categories = Category::with('questions','subquestions','questions.choices')->where('subdomain',Setting::subdomain())->where('cat_parent','1')->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
     $categories = json_decode($categories);
     // dd($categories);
     return $categories;
@@ -104,7 +105,7 @@ class QuestionController extends Controller
             $question->user_id = $request->user()->id;
             $question->choice_selection = $que;
             $question->parent = '1';
-            $question->subdomain = request('account');
+            $question->subdomain = Setting::subdomain();
             $question->question = $request->question[$key];
             $question->save();
 
@@ -141,7 +142,7 @@ class QuestionController extends Controller
             $question->user_id = $request->user()->id;
             $question->choice_selection = $que;
             $question->parent = '1';
-            $question->subdomain = request('account');
+            $question->subdomain = Setting::subdomain();
             $question->question = $request->question[$key];
             $question->save();
 

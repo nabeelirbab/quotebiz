@@ -10,6 +10,7 @@ use Acelle\Model\User;
 use Acelle\Model\SiteSetting;
 use Acelle\Model\BuyCreadit;
 use Acelle\Model\Invitation;
+use Acelle\Model\Setting;
 use Auth;
 use Session;
 use Redirect;
@@ -36,14 +37,14 @@ class HomeController extends Controller
         }
         event(new \Acelle\Events\UserUpdated($request->user()->customer));
         // Last month
-        $customerCount = User::where('user_type', 'client')->where('subdomain', request('account'))->count();
+        $customerCount = User::where('user_type', 'client')->where('subdomain', Setting::subdomain())->count();
         $providerCount = User::where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
-        })->where('subdomain', request('account'))->count();
-        $quoteCount = Quote::where('admin_id', request('account'))->count();
-        $quotes = Quote::where('admin_id', request('account'))->orderBy('created_at', 'desc')->limit(5)->get();
-        $totalRevenue = BuyCreadit::where('subdomain', request('account'))->sum('amount');
+        })->where('subdomain', Setting::subdomain())->count();
+        $quoteCount = Quote::where('admin_id', Setting::subdomain())->count();
+        $quotes = Quote::where('admin_id', Setting::subdomain())->orderBy('created_at', 'desc')->limit(5)->get();
+        $totalRevenue = BuyCreadit::where('subdomain', Setting::subdomain())->sum('amount');
 
         $topSP = User::has('allQuoteSp')->with(['allQuoteSp' => function ($q) use ($date, $from) {
             if ($date == 'daily') {
@@ -53,7 +54,7 @@ class HomeController extends Controller
             } else {
                 $q->whereBetween('created_at', [$from, Carbon::today()]);
             }
-        }])->addSelect(['totalamount' => Quotation::has('wonquote')->selectRaw('sum(quote_price) as total_likes')->whereColumn('user_id', 'users.id')->whereBetween('created_at', [$from, Carbon::today()])->groupBy('user_id')])->where('user_type', 'service_provider')->where('subdomain', request('account'))->orderBy('totalamount', 'DESC')->get();
+        }])->addSelect(['totalamount' => Quotation::has('wonquote')->selectRaw('sum(quote_price) as total_likes')->whereColumn('user_id', 'users.id')->whereBetween('created_at', [$from, Carbon::today()])->groupBy('user_id')])->where('user_type', 'service_provider')->where('subdomain', Setting::subdomain())->orderBy('totalamount', 'DESC')->get();
         // dd($topSP[0]->allQuoteSp);
         return view('dashboard', [
             'customerCount' => $customerCount,
@@ -139,11 +140,11 @@ class HomeController extends Controller
     public function sitesetting(Request $request)
     {
 
-        $sitesetting = SiteSetting::where('subdomain', request('account'))->first();
+        $sitesetting = SiteSetting::where('subdomain', Setting::subdomain())->first();
         if ($request->isMethod('post')) {
             if ($sitesetting) {
 
-                $sitesetting->subdomain = request('account');
+                $sitesetting->subdomain = Setting::subdomain();
                 $sitesetting->site_name = $request->site_name;
                 $sitesetting->site_keyword = $request->site_keyword;
                 $sitesetting->site_description = $request->site_description;
@@ -164,7 +165,7 @@ class HomeController extends Controller
             } else {
 
                 $sitesetting = new SiteSetting;
-                $sitesetting->subdomain = request('account');
+                $sitesetting->subdomain = Setting::subdomain();
                 $sitesetting->site_name = $request->site_name;
                 $sitesetting->site_keyword = $request->site_keyword;
                 $sitesetting->site_description = $request->site_description;
@@ -216,7 +217,7 @@ class HomeController extends Controller
     public function removesetting()
     {
 
-        SiteSetting::where('subdomain', request('account'))->delete();
+        SiteSetting::where('subdomain', Setting::subdomain())->delete();
         return Redirect::back();
 
     }

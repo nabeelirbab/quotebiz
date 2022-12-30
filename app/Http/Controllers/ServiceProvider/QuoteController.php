@@ -9,6 +9,7 @@ use Acelle\Model\Quote;
 use Acelle\Model\User;
 use Acelle\Model\Country;
 use Acelle\Model\State;
+use Acelle\Model\Setting;
 use Acelle\Model\City;
 use Acelle\Model\SpBusiness;
 use Auth;
@@ -19,7 +20,7 @@ class QuoteController extends Controller
     public function index()
     {
         // dd(Auth::user()->creadits);
-        $pendingquotes = Quote::where('zip_code', Auth::user()->zipcode)->where('admin_id', request('account'))->get();
+        $pendingquotes = Quote::where('zip_code', Auth::user()->zipcode)->where('admin_id', Setting::subdomain())->get();
         // dd($pendingquotes[0]->questionsget[0]->choice);
         return view('service_provider.quotesResponses', compact('pendingquotes'));
 
