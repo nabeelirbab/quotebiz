@@ -1,7 +1,7 @@
 <?php
 $sitename = \Acelle\Model\Setting::get("site_name");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
-$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(Route::input('account')); 
+$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain()); 
 $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
 ?>
 <!DOCTYPE html>

@@ -272,7 +272,7 @@
             		<input type="hidden" name="latitude" value="{{$latitude}}">
             		<input type="hidden" name="longitude" value="{{$longitude}}">
             		<input type="hidden" name="local_business" value="{{$local_business}}">
-            		<input type="hidden" name="admin_id" value="{{request('account')}}">
+            		<input type="hidden" name="admin_id" value="{{\Acelle\Model\Setting::subdomain()}}">
             	</div>
             	<div id="wizard">
             		
@@ -368,7 +368,7 @@
 	                	<h3 style="text-align: center;color: black">Alright, let's get your details and create your tailored online estimate!</h3>
 	                	<div class="row" style="padding: 0 20px;">
 	                		<input type="hidden" name="user_type" value="client">
-	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
+	                		<input type="hidden" name="subdomain" value="{{\Acelle\Model\Setting::subdomain()}}">
 	                	
 	                    <div class="form-row col-md-6" id="first">
 	                    	
@@ -427,7 +427,7 @@
 	                	<h3 style="text-align: center;color: black">Alright, let's get your details and create your tailored online estimate!</h3>
 	                	<div class="row">
 	                		<input type="hidden" name="user_type" value="client">
-	                		<input type="hidden" name="subdomain" value="{{request('account')}}">
+	                		<input type="hidden" name="subdomain" value="{{\Acelle\Model\Setting::subdomain()}}">
 	                     <div class="form-row col-md-6" id="first">
 	                    	<div class="form-holder">
 	                    		<span>First Name</span>
@@ -595,7 +595,7 @@ var _token = jqOld('meta[name="csrf-token"]').attr('content');
             type: 'post',
             data: {
                 email : jqOld('.formEmail').val(),
-                subdomain: "{{request('account')}}",
+                subdomain: "{{\Acelle\Model\Setting::subdomain()}}",
                 _token : _token
             },
             dataType: 'json',
