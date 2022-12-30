@@ -6,6 +6,7 @@ use Acelle\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\User;
+use Acelle\Model\Setting;
 use Acelle\Model\QuotationStatus;
 use Acelle\Mail\ChangeJobStatus;
 use Mail;

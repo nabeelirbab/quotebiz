@@ -42,9 +42,9 @@ class QuestionChoiceController extends Controller
         if (empty($latitude) || empty($longitude)) {
             return redirect()->back()->with("error", "Please enter valid location");
         }
-        $count = Category::where('subdomain', request('account'))->count();
+        $count = Category::where('subdomain', Setting::subdomain())->count();
         if ($count > 0) {
-            $category = Category::where('cat_parent', '1')->where('subdomain', request('account'))->where('category_name', $request->category_name)->first();
+            $category = Category::where('cat_parent', '1')->where('subdomain', Setting::subdomain())->where('category_name', $request->category_name)->first();
         } else {
             $category = Category::where('cat_parent', '0')->where('category_name', $request->category_name)->first();
         }
@@ -252,7 +252,7 @@ class QuestionChoiceController extends Controller
         if ($request->local_business == "local business")
         {
 
-            $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('type', 'local business')->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
+            $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('type', 'local business')->where('activated', 1)->whereNotNull('type')->where('subdomain', Setting::subdomain())->where('category_id', 'like', '%' . $request->category_id . '%')->get();
             foreach ($users as $user) {
                 $userlat = $user->latitude;
                 $userlang = $user->longitude;
@@ -275,7 +275,7 @@ class QuestionChoiceController extends Controller
         }
         else {
 
-            $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('activated', 1)->whereNotNull('type')->where('subdomain', request('account'))->where('category_id', 'like', '%' . $request->category_id . '%')->get();
+            $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('activated', 1)->whereNotNull('type')->where('subdomain', Setting::subdomain())->where('category_id', 'like', '%' . $request->category_id . '%')->get();
 
             foreach ($users as $user) {
 

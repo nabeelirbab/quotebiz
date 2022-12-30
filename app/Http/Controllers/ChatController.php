@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Chat;
 use Acelle\Model\User;
 use Acelle\Model\Quotation;
+use Acelle\Model\Setting;
 use Auth;
 use Carbon\Carbon;
 use Acelle\Mail\SendQuotation;
@@ -52,7 +53,7 @@ class ChatController extends Controller
         $quote->quote_id = $request->quote_id;
         $quote->comment = $request->comment;
         $quote->quote_price = $request->quote_price;
-        $quote->subdomain = request('account');
+        $quote->subdomain = Setting::subdomain();
         $quote->save();
         $quote->load(['quote.myquotation']);
         
@@ -63,7 +64,7 @@ class ChatController extends Controller
         $message->quotation_id = $quote->id;
         $message->message = $request->comment;
         $message->messageStart = '1';
-        $message->subdomain = request('account');
+        $message->subdomain = Setting::subdomain();
         $message->save();
 
         $total = Auth::user()->credits - $request->credit_cost;
@@ -91,13 +92,13 @@ class ChatController extends Controller
 
     public function getCustomerfriend(){
 
-    $sp = Quotation::with('chatcustomer','chat.user','chat','quote.category','quote.questionsget','quote.questionsget.questions','quote.questionsget.choice','quotestatus')->where('subdomain',request('account'))->where('user_id',Auth::user()->id)->withCount("unread_msg")->get();
+    $sp = Quotation::with('chatcustomer','chat.user','chat','quote.category','quote.questionsget','quote.questionsget.questions','quote.questionsget.choice','quotestatus')->where('subdomain',Setting::subdomain())->where('user_id',Auth::user()->id)->withCount("unread_msg")->get();
         return $sp;
     }
 
     public function getProviderfriend(){
 
-        $sp = Quotation::with('chatsp.business','chat.user','chat','quote.category','quote.questionsget','quote.questionsget.questions','quote.questionsget.choice')->withCount("unread_msg")->where('subdomain',request('account'))->where('customer_id',Auth::user()->id)->get();
+        $sp = Quotation::with('chatsp.business','chat.user','chat','quote.category','quote.questionsget','quote.questionsget.questions','quote.questionsget.choice')->withCount("unread_msg")->where('subdomain',Setting::subdomain())->where('customer_id',Auth::user()->id)->get();
         return $sp;
     }
 
@@ -118,7 +119,7 @@ class ChatController extends Controller
            $chat->messageStart = '0';
            $chat->isDeleted = '0';
            $chat->quotation_id = $request->quotation_id;
-           $chat->subdomain = request('account');
+           $chat->subdomain = Setting::subdomain();
            if($receiverUser == $request->sender_id){
              $chat->read_at = Carbon::now();
            }else{
@@ -143,7 +144,7 @@ class ChatController extends Controller
            $chat->isDeleted = '0';
            $chat->messageStart = '0';
            $chat->quotation_id = (int)$request->quotation_id;
-           $chat->subdomain = request('account');
+           $chat->subdomain = Setting::subdomain();
 
            if($receiverUser == $request->sender_id){
              $chat->read_at = Carbon::now();

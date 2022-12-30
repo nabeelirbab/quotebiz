@@ -4,6 +4,7 @@ namespace Acelle\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Acelle\Model\Setting;
 
 class JobDesign extends Model
 {
@@ -11,7 +12,7 @@ class JobDesign extends Model
 
      public static function get($name, $defaultValue=null)
     {
-        $design = JobDesign::where('subdomain',request('account'))->first();
+        $design = JobDesign::where('subdomain',Setting::subdomain())->first();
         if($design){
            return $design->$name;
         }else{

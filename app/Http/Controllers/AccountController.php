@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log as LaravelLog;
 use Acelle\Library\Facades\Billing;
 use Acelle\Model\StripeKey;
+use Acelle\Model\Setting;
 use Acelle\Model\AdminCurrency;
 use Auth;
 use Acelle\Model\User;
@@ -169,7 +170,7 @@ class AccountController extends Controller
      */
     public function api(Request $request)
     {
-        $stripeData = StripeKey::where('subdomain', request('account'))->first();
+        $stripeData = StripeKey::where('subdomain', Setting::subdomain())->first();
         if ($request->isMethod('post')) {
             if ($stripeData) {
                 $stripeData->stripe_key = $request->stripe_key;
@@ -178,7 +179,7 @@ class AccountController extends Controller
             } else {
                 $stripeData = new StripeKey;
                 $stripeData->user_id = Auth::user()->id;
-                $stripeData->subdomain = request('account');
+                $stripeData->subdomain = Setting::subdomain();
                 $stripeData->stripe_key = $request->stripe_key;
                 $stripeData->stripe_secret = $request->stripe_secret;
                 $stripeData->save();
@@ -193,7 +194,7 @@ class AccountController extends Controller
     public function currency(Request $request)
     {
 
-        $currencyData = AdminCurrency::where('subdomain', request('account'))->first();
+        $currencyData = AdminCurrency::where('subdomain', Setting::subdomain())->first();
 
         if ($request->isMethod('post')) {
             // dd($request->all());
@@ -203,7 +204,7 @@ class AccountController extends Controller
             } else {
                 $currencyData = new AdminCurrency;
                 $currencyData->admin_id = Auth::user()->id;
-                $currencyData->subdomain = request('account');
+                $currencyData->subdomain = Setting::subdomain();
                 $currencyData->code = $request->code;
                 $currencyData->save();
             }

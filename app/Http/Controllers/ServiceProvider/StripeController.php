@@ -8,6 +8,7 @@ use Acelle\Model\StripeKey;
 use Acelle\Model\Creadit;
 use Acelle\Model\User;
 use Acelle\Model\CreditAmount;
+use Acelle\Model\Setting;
 use Acelle\Model\BuyCreadit;
 use Session;
 use Stripe;
@@ -52,7 +53,7 @@ class StripeController extends Controller
           return redirect('service-provider/buy-credits');
       }
       
-    	$stripeData = StripeKey::where('subdomain',request('account'))->first();
+    	$stripeData = StripeKey::where('subdomain',Setting::subdomain())->first();
         Stripe\Stripe::setApiKey($stripeData->stripe_secret);
         $customer = \Stripe\Customer::create([
         'email' => $user->email,
@@ -76,7 +77,7 @@ class StripeController extends Controller
           $paymentDone->payment_id = $payment->id;
           $paymentDone->amount = number_format($currencyConvert['convert'], 2);
           $paymentDone->user_id = Auth::user()->id;
-          $paymentDone->subdomain = request('account');
+          $paymentDone->subdomain = Setting::subdomain();
           $paymentDone->creadits = $creadit->credit;
           $paymentDone->save();
           
