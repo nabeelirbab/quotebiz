@@ -19,7 +19,12 @@ class ValidDomain
      */
     public function handle(Request $request, Closure $next)
     {
+
          $account = Route::input('account');
+       // echo $account;exit;
+        $request->route()->setParameter('account',  'noble');
+            $account = 'noble';
+
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');

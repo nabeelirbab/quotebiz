@@ -3,11 +3,12 @@ Options +FollowSymLinks -MultiViews
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{HTTP_HOST} ^(www\.)?noblebrains\.com$ [NC]
-RewriteRule ^(.*)$ http://littlediggers.quotebiz.io%{REQUEST_URI} [P]
-
-RewriteCond %{HTTP_HOST} ^selfiegimbal.com
-RewriteRule (.*)$ http://dj123.quotebiz.io%{REQUEST_URI} [P]
+#RewriteCond %{HTTP_HOST} ^(www\.)?noblebrains\.com$ [NC]
+#RewriteRule ^(.*)$ http://littlediggers.quotebiz.io%{REQUEST_URI} [P]
+#
+#
+#RewriteCond %{HTTP_HOST} ^selfiegimbal.com
+#RewriteRule (.*)$ http://dj123.quotebiz.io%{REQUEST_URI} [P]
 
 </IfModule>
 
@@ -36,7 +37,7 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-    
+
 Options -Indexes
 
 	# block files which needs to be hidden, specify .example extension of the file

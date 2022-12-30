@@ -231,6 +231,7 @@ public function register(Request $request)
             $rules['recaptcha_invalid'] = 'required';
         }
     }
+    
         $this->validate($request, $rules);
         $user = new User();
         $user->fill($request->all());

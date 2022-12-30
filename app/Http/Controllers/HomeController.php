@@ -25,7 +25,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-
         $date = $request->get('date');
         if ($date == 'daily') {
             $from = Carbon::now()->subDays(0);
@@ -67,7 +66,6 @@ class HomeController extends Controller
 
     public function home()
     {
-
         return view('index');
     }
 

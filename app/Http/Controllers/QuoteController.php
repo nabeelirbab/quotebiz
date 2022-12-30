@@ -15,9 +15,11 @@ class QuoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home($account)
+    public function home($sub)
     {
-         // dd(request()->getHttpHost());
+      //  echo "cant"; exit;
+         // dd(request('sub'));
+
             return view('quoteRequest');
     }
 
@@ -29,13 +31,26 @@ class QuoteController extends Controller
     }
 
     public function category_search(Request $request){
-     
-     $category = Category::where('subdomain',request('account'))->count();
-     if($category > 0){
-        $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',request('account'))->get();
+        $domain = request('sub');
+        $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->get()->toArray();
+
+    if($sub_domain_checker){
+        $category = Category::where('subdomain',$sub_domain_checker[0]['subdomain'])->count();
+        if($category > 0){
+            $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',$sub_domain_checker[0]['subdomain'])->get();
+        }else{
+         $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
+        }
     }else{
-     $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
+        $category = Category::where('subdomain',request('sub'))->count();
+        if($category > 0){
+            $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',request('account'))->get();
+        }else{
+         $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
+        }
     }
+    
+    
 
      // dd($searchDate);
 

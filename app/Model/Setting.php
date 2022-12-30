@@ -53,10 +53,24 @@ class Setting extends Model
      *
      * @return object
      */
+    public static function subdomain(Request $request){
+        $request->merge([
+        'account' => 'hee',
+       ]);
+         dd(request('account'));
+        $domain = request('sub');
+        $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->get()->toArray();
+        if($sub_domain_checker){
+            return $sub_domain_checker[0]['subdomain'];
+
+        }else{
+            return $domain;
+        }
+    }
     public static function get($name, $defaultValue=null)
     {
 
-        $adminsetting = SiteSetting::where('subdomain',request('account'))->first();
+        $adminsetting = SiteSetting::where('subdomain',Setting::subdomain())->first();
         if($adminsetting && $adminsetting->$name != null){
         if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'site_favicon'){
             

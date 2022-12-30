@@ -305,11 +305,11 @@ cursor: pointer;
 @if(Auth::user())
 @if(Auth::user()->user_type == 'client')
 <div class="floatright mt-4">
-<a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
+<a href="{{ route('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="floatright mt-4">
-<a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
+<a href="{{ url('admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @else
 <div class="floatright mt-4">
