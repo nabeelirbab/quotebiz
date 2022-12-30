@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\Category;
 use Acelle\Model\Subdomain;
+use Acelle\Model\Setting;
 use Redirect;
 
 class QuoteController extends Controller
@@ -25,24 +26,20 @@ class QuoteController extends Controller
 
     public function Index(){
 
-        $quotes = Quote::with('quotations','user')->where('admin_id',request('account'))->orderBy('id','desc')->paginate(10);
+        $quotes = Quote::with('quotations','user')->where('admin_id',Setting::subdomain())->orderBy('id','desc')->paginate(10);
         // dd($quotes);
         return view('quotes',compact('quotes'));
     }
 
     public function category_search(Request $request){
-        $domain = request('sub');
-        $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->get()->toArray();
 
-    if($sub_domain_checker){
-        $category = Category::where('subdomain',$sub_domain_checker[0]['subdomain'])->count();
-        if($category > 0){
-            $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',$sub_domain_checker[0]['subdomain'])->get();
-        }else{
-         $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
-        }
+     
+     $category = Category::where('subdomain',Setting::subdomain())->count();
+     if($category > 0){
+        $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',Setting::subdomain())->get();
+
     }else{
-        $category = Category::where('subdomain',request('sub'))->count();
+        $category = Category::where('subdomain',Setting::subdomain())->count();
         if($category > 0){
             $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',request('account'))->get();
         }else{

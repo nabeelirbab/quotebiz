@@ -10,6 +10,7 @@ use Acelle\Model\User;
 use Acelle\Model\Subdomain;
 use Acelle\Model\StripeKey;
 use Acelle\Model\Creadit;
+use Acelle\Model\Setting;
 use Acelle\Model\CreditAmount;
 use Acelle\Model\BuyCreadit;
 use Acelle\Model\DateFormet;
@@ -247,7 +248,7 @@ public function register(Request $request)
         $user->category_id = json_encode($request->category_id);
         $user->zipcode = $request->zipcode;
     if($request->invite){
-        $invite = Invitation::where('subdomain',request('account'))->where('token',$request->invite)->first();
+        $invite = Invitation::where('subdomain',Setting::subdomain())->where('token',$request->invite)->first();
         if($invite){
            $user->credits = $invite->credits;
            Invitation::where('token',$request->invite)->update(['status' => 'active']);
@@ -276,7 +277,7 @@ public function register(Request $request)
     $invite = '';
     if($request->invite){
         // dd('hello');
-         $invite = Invitation::where('subdomain',request('account'))->where('token',$request->invite)->first();
+         $invite = Invitation::where('subdomain',Setting::subdomain())->where('token',$request->invite)->first();
     }
     return view('users.register', [
     // 'customer' => $customer,
@@ -386,13 +387,13 @@ if ($request->isMethod('post')) {
         $credit->credit_amount = $request->credit_amount;
         $credit->credit = $request->credit;
         $credit->bundel_name = $request->bundel_name;
-        $credit->subdomain = request('account');
+        $credit->subdomain = Setting::subdomain();
         $credit->currency = $request->currency;
         $credit->save();
       }
      }
 
-    $credits = CreditAmount::where('subdomain',request('account'))->orderBy('credit_amount','asc')->paginate(15);
+    $credits = CreditAmount::where('subdomain',Setting::subdomain())->orderBy('credit_amount','asc')->paginate(15);
 return view('creditamount',compact('credits'));
 
 }
@@ -413,7 +414,7 @@ public function quoteprice(Request $request){
         return redirect()->back()->with('success', 'Update Successfully');
     }else{
         $quoteprice = new QuotePrice;
-        $quoteprice->subdomain = request('account');
+        $quoteprice->subdomain = Setting::subdomain();
         $quoteprice->type = $request->input('type');
         $quoteprice->price = $request->input('price');
         $quoteprice->save();
@@ -427,7 +428,7 @@ public function deletecredit($account, $id){
 }
 
 public function dateformet(Request $request){
-    $formet = DateFormet::where('subdomain',request('account'))->first();
+    $formet = DateFormet::where('subdomain',Setting::subdomain())->first();
     if($request->isMethod('post')){
        $data = explode('-', $request->dateformet);
         if($formet){
@@ -436,7 +437,7 @@ public function dateformet(Request $request){
             $formet->update();
         }else{
             $formet = new DateFormet;
-            $formet->subdomain = request('account');
+            $formet->subdomain = Setting::subdomain();
             $formet->type = $data[0];
             $formet->date_formet = $data[1];
             $formet->save();
@@ -463,7 +464,7 @@ public function formdesign(Request $request){
         $job_design->backgroup_image = $new_image;
         } 
             $job_design->admin_id = Auth::user()->id;
-            $job_design->subdomain = request('account');
+            $job_design->subdomain = Setting::subdomain();
             $job_design->underline_color = $request->underline_color;
             $job_design->category_heading = $request->category_heading;
             $job_design->title_heading = $request->title_heading;
@@ -497,7 +498,7 @@ public function sendInvitation(Request $request){
          'name' => $request->name[$key]
         ];
         $invite = new Invitation;
-        $invite->subdomain = request('account');
+        $invite->subdomain = Setting::subdomain();
         $invite->email = $email;
         $invite->name = $request->name[$key];
         $invite->credits = $request->credits;

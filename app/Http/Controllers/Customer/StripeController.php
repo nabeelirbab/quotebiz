@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers\Customer;
 use Acelle\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Acelle\Model\StripePayment;
+use Acelle\Model\Setting;
 use Session;
 use Stripe;
 
@@ -28,7 +29,7 @@ class StripeController extends Controller
      */
     public function stripePost(Request $request)
     {
-    	$stripeData = StripePayment::where('subdomain',request('account'))->first();
+    	$stripeData = StripePayment::where('subdomain',Setting::subdomain())->first();
         Stripe\Stripe::setApiKey($stripeData->stripe_secret);
         Stripe\Charge::create ([
                 "amount" => 100 * 100,

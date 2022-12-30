@@ -53,11 +53,7 @@ class Setting extends Model
      *
      * @return object
      */
-    public static function subdomain(Request $request){
-        $request->merge([
-        'account' => 'hee',
-       ]);
-         dd(request('account'));
+    public static function subdomain(){
         $domain = request('sub');
         $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->get()->toArray();
         if($sub_domain_checker){

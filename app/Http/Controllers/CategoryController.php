@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers;
 
 use Acelle\Model\Category;
 use Acelle\Model\SubCategory;
+use Acelle\Model\Setting;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -55,7 +56,7 @@ class CategoryController extends Controller
        $category->category_name = $request->category_name;
        $category->cat_parent = 1;
        $category->cat_parent_id = 0;
-       $category->subdomain = request('account');
+       $category->subdomain = Setting::subdomain();
        $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
        $category->save();
@@ -78,7 +79,7 @@ class CategoryController extends Controller
        $category->category_name = $request->category_name;
        $category->cat_parent_id = $request->category_id;
        $category->cat_parent = 1;
-       $category->subdomain = request('account');
+       $category->subdomain = Setting::subdomain();
        $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
        $category->save();
