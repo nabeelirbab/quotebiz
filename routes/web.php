@@ -233,6 +233,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
+    Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain');
 
     Route::post('sendInvitation', 'UserController@sendInvitation');
     Route::post('resendInvitation', 'UserController@resendInvitation');
@@ -1446,6 +1447,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 
         Route::post('updateOrder', 'QuestionController@updateOrder');
 
     });
+
+    // Domains
+    Route::get('customs-domains', 'UserController@domainlist');
 
 });
 
