@@ -1450,6 +1450,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 
 
     // Domains
     Route::get('customs-domains', 'UserController@domainlist');
+    Route::get('domain_status/{id}', 'UserController@domain_status');
+
 
 });
 
