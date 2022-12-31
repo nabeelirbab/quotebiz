@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\Category;
 use Acelle\Model\Subdomain;
-use Acelle\Model\Setting;
 use Redirect;
 
 class QuoteController extends Controller
@@ -16,38 +15,27 @@ class QuoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home($sub)
+    public function home($account)
     {
-      //  echo "cant"; exit;
-         // dd(request('sub'));
-
+         // dd(request()->getHttpHost());
             return view('quoteRequest');
     }
 
     public function Index(){
 
-        $quotes = Quote::with('quotations','user')->where('admin_id',Setting::subdomain())->orderBy('id','desc')->paginate(10);
+        $quotes = Quote::with('quotations','user')->where('admin_id',request('account'))->orderBy('id','desc')->paginate(10);
         // dd($quotes);
         return view('quotes',compact('quotes'));
     }
 
     public function category_search(Request $request){
-
      
-     $category = Category::where('subdomain',Setting::subdomain())->count();
+     $category = Category::where('subdomain',request('account'))->count();
      if($category > 0){
-        $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',Setting::subdomain())->get();
-
+        $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',request('account'))->get();
     }else{
-        $category = Category::where('subdomain',Setting::subdomain())->count();
-        if($category > 0){
-            $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('subdomain',request('account'))->get();
-        }else{
-         $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
-        }
+     $searchDate = Category::query()->where('category_name', 'like', "%{$request->category_name}%")->where('cat_parent','0')->get();
     }
-    
-    
 
      // dd($searchDate);
 

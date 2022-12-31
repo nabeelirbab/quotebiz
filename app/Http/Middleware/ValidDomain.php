@@ -23,7 +23,7 @@ class ValidDomain
          $account = Route::input('account');
        // echo $account;exit;
         $request->route()->setParameter('account',  'noble');
-            $account = 'noble';
+        $account = 'noble';
 
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
