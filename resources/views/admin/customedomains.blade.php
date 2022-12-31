@@ -112,8 +112,31 @@
             <div class="nk-tb-col tb-col-md">
                 <span>{{$domain->updated_at}}</span>
             </div>
-            <div class="nk-tb-col tb-col-md">
-                <span>{{$domain->status}}</span>
+             <div class="nk-tb-col">
+                @if($domain->status == 'inactive')
+                <span class="tb-status text-danger">Inactive</span>
+                @else
+                <span class="tb-status text-success">Active</span>
+                @endif
+            </div>
+              <div class="nk-tb-col nk-tb-col-tools">
+                <ul class="gx-1">
+                   
+                    <li>
+                        <div class="drodown">
+                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                               <ul class="link-list-opt no-bdr">
+                                @if($domain->status == 'active')
+                                <li><a href="{{ url('super-admin/domain_status/'.$domain->id.'?status=inactive') }}" onclick="return confirm('Are you sure you want to suspend this domain?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Domain</span></a></li>
+                                @else
+                                <li><a href="{{ url('super-admin/domain_status/'.$domain->id.'?status=active') }}" onclick="return confirm('Are you sure you want to active this domain?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Domain</span></a></li>
+                                @endif                         
+                          </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         @endforeach

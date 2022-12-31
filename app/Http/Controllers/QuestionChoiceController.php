@@ -240,7 +240,7 @@ class QuestionChoiceController extends Controller
         }
         $jobdata = [
             'user' => $user,
-            'subject' => 'Quote Post'
+            'subject' => 'Thanks for your quote request'
         ];
 
         Mail::to($user->email)->send(new OnJobPost($jobdata));
