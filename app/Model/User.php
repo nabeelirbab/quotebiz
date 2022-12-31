@@ -87,6 +87,11 @@ public static $itemsPerPage = 25;
         return $this->hasOne('Acelle\Model\Subdomain');
     }
 
+    public function customdomain()
+    {
+        return $this->hasOne('Acelle\Model\Subdomain');
+    }
+
     public function chatcustomer()
     {
         return $this->hasOne('Acelle\Model\Quotation','customer_id','id');

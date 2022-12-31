@@ -111,6 +111,13 @@
                         <span>Account</span>
                     </a>
                 </li>
+                     
+               <li class="nav-item" rel2="HomeController">
+                    <a href="{{ url('admin/custom-domain') }}" title="Account" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                      <em class="icon ni ni-account-setting fs-5 mr-1"></em>
+                        <span>Custom Domain</span>
+                    </a>
+                </li>
             
                 <li class="nav-item" rel2="HomeController">
                     <a href="{{ url('admin/support') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
