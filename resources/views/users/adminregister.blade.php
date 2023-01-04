@@ -22,6 +22,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-2 text-end mt-60">
                 <a class="main-logo-big" href="{{ url('/') }}">
+
                     <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
                 </a>
             </div>

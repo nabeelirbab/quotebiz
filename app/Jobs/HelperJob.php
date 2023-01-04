@@ -9,6 +9,7 @@ use Acelle\Model\Setting;
 use Acelle\Model\DateFormet;
 use Acelle\Model\User;
 use Acelle\Model\JobDesign;
+use Acelle\Model\Subdomain;
 use Acelle\Model\QuotePrice;
 use Acelle\Model\AdminCurrency;
 use Acelle\Model\SiteSetting;
@@ -27,7 +28,7 @@ class HelperJob extends Base
     }
 
     public static function categories(){
-       $category =  Category::where('subdomain','=',request('account'))->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
+       $category =  Category::where('subdomain','=',Setting::subdomain())->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
        if(count($category)){
           return $category;
        }else{
@@ -37,7 +38,7 @@ class HelperJob extends Base
     }
 
     public static function mycategories(){
-       $category =  Category::where('subdomain','=',request('account'))->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
+       $category =  Category::where('subdomain','=',Setting::subdomain())->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
           return $category;
     }
 
@@ -52,12 +53,12 @@ class HelperJob extends Base
     }
     public static function stripekey(){
 
-    	return StripeKey::where('subdomain',request('account'))->first()->stripe_key;
+    	return StripeKey::where('subdomain',Setting::subdomain())->first()->stripe_key;
     }
 
     public static function creditAmounts(){
 
-        return CreditAmount::where('subdomain',request('account'))->orderBy('credit_amount','asc')->get();
+        return CreditAmount::where('subdomain',Setting::subdomain())->orderBy('credit_amount','asc')->get();
     }
 
     public static function mask_email($email, $masks = 5) {
@@ -76,7 +77,7 @@ class HelperJob extends Base
 
    public static function dateFormat(){
 
-       $result =  User::where('subdomain',request('account'))->where('user_type','admin')->first();
+       $result =  User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first();
        // dd($result);
        if($result){
            return $result->date_format;
@@ -87,15 +88,15 @@ class HelperJob extends Base
 
    public static function form_design()
     {
-        return JobDesign::where('subdomain',request('account'))->first();
+          return JobDesign::where('subdomain',Setting::subdomain())->first();
     }
 
    public static function quoteprice(){
-      return QuotePrice::where('subdomain',request('account'))->first();
+      return QuotePrice::where('subdomain',Setting::subdomain())->first();
     }
 
    public static function setcurrency($to,$amount){
-      $currency = AdminCurrency::where('subdomain',request('account'))->first();
+      $currency = AdminCurrency::where('subdomain',Setting::subdomain())->first();
         if($currency){
           $code = $currency->code;
         }else{
@@ -111,7 +112,7 @@ class HelperJob extends Base
     }
 
    public static function usdcurrency($amount){
-      $currency = AdminCurrency::where('subdomain',request('account'))->first();
+      $currency = AdminCurrency::where('subdomain',Setting::subdomain())->first();
         if($currency){
           $code = $currency->code;
         }else{
@@ -126,7 +127,7 @@ class HelperJob extends Base
     }
 
    public static function convertusd($amount){
-      $currency = AdminCurrency::where('subdomain',request('account'))->first();
+      $currency = AdminCurrency::where('subdomain',Setting::subdomain())->first();
         if($currency){
           $code = $currency->code;
         }else{
@@ -141,11 +142,12 @@ class HelperJob extends Base
     }
 
     public static function site_setting(){
-      return  SiteSetting::where('subdomain',request('account'))->first();
+      return  SiteSetting::where('subdomain',Setting::subdomain())->first();
     }
 
     public static function categoryname(){
-      return  User::where('subdomain',request('account'))->where('user_type','admin')->first()->category_id;
+    	// dd(Setting::subdomainpar(request('sub')));
+      return  User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first()->category_id;
     }
     public static function countries(){
         return  Country::all();
@@ -177,7 +179,7 @@ class HelperJob extends Base
     }
 
     public static function admindetail(){
-      return  User::where('subdomain',request('account'))->where('user_type','admin')->first();
+      return  User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first();
     }
 
 }

@@ -138,6 +138,7 @@ public function resendAdminActivationEmail(Request $request)
 public function login(Request $request)
 {
 
+
     if (\Acelle\Model\Setting::get('enable_user_registration') == 'no') {
       return $this->notAuthorized();
     }
@@ -161,6 +162,7 @@ public function login(Request $request)
     }
 
     if($request->isMethod('post')){
+        // dd($request->all());
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => Setting::subdomain()]))
         {
         if(Auth::check()){
@@ -232,6 +234,7 @@ public function register(Request $request)
             $rules['recaptcha_invalid'] = 'required';
         }
     }
+    
         $this->validate($request, $rules);
         $user = new User();
         $user->fill($request->all());

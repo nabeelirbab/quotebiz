@@ -5,6 +5,7 @@ namespace Acelle\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Acelle\Model\Subdomain;
+use Acelle\Model\Setting;
 use Redirect;
 use Route;
 
@@ -19,7 +20,11 @@ class ValidDomain
      */
     public function handle(Request $request, Closure $next)
     {
-         $account = Route::input('account');
+
+         $account = Setting::subdomain();
+      #  $request->route()->setParameter('account',  'noble');
+      #  $account = 'noble';
+
          $subdomain = Subdomain::where('subdomain',$account)->first();
           if(!$subdomain){
             return Redirect::to('https://www.quotebiz.io');

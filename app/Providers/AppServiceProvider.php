@@ -13,6 +13,7 @@ use Acelle\Model\Plugin;
 use Acelle\Model\Notification;
 use Acelle\Library\BillingManager;
 use Acelle\Library\Facades\Hook;
+use Illuminate\Http\Request;
 use Config;
 
 
@@ -60,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
       
-
+        
         $this->app->singleton(HookManager::class, function ($app) {
             return new HookManager();
         });

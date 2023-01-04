@@ -343,7 +343,7 @@
                   $.ajax({
                     url: "{{ url('admin/sendInvitation') }}",
                     type: 'post',
-                    data: $('form').serialize(),
+                    data: $('#formInvite').serialize(),
                     dataType: 'json',
                     success: function(data) {
                         console.log(data);

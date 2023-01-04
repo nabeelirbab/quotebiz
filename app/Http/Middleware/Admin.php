@@ -48,15 +48,15 @@ class Admin
         }
       
         // Language
-      if ($user->language) {
-         \App::setLocale($user->language->code);
-            \Carbon\Carbon::setLocale($user->language->code);
+      // if ($user->language) {
+      //    \App::setLocale($user->language->code);
+      //       \Carbon\Carbon::setLocale($user->language->code);
            
-        }else{
+      //   }else{
 
-         \App::setLocale($user->customer->language->code);
-            \Carbon\Carbon::setLocale($user->customer->language->code);
-      }
+      //    \App::setLocale($user->customer->language->code);
+      //       \Carbon\Carbon::setLocale($user->customer->language->code);
+      // }
         
 
         // Wordpress db by user

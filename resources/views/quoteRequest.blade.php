@@ -1,7 +1,7 @@
 <?php
 $sitename = \Acelle\Model\Setting::get("site_name");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
-$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain()); 
+$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
 $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
 ?>
 <!DOCTYPE html>
@@ -29,6 +29,25 @@ background: rgba(0, 0, 0, .075);
 margin-bottom: 50px;
 }
 
+
+.terms{
+font-size: 10px;
+color: #0000009e;
+font-weight: 500;
+}
+.terms a{
+color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+}
+.siteLogo{
+float: left;
+max-width: 9%;
+}/*
+.siteLogo img{
+height: 75px;
+}*/
+.login{
+color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
+}
 .col-md-4 {
 background: #F9F8F4;
 text-align: center;
@@ -290,7 +309,9 @@ cursor: pointer;
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="floatright mt-4">
+
 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
+
 </div>
 @else
 <div class="floatright mt-4">
@@ -303,7 +324,9 @@ cursor: pointer;
 href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 </div>
 @endif
-<div class="row justify-content-{{$job_design->position ? $job_design->position : 'end'}}"
+
+<div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
+
 style="height: 100%;align-items: center;">
 
 <div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
@@ -335,50 +358,54 @@ autocomplete="off">
 <div class="col-md-6">
 
 <div class="form-group">
-<label class="form-control-placeholder"
-for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
-<input type="text" class="form-control" name="category_name" id="search"
-placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
-required>
-<ul class="list-group" id="result">
-</ul>
+
+    <label class="form-control-placeholder"
+           for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
+    <input type="text" class="form-control" name="category_name" id="search"
+           placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
+           required>
+    <ul class="list-group" id="result">
+    </ul>
+
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
-{{--                            <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>--}}
-<label class="form-control-placeholder" for="zipcode">Location</label>
-<input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
-required>
-@if(Session::has('error'))
-<strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
-@endif
-<div class="custom-control custom-control-sm custom-checkbox notext mt-2">
-<input type="checkbox" class="custom-control-input" id="local_business"
-name="local_business" value="local business">
-<label class="custom-control-label" for="local_business" style="font-size: 14px">I prefer a local business</label>
-</div>
-<input type="hidden" id="latitude" name="latitude">
-<input type="hidden" id="longitude" name="longitude">
-<input type="hidden" id="state" name="state">
+
+    {{--                            <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>--}}
+   <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>
+    <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
+           required>
+    @if(Session::has('error'))
+        <strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
+    @endif
+    <div class="custom-control custom-control-sm custom-checkbox notext mt-2">
+        <input type="checkbox" class="custom-control-input" id="local_business"
+               name="local_business" value="local business">
+        <label class="custom-control-label" for="local_business" style="font-size: 14px">I prefer a local business</label>
+    </div>
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <input type="hidden" id="state" name="state">
 </div>
 </div>
 <div class="col-md-5">
 <div class="form-group mt-3">
-<button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
-class="fa fa-arrow-right"></i></span></button>
+    <button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
+                    class="fa fa-arrow-right"></i></span></button>
 </div>
 </div>
 </div>
 <p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}",
 you consent to the {{$sitename}} storing the information submitted on this page so you can get most
 up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s <a
-href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#"
-  data-toggle="modal"
-  data-target="#privacy">Privacy
+    href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#"
+                                                                                  data-toggle="modal"
+                                                                                  data-target="#privacy">Privacy
 Policy.</a></p>
 </form>
 </div>
+
 <!-- Terms Modal -->
 <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
 aria-hidden="true">
@@ -430,7 +457,6 @@ aria-hidden="true">
 </body>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
-
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
 
@@ -492,7 +518,11 @@ $("#result").html('');
 </script>
 @else
 <script>
+	@if($providercountry)
 	var pc = "{{ $providercountry->iso2 }}";
+	@else 
+    var pc = 'au';
+	@endif
 	var loc = pc.toLowerCase();
 	google.maps.event.addDomListener(window, 'load', initialize);
 

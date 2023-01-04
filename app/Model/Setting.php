@@ -53,9 +53,22 @@ class Setting extends Model
      *
      * @return object
      */
+
      public static function subdomain(){
-        $domain = request('sub');
+        $domain = request('account');
         $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
+        if($sub_domain_checker){
+            return $sub_domain_checker[0]['subdomain'];
+
+        }else{
+            return $domain;
+        }
+    }
+
+     public static function subdomainpar($domain){
+        $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
+        // dd($sub_domain_checker);
+        
         if($sub_domain_checker){
             return $sub_domain_checker[0]['subdomain'];
 
@@ -66,7 +79,7 @@ class Setting extends Model
     public static function get($name, $defaultValue=null)
     {
 
-        $adminsetting = SiteSetting::where('subdomain',request('account'))->first();
+        $adminsetting = SiteSetting::where('subdomain',Setting::subdomain())->first();
         if($adminsetting && $adminsetting->$name != null){
         if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'site_favicon'){
             

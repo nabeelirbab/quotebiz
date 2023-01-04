@@ -1,15 +1,17 @@
+    
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+
+    <script src="<?php echo Request::getSchemeAndHttpHost() ?>:3000/socket.io/socket.io.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
-    <script src="https://<?php echo request('account') ?>.quotebiz.io:3000/socket.io/socket.io.js"></script>
 
     <script type="text/javascript">
 
         var getAPIURL = '{{ url('') }}';
         var userid = '{{Auth::user()->id }}';
+        const socket = io.connect('<?php echo Request::getSchemeAndHttpHost() ?>:3000');
 
-        const socket = io.connect('https://<?php echo request('account') ?>.quotebiz.io:3000');
         socket.on('connect', function() {
           console.log("Connected to WS server");
           console.log(socket.connected); 
@@ -61,15 +63,20 @@
         messaging.requestPermission().then(function () {
             return messaging.getToken()
         }).then(function(token) {
-            
-            axios.post("{{ url('/fcm-token') }}",{
-                _method:"PATCH",
-                token
-            }).then(({data})=>{
-                console.log(data)
-            }).catch(({response:{data}})=>{
-                console.error(data)
-            })
+           $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+   
+             $.ajax({
+               type:'POST',
+               url:"{{ url('/fcm-token') }}",
+               data:{_method:"PATCH", token:token},
+               success:function(data){
+                  console.log(data.success);
+               }
+            });
 
         }).catch(function (err) {
             console.log(`Token Error :: ${err}`);

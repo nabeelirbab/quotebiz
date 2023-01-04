@@ -8,7 +8,7 @@
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/css/bootstrap-colorpicker.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/css/bootstrap-colorpicker.css" />
  <style type="text/css">
    .leftbar .page-container {
     position: relative;
@@ -138,6 +138,20 @@
                         </div>
                        </div>
                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="default-01">Quote Box Position</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} > Left
+                        </label>
+                         <label>
+                          <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
+                        </label>
+                        <label >
+                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
+                        </label>
+                        </div>
+                        </div>
                      <div class="form-group">
                         <label class="form-label" for="default-01">Business Number Visibility</label>
                         <div class="form-control-wrap">
@@ -149,20 +163,7 @@
                         </label>
                         </div>
                         </div>
-                        <div class="form-group">
-                        <label class="form-label" for="default-01">Quote Box Position</label>
-                        <div class="form-control-wrap">
-                         <label>
-                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} > Left
-                        </label>
-                         <label>
-                          <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
-                        </label>
-                        <label >
-                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off" checked> Right
-                        </label>
-                        </div>
-                        </div>
+                       
                         <div class="row mb-3" id="businessno">
                         <div class="col-md-6 col-sm-6">
                         <div class="form-group">
@@ -185,6 +186,7 @@
                         </div>
                       </div>
                     </div>
+
                         <div class="form-group">
                             <label class="form-label" for="default-01">Terms & Conditions</label>
                             <div class="form-control-wrap">
@@ -241,7 +243,7 @@
 @endsection
 @section('script')
 
- <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/js/bootstrap-colorpicker.min.js" integrity="sha512-94dgCw8xWrVcgkmOc2fwKjO4dqy/X3q7IjFru6MHJKeaAzCvhkVtOS6S+co+RbcZvvPBngLzuVMApmxkuWZGwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/js/bootstrap-colorpicker.min.js" integrity="sha512-94dgCw8xWrVcgkmOc2fwKjO4dqy/X3q7IjFru6MHJKeaAzCvhkVtOS6S+co+RbcZvvPBngLzuVMApmxkuWZGwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
        $(".modal-button").click(function() {
             var target = $(this).data("target");

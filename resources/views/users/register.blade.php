@@ -1,6 +1,6 @@
 
 <?php
-  $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(Route::input('account'));
+  $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
   $countries = Acelle\Jobs\HelperJob::countries(); 
   $providerstatename = Acelle\Jobs\HelperJob::statename($provideradminlocation->state);
   $providercityname = Acelle\Jobs\HelperJob::cityname($provideradminlocation->city); 

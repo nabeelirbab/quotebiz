@@ -35,7 +35,7 @@ $subdomain= request("account");
             @endif
         </div>
 
-<input type="hidden" name="subdomain" value="{{request('account')}}">
+<input type="hidden" name="subdomain" value="{{\Acelle\Model\Setting::subdomain()}}">
         <div class="form-group login-password-input has-feedback has-feedback-left{{ $errors->has('password') ? ' has-error' : '' }}">
             <input id="password" type="password" class="form-control" name="password" placeholder="{{ trans("messages.password") }}"
 	value="{{ isset(\Acelle\Model\User::getAuthenticateFromFile()['password']) ? \Acelle\Model\User::getAuthenticateFromFile()['password'] : "" }}"

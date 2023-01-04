@@ -545,7 +545,7 @@ var jqOld = jQuery.noConflict();
             return true; 
         },
         onFinished: function (event, currentIndex) {
-		  alert('hell');
+		 
 		  jqOld("#form").submit();
 		},
         labels: {

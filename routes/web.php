@@ -11,9 +11,27 @@
 |
 */
 
-Route::domain('{account}.'.config('app.url'))->group(function () {
 
-Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function () {
+function get_domain($url) {
+    $pieces = parse_url($url);
+    $domain = isset($pieces['host']) ? $pieces['host'] : $pieces['path'];
+    if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{0,63}\.[a-z\.]{1,5})$/i', $domain, $regs)) {
+        return $regs['domain'];
+    }
+    return false;
+}
+
+if(get_domain(request()->getHost()) == config('app.url')){
+    $account_prefix = '{account}.'.config('app.url');
+}else{
+    Route::pattern('account', '('.request()->getHost().')');
+    $account_prefix = '{account}';
+
+}
+
+Route::domain($account_prefix)->group(function ($account) {
+
+    Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function ($account) {
     // Helper method to generate other routes for authentication
     Route::get('/', 'QuoteController@home');
     Auth::routes();
@@ -228,6 +246,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
 Route::get('users/logout', 'UserController@logout');
 
  Route::name('admin.')->prefix('admin')->group(function () {
+	
   Route::group(['middleware' => ['not_installed', 'auth', 'admin','validdomain']], function () {
 
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
@@ -241,7 +260,7 @@ Route::get('users/logout', 'UserController@logout');
 
         // Question
   Route::name('questions.')->prefix('questions/')->group(function () {
-    Route::get('/', 'QuestionController@index');
+    Route::get('/', 'QuestionController@index')->name('nabeel');
     Route::get('add-question', 'QuestionController@create');
     Route::post('store', 'QuestionController@store');
     Route::post('searchcategory', 'QuestionController@searchcategory');
@@ -302,6 +321,7 @@ Route::get('users/logout', 'UserController@logout');
 
 Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']], function () {
     Route::get('/', 'HomeController@index');
+
     // Search
     Route::get('/search/subscribers', 'SearchController@subscribers');
     Route::get('/search/templates', 'SearchController@templates');
