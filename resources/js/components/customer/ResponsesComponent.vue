@@ -10,10 +10,10 @@
     <ul class="nk-msg-menu nav nav-tabs">
       
         <li id="tabactive" class="nk-msg-menu-item nav-item active">
-            <a href="#tabItem0" data-toggle="tab" @click="activetab()" class="nav-link">Active</a>
+            <a href="#tabItem0" data-toggle="tab" @click="activetab()" class="nav-link">New</a>
         </li>
         <li class="nk-msg-menu-item nav-item">
-            <a href="#tabItem1" data-toggle="tab" @click="wontab()" class="nav-link">Won</a>
+            <a href="#tabItem1" data-toggle="tab" @click="wontab()" class="nav-link">Accepted</a>
         </li>
         <li class="nk-msg-menu-item nav-item">
             <a href="#tabItem2" data-toggle="tab" @click="donetab()" class="nav-link">Done</a>
@@ -201,7 +201,7 @@
                 <h4 class="mt-2">
                     Start Chat
                 </h4>
-                <p class="text-center mt-2 text-light-grey">You haven’t responded to any customers yet. When you do, you’ll be able to contact and access their details here.</p>
+                <p class="text-center mt-2 text-light-grey">You haven't received any quotes yet. When you do, you'll be able to chat with the service provider and access their contact details if you wish to reach out to them.</p>
             </div>
         </div>
 
@@ -233,7 +233,7 @@
                 <a href="#" class="btn btn-icon btn-sm btn-white btn-light dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <ul class="link-list-opt no-bdr">
-                        <li><a href="#" @click="changeStatus('won')"><em class="icon ni ni-user-add"></em><span>Mark as Won</span></a></li>
+                        <li><a href="#" @click="changeStatus('won')"><em class="icon ni ni-user-add"></em><span>Mark as Accepted</span></a></li>
                         <li><a href="#" @click="changeStatus('lose')"><em class="icon ni ni-archive"></em><span>Mark as Lose</span></a></li>
                         <li><a href="#" @click="changeStatus('done')"><em class="icon ni ni-done"></em><span>Mark as Done</span></a></li>
                     </ul>
