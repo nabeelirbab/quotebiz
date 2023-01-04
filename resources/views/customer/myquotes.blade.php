@@ -40,21 +40,18 @@
                             <table class="table table-tickets">
                                 <thead class="tb-ticket-head">
                                     <tr class="tb-ticket-title">
-                                        <th class="tb-ticket-id"><span>#ID</span></th>
+                                        
+                                        <th class="tb-ticket-date tb-col-md">
+                                            <span>Posted on</span>
+                                        </th>
                                         <th class="tb-ticket-desc">
                                             <span>Category</span>
                                         </th>
-                                        <th class="tb-ticket-desc">
+                                        <th class="tb-ticket-desc" colspan="3">
                                             <span>Address</span>
                                         </th>
-                                        <th class="tb-ticket-desc" colspan="2">
-                                            <span>Additional Information</span>
-                                        </th>
-                                        <th class="tb-ticket-desc" colspan="2">
-                                            <span>Quotations</span>
-                                        </th>
-                                        <th class="tb-ticket-date tb-col-md">
-                                            <span>Posted on</span>
+                                        <th class="tb-ticket-desc" >
+                                            <span>Quotes Received</span>
                                         </th>
                                         <th class="tb-ticket-status">
                                             <span>Status</span>
@@ -66,25 +63,21 @@
                                   @if(count($myrequests) > 0)
                                     @foreach($myrequests as $request)
                                     <tr class="tb-ticket-item is-unread">
-                                        <td class="tb-ticket-id">{{$request->id}}</td>
+                                        <td class="tb-ticket-date tb-col-md">
+                                            <span class="date">{{\Carbon\Carbon::parse($request->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
+                                        </td>
                                         <td class="tb-ticket-desc">
                                             <span class="title">{{$request->category->category_name}}</span>
                                         </td>
-                                        <td class="tb-ticket-date tb-col-md">
-                                            <span>{{$request->zip_code}}</span>
-                                        </td>
                                         <td class="tb-ticket-date tb-col-md" colspan="3">
-                                            {{Str::limit($request->additional_info, 120, '...')}}
+                                            <span>{{$request->zip_code}}</span>
                                         </td>
                                         <td class="tb-ticket-date tb-col-md">
                                             <span class="date">{{count($request->quotations)}}</span>
                                         </td>
-                                        <td class="tb-ticket-date tb-col-md">
-                                            <span class="date">{{\Carbon\Carbon::parse($request->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
-                                        </td>
                                         <td class="tb-ticket-status">
                                             @if($request->status == 'pending')
-                                            <span class="badge badge-light">Open for quoting</span>
+                                            <span class="badge badge-warning">Open for quoting</span>
                                             @else
                                              <span class="badge badge-success">Open</span>
                                             @endif

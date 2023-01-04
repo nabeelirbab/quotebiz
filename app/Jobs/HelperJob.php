@@ -175,7 +175,7 @@ class HelperJob extends Base
     }
 
     public static function provideradminlocationreg($route){
-        return  User::select('admin_location_type','country','state','city')->where('subdomain',$route)->where('user_type','admin')->first();
+        return  User::select('admin_location_type','country','state','city')->where('subdomain',request('account'))->where('user_type','admin')->first();
     }
 
     public static function admindetail(){
