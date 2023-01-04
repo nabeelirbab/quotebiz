@@ -55,8 +55,20 @@ class Setting extends Model
      */
 
      public static function subdomain(){
-        $domain = request('sub');
+        $domain = request('account');
         $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
+        if($sub_domain_checker){
+            return $sub_domain_checker[0]['subdomain'];
+
+        }else{
+            return $domain;
+        }
+    }
+
+     public static function subdomainpar($domain){
+        $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
+        // dd($sub_domain_checker);
+        
         if($sub_domain_checker){
             return $sub_domain_checker[0]['subdomain'];
 

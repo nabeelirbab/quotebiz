@@ -22,16 +22,16 @@ function get_domain($url) {
 }
 
 if(get_domain(request()->getHost()) == config('app.url')){
-    $account_prefix = '{sub}.'.config('app.url');
+    $account_prefix = '{account}.'.config('app.url');
 }else{
-    Route::pattern('sub', '('.request()->getHost().')');
-    $account_prefix = '{sub}';
+    Route::pattern('account', '('.request()->getHost().')');
+    $account_prefix = '{account}';
 
 }
 
-Route::domain($account_prefix)->group(function ($sub) {
+Route::domain($account_prefix)->group(function ($account) {
 
-    Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function ($sub) {
+    Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function ($account) {
     // Helper method to generate other routes for authentication
     Route::get('/', 'QuoteController@home');
     Auth::routes();

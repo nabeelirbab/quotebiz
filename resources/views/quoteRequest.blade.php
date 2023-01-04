@@ -1,7 +1,7 @@
 <?php
 $sitename = \Acelle\Model\Setting::get("site_name");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
-$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(Route::input('account'));
+$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
 $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
 ?>
 <!DOCTYPE html>
@@ -305,7 +305,7 @@ cursor: pointer;
 @if(Auth::user())
 @if(Auth::user()->user_type == 'client')
 <div class="floatright mt-4">
-<a href="{{ route('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
+<a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="floatright mt-4">
