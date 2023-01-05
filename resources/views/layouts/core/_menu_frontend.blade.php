@@ -18,48 +18,40 @@
         </span>
 
         <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav me-auto mb-md-0 main-menu">
-                <li class="nav-item" rel0="HomeController">
-                    <a href="{{ url('/admin') }}" title="{{ trans('messages.dashboard') }}" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                      <em class="icon ni ni-dashboard fs-5 mr-1"></em>
-                        <span>{{ trans('messages.dashboard') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item" rel0="HomeController">
-                    <a href="{{ url('admin/quotes') }}" title="Quotes" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                       <em class="icon ni ni-folder-list fs-5 mr-1"></em>
-                        <span>Quotes</span>
-                    </a>
-                </li>
-                <li class="nav-item" rel2="HomeController">
-                    <a href="{{ url('admin/customers') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                       <em class="icon ni ni-users fs-5 mr-1"></em>
-                        <span>Customers</span>
-                    </a>
-                </li>
+                <ul class="navbar-nav me-auto mb-md-0 main-menu">
+                    <li class="nav-item" rel0="HomeController">
+                        <a href="{{ url('/admin') }}" title="{{ trans('messages.dashboard') }}" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                          <em class="icon ni ni-dashboard fs-5 mr-1"></em>
+                            <span>{{ trans('messages.dashboard') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" rel0="HomeController">
+                        <a href="{{ url('admin/quotes') }}" title="Quotes" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                           <em class="icon ni ni-folder-list fs-5 mr-1"></em>
+                            <span>Quotes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/customers') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                           <em class="icon ni ni-users fs-5 mr-1"></em>
+                            <span>Customers</span>
+                        </a>
+                    </li>
 
-                      <li class="nav-item dropdown language-switch"  rel0="CustomerController">
-                        <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/serviceproviders') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                            <em class="icon ni ni-users fs-5 mr-1"></em>
                             <span>Service Providers</span>
-                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                             <li class="nav-item" rel0="CustomerController9">
-                                    <a href="{{ url('admin/serviceproviders') }}" class="dropdown-item d-flex align-items-center">
-                                        <em class="icon ni ni-users fs-5 mr-1"></em>
-                                        Service Providers List
-                                    </a>
-                                </li>
-                            <li class="nav-item" rel0="CustomerController9">
-                                    <a href="{{ url('admin/service-categories') }}" class="dropdown-item d-flex align-items-center">
-                                       <em class="icon ni ni-property-alt fs-5 mr-1"></em>
-                                        Categories List
-                                    </a>
-                                </li>
-                           
-                            </ul>
-                          </li>
+                    </li>
+
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/service-categories') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                           <em class="icon ni ni-network fs-5 mr-1"></em>
+                            <span>Service Categories</span>
+                        </a>
+                    </li>
+
                          <li class="nav-item dropdown language-switch" rel1="CustomerController" >
                         <a role="button" class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                            <em class="icon ni ni-card-view fs-5 mr-1"></em>
