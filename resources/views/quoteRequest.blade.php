@@ -91,7 +91,6 @@ border-bottom-right-radius: 15px;
 }
 
 p.mb-0 {
-color: #6C6D6F;
 font-size: 10px;
 font-weight: bold;
 }

@@ -203,6 +203,9 @@
     margin-right: -15px;
     margin-left: -15px;
 }
+.content.clearfix{
+	padding: 15px;
+}
 @media only screen and (min-width: 992px) {
 .col-md-6 {
     width: 50%;
