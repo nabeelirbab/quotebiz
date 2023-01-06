@@ -93,6 +93,7 @@ border-bottom-right-radius: 15px;
 p.mb-0 {
 font-size: 10px;
 font-weight: bold;
+color: #9f9f9f;
 }
 
 strong {
@@ -155,7 +156,7 @@ font-size: 1.1rem;
 .form-control:focus {
 box-shadow: none;
 border-radius: 6px;
-border: 1px solid #c1c1c1;
+border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
 }
 
 .form-control-placeholder {
@@ -167,7 +168,7 @@ opacity: 0.5;
 font-size: 75%;*/
 font-size: 1.1rem;
 font-weight: 500;
-color: #444;
+color: #364a63;
 margin-bottom: 8px;
 }
 
@@ -381,7 +382,7 @@ autocomplete="off">
     <div class="custom-control custom-control-sm custom-checkbox notext mt-2">
         <input type="checkbox" class="custom-control-input" id="local_business"
                name="local_business" value="local business">
-        <label class="custom-control-label" for="local_business" style="font-size: 14px">I prefer a local business</label>
+        <label class="custom-control-label" for="local_business" style="font-size: 13px;color: #9f9f9f;">I prefer a local business</label>
     </div>
     <input type="hidden" id="latitude" name="latitude">
     <input type="hidden" id="longitude" name="longitude">

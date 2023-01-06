@@ -333,88 +333,6 @@ $currencySymbols = [
     </div><!-- .nk-ecwg -->
 </div><!-- .card -->
 </div><!-- .col -->
-<div class="col-xxl-9">
-<div class="card card-full">
-    <div class="nk-ecwg nk-ecwg8 h-100">
-        <div class="card-inner">
-            <div class=" mb-3">
-                <div class="card-title">
-                    <h6 class="title">Sales Statistics</h6>
-                </div>
-                <div class="card-tools">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">{{$dateName}}</a>
-                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                            <ul class="link-list-opt no-bdr">
-                                <li><a href="#"><span>Daily</span></a></li>
-                                <li><a href="#" class="active"><span>Weekly</span></a></li>
-                                <li><a href="#"><span>Monthly</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <ul class="nk-ecwg8-legends">
-                <li>
-                    <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#0fac81"></span>
-                        <span>Total Quote</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#eb6459"></span>
-                        <span>Canceled Quote</span>
-                    </div>
-                </li>
-            </ul>
-            <div class="nk-ecwg8-ck">
-                <canvas class="ecommerce-line-chart-s4" id="salesStatistics"></canvas>
-            </div>
-            <div class="chart-label-group pl-5">
-                <div class="chart-label">01 Jul, 2020</div>
-                <div class="chart-label">30 Jul, 2020</div>
-            </div>
-        </div><!-- .card-inner -->
-    </div>
-</div><!-- .card -->
-</div><!-- .col -->
-<div class="col-xxl-3 col-md-6">
-<div class="card card-full overflow-hidden">
-    <div class="nk-ecwg nk-ecwg7 h-100">
-        <div class="card-inner flex-grow-1">
-            <div class=" mb-4">
-                <div class="card-title">
-                    <h6 class="title">Quote Statistics</h6>
-                </div>
-            </div>
-            <div class="nk-ecwg7-ck">
-                <canvas class="ecommerce-doughnut-s1" id="orderStatistics"></canvas>
-            </div>
-            <ul class="nk-ecwg7-legends">
-                <li>
-                    <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#0fac81"></span>
-                        <span>Completed</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#e85347"></span>
-                        <span>Canclled</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#816bff"></span>
-                        <span>Processing</span>
-                    </div>
-                </li>
-            </ul>
-        </div><!-- .card-inner -->
-    </div>
-</div><!-- .card -->
-</div><!-- .col -->
 
 <div class="col-xxl-8">
 <div class="card card-full">
@@ -530,6 +448,89 @@ $currencySymbols = [
     </div><!-- .card-inner -->
 </div><!-- .card -->
 </div><!-- .col -->
+<div class="col-xxl-9">
+<div class="card card-full">
+    <div class="nk-ecwg nk-ecwg8 h-100">
+        <div class="card-inner">
+            <div class=" mb-3">
+                <div class="card-title">
+                    <h6 class="title">Sales Statistics</h6>
+                </div>
+                <div class="card-tools">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">{{$dateName}}</a>
+                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                            <ul class="link-list-opt no-bdr">
+                                <li><a href="#"><span>Daily</span></a></li>
+                                <li><a href="#" class="active"><span>Weekly</span></a></li>
+                                <li><a href="#"><span>Monthly</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nk-ecwg8-legends">
+                <li>
+                    <div class="title">
+                        <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                        <span>Total Quote</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span class="dot dot-lg sq" data-bg="#eb6459"></span>
+                        <span>Canceled Quote</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="nk-ecwg8-ck">
+                 <canvas class="sales-bar-chart" id="activeSubscription"></canvas>
+            </div>
+            <div class="chart-label-group pl-5">
+                <div class="chart-label">01 Jul, 2020</div>
+                <div class="chart-label">30 Jul, 2020</div>
+            </div>
+        </div><!-- .card-inner -->
+    </div>
+</div><!-- .card -->
+</div><!-- .col -->
+<div class="col-xxl-3 col-md-6">
+<div class="card card-full overflow-hidden">
+    <div class="nk-ecwg nk-ecwg7 h-100">
+        <div class="card-inner flex-grow-1">
+            <div class=" mb-4">
+                <div class="card-title">
+                    <h6 class="title">Quote Statistics</h6>
+                </div>
+            </div>
+            <div class="nk-ecwg7-ck">
+                <canvas class="ecommerce-doughnut-s1" id="orderStatistics"></canvas>
+            </div>
+            <ul class="nk-ecwg7-legends">
+                <li>
+                    <div class="title">
+                        <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                        <span>Completed</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span class="dot dot-lg sq" data-bg="#e85347"></span>
+                        <span>Canclled</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span class="dot dot-lg sq" data-bg="#816bff"></span>
+                        <span>Processing</span>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- .card-inner -->
+    </div>
+</div><!-- .card -->
+</div><!-- .col -->
+
 </div><!-- .row -->
 </div><!-- .nk-block -->
 </div>
@@ -541,6 +542,7 @@ $currencySymbols = [
 @section('script')
 
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
+<script src="{{ asset('frontend-assets/assets/js/charts/gd-default.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/chart-ecommerce.js?ver=2.9.1') }}"></script>
 
 @endsection

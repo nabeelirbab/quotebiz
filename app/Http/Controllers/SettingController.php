@@ -31,11 +31,16 @@ class SettingController extends Controller
     public function customdomain(Request $request){
 
          if ($request->isMethod('post')) {
-             Subdomain::where('id',Auth::user()->id)->update(['parent'=> $request->parent]);
+             Subdomain::where('user_id',Auth::user()->id)->update(['parent'=> $request->parent]);
              return redirect()->back()->with('success', 'Domain add successfully');   
 
          }
 
          return view('customDomain');
+    }
+
+    public function domainStatus(Request $request){
+        Subdomain::where('user_id',Auth::user()->id)->update(['status'=> $request->get('status')]);
+         return redirect()->back()->with('success', 'Domain status changed successfully');   
     }
 }

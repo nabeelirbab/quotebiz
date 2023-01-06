@@ -48,7 +48,7 @@
                                             <span>Category</span>
                                         </th>
                                         <th class="tb-ticket-desc" colspan="3">
-                                            <span>Address</span>
+                                            <span>Location</span>
                                         </th>
                                         <th class="tb-ticket-desc" >
                                             <span>Quotes Received</span>
