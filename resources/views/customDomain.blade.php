@@ -88,14 +88,24 @@ input:checked + .slider:before {
   display: none;
 }
 
-.on, .off
+.on
 {
   color: white;
   position: absolute;
   transform: translate(-50%,-50%);
   top: 50%;
-  left: 50%;
-  font-size: 10px;
+  left: 35%;
+  font-size: 12px;
+  font-family: Verdana, sans-serif;
+}
+.off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 65%;
+  font-size: 12px;
   font-family: Verdana, sans-serif;
 }
 
@@ -160,8 +170,8 @@ input:checked + .slider .off
      <input type="checkbox" id="togBtn" {{Auth::user()->customdomain->status == 'active'? 'checked': ''}}>
      <div class="slider round">
       <!--ADDED HTML -->
-      <span class="on">ON</span>
-      <span class="off">OFF</span>
+      <span class="on">Active</span>
+      <span class="off">Inactive</span>
       <!--END-->
      </div>
     </label>
