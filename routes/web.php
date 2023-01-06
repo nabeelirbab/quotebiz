@@ -253,6 +253,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
     Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain');
+    Route::get('/domain-status', 'SettingController@domainStatus');
 
     Route::post('sendInvitation', 'UserController@sendInvitation');
     Route::post('resendInvitation', 'UserController@resendInvitation');
