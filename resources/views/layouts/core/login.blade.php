@@ -17,6 +17,11 @@
                     margin-left: 0px;
                     margin-right: 0px;
                 }
+            .loginheader {
+                    max-width: 200px;
+                    margin: 0 auto;
+                    margin-bottom: 25px;
+                 }
         </style>
         @include('layouts.core._script_vars')
     </head>
@@ -40,10 +45,10 @@
                         </div>
                         <div class="col-sm-8 col-md-4">
 
-                            <div class="text-center login-header">
+                            <div class="text-center loginheader">
                                 <a class="main-logo-big" href="{{ url('/') }}">
                                     @if (\Acelle\Model\Setting::get('site_logo_big'))
-                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" style="width: 220px;" alt="">
+                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" style="width: 80%;" alt="">
                                     @else
                                         <img src="{{ URL::asset('images/logo_big.svg') }}" alt="">
                                     @endif
