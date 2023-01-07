@@ -3,6 +3,7 @@
 namespace Acelle\Imports;
 
 use Acelle\Model\User;
+use Acelle\Model\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -45,11 +46,12 @@ class UsersImport implements ToModel, WithHeadingRow
             "state" => $row['state'],
             "city" => $row['city'],
             "zipcode" => $row['postcode'],
-            "subdomain" => request('account'),
+            "subdomain" => Setting::subdomain(),
             "address" => $row['street'],
             "user_type" => 'client', // User Type User
             "activated" => 1,
             "password" => '$2y$10$xsrHVfSWKUEowpyfLWLklu/Ht1nhTMCg88x9rOBLXMh6dO4h8Ynr6'
         ]);
+
     }
 }

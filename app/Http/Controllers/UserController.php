@@ -26,6 +26,7 @@ use Mail;
 use Acelle\Mail\SendInvitation;
 use Acelle\Exports\UsersExport;
 use Acelle\Imports\UsersImport;
+use Acelle\Imports\SPImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Redirect;
@@ -575,6 +576,13 @@ public function sp_register(Request $request){
 public function uploadUsers(Request $request)
 {
     Excel::import(new UsersImport, $request->file);
+
+    return redirect()->back()->with('success', 'User Imported Successfully');
+}
+
+public function uploadSP(Request $request)
+{
+    Excel::import(new SPImport, $request->file);
 
     return redirect()->back()->with('success', 'User Imported Successfully');
 }

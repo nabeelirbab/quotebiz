@@ -509,19 +509,19 @@ $currencySymbols = [
             <ul class="nk-ecwg7-legends">
                 <li>
                     <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                        <span class="dot dot-lg sq" data-bg="#0fac81" style="background: #0fac81"></span>
                         <span>Completed</span>
                     </div>
                 </li>
                 <li>
                     <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#e85347"></span>
+                        <span class="dot dot-lg sq" data-bg="#e85347" style="background: #e85347"></span>
                         <span>Canclled</span>
                     </div>
                 </li>
                 <li>
                     <div class="title">
-                        <span class="dot dot-lg sq" data-bg="#816bff"></span>
+                        <span class="dot dot-lg sq" data-bg="#816bff" style="background: #816bff"></span>
                         <span>Processing</span>
                     </div>
                 </li>
