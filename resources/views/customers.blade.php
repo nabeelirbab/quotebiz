@@ -191,7 +191,6 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content card shadow mb-4">
       <div class="modal-body card-header py-3" style="background: white">
-         <div class="">
         <div class="">
             <h6 class="m-0 font-weight-bold text-primary">Import Users</h6>
         </div>
@@ -230,7 +229,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 </div>
 </div>

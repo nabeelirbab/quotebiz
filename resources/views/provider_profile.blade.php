@@ -104,22 +104,30 @@
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
                         <span class="profile-ud-label">Country</span>
+                        @if(Acelle\Jobs\HelperJob::countryname($userdetail->country))
                         <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::countryname($userdetail->country)->name}}</span>
+                         @else
+                        <span class="profile-ud-value"> {{$userdetail->country}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
                         <span class="profile-ud-label">State</span>
+                        @if(Acelle\Jobs\HelperJob::statename($userdetail->state))
                         <span class="profile-ud-value">{{Acelle\Jobs\HelperJob::statename($userdetail->state)->name}}</span>
+                        @else
+                        <span class="profile-ud-value">{{$userdetail->state}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
                         <span class="profile-ud-label">City</span>
-                        @if($userdetail->city)
-                        <span class="profile-ud-value">
-                            {{Acelle\Jobs\HelperJob::cityname($userdetail->city)->name}}</span>
-                            @endif
+                        @if(Acelle\Jobs\HelperJob::cityname($userdetail->city))<span class="profile-ud-value">{{Acelle\Jobs\HelperJob::cityname($userdetail->city)->name}}</span> 
+                        @else
+                        <span class="profile-ud-value">{{$userdetail->city}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-ud-item">

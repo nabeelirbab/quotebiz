@@ -17,6 +17,7 @@
   </style>
 @endsection
 @section('content')
+
 <!-- content @s -->
 <div class="nk-content ">
 <div class="container-fluid mt-4">
@@ -36,6 +37,7 @@
 <div class="float-right">
 <a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited Service Providers</a>
 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit">Invite</button>
+<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal23">Import Users</button>
 </div>
 
 </div><!-- .nk-block-between -->
@@ -98,6 +100,8 @@
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
            
         </div><!-- .nk-tb-item -->
+        @if($users->count() > 0)
+       
         @foreach($users as $user)
         <div class="nk-tb-item">
              <div class="nk-tb-col  tb-col-md">
@@ -146,15 +150,24 @@
 
             </div>
             <div class="nk-tb-col tb-col-lg">
+                @if(Acelle\Jobs\HelperJob::countryname($user->country))
                 <span>{{Acelle\Jobs\HelperJob::countryname($user->country)->name}}</span>
-            </div>
-            <div class="nk-tb-col tb-col-lg">
-                <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
-            </div>
-            <div class="nk-tb-col tb-col-lg">
-                @if($user->city)
-                <span>{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span>
+                @else
+                <span>{{$user->country}}</span>
                 @endif
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                @if(Acelle\Jobs\HelperJob::statename($user->state))
+                <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
+                @else
+                <span>{{$user->state}}</span>
+                @endif
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+              @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
+               @else
+               {{$user->city}}
+               @endif
             </div>
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
@@ -189,6 +202,7 @@
             </div>
         </div><!-- .nk-tb-item -->
         @endforeach
+        @endif
        
     </div><!-- .nk-tb-list -->
 </div><!-- .card-inner -->
@@ -294,9 +308,53 @@
 <div class="card-inner">
     {{$users}}
 </div><!-- .card-inner -->
+
+</div>
 </div><!-- .card-inner-group -->
 </div><!-- .card -->
 </div><!-- .nk-block -->
+<div class="modal fade" id="exampleModal23" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content card shadow mb-4">
+      <div class="modal-body card-header py-3" style="background: white">
+        <div class="">
+            <h6 class="m-0 font-weight-bold text-primary">Import Users</h6>
+        </div>
+        <form method="POST" action="{{ url('admin/import-sp') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body">
+                <div class="form-group row">
+                    
+                    <div class="col-md-12 mb-3 mt-3">
+                        <p>Please Upload CSV in Given Format <a href="{{ asset('') }}" target="_blank">Sample CSV Format</a></p>
+                    </div>
+                    {{-- File Input --}}
+                    <div class="col-sm-12 mb-3 mt-3 mb-sm-0">
+                        <span style="color:red;">*</span>File Input(Datasheet)</label>
+                        <input 
+                            type="file" 
+                            class="form-control form-control-user @error('file') is-invalid @enderror" 
+                            id="exampleFile"
+                            name="file" 
+                            value="{{ old('file') }}">
+
+                        @error('file')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="p-3">
+                <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload Users</button>
+                <a class="btn btn-primary float-right mr-3 mb-3" data-dismiss="modal">Cancel</a>
+            </div>
+        </form>
+    </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>
