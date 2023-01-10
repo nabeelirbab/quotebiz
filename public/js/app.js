@@ -4080,6 +4080,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -60428,6 +60431,14 @@ var render = function () {
                                     ]),
                                   ]),
                                 ]),
+                                _vm._v(" "),
+                                quote.type == "local business"
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "nk-msg-context" },
+                                      [_vm._m(2, true)]
+                                    )
+                                  : _vm._e(),
                               ]),
                             ]
                           ),
@@ -60629,6 +60640,17 @@ var render = function () {
                                                   ),
                                                 ]
                                               ),
+                                              _vm._v(" "),
+                                              quote.type == "local business"
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-context",
+                                                    },
+                                                    [_vm._m(3, true)]
+                                                  )
+                                                : _vm._e(),
                                             ]
                                           ),
                                         ]
@@ -60780,42 +60802,16 @@ var render = function () {
                                                 ]
                                               ),
                                               _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass: "nk-msg-context",
-                                                },
-                                                [
-                                                  _c(
+                                              quote.type == "local business"
+                                                ? _c(
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "nk-msg-text",
+                                                        "nk-msg-context",
                                                     },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass: "title",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              quote.category
-                                                                .category_name
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("div", {
-                                                    staticClass:
-                                                      "nk-msg-lables",
-                                                  }),
-                                                ]
-                                              ),
+                                                    [_vm._m(4, true)]
+                                                  )
+                                                : _vm._e(),
                                             ]
                                           ),
                                         ]
@@ -60834,7 +60830,7 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "nk-msg-body nk-msg-top bg-white" }, [
-              _vm._m(2),
+              _vm._m(5),
               _vm._v(" "),
               _c(
                 "div",
@@ -60901,7 +60897,7 @@ var render = function () {
                                     attrs: { href: "" },
                                   },
                                   [
-                                    _vm._m(3),
+                                    _vm._m(6),
                                     _vm._v(" "),
                                     _c("div", { staticClass: "ml-3" }, [
                                       _vm.quoteQuestions.category
@@ -60953,8 +60949,10 @@ var render = function () {
                                               },
                                               [
                                                 _c("em", {
-                                                  staticClass:
-                                                    "icon icon-circle bg-light ni ni-edit-alt",
+                                                  staticClass: "ni ni-mobile",
+                                                  staticStyle: {
+                                                    "font-size": "20px",
+                                                  },
                                                 }),
                                                 _c(
                                                   "span",
@@ -60986,8 +60984,10 @@ var render = function () {
                                           },
                                           [
                                             _c("em", {
-                                              staticClass:
-                                                "icon icon-circle bg-light ni ni-search",
+                                              staticClass: " ni ni-mail",
+                                              staticStyle: {
+                                                "font-size": "20px",
+                                              },
                                             }),
                                             _vm.quoteQuestions.user
                                               ? _c(
@@ -61010,7 +61010,8 @@ var render = function () {
                                         ),
                                       ]),
                                       _vm._v(" "),
-                                      _vm.quoteQuestions.user
+                                      _vm.quoteQuestions.type ==
+                                      "local business"
                                         ? _c("li", [
                                             _c(
                                               "a",
@@ -61021,7 +61022,44 @@ var render = function () {
                                               [
                                                 _c("em", {
                                                   staticClass:
-                                                    "icon icon-circle bg-light ni ni-circle-fill",
+                                                    " ni ni-location",
+                                                  staticStyle: {
+                                                    "font-size": "20px",
+                                                  },
+                                                }),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "lead-text text-muted pl-1",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.quoteQuestions
+                                                          .zip_code
+                                                      )
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ])
+                                        : _vm.quoteQuestions.user
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass: "chat-option-link",
+                                                attrs: { href: "#" },
+                                              },
+                                              [
+                                                _c("em", {
+                                                  staticClass:
+                                                    " ni ni-location",
+                                                  staticStyle: {
+                                                    "font-size": "20px",
+                                                  },
                                                 }),
                                                 _c(
                                                   "span",
@@ -61126,7 +61164,7 @@ var render = function () {
                                     "div",
                                     { staticClass: "col-md-12 mt-2 mb-3" },
                                     [
-                                      _vm._m(4),
+                                      _vm._m(7),
                                       _vm._v(" "),
                                       _c(
                                         "div",
@@ -61148,10 +61186,10 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
-                                _vm._m(5),
+                                _vm._m(8),
                                 _vm._v(" "),
                                 _vm.quoteQuestions.myquotation
-                                  ? [_vm._m(6)]
+                                  ? [_vm._m(9)]
                                   : [
                                       _vm.creaditsum >= 10
                                         ? _c(
@@ -61407,7 +61445,7 @@ var render = function () {
                                                                   _vm._v(
                                                                     "Send Quote "
                                                                   ),
-                                                                  _vm._m(7),
+                                                                  _vm._m(10),
                                                                 ]
                                                               )
                                                             : _vm._e(),
@@ -61425,7 +61463,11 @@ var render = function () {
                                               staticClass:
                                                 "row mt-3 justify-content-end",
                                             },
-                                            [_vm._m(8), _vm._v(" "), _vm._m(9)]
+                                            [
+                                              _vm._m(11),
+                                              _vm._v(" "),
+                                              _vm._m(12),
+                                            ]
                                           ),
                                     ],
                               ],
@@ -61468,6 +61510,48 @@ var staticRenderFns = [
     return _c("button", { staticClass: "search-submit btn btn-icon" }, [
       _c("em", { staticClass: "icon ni ni-search" }),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "nk-msg-text", staticStyle: { "font-size": "12px" } },
+      [
+        _c("div", { staticClass: "title" }, [
+          _vm._v("This person prefers a local business"),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "nk-msg-text", staticStyle: { "font-size": "12px" } },
+      [
+        _c("div", { staticClass: "title" }, [
+          _vm._v("This person prefers a local business"),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "nk-msg-text", staticStyle: { "font-size": "12px" } },
+      [
+        _c("div", { staticClass: "title" }, [
+          _vm._v("This person prefers a local business"),
+        ]),
+      ]
+    )
   },
   function () {
     var _vm = this

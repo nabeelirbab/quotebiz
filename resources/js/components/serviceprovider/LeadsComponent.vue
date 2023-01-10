@@ -47,9 +47,12 @@
                   <div class="nk-msg-context">
                       <div class="nk-msg-text">
                           <div class="title">{{quote.category.category_name}}</div>
-                          
                       </div>
-                    
+                  </div>
+                  <div class="nk-msg-context" v-if="quote.type == 'local business'">
+                      <div class="nk-msg-text" style="font-size:12px">
+                          <div class="title">This person prefers a local business</div>
+                      </div>
                   </div>
               </div>
               
@@ -85,9 +88,12 @@
                   <div class="nk-msg-context">
                       <div class="nk-msg-text">
                           <div class="title">{{quote.category.category_name}}</div>
-                          
                       </div>
-                    
+                  </div>
+                  <div class="nk-msg-context" v-if="quote.type == 'local business'">
+                      <div class="nk-msg-text" style="font-size:12px">
+                          <div class="title">This person prefers a local business</div>
+                      </div>
                   </div>
               </div>
               
@@ -120,13 +126,9 @@
                           <div class="date">{{ quote.created_at | moment("from", "now") }}</div>
                       </div>
                   </div>
-                  <div class="nk-msg-context">
-                      <div class="nk-msg-text">
-                          <div class="title">{{quote.category.category_name}}</div>
-                          
-                      </div>
-                      <div class="nk-msg-lables">
-                          <!-- <div class="asterisk"><a href="#"><em class="asterisk-off icon ni ni-star"></em><em class="asterisk-on icon ni ni-star-fill"></em></a></div> -->
+                  <div class="nk-msg-context" v-if="quote.type == 'local business'">
+                      <div class="nk-msg-text" style="font-size:12px">
+                          <div class="title">This person prefers a local business</div>
                       </div>
                   </div>
               </div>
@@ -195,9 +197,10 @@
                       </a>
                     <div class="mt-3">
                           <ul class="chat-profile-options pl-1">
-                              <li v-if="quoteQuestions.user"><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-edit-alt"></em><span class="lead-text text-muted pl-1" >{{quoteQuestions.user.mobileno}}</span></a></li>
-                              <li><a class="chat-option-link chat-search-toggle" href="#"><em class="icon icon-circle bg-light ni ni-search"></em><span class="lead-text text-muted pl-1" v-if="quoteQuestions.user">{{quoteQuestions.user.email }}</span></a></li>
-                              <li v-if="quoteQuestions.user"><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><span class="lead-text text-muted pl-1">{{quoteQuestions.user.city}}</span></a></li>
+                              <li v-if="quoteQuestions.user"><a class="chat-option-link" href="#"><em class="ni ni-mobile" style="font-size: 20px;"></em><span class="lead-text text-muted pl-1" >{{quoteQuestions.user.mobileno}}</span></a></li>
+                              <li><a class="chat-option-link chat-search-toggle" href="#"><em class=" ni ni-mail" style="font-size: 20px;"></em><span class="lead-text text-muted pl-1" v-if="quoteQuestions.user">{{quoteQuestions.user.email }}</span></a></li>
+                              <li v-if="quoteQuestions.type == 'local business'"><a class="chat-option-link" href="#"><em class=" ni ni-location" style="font-size: 20px;"></em><span class="lead-text text-muted pl-1">{{quoteQuestions.zip_code}}</span></a></li>
+                               <li v-else-if="quoteQuestions.user"><a class="chat-option-link" href="#"><em class=" ni ni-location" style="font-size: 20px;"></em><span class="lead-text text-muted pl-1">{{quoteQuestions.user.city}}</span></a></li>
                           </ul>
                       </div>
                   </div> 

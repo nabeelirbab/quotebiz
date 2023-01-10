@@ -248,6 +248,7 @@ class QuestionChoiceController extends Controller
         $job = Quote::with('quotations', 'user')->where('id', $quote->id)->where('user_id', $user->id)->orderBy('id', 'desc')->first();
 
         $SPEmails = array();
+        $SPType = array();
         $location = '';
         if ($request->local_business == "local business")
         {
@@ -268,6 +269,7 @@ class QuestionChoiceController extends Controller
                 if ($getusersdata) {
                     array_push($SPEmails, $getusersdata->email);
                 }
+                array_push($SPType, $user->type);
             }
 
             $location = $request->zip_code;
@@ -347,6 +349,8 @@ class QuestionChoiceController extends Controller
                 }else{
                     array_push($SPEmails, $user->email);
                 }
+
+                 array_push($SPType, $user->type);
             }
         }
 // dd($SPEmasils);
@@ -358,6 +362,7 @@ class QuestionChoiceController extends Controller
 
                 $maildata = [
                     'jobdetail' => $job,
+                    'userType' => $SPType[$key],
                     'location' => $location
                 ];
 
