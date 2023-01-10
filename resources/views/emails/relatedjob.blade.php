@@ -83,7 +83,7 @@ New Customer Alert
   </tr>
   @endif
 <tr>
-	<td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><img src="{{ asset('frontend-assets/images/email/location.png') }}" width="12" height="16" style="margin-left:2px;margin-right:11px;vertical-align:middle" alt="Location" class="CToWUd">Nationwide<br><div style="font-size:13px;color:#a4a4a4;padding-left:28px">Happy to receive service online or remotely</div>
+	<td align="left" style="color:#61696d;font-family:DM Sans, sans-serif;font-size:16px;font-weight:400;line-height:30px;padding:0 0 3px"><img src="{{ asset('frontend-assets/images/email/location.png') }}" width="12" height="16" style="margin-left:2px;margin-right:11px;vertical-align:middle" alt="Location" class="CToWUd">@if($maildata['userType'] == 'state') Statewide @elseif($maildata['userType'] == 'country') Countrywide @endif<br><div style="font-size:13px;color:#a4a4a4;padding-left:28px">@if($maildata['userType'] == 'local business') This person prefers a local business @else Happy to receive service online or remotely  @endif</div>
 	</td>
 </tr>
 
@@ -185,7 +185,7 @@ Let {{$maildata['jobdetail']->user->first_name}} know you're interested and rece
 <tr>
 <td bgcolor="#d9edf7" align="left" style="padding:10px 30px;color:#31708f;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px;border-bottom:1px solid #bce8f1">
 <p style="margin:0">
-Project Details
+Quote Details
 </p>
 </td>
 </tr>
@@ -292,7 +292,7 @@ To contact {{$maildata['jobdetail']->user->first_name}} you’ll need to buy cre
 <tr>
 <td bgcolor="#ffffff" align="left" style="padding:20px 0px 0;color:#61696d;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
 <p style="margin:0">
-We offer a discounted starter pack with enough credits for about 10 responses, backed by our Get Hired Guarantee.
+We offer a discounted starter pack with enough credits for about 5 responses.
 </p>
 </td>
 </tr>
@@ -316,14 +316,14 @@ you all your credits back.
 
 <tr>
 <td bgcolor="#ffffff" align="left" style="padding:20px 0px 0;color:#61696d;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
-<p style="margin:0">If you have any questions, please call <a style="color:#3eaefc" href="tel:+442036970237" target="_blank">020 3697 0237</a> (open 24 hours a day, 7 days a week) or email <a href="mailto:team@bark.com" style="color:#48a7fe;text-decoration:underline" target="_blank">team@<span class="il">{{ \Acelle\Model\Setting::get('site_name') }}</span></a> and we'll be happy to help.</p>
+<p style="margin:0">If you have any questions email us at ( <a href="mailto:{{$admindetail->email}}" style="color:#48a7fe;text-decoration:underline" target="_blank"><span class="il"> {{$admindetail->email}}</span></a> ).</p>
 </td>
 </tr>
 
 
 <tr>
 <td bgcolor="#ffffff" align="left" style="padding:30px 0px 0px;color:#61696d;font-family:DM Sans, sans-serif;font-size:18px;font-weight:400;line-height:25px">
-<p style="margin:0">Kind regards,</p>
+<p style="margin:0">Regards,</p>
 </td>
 </tr>
 <tr>

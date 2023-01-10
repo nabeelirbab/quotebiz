@@ -235,6 +235,17 @@ public function register(Request $request)
             $rules['recaptcha_invalid'] = 'required';
         }
     }
+        if(count($request->category_id) == 1){
+            $cate = Category::select('id')->where('cat_parent_id',$request->category_id[0])->get();
+           $category = [];
+            foreach ($cate as $key => $value) {
+                
+                $category[] = $value->id;
+            }
+            
+        }else{
+            $category = $request->category_id;
+        }
     
         $this->validate($request, $rules);
         $user = new User();
@@ -248,7 +259,7 @@ public function register(Request $request)
         $user->address = $request->address;
         $user->latitude = $request->latitude;
         $user->longitude = $request->longitude;
-        $user->category_id = json_encode($request->category_id);
+        $user->category_id = json_encode($category);
         $user->zipcode = $request->zipcode;
     if($request->invite){
         $invite = Invitation::where('subdomain',Setting::subdomain())->where('token',$request->invite)->first();
