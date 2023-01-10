@@ -47,10 +47,10 @@
                                         <th class="tb-ticket-desc">
                                             <span>Category</span>
                                         </th>
-                                        <th class="tb-ticket-desc" colspan="3">
+                                        <th class="tb-ticket-desc tb-col-md" colspan="3">
                                             <span>Location</span>
                                         </th>
-                                        <th class="tb-ticket-desc" >
+                                        <th class="tb-ticket-desc tb-col-md" >
                                             <span>Quotes Received</span>
                                         </th>
                                         <th class="tb-ticket-status">
