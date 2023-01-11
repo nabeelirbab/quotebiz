@@ -29,7 +29,17 @@ background: rgba(0, 0, 0, .075);
 margin-bottom: 50px;
 }
 
-
+.select2-selection__rendered {
+    line-height: 35px !important;
+}
+.select2-container .select2-selection--single {
+    height: 50px !important;
+    border-radius: 6px;
+    border: 1px solid #c1c1c1;
+}
+.select2-selection__arrow {
+    height: 50px !important;
+}
 .terms{
 font-size: 10px;
 color: #0000009e;
@@ -152,7 +162,14 @@ border-radius: 6px;
 font-size: 1.1rem;
 ` outline: 0;
 }
-
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
+}
+.select2-container--default .select2-selection--single:focus {
+  box-shadow: none;
+  border-radius: 6px;
+  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+}
 .form-control:focus {
 box-shadow: none;
 border-radius: 6px;
@@ -361,11 +378,20 @@ autocomplete="off">
 
     <label class="form-control-placeholder"
            for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
+    @if($job_design->search_box == 'auto_suggest')     
     <input type="text" class="form-control" name="category_name" id="search"
            placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
            required>
     <ul class="list-group" id="result">
     </ul>
+    @else
+    <select class="form-control select2" name="category_name" style="height: 200px">
+       <option>eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc</option>
+       @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
+       <option>{{$category->category_name}}</option>
+       @endforeach
+    </select>
+    @endif
 
 </div>
 </div>
@@ -458,10 +484,11 @@ aria-hidden="true">
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
 
 <script type="text/javascript">
-
+$('.select2').select2({ width: '300px', dropdownCssClass: "bigdrop" });
 $.ajaxSetup({cache: false});
 
 $('#search').keyup(function () {
