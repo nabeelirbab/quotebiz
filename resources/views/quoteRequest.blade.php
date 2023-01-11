@@ -385,8 +385,8 @@ autocomplete="off">
     <ul class="list-group" id="result">
     </ul>
     @else
-    <select class="form-control select2" name="category_name" style="height: 200px">
-       <option value="" disabled>eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc</option>
+    <select class="form-control select2" name="category_name" style="height: 200px" required="">
+       <option value="" disabled selected="">eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc</option>
        @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
        <option>{{$category->category_name}}</option>
        @endforeach
