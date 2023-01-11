@@ -31,6 +31,8 @@ margin-bottom: 50px;
 
 .select2-selection__rendered {
     line-height: 35px !important;
+    color: #52648482 !important;
+    font-size: 1.1rem;
 }
 .select2-container .select2-selection--single {
     height: 50px !important;
@@ -386,7 +388,7 @@ autocomplete="off">
     </ul>
     @else
     <select class="form-control select2" name="category_name" style="height: 200px" required="">
-       <option value="" disabled selected="">Select Category</option>
+       <option value="" disabled selected="">Select Service</option>
        @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
        <option>{{$category->category_name}}</option>
        @endforeach
