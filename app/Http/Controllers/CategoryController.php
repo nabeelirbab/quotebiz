@@ -141,7 +141,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category,$account,$id)
     {
-        Category::find($id)->delete();
+       $cat =  Category::find($id);
+         if($cat->cat_parent_id == 0){
+          Category::where('cat_parent_id',$cat->id)->delete();
+          $cat->delete();
+         }else{
+          Category::find($id)->delete();
+         }
         return redirect('admin/service-categories')->with('message', 'Category delete successfully');
     }
 }
