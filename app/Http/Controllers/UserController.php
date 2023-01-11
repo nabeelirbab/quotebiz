@@ -470,13 +470,13 @@ public function formdesign(Request $request){
           $job_design = new JobDesign;
         }
 
-    if($request->file('backgroup_image')){
-        $image = $request->file('backgroup_image');
-        $new_image = time().$image->getClientOriginalName();
-        $destination = 'frontend-assets/images';
-        $image->move(public_path($destination),$new_image);
-        $job_design->backgroup_image = $new_image;
-        } 
+        if($request->file('backgroup_image')){
+            $image = $request->file('backgroup_image');
+            $new_image = time().$image->getClientOriginalName();
+            $destination = 'frontend-assets/images';
+            $image->move(public_path($destination),$new_image);
+            $job_design->backgroup_image = $new_image;
+            } 
             $job_design->admin_id = Auth::user()->id;
             $job_design->subdomain = Setting::subdomain();
             $job_design->underline_color = $request->underline_color;
@@ -486,6 +486,7 @@ public function formdesign(Request $request){
             $job_design->postcode_text = $request->postcode_text;
             $job_design->button_color = $request->button_color;
             $job_design->button_text = $request->button_text;
+            $job_design->search_box = $request->search_box;
             $job_design->login_color = $request->login_color;
             $job_design->button_text_color = $request->button_text_color;
             $job_design->agent_no = $request->agent_no;
@@ -498,6 +499,7 @@ public function formdesign(Request $request){
         return view('previewdesign',compact('job_design'));
      }else{
             $job_design->save();
+            return redirect('/admin/form-design')->with('success', 'Design Update Successfully');;
       }
 
     }

@@ -53,6 +53,14 @@
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->
     <div class="card card-preview">
+        @if(Session::has('success'))
+         <div class="alert alert-success  fade show" role="alert">
+          {{Session::get('success')}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+     @endif
         <div class="card-inner">
             <div class="preview-block">
                 <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
@@ -149,6 +157,18 @@
                         </label>
                         <label >
                           <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
+                        </label>
+                        </div>
+                        </div>
+
+                     <div class="form-group">
+                        <label class="form-label" for="default-01">Search Box</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="search_box" id="option1" autocomplete="off" value="auto_suggest" {{$formdesign && $formdesign->search_box == 'auto_suggest' ? 'checked':''}} > Auto Suggestion
+                        </label>
+                        <label >
+                          <input type="radio" name="search_box" {{$formdesign && $formdesign->search_box == 'dropdown' ? 'checked':''}} id="option2" value="dropdown" autocomplete="off"> Dropdowm
                         </label>
                         </div>
                         </div>

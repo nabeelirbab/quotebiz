@@ -39,7 +39,7 @@
 </ul>
 <div class="tab-content mt-0">
 <div class="tab-pane active" id="parmanent">
-    <div class="nk-tb-list nk-tb-ulist border-bottom border-light">
+    <div class="nk-tb-list nk-tb-ulist border-light">
         <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
            
             <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#ID</span></div>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="modal-body">
                     <div class="preview-block">
-                    <div class="nk-tb-list nk-tb-ulist border-bottom border-light">
+                    <div class="nk-tb-list nk-tb-ulist border-light">
                     <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
                        
                         <div class="nk-tb-col h2"><span class="sub-text">#ID</span></div>

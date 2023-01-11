@@ -182,4 +182,8 @@ class HelperJob extends Base
       return  User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first();
     }
 
+    public static function allcategories(){
+      return  Category::where('subdomain',Setting::subdomain())->get();
+    }
+
 }
