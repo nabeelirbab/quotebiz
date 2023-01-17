@@ -138,8 +138,6 @@ public function resendAdminActivationEmail(Request $request)
 
 public function login(Request $request)
 {
-
-
     if (\Acelle\Model\Setting::get('enable_user_registration') == 'no') {
       return $this->notAuthorized();
     }
@@ -236,7 +234,7 @@ public function register(Request $request)
         }
     }
         if(count($request->category_id) == 1){
-            $cate = Category::select('id')->where('cat_parent_id',$request->category_id[0])->get();
+         $cate = Category::select('id')->where('id',$request->category_id[0])->orWhere('cat_parent_id',$request->category_id[0])->get();
            $category = [];
             foreach ($cate as $key => $value) {
                 
@@ -303,6 +301,11 @@ public function register(Request $request)
     public function subcategory($account, $id){
      $subcategories = Category::where('cat_parent_id',$id)->get();
      return view('users.subcategory',compact('subcategories'));
+    }
+
+    public function subcategory_select($account, $id){
+     $subcategories = Category::where('cat_parent_id',$id)->get();
+     return view('users.subcategory_select',compact('subcategories'));
     }
 
     public function adminregister(Request $request)

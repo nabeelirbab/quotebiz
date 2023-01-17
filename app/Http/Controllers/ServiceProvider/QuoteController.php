@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\User;
 use Acelle\Model\Country;
+use Acelle\Model\Category;
 use Acelle\Model\State;
 use Acelle\Model\Setting;
 use Acelle\Model\City;
@@ -133,7 +134,18 @@ class QuoteController extends Controller
 
     public function businessUpdate(Request $request)
     {
-
+      $category = [];
+      if(count($request->category_id) == 1){
+            $cate = Category::select('id')->where('id',$request->category_id[0])->orWhere('cat_parent_id',$request->category_id[0])->get();
+            foreach ($cate as $key => $value) {
+                $category[] = $value->id;
+            }
+        }else{
+            $category = $request->category_id;
+        }
+       $user = User::find(Auth::user()->id);
+       $user->category_id = json_encode($category);
+       $user->save();
        $business = SpBusiness::where('user_id',Auth::user()->id)->first();
        $business->business_name = $request->business_name;
        $business->business_reg = $request->business_reg;

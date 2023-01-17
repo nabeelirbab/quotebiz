@@ -37,6 +37,16 @@ class HelperJob extends Base
 
     }
 
+    public static function categories_select(){
+       $category =  Category::select('id')->where('subdomain','=',Setting::subdomain())->where('cat_parent_id',0)->orderBy('category_name','desc')->get()->toArray();
+       if(count($category)){
+          return array_column($category,'id');
+       }else{
+          return Category::select('id')->where('cat_parent','0')->orderBy('category_name','desc')->get()->toArray();
+       }
+
+    }
+
     public static function mycategories(){
        $category =  Category::where('subdomain','=',Setting::subdomain())->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
           return $category;
