@@ -93,6 +93,11 @@
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
+.images-icons{
+	max-width: 100%;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px; 
+}
 		.mainclass {
 		  display: flex;
 		  flex-flow: row wrap;
@@ -301,7 +306,7 @@
 						  <input type="radio" id="control_0{{$choices->id}}" name="option[{{$question->id}}]" value="{{$choices->choice }}">
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
-                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
+                              <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
 						  	@else
                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
@@ -318,7 +323,7 @@
 						  <input type="checkbox" id="control_0{{$choices->id}}" name="choices[]" value="{{$question->id}},{{$choices->choice}}">
 						  <label for="control_0{{$choices->id}}">
 						  	@if($choices->icon)
-                              <img src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
+                              <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$choices->icon) }}" >
 						  	@else
                               <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
