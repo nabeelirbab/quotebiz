@@ -1,6 +1,7 @@
 @extends('service_provider.layout.app')
 @section('title', 'Profile')
 @section('styling')
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/bootstrap-multiselect.min.css') }}">
     <style type="text/css">
         .labelcls {
             display: flex;
@@ -13,6 +14,27 @@
             line-height: 1.3rem;
             position: relative;
             margin-bottom: 0px !important;
+        }
+        .btn-group{
+            width: 100%;
+        }
+        .multiselect-container{
+            width: 100%;
+        }
+        .btn-group .dropdown-toggle{
+            display: block;
+            width: 100%;
+            height: calc(2.9rem + 2px) !important;
+            padding: 0.4375rem 1rem;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            line-height: 1.25rem;
+            color: #3c4d62;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #c1c1c1;
+            border-radius: 4px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
         .cameraicon {
             font-size: 1.125rem;
@@ -43,6 +65,11 @@
     </style>
 @endsection
 @section('content')
+<?php 
+  $categories = json_decode(Auth::user()->category_id);
+  $array = array_intersect($categories,Acelle\Jobs\HelperJob::categories_select());
+  $selectcat = array_values($array)[0];
+?>
     <!-- content @s -->
     <div class="nk-content mb-3">
         <div class="container-fluid">
@@ -117,6 +144,16 @@
                                                         Not add yet
                                                     </span>
                                                     @endif
+                                                </div>
+                                            </div>
+                                            <div class="data-item">
+                                                <div class="data-col">
+                                                    <span class="data-label">Business Categories</span>
+                                                    <span class="data-value">
+                                                         @foreach(json_decode(Auth::user()->category_id) as $cat)
+                                                            <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>,
+                                                         @endforeach
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="data-item">
@@ -343,6 +380,20 @@
                                                    placeholder="Phone Number">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="phone-no">Business Category</label>
+                                            <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
+                                             <option value="" disabled>Select Category</option>
+                                             @foreach(Acelle\Jobs\HelperJob::categories() as $category)
+                                             <option value="{{$category->id}}" {{$selectcat == $category->id ? 'selected': ''}}>{{$category->category_name}}</option>
+                                             @endforeach
+                                           </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" id="subcat">
+
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="form-label" for="birth-day">Business Website</label>
@@ -419,8 +470,17 @@
 
 @endsection
 @section('script')
-
+<script src="{{ asset('frontend-assets/js/bootstrap-multiselect.min.js') }}"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            var obj = {
+                value : '{{$selectcat}}'
+            }
+           subCategory(obj);
+        });
+      $(document).on('click','.custom-select',function(){
+           $('.dropdown-menu').toggle();
+      })
         function showsidebar(){
             $('.side-class').toggle();
         }
@@ -456,5 +516,26 @@
             }
 
         }
+         function subCategory(e){
+         
+            console.log(e.value);
+         $.ajax({url: "{{url('users/subcategory_select/')}}/"+e.value, success: function(result){
+         $('#subcat').html(result);
+            $('#example-getting-started').multiselect({
+              templates: {
+                button: '<button type="button" class="multiselect dropdown-toggle btn btn-lg" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+              },
+                header: true,
+                height: 150,
+                allSelectedText: 'Sub Category Selected',
+                selectedList: 3,
+                numberDisplayed: 3,
+                nonSelectedText: "Select Sub Category",
+                minWidth: 410
+            });
+         console.log(result);
+        
+        }});
+      }
     </script>
 @endsection

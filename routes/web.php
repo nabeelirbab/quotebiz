@@ -66,6 +66,7 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::post('users/register', 'UserController@register');
     Route::get('users/register', 'UserController@register');
     Route::get('users/subcategory/{id}', 'UserController@subcategory');
+    Route::get('users/subcategory_select/{id}', 'UserController@subcategory_select');
 });
 
 // Without authentication
