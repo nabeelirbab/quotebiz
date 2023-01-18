@@ -87,7 +87,7 @@
                   </div>
                    <div class="form-group control-text">
                 
-                    <input id="subdomain" placeholder="" value="{{request('account')}}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id  ">
+                    <input id="subdomain" placeholder="" value="{{\Acelle\Model\Setting::subdomain()}}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id  ">
                 <input type="hidden" name="user_type" value="service_provider">
                     </div>
 
