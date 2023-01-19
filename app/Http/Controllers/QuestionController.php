@@ -52,10 +52,10 @@ class QuestionController extends Controller
     public function subcategoriesbyid($account,$id){
 
         if($id == 0){
-            $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->orderBy('category_name','desc')->get();
+            $subcategories = Category::with('questions','subquestions','questions.choices','subquestions.choices')->where('cat_parent','1')->orderBy('category_name','desc')->get();
         }
         else{
-            $subcategories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
+            $subcategories = Category::with('questions','subquestions','questions.choices','subquestions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
         }
 
         $subcategories = json_decode($subcategories);
