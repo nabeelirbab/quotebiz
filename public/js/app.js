@@ -2672,6 +2672,7 @@ __webpack_require__.r(__webpack_exports__);
     categories: function categories() {
       var _this = this;
       axios.get('admin/questions/categories').then(function (response) {
+        console.log(response.data);
         _this.categorieslist = response.data;
         _this.categoriesData = response.data;
       })["catch"](function (error) {

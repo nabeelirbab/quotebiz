@@ -330,6 +330,7 @@ methods: {
        categories(){
            axios.get('admin/questions/categories')
             .then((response) => {
+                console.log(response.data);
              this.categorieslist = response.data;
              this.categoriesData = response.data;
             })
