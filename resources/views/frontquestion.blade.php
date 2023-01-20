@@ -29,14 +29,17 @@
 		<meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 		<meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 		<meta name="php-version" content="{{ phpversion() }}" />
+		<title>{{ \Acelle\Model\Setting::get("site_name") }}</title>
+		@if (\Acelle\Model\Setting::get('site_favicon'))
+		    <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
+		@else
+		    @include('layouts.core._favicon')
+		@endif
 		<link rel="stylesheet" href="{{ asset('frontend-assets/fonts/material-design-iconic-font/css/material-design-iconic-font.css') }}">
-	
 		<!-- STYLE CSS -->
 		<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/style2.css') }}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
-		
 		<style>
-			
 		<?php
 		  $total = count($questions)+1;
 		  $mid = 90/$total;
