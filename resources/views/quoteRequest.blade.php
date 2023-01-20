@@ -9,10 +9,20 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 <head>
 <?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{$sitename}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
+<meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
+<meta name="php-version" content="{{ phpversion() }}" />
+<title>{{ \Acelle\Model\Setting::get("site_name") }}</title>
+
+@if (\Acelle\Model\Setting::get('site_favicon'))
+    <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
+@else
+    @include('layouts.core._favicon')
+@endif
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
