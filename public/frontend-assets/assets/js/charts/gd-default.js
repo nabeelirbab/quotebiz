@@ -8,16 +8,16 @@
   // dataUnit: string, (Used in tooltip or other section for display) 
   // datasets: [{label : string, color: string (color code with # or other format), data: array}]
 
-  var salesRevenue = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    dataUnit: 'USD',
-    stacked: true,
-    datasets: [{
-      label: "Sales Revenue",
-      color: [NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), "#0fac81"],
-      data: [11000, 8000, 12500, 5500, 9500, 14299, 11000, 8000, 12500, 5500, 9500, 14299]
-    }]
-  };
+  // var salesRevenue = {
+  //   labels: [amountMonth],
+  //   dataUnit: 'USD',
+  //   stacked: true,
+  //   datasets: [{
+  //     label: "Sales Revenue",
+  //     color: [NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), "#0fac81"],
+  //     data: [amount]
+  //   }]
+  // };
   var activeSubscription = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     dataUnit: 'USD',

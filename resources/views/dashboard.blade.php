@@ -484,11 +484,11 @@ $currencySymbols = [
                 </li>
             </ul>
             <div class="nk-ecwg8-ck">
-                 <canvas class="sales-bar-chart" id="activeSubscription"></canvas>
+                 <canvas class="sales-bar-chart" id="salesRevenue"></canvas>
             </div>
             <div class="chart-label-group pl-5">
-                <div class="chart-label">01 Jul, 2020</div>
-                <div class="chart-label">30 Jul, 2020</div>
+                <div class="chart-label" id="start">01 Jul, 2020</div>
+                <div class="chart-label" id="end">30 Jul, 2020</div>
             </div>
         </div><!-- .card-inner -->
     </div>
@@ -510,19 +510,19 @@ $currencySymbols = [
                 <li>
                     <div class="title">
                         <span class="dot dot-lg sq" data-bg="#0fac81" style="background: #0fac81"></span>
-                        <span>Completed</span>
+                        <span>Accpeted</span>
                     </div>
                 </li>
                 <li>
                     <div class="title">
                         <span class="dot dot-lg sq" data-bg="#e85347" style="background: #e85347"></span>
-                        <span>Canclled</span>
+                        <span>Done</span>
                     </div>
                 </li>
                 <li>
                     <div class="title">
                         <span class="dot dot-lg sq" data-bg="#816bff" style="background: #816bff"></span>
-                        <span>Processing</span>
+                        <span>New</span>
                     </div>
                 </li>
             </ul>
@@ -540,10 +540,47 @@ $currencySymbols = [
 <!-- content @e -->
 @endsection
 @section('script')
+<script type="text/javascript">
 
+ var newquote = '{{$pendingQuote}}';
+ var acceptquote = '{{$wonQuote}}';
+ var completequote = '{{$doneQuote}}';
+ var amoutData = {};
+</script>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/gd-default.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/chart-ecommerce.js?ver=2.9.1') }}"></script>
+<script type="text/javascript">
+  $.ajax({
+          method: "GET",
+          url: '{{ url('admin/charts') }}',
+            })
+            .done(function( response ) {
+            console.log(response);
+            $('#start').text(response.columns[0]);
+            $('#end').text(response.columns[11]);
+
+                 !function (NioApp, $) {
+                  "use strict"; //////// for developer - User Balance //////// 
+                  // Avilable options to pass from outside 
+                  // labels: array,
+                  // legend: false - boolean,
+                  // dataUnit: string, (Used in tooltip or other section for display) 
+                  // datasets: [{label : string, color: string (color code with # or other format), data: array}]
+
+                  var salesRevenue = {
+                    labels: response.columns,
+                    dataUnit: 'USD',
+                    stacked: true,
+                    datasets: [{
+                      label: "Sales Revenue",
+                      color: [NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), "#0fac81"],
+                      data: response.data
+                    }]
+                  };
+                }
+            });
+</script>
 
 @endsection
 
