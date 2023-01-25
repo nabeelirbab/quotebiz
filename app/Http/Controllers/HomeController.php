@@ -59,7 +59,18 @@ class HomeController extends Controller
         $wonQuote = Quote::where('admin_id', Setting::subdomain())->where('status','won')->count();
         $doneQuote = Quote::where('admin_id', Setting::subdomain())->where('status','done')->count();
       
-        
+        $result = [
+            'columns' => [],
+            'data' => [],
+        ];
+
+        // columns
+        for ($i = 11; $i >= 0; --$i) {
+            $result['date'][] = \Carbon\Carbon::now()->subMonthsNoOverflow($i)->format('M, Y');
+            $result['amount'][] = BuyCreadit::where('created_at', '>=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->startOfMonth())
+            ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->endOfMonth())->sum('amount');
+        }
+
         return view('dashboard', [
             'customerCount' => $customerCount,
             'providerCount' => $providerCount,
@@ -69,6 +80,7 @@ class HomeController extends Controller
             'pendingQuote' => $pendingQuote,
             'wonQuote' => $wonQuote,
             'doneQuote' => $doneQuote,
+            'result' => $result,
             'topSp' => $topSP
         ]);
     }

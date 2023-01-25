@@ -545,42 +545,14 @@ $currencySymbols = [
  var newquote = '{{$pendingQuote}}';
  var acceptquote = '{{$wonQuote}}';
  var completequote = '{{$doneQuote}}';
- var amoutData = {};
+ var amoutData = <?php echo json_encode($result); ?>;
+ $('#start').text(amoutData.date[0]);
+ $('#end').text(amoutData.date[11]);
 </script>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/gd-default.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/chart-ecommerce.js?ver=2.9.1') }}"></script>
-<script type="text/javascript">
-  $.ajax({
-          method: "GET",
-          url: '{{ url('admin/charts') }}',
-            })
-            .done(function( response ) {
-            console.log(response);
-            $('#start').text(response.columns[0]);
-            $('#end').text(response.columns[11]);
 
-                 !function (NioApp, $) {
-                  "use strict"; //////// for developer - User Balance //////// 
-                  // Avilable options to pass from outside 
-                  // labels: array,
-                  // legend: false - boolean,
-                  // dataUnit: string, (Used in tooltip or other section for display) 
-                  // datasets: [{label : string, color: string (color code with # or other format), data: array}]
-
-                  var salesRevenue = {
-                    labels: response.columns,
-                    dataUnit: 'USD',
-                    stacked: true,
-                    datasets: [{
-                      label: "Sales Revenue",
-                      color: [NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), "#0fac81"],
-                      data: response.data
-                    }]
-                  };
-                }
-            });
-</script>
 
 @endsection
 
