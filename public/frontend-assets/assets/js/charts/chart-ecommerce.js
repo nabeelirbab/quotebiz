@@ -699,13 +699,13 @@
     }]
   };
   var orderStatistics = {
-    labels: ["Completed", "Canclled", "Processing"],
-    dataUnit: 'Customer',
+    labels: ["Accepted", "Done", "New"],
+    dataUnit: 'Quotes',
     legend: false,
     datasets: [{
       borderColor: "#fff",
       background: ["#0fac81", "#e85347", "#816bff"],
-      data: [4305, 259, 682]
+      data: [completequote, acceptquote, newquote]
     }]
   };
 

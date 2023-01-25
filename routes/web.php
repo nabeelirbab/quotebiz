@@ -61,8 +61,6 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('plans/select2', 'PlanController@select2');
 
     // Customer registration
-    
-    Route::get('users/login', 'UserController@login');
     Route::post('users/login', 'UserController@login');
     Route::get('users/login', 'UserController@login');
     Route::post('users/register', 'UserController@register');
@@ -325,7 +323,7 @@ Route::get('users/logout', 'UserController@logout');
 
 Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']], function () {
     Route::get('/', 'HomeController@index');
-
+    Route::get('/charts', 'HomeController@charts');
     // Search
     Route::get('/search/subscribers', 'SearchController@subscribers');
     Route::get('/search/templates', 'SearchController@templates');
@@ -814,7 +812,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['not_installed', 'auth', 
     Route::get('users/listing/{page?}', 'UserController@listing');
     Route::get('users/sort', 'UserController@sort');
     Route::get('users/delete', 'UserController@delete');
-    // Route::resource('users', 'UserController');
+    Route::resource('users', 'UserController');
 
     // Template
     Route::post('templates/{uid}/export', 'TemplateController@export');

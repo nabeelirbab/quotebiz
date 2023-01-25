@@ -12,6 +12,7 @@ use Acelle\Model\BuyCreadit;
 use Acelle\Model\Invitation;
 use Acelle\Model\Setting;
 use Auth;
+use DB;
 use Session;
 use Redirect;
 use Carbon\Carbon;
@@ -54,16 +55,39 @@ class HomeController extends Controller
                 $q->whereBetween('created_at', [$from, Carbon::today()]);
             }
         }])->addSelect(['totalamount' => Quotation::has('wonquote')->selectRaw('sum(quote_price) as total_likes')->whereColumn('user_id', 'users.id')->whereBetween('created_at', [$from, Carbon::today()])->groupBy('user_id')])->where('user_type', 'service_provider')->where('subdomain', Setting::subdomain())->orderBy('totalamount', 'DESC')->get();
-        // dd($topSP[0]->allQuoteSp);
+        $pendingQuote = Quote::where('admin_id', Setting::subdomain())->where('status','pending')->count();
+        $wonQuote = Quote::where('admin_id', Setting::subdomain())->where('status','won')->count();
+        $doneQuote = Quote::where('admin_id', Setting::subdomain())->where('status','done')->count();
+      
+        
         return view('dashboard', [
             'customerCount' => $customerCount,
             'providerCount' => $providerCount,
             'quoteCount' => $quoteCount,
             'quotes' => $quotes,
             'totalRevenue' => $totalRevenue,
+            'pendingQuote' => $pendingQuote,
+            'wonQuote' => $wonQuote,
+            'doneQuote' => $doneQuote,
             'topSp' => $topSP
         ]);
     }
+     public function charts(){
+
+        $result = [
+            'columns' => [],
+            'data' => [],
+        ];
+
+        // columns
+        for ($i = 11; $i >= 0; --$i) {
+            $result['columns'][] = \Carbon\Carbon::now()->subMonthsNoOverflow($i)->format('M, Y');
+            $result['data'][] = BuyCreadit::where('created_at', '>=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->startOfMonth())
+            ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->endOfMonth())->sum('amount');
+        }
+        
+        return response()->json($result);
+     }
 
     public function home()
     {
