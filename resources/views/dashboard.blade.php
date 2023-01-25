@@ -458,7 +458,7 @@ $currencySymbols = [
                 </div>
                 <div class="card-tools">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">{{$dateName}}</a>
+                        <!-- <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">{{$dateName}}</a> -->
                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                             <ul class="link-list-opt no-bdr">
                                 <li><a href="#"><span>Daily</span></a></li>
@@ -470,10 +470,10 @@ $currencySymbols = [
                 </div>
             </div>
             <ul class="nk-ecwg8-legends">
-                <li>
+               <!--  <li>
                     <div class="title">
                         <span class="dot dot-lg sq" data-bg="#0fac81"></span>
-                        <span>Total Quote</span>
+                        <span>Total Earning</span>
                     </div>
                 </li>
                 <li>
@@ -481,7 +481,7 @@ $currencySymbols = [
                         <span class="dot dot-lg sq" data-bg="#eb6459"></span>
                         <span>Canceled Quote</span>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <div class="nk-ecwg8-ck">
                  <canvas class="sales-bar-chart" id="salesRevenue"></canvas>
