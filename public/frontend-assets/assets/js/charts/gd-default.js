@@ -11,10 +11,10 @@
   var salesRevenue = {
     labels: amoutData.date,
     dataUnit: 'USD',
-    stacked: true,
+    stacked: false,
     datasets: [{
       label: "Sales Revenue",
-      color: [NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), "#0fac81"],
+      color: [NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2), NioApp.hexRGB("#0fac81", .2),  "#0fac81",  "#0fac81",  "#0fac81", "#0fac81"],
       data: amoutData.amount
     }]
   };

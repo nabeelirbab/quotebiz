@@ -67,7 +67,7 @@ class HomeController extends Controller
         // columns
         for ($i = 11; $i >= 0; --$i) {
             $result['date'][] = \Carbon\Carbon::now()->subMonthsNoOverflow($i)->format('M, Y');
-            $result['amount'][] = BuyCreadit::where('created_at', '>=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->startOfMonth())
+            $result['amount'][] = BuyCreadit::where('subdomain', Setting::subdomain())->where('created_at', '>=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->startOfMonth())
             ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->endOfMonth())->sum('amount');
         }
 
