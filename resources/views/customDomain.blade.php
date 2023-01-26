@@ -163,7 +163,7 @@ input:checked + .slider .off
     <ul class="uldesign" >
       <li>Log in to your Domain registrar's account.</li>
       <li>Select the domain ({{Auth::user()->customdomain->parent}})</li>
-      <li>Create a "A" type entry with host name as "@" point to IPv4 143.198.155.146</li>
+      <li>Create a "A" type entry with host name as "@" point to IPv4 "143.198.155.146"</li>
     </ul>
     <label class="switch float-right">
      <input type="checkbox" id="togBtn" {{Auth::user()->customdomain->status == 'active'? 'checked': ''}}>
