@@ -27,7 +27,7 @@
     </head>
     <body class="bg-slate-800 dogcFe" style="max-height: 100%;padding-bottom: 0px">
         <!-- Page container -->
-        <div class="page-container login-container">
+        <div class="login-container mt-5">
             @if (\Auth::check())
                 <div class="text-end">
                     <a href="{{ url("/logout") }}"  class='text-white ml-20'><i class="icon-switch2"></i> {{ trans('messages.logout') }}</a>
@@ -39,11 +39,9 @@
 
                 <!-- Main content -->
                 <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-sm-2 col-md-4">
-
-                        </div>
-                        <div class="col-sm-8 col-md-4">
+                    <div class="row justify-content-md-center">
+                       
+                        <div class="col-sm-12 col-md-3">
 
                             <div class="text-center loginheader">
                                 <a class="main-logo-big" href="{{ url('/') }}">

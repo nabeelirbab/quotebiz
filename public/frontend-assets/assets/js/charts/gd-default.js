@@ -10,7 +10,7 @@
 
   var salesRevenue = {
     labels: amoutData.date,
-    dataUnit: 'USD',
+    dataUnit: 'AUD',
     stacked: false,
     datasets: [{
       label: "Sales Revenue",
