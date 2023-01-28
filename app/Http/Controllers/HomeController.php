@@ -11,6 +11,7 @@ use Acelle\Model\SiteSetting;
 use Acelle\Model\BuyCreadit;
 use Acelle\Model\Invitation;
 use Acelle\Model\Setting;
+use Acelle\Jobs\HelperJob;
 use Auth;
 use DB;
 use Session;
@@ -60,17 +61,20 @@ class HomeController extends Controller
         $doneQuote = Quote::where('admin_id', Setting::subdomain())->where('status','done')->count();
       
         $result = [
-            'columns' => [],
-            'data' => [],
+            'date' => [],
+            'amount' => [],
         ];
 
         // columns
         for ($i = 11; $i >= 0; --$i) {
             $result['date'][] = \Carbon\Carbon::now()->subMonthsNoOverflow($i)->format('M, Y');
-            $result['amount'][] = BuyCreadit::where('subdomain', Setting::subdomain())->where('created_at', '>=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->startOfMonth())
+            $amount =  BuyCreadit::where('subdomain', Setting::subdomain())->where('created_at', '>=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->startOfMonth())
             ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow($i)->endOfMonth())->sum('amount');
+            $currencyConvert = \Acelle\Jobs\HelperJob::usdcurrency($amount);
+            // dd($currencyConvert);
+            $result['amount'][] = $currencyConvert['convert'];
         }
-
+        // dd($result);
         return view('dashboard', [
             'customerCount' => $customerCount,
             'providerCount' => $providerCount,
