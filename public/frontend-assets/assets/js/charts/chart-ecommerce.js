@@ -701,11 +701,11 @@
   var orderStatistics = {
     labels: ["Accepted", "Done", "New"],
     dataUnit: 'Quotes',
-    legend: false,
+    legend: true,
     datasets: [{
       borderColor: "#fff",
       background: ["#0fac81", "#e85347", "#816bff"],
-      data: [completequote, acceptquote, newquote]
+      data: [acceptquote,completequote, newquote]
     }]
   };
 
