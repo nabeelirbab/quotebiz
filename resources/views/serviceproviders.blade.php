@@ -37,7 +37,7 @@
 <div class="float-right">
 <a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited Service Providers</a>
 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit">Invite</button>
-<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal23">Import Users</button>
+<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal23">Bulk Invite</button>
 </div>
 
 </div><!-- .nk-block-between -->
@@ -231,7 +231,7 @@
                         <div class="row d-flex justify-content-center gy-4">
                             <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="form-label" for="default-01">Credits</label>
+                                <label class="form-label" for="default-01">Free Credits</label>
                                 <div class="form-control-wrap">
                                  <input type="number" class="form-control" name="credits" value="50" placeholder="Enter Amount" required>
                                 </div>
@@ -318,15 +318,17 @@
     <div class="modal-content card shadow mb-4">
       <div class="modal-body card-header py-3" style="background: white">
         <div class="">
-            <h6 class="m-0 font-weight-bold text-primary">Import Users</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Bulk Invite</h6>
         </div>
         <form method="POST" action="{{ url('admin/import-sp') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
+                
                 <div class="form-group row">
                     
                     <div class="col-md-12 mb-3 mt-3">
-                        <p>Please Upload CSV in Given Format <a href="{{ asset('') }}" target="_blank">Sample CSV Format</a></p>
+                        <p>Here you can use a CSV file to invite a large list of your service providers or contacts. This will send them an invite email with free credits to join your quotebiz platform.</p>
+                        <p>Please Upload CSV in Given Format <a href="{{ asset('files/import_example.csv') }}" target="_blank">Sample CSV Format</a></p>
                     </div>
                     {{-- File Input --}}
                     <div class="col-sm-12 mb-3 mt-3 mb-sm-0">
@@ -336,19 +338,29 @@
                             class="form-control form-control-user @error('file') is-invalid @enderror" 
                             id="exampleFile"
                             name="file" 
-                            value="{{ old('file') }}">
+                            value="{{ old('file') }}" required>
 
                         @error('file')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-
+         
+                </div>
+                 <div class="row d-flex justify-content-center gy-4">
+                    <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="form-label" for="default-01">Free Credits</label>
+                        <div class="form-control-wrap">
+                         <input type="number" class="form-control" name="credits" value="50" placeholder="Enter Amount" required>
+                        </div>
+                    </div>
+                   </div>
                 </div>
             </div>
 
             <div class="p-3">
                 <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload Users</button>
-                <a class="btn btn-primary float-right mr-3 mb-3" data-dismiss="modal">Cancel</a>
+                <a class="btn btn-default float-right mr-3 mb-3" data-dismiss="modal">Cancel</a>
             </div>
         </form>
     </div>

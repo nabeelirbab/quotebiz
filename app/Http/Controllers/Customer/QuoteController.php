@@ -6,6 +6,7 @@ use Acelle\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Acelle\Model\Quote;
 use Acelle\Model\User;
+use Acelle\Model\Quotation;
 use Acelle\Model\Setting;
 use Acelle\Model\QuotationStatus;
 use Acelle\Mail\ChangeJobStatus;
@@ -40,6 +41,9 @@ class QuoteController extends Controller
        $quote = Quote::find($request->quote_id);
        $quote->status = $request->status;
        $quote->save();
+
+       $quotations = Quotation::select('comment','customer_id')->where('quote_id',$request->quote_id)->first();
+       $customer = User::where('id',$quotations->customer_id)->first()->first_name;
         // updateOrCreate
        $status = QuotationStatus::where('quote_id',$request->quote_id)->where('user_id',$request->provider_id)->first();
        if($status){
@@ -60,13 +64,21 @@ class QuoteController extends Controller
        
        $user = User::where('id',$request->provider_id)->first();
        if($request->status == 'won'){
-
           $jobdata = [
              'user' => $user,
-             'subject' => 'Congratulation You Won Job'
+             'quote' => $quotations->comment,
+             'status' => $request->status,
+             'subject' => 'Congratulation '.$customer.' Accepted Your Quote'
           ];
-
-        Mail::to($user->email)->send(new ChangeJobStatus($jobdata));
+         Mail::to($user->email)->send(new ChangeJobStatus($jobdata));
+       }elseif($request->status == 'done'){
+         $jobdata = [
+             'user' => $user,
+             'quote' => $quotations->comment,
+             'status' => $request->status,
+             'subject' => 'A job you submitted a quotation to was done'
+          ];
+         Mail::to($user->email)->send(new ChangeJobStatus($jobdata));
        }
        
        return $status;

@@ -598,9 +598,9 @@ public function uploadUsers(Request $request)
 
 public function uploadSP(Request $request)
 {
-    Excel::import(new SPImport, $request->file);
+    Excel::import(new SPImport($request->credits), $request->file);
 
-    return redirect()->back()->with('success', 'User Imported Successfully');
+    return redirect('admin/invitedserviceproviders')->with('success', 'Invitation send successfully');
 }
 
   public function logout(){
