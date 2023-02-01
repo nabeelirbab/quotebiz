@@ -71,13 +71,13 @@
         <div class="card-body">
             <div class="search-content">
                 <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-                <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user or email">
+                <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by id, user or email" id="search">
                 <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
             </div>
         </div>
     </div><!-- .card-search -->
 </div><!-- .card-inner -->
-<div class="card-inner p-0" style="border-bottom: none;">
+<div class="card-inner p-0" style="border-bottom: none;" id="result">
     <div class="nk-tb-list nk-tb-ulist">
         <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
             <!-- <div class="nk-tb-col nk-tb-col-check">
@@ -205,6 +205,9 @@
         @endif
        
     </div><!-- .nk-tb-list -->
+    <div class="card-inner">
+    {{$users}}
+</div><!-- .card-inner -->
 </div><!-- .card-inner -->
 <div class="modal fade zoom" tabindex="-1" id="modalEdit">
             <div class="modal-dialog" role="document">
@@ -305,9 +308,7 @@
                 </div>
             </div>
         </div>
-<div class="card-inner">
-    {{$users}}
-</div><!-- .card-inner -->
+
 
 </div>
 </div><!-- .card-inner-group -->
@@ -380,7 +381,28 @@
 <script src="{{ asset('frontend-assets/assets/js/jquery.email.multiple.js') }}"></script>
 <script>
     $(document).ready(function($){
+   $("#search").on("keyup", function() {
+        
+      var value = $(this).val();
+      if (value) {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+        url: "{{ url('admin/user-search')}}",
+        type: "post",
+        data: {search: value,user_type: 'service_provider', _token: _token},
+        success: function (response) {
+        console.log(response);
+        $('#result').html(response);
+        },
+        error: function (xhr) {
 
+        }
+
+        });
+
+        }
+
+     });
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion"><div class="col-sm-5">'+
                         '<div class="form-group">'+
