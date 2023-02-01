@@ -89,15 +89,10 @@
         </div>
     </div><!-- .card-search -->
 </div><!-- .card-inner -->
-<div class="card-inner p-0">
-    <div class="nk-tb-list nk-tb-ulist">
+<div class="card-inner p-0" id="result">
+    <div class="nk-tb-list nk-tb-ulist" >
         <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
-            <!-- <div class="nk-tb-col nk-tb-col-check">
-                <div class="custom-control custom-control-sm custom-checkbox notext">
-                    <input type="checkbox" class="custom-control-input" id="uid">
-                    <label class="custom-control-label" for="uid"></label>
-                </div>
-            </div> -->
+         
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">#ID</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
@@ -110,12 +105,7 @@
         </div><!-- .nk-tb-item -->
         @foreach($users as $user)
         <div class="nk-tb-item">
-           <!--  <div class="nk-tb-col nk-tb-col-check">
-                <div class="custom-control custom-control-sm custom-checkbox notext">
-                    <input type="checkbox" class="custom-control-input" id="uid1">
-                    <label class="custom-control-label" for="uid1"></label>
-                </div>
-            </div> -->
+       
              <div class="nk-tb-col tb-col-lg">
                 <span >{{$user->id}}</span>
             </div>
@@ -180,10 +170,11 @@
         @endforeach
     
     </div><!-- .nk-tb-list -->
-</div><!-- .card-inner -->
-<div class="card-inner">
+    <div class="card-inner">
     {{$users}}
 </div><!-- .card-inner -->
+</div><!-- .card-inner -->
+
 </div><!-- .card-inner-group -->
 </div><!-- .card -->
 </div><!-- .nk-block -->
@@ -242,6 +233,23 @@
     $("#search").on("keyup", function() {
         
       var value = $(this).val();
+      if (value) {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+        url: "{{ url('admin/user-search')}}",
+        type: "post",
+        data: {search: value,user_type: 'client', _token: _token},
+        success: function (response) {
+        console.log(response);
+        $('#result').html(response);
+        },
+        error: function (xhr) {
+
+        }
+
+        });
+
+        }
 
      });
 </script>

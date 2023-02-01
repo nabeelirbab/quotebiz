@@ -603,6 +603,21 @@ public function uploadSP(Request $request)
     return redirect('admin/invitedserviceproviders')->with('success', 'Invitation send successfully');
 }
 
+public function searchUser(Request $request){
+    $keyword = $request->input('search');
+     $users = User::where('user_type',$request->user_type)->where('subdomain',Setting::subdomain())->where(function ($query) use($keyword) {
+        $query->orWhere('id', 'like', '%' . $keyword . '%')
+           ->orWhere('email', 'like', '%' . $keyword . '%')
+           ->orWhere('first_name', 'like', '%' . $keyword . '%')
+           ->orWhere('last_name', 'like', '%' . $keyword . '%');
+      })->paginate('50');
+     if($request->user_type == 'client'){
+      return view('customersearch',compact('users'));
+     }else{
+      return view('spsearch',compact('users'));
+     }
+}
+
   public function logout(){
         Auth::logout();
         return redirect('users/login');

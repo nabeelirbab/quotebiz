@@ -259,6 +259,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::post('sendInvitation', 'UserController@sendInvitation');
     Route::post('resendInvitation', 'UserController@resendInvitation');
     Route::get('/preview-design', 'UserController@formdesign');
+    Route::match(['get','post'],'/user-search', 'UserController@searchUser');
 
         // Question
   Route::name('questions.')->prefix('questions/')->group(function () {
