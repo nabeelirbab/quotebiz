@@ -342,6 +342,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
 
     Route::get('/removesetting', 'HomeController@removesetting');
     Route::get('/payments-receive', 'UserController@paymentsReceive');
+    Route::post('/payments-search', 'UserController@paymentsSearch');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
     Route::post('/quoteprice', 'UserController@quoteprice');
     Route::get('/deletecredit/{id}', 'UserController@deletecredit');

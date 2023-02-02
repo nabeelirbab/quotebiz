@@ -47,13 +47,13 @@
     <div class="card-search search-wrap" data-search="search">
         <div class="search-content">
             <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-            <input type="text" class="form-control border-transparent form-focus-none" placeholder="Quick search by transaction">
+            <input type="text" class="form-control border-transparent form-focus-none" placeholder="Quick search by Payment ID" id="search">
             <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
         </div>
     </div><!-- .card-search -->
 </div><!-- .card-title-group -->
 </div><!-- .card-inner -->
-<div class="card-inner p-0">
+<div class="card-inner p-0" id="result">
 <div class="nk-tb-list nk-tb-tnx">
     <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
         <div class="nk-tb-col"><span>#ID</span></div>
@@ -111,10 +111,11 @@
     @endforeach
  
 </div><!-- .nk-tb-list -->
-</div><!-- .card-inner -->
 <div class="card-inner">
 {{$payments}}
 </div><!-- .card-inner -->
+</div><!-- .card-inner -->
+
 </div><!-- .card-inner-group -->
 </div><!-- .card -->
 </div><!-- .nk-block -->
@@ -211,4 +212,26 @@
 @section('script')
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+<script type="text/javascript">
+    $("#search").on("keyup", function() {
+        
+      var value = $(this).val();
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+        url: "{{ url('admin/payments-search')}}",
+        type: "post",
+        data: {search: value, _token: _token},
+        success: function (response) {
+        console.log(response);
+        $('#result').html(response);
+        },
+        error: function (xhr) {
+
+        }
+
+        });
+
+
+     });
+</script>
 @endsection

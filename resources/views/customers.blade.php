@@ -233,7 +233,6 @@
     $("#search").on("keyup", function() {
         
       var value = $(this).val();
-      if (value) {
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
         url: "{{ url('admin/user-search')}}",
@@ -249,7 +248,6 @@
 
         });
 
-        }
 
      });
 </script>

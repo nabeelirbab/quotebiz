@@ -80,4 +80,4 @@
     </div><!-- .nk-tb-list -->
     <div class="card-inner">
     {{$users}}
-</div><!-- .card-inner -->
+</div><!-- .card-inner -->  
