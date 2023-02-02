@@ -383,8 +383,7 @@
     $(document).ready(function($){
    $("#search").on("keyup", function() {
         
-      var value = $(this).val();
-      if (value) {
+        var value = $(this).val();
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
         url: "{{ url('admin/user-search')}}",
@@ -399,9 +398,6 @@
         }
 
         });
-
-        }
-
      });
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion"><div class="col-sm-5">'+

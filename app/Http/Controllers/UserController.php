@@ -383,9 +383,21 @@ public function paymentsReceive(Request $request)
 {
 
 $payments = BuyCreadit::with('users')->where('subdomain',Auth::user()->subdomain)->orderBy('id','desc')->paginate(10);
+
 return view('paymenthistory',compact('payments'));
 
 }
+
+public function paymentsSearch(Request $request)
+{
+
+$searchString = $request->search;
+$payments = BuyCreadit::with('users')->where('payment_id',$searchString)->where('subdomain',Auth::user()->subdomain)->orderBy('id','desc')->paginate(50);
+
+return view('paymentsearch',compact('payments'));
+
+}
+
 public function credits(Request $request)
 {
 
@@ -604,13 +616,18 @@ public function uploadSP(Request $request)
 }
 
 public function searchUser(Request $request){
-    $keyword = $request->input('search');
-     $users = User::where('user_type',$request->user_type)->where('subdomain',Setting::subdomain())->where(function ($query) use($keyword) {
+     $keyword = $request->input('search');
+     if($keyword == ''){
+      $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('user_type', $request->user_type)->orderBy('id','desc')->paginate(10);
+     }else{
+        $users = User::where('user_type',$request->user_type)->where('subdomain',Setting::subdomain())->where(function ($query) use($keyword) {
         $query->orWhere('id', 'like', '%' . $keyword . '%')
            ->orWhere('email', 'like', '%' . $keyword . '%')
            ->orWhere('first_name', 'like', '%' . $keyword . '%')
            ->orWhere('last_name', 'like', '%' . $keyword . '%');
-      })->paginate('50');
+      })->paginate(50);
+     }
+ 
      if($request->user_type == 'client'){
       return view('customersearch',compact('users'));
      }else{
