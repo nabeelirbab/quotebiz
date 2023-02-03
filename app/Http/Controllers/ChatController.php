@@ -76,6 +76,7 @@ class ChatController extends Controller
 
         $quotedata = [
            'user' => $receiver,
+           'sender' => $user,
            'subject' => 'Quotation Receive'
         ];
 
