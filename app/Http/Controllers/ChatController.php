@@ -77,12 +77,12 @@ class ChatController extends Controller
         $quotedata = [
            'user' => $receiver,
            'sender' => $user,
-           'subject' => 'Quotation Receive'
+           'subject' => 'Quotation Received'
         ];
 
         $jobdata = [
            'user' => $user,
-           'subject' => 'Quotation Send'
+           'subject' => 'Quotation Sent'
         ];
 
         Mail::to($receiver->email)->send(new ReceiveQuotation($quotedata));
