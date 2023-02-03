@@ -12,5 +12,7 @@ All the best!
 </p>
 
 <br>
+<p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
 {{ \Acelle\Model\Setting::get('site_name') }}
+</p>
 @endcomponent
