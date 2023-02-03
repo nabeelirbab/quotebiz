@@ -77,7 +77,9 @@
                 </div>
 
                 <a
+
                     href="{{ url('admin/account/subscription') }}"
+
                     class="text-muted mt-4" style="text-decoration: underline; display: block"
                 >{{ trans('cashier::messages.stripe.return_back') }}</a>
                 
@@ -162,7 +164,9 @@
                                     payment_method_id: result.paymentIntent.payment_method,
                                 }
                             }).done(function(response) {
+
                                 window.location = '{{ url('admin/account/subscription') }}';
+
                             });
             
                         }
