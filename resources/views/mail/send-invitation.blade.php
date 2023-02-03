@@ -2,7 +2,11 @@
 # 
 <p style="font-family: DM Sans, sans-serif;"> Hi {{$maildata['name']}} </p>
 <p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
-{{ \Acelle\Model\Setting::get('site_name') }} would like to invite you to join their quote business network. 
+{{ \Acelle\Model\Setting::get('site_name') }} would like to invite you to join their quote business network. You can subscribe to notifications about job opportunities that come through our system and provide a quote if you'd like the job. 
+<br>
+A maximum of 3 service providers are able to quote each job, so it pays to act quickly.
+<br>
+You get 100 free credits when you sign up! 
 <br>
 <br>
 To accept the invitation, simply click the link below: 
