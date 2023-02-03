@@ -41,17 +41,15 @@
 <div class="tab-pane active" id="parmanent">
     <div class="nk-tb-list nk-tb-ulist border-light">
         <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
-           
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#ID</span></div>
-            <div class="nk-tb-col h2"><span class="sub-text">Customer</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Category</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Address</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Additional Information</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Quotations</span></div>
-            <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Posted on</span></div>
-            <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Status</span></div>
-            <div class="nk-tb-col h2"><span class="sub-text">Action</span></div>
-         
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#ID</span></div>
+          <div class="nk-tb-col h2"><span class="sub-text">Customer</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Category</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Address</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Additional Information</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Quotations</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Posted on</span></div>
+          <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Status</span></div>
+          <div class="nk-tb-col h2"><span class="sub-text">Action</span></div>
         </div>
         <!-- .nk-tb-item -->
         @foreach($quotes as $quote)
@@ -97,7 +95,7 @@
                     @endif
             </div>
             <div class="nk-tb-col">
-                    <span class="badge"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
+              <span class="badge"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
             </div>
         </div><!-- .nk-tb-item -->
          <div id="mySidepanel{{$quote->id}}" class="sidepanel" style="top: 0px;height: 100%;background: #f3f3f3;padding-top: 0px;">
@@ -158,7 +156,7 @@
                               <span>{{$quotation->id}}</span>
                           </div>
                           <div class="nk-tb-col">
-                             <a href="{{ url('customer_detail/'.$quotation->user_id) }}"> <span>{{$quotation->sp->first_name}} {{$quotation->sp->last_name}}</span>
+                             <a href="{{ url('admin/customer_detail/'.$quotation->user_id) }}"> <span>{{$quotation->sp->first_name}} {{$quotation->sp->last_name}}</span>
                              </a>
                           </div>
                           <div class="nk-tb-col">
@@ -168,7 +166,7 @@
                             {{$currencyConvert['convert']}}<span> {{$currencyConvert['currency']}}</span></span>
                           </div>
                           <div class="nk-tb-col">
-                              <span>{{$quotation->comment}}</span>
+                              <span>{!!$quotation->comment!!}</span>
                           </div>
                           <div class="nk-tb-col">
                               <span>{{\Carbon\Carbon::parse($quotation->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
