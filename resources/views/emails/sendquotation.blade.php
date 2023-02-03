@@ -4,10 +4,13 @@
 
 
 <p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
-	Your job post in Quotebiz. We occasionally need to follow up and verify the request to ensure quality responses.
+	Your quote has been sent to the customer. They will get in touch with you via the messaging app on the platform.
+</p>
+<br>
+<p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
+All the best!
 </p>
 
-
-Thanks,<br>
+<br>
 {{ \Acelle\Model\Setting::get('site_name') }}
 @endcomponent

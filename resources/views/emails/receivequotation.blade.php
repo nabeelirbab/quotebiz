@@ -1,12 +1,23 @@
 @component('mail::message')
 
-<h3>Hi {{$maildata['user']->first_name}} {{$maildata['user']->last_name}}</h3>
+<h3>Hi {{$maildata['user']->first_name}}</h3>
 
 
 <p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
-	Your job post in Quotebiz. We occasionally need to follow up and verify the request to ensure quality responses.
+{{$maildata['sender']->first_name}} has provided you a quote.
+<a href="{{url('customer/inbox')}}" style="font-size:16px;font-family: DM Sans, sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:10px 15px;border:1px solid #48a7fe;display:block;text-align:center;background-color:#48a7fe;width: 32%;margin-top: 12px" >
+[Click here to review quote]
+</a>
+</p>
+<br>
+<p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
+You can communicate with service providers on the platform.
+</p>
+<br>
+<p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
+All the best!
 </p>
 
-Thanks,<br>
+<br>
 {{ \Acelle\Model\Setting::get('site_name') }}
 @endcomponent
