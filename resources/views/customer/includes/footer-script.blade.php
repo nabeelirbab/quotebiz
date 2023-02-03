@@ -2,7 +2,7 @@
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 
-    <script src="<?php echo Request::getSchemeAndHttpHost() ?>:3000/socket.io/socket.io.js"></script>
+    <script src="https://{{\Acelle\Model\Setting::subdomain()}}.quotebiz.io:3000/socket.io/socket.io.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
 
@@ -10,7 +10,7 @@
 
         var getAPIURL = '{{ url('') }}';
         var userid = '{{Auth::user()->id }}';
-        const socket = io.connect('<?php echo Request::getSchemeAndHttpHost() ?>:3000');
+        const socket = io.connect('https://{{\Acelle\Model\Setting::subdomain()}}.quotebiz.io:3000');
 
         socket.on('connect', function() {
           console.log("Connected to WS server");
