@@ -68,7 +68,11 @@
 <?php 
   $categories = json_decode(Auth::user()->category_id);
   $array = array_intersect($categories,Acelle\Jobs\HelperJob::categories_select());
-  $selectcat = array_values($array)[0];
+  if(count($array) > 0){
+    $selectcat = array_values($array)[0];
+  }else{
+    $selectcat = 0;
+  }
 ?>
     <!-- content @s -->
     <div class="nk-content mb-3">
@@ -384,7 +388,7 @@
                                         <div class="form-group">
                                             <label class="form-label" for="phone-no">Business Category</label>
                                             <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
-                                             <option value="" disabled>Select Category</option>
+                                             <option value="" >Select Category</option>
                                              @foreach(Acelle\Jobs\HelperJob::categories() as $category)
                                              <option value="{{$category->id}}" {{$selectcat == $category->id ? 'selected': ''}}>{{$category->category_name}}</option>
                                              @endforeach
