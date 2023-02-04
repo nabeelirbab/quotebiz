@@ -66,6 +66,7 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::post('users/register', 'UserController@register');
     Route::get('users/register', 'UserController@register');
     Route::get('users/subcategory/{id}', 'UserController@subcategory');
+    Route::get('users/subcategory_select/{id}', 'UserController@subcategory_select');
 });
 
 // Without authentication
@@ -246,17 +247,19 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
 Route::get('users/logout', 'UserController@logout');
 
  Route::name('admin.')->prefix('admin')->group(function () {
-	
+    
   Route::group(['middleware' => ['not_installed', 'auth', 'admin','validdomain']], function () {
 
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
     Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain');
+    Route::get('/domain-status', 'SettingController@domainStatus');
 
     Route::post('sendInvitation', 'UserController@sendInvitation');
     Route::post('resendInvitation', 'UserController@resendInvitation');
     Route::get('/preview-design', 'UserController@formdesign');
+    Route::match(['get','post'],'/user-search', 'UserController@searchUser');
 
         // Question
   Route::name('questions.')->prefix('questions/')->group(function () {
@@ -321,7 +324,7 @@ Route::get('users/logout', 'UserController@logout');
 
 Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']], function () {
     Route::get('/', 'HomeController@index');
-
+    Route::get('/charts', 'HomeController@charts');
     // Search
     Route::get('/search/subscribers', 'SearchController@subscribers');
     Route::get('/search/templates', 'SearchController@templates');
@@ -335,9 +338,11 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/supportchat', 'HomeController@supportchat');
     Route::get('/customers', 'HomeController@customers');
     Route::post('/import-customers', 'UserController@uploadUsers');
+    Route::post('/import-sp', 'UserController@uploadSP');
 
     Route::get('/removesetting', 'HomeController@removesetting');
     Route::get('/payments-receive', 'UserController@paymentsReceive');
+    Route::post('/payments-search', 'UserController@paymentsSearch');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
     Route::post('/quoteprice', 'UserController@quoteprice');
     Route::get('/deletecredit/{id}', 'UserController@deletecredit');
