@@ -6,6 +6,7 @@ namespace Acelle\Http\Controllers;
 use Acelle\Model\Category;
 use Acelle\Model\SubCategory;
 use Acelle\Model\Setting;
+use Acelle\Model\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -141,12 +142,38 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category,$account,$id)
     {
-       $cat =  Category::find($id);
+      $cat =  Category::find($id);
+       $users = User::where('subdomain',Setting::subdomain())->where('user_type','service_provider')->get();
+       
          if($cat->cat_parent_id == 0){
-          Category::where('cat_parent_id',$cat->id)->delete();
+          $subcats = Category::where('cat_parent_id',$cat->id)->get();
+          foreach ($subcats as $subcat) {
+            foreach ($users as $user) {
+              $subcat_array = json_decode($user->category_id);
+                if (($key = array_search($subcat->id, $subcat_array)) !== false) {
+                    unset($subcat_array[$key]);
+                }
+              $update =  User::where('id',$user->id)->update(['category_id' => json_encode($subcat_array)]);
+             }
+             Category::where('id',$subcat->id)->delete();
+          }
+           foreach ($users as $user) {
+              $cat_array = json_decode($user->category_id);
+                if (($key = array_search($cat->id, $cat_array)) !== false) {
+                    unset($cat_array[$key]);
+                }
+              $update =  User::where('id',$user->id)->update(['category_id' => $cat_array]);
+             }
           $cat->delete();
          }else{
-          Category::find($id)->delete();
+           foreach ($users as $user) {
+              $cat_array = json_decode($user->category_id);
+                if (($key = array_search($cat->id, $cat_array)) !== false) {
+                    unset($cat_array[$key]);
+                }
+                $update =  User::where('id',$user->id)->update(['category_id' => $cat_array]);
+             }
+           Category::find($id)->delete();
          }
         return redirect('admin/service-categories')->with('message', 'Category delete successfully');
     }

@@ -27,6 +27,9 @@
             color: #252525;
             padding-left:10px;
         }
+        .actions{
+            width: 90px;
+        }
         ul.d-flex.flex-wrap.g-1 {
             max-height: 230px;
             overflow: auto;
@@ -36,6 +39,7 @@
         }
         .user-avatar.sq.bg-purple:hover {
             border: 1px solid purple;
+            display: block;
         }
     </style>
     @endsection
@@ -122,24 +126,37 @@
     <!-- <p>{{$category->category_description}}</p> -->
     <ul class="d-flex flex-wrap g-1">
     @foreach($category->subcategory as $key=>$subcategory)
-    <li data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}" class="w-100 sub-categoryli mt-1 mb-1" style="padding: 10px !important;">
+    <li  class="w-100 sub-categoryli mt-1 mb-1" style="padding: 10px !important;">
    @if($subcategory->category_icon)
    <div class="" style="width: 40px"><img src="{{asset('frontend-assets/images/categories/'.$subcategory->category_icon)}}">
     </div>
     @else
-    <div class="user-avatar sq {{$arraycalss[$key]}}"><span><?php $words = explode(' ', $subcategory->category_name);
-    if(count($words) > 1){
-     $result = $words[0][0]. $words[1][0];
-      echo $result;
-    }else
-    {
-    $result = $words[0][0];
-    echo $result;
-    }
-      ?></span></div>
+    <div class="user-avatar sq {{$arraycalss[$key]}}">
+    <span>
+    <?php 
+        $words = explode(' ', $subcategory->category_name);
+        if(count($words) > 1){
+         $result = $words[0][0]. $words[1][0];
+          echo $result;
+        }else
+        {
+        $result = $words[0][0];
+        echo $result;
+        }
+      ?>
+      </span>
+
+    </div>
 
     @endif
-    <span class="sub-category badge-dim ">{{$subcategory->category_name}}</span></li>
+    <span class="sub-category badge-dim " style="width: 45%;">{{$subcategory->category_name}}</span>
+    <div class="actions">
+        <span style="float: right;">
+         <em class="icon ni ni-edit" title="Edit Category" data-toggle="modal" data-target="#modalsubEdit{{$subcategory->id}}"></em>
+         <a href="{{ url('admin/service-categories/delete/'.$subcategory->id) }}" style="color: #d5d5d5;" onclick="return confirm('Are you sure you want to delete this category?');" title="Delete Category"><em class="icon ni ni-trash"></em></a>
+        </span>
+    </div>
+   </li>
     <div class="modal fade zoom" tabindex="-1" id="modalsubEdit{{$subcategory->id}}">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
