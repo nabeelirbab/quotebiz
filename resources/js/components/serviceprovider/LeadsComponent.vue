@@ -195,7 +195,7 @@
                               <span class="sub-text"> {{ quoteQuestions.created_at | moment("from", "now") }}</span>
                           </div>
                       </a>
-                    <div class="mt-3">
+                    <div class="mt-3" v-if="creaditsum >= 10">
                           <ul class="chat-profile-options pl-1">
                               <li v-if="quoteQuestions.user"><a class="chat-option-link" href="#"><em class="ni ni-mobile" style="font-size: 20px;"></em><span class="lead-text text-muted pl-1" >{{quoteQuestions.user.mobileno}}</span></a></li>
                               <li><a class="chat-option-link chat-search-toggle" href="#"><em class=" ni ni-mail" style="font-size: 20px;"></em><span class="lead-text text-muted pl-1" v-if="quoteQuestions.user">{{quoteQuestions.user.email }}</span></a></li>
