@@ -10,7 +10,7 @@ A maximum of 3 service providers are able to quote each job, so it pays to act q
 </p>
 <br>
 <p style="font-size: 17px;margin: 0;font-family: DM Sans, sans-serif;">
-You get 100 free credits when you sign up! 
+You get {{$maildata['credits']}} free credits when you sign up! 
 </p>
 <br>
 <br>

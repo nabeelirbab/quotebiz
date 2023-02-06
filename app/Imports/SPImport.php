@@ -30,6 +30,7 @@ class SPImport implements ToModel, WithHeadingRow
         if($row['work_email'] != ''){
         $code = rand();
         $maildata = [
+         'credits' => $this->credits,
          'code' => $code,
          'name' => $row['name']
         ];

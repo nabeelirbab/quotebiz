@@ -525,6 +525,7 @@ public function sendInvitation(Request $request){
     foreach ($request->email as $key => $email) {
         $code = rand();
         $maildata = [
+         'credits' => $request->credits,
          'code' => $code,
          'name' => $request->name[$key]
         ];
@@ -545,6 +546,7 @@ public function resendInvitation(Request $request){
     $invite = Invitation::find($request->id);
     $code = rand();
     $maildata = [
+     'credits' => $request->credits,
      'code' => $code,
      'name' => $invite->name 
     ];

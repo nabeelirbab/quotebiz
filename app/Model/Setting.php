@@ -66,6 +66,7 @@ class Setting extends Model
     }
 
      public static function subdomainpar($domain){
+        dd(request('account'));
         $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
         // dd($sub_domain_checker);
         
