@@ -60933,157 +60933,164 @@ var render = function () {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "mt-3" }, [
-                                  _c(
-                                    "ul",
-                                    {
-                                      staticClass: "chat-profile-options pl-1",
-                                    },
-                                    [
-                                      _vm.quoteQuestions.user
-                                        ? _c("li", [
+                                _vm.creaditsum >= 10
+                                  ? _c("div", { staticClass: "mt-3" }, [
+                                      _c(
+                                        "ul",
+                                        {
+                                          staticClass:
+                                            "chat-profile-options pl-1",
+                                        },
+                                        [
+                                          _vm.quoteQuestions.user
+                                            ? _c("li", [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "chat-option-link",
+                                                    attrs: { href: "#" },
+                                                  },
+                                                  [
+                                                    _c("em", {
+                                                      staticClass:
+                                                        "ni ni-mobile",
+                                                      staticStyle: {
+                                                        "font-size": "20px",
+                                                      },
+                                                    }),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "lead-text text-muted pl-1",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.quoteQuestions
+                                                              .user.mobileno
+                                                          )
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _c("li", [
                                             _c(
                                               "a",
                                               {
-                                                staticClass: "chat-option-link",
+                                                staticClass:
+                                                  "chat-option-link chat-search-toggle",
                                                 attrs: { href: "#" },
                                               },
                                               [
                                                 _c("em", {
-                                                  staticClass: "ni ni-mobile",
+                                                  staticClass: " ni ni-mail",
                                                   staticStyle: {
                                                     "font-size": "20px",
                                                   },
                                                 }),
+                                                _vm.quoteQuestions.user
+                                                  ? _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "lead-text text-muted pl-1",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.quoteQuestions
+                                                              .user.email
+                                                          )
+                                                        ),
+                                                      ]
+                                                    )
+                                                  : _vm._e(),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.quoteQuestions.type ==
+                                          "local business"
+                                            ? _c("li", [
                                                 _c(
-                                                  "span",
+                                                  "a",
                                                   {
                                                     staticClass:
-                                                      "lead-text text-muted pl-1",
+                                                      "chat-option-link",
+                                                    attrs: { href: "#" },
                                                   },
                                                   [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.quoteQuestions.user
-                                                          .mobileno
-                                                      )
+                                                    _c("em", {
+                                                      staticClass:
+                                                        " ni ni-location",
+                                                      staticStyle: {
+                                                        "font-size": "20px",
+                                                      },
+                                                    }),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "lead-text text-muted pl-1",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.quoteQuestions
+                                                              .zip_code
+                                                          )
+                                                        ),
+                                                      ]
                                                     ),
                                                   ]
                                                 ),
-                                              ]
-                                            ),
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass:
-                                              "chat-option-link chat-search-toggle",
-                                            attrs: { href: "#" },
-                                          },
-                                          [
-                                            _c("em", {
-                                              staticClass: " ni ni-mail",
-                                              staticStyle: {
-                                                "font-size": "20px",
-                                              },
-                                            }),
-                                            _vm.quoteQuestions.user
-                                              ? _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "lead-text text-muted pl-1",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.quoteQuestions.user
-                                                          .email
-                                                      )
-                                                    ),
-                                                  ]
-                                                )
-                                              : _vm._e(),
-                                          ]
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _vm.quoteQuestions.type ==
-                                      "local business"
-                                        ? _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "chat-option-link",
-                                                attrs: { href: "#" },
-                                              },
-                                              [
-                                                _c("em", {
-                                                  staticClass:
-                                                    " ni ni-location",
-                                                  staticStyle: {
-                                                    "font-size": "20px",
-                                                  },
-                                                }),
+                                              ])
+                                            : _vm.quoteQuestions.user
+                                            ? _c("li", [
                                                 _c(
-                                                  "span",
+                                                  "a",
                                                   {
                                                     staticClass:
-                                                      "lead-text text-muted pl-1",
+                                                      "chat-option-link",
+                                                    attrs: { href: "#" },
                                                   },
                                                   [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.quoteQuestions
-                                                          .zip_code
-                                                      )
+                                                    _c("em", {
+                                                      staticClass:
+                                                        " ni ni-location",
+                                                      staticStyle: {
+                                                        "font-size": "20px",
+                                                      },
+                                                    }),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "lead-text text-muted pl-1",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.quoteQuestions
+                                                              .user.city
+                                                          )
+                                                        ),
+                                                      ]
                                                     ),
                                                   ]
                                                 ),
-                                              ]
-                                            ),
-                                          ])
-                                        : _vm.quoteQuestions.user
-                                        ? _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "chat-option-link",
-                                                attrs: { href: "#" },
-                                              },
-                                              [
-                                                _c("em", {
-                                                  staticClass:
-                                                    " ni ni-location",
-                                                  staticStyle: {
-                                                    "font-size": "20px",
-                                                  },
-                                                }),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "lead-text text-muted pl-1",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.quoteQuestions.user
-                                                          .city
-                                                      )
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                          ])
-                                        : _vm._e(),
-                                    ]
-                                  ),
-                                ]),
+                                              ])
+                                            : _vm._e(),
+                                        ]
+                                      ),
+                                    ])
+                                  : _vm._e(),
                               ]),
                             ]),
                             _vm._v(" "),
