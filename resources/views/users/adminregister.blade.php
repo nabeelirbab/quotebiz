@@ -102,10 +102,13 @@
                      <select name="admin_location_type" class="form-control" required onchange="GetTypeData(this.value)" required>
                         <option disabled selected value="">Select Type</option>
                         <option value="World Wide">
-                            World Wise
+                            World Wide
                         </option>
                         <option value="Country Wise">
-                           Country Wise
+                           Country Wide
+                        </option>
+                        <option value="State Wise">
+                           State Wide
                         </option>
                     </select>
                   </div>
@@ -124,7 +127,7 @@
                         @endforelse
                     </select>
                   </div>
-                    <div class="form-group control-text">
+                    <div class="form-group control-text" id="bus_state" style="display: none;">
                      <label>
                         <b>State</b>
                          <span class="text-danger">*</span>
@@ -135,7 +138,7 @@
                         </option>
                      </select>
                    </div>
-                    <div class="form-group control-text">
+                    <div class="form-group control-text" id="bus_city" style="display: none;">
                      <label>
                         <b>City</b>
                         <span class="text-danger">*</span>
@@ -190,6 +193,12 @@
         function GetTypeData(val){
            if(val == 'Country Wise'){
              $('#countrySection').show();
+             $('#bus_state').attr("style", "display: none !important");
+             $('#bus_city').attr("style", "display: none !important");
+           }else if(val == "State Wise") {
+             $('#countrySection').show();
+             $('#bus_state').attr("style", "display: block !important");
+             $('#bus_city').attr("style", "display: none !important");
            }else{
              $('#countrySection').hide();
            }
