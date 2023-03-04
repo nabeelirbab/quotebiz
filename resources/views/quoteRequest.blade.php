@@ -288,7 +288,7 @@ width: 50%;
 }
 
 @media screen and (min-width: 767px) {
-/*	form.information{
+/*  form.information{
 margin: 0 200px 0 50px;
 }*/
 .form-group {
@@ -297,7 +297,7 @@ margin: 0 200px 0 50px;
 }
 
 @media screen and (min-width: 1200px) {
-/*	form.information{
+/*  form.information{
 margin: 0 280px 0 100px;
 }*/
 .form-group {
@@ -533,60 +533,61 @@ $("#result").html('');
 </script>
 @if($provideradminlocation->admin_location_type == "World Wide")
 <script>
-	google.maps.event.addDomListener(window, 'load', initialize);
+  google.maps.event.addDomListener(window, 'load', initialize);
 
-	function initialize() {
-	var input = document.getElementById('zipcode');
-	var autocomplete = new google.maps.places.Autocomplete(input);
-	autocomplete.addListener('place_changed', function () {
-	var place = autocomplete.getPlace();
-	var components = place.address_components;
-	$("#latitude").val(place.geometry['location'].lat());
-	$("#longitude").val(place.geometry['location'].lng());
+  function initialize() {
+  var input = document.getElementById('zipcode');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.addListener('place_changed', function () {
+  var place = autocomplete.getPlace();
+  var components = place.address_components;
+  $("#latitude").val(place.geometry['location'].lat());
+  $("#longitude").val(place.geometry['location'].lng());
 
-	for(i=0;i<components.length;i++){
-	if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
-	var state = place.address_components[i].long_name;
-	console.log(state);
-	$("#state").val(state);
-	}
-	}
+  for(i=0;i<components.length;i++){
+  if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
+  var state = place.address_components[i].long_name;
+  console.log(state);
+  $("#state").val(state);
+  }
+  }
 
-	});
-	}
+  });
+  }
 </script>
 @else
 <script>
+
 	@if($providercountry)
 	var pc = "{{ $providercountry->code }}";
 	@else 
     var pc = 'au';
-	@endif
-	var loc = pc.toLowerCase();
-	google.maps.event.addDomListener(window, 'load', initialize);
+  @endif
+  var loc = pc.toLowerCase();
+  google.maps.event.addDomListener(window, 'load', initialize);
 
-	function initialize() {
-	var options = {
-	componentRestrictions: {country: loc}
-	};
+  function initialize() {
+  var options = {
+  componentRestrictions: {country: loc}
+  };
 
-	var input = document.getElementById('zipcode');
-	var autocomplete = new google.maps.places.Autocomplete(input, options);
-	autocomplete.addListener('place_changed', function () {
-	var place = autocomplete.getPlace();
-		var components = place.address_components;
-	$("#latitude").val(place.geometry['location'].lat());
+  var input = document.getElementById('zipcode');
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+  autocomplete.addListener('place_changed', function () {
+  var place = autocomplete.getPlace();
+    var components = place.address_components;
+  $("#latitude").val(place.geometry['location'].lat());
      $("#longitude").val(place.geometry['location'].lng());
-	
-	for(i=0;i<components.length;i++){
-		console.log(place.address_components[i].types[0].toString());
-	if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
-	var state = place.address_components[i].long_name;
-	console.log(state);
-	$("#state").val(state);
-	}
-	}
-	});
+  
+  for(i=0;i<components.length;i++){
+    console.log(place.address_components[i].types[0].toString());
+  if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
+  var state = place.address_components[i].long_name;
+  console.log(state);
+  $("#state").val(state);
+  }
+  }
+  });
 
   }
 </script>
