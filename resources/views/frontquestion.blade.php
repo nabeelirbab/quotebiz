@@ -41,7 +41,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
 		<style>
 		<?php
-		  $total = count($questions)+1;
+		  $total = count($questions)+2;
 		  $mid = 90/$total;
 		  $final = 100/$total;
 		// dd($total,$final,'dddd'); 
@@ -277,7 +277,7 @@
             	 {{ csrf_field() }}
             	<div class="form-header">
             		
-            		<input type="hidden" name="category_id" value="{{$category->id}}">
+            		<input type="hidden" name="category_id[]" value="{{$category->id}}">
             		<input type="hidden" name="zip_code" value="{{$zipcode}}">
             		<input type="hidden" name="state" value="{{$state}}">
             		<input type="hidden" name="latitude" value="{{$latitude}}">
@@ -354,9 +354,9 @@
 	                    	</div>
 	                    </div>
 	                </div>
-						@endif
+					@endif
 				</div>
-	                </section>
+	            </section>
 				@endforeach
                  <h4></h4>
 	                <section>
@@ -369,6 +369,25 @@
 	                    </div>	
 	                   
 	                	</div>
+	                </section>
+	                 <h4></h4>
+	                <section>
+	                	<h3 style="text-align: center;color: black">Other Services</h3>
+	                	<div class="mainclass justify-content-center" style="padding-bottom: 48px">
+	                    @foreach($categories as $key => $cat)
+	                     <div>
+						  <input type="checkbox" id="cat_0{{$cat->id}}" name="category_id[]" value="{{$cat->id}}">
+						  <label for="cat_0{{$cat->id}}">
+						  <!-- 	@if($cat->category_icon)
+                              <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}" >
+						  	@else
+                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
+						  	@endif -->
+						      <h2 style="padding-top: 10px" class="font-class">{{$cat->category_name}}</h2>
+						  </label>
+						</div>
+						@endforeach
+	                    </div>
 	                </section>
 				@if(Auth::user())
 					@if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'service_provider')
@@ -527,7 +546,7 @@ var jqOld = jQuery.noConflict();
 
 
 		<?php
-		$total = count($questions)+1;
+		$total = count($questions)+2;
 
 		$subtotal = count($questions);
 		for($i =1; $i <= $total; $i++){ ?>
