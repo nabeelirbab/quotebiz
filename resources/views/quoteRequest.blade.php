@@ -390,7 +390,7 @@ autocomplete="off">
 
     <label class="form-control-placeholder"
            for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
-    @if($job_design->search_box == 'auto_suggest')     
+    @if($job_design && $job_design->search_box == 'auto_suggest')     
     <input type="text" class="form-control" name="category_name" id="search"
            placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
            required>
@@ -558,7 +558,7 @@ $("#result").html('');
 @else
 <script>
 	@if($providercountry)
-	var pc = "{{ $providercountry->iso2 }}";
+	var pc = "{{ $providercountry->code }}";
 	@else 
     var pc = 'au';
 	@endif

@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "littlestoragerockingham.com.au",
+  "Id": "d3c38edc-1cdb-468a-87fc-32d79e666b81"
+}
