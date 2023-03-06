@@ -77,7 +77,7 @@ class QuestionChoiceController extends Controller
         //
     }
 
-    public function storeform(Request $request)
+        public function storeform(Request $request)
     {
 // dd($request->all());
         // $mailer = HelperJob::mailSettings();
@@ -114,6 +114,15 @@ class QuestionChoiceController extends Controller
                     $user->mobileno = $request->mobileno;
                     $user->activated = 1;
                     $user->save();
+                     if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->admin_id])) {
+                        if (Auth::check()) {
+                            User::where('id', Auth::user()->id)->update([
+                                'last_login_at' => Carbon::now()->toDateTimeString(),
+                                'last_login_ip' => $request->getClientIp()
+                            ]);
+                           
+                        }
+                    }
                 }
 
             } elseif(!$request->first_name && !$request->last_name){
@@ -144,15 +153,19 @@ class QuestionChoiceController extends Controller
                 $user->activated = 1;
                 $user->mobileno = $request->mobileno;
                 $user->save();
+                if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->admin_id])) {
+                if (Auth::check()) {
+                    User::where('id', Auth::user()->id)->update([
+                        'last_login_at' => Carbon::now()->toDateTimeString(),
+                        'last_login_ip' => $request->getClientIp()
+                    ]);
+                   
+                }
             }
-             $jobdata = [
-                'user' => $user,
-                'subject' => 'Thanks for your quote request'
-            ];
-
-            Mail::to($user->email)->send(new OnJobPost($jobdata));
+            }
+            // dd($user);
+             
             foreach ($request->category_id as $key => $category) {
-          
             $quote = new Quote;
             $quote->category_id = $category;
             $quote->admin_id = $request->admin_id;
@@ -165,7 +178,7 @@ class QuestionChoiceController extends Controller
                 $quote->type = "local business";
             }
             $quote->additional_info = $request->additional_info;
-            $quote->user_id = $user->id;
+            $quote->user_id = Auth::user()->id;
             $quote->save();
 
             if($key == 0){
@@ -250,7 +263,7 @@ class QuestionChoiceController extends Controller
 
                 }
            }
-            $job = Quote::with('quotations', 'user')->where('id', $quote->id)->where('user_id', $user->id)->orderBy('id', 'desc')->first();
+            $job = Quote::with('quotations', 'user')->where('id', $quote->id)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
                    $SPEmails = array();
                     $SPType = array();
                     $location = '';
@@ -375,27 +388,15 @@ class QuestionChoiceController extends Controller
                     }
             
           }
-       
-        if (Auth::user()) {
-            return redirect('customer/my-jobs');
-        } else {
 
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'subdomain' => $request->admin_id])) {
+           $jobdata = [
+                    'user' => Auth::user(),
+                    'subject' => 'Thanks for your quote request'
+                ];
 
-                if (Auth::check()) {
-                    User::where('id', Auth::user()->id)->update([
-                        'last_login_at' => Carbon::now()->toDateTimeString(),
-                        'last_login_ip' => $request->getClientIp()
-                    ]);
-                    return redirect('customer/my-jobs');
-                }
-            }
-
-        }
-
-
+            Mail::to($user->email)->send(new OnJobPost($jobdata));
+           return redirect('customer/my-jobs');
     }
-
     public function checkEmail(Request $request)
     {
         // return $request->all();

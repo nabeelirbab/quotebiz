@@ -377,7 +377,7 @@
 	                    @foreach($categories as $key => $cat)
 	                     <div>
 						  <input type="checkbox" id="cat_0{{$cat->id}}" name="category_id[]" value="{{$cat->id}}">
-						  <label for="cat_0{{$cat->id}}">
+						  <label for="cat_0{{$cat->id}}" style="padding:10px">
 						  <!-- 	@if($cat->category_icon)
                               <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}" >
 						  	@else
