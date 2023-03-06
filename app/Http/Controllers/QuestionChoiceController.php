@@ -77,7 +77,7 @@ class QuestionChoiceController extends Controller
         //
     }
 
-    public function storeform(Request $request)
+        public function storeform(Request $request)
     {
 // dd($request->all());
         // $mailer = HelperJob::mailSettings();
@@ -397,7 +397,6 @@ class QuestionChoiceController extends Controller
             Mail::to($user->email)->send(new OnJobPost($jobdata));
            return redirect('customer/my-jobs');
     }
-
     public function checkEmail(Request $request)
     {
         // return $request->all();
