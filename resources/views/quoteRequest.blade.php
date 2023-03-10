@@ -16,11 +16,11 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 <meta name="php-version" content="{{ phpversion() }}" />
-<title>{{ \Acelle\Model\Setting::get("site_name") }}-HomePage</title>
+<title>{{ \Acelle\Model\Setting::get("site_name") }} - HomePage</title>
 @if (\Acelle\Model\Setting::get('site_favicon'))
-    <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
+  <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
 @else
-    @include('layouts.core._favicon')
+  @include('layouts.core._favicon')
 @endif
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
@@ -263,7 +263,7 @@ p.form-para::after {
 <body class="dogcFe" style="min-height: 100%;">
 <div class="container-fluid" style="height: 100vh;width: 99.5%;">
 <div class="siteLogo">
-<img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}">
+<img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
 </div>
 @if(Auth::user())
 @if(Auth::user()->user_type == 'client')
