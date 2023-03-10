@@ -9,6 +9,7 @@ use Acelle\Model\Subdomain;
 use Acelle\Model\Setting;
 use Redirect;
 
+
 class QuoteController extends Controller
 {
     /**
@@ -18,7 +19,6 @@ class QuoteController extends Controller
      */
     public function home($account)
     {
-         // dd(request()->getHttpHost());
             return view('quoteRequest');
     }
 

@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\GenerateSitemap::class,
         // Commands\Inspire::class,
         /* no longer needed as of Laravel 5.5
         Commands\TestCampaign::class,
@@ -43,36 +44,37 @@ class Kernel extends ConsoleKernel
         if (!isInitiated()) {
             return;
         }
+        $schedule->command('sitemap:generate')->daily();
 
-        $schedule->call(function () {
-            event(new \Acelle\Events\CronJobExecuted());
-        })->name('cronjob_event:log')->everyMinute();
+        // $schedule->call(function () {
+        //     event(new \Acelle\Events\CronJobExecuted());
+        // })->name('cronjob_event:log')->everyMinute();
 
         // Automation2
-        $schedule->call(function () {
-            Automation2::run();
-        })->name('automation:run')->everyFiveMinutes();
+        // $schedule->call(function () {
+        //     Automation2::run();
+        // })->name('automation:run')->everyFiveMinutes();
 
         // Bounce/feedback handler
-        $schedule->command('handler:run')->everyThirtyMinutes();
+        // $schedule->command('handler:run')->everyThirtyMinutes();
 
         // Queued import/export/campaign
         // Allow overlapping: max 10 proccess as a given time (if cronjob interval is every minute)
         // Job is killed after timeout
-        $schedule->command('queue:work --queue=default,batch --timeout=120 --tries=1 --max-time=180')->everyMinute();
+        // $schedule->command('queue:work --queue=default,batch --timeout=120 --tries=1 --max-time=180')->everyMinute();
 
         // Make it more likely to have a running queue at any given time
         // Make sure it is stopped before another queue listener is created
         // $schedule->command('queue:work --queue=default,batch --timeout=120 --tries=1 --max-time=290')->everyFiveMinutes();
 
         // Sender verifying
-        $schedule->command('sender:verify')->everyFiveMinutes();
+        // $schedule->command('sender:verify')->everyFiveMinutes();
 
         // System clean up
         $schedule->command('system:cleanup')->daily();
 
         // GeoIp database check
-        $schedule->command('geoip:check')->everyMinute()->withoutOverlapping(60);
+        // $schedule->command('geoip:check')->everyMinute()->withoutOverlapping(60);
 
         // Subscription
         $schedule->call(function () {
