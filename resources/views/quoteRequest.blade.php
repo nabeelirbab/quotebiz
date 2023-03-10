@@ -5,7 +5,7 @@ $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle
 $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 <meta charset="UTF-8">
@@ -16,8 +16,7 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 <meta name="php-version" content="{{ phpversion() }}" />
-<title>{{ \Acelle\Model\Setting::get("site_name") }}</title>
-
+<title>{{ \Acelle\Model\Setting::get("site_name") }}-HomePage</title>
 @if (\Acelle\Model\Setting::get('site_favicon'))
     <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
 @else
@@ -29,153 +28,132 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap');
-
 body {
 background: rgba(0, 0, 0, .075);
 }
 
 .container {
-/*margin-top: 10px;*/
-margin-bottom: 50px;
+  margin-bottom: 50px;
 }
-
 .select2-selection__rendered {
-    line-height: 35px !important;
-    color: #52648482 !important;
-    font-size: 1.1rem;
+  line-height: 35px !important;
+  color: #52648482 !important;
+  font-size: 1.1rem;
 }
 .select2-container .select2-selection--single {
-    height: 50px !important;
-    border-radius: 6px;
-    border: 1px solid #c1c1c1;
+  height: 50px !important;
+  border-radius: 6px;
+  border: 1px solid #c1c1c1;
 }
 .select2-selection__arrow {
-    height: 50px !important;
+  height: 50px !important;
 }
 .terms{
-font-size: 10px;
-color: #0000009e;
-font-weight: 500;
+  font-size: 10px;
+  color: #0000009e;
+  font-weight: 500;
 }
 .terms a{
-color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+  color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 }
 .siteLogo{
-float: left;
-max-width: 9%;
-}/*
-.siteLogo img{
-height: 75px;
-}*/
+  float: left;
+  max-width: 9%;
+}
 .login{
 color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
 .col-md-4 {
-background: #F9F8F4;
-text-align: center;
-border-radius: 12px;
-border-top-right-radius: 0;
-border-bottom-right-radius: 0;
+  background: #F9F8F4;
+  text-align: center;
+  border-radius: 12px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .logo {
-text-align: left !important;
-transform: translate(-40px, 20px);
-font-weight: 1000 !important;
-font-size: 8px !important;
-font-family: 'Abril Fatface', cursive !important;
+  text-align: left !important;
+  transform: translate(-40px, 20px);
+  font-weight: 1000 !important;
+  font-size: 8px !important;
+  font-family: 'Abril Fatface', cursive !important;
 }
 
 .logo span {
-font-size: 20px;
+  font-size: 20px;
 }
 
 .image {
-margin-top: 44%;
+  margin-top: 44%;
 }
 
 h6.mt-3 {
-font-weight: bold;
+  font-weight: bold;
 }
 
 .col-md-4 p {
-font-size: 12px;
-line-height: 15px;
-padding: 0 60px 0 60px;
-color: #0000009e;
-font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 0 60px 0 60px;
+  color: #0000009e;
+  font-weight: 500;
 }
 
 .formclass {
-background: #fff;
-border-top-right-radius: 15px;
-border-bottom-right-radius: 15px;
+  background: #fff;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
-
 p.mb-0 {
-font-size: 10px;
-font-weight: bold;
-color: #9f9f9f;
+  font-size: 10px;
+  font-weight: bold;
+  color: #9f9f9f;
 }
-
 strong {
-font-size: 12px;
+  font-size: 12px;
 }
-
 .fa-phone-volume {
-margin-right: 4px;
-font-size: 12px;
+  margin-right: 4px;
+  font-size: 12px;
 }
-
 .fs-1 {
-font-size: 16px;
-color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}};
-
+  font-size: 16px;
+  color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}};
 }
-
-/*form.information{
-margin: 0 280px 0 100px;
-}*/
 h4.form-heading {
-font-weight: bold;
-font-size: 28px !important
+  font-weight: bold;
+  font-size: 28px !important
 }
-
 p.form-para {
-font-size: 15px;
-font-weight: 500;
-color: #9f9f9f;
-line-height: 17px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #9f9f9f;
+  line-height: 17px;
 }
-
 p.form-para::after {
-content: ".";
-font-size: 0;
-display: block;
-width: 8%;
-height: 4px;
-background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
-margin: 10px 10px;
-transform: translateX(-10px);
+  content: ".";
+  font-size: 0;
+  display: block;
+  width: 8%;
+  height: 4px;
+  background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+  margin: 10px 10px;
+  transform: translateX(-10px);
 }
-
 .form-group {
-position: relative;
-margin-bottom: 0.5rem;
-/*margin-right: 90px;*/
+  position: relative;
+  margin-bottom: 0.5rem;
 }
-
 .floatright {
-float: right;
+ float: right;
 }
-
 .form-control {
-border-radius: 6px;
-font-size: 1.1rem;
-` outline: 0;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  outline: 0;
 }
 .select2-container--default.select2-container--open .select2-selection--single {
-    border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
+  border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
 }
 .select2-container--default .select2-selection--single:focus {
   box-shadow: none;
@@ -183,150 +161,106 @@ font-size: 1.1rem;
   border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
 }
 .form-control:focus {
-box-shadow: none;
-border-radius: 6px;
-border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+  box-shadow: none;
+  border-radius: 6px;
+  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
 }
 
 .form-control-placeholder {
-/*position: absolute;
-top: 12px;
-left: 10px;
-transition: all 200ms;
-opacity: 0.5;
-font-size: 75%;*/
-font-size: 1.1rem;
-font-weight: 500;
-color: #364a63;
-margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #364a63;
+  margin-bottom: 8px;
 }
-
 .form-control:focus + .form-control-placeholder,
 .form-control:valid + .form-control-placeholder {
-font-size: 60%;
-transform: translate3d(0, -75%, 0);
-border-radius: 6px;
-opacity: 1;
-top: 12px;
+  font-size: 60%;
+  transform: translate3d(0, -75%, 0);
+  border-radius: 6px;
+  opacity: 1;
+  top: 12px;
 }
-
 .btn-primary {
-border: none !important;
-background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-height: 46px !important;
+  border: none !important;
+  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+  height: 46px !important;
 }
-
 .terms {
-font-size: 10px;
-color: #0000009e;
-font-weight: 500;
+  font-size: 10px;
+  color: #0000009e;
+  font-weight: 500;
 }
-
 .terms a {
-color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+  color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 }
-
 .siteLogo {
-float: left;
+  float: left;
 }
-
 .siteLogo img {
-width: 100%;
+  width: 100%;
 }
-
 .login {
-color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
+  color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
-
-
 @media screen and (max-width: 667px) {
 .mycol1 {
-border-radius: 0;
-border-top-right-radius: 12px;
-border-top-left-radius: 12px;
-padding: 50px 50px 50px 50px;
+  border-radius: 0;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  padding: 50px 50px 50px 50px;
 }
-
 .floatright {
-float: none;
-text-align: center;
+  float: none;
+  text-align: center;
 }
-
 .image {
-margin-top: 0;
+  margin-top: 0;
 }
-
 .mycol2 {
-border-radius: 0;
-border-bottom-right-radius: 12px;
-border-bottom-left-radius: 12px;
-text-align: center;
-padding-bottom: 40px;
+  border-radius: 0;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  text-align: center;
+  padding-bottom: 40px;
 }
-
-/*form.information{
-margin: 10px 10px 0 10px;
-}*/
 .form-group {
-margin: 10px 10px 0 10px;
+  margin: 10px 10px 0 10px;
 }
-
 .logo {
-transform: translate(-90px, -30px);
+  transform: translate(-90px, -30px);
 }
-
 .siteLogo {
-float: none;
-text-align: center;
-margin-bottom: 80px;
-max-width: 100%;
+  float: none;
+  text-align: center;
+  margin-bottom: 80px;
+  max-width: 100%;
 }
-
 .siteLogo img {
-width: 50%;
+  width: 50%;
 }
 }
-
-@media screen and (min-width: 767px) {
-/*  form.information{
-margin: 0 200px 0 50px;
-}*/
-.form-group {
-/*margin-right: 40px;*/
-}
-}
-
 @media screen and (min-width: 1200px) {
-/*  form.information{
-margin: 0 280px 0 100px;
-}*/
 .form-group {
-margin-bottom: 0.5rem;
-/*margin-right: 80px;*/
+  margin-bottom: 0.5rem;
 }
 }
-
 .dogcFe {
-background-size: cover !important;
-background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
-
+  background-size: cover !important;
+  background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
 }
-
 #result {
-position: absolute;
-z-index: 2;
-width: 100%;
-max-height: 285px;
-overflow: auto;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  max-height: 285px;
+  overflow: auto;
 }
-
 #result li {
-cursor: pointer;
+  cursor: pointer;
 }
 </style>
 </head>
 <body class="dogcFe" style="min-height: 100%;">
-
 <div class="container-fluid" style="height: 100vh;width: 99.5%;">
 <div class="siteLogo">
 <img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}">
@@ -338,9 +272,7 @@ cursor: pointer;
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="floatright mt-4">
-
 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
-
 </div>
 @else
 <div class="floatright mt-4">
@@ -353,11 +285,8 @@ cursor: pointer;
 href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 </div>
 @endif
-
 <div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
-
 style="height: 100%;align-items: center;">
-
 <div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 @if($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -381,55 +310,49 @@ autocomplete="off">
 {{ ($job_design) ? $job_design->title_heading : 'What are you looking for?'}}</h3>
 <p class="form-para">
 {{ ($job_design) ? $job_design->titlesub_heading : 'Let us know what you are looking for and we will provide you up to 3 quotes.'}}
-
 </p>
 <div class="row">
 <div class="col-md-6">
-
 <div class="form-group">
-
-    <label class="form-control-placeholder"
-           for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
-    @if($job_design && $job_design->search_box == 'auto_suggest')     
-    <input type="text" class="form-control" name="category_name" id="search"
-           placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
-           required>
-    <ul class="list-group" id="result">
-    </ul>
-    @else
-    <select class="form-control select2" name="category_name" style="height: 200px" required="">
-       <option value="" disabled selected="">Select Service</option>
-       @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
-       <option>{{$category->category_name}}</option>
-       @endforeach
-    </select>
-    @endif
-
+  <label class="form-control-placeholder"
+         for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
+  @if($job_design && $job_design->search_box == 'auto_suggest')     
+  <input type="text" class="form-control" name="category_name" id="search"
+         placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
+         required>
+  <ul class="list-group" id="result">
+  </ul>
+  @else
+  <select class="form-control select2" name="category_name" style="height: 200px" required="">
+     <option value="" disabled selected="">Select Service</option>
+     @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
+     <option>{{$category->category_name}}</option>
+     @endforeach
+  </select>
+  @endif
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
-
-    {{--                            <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>--}}
-   <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>
-    <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
-           required>
-    @if(Session::has('error'))
-        <strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
-    @endif
-    <div class="custom-control custom-control-sm custom-checkbox notext mt-2">
-        <input type="checkbox" class="custom-control-input" id="local_business"
-               name="local_business" value="local business">
-        <label class="custom-control-label" for="local_business" style="font-size: 13px;color: #9f9f9f;">I prefer a local business</label>
-    </div>
-    <input type="hidden" id="latitude" name="latitude">
-    <input type="hidden" id="longitude" name="longitude">
-    <input type="hidden" id="state" name="state">
+ <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>
+  <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
+         required>
+  @if(Session::has('error'))
+      <strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
+  @endif
+  <div class="custom-control custom-control-sm custom-checkbox notext mt-2">
+    <input type="checkbox" class="custom-control-input" id="local_business"
+           name="local_business" value="local business">
+    <label class="custom-control-label" for="local_business" style="font-size: 13px;color: #9f9f9f;">I prefer a local business</label>
+  </div>
+  <input type="hidden" id="latitude" name="latitude">
+  <input type="hidden" id="longitude" name="longitude">
+  <input type="hidden" id="state" name="state">
 </div>
 </div>
 <div class="col-md-5">
 <div class="form-group mt-3">
-    <button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
+  <button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
                     class="fa fa-arrow-right"></i></span></button>
 </div>
 </div>
@@ -443,7 +366,6 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 Policy.</a></p>
 </form>
 </div>
-
 <!-- Terms Modal -->
 <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
 aria-hidden="true">
@@ -462,12 +384,10 @@ aria-hidden="true">
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-
 </div>
 </div>
 </div>
 </div>
-
 <!-- Privacy Modal -->
 <div class="modal fade" id="privacy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
 aria-hidden="true">
@@ -495,17 +415,13 @@ aria-hidden="true">
 </body>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
-
 <script type="text/javascript">
 $('.select2').select2({ width: '300px', dropdownCssClass: "bigdrop" });
 $.ajaxSetup({cache: false});
-
 $('#search').keyup(function () {
 $('#result').html('');
-
 if ($('#search').val()) {
 var _token = $('meta[name="csrf-token"]').attr('content');
 $.ajax({
@@ -517,14 +433,10 @@ console.log(response);
 $('#result').html(response);
 },
 error: function (xhr) {
-
-}
-
-});
-
 }
 });
-
+}
+});
 $('#result').on('click', 'li', function () {
 var click_text = $(this).text();
 $('#search').val($.trim(click_text));
@@ -534,7 +446,6 @@ $("#result").html('');
 @if($provideradminlocation->admin_location_type == "World Wide")
 <script>
   google.maps.event.addDomListener(window, 'load', initialize);
-
   function initialize() {
   var input = document.getElementById('zipcode');
   var autocomplete = new google.maps.places.Autocomplete(input);
@@ -543,7 +454,6 @@ $("#result").html('');
   var components = place.address_components;
   $("#latitude").val(place.geometry['location'].lat());
   $("#longitude").val(place.geometry['location'].lng());
-
   for(i=0;i<components.length;i++){
   if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
   var state = place.address_components[i].long_name;
@@ -551,7 +461,6 @@ $("#result").html('');
   $("#state").val(state);
   }
   }
-
   });
   }
 </script>
@@ -569,7 +478,6 @@ $("#result").html('');
   var options = {
   componentRestrictions: {country: loc}
   };
-
   var input = document.getElementById('zipcode');
   var autocomplete = new google.maps.places.Autocomplete(input, options);
   autocomplete.addListener('place_changed', function () {
@@ -577,7 +485,6 @@ $("#result").html('');
     var components = place.address_components;
   $("#latitude").val(place.geometry['location'].lat());
      $("#longitude").val(place.geometry['location'].lng());
-  
   for(i=0;i<components.length;i++){
     console.log(place.address_components[i].types[0].toString());
   if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
@@ -587,9 +494,7 @@ $("#result").html('');
   }
   }
   });
-
   }
 </script>
 @endif
-
 </html>
