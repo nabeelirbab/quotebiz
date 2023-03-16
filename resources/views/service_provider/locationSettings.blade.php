@@ -808,7 +808,7 @@ data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
 @endsection
 
 @section('script')
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyD4pdnGpoS5aI6Qn7N__nHf1qtpQF-rBHs&libraries=places"></script>
 
 
 @if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="Country Wise")
