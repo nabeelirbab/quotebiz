@@ -416,7 +416,7 @@ aria-hidden="true">
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyD4pdnGpoS5aI6Qn7N__nHf1qtpQF-rBHs&libraries=places"></script>
 <script type="text/javascript">
 $('.select2').select2({ width: '300px', dropdownCssClass: "bigdrop" });
 $.ajaxSetup({cache: false});
