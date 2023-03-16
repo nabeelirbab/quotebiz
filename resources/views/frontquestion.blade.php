@@ -235,7 +235,7 @@
     max-width: 100% !important;
  }
  .font-class{
- 	font-size: 13px;
+ 	font-size: 12px;
  }
  label img{
     vertical-align: middle;
@@ -650,7 +650,10 @@ var _token = jqOld('meta[name="csrf-token"]').attr('content');
 }
 
 jqOld("#form").submit(function( event ) {
+	console.log(jqOld('#wizard .actions li:last'));
 	jqOld("#FinalSubmit").prop('disabled', true);
+	jqOld('#wizard').find('a[href="#finish"]').empty();
+	jqOld('#wizard').find('a[href="#finish"]').prepend('<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>');
 	jqOld("#FinalSubmit").css('cursor', 'not-allowed');
 });
 jqOld(document).on("click","#loginUser",function() {
