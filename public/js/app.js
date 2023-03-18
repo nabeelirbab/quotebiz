@@ -4084,6 +4084,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4142,8 +4147,12 @@ __webpack_require__.r(__webpack_exports__);
       $(".nk-msg-body").removeClass("show-message");
     },
     openQuote: function openQuote(e, quote) {
+      this.comment = '';
       this.quoteQuestions = quote;
       console.log(this.quoteQuestions);
+      if (quote.myquotation) {
+        this.comment = quote.myquotation.comment;
+      }
       $("#chatbody").addClass("nkchatbody");
       $(".nk-msg-aside").addClass("hide-aside");
       $(".nk-msg-body").addClass("show-message");
@@ -60794,6 +60803,38 @@ var render = function () {
                                                                 "from",
                                                                 "now"
                                                               )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "nk-msg-context",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "nk-msg-text",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass: "title",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              quote.category
+                                                                .category_name
                                                             )
                                                           ),
                                                         ]

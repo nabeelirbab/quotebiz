@@ -126,6 +126,11 @@
                           <div class="date">{{ quote.created_at | moment("from", "now") }}</div>
                       </div>
                   </div>
+                  <div class="nk-msg-context">
+                      <div class="nk-msg-text">
+                          <div class="title">{{quote.category.category_name}}</div>
+                      </div>
+                  </div>
                   <div class="nk-msg-context" v-if="quote.type == 'local business'">
                       <div class="nk-msg-text" style="font-size:12px">
                           <div class="title">This person prefers a local business</div>
@@ -341,154 +346,158 @@ return post.user.first_name.toLowerCase().includes(this.quoteSearch.toLowerCase(
 watch: {
 
 price(){
-if(this.price.length > 0){
-this.isPrice = false;
-}else{
-this.isPrice = true;
-}
+  if(this.price.length > 0){
+  this.isPrice = false;
+  }else{
+  this.isPrice = true;
+  }
 },
 
 comment(){
-if(this.comment.length > 0){
-$('.editr').removeAttr("style")
-}else{
-$('.editr').css('border-color','red');
-}
+  if(this.comment.length > 0){
+  $('.editr').removeAttr("style")
+  }else{
+  $('.editr').css('border-color','red');
+  }
 },
 
 quoteSearch(){
-if(this.quoteSearch.length > 0){
-this.quoteQuestions = {}
-$('#chatPanel').hide();
-$('#mainView').show();
-}
+  if(this.quoteSearch.length > 0){
+  this.quoteQuestions = {}
+  $('#chatPanel').hide();
+  $('#mainView').show();
+  }
 }
 },          
 
 methods: {
 closePanel(){
 
-$("#chatbody").removeClass("nkchatbody");
-$(".nk-msg-aside").removeClass("hide-aside");
-$(".nk-msg-body").removeClass("show-message");
+  $("#chatbody").removeClass("nkchatbody");
+  $(".nk-msg-aside").removeClass("hide-aside");
+  $(".nk-msg-body").removeClass("show-message");
 
 },
 openQuote(e,quote){
-this.quoteQuestions = quote;
-console.log(this.quoteQuestions);
-$("#chatbody").addClass("nkchatbody");
-$(".nk-msg-aside").addClass("hide-aside");
-$(".nk-msg-body").addClass("show-message");
-$(".nk-msg-item").removeClass("current");
-e.currentTarget.className = "nk-msg-item ";
-e.currentTarget.className += "current";
-$('#mainView').hide();
-$('#chatPanel').attr("style", "display: block !important");
+  this.comment = '';
+  this.quoteQuestions = quote;
+  console.log(this.quoteQuestions);
+  if(quote.myquotation){
+    this.comment = quote.myquotation.comment;
+  }
+  $("#chatbody").addClass("nkchatbody");
+  $(".nk-msg-aside").addClass("hide-aside");
+  $(".nk-msg-body").addClass("show-message");
+  $(".nk-msg-item").removeClass("current");
+  e.currentTarget.className = "nk-msg-item ";
+  e.currentTarget.className += "current";
+  $('#mainView').hide();
+  $('#chatPanel').attr("style", "display: block !important");
 },
 
 sendQuotation(){
-if(this.quoteQuestions.category.credit_cost){
-var credits_cost = this.quoteQuestions.category.credit_cost;
-}else{
-var credits_cost = this.quoteprice;
-}
-if(this.price == '' && this.comment == ''){
- this.isPrice = true;
- $('.editr').css('border-color','red');
-this.$toasted.show("Please fill all missing fields", { 
-       theme: "bubble", 
-       position: "bottom-right", 
-       type: "error",
-       duration : 5000
-       });
- 
-}else if(this.price == ''){
-this.isPrice = true;
-this.$toasted.show("Please enter price", { 
-       theme: "bubble", 
-       position: "bottom-right", 
-       type: "error",
-       duration : 5000
-       });
-}
-else if(this.comment == ''){
-$('.editr').css('border-color','red');
-this.$toasted.show("Please enter quote", { 
-       theme: "bubble", 
-       position: "bottom-right", 
-       type: "error",
-       duration : 5000
-       });
-}else{
+  if(this.quoteQuestions.category.credit_cost){
+  var credits_cost = this.quoteQuestions.category.credit_cost;
+  }else{
+  var credits_cost = this.quoteprice;
+  }
+  if(this.price == '' && this.comment == ''){
+   this.isPrice = true;
+   $('.editr').css('border-color','red');
+  this.$toasted.show("Please fill all missing fields", { 
+         theme: "bubble", 
+         position: "bottom-right", 
+         type: "error",
+         duration : 5000
+         });
+   
+  }else if(this.price == ''){
+  this.isPrice = true;
+  this.$toasted.show("Please enter price", { 
+         theme: "bubble", 
+         position: "bottom-right", 
+         type: "error",
+         duration : 5000
+         });
+  }
+  else if(this.comment == ''){
+  $('.editr').css('border-color','red');
+  this.$toasted.show("Please enter quote", { 
+         theme: "bubble", 
+         position: "bottom-right", 
+         type: "error",
+         duration : 5000
+         });
+  }else{
 
-var csrf_token = $('meta[name="csrf-token"]').attr('content');
-this.isSubmit = false;
-this.isLoading = true;
-axios.post('/service-provider/storequotation', {
-customer_id : this.quoteQuestions.user_id,
-quote_id : this.quoteQuestions.id,
-quote_price : this.price,
-credit_cost : credits_cost,
-comment : this.comment,
-_token : csrf_token
-}).then((response) => {
-console.log(response.data);
- this.$toasted.show("Quotation Send Successfully", { 
-       theme: "bubble", 
-       position: "top-center", 
-       type: "success",
-       duration : 5000
-       });
+  var csrf_token = $('meta[name="csrf-token"]').attr('content');
+  this.isSubmit = false;
+  this.isLoading = true;
+  axios.post('/service-provider/storequotation', {
+  customer_id : this.quoteQuestions.user_id,
+  quote_id : this.quoteQuestions.id,
+  quote_price : this.price,
+  credit_cost : credits_cost,
+  comment : this.comment,
+  _token : csrf_token
+  }).then((response) => {
+  console.log(response.data);
+   this.$toasted.show("Quotation Send Successfully", { 
+         theme: "bubble", 
+         position: "top-center", 
+         type: "success",
+         duration : 5000
+         });
 
-this.isLoading = false;
-this.isSubmit = true;
-this.comment = '';
-this.price = '';
-this.quoteQuestions = {};
-this.quoteQuestions.myquotation = response.data.quote.myquotation;
-if ($(window).width() < 700) {
-  this.closePanel();
-  this.getQuotes();
-}
-else{
-  $('#chatPanel').hide();
-  $('#mainView').show();
-}
+  this.isLoading = false;
+  this.isSubmit = true;
+  this.comment = '';
+  this.price = '';
+  this.quoteQuestions = {};
+  this.quoteQuestions.myquotation = response.data.quote.myquotation;
+  if ($(window).width() < 700) {
+    this.closePanel();
+    this.getQuotes();
+  }
+  else{
+    $('#chatPanel').hide();
+    $('#mainView').show();
+  }
 
 
 
-}).catch((error) => {
-console.log(error);
-})
+  }).catch((error) => {
+  console.log(error);
+  })
 }
 
 },
 
 newjob(){
-this.quoteQuestions = {}
-$('#chatPanel').hide();
-$('#mainView').show();
+  this.quoteQuestions = {}
+  $('#chatPanel').hide();
+  $('#mainView').show();
 },
 
 quotedjob(){
-this.quoteQuestions = {}
-$('#chatPanel').hide();
-$('#mainView').show();
-$('#tabactive').removeClass('active');
+  this.quoteQuestions = {}
+  $('#chatPanel').hide();
+  $('#mainView').show();
+  $('#tabactive').removeClass('active');
 },
 
 clearSearch(){
-this.quoteSearch = '';
+  this.quoteSearch = '';
 },
 
 getQuotes() {
-axios.get('/service-provider/leadsquotes')
-.then((responce) => {
-console.log(responce.data);
-this.quotes = responce.data;
-$('#tabactive').addClass('active');
-})
-.catch((error) => console.log(error));
+  axios.get('/service-provider/leadsquotes')
+  .then((responce) => {
+  console.log(responce.data);
+  this.quotes = responce.data;
+  $('#tabactive').addClass('active');
+  })
+  .catch((error) => console.log(error));
 
 },
 getFirstLetter(str){
