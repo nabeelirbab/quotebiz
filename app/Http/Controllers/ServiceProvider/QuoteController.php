@@ -22,7 +22,6 @@ class QuoteController extends Controller
     {
         // dd(Auth::user()->creadits);
         $pendingquotes = Quote::where('zip_code', Auth::user()->zipcode)->where('admin_id', Setting::subdomain())->get();
-        // dd($pendingquotes[0]->questionsget[0]->choice);
         return view('service_provider.quotesResponses', compact('pendingquotes'));
 
     }
@@ -41,6 +40,7 @@ class QuoteController extends Controller
 
             $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'pending')
+                ->where('user_id','<>',json_decode(Auth::user()->id))
                 ->select(
                     DB::raw("quotes.*, ( 6371  * acos( cos( radians(" . Auth::user()->latitude . ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" . Auth::user()->longitude . ") ) + sin( radians(" . Auth::user()->latitude . ") ) * sin( radians( latitude ) ) ) ) AS distance")
                 )
@@ -55,6 +55,7 @@ class QuoteController extends Controller
         if (Auth::user()->type == "country") {
 
             $pendingquotesdata = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+                ->where('user_id','<>',json_decode(Auth::user()->id))
                 ->where('status', 'pending')
                 ->whereNull('type')
                 ->orderBy('created_at', 'desc')
@@ -110,6 +111,7 @@ class QuoteController extends Controller
 
             $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'pending')
+                ->where('user_id','<>',json_decode(Auth::user()->id))
                 ->whereNull('type')
                 ->where('state',HelperJob::statename(Auth::user()->state)->name)
                 ->orderBy('created_at', 'desc')
@@ -120,6 +122,7 @@ class QuoteController extends Controller
 
             $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'pending')
+                ->where('user_id','<>',json_decode(Auth::user()->id))
                 ->orderBy('created_at', 'desc')
                 ->get();
         }

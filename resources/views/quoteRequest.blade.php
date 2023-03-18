@@ -16,6 +16,7 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 <meta name="php-version" content="{{ phpversion() }}" />
+<link rel="canonical" href="{{ url('/') }}" />
 <title>{{ \Acelle\Model\Setting::get("site_name") }} - HomePage</title>
 @if (\Acelle\Model\Setting::get('site_favicon'))
   <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
