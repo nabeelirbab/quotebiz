@@ -33,10 +33,16 @@ class SettingController extends Controller
          if ($request->isMethod('post')) {
              Subdomain::where('user_id',Auth::user()->id)->update(['parent'=> $request->parent]);
              return redirect()->back()->with('success', 'Domain add successfully');   
-
          }
-
          return view('customDomain');
+    }
+    public function googledomain(Request $request){
+
+         if ($request->isMethod('post')) {
+             Subdomain::where('user_id',Auth::user()->id)->update(['parent'=> $request->parent]);
+             return redirect()->back()->with('success', 'Domain add successfully');   
+         }
+         return view('googleDomain');
     }
 
     public function domainStatus(Request $request){
