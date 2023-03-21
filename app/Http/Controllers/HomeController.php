@@ -252,6 +252,21 @@ class HomeController extends Controller
         return $filename;
     }
 
+    public function addMetaTag(Request $request){
+      $setting = SiteSetting::where('subdomain', Setting::subdomain())->first();
+      $setting->meta_tag = $request->meta_tag;
+      $setting->save();
+      return Redirect::back()->with('success', 'Meta tage uploaded successfully.');
+    }
+
+    public function uploadHtmlFile(Request $request){
+        $file = $request->file('html_file');
+        $fileName = $file->getClientOriginalName();
+        $path = public_path('/');
+        $file->move($path, $fileName);
+        return redirect()->back()->with('success', 'File uploaded successfully.');
+    }
+
     public function removesetting()
     {
 
