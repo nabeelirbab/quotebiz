@@ -75,41 +75,54 @@
                     </li>
                <li class="nav-item dropdown language-switch"  rel0="CustomerController">
                     <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                           <em class="icon ni ni-tranx fs-5 mr-1"></em>
-                            <span>Credits</span>
-                             <span class="caret"></span>
+                       <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                        <span>Credits</span>
+                         <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                          
+                      <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/credit-amount') }}" title="Credits Management" class="dropdown-item d-flex align-items-center">
+                            <em class="icon ni ni-invest fs-5 mr-1"></em>
+                            <span>Credits Management</span>
                         </a>
-                        <ul class="dropdown-menu">
-                              
-                          <li class="nav-item" rel2="HomeController">
-                            <a href="{{ url('admin/credit-amount') }}" title="Credits Management" class="dropdown-item d-flex align-items-center">
-                                <em class="icon ni ni-invest fs-5 mr-1"></em>
-                                <span>Credits Management</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" rel2="HomeController">
-                            <a href="{{ url('admin/payments-receive') }}" title="Receive Payments" class="dropdown-item d-flex align-items-center">
-                              <em class="icon ni ni-tranx fs-5 mr-1"></em>
-                                <span>Received Payments</span>
-                            </a>
-                        </li>
-                           
-                       </ul>
                     </li>
-                     
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/payments-receive') }}" title="Receive Payments" class="dropdown-item d-flex align-items-center">
+                          <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                            <span>Received Payments</span>
+                        </a>
+                    </li>
+                       
+                   </ul>
+               </li>
                <li class="nav-item" rel2="HomeController">
                     <a href="{{ url('admin/account/profile') }}" title="Account" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                       <em class="icon ni ni-account-setting fs-5 mr-1"></em>
                         <span>Account</span>
                     </a>
                 </li>
-                     
-               <li class="nav-item" rel2="HomeController">
-                    <a href="{{ url('admin/custom-domain') }}" title="Account" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                      <em class="icon ni ni-account-setting fs-5 mr-1"></em>
-                        <span>Custom Domain</span>
+                <li class="nav-item dropdown language-switch"  rel0="CustomerController">
+                    <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                       <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                        <span>Domain Setting</span>
+                         <span class="caret"></span>
                     </a>
-                </li>
+                  <ul class="dropdown-menu">
+                   <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/custom-domain') }}" title="Custom Domain" class="dropdown-item d-flex align-items-center">
+                          <em class="icon ni ni-account-setting fs-5 mr-1"></em>
+                            <span>Custom Domain</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/google-site-verification') }}" title="Google Site Verification" class="dropdown-item d-flex align-items-center">
+                          <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                            <span>Google Site Verification</span>
+                        </a>
+                    </li>
+                   </ul>
+               </li>
             
                 <li class="nav-item" rel2="HomeController">
                     <a href="{{ url('admin/support') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">

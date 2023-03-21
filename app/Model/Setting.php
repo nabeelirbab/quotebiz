@@ -82,7 +82,7 @@ class Setting extends Model
 
         $adminsetting = SiteSetting::where('subdomain',Setting::subdomain())->first();
         if($adminsetting && $adminsetting->$name != null){
-        if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'site_favicon'){
+        if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'meta_tag' || $name == 'site_favicon'){
             
                 return $adminsetting->$name; 
             }else{
