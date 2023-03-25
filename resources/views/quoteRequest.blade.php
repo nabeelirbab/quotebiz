@@ -104,7 +104,7 @@ h6.mt-3 {
 }
 
 .formclass {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
@@ -248,9 +248,32 @@ p.form-para::after {
   margin-bottom: 0.5rem;
 }
 }
+.centered-text {
+  padding: 5px 17px 5px 17px;
+  height: 5vh;
+  text-align: center;
+}
+.social{
+  float: right;
+}
+.social a {
+ font-size: 25px;
+}
+
 .dogcFe {
   background-size: cover !important;
+  width: 100%;
+  height: 94vh;
+  -webkit-box-align: start;
+  align-items: start;
+  -webkit-box-pack: center;
+  justify-content: center;
+  min-height: 650px;
+  max-height: 1500px;
+  position: relative;
+  margin: 0px 0px 0px;
   background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
+
 }
 #result {
   position: absolute;
@@ -264,8 +287,8 @@ p.form-para::after {
 }
 </style>
 </head>
-<body class="dogcFe" style="min-height: 100%;">
-<div class="container-fluid" style="height: 100vh;width: 99.5%;">
+<body>
+<div class="container-fluid dogcFe">
 <div class="siteLogo">
 <img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
 </div>
@@ -291,7 +314,7 @@ href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Busi
 @endif
 <div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
-<div class="col-md-7 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
+<div class="col-md-6 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 @if($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
   {{$errors->first()}}
@@ -415,6 +438,16 @@ aria-hidden="true">
 </div>
 </div>
 </div>
+</div>
+<div class="centered-text container-fluid">
+    <span class="text-muted" style="line-height: 2.5;">Copyright © <?php echo date("Y"); ?> {{$sitename}}</span>
+    <div class="social">
+    <a href=""><em class="icon ni ni-facebook-fill"></em></a>
+    <a href=""><em class="icon ni ni-instagram-round"></em></a>
+    <a href=""><em class="icon ni ni-linkedin-round"></em></a>
+    <a href=""><em class="icon ni ni-twitter-round"></em></a>
+    <a href=""><em class="icon ni ni-whatsapp-round"></em></a>
+    </div>
 </div>
 </body>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
