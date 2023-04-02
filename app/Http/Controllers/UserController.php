@@ -504,6 +504,11 @@ public function formdesign(Request $request){
             $job_design->search_box = $request->search_box;
             $job_design->login_color = $request->login_color;
             $job_design->button_text_color = $request->button_text_color;
+            $job_design->facebook = $request->facebook;
+            $job_design->instagram = $request->instagram;
+            $job_design->linkedIn = $request->linkedIn;
+            $job_design->twitter = $request->twitter;
+            $job_design->whatsApp = $request->whatsApp;
             $job_design->agent_no = $request->agent_no;
             $job_design->position = $request->position;
             $job_design->business_no = $request->business_no;
