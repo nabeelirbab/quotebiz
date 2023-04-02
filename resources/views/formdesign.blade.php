@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                       <div class="col-md-3 col-sm-6">
+                        <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Color</label>
                               <div id="cp0" class="input-group" title="Using input value">
@@ -111,8 +111,8 @@
                               </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
+                        </div>
+                        <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text Color</label>
                             <div id="cp1" class="input-group" title="Using input value">
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                        </div>
-                    <div class="col-md-3 col-sm-6">
+                       <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Login Text Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
@@ -143,10 +143,50 @@
                                 <span class="input-group-text colorpicker-input-addon"><i></i></span>
                               </span>
                             </div>
+                         </div>
+                         </div>
+                      </div>
+                        <div class="form-group">
+                            <label class="form-label" for="Facebook">Facebook</label>
+                              <div  class="input-group" title="Using input value">
+                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->facebook}}" @endif name="facebook" id="Facebook" placeholder="https://www.facebook.com/quotebiz" />
+                            </div>
                         </div>
-                       </div>
-                   </div>
-                    <div class="form-group">
+                       <div class="row mb-3">
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Instagram">Instagram</label>
+                              <div class="input-group" title="Using input value">
+                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->instagram}}"  @endif name="instagram" id="Instagram" placeholder="https://www.instagram.com/quotebiz" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="LinkedIn">LinkedIn</label>
+                              <div  class="input-group" title="Using input value">
+                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->linkedIn}}"  @endif name="linkedIn" id="LinkedIn" placeholder="https://www.linkedin.com/quotebiz" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Twitter">Twitter</label>
+                              <div  class="input-group" title="Using input value">
+                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->twitter}}"  @endif name="twitter" id="Twitter" placeholder="https://www.twitter.com/quotebiz" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="WhatsApp">WhatsApp</label>
+                              <div  class="input-group" title="Using input value">
+                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->whatsApp}}"  @endif name="whatsApp" id="WhatsApp" placeholder="https://wa.me/" />
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label class="form-label" for="default-01">Quote Box Position</label>
                         <div class="form-control-wrap">
                          <label>
