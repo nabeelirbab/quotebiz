@@ -1,21 +1,21 @@
 @extends('layouts.core.frontend')
-@section('title', 'Custom Domain')
+@section('title', 'Google Ownership Verification')
 @section('head')
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
-    <style type="text/css">
-      .accordion-head{
-        display: flex;
-        align-items: center;
-      }
-      .accordion-head p{
-        margin-left: 20px;
-        margin-bottom: 1px;
-      }
-    </style>
-    @endsection
+<style type="text/css">
+  .accordion-head{
+    display: flex;
+    align-items: center;
+  }
+  .accordion-head p{
+    margin-left: 20px;
+    margin-bottom: 1px;
+  }
+</style>
+@endsection
 @section('content')
 <div class="nk-content ">
 <div class="container-fluid">
@@ -34,12 +34,12 @@
 </div><!-- .nk-block-head -->
 <div id="accordion" class="accordion">
   <div class="accordion-item">
-      <a href="#" class="accordion-head" data-toggle="collapse" data-target="#accordion-item-1">
+      <a href="#" class="accordion-head collapsed" data-toggle="collapse" data-target="#accordion-item-1">
           <h6 class="title">HTML file</h6>
           <p>Upload an HTML file</p>
           <span class="accordion-icon"></span>
       </a>
-      <div class="accordion-body collapse show" id="accordion-item-1" data-parent="#accordion">
+      <div class="accordion-body collapse" id="accordion-item-1" data-parent="#accordion">
           <div class="accordion-inner">
           <p>1. Download HTML file from google search console, and upload it here.</p>
           <p>2. After upload the HTML file then click Verify button in the google search console.</p>
@@ -83,6 +83,7 @@
        </div>
   </div>
 </div>
+@if(Auth::user()->customdomain->parent && Auth::user()->customdomain->status == 'active')
   <div class="accordion-item">
       <a href="#" class="accordion-head collapsed" data-toggle="collapse" data-target="#accordion-item-3">
           <h6 class="title">Sitemap</h6>
@@ -91,10 +92,11 @@
       </a>
       <div class="accordion-body collapse" id="accordion-item-3" data-parent="#accordion" >
        <div class="accordion-inner">
-        <a href="" class="btn btn-success">Download Here</a>
+        <a href="{{ asset('sitemap-'.Auth::user()->customdomain->subdomain.'.xml') }}" class="btn btn-success" download>Download Here</a>
        </div>
   </div>
-</div>  
+</div> 
+@endif 
 
 </div><!-- .card-inner-group -->
 </div><!-- .card -->
