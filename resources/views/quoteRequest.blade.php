@@ -12,7 +12,6 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 <meta name="php-version" content="{{ phpversion() }}" />
@@ -249,8 +248,6 @@ p.form-para::after {
 }
 }
 .centered-text {
-  padding: 5px 17px 5px 17px;
-  height: 5vh;
   text-align: center;
 }
 .social{
@@ -258,12 +255,13 @@ p.form-para::after {
 }
 .social a {
  font-size: 25px;
+ color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
 }
 
 .dogcFe {
   background-size: cover !important;
   width: 100%;
-  height: 94vh;
+  height: 100vh;
   -webkit-box-align: start;
   align-items: start;
   -webkit-box-pack: center;
@@ -273,7 +271,6 @@ p.form-para::after {
   position: relative;
   margin: 0px 0px 0px;
   background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
-
 }
 #result {
   position: absolute;
@@ -386,12 +383,32 @@ autocomplete="off">
 </div>
 <p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}",
 you consent to the {{$sitename}} storing the information submitted on this page so you can get most
-up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s <a
-    href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and <a href="#"
-                                                                                  data-toggle="modal"
-                                                                                  data-target="#privacy">Privacy
-Policy.</a></p>
+up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s
+ <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and 
+ <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a>
+</p>
 </form>
+@if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
+<div class="centered-text">
+  <div class="social">
+  @if($job_design->facebook)
+  <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
+  @endif
+  @if($job_design->instagram)
+  <a href="{{$job_design->instagram}}" target="_blank"><em class="icon ni ni-instagram-round"></em></a>
+  @endif
+  @if($job_design->linkedIn)
+  <a href="{{$job_design->linkedIn}}" target="_blank"><em class="icon ni ni-linkedin-round"></em></a>
+  @endif
+  @if($job_design->twitter)
+  <a href="{{$job_design->twitter}}" target="_blank"><em class="icon ni ni-twitter-round"></em></a>
+  @endif
+  @if($job_design->whatsApp)
+  <a href="{{$job_design->whatsApp}}" target="_blank"><em class="icon ni ni-whatsapp-round"></em></a>
+   @endif
+  </div>
+</div>
+@endif
 </div>
 <!-- Terms Modal -->
 <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -438,16 +455,7 @@ aria-hidden="true">
 </div>
 </div>
 </div>
-</div>
-<div class="centered-text container-fluid">
-    <span class="text-muted" style="line-height: 2.5;">Copyright © <?php echo date("Y"); ?> {{$sitename}}</span>
-    <div class="social">
-    <a href=""><em class="icon ni ni-facebook-fill"></em></a>
-    <a href=""><em class="icon ni ni-instagram-round"></em></a>
-    <a href=""><em class="icon ni ni-linkedin-round"></em></a>
-    <a href=""><em class="icon ni ni-twitter-round"></em></a>
-    <a href=""><em class="icon ni ni-whatsapp-round"></em></a>
-    </div>
+
 </div>
 </body>
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
