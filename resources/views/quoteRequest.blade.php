@@ -3,11 +3,11 @@ $sitename = \Acelle\Model\Setting::get("site_name");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
 $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
 $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
+$job_design = Acelle\Jobs\HelperJob::form_design(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,7 +18,7 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 @if(\Acelle\Model\Setting::get("meta_tag"))
 {!! \Acelle\Model\Setting::get("meta_tag") !!}
 @endif
-<link rel="canonical" href="{{ url('/') }}" />
+<link rel="canonical" href="{{ url()->current() }}" />
 <title>{{ \Acelle\Model\Setting::get("site_name") }} - HomePage</title>
 @if (\Acelle\Model\Setting::get('site_favicon'))
   <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
@@ -34,7 +34,6 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
 body {
 background: rgba(0, 0, 0, .075);
 }
-
 .container {
   margin-bottom: 50px;
 }
