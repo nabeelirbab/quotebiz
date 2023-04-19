@@ -34,8 +34,9 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function ($account) {
     // Helper method to generate other routes for authentication
     Route::get('/', 'QuoteController@home');
+    Route::get('/posts/{slug}', 'PostController@singleBlog');
+    Route::get('/posts', 'PostController@allBlogs');
     Auth::routes();
-
     Route::get('/login/token/{token}', 'Controller@tokenLogin');
     Route::match(['get', 'post'],'quote-form', 'QuestionChoiceController@index');
     Route::post('category-search', 'QuoteController@category_search');
@@ -264,8 +265,16 @@ Route::get('users/logout', 'UserController@logout');
     Route::get('/preview-design', 'UserController@formdesign');
     Route::match(['get','post'],'/user-search', 'UserController@searchUser');
 
+   //Blogs
+    Route::name('posts.')->prefix('posts/')->group(function () {
+     Route::get('/', 'PostController@index');
+     Route::get('add', 'PostController@create');
+     Route::post('store', 'PostController@store');
+     Route::get('{slug}', 'PostController@show');
+    }); 
+
         // Question
-  Route::name('questions.')->prefix('questions/')->group(function () {
+   Route::name('questions.')->prefix('questions/')->group(function () {
     Route::get('/', 'QuestionController@index')->name('nabeel');
     Route::get('add-question', 'QuestionController@create');
     Route::post('store', 'QuestionController@store');
