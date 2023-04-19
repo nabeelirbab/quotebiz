@@ -26,20 +26,20 @@ $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->co
   @include('layouts.core._favicon')
 @endif
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
-<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
-<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
-<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5462023016685790"
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+<script async rel="preload" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5462023016685790"
      crossorigin="anonymous"></script>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap');
 body {
 background: rgba(0, 0, 0, .075);
 }
-
+/*
 .container {
   margin-bottom: 50px;
-}
+}*/
 .select2-selection__rendered {
   line-height: 35px !important;
   color: #52648482 !important;
@@ -62,7 +62,6 @@ background: rgba(0, 0, 0, .075);
   color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 }
 .siteLogo{
-  float: left;
   max-width: 9%;
 }
 .login{
@@ -198,9 +197,6 @@ p.form-para::after {
 .terms a {
   color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 }
-.siteLogo {
-  float: left;
-}
 .siteLogo img {
   width: 100%;
 }
@@ -288,29 +284,37 @@ p.form-para::after {
 </head>
 <body>
 <div class="container-fluid dogcFe">
+<header style="margin-bottom: 11vh">
+<nav class="navbar navbar-expand-lg navbar-light">
+<div style="display: flex;
+    justify-content: space-between;">
 <div class="siteLogo">
-<img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
+   <img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
 </div>
 @if(Auth::user())
 @if(Auth::user()->user_type == 'client')
-<div class="floatright mt-4">
+<div class="mt-4">
 <a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @elseif(Auth::user()->user_type == 'admin')
-<div class="floatright mt-4">
+<div class="mt-4">
 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @else
-<div class="floatright mt-4">
+<div class="mt-4">
 <a href="{{ url('/service-provider') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @endif
 @else
-<div class="floatright mt-4">
+<div class="mt-4">
 <a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a> <a
 href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 </div>
 @endif
+</div>
+</nav>
+</header>
+<div class="container">
 <div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
 <div class="col-md-6 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
@@ -457,13 +461,13 @@ aria-hidden="true">
 </div>
 </div>
 </div>
-
+</div>
 </div>
 </body>
-<script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
-<script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyD4pdnGpoS5aI6Qn7N__nHf1qtpQF-rBHs&libraries=places"></script>
+<script rel="preload" src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
+<script rel="preload" src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+<script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyD4pdnGpoS5aI6Qn7N__nHf1qtpQF-rBHs&libraries=places"></script>
 <script type="text/javascript">
 $('.select2').select2({ width: '300px', dropdownCssClass: "bigdrop" });
 $.ajaxSetup({cache: false});
