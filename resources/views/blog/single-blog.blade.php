@@ -1,4 +1,4 @@
-@include('blog.header')
+@include('blog.header',['post' => $post])
         <!-- Header Area End Here -->
         <!-- Single Blog Banner Start Here -->
         <section class="single-blog-wrap-layout1">
@@ -38,58 +38,20 @@
                             </div>
                             <div class="widget-latest">
                                 <ul class="block-list">
+                                    @foreach($relatedPosts as $post)
                                     <li class="single-item">
-                                        <div class="item-img">
-                                            <a href="#"><img src="img/blog/blog85.jpg" alt="Post"></a>
+                                        <div class="item-img" style="width: 150px;">
+                                            <a href="#"><img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Post"></a>
                                         </div>
                                         <div class="item-content">
                                             <ul class="entry-meta meta-color-dark">
                                                 <li><i class="fas fa-tag"></i>Weeding</li>
-                                                <li><i class="fas fa-calendar-alt"></i>Jan 19, 2019</li>
+                                                <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
                                             </ul>
-                                            <h4 class="item-title"><a href="#">Thought aful Living result are aert aos
-                                                    Angeles</a></h4>
+                                            <h4 class="item-title"><a href="#">{{$post->title}}</a></h4>
                                         </div>
                                     </li>
-                                    <li class="single-item">
-                                        <div class="item-img">
-                                            <a href="#"><img src="img/blog/blog86.jpg" alt="Post"></a>
-                                        </div>
-                                        <div class="item-content">
-                                            <ul class="entry-meta meta-color-dark">
-                                                <li><i class="fas fa-tag"></i>Flower</li>
-                                                <li><i class="fas fa-calendar-alt"></i>Jan 19, 2019</li>
-                                            </ul>
-                                            <h4 class="item-title"><a href="#">Type designer Jeremy Tanka rdoverhauls
-                                                    online</a></h4>
-                                        </div>
-                                    </li>
-                                    <li class="single-item">
-                                        <div class="item-img">
-                                            <a href="#"><img src="img/blog/blog87.jpg" alt="Post"></a>
-                                        </div>
-                                        <div class="item-content">
-                                            <ul class="entry-meta meta-color-dark">
-                                                <li><i class="fas fa-tag"></i>Stage</li>
-                                                <li><i class="fas fa-calendar-alt"></i>Jan 19, 2019</li>
-                                            </ul>
-                                            <h4 class="item-title"><a href="#">5 design things to look out for in June
-                                                    2019</a></h4>
-                                        </div>
-                                    </li>
-                                    <li class="single-item">
-                                        <div class="item-img">
-                                            <a href="#"><img src="img/blog/blog88.jpg" alt="Post"></a>
-                                        </div>
-                                        <div class="item-content">
-                                            <ul class="entry-meta meta-color-dark">
-                                                <li><i class="fas fa-tag"></i>Life Style</li>
-                                                <li><i class="fas fa-calendar-alt"></i>Jan 19, 2019</li>
-                                            </ul>
-                                            <h4 class="item-title"><a href="#">Marc Falzone opens £2 million UK Expo
-                                                    Pavilion</a></h4>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

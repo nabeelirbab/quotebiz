@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="footer-box-layout2">
                     <div class="footer-logo">
-                        <a href="/"><img src="{{$sitelightlogo}}" alt="{{$sitename}}" alt="logo"></a>
+                        <a href="/"><img src="{{$sitelightlogo}}" alt="{{$sitename}}" alt="logo" style="max-width: 15%;"></a>
                     </div>
                     <div class="copyright">© <?php echo date('Y'); ?> {{$sitename}}. All Rights Reserved.</div>
                 </div>

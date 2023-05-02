@@ -3,6 +3,13 @@ $sitename = \Acelle\Model\Setting::get("site_name");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
 $sitelightlogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
 $job_design = Acelle\Jobs\HelperJob::form_design(); 
+if (isset($post)) {
+  $title = $post->title;
+  $image = asset('frontend-assets/images/posts/' . $post->cover_img);
+} else {
+  $title = \Acelle\Model\Setting::get("site_name"). '-'. 'Blogs';
+  $image = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js"  lang="en">
@@ -11,6 +18,13 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
+    @if (\Acelle\Model\Setting::get('site_favicon'))
+    <meta property="og:image" content="{{ $image }}">
+    @else
+    <meta property="og:image" content="{{ URL::asset('favicon/favicon-32x32.png') }}">
+    @endif
     <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
     <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
     <meta name="php-version" content="{{ phpversion() }}" />
@@ -18,7 +32,8 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
     {!! \Acelle\Model\Setting::get("meta_tag") !!}
     @endif
     <link rel="canonical" href="{{ url()->current() }}" />
-    <title>{{ \Acelle\Model\Setting::get("site_name") }} - HomePage</title>
+
+    <title>{{ $title }}</title>
     @if (\Acelle\Model\Setting::get('site_favicon'))
       <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
     @else
@@ -35,6 +50,9 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
+        .single-blog-banner-layout1 .banner-content .item-social li .linkedin {
+            background-color: #0A66C2;
+        }
         .blog-box-layout5 {
           height: 320px; /* Set a fixed height for the container */
           display: flex; /* Use flexbox to make sure the image and content divs are the same height */

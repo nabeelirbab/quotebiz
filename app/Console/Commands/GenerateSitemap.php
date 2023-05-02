@@ -4,6 +4,8 @@ namespace Acelle\Console\Commands;
 
 use Illuminate\Console\Command;
 use Acelle\Model\Subdomain;
+use Acelle\Model\Post;
+use Carbon\Carbon;
 use Spatie\Sitemap\SitemapGenerator;
 
 class GenerateSitemap extends Command
@@ -41,10 +43,26 @@ class GenerateSitemap extends Command
     {
         
         $subdomains = Subdomain::where('status','active')->get();
-        foreach ($subdomains as $key => $subdomain) {
-            SitemapGenerator::create('https://'.$subdomain->parent)
-            ->writeToFile(public_path('sitemap-'.$subdomain->subdomain.'.xml'));
+        // foreach ($subdomains as $key => $subdomain) {
+        //     SitemapGenerator::create('https://'.$subdomain->parent)
+        //     ->writeToFile(public_path('sitemap-'.$subdomain->subdomain.'.xml'));
+        // }
+        foreach ($subdomains as $subdomain) {
+        $sitemap = SitemapGenerator::create('https://' . $subdomain->parent)
+            ->getSitemap();
+
+        $posts = Post::where('subdomain', $subdomain->subdomain)
+            ->get();
+        if(count($posts) > 0 ){
+            foreach ($posts as $post) {
+                $url = 'https://' . $subdomain->parent.'/posts/'.$post->slug;
+
+                $sitemap->add($url, Carbon::now());
+            }
         }
+
+        $sitemap->writeToFile(public_path("sitemap-{$subdomain->subdomain}.xml"));
+    }
         return 1;
          
     }

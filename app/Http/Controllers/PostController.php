@@ -57,6 +57,7 @@ class PostController extends Controller
             $post->cover_img = $new_image;
         } 
         $post->save();
+        return redirect('admin/posts');
     }
 
     /**
@@ -74,7 +75,8 @@ class PostController extends Controller
     public function singleBlog($account, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('blog.single-blog', compact('post'));
+        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->get();
+        return view('blog.single-blog', compact('post','relatedPosts'));
     }
 
     /**

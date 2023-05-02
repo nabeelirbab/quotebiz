@@ -12,6 +12,13 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta property="og:title" content="{{ \Acelle\Model\Setting::get("site_name") }} - HomePage">
+<meta property="og:description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
+@if (\Acelle\Model\Setting::get('site_favicon'))
+<meta property="og:image" content="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}">
+@else
+<meta property="og:image" content="{{ URL::asset('favicon/favicon-32x32.png') }}">
+@endif
 <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 <meta name="php-version" content="{{ phpversion() }}" />
