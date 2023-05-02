@@ -269,8 +269,11 @@ Route::get('users/logout', 'UserController@logout');
     Route::name('posts.')->prefix('posts/')->group(function () {
      Route::get('/', 'PostController@index');
      Route::get('add', 'PostController@create');
+     Route::get('edit/{id}', 'PostController@edit');
      Route::post('store', 'PostController@store');
+     Route::post('update/{id}', 'PostController@update');
      Route::get('{slug}', 'PostController@show');
+     Route::get('delete/{id}', 'PostController@destroy');
     }); 
 
         // Question
