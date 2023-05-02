@@ -1,5 +1,5 @@
 @extends('layouts.core.frontend')
-@section('title', 'Add Blog')
+@section('title', 'Update Blog')
 @section('head')
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
@@ -134,7 +134,7 @@ input:checked + .slider .off
 <div class="nk-block-head nk-block-head-sm">
 <div class="nk-block-between g-3">
 <div class="nk-block-head-content">
-<h3 class="nk-block-title page-title">Add Blog</h3>
+<h3 class="nk-block-title page-title">Update Blog</h3>
 <div class="nk-block-des text-soft">
 </div>
 </div>
@@ -160,29 +160,29 @@ input:checked + .slider .off
 </div><!-- .card-inner -->
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
- <form action="{{ url('/admin/posts/store') }}" method="post" enctype="multipart/form-data">
+ <form action="{{ url('/admin/posts/update/'.$post->id) }}" method="post" enctype="multipart/form-data">
      {{ csrf_field() }}
    <div class="form-row p-2">
      <div class="form-group col-md-12">
       <label for="inputState">Add Blog Title</label>
-       <input type="text" name="title" class="form-control" required >
+       <input type="text" name="title" value="{{ $post->title }}" class="form-control" required >
      </div>
    </div>
    <div class="form-row p-2">
      <div class="form-group col-md-12">
       <label for="inputState">Add Cover Image</label>
-       <input type="file" name="cover_img" accept="image/*" class="form-control" required >
+       <input type="file" name="cover_img" accept="image/*" class="form-control" >
      </div>
    </div>
    <div class="form-row p-2">
      <div class="form-group col-md-12">
       <label for="inputState">Blog Text</label>
-        <textarea class="form-control summernote-basic" name="description" required>.</textarea>
+        <textarea class="form-control summernote-basic" name="description" required>{{ $post->description }}</textarea>
      </div>
    </div>
    <div class="form-row p-2">
      <div class="form-group col-md-12 text-center">
-      <button type="submit" class="btn btn-success">Save</button>
+      <button type="submit" class="btn btn-success">Update</button>
      </div>
    </div>
   </form>

@@ -83,9 +83,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($account,$id)
     {
-        //
+       $post = Post::where('id',$id)->first();
+       return view('editBlog',compact('post'));
     }
 
     /**
@@ -95,9 +96,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $account, $id)
     {
-        //
+       
+        $post = Post::where('id',$id)->first();
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        $post->slug = str_slug($request->input('title'));
+        $post->subdomain = Setting::subdomain();
+        $post->getExcerptAttribute();
+        if($request->file('cover_img')){
+            $image = $request->file('cover_img');
+            $new_image = time().$image->getClientOriginalName();
+            $destination = 'frontend-assets/images/posts';
+            $image->move(public_path($destination),$new_image);
+            $post->cover_img = $new_image;
+        } 
+        $post->update();
+        return redirect('/admin/posts')->with('success', 'Update successful!');
     }
 
     /**
@@ -106,8 +122,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($account,$id)
     {
-        //
+        Post::where('id',$id)->delete();
+        return redirect('/admin/posts')->with('success', 'Delete successful!');
     }
 }
