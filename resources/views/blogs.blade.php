@@ -43,21 +43,26 @@
 <div class="nk-block">
 <div class="row g-gs">
 <div class="row">
-    @foreach ($posts as $post)
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" class="card-img-top" alt="{{ $post->title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $post->title }}</h5>
-                    <a href="{{ url('admin/posts/'.$post->slug) }}" class="btn btn-primary">Read More</a>
-                    <div class="float-right">
-                    <a href="{{ url('admin/posts/'.$post->slug) }}" class="btn btn-sm btn-success">Update</a>
-                    <a href="{{ url('admin/posts/'.$post->slug) }}" class="btn btn-sm btn-warning">Delete</a>
-                    </div>
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+@foreach ($posts as $post)
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" class="card-img-top" alt="{{ $post->title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ $post->title }}</h5>
+                <a href="{{ url('admin/posts/'.$post->slug) }}" class="btn btn-primary">Read More</a>
+                <div class="float-right">
+                <a href="{{ url('admin/posts/edit/'.$post->id) }}" class="btn btn-sm btn-success">Update</a>
+                <a href="{{ url('admin/posts/delete/'.$post->id) }}" class="btn btn-sm btn-warning">Delete</a>
                 </div>
             </div>
         </div>
-    @endforeach
+    </div>
+@endforeach
 </div>
 
 </div>
