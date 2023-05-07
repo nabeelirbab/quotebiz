@@ -5,11 +5,8 @@
         <section class="blog-wrap-layout9">
             <div class="container">
                 <div class="section-heading-3">
-                    <h2>Gutenberg is more than an editor.</h2>
-                    <p>Integer eros libero condimentum a libero
-                        semper, porttitor sodales tellusInteger
-                        consequat lorem rmentum pellenesque, arcu
-                        sem porta orci, eu posuere diam arcu nece.</p>
+                    <h2>The Blog</h2>
+                    <p>Browse our blog for engaging articles and tips.</p>
                 </div>
                 <div class="row gutters-40 menu-list" id="no-equal-gallery">
                     @foreach($posts as $post)
