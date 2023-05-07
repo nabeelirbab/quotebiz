@@ -44,6 +44,7 @@ body {
 background: rgba(0, 0, 0, .075);
 }
 
+
 /*
 .container {
   margin-bottom: 50px;
@@ -292,7 +293,7 @@ p.form-para::after {
 </head>
 <body>
 <div class="container-fluid dogcFe">
-<header style="margin-bottom: 11vh">
+<header style="margin-bottom: 10vh">
 <nav class="navbar navbar-expand-lg navbar-light">
 <div style="display: flex;
     justify-content: space-between;">
@@ -301,22 +302,27 @@ p.form-para::after {
 </div>
 @if(Auth::user())
 @if(Auth::user()->user_type == 'client')
+
 <div class="mt-4">
+<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="mt-4">
+<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @else
 <div class="mt-4">
+<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/service-provider') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @endif
 @else
 <div class="mt-4">
-<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a> <a
-href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
+<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>
+<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 </div>
 @endif
 </div>
@@ -325,7 +331,7 @@ href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Busi
 <div class="container">
 <div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
-<div class="col-md-6 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
+<div class="col-lg-7 col-md-8 col-sm-10 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 @if($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
   {{$errors->first()}}
@@ -341,7 +347,7 @@ style="height: 100%;align-items: center;">
 <p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>{{$job_design->agent_no}}</strong></p>
 </div>
 @endif
-<form class="information" action="{{ url('quote-form')}}" method="post" style="padding: 25px "
+<form class="information" action="{{ url('quote-form')}}" method="post" style="padding: 0.5rem "
 autocomplete="off">
 {{ csrf_field()}}
 <h3 class="form-heading">
@@ -389,7 +395,7 @@ autocomplete="off">
 </div>
 </div>
 <div class="col-md-5">
-<div class="form-group mt-3">
+<div class="form-group">
   <button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
                     class="fa fa-arrow-right"></i></span></button>
 </div>

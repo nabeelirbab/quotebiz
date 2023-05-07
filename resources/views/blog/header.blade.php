@@ -69,9 +69,8 @@ if (isset($post)) {
             margin: 0;
             align-items: center;
             text-align: center;
-            display: flex;
             background: white;
-            border-radius: 9px; 
+            border-radius: 9px 9px 0px 0px; 
         }
 
         .blog-box-layout5 .item-img img {

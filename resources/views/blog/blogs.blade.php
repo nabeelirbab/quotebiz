@@ -16,8 +16,8 @@
                     <div class="col-lg-4 col-md-6 mb-5">
                         <div class="blog-box-layout5">
                             <div class="item-img">
-                                <a href="{{ url('/posts/'.$post->slug) }}"><img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Blog"></a>
-                                <a href="{{ url('/posts/'.$post->slug) }}" class="hover-icon">
+                                <a href="{{ url('/blog/'.$post->slug) }}"><img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Blog"></a>
+                                <a href="{{ url('/blog/'.$post->slug) }}" class="hover-icon">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -27,7 +27,7 @@
                                 <ul class="entry-meta meta-color-dark">
                                     <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
                                 </ul>
-                                <h3 class="item-title"><a href="{{ url('posts/'.$post->slug) }}">{{$post->title}}</a></h3>
+                                <h3 class="item-title"><a href="{{ url('blog/'.$post->slug) }}">{{$post->title}}</a></h3>
                             </div>
                         </div>
                     </div>
