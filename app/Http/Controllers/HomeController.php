@@ -185,6 +185,8 @@ class HomeController extends Controller
                 $sitesetting->subdomain = Setting::subdomain();
                 $sitesetting->site_name = $request->site_name;
                 $sitesetting->site_keyword = $request->site_keyword;
+                $sitesetting->site_title = $request->site_title;
+                $sitesetting->site_tagline = $request->site_tagline;
                 $sitesetting->site_description = $request->site_description;
 
                 if ($request->file('site_smalllogo')) {
@@ -206,6 +208,8 @@ class HomeController extends Controller
                 $sitesetting->subdomain = Setting::subdomain();
                 $sitesetting->site_name = $request->site_name;
                 $sitesetting->site_keyword = $request->site_keyword;
+                $sitesetting->site_title = $request->site_title;
+                $sitesetting->site_tagline = $request->site_tagline;
                 $sitesetting->site_description = $request->site_description;
 
                 if ($request->file('site_smalllogo')) {
