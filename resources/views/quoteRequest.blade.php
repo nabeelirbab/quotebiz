@@ -15,6 +15,8 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
 <meta name="description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 <meta name="keywords" content="{{ \Acelle\Model\Setting::get("site_keyword") }}" />
 <meta name="php-version" content="{{ phpversion() }}" />
+<meta name="apple-mobile-web-app-title" content="{{ \Acelle\Model\Setting::get("site_name") }}" />
+<meta name="application-name" content="{{ \Acelle\Model\Setting::get("site_name") }}" />
 @if(\Acelle\Model\Setting::get("meta_tag"))
 {!! \Acelle\Model\Setting::get("meta_tag") !!}
 @endif

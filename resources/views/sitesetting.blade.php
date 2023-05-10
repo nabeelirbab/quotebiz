@@ -56,7 +56,7 @@ $sitefavicon = action('SettingController@file', \Acelle\Model\Setting::get('site
                     <div class="col-sm-6 mb-4">
                       <input type="hidden" name="id" @if($sitesetting) value="{{$sitesetting->id}}" @endif>
                         <div class="form-group">
-                            <label class="form-label" for="default-01">Site name <span class="text-danger">*</span></label>
+                            <label class="form-label" for="default-01">Site / SEO Title <span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" value="{{$sitename}}" name="site_name" id="default-01" placeholder="Enter main heading" required>
                             </div>
@@ -64,7 +64,7 @@ $sitefavicon = action('SettingController@file', \Acelle\Model\Setting::get('site
                       </div>
                        <div class="col-sm-6  mb-3">
                         <div class="form-group">
-                            <label class="form-label" for="default-01">Site keyword <span class="text-danger">*</span></label>
+                            <label class="form-label" for="default-01">Site keywords <span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" value="{{$sitekeyword}}" name="site_keyword" id="default-01" placeholder="Enter sub heading" required>
                             </div>
@@ -135,7 +135,7 @@ $sitefavicon = action('SettingController@file', \Acelle\Model\Setting::get('site
                       </div>
                      <div class="col-md-6">
                       <div class="form-group control-textarea">
-                      <label class="form-label"> Site description
+                      <label class="form-label"> Meta Description
                             <span class="text-danger">*</span>
                       </label>
                      <textarea type="text" name="site_description" class="form-control required ">{{$sitedesc}}</textarea>  </div>

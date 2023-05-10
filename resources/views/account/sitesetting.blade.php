@@ -1,7 +1,22 @@
 @extends('layouts.core.frontend')
 
 @section('title', 'Site Setting')
+<style type="text/css">
+  .image-container {
+  width: 30px; /* set the width of the container */
+  height: 30px; /* set the height of the container */
+  position: relative; /* set the position property to relative */
+}
 
+.image-container img {
+  position: absolute; /* set the position property to absolute */
+  top: 0; /* set the top property to 0 */
+  left: 0; /* set the left property to 0 */
+  max-width: 100%; /* set the max-width property to 100% */
+  height: auto; /* set the height property to auto */
+}
+
+</style>
 @section('page_header')
 
 <div class="page-title">
@@ -22,6 +37,8 @@ person_outline
 
 $sitename = '';
 $sitekeyword = '';
+$sitetitle = '';
+$sitetagline = '';
 $sitedesc = '';
 $sitesmalllogo = '';
 $sitelargelogo = '';
@@ -29,6 +46,8 @@ $sitefavicon = '';
 
 $sitename = \Acelle\Model\Setting::get("site_name");
 $sitekeyword = \Acelle\Model\Setting::get("site_keyword");
+$sitetitle = \Acelle\Model\Setting::get("site_title");
+$sitetagline = \Acelle\Model\Setting::get("site_tagline");
 $sitedesc = \Acelle\Model\Setting::get("site_description");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
 $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
@@ -57,24 +76,73 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    <div class="col-sm-10">
+                    <div class="mb-5">
+                       <span class="text-danger">NOTE: Site Title | Page Title | Tagline should typically be between 50-60 characters long, including spaces</span>
+                    </div>
                     <div class="row">
                     <div class="col-sm-6 mb-4">
                       <input type="hidden" name="id" @if($sitesetting) value="{{$sitesetting->id}}" @endif>
                         <div class="form-group">
-                            <label class="form-label" for="default-01">Site name <span class="text-danger">*</span></label>
+                            <label class="form-label" for="default-01">Site Title <span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$sitename}}" name="site_name" id="default-01" placeholder="Enter main heading" required>
+                                <input type="text" class="form-control" value="{{$sitename}}" name="site_name"  placeholder="Enter Site Title" required>
+                            </div>
+                        </div>
+                      </div>
+                       <div class="col-sm-6 mb-4">
+                     
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Home Page Title <span class="text-danger">*</span></label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$sitetitle}}" name="site_title"  placeholder="Enter Home Page Title" required>
+                            </div>
+                        </div>
+                      </div>
+                       <div class="col-sm-6 mb-4">
+                      
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Tagline<span class="text-danger">*</span></label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$sitetagline}}" name="site_tagline"  placeholder="Enter Tagline" required>
                             </div>
                         </div>
                       </div>
                        <div class="col-sm-6  mb-3">
                         <div class="form-group">
-                            <label class="form-label" for="default-01">Site keyword <span class="text-danger">*</span></label>
+                            <label class="form-label" for="default-01">Keywords <span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$sitekeyword}}" name="site_keyword" id="default-01" placeholder="Enter sub heading" required>
+                                <input type="text" class="form-control" value="{{$sitekeyword}}" name="site_keyword"  placeholder="Enter Keywords" required>
                             </div>
                         </div>
                       </div>
+                      <div class="col-md-6">
+                      <div class="form-group control-textarea">
+                      <label class="form-label"> Meta Description <span class="text-danger">(should be between 50-155 characters)</span>
+                            <span class="text-danger">*</span>
+                      </label>
+                     <textarea type="text" name="site_description" rows="20" class="form-control required ">{{$sitedesc}}</textarea>  </div>
+                     </div>
+
+                      <div class="col-md-6  mb-4">
+                         <label class="form-label"> Preview as
+                            <span class="text-danger">*</span>
+                      </label>
+                     <div class="card" style="border-radius: 6px">
+                       <div class="card-body">
+                        <div class="d-flex justify-content-start">
+                          <div class="image-container mr-3">
+                           <img id="sitefavicon" src="{{$sitefavicon}}">
+                          </div>
+                          <div>
+                          <h5 class="mb-0">{{$sitename}}</h5>
+                          <span>{{request('account')}}</span>
+                          </div>
+                        </div>
+                         <a href=""><h2 class="card-title">{{$sitename}} | {{$sitetitle}} | {{$sitetagline}}</h2></a>
+                         <p class="card-text">{{$sitedesc}}</p>
+                       </div>
+                     </div>
+                     </div>
                        <div class="col-sm-6  mb-4">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Site logo (small) <span class="text-danger">*</span></label>
@@ -139,13 +207,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                             
                         </div>
                       </div>
-                     <div class="col-md-6">
-                      <div class="form-group control-textarea">
-                      <label class="form-label"> Site description
-                            <span class="text-danger">*</span>
-                      </label>
-                     <textarea type="text" name="site_description" rows="20" class="form-control required ">{{$sitedesc}}</textarea>  </div>
-                     </div>
+                  
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-success btn-lg" type="submit">@if($sitesetting) Update @else Save @endif</button>
                         @if($sitesetting)
