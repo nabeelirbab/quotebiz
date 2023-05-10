@@ -55,7 +55,7 @@ class GenerateSitemap extends Command
             ->get();
         if(count($posts) > 0 ){
             foreach ($posts as $post) {
-                $url = 'https://' . $subdomain->parent.'/posts/'.$post->slug;
+                $url = 'https://' . $subdomain->parent.'/blog/'.$post->slug;
 
                 $sitemap->add($url, Carbon::now());
             }

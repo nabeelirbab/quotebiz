@@ -273,7 +273,7 @@ p.form-para::after {
   align-items: start;
   -webkit-box-pack: center;
   justify-content: center;
-  min-height: 650px;
+  /*min-height: 650px;*/
   max-height: 1500px;
   position: relative;
   margin: 0px 0px 0px;
