@@ -4,6 +4,8 @@ namespace Acelle\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Acelle\Model\Quote;
+use Acelle\Model\User;
+use Acelle\Model\Post;
 use Acelle\Model\Category;
 use Acelle\Model\Subdomain;
 use Acelle\Model\Setting;
@@ -16,10 +18,16 @@ class QuoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home($account)
+    public function home(Request $request)
     {
+        // dd($request->user()->customer->subscription->plan->name);
          // dd(request()->getHttpHost());
-            return view('quoteRequest');
+        $posts = [];
+        $user = User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first();
+        if($user->customer->subscription->plan->name != 'Free'){
+          $posts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->limit(3)->get();
+        }
+            return view('quoteRequest',compact('posts'));
     }
 
     public function Index(){
