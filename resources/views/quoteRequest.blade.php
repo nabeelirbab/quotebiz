@@ -1,9 +1,11 @@
 <?php
-$sitename = \Acelle\Model\Setting::get("site_name");
-$sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
-$provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
-$providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
-$job_design = Acelle\Jobs\HelperJob::form_design(); 
+  $sitename = \Acelle\Model\Setting::get("site_name");
+  $sitetitle = \Acelle\Model\Setting::get("site_title");
+  $sitetagline = \Acelle\Model\Setting::get("site_tagline");
+  $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
+  $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
+  $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
+  $job_design = Acelle\Jobs\HelperJob::form_design(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +14,7 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta property="og:title" content="{{ \Acelle\Model\Setting::get("site_name") }} - HomePage">
+<meta property="og:title" content="{{ $sitename }} | {{$sitetitle}} | {{$sitetagline}} ">
 <meta property="og:description" content="{{ \Acelle\Model\Setting::get("site_description") }}">
 @if (\Acelle\Model\Setting::get('site_favicon'))
 <meta property="og:image" content="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}">
@@ -28,7 +30,7 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
 {!! \Acelle\Model\Setting::get("meta_tag") !!}
 @endif
 <link rel="canonical" href="{{ url()->current() }}" />
-<title>{{ \Acelle\Model\Setting::get("site_name") }} - HomePage</title>
+<title>{{ $sitename }} | {{$sitetitle}} | {{$sitetagline}}</title>
 @if (\Acelle\Model\Setting::get('site_favicon'))
   <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
 @else
