@@ -67,6 +67,12 @@
     border-bottom: none !important;
     border-radius: 0px !important;
 }
+.nk-msg-body.profile-shown {
+    padding-right: 280px;
+}
+.profile-shown .nk-msg-profile-toggle {
+    right: 0px;
+}
 .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
     display: block;
     width: 100%;

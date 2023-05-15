@@ -13937,7 +13937,7 @@ p > span > .icon.ni { vertical-align: middle; }
 
 .nk-msg-text { max-width: calc(100% - 35px); flex-grow: 0; padding-right: 0.5rem; }
 
-.nk-msg-text .title { font-size: 15px; margin-bottom: 0.25rem; }
+.nk-msg-text .title { font-size: 0.8rem; margin-bottom: 0.25rem; }
 
 .nk-msg-text p { font-size: 13px; color: #8094ae; max-height: 42px; overflow: hidden; }
 
@@ -13963,7 +13963,7 @@ p > span > .icon.ni { vertical-align: middle; }
 
 .nk-msg-profile-toggle.active { margin-right: 0; transform: rotate(-180deg); }
 
-.nk-msg-profile-overlay { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(16, 25, 36, 0.4); z-index: 600; z-index: 90; animation: overlay-fade-in .4s ease 1; }
+.nk-msg-profile-overlay { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(16, 25, 36, 0.4); animation: overlay-fade-in .4s ease 1; }
 
 .nk-msg-profile.visible { transform: none; }
 
