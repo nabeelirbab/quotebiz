@@ -367,7 +367,7 @@
 }
 @media only screen and (min-width: 992px) {
   .nk-msg-item {
-      padding: 1.25rem 1.75rem;
+      padding: 0.75rem 0.75rem;
   }
   .nav-tabs .nav-item {
     padding-right: 1.25rem;
