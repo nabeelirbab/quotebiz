@@ -36,16 +36,17 @@
 @else
   @include('layouts.core._favicon')
 @endif
-<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite2.css?ver=2.9.1') }}">
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
 <script async rel="preload" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5462023016685790"
      crossorigin="anonymous"></script>
+
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap');
 body {
-background: rgba(0, 0, 0, .075);
+background: #fff;
 }
 
 
@@ -80,13 +81,13 @@ background: rgba(0, 0, 0, .075);
 .login{
 color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
-.col-md-4 {
+/*.col-md-4 {
   background: #F9F8F4;
   text-align: center;
   border-radius: 12px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-}
+}*/
 
 .logo {
   text-align: left !important;
@@ -182,6 +183,9 @@ p.form-para::after {
   border-radius: 6px;
   border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
 }
+.footer a{
+  color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}} !important;
+}
 
 .form-control-placeholder {
   font-size: 1.1rem;
@@ -268,7 +272,9 @@ p.form-para::after {
  font-size: 25px;
  color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
 }
-
+#footer{
+ background-color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+}
 .dogcFe {
   background-size: cover !important;
   width: 100%;
@@ -293,12 +299,133 @@ p.form-para::after {
 #result li {
   cursor: pointer;
 }
+.blog-box-layout5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
+}
+.blog-box-layout5 .item-img {
+    flex: 1;
+    position: relative;
+    /*max-height: 280px;*/
+    overflow: hidden;
+    /*min-height: 250px;*/
+    margin: 0;
+    align-items: center;
+    text-align: center;
+    background: white;
+    border-radius: 9px 9px 0px 0px;
+    padding-bottom: calc( 0.66 * 100% );
+}
+.blog-box-layout5 .item-img a {
+    display: initial !important;
+}
+.blog-box-layout5 .item-img a img {
+    transform: scale(1);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 9px 9px 0 0;
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: calc(50% + 1px);
+    left: calc(50% + 1px);
+    transform: scale(1.01) translate(-50%,-50%);
+
+}
+.blog-box-layout5 .item-img img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.blog-box-layout5 .item-content {
+    flex: 0 0 auto;
+    background-color: #ffffff;
+    border-radius: 0 0 9px 9px;
+    margin-bottom: 25px;
+}
+.blog-box-layout5 .item-content .item-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 0;
+}
+.blog-box-layout5 .item-content .item-title a {
+  color: #000000;
+}
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+.list-unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post_text{
+  margin-top: 20px;
+  padding: 0 30px;
+  margin-bottom: 0;
+  width: 100%;
+  flex-grow: 1;
+  height: 240px;
+}
+.post_excerpt{
+  margin-bottom: 25px;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
+.post_excerpt p {
+  margin: 0;
+  line-height: 1.5em;
+  font-size: 14px;
+  color: #777;
+}
+.post_read-more {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fb816a !important;
+}
+.post_meta-data {
+  margin-top: auto;
+  padding: 15px 30px;
+  margin-bottom: 0;
+  border-top: 1px solid #eaeaea;
+  line-height: 1.3em;
+  font-size: 12px;
+  color: #adadad;
+}
+@media (min-width: 768px) {
+  .text-md-end {
+    text-align: right;
+  }
+}
+.logo-img {
+    max-height: 50px;
+}
+
 </style>
 </head>
 <body>
 <div class="container-fluid dogcFe">
 <header style="margin-bottom: 10vh">
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="display: contents;">
 <div style="display: flex;
     justify-content: space-between;">
 <div class="siteLogo">
@@ -479,8 +606,78 @@ aria-hidden="true">
 </div>
 </div>
 </div>
+
 </div>
 </div>
+@if($posts)
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="d-flex col-12 justify-content-between pt-5 pb-2">
+      <h4>Featured Blogs</h4>
+      <a href="{{ url('blogs') }}">View All</a>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 100px">
+    @foreach($posts as $post)
+    <div class="col-lg-4 col-md-6 mb-4 mt-4">
+        <div class="blog-box-layout5">
+            <div class="item-img">
+                <a href="{{ url('/blog/'.$post->slug) }}">
+                  <img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Blog">
+                </a>
+            </div>
+            <div class="post_text">
+            <div class="item-content">
+                <a href="{{ url('blog/'.$post->slug) }}">
+                  <h1 class="item-title">
+                      {{$post->title}}
+                  </h1>
+                </a>
+            </div>
+            <div class="post_excerpt">
+              <p>
+                {!! Str::limit($post->description, 150) !!}
+              </p>
+            </div>
+            <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more">Read More >></a>
+            </div>
+            <div class="post_meta-data">
+             <span class="post-date"> {{$post->created_at->format('F d, Y')}} </span>
+           </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+</div>
+<footer class="footer bg-indigo is-dark bg-lighter" id="footer">
+    <div class="container">
+        <div class="row g-3 align-items-center justify-content-md-between py-3">
+            <div class="col-md-3">
+                <div class="footer-logo">
+                    <a href="{{ url('/') }}" class="logo-link">
+                        <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
+                        <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                    </a>
+                </div><!-- .footer-logo -->
+            </div><!-- .col -->
+            <div class="col-md-9 d-flex justify-content-md-end">
+                <ul class="link-inline gx-4">
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul><!-- .footer-nav --> 
+            </div><!-- .col -->
+        </div>
+        <hr class="hr border-light mb-0 mt-n1">
+        <div class="row g-3 align-items-center justify-content-md-between py-4">
+            <div class="col-md-8">
+                <div class="text-base"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</footer><!-- .footer -->
+@endif
 </body>
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>

@@ -177,7 +177,7 @@ input:checked + .slider .off
    <div class="form-row p-2">
      <div class="form-group col-md-12">
       <label for="inputState">Blog Text</label>
-        <textarea class="form-control summernote-basic" name="description" required>{{ $post->description }}</textarea>
+        <textarea class="form-control" name="description" required>{{ $post->description }}</textarea>
      </div>
    </div>
    <div class="form-row p-2">

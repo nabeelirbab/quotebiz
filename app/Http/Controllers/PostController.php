@@ -114,6 +114,7 @@ class PostController extends Controller
             $image->move(public_path($destination),$new_image);
             $post->cover_img = $new_image;
         } 
+        // dd($post);
         $post->update();
         return redirect('/admin/posts')->with('success', 'Update successful!');
     }
