@@ -813,7 +813,7 @@ data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
 
 @if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="Country Wise")
 <script>
-var pc = "{{ $providercountry->iso2 }}";
+var pc = "{{ $providercountry->code }}";
 var loc = pc.toLowerCase();
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -848,7 +848,7 @@ $("#state").html(data);
 
 @if($provideradminlocation->admin_location_type!="World Wide" && $provideradminlocation->admin_location_type=="State Wise" )
 <script>
-var pc = "{{ $providercountry->iso2 }}";
+var pc = "{{ $providercountry->code }}";
 var loc = pc.toLowerCase();
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -896,7 +896,7 @@ $("#longitude").val(place.geometry['location'].lng());
 
 <script>
 
-var pc = "{{ $providercountry->iso2 }}";
+var pc = "{{ $providercountry->code }}";
 var loc = pc.toLowerCase();
 google.maps.event.addDomListener(window, 'load', initialize);
 

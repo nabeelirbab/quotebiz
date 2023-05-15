@@ -1117,7 +1117,7 @@ color: #9da0b6!important;
 }
 @media (min-width: 992px){
     .nk-msg-nav {
-    padding: 0 0.75rem;
+    padding: 0 0rem;
     }
 }
 </style>
