@@ -129,89 +129,7 @@
                 </div><!-- .nk-ecwg -->
             </div><!-- .card -->
         </div><!-- .col -->
-        <div class="col-xxl-8">
-            <div class="card card-full">
-                <div class="nk-ecwg nk-ecwg8 h-100">
-                    <div class="card-inner">
-                        <div class="card-title-group mb-3">
-                            <div class="card-title">
-                                <h6 class="title">Sales Statistics</h6>
-                            </div>
-                            <div class="card-tools">
-                                <div class="dropdown">
-                                    <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <ul class="link-list-opt no-bdr">
-                                            <li><a href="#"><span>Daily</span></a></li>
-                                            <li><a href="#" class="active"><span>Weekly</span></a></li>
-                                            <li><a href="#"><span>Monthly</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="nk-ecwg8-legends">
-                            <li>
-                                <div class="title">
-                                    <span class="dot dot-lg sq" data-bg="#0fac81"></span>
-                                    <span>Total Quote</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="title">
-                                    <span class="dot dot-lg sq" data-bg="#eb6459"></span>
-                                    <span>Canceled Quote</span>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="nk-ecwg8-ck">
-                            <canvas class="ecommerce-line-chart-s4" id="salesStatistics"></canvas>
-                        </div>
-                        <div class="chart-label-group pl-5">
-                            <div class="chart-label">01 Jul, 2020</div>
-                            <div class="chart-label">30 Jul, 2020</div>
-                        </div>
-                    </div><!-- .card-inner -->
-                </div>
-            </div><!-- .card -->
-        </div><!-- .col -->
-        <div class="col-xxl-4 col-md-6">
-            <div class="card card-full overflow-hidden">
-                <div class="nk-ecwg nk-ecwg7 h-100">
-                    <div class="card-inner flex-grow-1">
-                        <div class="card-title-group mb-4">
-                            <div class="card-title">
-                                <h6 class="title">Quote Statistics</h6>
-                            </div>
-                        </div>
-                        <div class="nk-ecwg7-ck">
-                            <canvas class="ecommerce-doughnut-s1" id="orderStatistics"></canvas>
-                        </div>
-                        <ul class="nk-ecwg7-legends">
-                            <li>
-                                <div class="title">
-                                    <span class="dot dot-lg sq" data-bg="#0fac81"></span>
-                                    <span>Completed</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="title">
-                                    <span class="dot dot-lg sq" data-bg="#e85347"></span>
-                                    <span>Canclled</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="title">
-                                    <span class="dot dot-lg sq" data-bg="#816bff"></span>
-                                    <span>Processing</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><!-- .card-inner -->
-                </div>
-            </div><!-- .card -->
-        </div><!-- .col -->
-       
+
         <div class="col-xxl-8">
             <div class="card card-full">
                 <div class="card-inner">
@@ -352,96 +270,54 @@
                 </div>
             </div><!-- .card -->
         </div>
-        <div class="col-xxl-4 col-md-8 col-lg-6">
-            <div class="card h-100">
-                <div class="card-inner">
-                    <div class="card-title-group mb-2">
-                        <div class="card-title">
-                            <h6 class="title">Top products</h6>
-                        </div>
-                        <div class="card-tools">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
-                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                    <ul class="link-list-opt no-bdr">
-                                        <li><a href="#"><span>Daily</span></a></li>
-                                        <li><a href="#" class="active"><span>Weekly</span></a></li>
-                                        <li><a href="#"><span>Monthly</span></a></li>
-                                    </ul>
+        <div class="col-xxl-8 mb-4">
+            <div class="card card-full">
+                <div class="nk-ecwg nk-ecwg8 h-100">
+                    <div class="card-inner">
+                        <div class="card-title-group mb-3">
+                            <div class="card-title">
+                                <h6 class="title">Sales Statistics</h6>
+                            </div>
+                            <div class="card-tools">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        <ul class="link-list-opt no-bdr">
+                                            <li><a href="#"><span>Daily</span></a></li>
+                                            <li><a href="#" class="active"><span>Weekly</span></a></li>
+                                            <li><a href="#"><span>Monthly</span></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <ul class="nk-top-products">
-                        <li class="item">
-                            <div class="thumb">
-                                <img src="./images/product/a.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="title">Pink Fitness Tracker</div>
-                                <div class="price">$99.00</div>
-                            </div>
-                            <div class="total">
-                                <div class="amount">$990.00</div>
-                                <div class="count">10 Sold</div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="thumb">
-                                <img src="./images/product/b.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="title">Purple Smartwatch</div>
-                                <div class="price">$99.00</div>
-                            </div>
-                            <div class="total">
-                                <div class="amount">$990.00</div>
-                                <div class="count">10 Sold</div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="thumb">
-                                <img src="./images/product/c.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="title">Black Mi Band Smartwatch</div>
-                                <div class="price">$99.00</div>
-                            </div>
-                            <div class="total">
-                                <div class="amount">$990.00</div>
-                                <div class="count">10 Sold</div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="thumb">
-                                <img src="./images/product/d.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="title">Black Headphones</div>
-                                <div class="price">$99.00</div>
-                            </div>
-                            <div class="total">
-                                <div class="amount">$990.00</div>
-                                <div class="count">10 Sold</div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="thumb">
-                                <img src="./images/product/e.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="title">iPhone 7 Headphones</div>
-                                <div class="price">$99.00</div>
-                            </div>
-                            <div class="total">
-                                <div class="amount">$990.00</div>
-                                <div class="count">10 Sold</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div><!-- .card-inner -->
+                        <ul class="nk-ecwg8-legends">
+                            <li>
+                                <div class="title">
+                                    <span class="dot dot-lg sq" data-bg="#0fac81"></span>
+                                    <span>Total Quote</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">
+                                    <span class="dot dot-lg sq" data-bg="#eb6459"></span>
+                                    <span>Canceled Quote</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="nk-ecwg8-ck">
+                            <canvas class="ecommerce-line-chart-s4" id="salesStatistics"></canvas>
+                        </div>
+                        <div class="chart-label-group pl-5">
+                            <div class="chart-label">01 Jul, 2020</div>
+                            <div class="chart-label">30 Jul, 2020</div>
+                        </div>
+                    </div><!-- .card-inner -->
+                </div>
             </div><!-- .card -->
         </div><!-- .col -->
+      
+       
     </div><!-- .row -->
 </div><!-- .nk-block -->
 </div>

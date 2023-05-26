@@ -165,7 +165,7 @@ if (isset($post)) {
                                         <a href="{{ url('/') }}">HOME</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/posts') }}">BLOG</a>
+                                        <a href="{{ url('/blogs') }}">BLOG</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/login') }}">Login</a>

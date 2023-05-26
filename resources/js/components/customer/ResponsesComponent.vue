@@ -1,6 +1,6 @@
 <template>
 <!-- content @s -->
-<div class="nk-content mt-4 pt-1 pl-0 pr-0">
+<div class="nk-content mt-3 pl-0 pr-0">
 <div class="container-fluid p-0">
 <div class="nk-content-inner">
 <div class="nk-content-body">

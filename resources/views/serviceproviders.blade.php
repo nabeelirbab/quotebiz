@@ -102,10 +102,10 @@
         </div><!-- .nk-tb-item -->
         @if($users->count() > 0)
        
-        @foreach($users as $user)
+        @foreach($users as $key => $user)
         <div class="nk-tb-item">
              <div class="nk-tb-col  tb-col-md">
-                <span >{{$user->id}}</span>
+                <span >{{$key + 1}}</span>
             </div>
             <div class="nk-tb-col">
                 <a href="{{ url('admin/profile_detail/'.$user->id) }}">
