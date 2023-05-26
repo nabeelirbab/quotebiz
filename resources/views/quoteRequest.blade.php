@@ -54,6 +54,13 @@ background: #fff;
 .container {
   margin-bottom: 50px;
 }*/
+.navbar-set{
+  display: flex;
+  justify-content: space-between;
+}
+.main-hearder{
+  margin-bottom: 10vh;
+}
 .select2-selection__rendered {
   line-height: 35px !important;
   color: #52648482 !important;
@@ -221,6 +228,25 @@ p.form-para::after {
   color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
 @media screen and (max-width: 667px) {
+  .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    width: 96%;
+}
+.social{
+  float: none !important;
+}
+.main-hearder{
+  margin-bottom: 5vh;
+}
+  .btn-primary {
+    border: none !important;
+    background: #000000!important;
+    height: 32px !important;
+    padding: 10px;
+}
+.navbar-set{
+  display: block;
+  justify-content: space-between;
+}
 .mycol1 {
   border-radius: 0;
   border-top-right-radius: 12px;
@@ -250,11 +276,25 @@ p.form-para::after {
 .siteLogo {
   float: none;
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   max-width: 100%;
 }
 .siteLogo img {
-  width: 50%;
+  width: 40%;
+}
+.dogcFe {
+  background-size: cover !important;
+  width: 100%;
+  height: 100% !important;
+  -webkit-box-align: start;
+  align-items: start;
+  -webkit-box-pack: center;
+  justify-content: center;
+  /*min-height: 650px;*/
+  max-height: 1500px;
+  position: relative;
+  margin: 0px 0px 0px;
+  background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
 }
 }
 @media screen and (min-width: 1200px) {
@@ -329,7 +369,7 @@ p.form-para::after {
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    border-radius: 9px 9px 0 0;
+    /*border-radius: 9px 9px 0 0;*/
     height: 100%;
     width: auto;
     position: absolute;
@@ -424,33 +464,32 @@ p.form-para::after {
 </head>
 <body>
 <div class="container-fluid dogcFe">
-<header style="margin-bottom: 10vh">
+<header class="main-hearder">
 <nav class="navbar navbar-expand-lg navbar-light" style="display: contents;">
-<div style="display: flex;
-    justify-content: space-between;">
+<div class="navbar-set">
 <div class="siteLogo">
    <img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
 </div>
 @if(Auth::user())
 @if(Auth::user()->user_type == 'client')
 
-<div class="mt-4">
+<div class="mt-4 text-center">
 <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @elseif(Auth::user()->user_type == 'admin')
-<div class="mt-4">
+<div class="mt-4 text-center">
 <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @else
-<div class="mt-4">
+<div class="mt-4 text-center">
 <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/service-provider') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @endif
 @else
-<div class="mt-4">
+<div class="mt-4 text-center">
 <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
 <a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>
 <a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
