@@ -103,11 +103,11 @@
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
 
         </div><!-- .nk-tb-item -->
-        @foreach($users as $user)
+        @foreach($users as $key => $user)
         <div class="nk-tb-item">
        
              <div class="nk-tb-col tb-col-lg">
-                <span >{{$user->id}}</span>
+                <span >{{$key + 1}}</span>
             </div>
             <div class="nk-tb-col">
                 <a href="{{ url('admin/customer_detail/'.$user->id) }}">

@@ -394,7 +394,7 @@ class QuestionChoiceController extends Controller
                     'subject' => 'Thanks for your quote request'
                 ];
 
-            Mail::to($user->email)->send(new OnJobPost($jobdata));
+            Mail::to(Auth::user()->email)->send(new OnJobPost($jobdata));
            return redirect('customer/my-jobs');
     }
     public function checkEmail(Request $request)

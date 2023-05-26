@@ -2,6 +2,24 @@
 
 @section('title', 'Site Setting')
 <style type="text/css">
+  .card-body{
+    font-family: arial,sans-serif;
+   }
+   .card-body h5{
+    font-family: arial,sans-serif;
+   }
+   .card-body span{
+    font-family: arial,sans-serif;
+   }
+  .card-title{
+    font-family: arial,sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .card-text{
+    font-family: arial,sans-serif;
+    font-size: 14px;
+  }
   .image-container {
   width: 30px; /* set the width of the container */
   height: 30px; /* set the height of the container */
@@ -89,12 +107,44 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                             </div>
                         </div>
                       </div>
+                        <div class="col-sm-6  mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Site logo (small) <span class="text-danger">*</span></label>
+                            <div class="row">
+                              <div class="col-sm-9">
+                                <div class="form-control-wrap">
+                                <input accept="image/*" type='file' id="imgsmall" class="form-control"  name="site_smalllogo">
+                            </div>
+                              </div>
+                              <div class="col-md-3">
+                              <img style="background-color: #ccc" id="sitesmall" width="100%" src="{{$sitesmalllogo}}">
+                             </div>
+                            </div>
+                            
+                        </div>
+                      </div>
                        <div class="col-sm-6 mb-4">
                      
                         <div class="form-group">
                             <label class="form-label" for="default-01">Home Page Title <span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" value="{{$sitetitle}}" name="site_title"  placeholder="Enter Home Page Title" required>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6  mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Site logo (dark) <span class="text-danger">*</span></label>
+                            <div class="row">
+                              <div class="col-sm-9">
+                                <div class="form-control-wrap">
+                                <input accept="image/*" type='file' id="imglarge" class="form-control"  name="site_logo_dark">
+                            </div>
+                              </div>
+                              <div class="col-md-3">
+                              <img style="background-color: #ccc " id="sitelarge" width="100%" src="{{$sitedarklogo}}">
+                             </div>
                             </div>
                         </div>
                       </div>
@@ -107,12 +157,46 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                             </div>
                         </div>
                       </div>
+                         <div class="col-sm-6  mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Site logo (large) <span class="text-danger">*</span></label>
+                            <div class="row">
+                              <div class="col-sm-9">
+                                <div class="form-control-wrap">
+                                <input accept="image/*" type='file' id="imglarge" class="form-control"  name="site_largelogo">
+                            </div>
+                              </div>
+                              <div class="col-md-3">
+                              <img style="background-color: #ccc " id="sitelarge" width="100%" src="{{$sitelargelogo}}">
+                             </div>
+                            </div>
+                            
+                        </div>
+                      </div>
+
                        <div class="col-sm-6  mb-3">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Keywords <span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" value="{{$sitekeyword}}" name="site_keyword"  placeholder="Enter Keywords" required>
                             </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6  mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Site favicon <span class="text-danger">*</span></label>
+                            <div class="row">
+                              <div class="col-sm-9">
+                                <div class="form-control-wrap">
+                                <input accept="image/*" type='file' id="imgfavicon" class="form-control"  name="site_favicon" >
+                            </div>
+                              </div>
+                              <div class="col-md-3">
+                              <img style="background-color: #ccc " id="sitefavicon" width="100%" src="{{$sitefavicon}}">
+                             </div>
+                            </div>
+                            
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -122,7 +206,8 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                       </label>
                      <textarea type="text" name="site_description" rows="20" class="form-control required ">{{$sitedesc}}</textarea>  </div>
                      </div>
-
+                      <div class="col-md-6  mb-4">
+                      </div>
                       <div class="col-md-6  mb-4">
                          <label class="form-label"> Preview as
                             <span class="text-danger">*</span>
@@ -143,70 +228,8 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                        </div>
                      </div>
                      </div>
-                       <div class="col-sm-6  mb-4">
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Site logo (small) <span class="text-danger">*</span></label>
-                            <div class="row">
-                              <div class="col-sm-9">
-                                <div class="form-control-wrap">
-                                <input accept="image/*" type='file' id="imgsmall" class="form-control"  name="site_smalllogo">
-                            </div>
-                              </div>
-                              <div class="col-md-3">
-                              <img style="background-color: #ccc" id="sitesmall" width="100%" src="{{$sitesmalllogo}}">
-                             </div>
-                            </div>
-                            
-                        </div>
-                      </div>
-                      <div class="col-sm-6  mb-4">
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Site logo (large) <span class="text-danger">*</span></label>
-                            <div class="row">
-                              <div class="col-sm-9">
-                                <div class="form-control-wrap">
-                                <input accept="image/*" type='file' id="imglarge" class="form-control"  name="site_largelogo">
-                            </div>
-                              </div>
-                              <div class="col-md-3">
-                              <img style="background-color: #ccc " id="sitelarge" width="100%" src="{{$sitelargelogo}}">
-                             </div>
-                            </div>
-                            
-                        </div>
-                      </div>
-
-                      <div class="col-sm-6  mb-4">
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Site logo (dark) <span class="text-danger">*</span></label>
-                            <div class="row">
-                              <div class="col-sm-9">
-                                <div class="form-control-wrap">
-                                <input accept="image/*" type='file' id="imglarge" class="form-control"  name="site_logo_dark">
-                            </div>
-                              </div>
-                              <div class="col-md-3">
-                              <img style="background-color: #ccc " id="sitelarge" width="100%" src="{{$sitedarklogo}}">
-                             </div>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6  mb-4">
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Site favicon <span class="text-danger">*</span></label>
-                            <div class="row">
-                              <div class="col-sm-9">
-                                <div class="form-control-wrap">
-                                <input accept="image/*" type='file' id="imgfavicon" class="form-control"  name="site_favicon" >
-                            </div>
-                              </div>
-                              <div class="col-md-3">
-                              <img style="background-color: #ccc " id="sitefavicon" width="100%" src="{{$sitefavicon}}">
-                             </div>
-                            </div>
-                            
-                        </div>
-                      </div>
+                     
+                   
                   
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-success btn-lg" type="submit">@if($sitesetting) Update @else Save @endif</button>

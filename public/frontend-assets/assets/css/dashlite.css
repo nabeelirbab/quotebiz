@@ -10555,7 +10555,7 @@ body.nav-shown { overflow: hidden; }
 
 @media (min-width: 992px) { .nk-header-fluid { padding-left: 24px; padding-right: 24px; } }
 
-@media (min-width: 1200px) { .nk-header { border-bottom: none; padding-top: .5rem; }
+@media (min-width: 1200px) { .nk-header { border-bottom: none; padding-top: 0rem; }
   .nk-header-fixed { left: 340px; } }
 
 .nk-header-menu { position: fixed; top: 0; left: 0; transform: translateX(-100%); width: 280px; height: 100vh; max-height: 100vh; z-index: 999; background: #fff; }
@@ -13939,7 +13939,7 @@ p > span > .icon.ni { vertical-align: middle; }
 
 .nk-msg-text .title { font-size: 0.8rem; margin-bottom: 0.25rem; }
 
-.nk-msg-text p { font-size: 13px; color: #8094ae; max-height: 42px; overflow: hidden; }
+.nk-msg-text p { font-size: 0.7rem; color: #8094ae; max-height: 42px; overflow: hidden; }
 
 .is-unread .nk-msg-text p { color: #526484; font-weight: 500; }
 

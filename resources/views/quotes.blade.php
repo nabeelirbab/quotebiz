@@ -52,10 +52,10 @@
           <div class="nk-tb-col h2"><span class="sub-text">Action</span></div>
         </div>
         <!-- .nk-tb-item -->
-        @foreach($quotes as $quote)
+        @foreach($quotes as $key => $quote)
         <div class="nk-tb-item">
             <div class="nk-tb-col tb-col-md">
-                <span>{{$quote->id}}</span>
+                <span>{{$key + 1}}</span>
             </div>
               <div class="nk-tb-col">
                 <a href="{{ url('admin/customer_detail/'.$quote->user->id) }}">

@@ -8,7 +8,7 @@
 </style>
 @endsection    
 @section('content')
-      <div id="app" class="mt-5">
+      <div id="app" class="mt-4">
         <customer-responses-component authuser="{{Auth::user()->id}}"  userdata="{{Auth::user()}}"></customer-responses-component>
   </div>
 @endsection

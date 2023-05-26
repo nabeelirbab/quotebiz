@@ -619,7 +619,7 @@ aria-hidden="true">
   </div>
   <div class="row" style="margin-bottom: 100px">
     @foreach($posts as $post)
-    <div class="col-lg-4 col-md-6 mb-4 mt-4">
+    <div class="col-lg-4 col-sm-12 mb-4 mt-4">
         <div class="blog-box-layout5">
             <div class="item-img">
                 <a href="{{ url('/blog/'.$post->slug) }}">
@@ -627,19 +627,19 @@ aria-hidden="true">
                 </a>
             </div>
             <div class="post_text">
-            <div class="item-content">
-                <a href="{{ url('blog/'.$post->slug) }}">
-                  <h1 class="item-title">
-                      {{$post->title}}
-                  </h1>
-                </a>
-            </div>
-            <div class="post_excerpt">
-              <p>
-                {!! Str::limit($post->description, 150) !!}
-              </p>
-            </div>
-            <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more">Read More >></a>
+              <div class="item-content">
+                  <a href="{{ url('blog/'.$post->slug) }}">
+                    <h1 class="item-title">
+                        {{$post->title}}
+                    </h1>
+                  </a>
+              </div>
+              <div class="post_excerpt">
+                <p>
+                  {!! clean(Str::limit($post->description, 150)) !!}
+                </p>
+              </div>
+              <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more">Read More >></a>
             </div>
             <div class="post_meta-data">
              <span class="post-date"> {{$post->created_at->format('F d, Y')}} </span>
