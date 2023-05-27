@@ -322,9 +322,11 @@
   background-color:#444;
 }
 @media only screen and (max-width: 600px) {
+  
   .nk-msg-body.profile-shown {
       padding-right: 0px;
   }
+
   .nk-msg-aside{
     margin-top: 1.5rem !important;
   }
@@ -347,7 +349,6 @@
       padding: 0px;
   }
 }
-
  .hidden svg {
   height: 100%;
   max-width: 4% !important;
