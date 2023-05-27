@@ -50,56 +50,128 @@ if (isset($post)) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
-        
+
         .logo-mobile{
             width: 25%;
         }
         .single-blog-banner-layout1 .banner-content .item-social li .linkedin {
             background-color: #0A66C2;
         }
-        .blog-box-layout5 {
-          height: 320px; /* Set a fixed height for the container */
-          display: flex; /* Use flexbox to make sure the image and content divs are the same height */
-          flex-direction: column;
-          justify-content: space-between;
+       .blog-box-layout5 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 9px 9px 9px 9px;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
+            background: white;
         }
-
         .blog-box-layout5 .item-img {
-           flex: 1;
+            flex: 1;
             position: relative;
-            max-height: 280px;
+            /*max-height: 280px;*/
             overflow: hidden;
-            min-height: 250px;
+            /*min-height: 250px;*/
             margin: 0;
             align-items: center;
             text-align: center;
             background: white;
-            border-radius: 9px 9px 0px 0px; 
-        }
-
-        .blog-box-layout5 .item-img img {
-          object-fit: cover; /* Make the image fill the container */
-          height: 100%; /* Make sure the image takes up the full height of the container */
-          width: 100%; /* Make sure the image takes up the full width of the container */
+            border-radius: 9px 9px 0px 0px;
+            padding-bottom: calc( 0.66 * 100% );
         }
         .blog-box-layout5 .item-img a {
             display: initial !important;
         }
+        .blog-box-layout5 .item-img a img {
+            transform: scale(1);
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            /*border-radius: 9px 9px 0 0;*/
+            height: 100%;
+            width: auto;
+            position: absolute;
+            top: calc(50% + 1px);
+            left: calc(50% + 1px);
+            transform: scale(1.01) translate(-50%,-50%);
 
-        .blog-box-layout5:hover .item-img .hover-icon {
-          opacity: 1; /* Show the hover icon on hover */
         }
-
+        .blog-box-layout5 .item-img img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
         .blog-box-layout5 .item-content {
-          flex: 0 0 auto; /* Make the content div take up only the necessary space */
-          height: 120px;
+            flex: 0 0 auto;
+            background-color: #ffffff;
+            border-radius: 0 0 9px 9px;
+            margin-bottom: 25px;
+            padding: 0px;
+        }
+        .blog-box-layout5 .item-content .item-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin: 0;
+        }
+        .blog-box-layout5 .item-content .item-title a {
+          color: #000000;
+        }
+        .footer {
+          background-color: #333;
+          color: #fff;
+          padding: 20px;
+        }
+        .list-unstyled {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .post_text{
+          margin-top: 20px;
+          padding: 0 30px;
+          margin-bottom: 0;
+          width: 100%;
+          flex-grow: 1;
+          height: 240px;
+        }
+        .post_excerpt{
+          margin-bottom: 25px;
+          line-height: 1.7;
+          box-sizing: border-box;
+        }
+        .post_excerpt p {
+          margin: 0;
+          line-height: 1.5em;
+          font-size: 14px;
+          color: #777;
+        }
+        .post_read-more {
+          text-transform: uppercase;
+          margin-bottom: 20px;
+          display: inline-block;
+          font-size: 12px;
+          font-weight: 700;
+          color: #fb816a !important;
+        }
+        .post_meta-data {
+          margin-top: auto;
+          padding: 15px 30px;
+          margin-bottom: 0;
+          border-top: 1px solid #eaeaea;
+          line-height: 1.3em;
+          font-size: 12px;
+          color: #adadad;
         }
 
-        .blog-box-layout5 .entry-meta,
-        .blog-box-layout5 .item-title {
-          margin: 0;
-          padding: 0 10px;
-        }
          .single-blog-banner-layout1 .banner-img{
           display: flex;
           justify-content: center;
