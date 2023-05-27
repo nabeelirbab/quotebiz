@@ -70,9 +70,12 @@
     /*-------------------------------------
     MeanMenu activation code
     --------------------------------------*/
+    var myVariable = document.getElementById('myElement').getAttribute('data-laravel-variable');
+console.log(myVariable);
+
     if ($.fn.meanmenu) {
         $('nav#dropdown').meanmenu({
-            siteLogo: "<div class='mobile-menu-nav-back'><a class='logo-mobile' href='index.html'><img src='img/logo-mobile.png' alt='logo' class='img-fluid'/></a></div>"
+            siteLogo: "<div class='mobile-menu-nav-back'><a class='logo-mobile' href='/'><img src='"+myVariable+"' alt='logo' class='img-fluid'/></a></div>"
         });
     }
 

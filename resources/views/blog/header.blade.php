@@ -50,6 +50,9 @@ if (isset($post)) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
+        .logo-mobile{
+            width: 25%;
+        }
         .single-blog-banner-layout1 .banner-content .item-social li .linkedin {
             background-color: #0A66C2;
         }
@@ -113,7 +116,8 @@ if (isset($post)) {
 </head>
 
 <body class="sticky-header">
- 
+ <div id="myElement" data-laravel-variable="{{ $sitesmalllogo }}"></div>
+
     <div id="wrapper" class="wrapper">
         <!-- Add your site or application content here -->
         <!-- Header Area Start Here -->
