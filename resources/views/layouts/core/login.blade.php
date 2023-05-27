@@ -41,12 +41,12 @@
                 <div class="content-wrapper">
                     <div class="row justify-content-md-center">
                        
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-4">
 
                             <div class="text-center loginheader">
                                 <a class="main-logo-big" href="{{ url('/') }}">
                                     @if (\Acelle\Model\Setting::get('site_logo_big'))
-                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" style="width: 100%;" alt="">
+                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" style="max-width: 90%;" alt="">
                                     @else
                                         <img src="{{ URL::asset('images/logo_big.svg') }}" alt="">
                                     @endif
@@ -54,23 +54,25 @@
                             </div>
 
                             @yield('content')
-
+                         <!-- Footer -->
+                        <div class="small container mt-3">
+                            <div class=" text-white text-center py-3">
+                                 <a href="{{ url('/') }}" class="text-white" target="_blank">Copyright &copy; {{date("Y")}} {{\Acelle\Model\Setting::get("site_name")}}.</a>
+                            </div>
                         </div>
+                        </div>
+
                     </div>
+
                 </div>
                 <!-- /main content -->
 
+         
+            <!-- /footer -->
             </div>
             <!-- /page content -->
 
 
-            <!-- Footer -->
-            <div class="small">
-                <div class="footer text-white text-center py-3" style="width: 100%">
-                    {!! trans('messages.copy_right_light') !!}
-                </div>
-            </div>
-            <!-- /footer -->
 
         </div>
         <!-- /page container -->

@@ -62,10 +62,10 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('plans/select2', 'PlanController@select2');
 
     // Customer registration
-    Route::post('users/login', 'UserController@login');
-    Route::get('users/login', 'UserController@login');
-    Route::post('users/register', 'UserController@register');
-    Route::get('users/register', 'UserController@register');
+    // Route::post('users/login', 'UserController@login');
+    Route::match(['get', 'post'],'users/login', 'UserController@login');
+    // Route::post('users/register', 'UserController@register');
+    Route::match(['get', 'post'],'users/register', 'UserController@register');
     Route::get('users/subcategory/{id}', 'UserController@subcategory');
     Route::get('users/subcategory_select/{id}', 'UserController@subcategory_select');
 });
