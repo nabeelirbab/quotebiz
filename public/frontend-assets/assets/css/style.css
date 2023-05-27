@@ -325,6 +325,9 @@
   .nk-msg-body.profile-shown {
       padding-right: 0px;
   }
+  .nk-msg-aside{
+    margin-top: 1.5rem !important;
+  }
   .sidepanel  {
     width: 0;
     position: fixed;
