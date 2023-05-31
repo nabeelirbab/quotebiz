@@ -156,6 +156,11 @@
                 @include('account._payment_info', [
                     'redirect' => url('admin/account/subscription'),
                 ])
+            </div> 
+            <div class="mt-4">
+                <a href="{{ url('admin/account/billing') }}" class="btn btn-secondary payment-method-edit mt-4">
+                    Edit Billing
+                </a>
             </div>
         </div>
     </div>
