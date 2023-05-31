@@ -25,13 +25,13 @@
     </a>
     </li>
     @if (config('app.saas'))
-    <li rel0="AccountController/billing" class="nav-item">
+   <!--  <li rel0="AccountController/billing" class="nav-item">
         <a href="{{ url("admin/account/billing") }}" class="nav-link">
             <span class="material-icons-outlined">
     credit_card
     </span> {{ trans('messages.billing') }}
         </a>
-    </li>
+    </li> -->
     <li class="nav-item"
         rel0="AccountController/subscription"
         rel1="PaymentController"
@@ -50,11 +50,11 @@
     </li>
     @endif
     <li class="nav-item"
-    rel0="AccountController/logs">
-    <a href="{{ url("admin/account/logs") }}" class="nav-link">
-        <span class="material-icons-outlined">
-    restore
-    </span> {{ trans('messages.logs') }}
+    rel0="SettingController/savemail">
+    <a href="{{ url("admin/mail") }}" class="nav-link">
+       <span class="material-icons-outlined">
+email
+</span> {{ trans('messages.system_email') }}
     </a>
     </li>
 

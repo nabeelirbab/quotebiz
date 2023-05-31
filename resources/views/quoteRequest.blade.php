@@ -239,8 +239,8 @@ p.form-para::after {
 }
   .btn-primary {
     border: none !important;
-    background: #000000!important;
-    height: 32px !important;
+    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+    height: 46px !important;
     padding: 10px;
 }
 .navbar-set{
@@ -566,7 +566,7 @@ autocomplete="off">
 </div>
 <div class="col-md-5">
 <div class="form-group">
-  <button type="submit" class="btn btn-block btn-primary"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
+  <button type="submit" class="btn rounded-2 btn-primary d-block login-button py-2 fw-600 w-100"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}<i
                     class="fa fa-arrow-right"></i></span></button>
 </div>
 </div>
