@@ -164,10 +164,6 @@ class SettingController extends Controller
 
     public function mailerTest(Request $request)
     {
-        if ($request->user()->admin->getPermission('setting_general') != 'yes') {
-            return $this->notAuthorized();
-        }
-
         // validate and save posted data
         if ($request->isMethod('post')) {
 
