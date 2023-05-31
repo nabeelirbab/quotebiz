@@ -71,7 +71,7 @@
     MeanMenu activation code
     --------------------------------------*/
     var myVariable = document.getElementById('myElement').getAttribute('data-laravel-variable');
-console.log(myVariable);
+    console.log(myVariable);
 
     if ($.fn.meanmenu) {
         $('nav#dropdown').meanmenu({

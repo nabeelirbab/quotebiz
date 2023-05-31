@@ -1,0 +1,564 @@
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 3px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 15px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  border-radius: 15px;
+}
+.nk-quick-nav-icon:before {
+    position: absolute;
+    z-index: -1;
+    height: 20px;
+    width: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    content: '';
+    background-color: #f5f6fa !important;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all .3s;
+}
+.mc-form .form-control, .mc-form .select2 {
+    font-size: 100%;
+    border-color: #bbb;
+    border-radius: 2px;
+    border: solid 1px #bbb;
+    height: 46px !important;
+}
+.nk-content {
+	 background: #F5F6FA;
+}
+.nk-menu-link:hover,  .active>.nk-menu-link {
+    background: #2f3741e0 !important;
+    color: white !important;
+}
+
+.nk-menu-link:hover .nk-menu-icon, .nk-menu-item.active > .nk-menu-link .nk-menu-icon, .nk-menu-item.current-menu > .nk-menu-link .nk-menu-icon {
+    color: white;
+}
+.nk-menu{
+	padding: 8px 12px 8px 12px
+}
+.nk-msg-head {
+    padding: 1.07rem 1.5rem !important;
+}
+.nk-msg{
+    height: calc(100vh - (27px + 111px)) !important;
+}
+.nk-msg-nav{
+    padding: 0 0.75rem;
+    background-color: white;
+    border-bottom: 1px solid #e5e9f2 !important;
+}
+.nk-msg-aside {
+    max-height: calc(100vh - (27px + 111px)) !important;
+    border-radius: 0px !important;
+    border-top: 1px solid #e5e9f2 !important;
+    border: none;
+  }
+.nk-msg-body {
+    max-height: calc(100vh - (27px + 112px));
+    border-bottom: none !important;
+    border-radius: 0px !important;
+}
+
+.nk-msg-body.profile-shown {
+    padding-right: 280px;
+}
+.profile-shown .nk-msg-profile-toggle {
+    right: 0px;
+}
+.form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
+    display: block;
+    width: 100%;
+    height: calc(2.9rem + 2px) !important;
+    padding: 0.4375rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: #3c4d62;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.nk-menu-link {
+    padding: 0.625rem 28px 0.625rem 12px;
+    color: #6e82a5;
+    font-family: "DM Sans",sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .01em;
+    text-transform: none;
+    line-height: 1.25rem;
+    border-radius: 6px;
+}
+.nkchatbody{
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(96vh - (65px + 112px));
+    border-radius: 0px;
+}
+
+.nk-chat-body {
+    max-height: calc(100vh - (26px + 112px));
+    border-radius: 0px !important;
+    border: none !important;
+}
+.nk-msg-menu {
+    display: flex;
+    margin: 0 0.25rem;
+    border-bottom: none !important;
+}
+.kanban-item {
+    border-radius: 4px;
+    border: 1px solid #e5e9f2;
+    padding: 1rem 0.8rem;
+    margin-bottom: 0.75rem;
+    background: #fff;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+   #box {
+    opacity: 1;
+    background-color: #626262a6;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 66%;
+    width: 100%;
+    text-align: center;
+}
+.card {
+    border-radius: 12px; 
+}
+.button {
+  position: relative;
+  display: inline-block;
+  height: 46px;
+  min-width: 46px;
+  padding: 0 16px !important;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333 !important;
+  font-size: 30px !important;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color .2s ease-in-out,color .2s ease-in-out,opacity .2s ease-in-out;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  background: rgba(0,0,0,.05);
+  border: none;
+  line-height: 44px;
+  color: rgba(0,0,0,.55);
+}
+.card-panel {
+  margin: 12px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1),0 0 4px rgba(0,0,0,.1);
+  max-width: 400px;
+  padding: 24px;
+}
+.tb-ticket-id a, .tb-ticket-desc a {
+    display: block;
+    padding: 0.50rem 0;
+    color: inherit;
+}
+.tb-ticket-item .date, .tb-ticket-item .date-last {
+    white-space: nowrap;
+}
+.card .table tr:first-child th, .card .table tr:first-child td {
+    border-top: none;
+}
+
+.tb-ticket-item td {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+.tb-ticket-item td, .tb-ticket-item th {
+    vertical-align: middle;
+}
+.table th, .table td {
+    
+    border-top: 1px solid #dbdfea;
+}
+.tb-ticket-date, .tb-ticket-seen, .tb-ticket-status {
+    width: 165px;
+}
+.tb-ticket-item .date, .tb-ticket-item .date-last {
+    white-space: nowrap;
+}
+.tb-ticket-item.is-unread {
+    background: white;
+}
+.nk-quick-nav-icon:before {
+    border-radius: 6px !important;
+}
+@media (min-width: 768px){
+.tb-col-md {
+    display: table-cell !important;
+}
+}
+
+@media only screen and (max-width: 600px) {
+  .col-sm-4{
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+ }
+.nk-msg-body {
+    max-height: calc(100vh - (27px + 112px));
+ }
+}
+
+@media (min-width: 992px) {
+  .nkmsgbody {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+      max-height: calc(100vh - (65px + 112px));
+  }
+}
+.nkmsgbody {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: padding .3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+    border: 1px solid #e5e9f2;
+    border-radius: 4px;
+}
+.card .table tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+.card .table tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+.nk-tb-item:last-child .nk-tb-col {
+    border-bottom: none;
+}
+.nk-tb-item .nk-tb-col:last-child {
+    padding-left: 1.5rem;
+    /*border-bottom: none;*/
+}
+ .sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  height: auto;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.panelWidth{
+        width: 20%;
+    }
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color:#444;
+}
+@media only screen and (max-width: 600px) {
+  
+  .nk-msg-body.profile-shown {
+      padding-right: 0px;
+  }
+
+  .nk-msg-aside{
+    margin-top: 1.5rem !important;
+  }
+  .sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: auto;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .panelWidth{
+      width: 100%;
+      top: 50px !important;
+      padding: 0px;
+  }
+}
+ .hidden svg {
+  height: 100%;
+  max-width: 4% !important;
+}
+.hidden{
+    width: 100%
+}
+/*.hidden p{
+    margin-bottom: 15px;
+    margin-top: 12px;
+}*/
+.flex.justify-between.flex-1.sm\:hidden {
+    display: none !important;
+}
+.unreadmsg{
+    background: #2593b9;
+    border-radius: 19px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    color: white;
+}
+.opacity{
+  opacity: 1;
+}
+
+.msgnotifications{
+    border: 0;
+    font-size: 11px;
+    background: red;
+    color: white;
+    width: auto;
+    height: auto;
+    border-radius: 13px;
+    align-items: center;
+    position: absolute;
+    left: 22px;
+    bottom: 12px;
+    display: none;
+}
+@media only screen and (min-width: 1200px) {
+  .nk-content {
+      padding: 26px 22px 0px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .nk-msg-item {
+      padding: 0.75rem 0.75rem;
+  }
+  .nav-tabs .nav-item {
+    padding-right: 1.25rem;
+}
+}
+@media only screen and (max-width: 600px) {
+  .nk-header-wrap{
+    padding: 15px;
+  }
+  .nk-wrap {
+    padding: 15px;
+  }
+  .simplebar-offset{
+    top:20px;
+  }
+  .nk-msg-item {
+      padding: 1.25rem 1.75rem;
+  }
+  .form-label{
+    font-size: 0.75rem;
+  }
+  .card.mb-4{
+    margin-top: 2.75rem !important;
+  }
+.nav-tabs .nav-item {
+    padding-right: 0.5rem;
+}
+  #chatPanel{
+      display: none !important;
+  }
+  .nk-msg-body{
+    top: 146px;
+  }
+  .nk-msg-top{
+    top: 73px;
+  }
+  .nk-msg-top {
+    max-height: calc(100vh - (0px + 70px));
+}
+  .nkchatbody {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+  }
+  .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+      width: 100%;
+      padding-right: 0px;
+      padding-left: 0px;
+      margin-right: auto;
+      margin-left: auto;
+  }
+  .card-panel {
+        margin: 10px !important;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 10%), 0 0 4px rgb(0 0 0 / 10%);
+        max-width: 415px !important;
+        padding: 24px;
+    }
+  .editr--toolbar {
+      background: #f6f6f6;
+      border-bottom: 1px solid #e4e4e4;
+      position: relative;
+      display: flex;
+      height: 55px !important;
+  }
+  ::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+  }
+  .nkchatbody{
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(115vh - (65px + 112px));
+    border-radius: 0px;
+}
+}
+@media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 2) {
+        .col-sm-4{
+            flex: 0 0 33.33333%;
+            max-width: 33.33333%;
+         }
+        .nk-msg-body {
+            max-height: calc(100vh - (27px + 112px));
+         }
+        .sidepanel  {
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          height: auto;
+          top: 0;
+          right: 0;
+          background-color: #fff;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+        }
+
+        .panelWidth{
+            width: 100%;
+            top: 50px !important;
+            padding: 0px;
+        }
+        .card-panel {
+              margin: 10px;
+              background-color: #fff;
+              border-radius: 4px;
+              box-shadow: 0 1px 2px rgb(0 0 0 / 10%), 0 0 4px rgb(0 0 0 / 10%);
+              max-width: 415px;
+              padding: 24px;
+          }
+         .nk-msg-item {
+        padding: 1.25rem 1.75rem;
+        }
+        .form-label{
+          font-size: 0.75rem;
+        }
+        .card.mb-4{
+          margin-top: 2.75rem !important;
+        }
+        .nav-tabs .nav-item {
+            padding-right: 0.5rem;
+        }
+        #chatPanel{
+            display: none !important;
+        }
+        .nk-msg-body{
+          top: 146px;
+        }
+        .nk-msg-top{
+          top: 73px;
+        }
+        .nk-msg-top {
+          max-height: calc(100vh - (0px + 70px));
+         }
+        .nkchatbody {
+            position: relative;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .editr--toolbar {
+            background: #f6f6f6;
+            border-bottom: 1px solid #e4e4e4;
+            position: relative;
+            display: flex;
+            height: 55px !important;
+        }
+        ::-webkit-scrollbar {
+          height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+          width: 4px;               /* width of vertical scrollbar */
+          border: 1px solid #d5d5d5;
+        }
+        .nkchatbody{
+          position: relative;
+          opacity: 1;
+          pointer-events: auto;
+          max-height: calc(115vh - (65px + 112px));
+          border-radius: 0px;
+      }
+     }
