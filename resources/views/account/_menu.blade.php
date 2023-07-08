@@ -1,3 +1,7 @@
+    <?php  
+       $customer =  Request::user()->customer;
+       $subscription = $customer->subscription;
+    ?>
     <div class="row">
     <div class="col-md-12">
     <div class="tabbable pb-2">
@@ -49,15 +53,16 @@
         </a>
     </li>
     @endif
+    @if($subscription->plan_id == 2 || $subscription->plan_id == 3 || $subscription->plan_id == 4 || $subscription->plan_id == 5)
     <li class="nav-item"
     rel0="SettingController/savemail">
     <a href="{{ url("admin/mail") }}" class="nav-link">
        <span class="material-icons-outlined">
-email
-</span> {{ trans('messages.system_email') }}
+     email
+    </span> {{ trans('messages.system_email') }}
     </a>
     </li>
-
+    @endif
     <li class="nav-item" rel0="AccountController/api">
         <a href="{{ url("admin/account/api") }}" class="nav-link">
             <span class="material-icons-outlined">

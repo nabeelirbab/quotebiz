@@ -79,5 +79,6 @@ class Kernel extends HttpKernel
         'subscription' => \Acelle\Http\Middleware\Subscription::class,
         'stripekey' => \Acelle\Http\Middleware\StripeKey::class,
         'validdomain' => \Acelle\Http\Middleware\ValidDomain::class,
+        'subscription_rules' => \Acelle\Http\Middleware\SubscriptionRules::class,
     ];
 }
