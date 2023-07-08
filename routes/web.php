@@ -254,7 +254,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
-    Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain');
+    Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain')->middleware('subscription_rules');
     Route::match(['get', 'post'],'/google-site-verification', 'SettingController@googledomain');
     Route::post('/add-meta-tag', 'HomeController@addMetaTag');
     Route::post('/add-html-file', 'HomeController@uploadHtmlFile');
@@ -359,7 +359,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/payments-receive', 'UserController@paymentsReceive');
     Route::post('/payments-search', 'UserController@paymentsSearch');
     Route::match(['get', 'post'],'/credit-amount', 'UserController@credits');
-    Route::match(['get', 'post'],'/mail', 'SettingController@savemail')->middleware('subscription_rules');;
+    Route::match(['get', 'post'],'/mail', 'SettingController@savemail')->middleware('subscription_rules');
     Route::match(['get','post'], 'mail/test', 'SettingController@mailerTest');
     Route::post('/quoteprice', 'UserController@quoteprice');
     Route::get('/deletecredit/{id}', 'UserController@deletecredit');
