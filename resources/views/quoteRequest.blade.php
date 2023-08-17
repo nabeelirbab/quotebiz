@@ -690,16 +690,19 @@ aria-hidden="true">
 </div>
 <footer class="footer bg-indigo is-dark bg-lighter" id="footer">
     <div class="container">
-        <div class="row g-3 align-items-center justify-content-md-between py-3">
-            <div class="col-md-3">
-                <div class="footer-logo">
+        <div class="row g-3 align-items-center py-3">
+            <div class="col-md-1">
+                <div class="">
                     <a href="{{ url('/') }}" class="logo-link">
                         <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
                         <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                     </a>
                 </div><!-- .footer-logo -->
             </div><!-- .col -->
-            <div class="col-md-9 d-flex justify-content-md-end">
+            <div class="col-md-4">
+                <div class="text-base"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
+            </div><!-- .col -->
+            <div class="col-md-7 d-flex justify-content-md-end">
                 <ul class="link-inline gx-4">
                     <li><a href="#">How it works</a></li>
                     <li><a href="#">Service</a></li>
@@ -708,13 +711,7 @@ aria-hidden="true">
                 </ul><!-- .footer-nav --> 
             </div><!-- .col -->
         </div>
-        <hr class="hr border-light mb-0 mt-n1">
-        <div class="row g-3 align-items-center justify-content-md-between py-4">
-            <div class="col-md-8">
-                <div class="text-base"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
-            </div><!-- .col -->
-        </div><!-- .row -->
-    </div><!-- .container -->
+        
 </footer><!-- .footer -->
 @endif
 </body>
