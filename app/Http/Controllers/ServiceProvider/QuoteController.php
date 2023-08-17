@@ -69,7 +69,7 @@ class QuoteController extends Controller
                     $deal_lat = $pendingquote->latitude;
                     $deal_long = $pendingquote->longitude;
                     if($deal_long !=null && $deal_lat !=null){
-                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD4pdnGpoS5aI6Qn7N__nHf1qtpQF-rBHs&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false";
+                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false";
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
                     curl_setopt($ch, CURLOPT_HEADER, false);

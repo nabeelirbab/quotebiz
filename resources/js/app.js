@@ -56,6 +56,9 @@ Vue.component('responses-component', require('./components/serviceprovider/Respo
 // Customer
 
 Vue.component('customer-responses-component', require('./components/customer/ResponsesComponent.vue').default);
+Vue.component('customer-support-component', require('./components/customer/SupportComponent.vue').default);
+Vue.component('sp-support-component', require('./components/serviceprovider/SupportComponent.vue').default);
+Vue.component('admin-support-component', require('./components/SupportComponent.vue').default);
 
 // Question
 Vue.component('question-component', require('./components/QuestionComponent.vue').default);

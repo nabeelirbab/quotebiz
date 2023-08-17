@@ -118,11 +118,6 @@ class HomeController extends Controller
         return view('quotes', compact('quotes'));
     }
 
-    public function support()
-    {
-        return view('support');
-    }
-
     public function customers()
     {
         $users = User::where('subdomain', Auth::user()->subdomain)->where('user_type', 'client')->orderBy('id','desc')->paginate(10);
