@@ -474,23 +474,31 @@ p.form-para::after {
 @if(Auth::user()->user_type == 'client')
 
 <div class="mt-4 text-center">
-<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @if($job_design->blog_status != '2')
+  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @endif
 <a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="mt-4 text-center">
-<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @if($job_design->blog_status != '2')
+  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @endif
 <a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @else
 <div class="mt-4 text-center">
-<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @if($job_design->blog_status != '2')
+  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @endif
 <a href="{{ url('/service-provider') }}" class="btn btn-primary btn-lg">Dashboard</a>
 </div>
 @endif
 @else
 <div class="mt-4 text-center">
-<a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @if($job_design->blog_status != '2')
+  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
+  @endif
 <a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>
 <a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
 </div>
@@ -648,7 +656,7 @@ aria-hidden="true">
 
 </div>
 </div>
-@if($posts)
+@if($posts && $job_design->blog_status != '1' && $job_design->blog_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
@@ -721,7 +729,7 @@ aria-hidden="true">
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyD4pdnGpoS5aI6Qn7N__nHf1qtpQF-rBHs&libraries=places"></script>
+<script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
 <script type="text/javascript">
 $('.select2').select2({ width: '300px', dropdownCssClass: "bigdrop" });
 $.ajaxSetup({cache: false});

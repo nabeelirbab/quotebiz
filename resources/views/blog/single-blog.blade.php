@@ -41,11 +41,11 @@
                                     @foreach($relatedPosts as $post)
                                     <li class="single-item">
                                         <div class="item-img" style="width: 150px;">
-                                            <a href="#"><img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Post"></a>
+                                            <a href="{{ url('blog/'.$post->slug) }}"><img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Post"></a>
                                         </div>
                                         <div class="item-content">
                                             <ul class="entry-meta meta-color-dark">
-                                                <li><i class="fas fa-tag"></i>Weeding</li>
+                                                <!-- <li><i class="fas fa-tag"></i>Weeding</li> -->
                                                 <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
                                             </ul>
                                             <h4 class="item-title"><a href="#">{{$post->title}}</a></h4>

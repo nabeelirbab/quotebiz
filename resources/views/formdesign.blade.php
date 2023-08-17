@@ -212,16 +212,46 @@
                         </label>
                         </div>
                         </div>
-                     <div class="form-group">
-                        <label class="form-label" for="default-01">Business Number Visibility</label>
-                        <div class="form-control-wrap">
-                         <label>
-                          <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
-                        </label>
-                        <label >
-                          <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
-                        </label>
+                        <div class="form-group">
+                          <label class="form-label" for="default-01">Business Number Visibility</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
+                          </label>
+                          <label >
+                            <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
+                          </label>
+                          </div>
                         </div>
+
+                        <div class="form-group">
+                          <label class="form-label" for="default-01">Blog Section Visibility On Homepage</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="blog_status" autocomplete="off" value="0" {{$formdesign && $formdesign->blog_status == '0' ? 'checked':''}} > Show
+                          </label>
+                          <label >
+                            <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Hide only from homepage
+                          </label>
+                          <label >
+                            <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
+                          </label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="form-label" for="default-01">Profile Section Visibility On Homepage</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="profile_status" autocomplete="off" value="0" {{$formdesign && $formdesign->profile_status == '0' ? 'checked':''}} > Show
+                          </label>
+                          <label >
+                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Hide only from homepage
+                          </label>
+                          <label >
+                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
+                          </label>
+                          </div>
                         </div>
                        
                         <div class="row mb-3" id="businessno">

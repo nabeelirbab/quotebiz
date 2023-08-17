@@ -177,7 +177,7 @@ input:checked + .slider .off
    <div class="form-row p-2">
      <div class="form-group col-md-12">
       <label for="inputState">Blog Text</label>
-        <textarea class="form-control" name="description" required>{{ $post->description }}</textarea>
+        <textarea class="form-control tinymce-basic" name="description" required>{{ $post->description }}</textarea>
      </div>
    </div>
    <div class="form-row p-2">
@@ -202,8 +202,8 @@ input:checked + .slider .off
 @section('script')
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
-<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/editors/summernote.css?ver=2.9.1') }}">
-<script src="{{ asset('frontend-assets/assets/js/libs/editors/summernote.js?ver=2.9.1') }}"></script>
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/editors/tinymce.css?ver=2.9.1') }}">
+<script src="{{ asset('frontend-assets/assets/js/libs/editors/tinymce.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/editors.js?ver=2.9.1') }}"></script>
 <script type="text/javascript">
 document.querySelector("#togBtn").onchange = (e) => {
