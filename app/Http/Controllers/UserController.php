@@ -513,6 +513,8 @@ public function formdesign(Request $request){
             $job_design->position = $request->position;
             $job_design->business_no = $request->business_no;
             $job_design->no_status = $request->no_status;
+            $job_design->blog_status = $request->blog_status;
+            $job_design->profile_status = $request->profile_status;
             $job_design->terms = $request->terms;
             $job_design->privacy_policy = $request->privacy_policy;
         if($request->preview){

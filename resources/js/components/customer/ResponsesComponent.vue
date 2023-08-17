@@ -34,12 +34,12 @@
             <template v-for="quote in filteredUserlist" >
             <div class="nk-msg-item " v-bind:class="{current: quote.id == quoteChat.id }" v-on:click="openChat($event,quote)">
                 <p style="display:none">{{activeJob + 1}}</p>
-                 <div class="nk-msg-media user-avatar" v-if="quote.chatsp.user_img">
+                <div class="nk-msg-media user-avatar" v-if="quote.chatsp.user_img">
                       <img :src="hostname+'/frontend-assets/images/users/'+quote.chatsp.user_img" alt="">
-                    </div>
-                    <div class="user-avatar bg-purple" v-else>
-                        <span>{{getFirstLetter(quote.chatsp.first_name)}}{{getFirstLetter(quote.chatsp.last_name)}}</span>
-                    </div>
+                </div>
+                <div class="user-avatar bg-purple" v-else>
+                    <span>{{getFirstLetter(quote.chatsp.first_name)}}{{getFirstLetter(quote.chatsp.last_name)}}</span>
+                </div>
                 <div class="nk-msg-info">
                     <div class="nk-msg-from">
                         <div class="nk-msg-sender">
@@ -229,6 +229,7 @@
         <div class="d-lg-none"><a href="#" class="btn btn-icon ml-n1"><em class="icon ni ni-arrow-left"></em></a></div>
         <ul class="nk-msg-actions">
             <li><a href="#" class="btn btn-dim btn-sm btn-outline-light"><em class="icon ni ni-check"></em><span class="text-capitalize"><template v-if="quoteChat.quote.status == 'pending'">Active</template><template v-else>{{quoteChat.quote.status}}</template></span></a></li>
+
             <li class="dropdown">
                 <a href="#" class="btn btn-icon btn-sm btn-white btn-light dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -554,6 +555,7 @@
         <div class="d-lg-none"><a href="#" @click="closepanel()" class="btn btn-icon ml-n1"><em class="icon ni ni-arrow-left"></em></a></div>
         <ul class="nk-msg-actions">
             <li><a href="#" class="btn btn-dim btn-sm btn-outline-light"><em class="icon ni ni-check"></em><span class="text-capitalize"><template v-if="quoteChat.quote.status == 'pending'">Active</template><template v-else>{{quoteChat.quote.status}}</template></span></a></li>
+            <li class="d-lg-none"><a href="#" class="btn btn-icon btn-sm btn-white btn-light nk-msg-profile-toggle profile-toggle"><em class="icon ni ni-info-i"></em></a></li>
             <li class="dropdown">
                 <a href="#" class="btn btn-icon btn-sm btn-white btn-light dropdown-toggle" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                 <div class="dropdown-menu dropdown-menu-right">

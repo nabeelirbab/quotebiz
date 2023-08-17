@@ -36,6 +36,8 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('/', 'QuoteController@home');
     Route::get('/blog/{slug}', 'PostController@singleBlog');
     Route::get('/blogs', 'PostController@allBlogs');
+    Route::post('/addsupport', 'SupportController@addsupport');
+    Route::post('/support-message', 'SupportController@storechat');
     Auth::routes();
     Route::get('/login/token/{token}', 'Controller@tokenLogin');
     Route::match(['get', 'post'],'quote-form', 'QuestionChoiceController@index');
@@ -160,9 +162,8 @@ Route::name('customer.')->prefix('customer')->group(function () {
     Route::get('/profile', function () {
         return view('customer.profile');
     });
-    Route::get('/support', function () {
-        return view('customer.support');
-    });
+    Route::get('/support', 'SupportController@customersupport');
+    Route::get('/get-tickets', 'SupportController@getTickets');
     Route::get('/supportchat', function () {
         return view('customer.supportchat');
     });
@@ -225,11 +226,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/business-setting', function () {
         return view('service_provider.businessSettings');
     })->name('businessSetting');
-
-    Route::get('/support', function () {
-        return view('service_provider.support');
-    });
-
+    Route::get('/support', 'SupportController@servicesupport');
+    Route::get('/get-tickets', 'SupportController@getTickets');
     Route::get('/supportchat', function () {
         return view('service_provider.supportchat');
     });
@@ -349,7 +347,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/search/general', 'SearchController@general');
 
     Route::get('/quotes', 'QuoteController@index');
-    Route::get('/support', 'HomeController@support');
+    Route::get('/support', 'SupportController@adminsupport');
+    Route::get('/admin-tickets', 'SupportController@adminTickets');
     Route::get('/supportchat', 'HomeController@supportchat');
     Route::get('/customers', 'HomeController@customers');
     Route::post('/import-customers', 'UserController@uploadUsers');

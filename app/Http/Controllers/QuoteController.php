@@ -24,9 +24,9 @@ class QuoteController extends Controller
 
         $posts = [];
         $user = User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first();
-        if($user->customer->subscription->plan->name != 'Free'){
+        // if($user->customer->subscription->plan->name != 'Free'){
           $posts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->limit(3)->get();
-        }
+        // }
             return view('quoteRequest',compact('posts'));
 
     }
