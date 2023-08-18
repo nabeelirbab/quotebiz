@@ -50,7 +50,9 @@ if (isset($post)) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
-
+      h1, h2, h3, h4, h5, h6 {
+          margin: 20px 5px 0;
+      }
         .logo-mobile{
             width: 25%;
         }
