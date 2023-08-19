@@ -148,7 +148,7 @@
 @section('content')
 <!-- content @s -->
       <section class="single-blog-wrap-layout1">
-            <div class="single-blog-banner-layout1">
+            <div class="single-blog-banner-layout1" style="margin-bottom: 2.3rem">
                 <div class="banner-img">
                     <img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="blog">
                 </div>
@@ -170,6 +170,10 @@
             </div>
             <div class="container">
                 <div class="row gutters-50">
+                	<div class="d-flex justify-content-center">
+                		<a href="{{ url('admin/posts/edit/'.$post->id) }}" class="btn btn-success" style="margin-right: 15px">Edit</a>
+                		<a href="{{ url('admin/posts/delete/'.$post->id) }}" class="btn btn-warning">Delete</a>
+                	</div>
                     <div class="col-lg-8">
                         <div class="single-blog-box-layout1">
                             <div class="blog-details post-body">
