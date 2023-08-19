@@ -201,6 +201,13 @@ input:checked + .slider .off
 <div class="nk-tb-list nk-tb-tnx">
 
    <div class="form-row p-2">
+     <div class="form-row p-2">
+     <div class="form-group col-md-12 text-center">
+     <input type="hidden" name="action" id="action" value="">
+      <input type="submit" value="Update" class="btn btn-success" onclick="setFormAction('update')">
+      <input type="submit" value="Preview" class="btn btn-primary" onclick="setFormAction('preview')">
+     </div>
+   </div>
     <div class="form-group col-md-12">
       <label for="inputState">Add Cover Image</label>
       <input type="file" id="coverImgInput" name="cover_img" accept="image/*" class="form-control">
@@ -209,13 +216,7 @@ input:checked + .slider .off
       <img id="coverImgPreview" src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Cover Image Preview" style="max-width: 100%; max-height: 200px;">
     </div>
    </div>
-   <div class="form-row p-2">
-     <div class="form-group col-md-12 text-center">
-     <input type="hidden" name="action" id="action" value="">
-      <input type="submit" value="Update" class="btn btn-success" onclick="setFormAction('update')">
-      <input type="submit" value="Preview" class="btn btn-primary" onclick="setFormAction('preview')">
-     </div>
-   </div>
+  
 </div><!-- .nk-tb-list -->
 </div><!-- .card-inner -->
 

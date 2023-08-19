@@ -6,6 +6,18 @@
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
     <style type="text/css">
+        .tox-tinymce {
+          border: 1px solid #e5e9f2;
+          border-radius: 4px;
+          box-shadow: none;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          position: relative;
+          visibility: inherit !important;
+          height: 500px !important;
+      }
       .editcurrency{
         padding: 0;
         font-size: 15px !important;
@@ -183,19 +195,20 @@ input:checked + .slider .off
 <div class="nk-tb-list nk-tb-tnx">
  
    <div class="form-row p-2">
+
+   <div class="form-row p-2">
+    <div class="form-group col-md-12 text-center">
+     <input type="hidden" name="action" id="action" value="">
+      <input type="submit" value="Save" class="btn btn-success" onclick="setFormAction('save')">
+      <input type="submit" value="Preview" class="btn btn-primary" onclick="setFormAction('preview')">
+    </div>
+   </div>
      <div class="form-group col-md-12">
       <label for="inputState">Add Cover Image</label>
       <input type="file" id="coverImgInput" name="cover_img" accept="image/*" class="form-control" required>
     </div>
     <div class="col-md-12 text-center">
       <img id="coverImgPreview" src="#" alt="Cover Image Preview" style="max-width: 100%; max-height: 200px; display: none">
-    </div>
-   </div>
-   <div class="form-row p-2">
-    <div class="form-group col-md-12 text-center">
-     <input type="hidden" name="action" id="action" value="">
-      <input type="submit" value="Save" class="btn btn-success" onclick="setFormAction('save')">
-      <input type="submit" value="Preview" class="btn btn-primary" onclick="setFormAction('preview')">
     </div>
    </div>
 </div><!-- .nk-tb-list -->
