@@ -48,6 +48,7 @@ class PostController extends Controller
         $post->description = $request->input('description');
         $post->slug = str_slug($request->input('title'));
         $post->subdomain = Setting::subdomain();
+        $post->created_at = now();
         $post->getExcerptAttribute();
         if($request->file('cover_img')){
             $image = $request->file('cover_img');
@@ -56,7 +57,13 @@ class PostController extends Controller
             $image->move(public_path($destination),$new_image);
             $post->cover_img = $new_image;
         } 
-        $post->save();
+        if($request->input('action') == 'preview'){
+            $relatedPosts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->get();
+            return view('blog.single-blog', compact('post','relatedPosts'));
+        }else{
+           $post->save(); 
+        }
+        
         return redirect('admin/posts');
     }
 
@@ -116,7 +123,12 @@ class PostController extends Controller
             $post->cover_img = $new_image;
         } 
         // dd($post);
-        $post->update();
+        if($request->input('action') == 'preview'){
+            $relatedPosts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->get();
+            return view('blog.single-blog', compact('post','relatedPosts'));
+        }else{
+           $post->update(); 
+        }
         return redirect('/admin/posts')->with('success', 'Update successful!');
     }
 

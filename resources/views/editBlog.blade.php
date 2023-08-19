@@ -6,6 +6,18 @@
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
     <style type="text/css">
+      .tox-tinymce {
+          border: 1px solid #e5e9f2;
+          border-radius: 4px;
+          box-shadow: none;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          position: relative;
+          visibility: inherit !important;
+          height: 500px !important;
+      }
       .editcurrency{
         padding: 0;
         font-size: 15px !important;
@@ -148,19 +160,16 @@ input:checked + .slider .off
  @endif
 <div class="nk-block">
 <div class="row g-gs justify-center">
+ <form action="{{ url('/admin/posts/update/'.$post->id) }}" target="" method="post" enctype="multipart/form-data" class="d-flex" id="postForm">
 
 <div class="col-xxl-8 col-sm-8">
 <div class="card">
 <div class="card-inner-group p-0" >
 <div class="card-inner text-center" style="padding: 1.5em;border:0px">
-    <div class="card-title">
-     
-    </div>
- 
+
 </div><!-- .card-inner -->
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
- <form action="{{ url('/admin/posts/update/'.$post->id) }}" method="post" enctype="multipart/form-data">
      {{ csrf_field() }}
    <div class="form-row p-2">
      <div class="form-group col-md-12">
@@ -170,22 +179,10 @@ input:checked + .slider .off
    </div>
    <div class="form-row p-2">
      <div class="form-group col-md-12">
-      <label for="inputState">Add Cover Image</label>
-       <input type="file" name="cover_img" accept="image/*" class="form-control" >
-     </div>
-   </div>
-   <div class="form-row p-2">
-     <div class="form-group col-md-12">
       <label for="inputState">Blog Text</label>
         <textarea class="form-control tinymce-basic" name="description" required>{{ $post->description }}</textarea>
      </div>
    </div>
-   <div class="form-row p-2">
-     <div class="form-group col-md-12 text-center">
-      <button type="submit" class="btn btn-success">Update</button>
-     </div>
-   </div>
-  </form>
 </div><!-- .nk-tb-list -->
 </div><!-- .card-inner -->
 
@@ -193,6 +190,40 @@ input:checked + .slider .off
 </div><!-- .card -->
 
 </div><!-- .nk-block -->
+
+<div class="col-xxl-4 col-sm-12">
+<div class="card">
+<div class="card-inner-group p-0" >
+<div class="card-inner text-center" style="padding: 1.5em;border:0px">
+
+</div><!-- .card-inner -->
+<div class="card-inner  p-0 ">
+<div class="nk-tb-list nk-tb-tnx">
+
+   <div class="form-row p-2">
+    <div class="form-group col-md-12">
+      <label for="inputState">Add Cover Image</label>
+      <input type="file" id="coverImgInput" name="cover_img" accept="image/*" class="form-control">
+    </div>
+    <div class="col-md-12 text-center">
+      <img id="coverImgPreview" src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Cover Image Preview" style="max-width: 100%; max-height: 200px;">
+    </div>
+   </div>
+   <div class="form-row p-2">
+     <div class="form-group col-md-12 text-center">
+     <input type="hidden" name="action" id="action" value="">
+      <input type="submit" value="Update" class="btn btn-success" onclick="setFormAction('update')">
+      <input type="submit" value="Preview" class="btn btn-primary" onclick="setFormAction('preview')">
+     </div>
+   </div>
+</div><!-- .nk-tb-list -->
+</div><!-- .card-inner -->
+
+</div><!-- .card-inner-group -->
+</div><!-- .card -->
+
+</div><!-- .nk-block -->
+</form>
 </div>
 </div>
 </div>
@@ -206,15 +237,31 @@ input:checked + .slider .off
 <script src="{{ asset('frontend-assets/assets/js/libs/editors/tinymce.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/editors.js?ver=2.9.1') }}"></script>
 <script type="text/javascript">
-document.querySelector("#togBtn").onchange = (e) => {
-  let checked = e.target.checked;
-  if (checked) {
-    console.log("checked !");
-    window.location.href = '{{ url("admin/domain-status?status=active")}}';
-  } else {
-    console.log("unchecked...");
-    window.location.href = '{{ url("admin/domain-status?status=inactive")}}';
+
+   const coverImgInput = document.getElementById('coverImgInput');
+  const coverImgPreview = document.getElementById('coverImgPreview');
+
+  coverImgInput.addEventListener('change', function(event) {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      coverImgPreview.src = URL.createObjectURL(selectedFile);
+      // $('#coverImgPreview').show();
+    } else {
+      $('#coverImgPreview').hide();
+      coverImgPreview.src = '#'; // Clear the preview if no file is selected
+    }
+  });
+
+ function setFormAction(action) {
+   const form = document.getElementById('postForm');
+   console.log(form)
+  if(action == 'preview'){
+    form.target = '_blank';
+  }else{
+     form.removeAttribute('target');
   }
+  document.getElementById('action').value = action;
 }
+
 </script>
 @endsection

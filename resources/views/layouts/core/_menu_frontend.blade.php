@@ -136,17 +136,17 @@
                          <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                          
-                      <li class="nav-item" rel2="HomeController">
-                        <a href="{{ url('admin/posts/add') }}" title="Add Blogs" class="dropdown-item d-flex align-items-center">
-                            <em class="icon ni ni-invest fs-5 mr-1"></em>
-                            <span>Add Blogs</span>
-                        </a>
-                    </li>
+                    
                     <li class="nav-item" rel2="HomeController">
                         <a href="{{ url('admin/posts') }}" title="All Blogs" class="dropdown-item d-flex align-items-center">
                           <em class="icon ni ni-tranx fs-5 mr-1"></em>
                             <span>All Blogs</span>
+                        </a>
+                    </li>      
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/posts/add') }}" title="Add Blogs" class="dropdown-item d-flex align-items-center">
+                            <em class="icon ni ni-invest fs-5 mr-1"></em>
+                            <span>Add Blog</span>
                         </a>
                     </li>
                        
