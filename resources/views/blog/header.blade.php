@@ -4,8 +4,8 @@ $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('si
 $sitelightlogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
 $job_design = Acelle\Jobs\HelperJob::form_design(); 
 if (isset($post)) {
-  $title = $post->title;
-  $image = asset('frontend-assets/images/posts/' . $post->cover_img);
+  $title = @$post->title;
+  $image = asset('frontend-assets/images/posts/' . @$post->cover_img);
 } else {
   $title = \Acelle\Model\Setting::get("site_name"). '-'. 'Blogs';
   $image = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
@@ -50,7 +50,22 @@ if (isset($post)) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
+        /* Add custom styles here */
+        .gallery-img {
+            border-radius: 10px; /* Add border radius */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+            transition: transform 0.2s ease-in-out;
+        }
 
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Adjust modal styles */
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
         .logo-mobile{
             width: 25%;
         }

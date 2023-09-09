@@ -36,6 +36,7 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('/', 'QuoteController@home');
     Route::get('/blog/{slug}', 'PostController@singleBlog');
     Route::get('/blogs', 'PostController@allBlogs');
+    Route::get('/sp-profile/{id}', 'PostController@userProfile');
     Route::post('/addsupport', 'SupportController@addsupport');
     Route::post('/support-message', 'SupportController@storechat');
     Auth::routes();
@@ -199,6 +200,13 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/register', function () {
         return view('service_provider.register');
     });
+    Route::get('/gallery','GalleryImageController@index');
+    Route::get('/gallery/create','GalleryImageController@create');
+    Route::get('/gallery/edit/{id}','GalleryImageController@edit');
+    Route::post('/gallery/store','GalleryImageController@store');
+    Route::put('/gallery/update/{id}','GalleryImageController@update');
+    Route::delete('/gallery/destroy/{id}','GalleryImageController@destroy');
+
 
     Route::get('/quotes-responses','ServiceProvider\QuoteController@index');
     Route::get('/quotes-leads','ServiceProvider\QuoteController@leads');

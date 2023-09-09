@@ -6,7 +6,7 @@
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
     <style type="text/css">
-        .tox-tinymce {
+      .tox-tinymce {
           border: 1px solid #e5e9f2;
           border-radius: 4px;
           box-shadow: none;
