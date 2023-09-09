@@ -40,6 +40,8 @@
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 <script async rel="preload" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5462023016685790"
      crossorigin="anonymous"></script>
 
@@ -656,7 +658,65 @@ aria-hidden="true">
 
 </div>
 </div>
-@if($posts && $job_design->blog_status != '1' && $job_design->blog_status != '2')
+@if($posts || $users)
+ @if($job_design->profile_status != '1' && $job_design->profile_status != '2')
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="d-flex col-12 justify-content-between pt-5 pb-2">
+      <h4>Service Providers</h4>
+      <!-- <a href="{{ url('blogs') }}">View All</a> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="owl-carousel">
+    @foreach($users as $user)
+    <div class="item">
+    <div class="col-sm-12 mb-4 mt-4">
+        <div class="blog-box-layout5">
+            <div class="item-img">
+                <a href="{{ url('/sp-profile/'.$user->id) }}">
+                  @if($user->user_img)
+                  <img src="{{ asset('frontend-assets/images/users/' . $user->user_img) }}" alt="Blog">
+                  @else
+                  <img src="{{ asset('frontend-assets/images/dummy.jpg') }}" alt="Blog">
+                  @endif
+                </a>
+            </div>
+            <div class="post_text">
+              <div class="item-content">
+                  <a href="{{ url('/sp-profile/'.$user->id) }}">
+                    <h1 class="item-title">
+                        {{$user->first_name}} {{$user->last_name}}
+                    </h1>
+                  </a>
+                  <p>
+                    @foreach(json_decode($user->category_id) as $key => $cat)
+                        <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                        @if ($key < count(json_decode($user->category_id)) - 1)
+                            , <!-- Add a comma if it's not the last item -->
+                        @endif
+                    @endforeach
+                    </p>
+              </div>
+              <div class="post_excerpt">
+                <p>
+                   {!! clean(Str::limit($user->biography, 150)) !!}
+                </p>
+              </div>
+              <a href="{{ url('/sp-profile/'.$user->id) }}" class="post_read-more">Read More >></a>
+            </div>
+            <div class="post_meta-data">
+             <span class="post-date"> {{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}} </span>
+           </div>
+        </div>
+    </div>
+  </div>
+    @endforeach
+  </div>
+</div>
+</div>
+@endif
+@if($job_design->blog_status != '1' && $job_design->blog_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
@@ -665,8 +725,10 @@ aria-hidden="true">
     </div>
   </div>
   <div class="row" style="margin-bottom: 100px">
+    <div class="owl-carousel">
     @foreach($posts as $post)
-    <div class="col-lg-4 col-sm-12 mb-4 mt-4">
+    <div class="item">
+    <div class="col-sm-12 mb-4 mt-4">
         <div class="blog-box-layout5">
             <div class="item-img">
                 <a href="{{ url('/blog/'.$post->slug) }}">
@@ -689,13 +751,16 @@ aria-hidden="true">
               <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more">Read More >></a>
             </div>
             <div class="post_meta-data">
-             <span class="post-date"> {{$post->created_at->format('F d, Y')}} </span>
+             <span class="post-date"> {{\Carbon\Carbon::parse($post->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}} </span>
            </div>
         </div>
     </div>
+  </div>
     @endforeach
+  </div>
 </div>
 </div>
+@endif
 <footer class="footer bg-indigo is-dark bg-lighter" id="footer">
     <div class="container">
         <div class="row g-3 align-items-center py-3">
@@ -726,8 +791,21 @@ aria-hidden="true">
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
 <script type="text/javascript">
+     $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+            items: 3, // Number of items displayed per slide
+            loop: false, // Loop through items
+            nav: true, // Show navigation buttons
+            responsive: {
+                0: { items: 1 }, // Responsive settings for different screen widths
+                768: { items: 2 },
+                992: { items: 3 }
+            }
+        });
+    });
 $('.select2').select2({ width: '300px', dropdownCssClass: "bigdrop" });
 $.ajaxSetup({cache: false});
 $('#search').keyup(function () {

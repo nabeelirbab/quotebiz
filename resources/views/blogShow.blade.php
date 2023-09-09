@@ -170,7 +170,7 @@
             </div>
             <div class="container">
                 <div class="row gutters-50">
-                	<div class="d-flex justify-content-center">
+                	<div class="d-flex justify-content-center mb-3">
                 		<a href="{{ url('admin/posts/edit/'.$post->id) }}" class="btn btn-success" style="margin-right: 15px">Edit</a>
                 		<a href="{{ url('admin/posts/delete/'.$post->id) }}" class="btn btn-warning">Delete</a>
                 	</div>

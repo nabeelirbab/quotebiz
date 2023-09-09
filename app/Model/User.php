@@ -107,6 +107,11 @@ public static $itemsPerPage = 25;
         return $this->hasOne('Acelle\Model\SpBusiness','user_id','id');
     }
 
+    public function gallery()
+    {
+        return $this->hasMany('Acelle\Model\GalleryImage');
+    }
+
     public function allQuoteSp()
     {
         return $this->hasMany('Acelle\Model\Quotation','user_id','id');

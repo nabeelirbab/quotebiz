@@ -4,6 +4,7 @@ namespace Acelle\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Acelle\Model\Post;
+use Acelle\Model\User;
 use Acelle\Model\Setting;
 
 class PostController extends Controller
@@ -35,6 +36,10 @@ class PostController extends Controller
         return view('addBlog');
     }
 
+    public function userProfile($account,$id){
+      $user = User::with('gallery')->where('id',$id)->where('subdomain',Setting::subdomain())->first();
+      return view('blog.sp_profile',compact('user'));
+    }
     /**
      * Store a newly created resource in storage.
      *
