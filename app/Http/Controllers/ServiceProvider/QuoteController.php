@@ -169,6 +169,9 @@ class QuoteController extends Controller
         $user->mobileno = $request->mobileno;
         $user->city = $request->city;
         $user->zipcode = $request->zipcode;
+        $user->address = $request->address;
+        $user->experience = $request->experience;
+        $user->biography = $request->biography;
         $user->save();
 
         return redirect()->back()->with('success', 'Profile Update Successfully');
