@@ -65,9 +65,9 @@
 				<h2>Gallery</h2>
 				 <div class="row">
 				  @foreach($user->gallery as  $key => $gallery)
-				    <div class="col-md-4 mb-4">
+				    <div class="col-md-4 mb-4 text-center">
 				        <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
-				            <img src="{{ asset('frontend-assets/images/'.$gallery->image)}}" alt="Image {{ $key + 1 }}" class="img-fluid gallery-img">
+				            <img src="{{ asset('frontend-assets/images/'.$gallery->image)}}" alt="Image {{ $key + 1 }}" class="img-fluid gallery-img" style="max-height: 200px; min-height: 200px">
 				        </a>
 				    </div>
 				    @endforeach

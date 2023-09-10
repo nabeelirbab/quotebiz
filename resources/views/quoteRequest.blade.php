@@ -672,43 +672,31 @@ aria-hidden="true">
     @foreach($users as $user)
     <div class="item">
     <div class="col-sm-12 mb-4 mt-4">
-        <div class="blog-box-layout5">
-            <div class="item-img">
-                <a href="{{ url('/sp-profile/'.$user->id) }}">
-                  @if($user->user_img)
-                  <img src="{{ asset('frontend-assets/images/users/' . $user->user_img) }}" alt="Blog">
-                  @else
-                  <img src="{{ asset('frontend-assets/images/dummy.jpg') }}" alt="Blog">
+    <div class="card text-center" style="min-height: 325px;border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <div class="m-auto mt-4">
+            <a href="{{ url('sp-profile/'.$user->id) }}">
+            @if($user->user_img)
+              <img src="{{asset('frontend-assets/images/users/'.$user->user_img)}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
+            @else
+              <img src="{{asset('frontend-assets/images/avt.jpeg')}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
+              @endif
+              </a>
+          </div>
+          <div class="card-body">
+              <a href="{{ url('sp-profile/'.$user->id) }}">
+              <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
+              </a>
+              <p>{{ $user->city }}</p>
+              <p class="card-text text-center">
+                @foreach(json_decode($user->category_id) as $key => $cat)
+                  <span class="data-value" style="color: #777;">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                  @if ($key < count(json_decode($user->category_id)) - 1)
+                      , 
                   @endif
-                </a>
-            </div>
-            <div class="post_text">
-              <div class="item-content">
-                  <a href="{{ url('/sp-profile/'.$user->id) }}">
-                    <h1 class="item-title">
-                        {{$user->first_name}} {{$user->last_name}}
-                    </h1>
-                  </a>
-                  <p>
-                    @foreach(json_decode($user->category_id) as $key => $cat)
-                        <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
-                        @if ($key < count(json_decode($user->category_id)) - 1)
-                            , <!-- Add a comma if it's not the last item -->
-                        @endif
-                    @endforeach
-                    </p>
-              </div>
-              <div class="post_excerpt">
-                <p>
-                   {!! clean(Str::limit($user->biography, 150)) !!}
-                </p>
-              </div>
-              <a href="{{ url('/sp-profile/'.$user->id) }}" class="post_read-more">Read More >></a>
-            </div>
-            <div class="post_meta-data">
-             <span class="post-date"> {{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}} </span>
-           </div>
-        </div>
+              @endforeach
+              </p>
+          </div>
+      </div>
     </div>
   </div>
     @endforeach
