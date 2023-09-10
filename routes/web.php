@@ -36,6 +36,7 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('/', 'QuoteController@home');
     Route::get('/blog/{slug}', 'PostController@singleBlog');
     Route::get('/blogs', 'PostController@allBlogs');
+    Route::get('/service-providers', 'PostController@allSps');
     Route::get('/sp-profile/{id}', 'PostController@userProfile');
     Route::post('/addsupport', 'SupportController@addsupport');
     Route::post('/support-message', 'SupportController@storechat');

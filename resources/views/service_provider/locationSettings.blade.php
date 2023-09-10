@@ -231,6 +231,7 @@ method="post" id="AddressUpdateForm">
                 <label class="form-label" for="full-name">State
                     <span style="color: red">*</span>
                 </label>
+            
                 <select name="state" id="state"
                         class="form-control select2"
                         onchange="GetCities(this.value)">
