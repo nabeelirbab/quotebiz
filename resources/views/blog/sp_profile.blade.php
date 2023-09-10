@@ -26,7 +26,8 @@
                     <p class="card-text text-center">
                       @foreach(json_decode($user->category_id) as $key => $cat)
                         <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
-                        @if ($key < count(json_decode($user->category_id)) - 1), 
+                        @if ($key < count(json_decode($user->category_id)) - 1)
+                            , 
                         @endif
                     @endforeach
                     </p>

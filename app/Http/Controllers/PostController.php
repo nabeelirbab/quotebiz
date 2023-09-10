@@ -26,6 +26,11 @@ class PostController extends Controller
        return view('blog.blogs',compact('posts'));
     }
 
+    public function allSps()
+    {
+       $users = User::where('user_type','service_provider')->where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(20);
+       return view('blog.sps',compact('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *
