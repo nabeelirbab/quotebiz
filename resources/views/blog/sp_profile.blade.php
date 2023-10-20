@@ -3,9 +3,82 @@
 	$data = new stdClass();
 	$data->title = $user->first_name . ' ' . $user->last_name;
 	$data->image = $user->user_img;
+	$job_design = Acelle\Jobs\HelperJob::form_design(); 
+	$sitename = \Acelle\Model\Setting::get("site_name");
+  $sitetitle = \Acelle\Model\Setting::get("site_title");
+  $sitetagline = \Acelle\Model\Setting::get("site_tagline");
+  $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
+  $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
+  $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
 ?>
 @include('blog.header',['post' => $data])
+<style type="text/css">
+	.pac-container {
+    z-index: 1060 !important;
+}
 
+.select2-selection__rendered {
+  line-height: 35px !important;
+  color: #52648482 !important;
+  font-size: 1.1rem;
+}
+.select2-container .select2-selection--single {
+  height: 50px !important;
+  border-radius: 6px;
+  border: 1px solid #c1c1c1;
+}
+.select2-selection__arrow {
+  height: 50px !important;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.floatright {
+ float: right;
+}
+.btn-primary {
+  border: none !important;
+  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+  height: 35px !important;
+}
+.btn-success {
+  border: none !important;
+  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+  font-size: 1.6rem;
+}
+.form-control {
+  border-radius: 6px;
+  font-size: 1.1rem;
+  outline: 0;
+}
+.select2-container--default.select2-container--open .select2-selection--single {
+  border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
+}
+.select2-container--default .select2-selection--single:focus {
+  box-shadow: none;
+  border-radius: 6px;
+  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+}
+.form-control:focus {
+  box-shadow: none;
+  border-radius: 6px;
+  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+}
+.form-control-placeholder {
+  font-weight: 500;
+  color: #364a63;
+  margin-bottom: 8px;
+}
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 60%;
+  transform: translate3d(0, -75%, 0);
+  border-radius: 6px;
+  opacity: 1;
+  top: 12px;
+}
+</style>
 <section style="border-top: 1px solid #c9c9c9">
 	 <div class="cover-image" style="background-image: url('https://angular-material.fusetheme.com/assets/images/pages/profile/cover.jpg'); height: 50vh; background-size: 100% auto; background-repeat: no-repeat; background-position: center;">
         <!-- Add any content you want to overlay on the cover image -->
@@ -31,6 +104,9 @@
                         @endif
                     @endforeach
                     </p>
+                    <div class=" text-center">
+                      <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request Quote</button>
+                    </div>
                 </div>
             </div>
 			</div>
@@ -107,6 +183,69 @@
 			        </div>
 			    </div>
 			</div>
+
+			<!-- Quote model -->
+
+			<div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+			    <div class="modal-dialog modal-dialog-centered">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h5 class="modal-title" id="imageModalLabel">Send Quote to {{$user->first_name}} {{$user->last_name}} </h5>
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                    <span aria-hidden="true">&times;</span>
+			                </button>
+			            </div>
+			            <div class="modal-body">
+			             <div class="row justify-content-center"
+								style="height: 100%;align-items: center;">
+								<div class="col-lg-12 col-md-12 col-sm-12 formclass">
+								@if($errors->any())
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+								  {{$errors->first()}}
+								  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								  </button>
+								</div>
+								@endif
+								<form class="information" action="{{ url('quote-form')}}" method="post" style="padding: 0.5rem "
+								autocomplete="off">
+								{{ csrf_field()}}
+
+								<input type="hidden" name="sp_id" value="{{ $user->id }}">
+								
+								<div class="row">
+								<div class="col-md-12">
+								<div class="form-group">
+								  <label class="form-control-placeholder"
+								         for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
+								
+								  <select class="form-control select2" name="category_name" required="" style="height: calc(4.25rem + 2px);">
+								     <option value="" disabled selected="">Select Service</option>
+								     @foreach(json_decode($user->category_id) as $category) 
+								     <option>{{\Acelle\Jobs\HelperJob::categoryDetail($category)->category_name}}</option>
+								     @endforeach
+								  </select>
+								</div>
+								</div>
+								  <input type="hidden" class="form-control" name="zipcode" id="zipcode" value="Location"
+								         required>
+								  <input type="hidden" value="latitude" name="latitude">
+								  <input type="hidden" value="longitude" name="longitude">
+								  <input type="hidden" value="state" name="state">
+								<div class="col-md-5 mt-4">
+								<div class="form-group">
+								  <button type="submit" class="btn rounded-2 btn-primary d-block login-button py-2 fw-600 w-100"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}</span></button>
+								</div>
+								</div>
+								</div>
+								</form>
+							
+								</div>
+						
+								</div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
 			</div>
 			
 		</div>
@@ -115,6 +254,63 @@
 </section>
 
 @include('blog.footer')
+<script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
+
+@if($provideradminlocation->admin_location_type == "World Wide")
+<script>
+  google.maps.event.addDomListener(window, 'load', initialize);
+  function initialize() {
+  var input = document.getElementById('zipcode');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.addListener('place_changed', function () {
+  var place = autocomplete.getPlace();
+  var components = place.address_components;
+  $("#latitude").val(place.geometry['location'].lat());
+  $("#longitude").val(place.geometry['location'].lng());
+  for(i=0;i<components.length;i++){
+  if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
+  var state = place.address_components[i].long_name;
+  console.log(state);
+  $("#state").val(state);
+  }
+  }
+  });
+  }
+</script>
+@else
+<script>
+
+	@if($providercountry)
+	var pc = "{{ $providercountry->code }}";
+	@else 
+    var pc = 'au';
+  @endif
+  var loc = pc.toLowerCase();
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  function initialize() {
+  var options = {
+  componentRestrictions: {country: loc}
+  };
+  var input = document.getElementById('zipcode');
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+  autocomplete.addListener('place_changed', function () {
+  var place = autocomplete.getPlace();
+    var components = place.address_components;
+  $("#latitude").val(place.geometry['location'].lat());
+     $("#longitude").val(place.geometry['location'].lng());
+  for(i=0;i<components.length;i++){
+    console.log(place.address_components[i].types[0].toString());
+  if(place.address_components[i].types[0].toString() === 'administrative_area_level_1'){
+  var state = place.address_components[i].long_name;
+  console.log(state);
+  $("#state").val(state);
+  }
+  }
+  });
+  }
+</script>
+@endif
 <script>
     jQuery(document).ready(function () {
         // Function to update the image slider on image click
