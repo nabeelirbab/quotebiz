@@ -5,6 +5,7 @@
 		 header("Location: ".$url);
 		die();
 	}
+	// dd($sp_id);
 	$job_design = Acelle\Jobs\HelperJob::form_design();
 
 	if(count($category->questions) > 0){
@@ -284,6 +285,7 @@
             		<input type="hidden" name="longitude" value="{{$longitude}}">
             		<input type="hidden" name="local_business" value="{{$local_business}}">
             		<input type="hidden" name="admin_id" value="{{\Acelle\Model\Setting::subdomain()}}">
+            		<input type="hidden" name="sp_id" value="{{@$sp_id}}">
             	</div>
             	<div id="wizard">
             		
@@ -370,6 +372,7 @@
 	                   
 	                	</div>
 	                </section>
+	                @if(!$sp_id)
 	                 <h4></h4>
 	                <section>
 	                	<h3 style="text-align: center;color: black">Other Services</h3>
@@ -389,6 +392,7 @@
 						@endforeach
 	                    </div>
 	                </section>
+	                @endif
 				@if(Auth::user())
 					@if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'service_provider')
 	       
