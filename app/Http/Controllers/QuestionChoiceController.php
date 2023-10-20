@@ -18,6 +18,7 @@ use Acelle\Model\Setting;
 use Acelle\Jobs\HelperJob;
 use Acelle\Mail\OnJobPost;
 use Acelle\Mail\RelatedJob;
+use Acelle\Mail\SpecialJob;
 use Carbon\Carbon;
 use Mail;
 
@@ -30,10 +31,11 @@ class QuestionChoiceController extends Controller
      */
     public function index(Request $request)
     {
-//        dd($request->all());
+       // dd($request->all());
         $zipcode = $request->zipcode;
         $latitude = $request->latitude;
         $longitude = $request->longitude;
+        $sp_id = $request->sp_id;
         $state = $request->state;
         $local_business = "";
         if (isset($request->local_business)) {
@@ -52,7 +54,7 @@ class QuestionChoiceController extends Controller
         }
 
 
-        return view('frontquestion', compact('category', 'zipcode', 'latitude', 'longitude', 'local_business', 'state','categories'));
+        return view('frontquestion', compact('category', 'zipcode', 'latitude', 'longitude', 'local_business', 'state','categories','sp_id'));
     }
 
 
@@ -77,10 +79,9 @@ class QuestionChoiceController extends Controller
         //
     }
 
-        public function storeform(Request $request)
+ public function storeform(Request $request)
     {
-// dd($request->all());
-        // $mailer = HelperJob::mailSettings();
+
         if (Auth::user()) {
             if (Auth::user()->user_type == 'client' || Auth::user()->user_type == 'service_provider') {
 
@@ -164,7 +165,11 @@ class QuestionChoiceController extends Controller
             }
             }
             // dd($user);
-             
+            if($request->sp_id){
+              $this->specialQuote($request);
+              return redirect('customer/my-jobs');
+
+            }else{
             foreach ($request->category_id as $key => $category) {
             $quote = new Quote;
             $quote->category_id = $category;
@@ -396,7 +401,130 @@ class QuestionChoiceController extends Controller
 
             Mail::to(Auth::user()->email)->send(new OnJobPost($jobdata));
            return redirect('customer/my-jobs');
+       }
     }
+
+    public function specialQuote($data){
+      foreach ($data->category_id as $key => $category) {
+            $quote = new Quote;
+            $quote->category_id = $category;
+            $quote->admin_id = $data->admin_id;
+            $quote->zip_code = $data->zip_code;
+            $quote->latitude = $data->latitude;
+            $quote->longitude = $data->longitude;
+            $quote->state = $data->state;
+            if($data->local_business == "local business")
+            {
+                $quote->type = "local business";
+            }
+            $quote->additional_info = $data->additional_info;
+            $quote->user_id = Auth::user()->id;
+            $quote->save();
+
+            if($key == 0){
+                if ($data->question_id) {
+
+                    foreach ($data->option as $key => $value) {
+                        $question = new QuoteQuestion;
+                        $question->quote_id = $quote->id;
+                        $question->question_id = $key;
+                        $question->save();
+
+
+                        $q_choice = new QuoteChoice;
+                        $q_choice->question_id = $key;
+                        $q_choice->choice_value = $value;
+                        $q_choice->quote_question_id = $question->id;
+                        $q_choice->save();
+
+                    }
+                }
+
+                if ($data->question_date) {
+
+                    foreach ($data->date as $keydate => $date) {
+                        $questiondate = new QuoteQuestion;
+                        $questiondate->quote_id = $quote->id;
+                        $questiondate->question_id = $data->question_date[$keydate];
+                        $questiondate->save();
+
+
+                        $q_choice_date = new QuoteChoice;
+                        $q_choice_date->question_id = $data->question_date[$keydate];
+                        $q_choice_date->choice_value = $date;
+                        $q_choice_date->quote_question_id = $questiondate->id;
+                        $q_choice_date->save();
+
+                    }
+                }
+
+                if ($data->question_input) {
+
+                    foreach ($data->input as $keyinput => $input) {
+                        $questioninput = new QuoteQuestion;
+                        $questioninput->quote_id = $quote->id;
+                        $questioninput->question_id = $data->question_input[$keyinput];
+                        $questioninput->save();
+
+
+                        $q_choice_input = new QuoteChoice;
+                        $q_choice_input->question_id = $data->question_input[$keyinput];
+                        $q_choice_input->choice_value = $input;
+                        $q_choice_input->quote_question_id = $questioninput->id;
+                        $q_choice_input->save();
+
+                    }
+                }
+
+                if ($data->question_id2) {
+                    foreach ($data->question_id2 as $index => $question_id) {
+
+                        $question1 = new QuoteQuestion;
+                        $question1->quote_id = $quote->id;
+                        $question1->question_id = $question_id;
+                        $question1->save();
+
+                        foreach ($data->choices as $key1 => $value1) {
+
+                            $data = explode(",", $value1);
+                            if ($data[0] == $question_id) {
+                                // echo $data[1].'<>'.$question_id.'&lt;br>';
+                                $q_choices = new QuoteChoice;
+                                $q_choices->question_id = $question_id;
+                                $q_choices->choice_value = $data[1];
+                                $q_choices->quote_question_id = $question1->id;
+                                $q_choices->save();
+                            }
+
+
+                        }
+
+                    }
+
+                }
+           }
+            $job = Quote::with('quotations', 'user')->where('id', $quote->id)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
+                    $user = User::where('user_type', 'service_provider')->where('id',$data->sp_id)->where('activated', 1)->whereNotNull('type')->where('subdomain', Setting::subdomain())->first();
+                  
+                            $email = $user->email;
+
+                            $maildata = [
+                                'jobdetail' => $job,
+                                'userType' => 'Special',
+                            ];
+
+                            Mail::to($email)->send(new SpecialJob($maildata));
+          }
+
+           $jobdata = [
+                    'user' => Auth::user(),
+                    'subject' => 'Thanks for your quote request'
+                ];
+
+            Mail::to(Auth::user()->email)->send(new OnJobPost($jobdata));
+           
+    }
+
     public function checkEmail(Request $request)
     {
         // return $request->all();
