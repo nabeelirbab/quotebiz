@@ -6,12 +6,12 @@
             <div class="container">
                 <div class="section-heading-3">
                     <h2>Service Providers</h2>
-                    <p>Browse our blog for engaging articles and tips.</p>
+                    <p>Browse our service providers.</p>
                 </div>
                 <div class="row gutters-40 menu-list" id="no-equal-gallery">
                     @foreach($users as $user)
-                    <div class="col-lg-4 col-sm-12 mb-4 mt-4">
-                      <div class="card text-center" style="min-height: 325px;border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div class="col-lg-3 col-sm-12 mb-4 mt-4">
+                      <div class="card text-center" style="min-height: 350px;border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                       <div class="m-auto mt-4">
                         <a href="{{ url('sp-profile/'.$user->id) }}">
                         @if($user->user_img)
@@ -25,7 +25,10 @@
                           <a href="{{ url('sp-profile/'.$user->id) }}">
                           <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
                           </a>
-                          <p>{{ $user->city }}</p>
+                          <p> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
+                           @else
+                           {{$user->city}}
+                           @endif</p>
                           <p class="card-text text-center">
                             @foreach(json_decode($user->category_id) as $key => $cat)
                               <span class="data-value" style="color: #777;">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>

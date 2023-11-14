@@ -263,6 +263,9 @@ if (isset($post)) {
                                         <a href="{{ url('/blogs') }}">BLOG</a>
                                     </li>
                                     <li>
+                                        <a href="{{ url('/service-providers') }}">SERVICE PROVIDERS</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/login') }}">Login</a>
                                     </li>
                                 </ul>

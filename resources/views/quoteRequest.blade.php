@@ -476,6 +476,9 @@ p.form-para::after {
 @if(Auth::user()->user_type == 'client')
 
 <div class="mt-4 text-center">
+  @if($job_design->profile_status != '2')
+  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
+  @endif
   @if($job_design->blog_status != '2')
   <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
   @endif
@@ -483,6 +486,9 @@ p.form-para::after {
 </div>
 @elseif(Auth::user()->user_type == 'admin')
 <div class="mt-4 text-center">
+  @if($job_design->profile_status != '2')
+  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
+  @endif
   @if($job_design->blog_status != '2')
   <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
   @endif
@@ -490,6 +496,9 @@ p.form-para::after {
 </div>
 @else
 <div class="mt-4 text-center">
+  @if($job_design->profile_status != '2')
+  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
+  @endif
   @if($job_design->blog_status != '2')
   <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
   @endif
@@ -498,6 +507,9 @@ p.form-para::after {
 @endif
 @else
 <div class="mt-4 text-center">
+  @if($job_design->profile_status != '2')
+  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
+  @endif
   @if($job_design->blog_status != '2')
   <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
   @endif
@@ -664,7 +676,7 @@ aria-hidden="true">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
       <h4>Service Providers</h4>
-      <!-- <a href="{{ url('blogs') }}">View All</a> -->
+      <a href="{{ url('service-providers') }}">View All</a>
     </div>
   </div>
   <div class="row">
@@ -686,7 +698,10 @@ aria-hidden="true">
               <a href="{{ url('sp-profile/'.$user->id) }}">
               <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
               </a>
-              <p>{{ $user->city }}</p>
+              <p> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
+               @else
+               {{$user->city}}
+               @endif</p>
               <p class="card-text text-center">
                 @foreach(json_decode($user->category_id) as $key => $cat)
                   <span class="data-value" style="color: #777;">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
@@ -784,7 +799,7 @@ aria-hidden="true">
 <script type="text/javascript">
      $(document).ready(function(){
         $('.owl-carousel').owlCarousel({
-            items: 3, // Number of items displayed per slide
+            items: 5, // Number of items displayed per slide
             loop: false, // Loop through items
             nav: true, // Show navigation buttons
             responsive: {
