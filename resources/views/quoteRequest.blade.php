@@ -87,6 +87,10 @@ background: #fff;
 .siteLogo{
   max-width: 9%;
 }
+.text-soft{
+  color: #5daac3 !important;
+  font-weight: bold;
+}
 .login{
 color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
@@ -441,8 +445,8 @@ p.form-para::after {
   margin-bottom: 20px;
   display: inline-block;
   font-size: 12px;
-  font-weight: 700;
-  color: #fb816a !important;
+  font-weight: bold;
+  color: #5daac3 !important;
 }
 .post_meta-data {
   margin-top: auto;
@@ -682,13 +686,12 @@ aria-hidden="true">
                   @endif
                 </a>
             </div>
+            <a href="{{ url('/sp-profile/'.$user->id) }}">
             <div class="post_text">
               <div class="item-content">
-                  <a href="{{ url('/sp-profile/'.$user->id) }}">
                     <h1 class="item-title">
                         {{$user->first_name}} {{$user->last_name}}
                     </h1>
-                  </a>
                   <p>
                     @foreach(json_decode($user->category_id) as $key => $cat)
                         <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
@@ -703,8 +706,9 @@ aria-hidden="true">
                    {!! clean(Str::limit($user->biography, 150)) !!}
                 </p>
               </div>
-              <a href="{{ url('/sp-profile/'.$user->id) }}" class="post_read-more">Read More >></a>
+              <span class="post_read-more">Read More >></span>
             </div>
+            </a>
             <div class="post_meta-data">
              <span class="post-date"> {{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}} </span>
            </div>
