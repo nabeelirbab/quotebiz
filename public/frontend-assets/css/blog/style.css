@@ -1840,7 +1840,7 @@ nav.template-main-menu > ul > li {
 }
 nav.template-main-menu > ul > li > a {
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: bolder;
   line-height: 1;
   display: block;
   font-size: 15px;

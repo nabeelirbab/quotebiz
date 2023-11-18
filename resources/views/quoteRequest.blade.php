@@ -430,7 +430,7 @@ p.form-para::after {
   height: 240px;
 }
 .post_excerpt{
-  margin-bottom: 25px;
+  /*margin-bottom: 25px;*/
   line-height: 1.7;
   box-sizing: border-box;
 }
@@ -684,7 +684,7 @@ aria-hidden="true">
     </div>
   </div>
   <div class="row">
-    <div class="owl-carousel">
+    <div class="owl-carousel" id="owl-carousel">
     @foreach($users as $user)
     <div class="item">
     <div class="col-sm-12 mb-4 mt-4">
@@ -745,7 +745,7 @@ aria-hidden="true">
     </div>
   </div>
   <div class="row" style="margin-bottom: 100px">
-    <div class="owl-carousel">
+    <div class="owl-carousel" id="owl-carousel2">
     @foreach($posts as $post)
     <div class="item">
     <div class="col-sm-12 mb-4 mt-4">
@@ -815,10 +815,21 @@ aria-hidden="true">
 <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
 <script type="text/javascript">
      $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-            items: 5, // Number of items displayed per slide
+       $('#owl-carousel').owlCarousel({
+            items: 3, // Number of items displayed per slide
             loop: false, // Loop through items
-            nav: true, // Show navigation buttons
+            nav: false, // Show navigation buttons
+            responsive: {
+                0: { items: 1 }, // Responsive settings for different screen widths
+                768: { items: 2 },
+                992: { items: 3 },
+                1200: { items: 4 }
+            }
+        });
+        $('#owl-carousel2').owlCarousel({
+            items: 4, // Number of items displayed per slide
+            loop: false, // Loop through items
+            nav: false, // Show navigation buttons
             responsive: {
                 0: { items: 1 }, // Responsive settings for different screen widths
                 768: { items: 2 },

@@ -162,7 +162,7 @@ if (isset($post)) {
           height: 240px;
         }
         .post_excerpt{
-          margin-bottom: 25px;
+          /*margin-bottom: 25px;*/
           line-height: 1.7;
           box-sizing: border-box;
         }
@@ -177,8 +177,8 @@ if (isset($post)) {
           margin-bottom: 20px;
           display: inline-block;
           font-size: 12px;
-          font-weight: 700;
-          color: #fb816a !important;
+          font-weight: bold;
+          color: #5daac3 !important;
         }
         .post_meta-data {
           margin-top: auto;
@@ -201,6 +201,10 @@ if (isset($post)) {
         .single-blog-box-layout1{
           max-width: 100%;
           overflow-y: auto;
+        }
+        .text-soft{
+          color: #5daac3 !important;
+          font-weight: bold;
         }
 
     </style>
