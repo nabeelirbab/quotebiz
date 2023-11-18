@@ -495,6 +495,7 @@ public function formdesign(Request $request){
             $job_design->admin_id = Auth::user()->id;
             $job_design->subdomain = Setting::subdomain();
             $job_design->underline_color = $request->underline_color;
+            $job_design->link_color = $request->link_color;
             $job_design->category_heading = $request->category_heading;
             $job_design->title_heading = $request->title_heading;
             $job_design->titlesub_heading = $request->titlesub_heading;

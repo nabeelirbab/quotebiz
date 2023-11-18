@@ -113,6 +113,9 @@ color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 .logo span {
   font-size: 20px;
 }
+.link-color{
+  color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+}
 
 .image {
   margin-top: 44%;
@@ -588,31 +591,10 @@ autocomplete="off">
 <p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}",
 you consent to the {{$sitename}} storing the information submitted on this page so you can get most
 up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s
- <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and 
- <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a>
+ <a href="#" class="link-color" data-toggle="modal" data-target="#terms">Terms of Service</a> and 
+ <a href="#" class="link-color" data-toggle="modal" data-target="#privacy">Privacy Policy.</a>
 </p>
 </form>
-@if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
-<div class="centered-text">
-  <div class="social">
-  @if($job_design->facebook)
-  <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
-  @endif
-  @if($job_design->instagram)
-  <a href="{{$job_design->instagram}}" target="_blank"><em class="icon ni ni-instagram-round"></em></a>
-  @endif
-  @if($job_design->linkedIn)
-  <a href="{{$job_design->linkedIn}}" target="_blank"><em class="icon ni ni-linkedin-round"></em></a>
-  @endif
-  @if($job_design->twitter)
-  <a href="{{$job_design->twitter}}" target="_blank"><em class="icon ni ni-twitter-round"></em></a>
-  @endif
-  @if($job_design->whatsApp)
-  <a href="{{$job_design->whatsApp}}" target="_blank"><em class="icon ni ni-whatsapp-round"></em></a>
-   @endif
-  </div>
-</div>
-@endif
 </div>
 <!-- Terms Modal -->
 <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -768,21 +750,42 @@ aria-hidden="true">
 <footer class="footer bg-indigo is-dark bg-lighter" id="footer">
     <div class="container">
         <div class="row g-3 align-items-center justify-content-md-between py-3">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <div class="footer-logo">
                     <a href="{{ url('/') }}" class="logo-link">
                         <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
                         <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                     </a>
-                </div><!-- .footer-logo -->
-            </div><!-- .col -->
-            <div class="col-md-9 d-flex justify-content-md-end">
-                <ul class="link-inline gx-4">
+                    <ul class="link-inline gx-4">
                     <li><a href="#">How it works</a></li>
                     <li><a href="#">Service</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Contact</a></li>
-                </ul><!-- .footer-nav --> 
+                </ul><!-- .footer-nav -->
+                </div><!-- .footer-logo -->
+            </div><!-- .col -->
+            <div class="col-md-6 d-flex justify-content-md-end">
+               @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
+              <div class="centered-text">
+                <div class="social">
+                @if($job_design->facebook)
+                <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
+                @endif
+                @if($job_design->instagram)
+                <a href="{{$job_design->instagram}}" target="_blank"><em class="icon ni ni-instagram-round"></em></a>
+                @endif
+                @if($job_design->linkedIn)
+                <a href="{{$job_design->linkedIn}}" target="_blank"><em class="icon ni ni-linkedin-round"></em></a>
+                @endif
+                @if($job_design->twitter)
+                <a href="{{$job_design->twitter}}" target="_blank"><em class="icon ni ni-twitter-round"></em></a>
+                @endif
+                @if($job_design->whatsApp)
+                <a href="{{$job_design->whatsApp}}" target="_blank"><em class="icon ni ni-whatsapp-round"></em></a>
+                 @endif
+                </div>
+              </div>
+              @endif
             </div><!-- .col -->
         </div>
         <hr class="hr border-light mb-0 mt-n1">
