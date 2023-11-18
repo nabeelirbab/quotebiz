@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Color</label>
                               <div id="cp0" class="input-group" title="Using input value">
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text Color</label>
                             <div id="cp1" class="input-group" title="Using input value">
@@ -123,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Underline Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
@@ -134,7 +134,19 @@
                             </div>
                         </div>
                        </div>
-                       <div class="col-md-3 col-sm-6">
+                           <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Link Color</label>
+                             <div id="cp2" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->link_color}}" @endif name="link_color" id="default-01" placeholder="Enter Link Color" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
+                          
+                        </div>
+                       </div>
+                       <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Login Text Color</label>
                              <div id="cp2" class="input-group" title="Using input value">

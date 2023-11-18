@@ -103,6 +103,18 @@
                           
                         </div>
                        </div>
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Link Color</label>
+                             <div id="cp2" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->link_color}}" @endif name="link_color" id="default-01" placeholder="Enter Link Color" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
+                          
+                        </div>
+                       </div>
                    </div>
                          <div class="form-group">
                             <label class="form-label" for="default-01">Visibility Business No</label>
