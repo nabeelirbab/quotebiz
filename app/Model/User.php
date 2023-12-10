@@ -245,6 +245,24 @@ public static $itemsPerPage = 25;
      *
      * @var array
      */
+    
+    public function rulesupdate()
+    {
+        $rules = array(
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'timezone' => 'required',
+            'language_id' => 'required',
+        );
+
+        if (isset($this->id)) {
+            $rules['password'] = 'nullable|confirmed|min:5';
+        } else {
+            $rules['password'] = 'required|confirmed|min:5';
+        }
+
+        return $rules;
+    }
     public function rules()
     {
         $rules = array(

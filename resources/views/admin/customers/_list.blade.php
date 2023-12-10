@@ -47,7 +47,7 @@
                 </div>
                 </td>
                 <td>
-                    {{ $item->user->subdomain}}
+                  <a href="http://{{ $item->user->subdomain}}.quotebiz.io" target="_blank">{{ $item->user->subdomain}}</a> 
                 </td>
                 <td>
                     @if ($item->currentPlanName())
