@@ -1,4 +1,5 @@
 <div class="tabbable">
+
     <ul class="nav nav-tabs nav-tabs-top nav-underline">
         <li class="nav-item 
         {{ request()->route()->getActionName() == 'Acelle\Http\Controllers\Admin\CustomerController@edit' ? 'active' : '' }}
@@ -7,6 +8,7 @@
 person_outline
 </span> {{ trans('messages.profile') }}</a>
         </li>
+        @if($customer->user_type == 'admin')
         <li class="nav-item 
         {{ request()->route()->getActionName() == 'Acelle\Http\Controllers\Admin\CustomerController@contact' ? 'active' : '' }}
         text-semibold"><a class="nav-link" href="{{ action('Admin\CustomerController@contact', $customer->uid) }}">
@@ -30,5 +32,6 @@ approval
 </span> {{ trans('messages.customer.sub_account') }}</a>
             </li>
         @endcan
+        @endif
     </ul>
 </div>

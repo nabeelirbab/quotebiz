@@ -36,7 +36,7 @@ class AccountController extends Controller
         // Save posted data
         if ($request->isMethod('post')) {
             // dd($request->all());
-            $this->validate($request, $user->rules());
+            $this->validate($request, $user->rulesupdate());
 
             // Update user account for customer
             $user->fill($request->all());

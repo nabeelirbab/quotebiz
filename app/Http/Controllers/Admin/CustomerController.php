@@ -242,7 +242,8 @@ class CustomerController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $customer = \Acelle\Model\User::findByUid($id);
+       $user = \Acelle\Model\User::findByUid($id);
+        $customer = $user->customer;
         event(new \Acelle\Events\UserUpdated($customer));
         // dd($customer);
         // authorize
@@ -257,7 +258,7 @@ class CustomerController extends Controller
         }
 
         return view('admin.customers.edit', [
-            'customer' => $customer,
+            'customer' => $user,
         ]);
     }
 
@@ -273,7 +274,9 @@ class CustomerController extends Controller
     {
         // Get current user
         $current_user = $request->user();
-        $customer = \Acelle\Model\User::findByUid($id);
+        $user = \Acelle\Model\User::findByUid($id);
+        $customer = $user->customer;
+        // dd($customer);
 
         // authorize
         // if (\Gate::denies('update', $customer)) {
@@ -295,7 +298,7 @@ class CustomerController extends Controller
             $user = $customer->user;
             $user->fill($request->all());
 
-            $this->validate($request, $user->rules());
+            $this->validate($request, $user->rulesupdate());
 
             // Update password
             if (!empty($request->password)) {
@@ -470,7 +473,8 @@ class CustomerController extends Controller
      */
     public function subscriptions(Request $request, $uid)
     {
-        $customer = \Acelle\Model\Customer::findByUid($uid);
+        $user = \Acelle\Model\User::findByUid($uid);
+        $customer = $user->customer;
 
         // authorize
         if (\Gate::denies('read', $customer)) {
@@ -478,7 +482,7 @@ class CustomerController extends Controller
         }
 
         return view('admin.customers.subscriptions', [
-            'customer' => $customer
+            'customer' => $user
         ]);
     }
 
@@ -524,8 +528,8 @@ class CustomerController extends Controller
     public function contact(Request $request, $uid)
     {
         // Get current user
-        $customer = \Acelle\Model\Customer::findByUid($uid);
-
+        $user = \Acelle\Model\User::findByUid($uid);
+        $customer = $user->customer;
         // authorize
         if (\Gate::denies('update', $customer)) {
             return $this->notAuthorized();
@@ -563,7 +567,7 @@ class CustomerController extends Controller
         }
 
         return view('admin.customers.contact', [
-            'customer' => $customer,
+            'customer' => $user,
             'contact' => $contact->fill($request->old()),
         ]);
     }

@@ -1,9 +1,8 @@
 @extends('layouts.core.backend')
 
-@section('title', $customer->user->displayName())
+@section('title', $customer->customer->user->displayName())
 
 @section('page_header')
-
 	<div class="page-title">
 		<ul class="breadcrumb breadcrumb-caret position-right">
 			<li class="breadcrumb-item"><a href="{{ action("Admin\HomeController@index") }}">{{ trans('messages.home') }}</a></li>
@@ -13,7 +12,7 @@
 		<h1>
 			<span class="text-semibold"><span class="material-icons-round">
                             person_outline
-                            </span> {{ $customer->user->displayName() }}</span>
+                            </span> {{ $customer->customer->user->displayName() }}</span>
 		</h1>
 	</div>
 
@@ -31,7 +30,7 @@
         <div class="d-flex top-list-controls top-sticky-content">
             <div class="me-auto">
                 <div class="filter-box">
-                    <input type="hidden" name="customer_uid" value="{{ $customer->uid }}" />
+                    <input type="hidden" name="customer_uid" value="{{ $customer->customer->uid }}" />
                     <span class="filter-group">
                             <!--<span class="title text-semibold text-muted">{{ trans('messages.sort_by') }}</span>-->
                             <select class="select" name="sort_order">
