@@ -70,7 +70,7 @@ if (isset($post)) {
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
         }
         .logo-mobile{
-            width: 25%;
+            width: 14%;
         }
         .single-blog-banner-layout1 .banner-content .item-social li .linkedin {
             background-color: #0A66C2;
@@ -172,14 +172,29 @@ if (isset($post)) {
           font-size: 14px;
           color: #777;
         }
-        .post_read-more {
-          text-transform: uppercase;
-          margin-bottom: 20px;
-          display: inline-block;
-          font-size: 12px;
-          font-weight: bold;
-          color: #5daac3 !important;
-        }
+       .profile_read-more {
+            text-transform: uppercase;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 6px;
+            right: 85px;
+            color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+          }
+
+          .post_read-more {
+            text-transform: uppercase;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 85px;
+            right: 36px;
+            color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+          }
         .post_meta-data {
           margin-top: auto;
           padding: 15px 30px;
@@ -205,6 +220,7 @@ if (isset($post)) {
         .text-soft{
           color: #5daac3 !important;
           font-weight: bold;
+          font-size: 1.2rem;
         }
 
     </style>
@@ -241,7 +257,7 @@ if (isset($post)) {
                             @endif
                         </div>
                         <div class="col-lg-4 d-flex justify-content-center">
-                            <div class="logo-area">
+                            <div class="logo-area" style="width: 120px">
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
                                     <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" class="img-fluid">
                                 </a>

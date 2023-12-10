@@ -90,6 +90,7 @@ background: #fff;
 .text-soft{
   color: #5daac3 !important;
   font-weight: bold;
+  font-size: 0.7rem;
 }
 .login{
 color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
@@ -112,6 +113,15 @@ color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 
 .logo span {
   font-size: 20px;
+}
+
+.badge-info{
+  color: #fff !important;
+  background-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+}
+
+.link-color{
+  color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
 }
 
 .image {
@@ -231,11 +241,18 @@ p.form-para::after {
   width: 100%;
 }
 .login {
-  color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
+  font-weight: bold;
+  color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}} !important;
+}
+#sitesmall{
+	width: 100px;
 }
 @media screen and (max-width: 667px) {
   .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
     width: 96%;
+}
+#sitesmall{
+	width: 80px;
 }
 .social{
   float: none !important;
@@ -316,7 +333,7 @@ p.form-para::after {
 }
 .social a {
  font-size: 25px;
- color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+ color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#6200EA !important'}};
 }
 #footer{
  background-color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
@@ -440,13 +457,29 @@ p.form-para::after {
   font-size: 14px;
   color: #777;
 }
-.post_read-more {
+
+.profile_read-more {
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-top: 20px;
   display: inline-block;
   font-size: 12px;
   font-weight: bold;
-  color: #5daac3 !important;
+  position: absolute;
+  bottom: 6px;
+  right: 72px;
+  color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+}
+
+.post_read-more {
+  text-transform: uppercase;
+  margin-top: 20px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 77px;
+  right: 33px;
+  color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
 }
 .post_meta-data {
   margin-top: auto;
@@ -466,65 +499,102 @@ p.form-para::after {
     max-height: 50px;
 }
 
+.mobile-menu {
+    display: none;
+    text-align: center;
+}
+
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-set {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}
+
 </style>
 </head>
 <body>
 <div class="container-fluid dogcFe">
-<header class="main-hearder">
-<nav class="navbar navbar-expand-lg navbar-light" style="display: contents;">
-<div class="navbar-set">
-<div class="siteLogo">
-   <img class="mt-4" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
-</div>
-@if(Auth::user())
-@if(Auth::user()->user_type == 'client')
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img class="" id="sitesmall" src="{{$sitesmalllogo}}" alt="{{$sitename}}">
+        </a>
 
-<div class="mt-4 text-center">
-  @if($job_design->profile_status != '2')
-  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
-  @endif
-  @if($job_design->blog_status != '2')
-  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
-  @endif
-<a href="{{ url('/customer') }}" class="btn btn-primary btn-lg">Dashboard</a>
-</div>
-@elseif(Auth::user()->user_type == 'admin')
-<div class="mt-4 text-center">
-  @if($job_design->profile_status != '2')
-  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
-  @endif
-  @if($job_design->blog_status != '2')
-  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
-  @endif
-<a href="{{ url('/admin') }}" class="btn btn-primary btn-lg">Dashboard</a>
-</div>
-@else
-<div class="mt-4 text-center">
-  @if($job_design->profile_status != '2')
-  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
-  @endif
-  @if($job_design->blog_status != '2')
-  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
-  @endif
-<a href="{{ url('/service-provider') }}" class="btn btn-primary btn-lg">Dashboard</a>
-</div>
-@endif
-@else
-<div class="mt-4 text-center">
-  @if($job_design->profile_status != '2')
-  <a href="{{ url('/service-providers') }}" class="fs-1 mr-4 login"><b>Service Providers</b></a>
-  @endif
-  @if($job_design->blog_status != '2')
-  <a href="{{ url('/blogs') }}" class="fs-1 mr-4 login"><b>Blog</b></a>
-  @endif
-<a href="{{ url('/users/login') }}" class="fs-1 mr-4 login"><b>Log in</b></a>
-<a href="{{ url('/users/register') }}" class="btn btn-primary btn-lg">Register Business</a>
-</div>
-@endif
-</div>
-</nav>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon" style="background-color: white;"></span>
+</button>
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                @if(Auth::user())
+                    @if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'admin')
+                        <li class="nav-item">
+                            @if($job_design && $job_design->profile_status != '2')
+                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if($job_design && $job_design->blog_status != '2')
+                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-1 mr-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            @if($job_design && $job_design->profile_status != '2')
+                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if($job_design->blog_status != '2')
+                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-provider') }}">Dashboard</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item">
+                        @if($job_design && $job_design->profile_status != '2')
+                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
+                        @endif
+                    </li>
+                    <li class="nav-item">
+                        @if( $job_design && $job_design->blog_status != '2')
+                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
+                        @endif
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-1 mr-4 login" href="{{ url('/users/login') }}">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{{ url('/users/register') }}">Register Business</a>
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </nav>
 </header>
-<div class="container">
+
+<div class="container mt-5">
 <div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
 <div class="col-lg-7 col-md-8 col-sm-10 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
@@ -600,31 +670,10 @@ autocomplete="off">
 <p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}",
 you consent to the {{$sitename}} storing the information submitted on this page so you can get most
 up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s
- <a href="#" data-toggle="modal" data-target="#terms">Terms of Service</a> and 
- <a href="#" data-toggle="modal" data-target="#privacy">Privacy Policy.</a>
+ <a href="#" class="link-color" data-toggle="modal" data-target="#terms">Terms of Service</a> and 
+ <a href="#" class="link-color" data-toggle="modal" data-target="#privacy">Privacy Policy.</a>
 </p>
 </form>
-@if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
-<div class="centered-text">
-  <div class="social">
-  @if($job_design->facebook)
-  <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
-  @endif
-  @if($job_design->instagram)
-  <a href="{{$job_design->instagram}}" target="_blank"><em class="icon ni ni-instagram-round"></em></a>
-  @endif
-  @if($job_design->linkedIn)
-  <a href="{{$job_design->linkedIn}}" target="_blank"><em class="icon ni ni-linkedin-round"></em></a>
-  @endif
-  @if($job_design->twitter)
-  <a href="{{$job_design->twitter}}" target="_blank"><em class="icon ni ni-twitter-round"></em></a>
-  @endif
-  @if($job_design->whatsApp)
-  <a href="{{$job_design->whatsApp}}" target="_blank"><em class="icon ni ni-whatsapp-round"></em></a>
-   @endif
-  </div>
-</div>
-@endif
 </div>
 <!-- Terms Modal -->
 <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -675,20 +724,20 @@ aria-hidden="true">
 </div>
 </div>
 @if($posts || $users)
- @if($job_design->profile_status != '1' && $job_design->profile_status != '2')
+ @if($job_design && $job_design->profile_status != '1' && $job_design->profile_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
       <h4>Service Providers</h4>
-      <a href="{{ url('service-providers') }}">View All</a>
+      <a href="{{ url('service-providers') }}" class="link-color">View All</a>
     </div>
   </div>
   <div class="row">
     <div class="owl-carousel" id="owl-carousel">
     @foreach($users as $user)
     <div class="item">
-    <div class="col-sm-12 mb-4 mt-4">
-    <div class="card text-center" style="min-height: 325px;border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="col-sm-12 mb-4 mt-4 p-4">
+    <div class="card text-center" style="min-height: 355px;border-radius: 10px; box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
           <div class="mr-auto ml-auto mt-4">
             <a href="{{ url('sp-profile/'.$user->id) }}">
             @if($user->user_img)
@@ -702,29 +751,29 @@ aria-hidden="true">
           <div class="card-body">
               <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
               
-              <p> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
+              <p class="mb-1"> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                @else
                {{$user->city}}
                @endif</p>
-              <p class="card-text text-center">
+              <p class="card-text text-center m-0">
                 @foreach(json_decode($user->category_id) as $key => $cat)
-                  <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                  <span class="data-value text-soft  badge badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                   @if ($key < count(json_decode($user->category_id)) - 1)
-                      , 
                   @endif
 
               @endforeach
               </p>
-
+<!-- 
               @if($user->biography)
               <div class="post_excerpt">
                 <p>
                    {!! clean(Str::limit($user->biography, 150)) !!}
-                   <span class="post_read-more">Read More >></span>
+                   
                 </p>
               </div>
               
-              @endif
+              @endif -->
+              <span class="profile_read-more ">SEE PROFILE >></span>
           </div>
           </a>
       </div>
@@ -736,19 +785,19 @@ aria-hidden="true">
 </div>
 </div>
 @endif
-@if($job_design->blog_status != '1' && $job_design->blog_status != '2')
+@if($job_design && $job_design->blog_status != '1' && $job_design->blog_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
       <h4>Featured Blogs</h4>
-      <a href="{{ url('blogs') }}">View All</a>
+      <a href="{{ url('blogs') }}" class="link-color">View All</a>
     </div>
   </div>
   <div class="row" style="margin-bottom: 100px">
     <div class="owl-carousel" id="owl-carousel2">
     @foreach($posts as $post)
     <div class="item">
-    <div class="col-sm-12 mb-4 mt-4">
+    <div class="col-sm-12 mb-4 mt-4 p-4">
         <div class="blog-box-layout5">
             <div class="item-img">
                 <a href="{{ url('/blog/'.$post->slug) }}">
@@ -768,10 +817,10 @@ aria-hidden="true">
                   {!! clean(Str::limit($post->description, 150)) !!}
                 </p>
               </div>
-              <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more">Read More >></a>
+              <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more float-right">Read More >></a>
             </div>
-            <div class="post_meta-data">
-             <span class="post-date"> {{\Carbon\Carbon::parse($post->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}} </span>
+            <div class="post_meta-data ">
+             <span class="post-date float-right"> {{\Carbon\Carbon::parse($post->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}} </span>
            </div>
         </div>
     </div>
@@ -783,27 +832,54 @@ aria-hidden="true">
 @endif
 <footer class="footer bg-indigo is-dark bg-lighter" id="footer">
     <div class="container">
-        <div class="row g-3 align-items-center py-3">
-            <div class="col-md-1">
-                <div class="">
+
+        <div class="row g-3 align-items-center justify-content-md-between py-3">
+            <div class="col-md-6">
+                <div class="footer-logo d-flex">
                     <a href="{{ url('/') }}" class="logo-link">
                         <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
                         <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                     </a>
+                    <div class="mt-2 ml-5">
+                         <ul class="link-inline gx-4">
+                            <li><a href="#">How it works</a></li>
+                            <li><a href="#">Service</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul><!-- .footer-nav -->
+                        <div class="text-base" style="font-size: 13px"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
+
+                    </div>
+                 
                 </div><!-- .footer-logo -->
             </div><!-- .col -->
-            <div class="col-md-4">
-                <div class="text-base"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
-            </div><!-- .col -->
-            <div class="col-md-7 d-flex justify-content-md-end">
-                <ul class="link-inline gx-4">
-                    <li><a href="#">How it works</a></li>
-                    <li><a href="#">Service</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul><!-- .footer-nav --> 
+            <div class="col-md-6 d-flex justify-content-md-end">
+            @if($job_design)
+               @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
+              <div class="centered-text">
+                <div class="social">
+                @if($job_design->facebook)
+                <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
+                @endif
+                @if($job_design->instagram)
+                <a href="{{$job_design->instagram}}" target="_blank"><em class="icon ni ni-instagram-round"></em></a>
+                @endif
+                @if($job_design->linkedIn)
+                <a href="{{$job_design->linkedIn}}" target="_blank"><em class="icon ni ni-linkedin-round"></em></a>
+                @endif
+                @if($job_design->twitter)
+                <a href="{{$job_design->twitter}}" target="_blank"><em class="icon ni ni-twitter-round"></em></a>
+                @endif
+                @if($job_design->whatsApp)
+                <a href="{{$job_design->whatsApp}}" target="_blank"><em class="icon ni ni-whatsapp-round"></em></a>
+                 @endif
+                </div>
+              </div>
+              @endif
+              @endif
             </div><!-- .col -->
         </div>
+      </div>
         
 </footer><!-- .footer -->
 @endif
@@ -813,6 +889,13 @@ aria-hidden="true">
 <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
+<script>
+    function toggleMobileMenu() {
+        // Toggle the visibility of your mobile menu or add your custom logic here
+        var mobileMenu = document.querySelector('.mobile-menu');
+        mobileMenu.style.display = (mobileMenu.style.display === 'block' ? 'none' : 'block');
+    }
+</script>
 <script type="text/javascript">
      $(document).ready(function(){
        $('#owl-carousel').owlCarousel({

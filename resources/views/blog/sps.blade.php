@@ -23,28 +23,20 @@
                       </div>
                       <a href="{{ url('sp-profile/'.$user->id) }}">
                       <div class="card-body">
-                          <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
-                          <p> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
+                          <h5 class="card-title text-center mb-0 mt-0">{{$user->first_name}} {{$user->last_name}}</h5>
+                          <p class="mb-1"> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                            @else
                            {{$user->city}}
                            @endif</p>
-                          <p class="card-text text-center">
+                          <p class="card-text text-center mb-0">
                             @foreach(json_decode($user->category_id) as $key => $cat)
-                              <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                              <span class="data-value badge badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                               @if ($key < count(json_decode($user->category_id)) - 1)
-                                  , 
+                                  
                               @endif
                           @endforeach
                           </p>
-                           @if($user->biography)
-                          <div class="post_excerpt">
-                            <p>
-                               {!! clean(Str::limit($user->biography, 150)) !!}
-                               <span class="post_read-more">Read More >></span>
-                            </p>
-                          </div>
-                          
-                          @endif
+                           <span class="profile_read-more">SEE PROFILE >></span>
                       </div>
                     </a>
                   </div>
