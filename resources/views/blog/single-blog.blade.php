@@ -10,7 +10,6 @@
                     <div class="container">
                         <ul class="entry-meta meta-color-light2">
                             <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
-                            <li><i class="fas fa-user"></i>BY <a href="#">Mark Willy</a></li>
                         </ul>
                         <h2 class="item-title">{{$post->title}}</h2>
                       
@@ -48,7 +47,7 @@
                                                 <!-- <li><i class="fas fa-tag"></i>Weeding</li> -->
                                                 <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
                                             </ul>
-                                            <h4 class="item-title"><a href="#">{{$post->title}}</a></h4>
+                                            <h4 class="item-title"><a href="{{ url('blog/'.$post->slug) }}">{{$post->title}}</a></h4>
                                         </div>
                                     </li>
                                     @endforeach

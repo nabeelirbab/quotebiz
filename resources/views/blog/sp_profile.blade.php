@@ -98,9 +98,9 @@
                     <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
                     <p class="card-text text-center">
                       @foreach(json_decode($user->category_id) as $key => $cat)
-                        <span class="data-value text-soft">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                        <span class="data-value badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                         @if ($key < count(json_decode($user->category_id)) - 1)
-                            , 
+                             
                         @endif
                     @endforeach
                     </p>
@@ -131,7 +131,7 @@
 					
 				</div>
 
-				<h2>Biography</h2>
+				<h2 class="mb-4">Biography</h2>
 				<div class="row mb-5 border-bottom">
 					<div class="col-md-12">
 						<p>
@@ -139,12 +139,12 @@
 						</p>
 					</div>
 				</div>
-				<h2>Gallery</h2>
+				<h2 class="mb-5">Gallery</h2>
 				 <div class="row">
 				  @foreach($user->gallery as  $key => $gallery)
-				    <div class="col-md-4 mb-4">
+				    <div class="col-md-3 mb-4 text-center">
 				        <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
-				            <img src="{{ asset('frontend-assets/images/'.$gallery->image)}}" alt="Image {{ $key + 1 }}" class="img-fluid gallery-img">
+				            <img src="{{ asset('frontend-assets/images/'.$gallery->image)}}" alt="Image {{ $key + 1 }}" class="img-fluid gallery-img" >
 				        </a>
 				    </div>
 				    @endforeach

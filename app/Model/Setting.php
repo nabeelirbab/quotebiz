@@ -81,6 +81,7 @@ class Setting extends Model
     {
 
         $adminsetting = SiteSetting::where('subdomain',Setting::subdomain())->first();
+
         $mailsetting = MailSetting::where('subdomain',Setting::subdomain())->first();
         if (is_object($mailsetting)) {
               if($name == 'mailer.mailer' || $name == 'mailer.host' || $name == 'mailer.port' || $name == 'mailer.encryption' || $name == 'mailer.username' || $name == 'mailer.password' || $name == 'mailer.from.name' || $name == 'mailer.from.address' || $name == 'mailer.sendmail_path'){
@@ -89,21 +90,21 @@ class Setting extends Model
             }
         }
         if($adminsetting && $adminsetting->$name != null){
-        if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_title' || $name == 'site_tagline' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'meta_tag' || $name == 'site_favicon'){
-            
-                return $adminsetting->$name; 
-            }else{
+            if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_title' || $name == 'site_tagline' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'meta_tag' || $name == 'site_favicon'){
                 
-             $setting = self::where('name', $name)->first();
+                    return $adminsetting->$name; 
+                }else{
+                    
+                 $setting = self::where('name', $name)->first();
 
-            if (is_object($setting)) {
-                return $setting->value;
-            } elseif (isset(self::defaultSettings()[$name])) {
-                return self::defaultSettings()[$name]['value'];
-            } else {
-                // @todo exception case not handled
-                return $defaultValue;
-            }
+                if (is_object($setting)) {
+                    return $setting->value;
+                } elseif (isset(self::defaultSettings()[$name])) {
+                    return self::defaultSettings()[$name]['value'];
+                } else {
+                    // @todo exception case not handled
+                    return $defaultValue;
+                }
             }
         }else{
             

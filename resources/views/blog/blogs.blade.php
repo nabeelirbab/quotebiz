@@ -33,10 +33,10 @@
                                   {!! clean(Str::limit($post->description, 140)) !!}
                                 </p>
                               </div>
-                              <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more">Read More >></a>
+                              <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more float-right">Read More >></a>
                             </div>
-                            <div class="post_meta-data">
-                             <span class="post-date"> {{$post->created_at->format('F d, Y')}} </span>
+                            <div class="post_meta-data ">
+                             <span class="post-date float-right"> {{$post->created_at->format('F d, Y')}} </span>
                            </div>
                         </div>
                     </div>

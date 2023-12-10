@@ -23,7 +23,7 @@ class GalleryImageController extends Controller
 public function store(Request $request)
 {
     $request->validate([
-        'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'images.*' => 'required',
     ]);
 
     foreach ($request->file('images') as $uploadedImage) {
@@ -51,7 +51,7 @@ public function edit($account, $id)
 public function update(Request $request, $id)
 {
     $request->validate([
-        'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'images.*' => 'required',
     ]);
 
     $imagePaths = [];

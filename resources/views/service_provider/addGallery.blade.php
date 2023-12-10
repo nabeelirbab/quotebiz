@@ -88,7 +88,7 @@
                                             @method('PUT')
                                         @endif
                                         <div class="form-group mt-4">
-                                            <input type="file" class="form-control" name="images[]" id="images" multiple>
+                                            <input type="file" class="form-control" name="images[]" id="images" multiple accept="image/*">
                                         </div>
                                         <div id="imagePreviews" class="mt-2 mb-3">
                                             @if(isset($image))
@@ -97,7 +97,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-success mt-3">{{ isset($image) ? 'Update' : 'Add' }} Images</button>
                                     </form>
-                                            </div>
+                                  </div>
                                         
                                     </div><!-- .nk-block -->
                                 </div>

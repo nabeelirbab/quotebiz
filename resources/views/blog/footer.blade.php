@@ -23,7 +23,7 @@
     <!-- Meanmenu js -->
     <script src="{{ asset('frontend-assets/js/blog/jquery.meanmenu.min.js') }}"></script>
     <!-- Main js -->
-    <script src="{{ asset('frontend-assets/js/blog/main.js') }}"></script>
+    <script src="{{ asset('frontend-assets/js/blog/mains.js') }}"></script>
 
 </body>
 

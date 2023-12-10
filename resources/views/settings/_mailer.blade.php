@@ -1,4 +1,3 @@
-@if (Auth::user()->admin->getPermission("setting_general") == 'yes')
     <div class="tab-pane active mailer-form" id="top-smtp">
         <div class="row">
             <div class="col-md-6">
@@ -148,4 +147,3 @@
             });
         });
     </script>
-@endif

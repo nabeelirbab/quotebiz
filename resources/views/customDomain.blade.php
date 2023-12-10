@@ -159,7 +159,7 @@ input:checked + .slider .off
         <h5 class="title">Set Custom Domain</h5>
 
     </div>
-    @if(Auth::user()->customdomain->parent)
+    @if(@Auth::user()->customdomain->parent)
     <ul class="uldesign" >
       <li>Log in to your Domain registrar's account.</li>
       <li>Select the domain ({{Auth::user()->customdomain->parent}})</li>
@@ -184,7 +184,7 @@ input:checked + .slider .off
    <div class="form-row p-2">
      <div class="form-group col-md-12"  id="addOption">
       <label for="inputState">Add your domain</label>
-       <input type="domain" @if(Auth::user()) value="{{Auth::user()->customdomain->parent}}" @endif name="parent" class="form-control" required ><br>
+       <input type="domain" @if(Auth::user()) value="{{@Auth::user()->customdomain->parent}}" @endif name="parent" class="form-control" required ><br>
        <div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>
      </div>
   </form>

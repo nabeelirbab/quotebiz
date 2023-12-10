@@ -50,6 +50,9 @@ if (isset($post)) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
+      h1, h2, h3, h4, h5, h6 {
+          margin: 20px 5px 0;
+      }
         /* Add custom styles here */
         .gallery-img {
             border-radius: 10px; /* Add border radius */
@@ -67,7 +70,7 @@ if (isset($post)) {
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
         }
         .logo-mobile{
-            width: 25%;
+            width: 14%;
         }
         .single-blog-banner-layout1 .banner-content .item-social li .linkedin {
             background-color: #0A66C2;
@@ -159,7 +162,7 @@ if (isset($post)) {
           height: 240px;
         }
         .post_excerpt{
-          margin-bottom: 25px;
+          /*margin-bottom: 25px;*/
           line-height: 1.7;
           box-sizing: border-box;
         }
@@ -169,14 +172,29 @@ if (isset($post)) {
           font-size: 14px;
           color: #777;
         }
-        .post_read-more {
-          text-transform: uppercase;
-          margin-bottom: 20px;
-          display: inline-block;
-          font-size: 12px;
-          font-weight: 700;
-          color: #fb816a !important;
-        }
+       .profile_read-more {
+            text-transform: uppercase;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 6px;
+            right: 85px;
+            color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+          }
+
+          .post_read-more {
+            text-transform: uppercase;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 85px;
+            right: 36px;
+            color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+          }
         .post_meta-data {
           margin-top: auto;
           padding: 15px 30px;
@@ -198,6 +216,11 @@ if (isset($post)) {
         .single-blog-box-layout1{
           max-width: 100%;
           overflow-y: auto;
+        }
+        .text-soft{
+          color: #5daac3 !important;
+          font-weight: bold;
+          font-size: 1.2rem;
         }
 
     </style>
@@ -234,7 +257,7 @@ if (isset($post)) {
                             @endif
                         </div>
                         <div class="col-lg-4 d-flex justify-content-center">
-                            <div class="logo-area">
+                            <div class="logo-area" style="width: 120px">
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
                                     <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" class="img-fluid">
                                 </a>
@@ -258,6 +281,9 @@ if (isset($post)) {
                                     </li>
                                     <li>
                                         <a href="{{ url('/blogs') }}">BLOG</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/service-providers') }}">SERVICE PROVIDERS</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/login') }}">Login</a>
