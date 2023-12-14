@@ -182,6 +182,8 @@ class HomeController extends Controller
                 $sitesetting->site_keyword = $request->site_keyword;
                 $sitesetting->site_title = $request->site_title;
                 $sitesetting->site_tagline = $request->site_tagline;
+                $sitesetting->logo_width = $request->logo_width;
+                $sitesetting->logo_height = $request->logo_height;
                 $sitesetting->site_description = $request->site_description;
 
                 if ($request->file('site_smalllogo')) {
@@ -205,6 +207,8 @@ class HomeController extends Controller
                 $sitesetting->site_keyword = $request->site_keyword;
                 $sitesetting->site_title = $request->site_title;
                 $sitesetting->site_tagline = $request->site_tagline;
+                $sitesetting->logo_width = $request->logo_width;
+                $sitesetting->logo_height = $request->logo_height;
                 $sitesetting->site_description = $request->site_description;
 
                 if ($request->file('site_smalllogo')) {

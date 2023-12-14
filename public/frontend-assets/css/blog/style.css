@@ -82,7 +82,6 @@ html {
 }
 body {
   font-size: 16px;
-  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   height: 100%;
   line-height: 28px;
@@ -104,7 +103,6 @@ h4,
 h5,
 h6 {
   font-weight: bold;
-  font-family: 'DM Sans Bold', sans-serif;
   margin: 0 0 20px 0;
   color: #111111;
 }
@@ -1832,9 +1830,7 @@ header.header {
 .header-menu nav.template-main-menu > ul > li > a:hover {
   animation: toBottomFromTop10 0.3s forwards;
 }
-nav.template-main-menu {
-  font-family: 'DM Sans', sans-serif;
-}
+
 nav.template-main-menu > ul > li {
   position: relative;
 }
@@ -4165,7 +4161,6 @@ div#wrapper.open > .offcanvas-mask {
   margin-right: 0;
 }
 .widget-post-tab .tab-nav-list .nav-item a {
-  font-family: 'DM Sans', sans-serif;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 1px;

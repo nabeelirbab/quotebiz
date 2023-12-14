@@ -5,13 +5,9 @@
 @section('page_header')
 
     <div class="page-title">				
-        <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ url('/admin') }}">{{ trans('messages.home') }}</a></li>
-        </ul>
+       
         <h1>
-            <span class="text-gear"><span class="material-icons-outlined">
-email
-</span> {{ trans('messages.system_email') }}</span>
+            {{ trans('messages.system_email') }}</span>
         </h1>				
     </div>
 
@@ -34,7 +30,6 @@ email
         {{ csrf_field() }}
         
         <div class="tabbable">
-           @include("account._menu")
 
             <div class="tab-content">
                 <p>{{ trans('messages.system_email.intro') }}</p>

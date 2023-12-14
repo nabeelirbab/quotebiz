@@ -169,7 +169,7 @@
 </div><!-- .card-inner-group -->
 </div>
 </div>
-<div class="col-xxl-6 col-sm-6">
+<div class="col-xxl-3 col-sm-6">
 <div class="card">
 <div class="card-inner-group p-0" >
 <div class="card-inner text-center" style="padding: 1.5em;">
@@ -177,7 +177,7 @@
     <div class="card-title">
         <h5 class="title">Set Cost Per Quote</h5>
     </div>
-</div><!-- .card-inner -->
+</div>
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
  <form action="{{ url('/admin/quoteprice') }}" method="post">
@@ -199,13 +199,50 @@
        <div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>
      </div>
   </form>
-</div><!-- .nk-tb-list -->
-</div><!-- .card-inner -->
+</div>
+</div>
 
-</div><!-- .card-inner-group -->
-</div><!-- .card -->
+</div>
+</div>
+</div>
 
-</div><!-- .nk-block -->
+</div>
+<div class="col-xxl-3 col-sm-6">
+<div class="card">
+<div class="card-inner-group p-0" >
+<div class="card-inner text-center" style="padding: 1.5em;">
+    <?php $freeCredits = Acelle\Jobs\HelperJob::freeCredits(); ?>
+    <div class="card-title">
+        <h5 class="title">Free Credits For New User</h5>
+    </div>
+</div>
+<div class="card-inner  p-0 ">
+<div class="nk-tb-list nk-tb-tnx">
+ <form action="{{ url('/admin/freecredits') }}" method="post">
+     {{ csrf_field() }}
+    <input type="hidden" @if($freeCredits) value="{{$freeCredits->id}}" @endif name="id">
+   <div class="form-row p-2">
+     <div class="form-group col-md-12"  id="addOption">
+      <label for="inputState">Global credit cost per category</label>
+       <input type="number" @if($freeCredits) value="{{$freeCredits->credits}}" @else value="" @endif name="credits" class="form-control" required > </div>
+     <div class="form-group col-md-12">
+       <label >Status</label>
+       <select class="form-control" name="status" name="type"required>
+         <option >Choose...</option>
+         <option value="active" {{$freeCredits && $freeCredits->status == 'active' ? 'selected':'' }}>Active</option>
+         <option value="inactive" {{ $freeCredits && $freeCredits->status == 'inactive' ? 'selected':'' }}>Inactive</option>
+       </select>
+       <br>
+       <div class="text-center"> <button class="btn btn-success btn-lg" type="submit">Save</button></div>
+    
+     </div>
+    
+  </form>
+</div>
+</div>
+
+</div>
+</div>
 </div>
 </div>
 </div>
