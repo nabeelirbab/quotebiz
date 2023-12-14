@@ -64,7 +64,7 @@ body {
 }
 .select2-selection__rendered {
   line-height: 35px !important;
-  color: #52648482 !important;
+  color: #b6cae9 !important;
   font-size: 1.1rem;
 }
 .select2-container .select2-selection--single {

@@ -61,7 +61,7 @@ if (isset($post)) {
     #header-middlebar {
         background-image: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image) : 'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg' }});
         background-position: center;
-        height: 128px;
+        height: 160px;
         background-color: rgb(238, 238, 238);
         background-repeat: no-repeat;
     }
