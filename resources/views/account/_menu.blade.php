@@ -48,39 +48,9 @@
     </li>
     @endif
     @if($subscription->plan_id == 2 || $subscription->plan_id == 3 || $subscription->plan_id == 4 || $subscription->plan_id == 5)
-    <li class="nav-item"
-    rel0="SettingController/savemail">
-    <a href="{{ url("admin/mail") }}" class="nav-link">
-       <span class="material-icons-outlined">
-     email
-    </span> {{ trans('messages.system_email') }}
-    </a>
-    </li>
+  
     @endif
-    <li class="nav-item" rel0="AccountController/api">
-        <a href="{{ url("admin/account/api") }}" class="nav-link">
-            <span class="material-icons-outlined">
-    vpn_key
-    </span> {{ trans('messages.api_token') }}
-        </a>
-    </li>
-
-    <li class="nav-item" rel0="AccountController/currency">
-        <a href="{{ url("admin/account/currency") }}" class="nav-link">
-            <span class="material-icons-outlined">money
-    </span> Currency
-        </a>
-    </li>
-
-        <li class="nav-item" rel0="AccountController/location-setting">
-            <a href="{{ url("admin/account/location-setting") }}" class="nav-link">
-            <span class="material-icons-outlined">map</span>
-               Service Location Setting
-            </a>
-        </li>
-
-
-
+   
     </ul>
     </div>
     </div>
