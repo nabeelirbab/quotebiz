@@ -239,6 +239,9 @@ if (isset($post)) {
           font-weight: bold;
           font-size: 1.2rem;
         }
+        .item-social-layout2 a{
+           color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#333 !important'}};
+        }
 
 
     </style>
