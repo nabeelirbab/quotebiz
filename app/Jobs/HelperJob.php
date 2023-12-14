@@ -16,6 +16,7 @@ use Acelle\Model\SiteSetting;
 use Acelle\Model\SubCategory;
 use Acelle\Model\Country;
 use Acelle\Model\State;
+use Acelle\Model\FreeCredit;
 use Acelle\Model\City;
 use Acelle\Library\ExtendedSwiftMessage;
 use Illuminate\Support\Facades\Auth;
@@ -103,6 +104,10 @@ class HelperJob extends Base
 
    public static function quoteprice(){
       return QuotePrice::where('subdomain',Setting::subdomain())->first();
+    }
+
+   public static function freeCredits(){
+      return FreeCredit::where('subdomain',Setting::subdomain())->first();
     }
 
    public static function setcurrency($to,$amount){

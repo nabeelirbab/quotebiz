@@ -5,7 +5,9 @@
 @section('content')
     <div class="row">
         <div class="col-sm-2 col-md-3">
-            
+        <a class="main-logo-big" href="{{ url('/') }}">
+                <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark')) }}" alt="">
+        </a>
         </div>
         <div class="col-sm-8 col-md-6">
             <h2 class="text-semibold mt-5 text-white">{{ trans('messages.activation_email_sent_title') }}</h2>

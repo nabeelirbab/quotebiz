@@ -23,23 +23,12 @@
         </style>
     @endsection
 
-    <div class="page-title">
-        <ul class="breadcrumb breadcrumb-caret position-right">
-            <li class="breadcrumb-item"><a href="{{ url("/admin") }}">{{ trans('messages.home') }}</a></li>
-            <li class="breadcrumb-item active">Location Setting</li>
-        </ul>
-        <h1>
-<span class="text-semibold"><span class="material-icons-round">
-person_outline
-</span> {{ Auth::user()->displayName() }}</span>
-        </h1>
-    </div>
+
 
 @endsection
 
 @section('content')
 
-    @include("account._menu")
    <?php
        $col = '12';
        if(Auth::user()->admin_location_type == "State Wise"){

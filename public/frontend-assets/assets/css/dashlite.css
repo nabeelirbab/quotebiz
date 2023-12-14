@@ -142,7 +142,7 @@ template { display: none; }
 
 [hidden] { display: none !important; }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-bottom: 0.5rem; font-family: DM Sans Bold, sans-serif; font-weight: bold; line-height: 1.1; color: #364a63; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-bottom: 0.5rem;  font-weight: bold; line-height: 1.1; color: #364a63; }
 
 h1, .h1 { font-size: 2rem; }
 
@@ -853,7 +853,7 @@ textarea.form-control, .dual-listbox textarea.dual-listbox__search { height: aut
   .form-inline .custom-control { align-items: center; justify-content: center; }
   .form-inline .custom-control-label { margin-bottom: 0; } }
 
-.btn, .dual-listbox .dual-listbox__button { display: inline-block; font-family: DM Sans Bold, sans-serif; font-weight: bold; color: #526484; text-align: center; vertical-align: middle; user-select: none; background-color: transparent; border: 1px solid transparent; padding: 0.4375rem 1.125rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 4px; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+.btn, .dual-listbox .dual-listbox__button { display: inline-block;  font-weight: bold; color: #526484; text-align: center; vertical-align: middle; user-select: none; background-color: transparent; border: 1px solid transparent; padding: 0.4375rem 1.125rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 4px; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 
 @media (prefers-reduced-motion: reduce) { .btn, .dual-listbox .dual-listbox__button { transition: none; } }
 
@@ -4164,7 +4164,7 @@ svg { height: 100%; max-width: 100%; }
 
 .shrink-0 { flex-shrink: 0; }
 
-.badge { position: relative; border: 1px solid currentColor; line-height: 1.125rem; font-family: DM Sans, sans-serif; letter-spacing: 0.01em; vertical-align: middle; display: inline-flex; }
+.badge { position: relative; border: 1px solid currentColor; line-height: 1.125rem;  letter-spacing: 0.01em; vertical-align: middle; display: inline-flex; }
 
 .badge .icon + span, .badge span + .icon { padding-left: 4px; }
 
@@ -4430,7 +4430,7 @@ a.alert:hover { color: currentColor; }
 
 .breadcrumb-sm .breadcrumb-item { font-size: 13px; }
 
-.link { display: inline-flex; align-items: center; font-size: 0.85rem; font-weight: 500; font-family: DM Sans, sans-serif; line-height: 1; border: none; background: transparent; transition: all .3s ease; white-space: nowrap; }
+.link { display: inline-flex; align-items: center; font-size: 0.85rem; font-weight: 500;  line-height: 1; border: none; background: transparent; transition: all .3s ease; white-space: nowrap; }
 
 .link:focus { box-shadow: none; outline: none; }
 
@@ -4849,7 +4849,7 @@ a:hover .btn-trigger:before { opacity: 1; height: 120%; width: 120%; }
 
 .card-title small { font-weight: 500; color: #8094ae; }
 
-.card-subtitle { color: #8094ae; font-family: DM Sans, sans-serif; font-weight: normal; }
+.card-subtitle { color: #8094ae;  font-weight: normal; }
 
 .card-tools-nav { display: flex; margin: -6px -10px -5px; }
 
@@ -5201,7 +5201,7 @@ input[type="radio"]:checked ~ label { cursor: default; }
 
 .nav .nav-link .icon { font-size: 1.3em; }
 
-.nav-tabs { font-family: DM Sans, sans-serif; margin: 0; font-size: 0.8125rem; border-bottom: 1px solid #dbdfea; }
+.nav-tabs {  margin: 0; font-size: 0.8125rem; border-bottom: 1px solid #dbdfea; }
 
 .nav-tabs-s2 { border-bottom: none; justify-content: center; }
 
@@ -5251,7 +5251,7 @@ input[type="radio"]:checked ~ label { cursor: default; }
 
 .nav-item-trigger { display: inline-flex; align-items: center; margin: -1px -.5rem 0 auto; }
 
-.nav-tabs-card { padding-left: 1.25rem; padding-right: 1.25rem; font-family: DM Sans, sans-serif; }
+.nav-tabs-card { padding-left: 1.25rem; padding-right: 1.25rem;  }
 
 @media (min-width: 576px) { .nav-tabs-card { padding-left: 1.5rem; padding-right: 1.5rem; } }
 
@@ -7523,7 +7523,7 @@ ol.linenums li { padding-left: 12px; color: #bebec5; line-height: 18px; text-sha
 
 .select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button { -webkit-appearance: none; }
 
-.select2-dropdown { background-color: #fff; border-radius: 4px; box-shadow: none; border: 1px solid #dbdfea; font-family: DM Sans, sans-serif; font-size: 13px; font-weight: 400; display: block; position: absolute; left: -100000px; z-index: 1051; padding: 6px; }
+.select2-dropdown { background-color: #fff; border-radius: 4px; box-shadow: none; border: 1px solid #dbdfea;  font-size: 13px; font-weight: 400; display: block; position: absolute; left: -100000px; z-index: 1051; padding: 6px; }
 
 .select2-dropdown--below { margin-top: -1px; border-radius: 0 0 4px 4px; }
 
@@ -7559,7 +7559,7 @@ ol.linenums li { padding-left: 12px; color: #bebec5; line-height: 18px; text-sha
 
 .select2-hidden-accessible { border: 0 !important; clip: rect(0 0 0 0) !important; -webkit-clip-path: inset(50%) !important; clip-path: inset(50%) !important; height: 1px !important; overflow: hidden !important; padding: 0 !important; position: absolute !important; width: 1px !important; white-space: nowrap !important; }
 
-.select2-container--default .select2-selection--single { height: calc(2.125rem + 2px); font-family: DM Sans, sans-serif; font-size: 13px; font-weight: 400; background-color: #fff; border: 1px solid #dbdfea; border-radius: 4px; box-shadow: none; transition: all 0.3s; }
+.select2-container--default .select2-selection--single { height: calc(2.125rem + 2px);  font-size: 13px; font-weight: 400; background-color: #fff; border: 1px solid #dbdfea; border-radius: 4px; box-shadow: none; transition: all 0.3s; }
 
 .select2-sm .select2-container--default .select2-selection--single { font-size: 12px; }
 
@@ -7613,7 +7613,7 @@ ol.linenums li { padding-left: 12px; color: #bebec5; line-height: 18px; text-sha
 
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow:after { content: ""; }
 
-.select2-container--default .select2-selection--multiple { background-color: #fff; border: 1px solid #dbdfea; border-radius: 4px; font-family: DM Sans, sans-serif; font-size: 13px; font-weight: 400; cursor: text; }
+.select2-container--default .select2-selection--multiple { background-color: #fff; border: 1px solid #dbdfea; border-radius: 4px;  font-size: 13px; font-weight: 400; cursor: text; }
 
 .select2-container--default .select2-selection--multiple .select2-search--inline input::placeholder { color: #8094ae; }
 
@@ -9306,7 +9306,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 
 .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk:empty { display: none; }
 
-.fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .btn, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox .dual-listbox__button, .dual-listbox .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox__button { position: relative; font-family: DM Sans, sans-serif; font-weight: 700; font-size: 12px; background: transparent; color: #8094ae; border: 1px solid #dbdfea; text-transform: capitalize; }
+.fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .btn, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox .dual-listbox__button, .dual-listbox .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox__button { position: relative;  font-weight: 700; font-size: 12px; background: transparent; color: #8094ae; border: 1px solid #dbdfea; text-transform: capitalize; }
 
 .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .btn:disabled, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox .dual-listbox__button:disabled, .dual-listbox .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox__button:disabled { background: transparent; color: #8094ae; border: 1px solid #dbdfea; }
 
@@ -10741,13 +10741,13 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu > .nk-menu-item.menu-without-icon > .nk-menu-sub .nk-menu-link { padding-left: 0; }
 
-.nk-menu-link { padding: 0.625rem 40px 0.625rem 24px; color: #6e82a5; font-family: DM Sans, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.01em; text-transform: none; line-height: 1.25rem; }
+.nk-menu-link { padding: 0.625rem 40px 0.625rem 24px; color: #6e82a5;  font-weight: 700; font-size: 15px; letter-spacing: 0.01em; text-transform: none; line-height: 1.25rem; }
 
 .nk-menu-link:hover, .active > .nk-menu-link { color: #7f8dff; }
 
 .nk-menu-link:hover .count, .active > .nk-menu-link .count { color: #7f8dff; }
 
-.nk-menu-sub .nk-menu-link { padding: 0.375rem 40px 0.375rem 36px; font-family: DM Sans, sans-serif; font-weight: 400; font-size: 14px; letter-spacing: normal; text-transform: none; line-height: 1.25rem; color: #6e82a5; }
+.nk-menu-sub .nk-menu-link { padding: 0.375rem 40px 0.375rem 36px;  font-weight: 400; font-size: 14px; letter-spacing: normal; text-transform: none; line-height: 1.25rem; color: #6e82a5; }
 
 .nk-menu-link.is-disable { cursor: default; }
 
@@ -10890,7 +10890,7 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-footer { display: flex; }
 
-.nk-menu-footer .nk-menu-link { padding-left: 0; padding-right: 0; padding-top: .25rem; padding-bottom: .25rem; color: #8094ae; font-family: DM Sans, sans-serif; font-weight: 500; }
+.nk-menu-footer .nk-menu-link { padding-left: 0; padding-right: 0; padding-top: .25rem; padding-bottom: .25rem; color: #8094ae;  font-weight: 500; }
 
 .nk-menu-footer .nk-menu-link:hover { color: #7f8dff; }
 
@@ -10918,7 +10918,7 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-main > li > .nk-menu-link { text-transform: uppercase; letter-spacing: 0.05rem; }
 
-.nk-menu-main.ui-s2 > li > .nk-menu-link { font-family: DM Sans, sans-serif; font-weight: 500; text-transform: initial; letter-spacing: -0.01rem; }
+.nk-menu-main.ui-s2 > li > .nk-menu-link {  font-weight: 500; text-transform: initial; letter-spacing: -0.01rem; }
 
 @media (max-width: 991.98px) { .nk-menu-main.nk-menu { max-height: calc(100vh - 65px); overflow: auto; } }
 
@@ -11554,7 +11554,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .input-group-addon:not(:first-child) { border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; }
 
-.page-title { font-family: DM Sans, sans-serif; font-size: 1.5rem; font-weight: 700; }
+.page-title {  font-size: 1.5rem; font-weight: 700; }
 
 @media (min-width: 992px) { .page-title { font-size: 1.75rem; } }
 
@@ -12236,7 +12236,7 @@ body.toggle-shown { overflow: hidden; }
 
 .nav-switch { display: inline-flex; margin-bottom: 1.5rem; border: 1px solid #dbdfea; border-radius: 30px; padding: 5px; }
 
-.nav-switch .nav-link { padding: 5px 16px; line-height: 20px; border-radius: 20px; position: static; text-transform: uppercase; font-family: DM Sans, sans-serif; font-weight: 700; font-size: 12px; color: #8094ae; }
+.nav-switch .nav-link { padding: 5px 16px; line-height: 20px; border-radius: 20px; position: static; text-transform: uppercase;  font-weight: 700; font-size: 12px; color: #8094ae; }
 
 .nav-switch .nav-link.active { background: #0fac81; color: #fff; }
 
@@ -12252,7 +12252,7 @@ body.toggle-shown { overflow: hidden; }
 
 .nav-switch-s2 { display: inline-flex; border-radius: 4px; border: none; }
 
-.nav-switch-s2 .nav-link { padding: .25rem .7rem; line-height: 20px; border-radius: 0; position: static; text-transform: uppercase; font-family: DM Sans, sans-serif; font-weight: 700; font-size: 12px; color: #8094ae; border: 1px solid #dbdfea; }
+.nav-switch-s2 .nav-link { padding: .25rem .7rem; line-height: 20px; border-radius: 0; position: static; text-transform: uppercase;  font-weight: 700; font-size: 12px; color: #8094ae; border: 1px solid #dbdfea; }
 
 .nav-switch-s2 .nav-link:hover, .nav-switch-s2 .nav-link:focus { color: #526484; background: #f5f6fa; border: 1px solid #dbdfea; }
 
@@ -15062,7 +15062,7 @@ p > span > .icon.ni { vertical-align: middle; }
 
 .example-alerts:not(:last-child) { margin-bottom: 28px; }
 
-.components-preview h4.title, .components-preview h5.title { font-size: 1.25rem; letter-spacing: -0.01rem; font-family: DM Sans, sans-serif; font-weight: 500; }
+.components-preview h4.title, .components-preview h5.title { font-size: 1.25rem; letter-spacing: -0.01rem;  font-weight: 500; }
 
 .components-preview .card-preview > .card-inner { padding: 1.25rem; }
 

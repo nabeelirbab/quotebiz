@@ -35,28 +35,16 @@
 }
 
 </style>
-@section('page_header')
 
-<div class="page-title">
-<ul class="breadcrumb breadcrumb-caret position-right">
-<li class="breadcrumb-item"><a href="{{ url('/admin') }}">{{ trans('messages.home') }}</a></li>
-<li class="breadcrumb-item active">Site Setting</li>
-</ul>
-<h1>
-<span class="text-semibold"><span class="material-icons-round">
-person_outline
-</span> {{ Auth::user()->displayName() }}</span>
-</h1>
-</div>
-@endsection
 @section('content')
-@include("account._menu")
 <?php
 
 $sitename = '';
 $sitekeyword = '';
 $sitetitle = '';
 $sitetagline = '';
+$logo_width = '';
+$logo_height = '';
 $sitedesc = '';
 $sitesmalllogo = '';
 $sitelargelogo = '';
@@ -66,6 +54,8 @@ $sitename = \Acelle\Model\Setting::get("site_name");
 $sitekeyword = \Acelle\Model\Setting::get("site_keyword");
 $sitetitle = \Acelle\Model\Setting::get("site_title");
 $sitetagline = \Acelle\Model\Setting::get("site_tagline");
+$logo_width = \Acelle\Model\Setting::get("logo_width");
+$logo_height = \Acelle\Model\Setting::get("logo_height");
 $sitedesc = \Acelle\Model\Setting::get("site_description");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
 $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
@@ -207,6 +197,25 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                      <textarea type="text" name="site_description" rows="20" class="form-control required ">{{$sitedesc}}</textarea>  </div>
                      </div>
                       <div class="col-md-6  mb-4">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                            <label class="form-label" for="default-01">Logo Width</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$logo_width}}" name="logo_width"  placeholder="Enter Logo Width In px" >
+                            </div>
+                           </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                            <label class="form-label" for="default-01">Logo Height</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$logo_height}}" name="logo_height"  placeholder="Enter Logo Height In px" >
+                            </div>
+                           </div>
+                          </div>
+
+                        </div>
                       </div>
                       <div class="col-md-6  mb-4">
                          <label class="form-label"> Preview as

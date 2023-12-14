@@ -50,9 +50,22 @@ if (isset($post)) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
     <style type="text/css">
+     body {
+              font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+
+        }
+
       h1, h2, h3, h4, h5, h6 {
           margin: 20px 5px 0;
       }
+    #header-middlebar {
+        background-image: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image) : 'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg' }});
+        background-position: center;
+        height: 128px;
+        background-color: rgb(238, 238, 238);
+        background-repeat: no-repeat;
+    }
+
         /* Add custom styles here */
         .gallery-img {
             border-radius: 10px; /* Add border radius */
@@ -222,6 +235,7 @@ if (isset($post)) {
           font-weight: bold;
           font-size: 1.2rem;
         }
+
 
     </style>
 </head>

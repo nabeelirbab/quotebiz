@@ -134,7 +134,7 @@
                             </div>
                         </div>
                        </div>
-                           <div class="col-md-6 col-sm-6">
+                       <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Link Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
@@ -158,6 +158,28 @@
                          </div>
                          </div>
                       </div>
+                       <div class="form-group">
+                            <label class="form-label" for="Facebook">Font Family</label>
+                           
+                              <div  class="input-group" title="Using input value">
+                              <select  class="form-control js-example-basic-single" name="font_family">
+                                <option>Select Font</option>
+                                <option value="Arial" style="font-family: Arial !important" {{ $formdesign->font_family === 'Arial' ? 'selected' : '' }}>Arial</option>
+                                <option value="DM Sans" {{ $formdesign->font_family === 'DM Sans' ? 'selected' : '' }}>DM Sans</option>
+                                <option value="Helvetica" {{ $formdesign->font_family === 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                <option value="Times New Roman" {{ $formdesign->font_family === 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                <option value="Georgia" {{ $formdesign->font_family === 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                <option value="Courier New" {{ $formdesign->font_family === 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                <option value="Verdana" {{ $formdesign->font_family === 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                <option value="Tahoma" {{ $formdesign->font_family === 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                <option value="Palatino" {{ $formdesign->font_family === 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                <option value="Garamond" {{ $formdesign->font_family === 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                <option value="Bookman" {{ $formdesign->font_family === 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                <option value="Comic Sans MS" {{ $formdesign->font_family === 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                              </select>
+                           
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="form-label" for="Facebook">Facebook</label>
                               <div  class="input-group" title="Using input value">
@@ -237,13 +259,13 @@
                         </div>
 
                         <div class="form-group">
-                          <label class="form-label" for="default-01">Blog Section Visibility On Homepage</label>
+                          <label class="form-label" for="default-01">Blog Section Visibility</label>
                           <div class="form-control-wrap">
                            <label>
-                            <input type="radio" name="blog_status" autocomplete="off" value="0" {{$formdesign && $formdesign->blog_status == '0' ? 'checked':''}} > Show
+                            <input type="radio" name="blog_status" autocomplete="off" value="0" {{$formdesign && $formdesign->blog_status == '0' ? 'checked':''}} > Show Featured & Menu
                           </label>
                           <label >
-                            <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Hide only from homepage
+                            <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Show Only in Menu
                           </label>
                           <label >
                             <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
@@ -252,13 +274,13 @@
                         </div>
 
                         <div class="form-group">
-                          <label class="form-label" for="default-01">Profile Section Visibility On Homepage</label>
+                          <label class="form-label" for="default-01">Profile Section Visibility</label>
                           <div class="form-control-wrap">
                            <label>
-                            <input type="radio" name="profile_status" autocomplete="off" value="0" {{$formdesign && $formdesign->profile_status == '0' ? 'checked':''}} > Show
+                            <input type="radio" name="profile_status" autocomplete="off" value="0" {{$formdesign && $formdesign->profile_status == '0' ? 'checked':''}} > Show Featured & Menu
                           </label>
                           <label >
-                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Hide only from homepage
+                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off">Show Only in Menu
                           </label>
                           <label >
                             <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
@@ -346,7 +368,28 @@
 @section('script')
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/js/bootstrap-colorpicker.min.js" integrity="sha512-94dgCw8xWrVcgkmOc2fwKjO4dqy/X3q7IjFru6MHJKeaAzCvhkVtOS6S+co+RbcZvvPBngLzuVMApmxkuWZGwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+          $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            templateResult: formatFont,
+            templateSelection: formatFontSelection,
+        });
+        
+        function formatFont(font) {
+            if (!font.id) {
+                return font.text;
+            }
+
+            return $(
+                `<div style="font-family: ${font.text} !important;">${font.text}</div>`
+            );
+        }
+
+        function formatFontSelection(font) {
+            return $(`<div style="font-family: ${font.text} !important;">${font.text}</div>`);
+        }
+    });
        $(".modal-button").click(function() {
             var target = $(this).data("target");
             $("html").addClass("is-clipped");

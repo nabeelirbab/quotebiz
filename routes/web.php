@@ -370,6 +370,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::match(['get', 'post'],'/mail', 'SettingController@savemail')->middleware('subscription_rules');
     Route::match(['get','post'], 'mail/test', 'SettingController@mailerTest');
     Route::post('/quoteprice', 'UserController@quoteprice');
+    Route::post('/freecredits', 'UserController@freecredits');
     Route::get('/deletecredit/{id}', 'UserController@deletecredit');
     // Category
     Route::name('service-categories.')->prefix('service-categories/')->group(function () {

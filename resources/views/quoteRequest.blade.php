@@ -2,6 +2,8 @@
   $sitename = \Acelle\Model\Setting::get("site_name");
   $sitetitle = \Acelle\Model\Setting::get("site_title");
   $sitetagline = \Acelle\Model\Setting::get("site_tagline");
+  $logo_height = \Acelle\Model\Setting::get("logo_height");
+  $logo_width = \Acelle\Model\Setting::get("logo_width");
   $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
   $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
   $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
@@ -48,14 +50,11 @@
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap');
 body {
-background: #fff;
+  background: #fff;
+  font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+
 }
 
-
-/*
-.container {
-  margin-bottom: 50px;
-}*/
 .navbar-set{
   display: flex;
   justify-content: space-between;
@@ -108,7 +107,6 @@ color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
   transform: translate(-40px, 20px);
   font-weight: 1000 !important;
   font-size: 8px !important;
-  font-family: 'Abril Fatface', cursive !important;
 }
 
 .logo span {
@@ -245,7 +243,8 @@ p.form-para::after {
   color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}} !important;
 }
 #sitesmall{
-	width: 100px;
+  width: {{ ($logo_width) ? $logo_width:'100px'}};
+	height: {{ ($logo_height) ? $logo_height:'auto'}};
 }
 @media screen and (max-width: 667px) {
   .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
@@ -540,9 +539,13 @@ p.form-para::after {
 
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto text-center">
                 @if(Auth::user())
                     @if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'admin')
+
+                        <li class="nav-item">
+                            <a class="nav-link fs-1 mr-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
+                        </li>
                         <li class="nav-item">
                             @if($job_design && $job_design->profile_status != '2')
                                 <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
@@ -553,10 +556,11 @@ p.form-para::after {
                                 <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
                             @endif
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-1 mr-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
-                        </li>
                     @else
+
+                        <li class="nav-item">
+                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-provider') }}">Dashboard</a>
+                        </li>
                         <li class="nav-item">
                             @if($job_design && $job_design->profile_status != '2')
                                 <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
@@ -566,9 +570,6 @@ p.form-para::after {
                             @if($job_design->blog_status != '2')
                                 <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
                             @endif
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-provider') }}">Dashboard</a>
                         </li>
                     @endif
                 @else
