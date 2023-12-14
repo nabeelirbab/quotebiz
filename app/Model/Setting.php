@@ -65,6 +65,16 @@ class Setting extends Model
         }
     }
 
+    public static function subdomain_email($domain){
+        $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
+        if($sub_domain_checker){
+            return $sub_domain_checker[0]['subdomain'];
+
+        }else{
+            return $domain;
+        }
+    }
+
      public static function subdomainpar($domain){
         dd(request('account'));
         $sub_domain_checker = Subdomain::select('subdomain')->where('parent',$domain)->where('status','active')->get()->toArray();
@@ -76,6 +86,32 @@ class Setting extends Model
         }else{
             return $domain;
         }
+    }
+
+    public static function getmail($name,$domain, $defaultValue=null)
+    {
+        
+        $mailsetting = MailSetting::where('subdomain',Setting::subdomain_email($domain))->first();
+        if (is_object($mailsetting)) {
+              if($name == 'mailer.mailer' || $name == 'mailer.host' || $name == 'mailer.port' || $name == 'mailer.encryption' || $name == 'mailer.username' || $name == 'mailer.password' || $name == 'mailer.from.name' || $name == 'mailer.from.address' || $name == 'mailer.sendmail_path'){
+            
+                return $mailsetting->$name; 
+            }
+        }else{
+            
+             $setting = self::where('name', $name)->first();
+
+            if (is_object($setting)) {
+                return $setting->value;
+            } elseif (isset(self::defaultSettings()[$name])) {
+                return self::defaultSettings()[$name]['value'];
+            } else {
+                // @todo exception case not handled
+                return $defaultValue;
+            }
+        }
+       
+       
     }
     public static function get($name, $defaultValue=null)
     {
@@ -90,7 +126,7 @@ class Setting extends Model
             }
         }
         if($adminsetting && $adminsetting->$name != null){
-            if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_title' || $name == 'site_tagline' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'meta_tag' || $name == 'site_favicon'){
+            if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_title' || $name == 'site_tagline' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'logo_width' || $name == 'logo_height' || $name == 'meta_tag' || $name == 'site_favicon'){
                 
                     return $adminsetting->$name; 
                 }else{
@@ -109,7 +145,6 @@ class Setting extends Model
         }else{
             
              $setting = self::where('name', $name)->first();
-
             if (is_object($setting)) {
                 return $setting->value;
             } elseif (isset(self::defaultSettings()[$name])) {

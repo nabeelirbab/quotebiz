@@ -1,3 +1,6 @@
+<?php
+ $job_design = Acelle\Jobs\HelperJob::form_design(); 
+?>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,6 +20,9 @@
 
 @include('layouts.core._includes')
 <style type="text/css">
+    body{
+         font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+       }
 		.form-group:last-child {
 	    margin-bottom: 20px !important;
 	}

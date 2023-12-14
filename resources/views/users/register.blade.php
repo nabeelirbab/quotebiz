@@ -365,7 +365,7 @@
     </form>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnout.com/toastr.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
+   <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
 
     <script type="text/javascript">
 
@@ -431,9 +431,11 @@ $("#longitude").val(place.geometry['location'].lng());
 @else
 
 <script>
-
-var pc = "{{ $providercountry->iso2 }}";
-
+  @if($providercountry)
+  var pc = "{{ $providercountry->code }}";
+  @else 
+    var pc = 'au';
+  @endif
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {

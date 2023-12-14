@@ -40,13 +40,15 @@ class AppServiceProvider extends ServiceProvider
         // Disabled plugin may also register hooks
         $this->loadPlugins();
           // $mailer = Setting::get('mailer.mailer') ?: Setting::get('mailer.driver');
+        $domain = $this->get_domain(request()->getHost());
+        // dd($domain);
         $config = array(
-                        'driver'     =>     Setting::get('mailer.mailer'),
-                        'host'       =>     Setting::get('mailer.host'),
-                        'port'       =>     Setting::get('mailer.port'),
-                        'username'   =>     Setting::get('mailer.username'),
-                        'password'   =>     Setting::get('mailer.password'),
-                        'encryption' =>     Setting::get('mailer.encryption'),
+                        'driver'     =>     Setting::getmail('mailer.mailer',$domain),
+                        'host'       =>     Setting::getmail('mailer.host',$domain),
+                        'port'       =>     Setting::getmail('mailer.port',$domain),
+                        'username'   =>     Setting::getmail('mailer.username',$domain),
+                        'password'   =>     Setting::getmail('mailer.password',$domain),
+                        'encryption' =>     Setting::getmail('mailer.encryption',$domain),
                         'from'       =>     'support@quotebiz.io',
                     );
         Config::set('mail', $config);
@@ -57,6 +59,25 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+   public function get_domain($url) {
+    
+        // Define the regular expression pattern to extract the subdomain
+        $pattern = '/^(?P<subdomain>[a-zA-Z0-9-]+)\./';
+
+        // Perform the match
+        if (preg_match($pattern, $url, $matches)) {
+            // Extracted subdomain
+            $subdomain = $matches['subdomain'];
+            
+            // Output the result
+            return $subdomain;
+        } else {
+            // No subdomain found
+            return false;
+        }
+    }
+
     public function register()
     {
 

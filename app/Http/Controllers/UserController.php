@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Library\Log as MailLog;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 use Acelle\Model\Customer;
+use Acelle\Jobs\HelperJob;
 use Acelle\Model\User;
 use Acelle\Model\Subdomain;
 use Acelle\Model\StripeKey;
@@ -19,6 +20,7 @@ use Acelle\Model\QuotePrice;
 use Acelle\Model\Invitation;
 use Acelle\Model\Category;
 use Acelle\Model\SpBusiness;
+use Acelle\Model\FreeCredit;
 use Acelle\Model\Subscription;
 use Acelle\Library\Facades\Hook;
 use Auth;
@@ -259,13 +261,17 @@ public function register(Request $request)
         $user->longitude = $request->longitude;
         $user->category_id = json_encode($category);
         $user->zipcode = $request->zipcode;
-    if($request->invite){
-        $invite = Invitation::where('subdomain',Setting::subdomain())->where('token',$request->invite)->first();
-        if($invite){
-           $user->credits = $invite->credits;
-           Invitation::where('token',$request->invite)->update(['status' => 'active']);
+        $freeCredits = HelperJob::freeCredits();
+        if($freeCredits && $freeCredits->status == 'active'){
+           $user->credits = $freeCredits->credits;
         }
-    }
+        if($request->invite){
+            $invite = Invitation::where('subdomain',Setting::subdomain())->where('token',$request->invite)->first();
+            if($invite){
+               $user->credits = $invite->credits;
+               Invitation::where('token',$request->invite)->update(['status' => 'active']);
+            }
+        }
     $user->save();
        $business = new SpBusiness;
        $business->user_id = $user->id;
@@ -451,6 +457,23 @@ public function quoteprice(Request $request){
     }
 }
 
+public function freecredits(Request $request){
+    if($request->id){
+        $freecredits = FreeCredit::find($request->id);
+        $freecredits->credits = $request->input('credits');
+        $freecredits->price = $request->input('price');
+        $freecredits->save();
+        return redirect()->back()->with('success', 'Update Successfully');
+    }else{
+        $freecredits = new FreeCredit;
+        $freecredits->subdomain = Setting::subdomain();
+        $freecredits->credits = $request->input('credits');
+        $freecredits->status = $request->input('status');
+        $freecredits->save();
+        return redirect()->back()->with('success', 'Add Successfully');
+    }
+}
+
 public function deletecredit($account, $id){
     $delete = CreditAmount::where('id',$id)->delete();
     return redirect()->back()->with('success', 'Delete Successfully'); 
@@ -502,6 +525,7 @@ public function formdesign(Request $request){
             $job_design->postcode_text = $request->postcode_text;
             $job_design->button_color = $request->button_color;
             $job_design->button_text = $request->button_text;
+            $job_design->font_family = $request->font_family;
             $job_design->search_box = $request->search_box;
             $job_design->login_color = $request->login_color;
             $job_design->button_text_color = $request->button_text_color;

@@ -171,7 +171,7 @@ class AccountController extends Controller
     public function api(Request $request)
     {
         $stripeData = StripeKey::where('subdomain', Setting::subdomain())->first();
-        if ($request->isMethod('post')) {
+        if ($request->stripe && $request->isMethod('post')) {
             if ($stripeData) {
                 $stripeData->stripe_key = $request->stripe_key;
                 $stripeData->stripe_secret = $request->stripe_secret;
@@ -187,7 +187,23 @@ class AccountController extends Controller
             }
 
         }
-        return view('account.api', compact('stripeData'));
+        $currencyData = AdminCurrency::where('subdomain', Setting::subdomain())->first();
+
+        if ($request->currency && $request->isMethod('post')) {
+            // dd($request->all());
+            if ($currencyData) {
+                $currencyData->code = $request->code;
+                $currencyData->update();
+            } else {
+                $currencyData = new AdminCurrency;
+                $currencyData->admin_id = Auth::user()->id;
+                $currencyData->subdomain = Setting::subdomain();
+                $currencyData->code = $request->code;
+                $currencyData->save();
+            }
+
+        }
+        return view('account.api', compact('stripeData','currencyData'));
 
     }
 
