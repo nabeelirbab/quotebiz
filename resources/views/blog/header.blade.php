@@ -245,7 +245,7 @@ if (isset($post)) {
 </head>
 
 <body class="sticky-header">
- <div id="myElement" data-laravel-variable="{{ $sitesmalllogo }}"></div>
+ <div id="myElement" data-laravel-variable="{{ $sitelightlogo }}"></div>
 
     <div id="wrapper" class="wrapper">
         <!-- Add your site or application content here -->
@@ -277,7 +277,7 @@ if (isset($post)) {
                         <div class="col-lg-4 d-flex justify-content-center">
                             <div class="logo-area" id="sitesmall">
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
-                                    <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" class="img-fluid">
+                                    <img  src="{{$sitelightlogo}}" alt="{{$sitename}}" class="img-fluid">
                                 </a>
                             </div>
                         </div>
