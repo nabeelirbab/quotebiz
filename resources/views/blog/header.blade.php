@@ -248,7 +248,7 @@ if (isset($post)) {
         <!-- Header Area Start Here -->
         <header class="has-mobile-menu">
             <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
-                <div class="container">
+                <div class="container" style="height: 100px;display: grid;">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-4">
                             @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
