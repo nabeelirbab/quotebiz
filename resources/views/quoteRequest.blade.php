@@ -471,7 +471,11 @@ p.form-para::after {
   right: 72px;
   color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
 }
-
+.profile_read-more:hover {
+            background-color: #f2f2f2; /* Replace with your desired background color */
+            color: #fff; /* Change text color if needed */
+            outline: none; /* Remove default focus outline if desired */
+        }
 .post_read-more {
   text-transform: uppercase;
   margin-top: 20px;
