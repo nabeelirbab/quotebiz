@@ -41,11 +41,11 @@
                             <span>Customers</span>
                         </a>
                     </li>
-
+                    <?php  $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
                     <li class="nav-item" rel2="HomeController">
                         <a href="{{ url('admin/serviceproviders') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                            <em class="icon ni ni-users fs-5 mr-1"></em>
-                            <span>Service Providers</span>
+                            <span>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</span>
                         </a>
                     </li>
 
@@ -55,8 +55,13 @@
                             <span>Service Categories</span>
                         </a>
                     </li>
-
-                      <li class="nav-item" rel2="HomeController">
+                <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/page-design') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                          <em class="icon ni ni-card-view fs-5 mr-1"></em>
+                            <span>Website Designer</span>
+                        </a>
+                    </li>
+                <li class="nav-item" rel2="HomeController">
                         <a href="{{ url('admin/questions') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                           <em class="icon ni ni-card-view fs-5 mr-1"></em>
                             <span>Form Builder</span>
@@ -86,12 +91,7 @@
                        
                    </ul>
                </li>
-               <li class="nav-item" rel2="HomeController">
-                    <a href="{{ url('admin/account/profile') }}" title="Account" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                      <em class="icon ni ni-account-setting fs-5 mr-1"></em>
-                        <span>Account</span>
-                    </a>
-                </li>
+             
                     <li class="nav-item dropdown language-switch" rel1="CustomerController" >
                         <a role="button" class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                            <em class="icon ni ni-card-view fs-5 mr-1"></em>
@@ -99,18 +99,22 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                        <li class="nav-item" rel0="CustomerController9">
-                              <a href="{{ url('admin/account/site-setting') }}" class="dropdown-item d-flex align-items-center">
-                                    <em class="icon ni ni-file-text fs-5 mr-1"></em>
-                                    Site Setting
+                    
+                         @if($subscription->plan_id == 3 || $subscription->plan_id == 4 || $subscription->plan_id == 5)
+                            
+                             <li class="nav-item" rel2="HomeController">
+                                <a href="{{ url('admin/custom-domain') }}" title="Custom Domain" class="dropdown-item d-flex align-items-center">
+                                  <em class="icon ni ni-account-setting fs-5 mr-1"></em>
+                                    <span>Custom Domain</span>
                                 </a>
                             </li>
-                             <li class="nav-item" rel0="CustomerController9">
-                                <a href="{{ url('admin/form-design') }}" class="dropdown-item d-flex align-items-center">
-                                   <em class="icon ni ni-color-palette fs-5 mr-1"></em>
-                                    Design Settings
+                            <li class="nav-item" rel2="HomeController">
+                                <a href="{{ url('admin/google-site-verification') }}" title="Google Site Verification" class="dropdown-item d-flex align-items-center">
+                                  <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                                    <span>Google Site Verification</span>
                                 </a>
                             </li>
+                            @endif
                                <li class="nav-item" rel0="CustomerController9">
                                 <a href="{{ url('admin/mail') }}" class="dropdown-item d-flex align-items-center">
                                    <em class="icon ni ni-emails fs-5 mr-1"></em>
@@ -131,29 +135,7 @@
                             </li>
                        </ul>
                     </li>
-                @if($subscription->plan_id == 3 || $subscription->plan_id == 4 || $subscription->plan_id == 5)
-                <li class="nav-item dropdown language-switch"  rel0="CustomerController">
-                    <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                       <em class="icon ni ni-tranx fs-5 mr-1"></em>
-                        <span>Domain Setting</span>
-                         <span class="caret"></span>
-                    </a>
-                  <ul class="dropdown-menu">
-                   <li class="nav-item" rel2="HomeController">
-                        <a href="{{ url('admin/custom-domain') }}" title="Custom Domain" class="dropdown-item d-flex align-items-center">
-                          <em class="icon ni ni-account-setting fs-5 mr-1"></em>
-                            <span>Custom Domain</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" rel2="HomeController">
-                        <a href="{{ url('admin/google-site-verification') }}" title="Google Site Verification" class="dropdown-item d-flex align-items-center">
-                          <em class="icon ni ni-tranx fs-5 mr-1"></em>
-                            <span>Google Site Verification</span>
-                        </a>
-                    </li>
-                   </ul>
-               </li>
-               @endif
+                            
                <li class="nav-item dropdown language-switch"  rel0="CustomerController">
                     <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                        <em class="icon ni ni-tranx fs-5 mr-1"></em>
@@ -176,6 +158,12 @@
                     </li>
                        
                    </ul>
+                </li>
+                  <li class="nav-item" rel2="HomeController">
+                    <a href="{{ url('admin/account/profile') }}" title="Account" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                      <em class="icon ni ni-account-setting fs-5 mr-1"></em>
+                        <span>Account</span>
+                    </a>
                 </li>
                 <li class="nav-item" rel2="HomeController">
                     <a href="{{ url('admin/support') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">

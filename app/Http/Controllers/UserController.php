@@ -20,6 +20,7 @@ use Acelle\Model\QuotePrice;
 use Acelle\Model\Invitation;
 use Acelle\Model\Category;
 use Acelle\Model\SpBusiness;
+use Acelle\Model\SiteSetting;
 use Acelle\Model\FreeCredit;
 use Acelle\Model\Subscription;
 use Acelle\Library\Facades\Hook;
@@ -529,29 +530,139 @@ public function formdesign(Request $request){
             $job_design->search_box = $request->search_box;
             $job_design->login_color = $request->login_color;
             $job_design->button_text_color = $request->button_text_color;
-            $job_design->facebook = $request->facebook;
-            $job_design->instagram = $request->instagram;
-            $job_design->linkedIn = $request->linkedIn;
-            $job_design->twitter = $request->twitter;
-            $job_design->whatsApp = $request->whatsApp;
             $job_design->agent_no = $request->agent_no;
             $job_design->position = $request->position;
             $job_design->business_no = $request->business_no;
             $job_design->no_status = $request->no_status;
             $job_design->blog_status = $request->blog_status;
             $job_design->profile_status = $request->profile_status;
-            $job_design->terms = $request->terms;
-            $job_design->privacy_policy = $request->privacy_policy;
         if($request->preview){
         return view('previewdesign',compact('job_design'));
      }else{
             $job_design->save();
-            return redirect('/admin/form-design')->with('success', 'Design Update Successfully');;
+            return redirect('/admin/page-design')->with('success', 'Design Update Successfully');
       }
 
     }
-    return view('formdesign');
+    return view('design.formdesign');
 }
+
+public function text_change(Request $request){
+    $job_design =JobDesign::where('subdomain',Setting::subdomain())->first();
+    $job_design->sp_text = $request->text_value;
+    $job_design->save();
+}
+
+public function socialdesign(Request $request){
+    if($request->isMethod('post'))
+    {
+
+        if($request->id){
+          $job_design =JobDesign::find($request->id);
+        }else{
+          $job_design = new JobDesign;
+        }
+       
+        $job_design->admin_id = Auth::user()->id;
+        $job_design->subdomain = Setting::subdomain();
+        $job_design->facebook = $request->facebook;
+        $job_design->instagram = $request->instagram;
+        $job_design->linkedIn = $request->linkedIn;
+        $job_design->twitter = $request->twitter;
+        $job_design->whatsApp = $request->whatsApp;
+        $job_design->save();
+        return redirect('/admin/social')->with('success', 'Update Successfully');;
+
+    }
+    return view('design.social');
+}
+
+public function termsdesign(Request $request){
+    if($request->isMethod('post'))
+    {
+
+        if($request->id){
+          $job_design =JobDesign::find($request->id);
+        }else{
+          $job_design = new JobDesign;
+        }
+       
+        $job_design->admin_id = Auth::user()->id;
+        $job_design->subdomain = Setting::subdomain();
+        $job_design->terms = $request->terms;
+        $job_design->privacy_policy = $request->privacy_policy;
+        $job_design->save();
+        return redirect('/admin/terms')->with('success', 'Update Successfully');;
+
+    }
+    return view('design.termspolicy');
+}
+
+  public function seo(Request $request)
+    {
+
+        $sitesetting = SiteSetting::where('subdomain', Setting::subdomain())->first();
+        if ($request->isMethod('post')) {
+                if ($sitesetting) {
+                    $sitesetting = $sitesetting;
+                }
+                else{
+                 $sitesetting = new SiteSetting;
+                }
+
+                $sitesetting->subdomain = Setting::subdomain();
+                $sitesetting->site_name = $request->site_name;
+                $sitesetting->site_keyword = $request->site_keyword;
+                $sitesetting->site_title = $request->site_title;
+                $sitesetting->site_tagline = $request->site_tagline;
+                $sitesetting->site_description = $request->site_description;
+                $sitesetting->save();
+            
+        }
+
+        return view('design/seo', compact('sitesetting'));
+    }
+
+  public function sitesetting(Request $request)
+    {
+
+        $sitesetting = SiteSetting::where('subdomain', Setting::subdomain())->first();
+        if ($request->isMethod('post')) {
+                if ($sitesetting) {
+                    $sitesetting = $sitesetting;
+                }
+                else{
+                 $sitesetting = new SiteSetting;
+                }
+
+                $sitesetting->subdomain = Setting::subdomain();
+                $sitesetting->site_name = $request->site_name;
+                $sitesetting->site_keyword = $request->site_keyword;
+                $sitesetting->site_title = $request->site_title;
+                $sitesetting->site_tagline = $request->site_tagline;
+                $sitesetting->logo_width = $request->logo_width;
+                $sitesetting->logo_height = $request->logo_height;
+                $sitesetting->site_description = $request->site_description;
+
+                if ($request->file('site_smalllogo')) {
+                    $sitesetting->site_logo_small = $this->fileUpload($request->file('site_smalllogo'), false);
+                }
+                if ($request->file('site_largelogo')) {
+                    $sitesetting->site_logo_big = $this->fileUpload($request->file('site_largelogo'), false);
+                }
+                if ($request->file('site_logo_dark')) {
+                    $sitesetting->site_logo_dark = $this->fileUpload($request->file('site_logo_dark'), false);
+                }
+                if ($request->file('site_favicon')) {
+                    $sitesetting->site_favicon = $this->fileUpload($request->file('site_favicon'), false);
+                }
+                $sitesetting->save();
+            
+
+        }
+
+        return view('design/sitesetting', compact('sitesetting'));
+    }
 
 public function sendInvitation(Request $request){
     foreach ($request->email as $key => $email) {
@@ -668,6 +779,29 @@ public function searchUser(Request $request){
       return view('spsearch',compact('users'));
      }
 }
+ public function fileUpload($file, $thumbnail = true)
+    {
+
+        $uploadPath = storage_path('app/setting/');
+
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+
+        $md5file = \md5_file($file);
+
+        $filename = $md5file . '.' . $file->getClientOriginalExtension();
+
+        // save to server
+        $file->move($uploadPath, $filename);
+
+        // create thumbnails
+        if ($thumbnail) {
+            $img = \Image::make($uploadPath . $filename);
+        }
+
+        return $filename;
+    }
 
   public function logout(){
         Auth::logout();

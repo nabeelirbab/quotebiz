@@ -1,3 +1,4 @@
+
 @extends('layouts.core.frontend')
 
 @section('title', trans('messages.dashboard'))
@@ -14,6 +15,13 @@
     .removeQuestion{
         display: contents;
     }
+     .edit-mode input {
+            display: inline-block;
+        }
+
+        .edit-mode  {
+            display: none !important;
+        }
   </style>
 @endsection
 @section('content')
@@ -26,7 +34,25 @@
 <div class="nk-block-head nk-block-head-sm">
 <div class="nk-block-between">
 <div class="nk-block-head-content">
-<h3 class="nk-block-title page-title">Service Providers</h3>
+<div class="view-mode d-flex">
+<?php  $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
+
+<h3 id="titleLabel" class="nk-block-title page-title">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
+<em class="icon ni ni-pen2"  onclick="enableEditMode()" style="align-items: center;
+    display: flex;
+    margin-left: 18px; font-size: 25px"></em>
+</div>
+<div class="edit-mode d-flex">
+        <input type="text" id="titleInput" class="form-control" value="{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}">
+        <em class="icon ni ni-check-thick" onclick="updateTitle()" style="display: flex;
+    align-items: center;
+    font-size: 25px;
+    margin-left: 12px;
+    margin-right: 12px;"></em>
+        <em class="icon ni ni-cross" onclick="updateTitle()" style="display: flex;
+    align-items: center;
+    font-size: 25px;"></em>
+</div>
 <div class="nk-block-des text-soft">
     <p>You have total  {{count($users)}} users.</p>
 </div>
@@ -35,7 +61,7 @@
 
 </div><!-- .nk-block-head-content -->
 <div class="float-right">
-<a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited Service Providers</a>
+<a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit">Invite</button>
 <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal23">Bulk Invite</button>
 </div>
@@ -380,6 +406,35 @@
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/jquery.email.multiple.js') }}"></script>
 <script>
+      function enableEditMode() {
+            document.querySelector('.edit-mode').style.setProperty('display', 'flex', 'important');
+            document.querySelector('.view-mode').style.setProperty('display', 'none', 'important');
+
+        }
+
+        function updateTitle() {
+            var newTitle = document.getElementById('titleInput').value;
+            document.getElementById('titleLabel').innerText = newTitle;
+
+            // Switch back to view mode after updating
+            document.querySelector('.edit-mode').style.display = 'none';
+            document.querySelector('.view-mode').style.display = 'flex';
+            
+            var _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+            url: "{{ url('admin/text-update')}}",
+            type: "post",
+            data: {text_value: newTitle, _token: _token},
+            success: function (response) {
+            console.log(response);
+            // $('#result').html(response);
+            },
+            error: function (xhr) {
+
+            }
+
+            });
+        }
     $(document).ready(function($){
    $("#search").on("keyup", function() {
         
@@ -399,6 +454,7 @@
 
         });
      });
+ 
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion"><div class="col-sm-5">'+
                         '<div class="form-group">'+

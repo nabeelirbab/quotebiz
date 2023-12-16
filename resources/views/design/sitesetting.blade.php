@@ -1,7 +1,38 @@
 @extends('layouts.core.frontend')
 
 @section('title', 'Site Setting')
-<style type="text/css">
+@section('head')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css" />
+    <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/css/bootstrap-colorpicker.css" />
+ <style type="text/css">
+   .leftbar .page-container {
+    position: relative;
+    width: 100%!important;
+    max-width: 90% !important;
+    padding-left: 265px!important;
+    padding-right: 3px!important;
+    padding-top: 10px!important;
+    min-height: 100vh;
+  }
+   .nav-item.dropdown {
+      width: 100%;
+  }
+   @media screen and (max-width: 767px) {
+  .leftbar .page-container {
+    position: relative;
+    width: 100%!important;
+    max-width: 100% !important;
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+    padding-top: 10px!important;
+    min-height: 100vh;
+    margin-top: 30px;
+}
+}
   .card-body{
     font-family: arial,sans-serif;
    }
@@ -34,8 +65,9 @@
   height: auto; /* set the height property to auto */
 }
 
-</style>
 
+ </style>
+@endsection
 @section('content')
 <?php
 
@@ -69,13 +101,15 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
     <div class="nk-block-head nk-block-head-sm">
         <div class="nk-block-between">
             <div class="nk-block-head-content">
-                <h4 class="nk-block-title page-title">Edit application settings</h3>
+                <h4 class="nk-block-title page-title">Logo</h3>
                
             </div><!-- .nk-block-head-content -->
            
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->
    <div class="card card-preview">
+    @include("design._menu")
+    
         <div class="card-inner">
             <div class="preview-block">
                 
@@ -84,19 +118,9 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    <div class="col-sm-10">
-                    <div class="mb-5">
-                       <span class="text-danger">NOTE: Site Title | Page Title | Tagline should typically be between 50-60 characters long, including spaces</span>
-                    </div>
+                  
                     <div class="row">
-                    <div class="col-sm-6 mb-4">
-                      <input type="hidden" name="id" @if($sitesetting) value="{{$sitesetting->id}}" @endif>
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Site Title <span class="text-danger">*</span></label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$sitename}}" name="site_name"  placeholder="Enter Site Title" required>
-                            </div>
-                        </div>
-                      </div>
+                  
                         <div class="col-sm-6  mb-4">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Site logo (small) <span class="text-danger">*</span></label>
@@ -113,15 +137,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                             
                         </div>
                       </div>
-                       <div class="col-sm-6 mb-4">
                      
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Home Page Title <span class="text-danger">*</span></label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$sitetitle}}" name="site_title"  placeholder="Enter Home Page Title" required>
-                            </div>
-                        </div>
-                      </div>
 
                       <div class="col-sm-6  mb-4">
                         <div class="form-group">
@@ -138,15 +154,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                             </div>
                         </div>
                       </div>
-                       <div class="col-sm-6 mb-4">
-                      
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Tagline<span class="text-danger">*</span></label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$sitetagline}}" name="site_tagline"  placeholder="Enter Tagline" required>
-                            </div>
-                        </div>
-                      </div>
+                   
                          <div class="col-sm-6  mb-4">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Site logo (large) <span class="text-danger">*</span></label>
@@ -164,14 +172,6 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                         </div>
                       </div>
 
-                       <div class="col-sm-6  mb-3">
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Keywords <span class="text-danger">*</span></label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$sitekeyword}}" name="site_keyword"  placeholder="Enter Keywords" required>
-                            </div>
-                        </div>
-                      </div>
 
                       <div class="col-sm-6  mb-4">
                         <div class="form-group">
@@ -189,13 +189,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                             
                         </div>
                       </div>
-                      <div class="col-md-6">
-                      <div class="form-group control-textarea">
-                      <label class="form-label"> Meta Description <span class="text-danger">(should be between 50-155 characters)</span>
-                            <span class="text-danger">*</span>
-                      </label>
-                     <textarea type="text" name="site_description" rows="20" class="form-control required ">{{$sitedesc}}</textarea>  </div>
-                     </div>
+                     
                       <div class="col-md-6  mb-4">
                         <div class="row">
                           <div class="col-sm-6">
@@ -217,26 +211,7 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
 
                         </div>
                       </div>
-                      <div class="col-md-6  mb-4">
-                         <label class="form-label"> Preview as
-                            <span class="text-danger">*</span>
-                      </label>
-                     <div class="card" style="border-radius: 6px">
-                       <div class="card-body">
-                        <div class="d-flex justify-content-start">
-                          <div class="image-container mr-3">
-                           <img id="sitefavicon" src="{{$sitefavicon}}">
-                          </div>
-                          <div>
-                          <h5 class="mb-0">{{$sitename}}</h5>
-                          <span>{{request('account')}}</span>
-                          </div>
-                        </div>
-                         <a href=""><h2 class="card-title">{{$sitename}} | {{$sitetitle}} | {{$sitetagline}}</h2></a>
-                         <p class="card-text">{{$sitedesc}}</p>
-                       </div>
-                     </div>
-                     </div>
+                 
                      
                    
                   

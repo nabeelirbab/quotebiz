@@ -37,6 +37,7 @@
  </style>
 @endsection
 @section('content')
+
 <?php $formdesign = Acelle\Jobs\HelperJob::form_design(); ?>
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head nk-block-head-sm">
@@ -52,7 +53,10 @@
         </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->
+     
+
     <div class="card card-preview">
+      @include("design._menu")
         @if(Session::has('success'))
          <div class="alert alert-success  fade show" role="alert">
           {{Session::get('success')}}
@@ -180,46 +184,6 @@
                            
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label" for="Facebook">Facebook</label>
-                              <div  class="input-group" title="Using input value">
-                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->facebook}}" @endif name="facebook" id="Facebook" placeholder="https://www.facebook.com/quotebiz" />
-                            </div>
-                        </div>
-                       <div class="row mb-3">
-                        <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label class="form-label" for="Instagram">Instagram</label>
-                              <div class="input-group" title="Using input value">
-                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->instagram}}"  @endif name="instagram" id="Instagram" placeholder="https://www.instagram.com/quotebiz" />
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label class="form-label" for="LinkedIn">LinkedIn</label>
-                              <div  class="input-group" title="Using input value">
-                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->linkedIn}}"  @endif name="linkedIn" id="LinkedIn" placeholder="https://www.linkedin.com/quotebiz" />
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label class="form-label" for="Twitter">Twitter</label>
-                              <div  class="input-group" title="Using input value">
-                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->twitter}}"  @endif name="twitter" id="Twitter" placeholder="https://www.twitter.com/quotebiz" />
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label class="form-label" for="WhatsApp">WhatsApp</label>
-                              <div  class="input-group" title="Using input value">
-                              <input type="url" class="form-control" @if($formdesign) value="{{$formdesign->whatsApp}}"  @endif name="whatsApp" id="WhatsApp" placeholder="https://wa.me/" />
-                            </div>
-                        </div>
-                        </div>
-                      </div>
                       <div class="form-group">
                         <label class="form-label" for="default-01">Quote Box Position</label>
                         <div class="form-control-wrap">
@@ -311,20 +275,7 @@
                       </div>
                     </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Terms & Conditions</label>
-                            <div class="form-control-wrap">
-                               
-                                  <textarea class="form-control" name="terms" aria-label="With textarea">@if($formdesign){{$formdesign->terms}}@endif</textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Privacy Policy</label>
-                            <div class="form-control-wrap">
-                                  <textarea class="form-control" name="privacy_policy"  aria-label="With textarea">@if($formdesign){{$formdesign->privacy_policy}} @endif</textarea>
-                               
-                            </div>
-                        </div>
+                    
                          <div class="form-group">
                             <label class="form-label" for="default-01">Background Image (1800 x 250)</label>
                             <div class="form-control-wrap">
