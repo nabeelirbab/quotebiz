@@ -10,6 +10,7 @@
   $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
   $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
   $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
+  $job_design = Acelle\Jobs\HelperJob::form_design(); 
 ?>
 @include('blog.header',['post' => $data])
 <style type="text/css">
@@ -45,8 +46,11 @@
 .btn-success {
   width: 100%;
   border: none !important;
+  border-radius: 0.55rem;
   background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  height: 43px;
+  font-weight: 500;
 }
 .form-control {
   border-radius: 6px;
@@ -80,10 +84,8 @@
   top: 12px;
 }
 </style>
-<section style="border-top: 1px solid #c9c9c9">
-	 <div class="cover-image" style="background-image: url('https://angular-material.fusetheme.com/assets/images/pages/profile/cover.jpg'); height: 50vh; background-size: 100% auto; background-repeat: no-repeat; background-position: center;">
-        <!-- Add any content you want to overlay on the cover image -->
-    </div>
+<section style="border-top: 1px solid #c9c9c9; background-color: #f7f8fa ">
+
 	<div class="container mt-5 mb-5">
 		<div class="row">
 			<div class="col-md-3">
@@ -106,33 +108,65 @@
                     @endforeach
                     </p>
                     <div class=" text-center">
-                      <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request Quote</button>
+                      <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request A Quote</button>
                     </div>
                 </div>
             </div>
 			</div>
 			<div class="col-md-8 ml-md-auto">
-				<h2>About {{$user->first_name}} </h2>
-				<div class="row mt-5 mb-5 border-bottom">
-					<div class="col-md-6 d-flex">
-						<p class="mr-4 font-weight-bold">Year of experience:</p>
-						<p>{{ $user->experience }}</p>
+				<h2 class="ml-0">About {{$user->first_name}} </h2>
+				<div class="row mt-5 mb-4 ">
+					<div class="col-md-12 d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/category.png') }}" class="mr-4">
+						</div>
+						<div>
+						   <h4 class="m-0">Category</h4>
+                          <p class="card-text text-center">
+		                      @foreach(json_decode($user->category_id) as $key => $cat)
+		                        <span class="data-value">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+		                        @if ($key < count(json_decode($user->category_id)) - 1)
+		                             ,
+		                        @endif
+		                    @endforeach
+		                    </p>
+						</div>
 					</div>
-					<div class="col-md-6 d-flex">
-						<p class="mr-4 font-weight-bold">Country:</p>
-						<p>{{Acelle\Jobs\HelperJob::countryname($user->country)->name}}</p>
-					</div>
-					<div class="col-md-6 d-flex">
-						<p class="mr-4 font-weight-bold">Location:</p>
-						<p>{{ $user->address }}</p>
-					</div>
-					<div class="col-md-6">
-						
-					</div>
-					
 				</div>
-
-				<h2 class="mb-4">Biography</h2>
+				<div class="row mt-4 mb-3">
+					<div class="col-md-12 d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/location.png') }}" class="mr-4">
+						</div>
+						<div>
+						   <h4 class="m-0">Service Area</h4>
+                          <p class="">
+                          	@if($user->city)
+		                     {{Acelle\Jobs\HelperJob::cityname($user->city)->name}}
+		                     @elseif($user->state)
+		                      {{Acelle\Jobs\HelperJob::statename($user->state)->name}}
+		                     @else
+		                     {{Acelle\Jobs\HelperJob::countryname($user->country)->name}}
+		                     @endif
+		                    </p>
+						</div>
+					</div>
+				</div>
+				@if($user->experience)
+				<div class="row mt-3 mb-5 pb-5 border-bottom">
+					<div class="col-md-12 d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/medal.png') }}" class="mr-4">
+						</div>
+						<div>
+						 <h4 class="m-0">Years in Business</h4>
+                         {{ $user->experience }}
+						</div>
+					</div>
+				</div>
+			    @endif
+                @if($user->biography)
+				<h2 class=" mt-3 mb-4">Biography</h2>
 				<div class="row mb-5 border-bottom">
 					<div class="col-md-12">
 						<p>
@@ -140,6 +174,8 @@
 						</p>
 					</div>
 				</div>
+				@endif
+				@if(count($user->gallery) > 0)
 				<h2 class="mb-5">Gallery</h2>
 				 <div class="row">
 				  @foreach($user->gallery as  $key => $gallery)
@@ -150,8 +186,53 @@
 				    </div>
 				    @endforeach
 			        
-			        <!-- Add more image columns as needed -->
 			    </div>
+			    @endif
+			    <h2 class="mb-4 ml-0">Preferred music genres</h2>
+				<div class="row mr-1 mb-5">
+					<div class="col-md-6">
+						<div class="d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						</div>
+						    <p class="font-weight-bold">Retro</p>
+						</div>
+						<div class="d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						</div>
+						    <p class="font-weight-bold">Retro</p>
+						</div>
+						<div class="d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						</div>
+						    <p class="font-weight-bold">Retro</p>
+						</div>
+						
+					</div>
+					<div class="col-md-6">
+						<div class="d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						</div>
+						    <p class="font-weight-bold">Retro</p>
+						</div>
+						<div class="d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						</div>
+						    <p class="font-weight-bold">Retro</p>
+						</div>
+						<div class="d-flex">
+						<div class="mr-5 mt-1" style="width: 25px">
+							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						</div>
+						    <p class="font-weight-bold">Retro</p>
+						</div>
+						
+					</div>
+				</div>
 			    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
 			    <div class="modal-dialog modal-dialog-centered">
 			        <div class="modal-content">

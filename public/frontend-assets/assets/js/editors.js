@@ -35,14 +35,24 @@
   NioApp.Tinymce = function () {
     var _tinymce_basic = '.tinymce-basic';
 
-    if ($(_tinymce_basic).exists()) {
-      tinymce.init({
+  if ($(_tinymce_basic).exists()) {
+    tinymce.init({
         selector: _tinymce_basic,
         content_css: true,
         skin: false,
-        branding: false
-      });
-    }
+        branding: false,
+        plugins: 'paste',
+        paste_as_text: true,
+        setup: function (editor) {
+            editor.on('paste_preprocess', function (e) {
+                var clipboardData = e.clipboardData || e.originalEvent.clipboardData;
+                var pastedData = clipboardData.getData('text/plain');
+                e.content = pastedData;
+            });
+        }
+    });
+}
+
 
     var _tinymce_menubar = '.tinymce-menubar';
 

@@ -59,6 +59,9 @@ if (isset($post)) {
       h1, h2, h3, h4, h5, h6 {
           margin: 20px 5px 0;
       }
+      h1, h2, h3, h4, h5, h6, p, span {
+            font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+        }
         #header-middlebar {
             background-image: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image) : 'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg' }});
             background-position: center;
@@ -67,7 +70,7 @@ if (isset($post)) {
             background-repeat: no-repeat;
         }
         #sitesmall{
-              width: {{ ($logo_width) ? $logo_width:'100px'}};
+              max-width: {{ ($logo_width) ? $logo_width:'100px'}};
               height: {{ ($logo_height) ? $logo_height:'auto'}};
         }
         /* Add custom styles here */
@@ -239,25 +242,84 @@ if (isset($post)) {
           font-weight: bold;
           font-size: 1.2rem;
         }
-        .item-social-layout2 a{
+       /* .item-social-layout2 a{
            color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#333 !important'}};
         }
-
+*/
 
     </style>
 </head>
 
 <body class="sticky-header">
- <div id="myElement" data-laravel-variable="{{ $sitelightlogo }}"></div>
+ <div id="myElement" data-laravel-variable="{{ $sitesmalllogo }}"></div>
 
     <div id="wrapper" class="wrapper">
         <!-- Add your site or application content here -->
         <!-- Header Area Start Here -->
         <header class="has-mobile-menu">
-            <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
+           <!--  <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
                 <div class="container" style="height: 100px;display: grid;">
                     <div class="row d-flex align-items-center">
-                        <div class="col-lg-4">
+                       
+                        <div class="col-lg-4 d-flex justify-content-center">
+                            <div class="logo-area" id="sitesmall">
+                                <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
+                                    <img  src="{{$sitelightlogo}}" alt="{{$sitename}}" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rt-sticky-placeholder"></div> -->
+            <div id="header-menu" class="header-menu menu-layout1 bg--light">
+                <div class="container">
+                    <div class="row">
+                         <div class="col-lg-2 d-flex justify-content-center">
+                            <div class="logo-area d-flex"style="align-content: center;" >
+                                <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
+                                    <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" id="sitesmall" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-7" style="display: flex;justify-content: center;align-items: center;">
+                            <nav id="dropdown" class="template-main-menu">
+                                <ul>
+                                    <li class="hide-on-mobile-menu">
+                                        <a href="{{ url('/') }}">Home</a>
+                                    </li>
+                                    <li class="hide-on-desktop-menu">
+                                        <a href="{{ url('/') }}">Home</a>
+                                    </li>
+                                    @if($job_design && $job_design->blog_status != '2')
+                                    <li>
+                                        <a href="{{ url('/blogs') }}">BLOG</a>
+                                    </li>
+                                    @endif
+                                    @if($job_design && $job_design->profile_status != '2')
+                                    <li>
+                                        <a href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
+                                    </li>
+                                    @endif
+                                    @if(Auth::user())
+                                      @if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'admin')
+                                         <li>
+                                            <a  href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
+                                         </li>
+                                        @else
+                                          <li>
+                                            <a  href="{{ url('/service-provider') }}">Dashboard</a>
+                                          </li>
+                                          @endif
+                                         @else
+                                         <li>
+                                            <a href="{{ url('/login') }}">Login</a>
+                                         </li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
+                         <div class="col-lg-3 d-flex">
                             @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
                             <div class="header-action-items">
                                 <ul>
@@ -276,41 +338,6 @@ if (isset($post)) {
                                 </ul>
                             </div>
                             @endif
-                        </div>
-                        <div class="col-lg-4 d-flex justify-content-center">
-                            <div class="logo-area" id="sitesmall">
-                                <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
-                                    <img  src="{{$sitelightlogo}}" alt="{{$sitename}}" class="img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="rt-sticky-placeholder"></div>
-            <div id="header-menu" class="header-menu menu-layout1 bg--light">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <nav id="dropdown" class="template-main-menu">
-                                <ul>
-                                    <li class="hide-on-mobile-menu">
-                                        <a href="{{ url('/') }}">HOME</a>
-                                    </li>
-                                    <li class="hide-on-desktop-menu">
-                                        <a href="{{ url('/') }}">HOME</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/blogs') }}">BLOG</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/service-providers') }}">SERVICE PROVIDERS</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/login') }}">Login</a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>

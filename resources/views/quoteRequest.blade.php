@@ -50,7 +50,8 @@
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap');
 body {
-  background: #fff;
+  background: #f7f8fa;
+  color: #222222;
   font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
 
 }
@@ -255,6 +256,7 @@ p.form-para::after {
 }
 .social{
   float: none !important;
+  display: block;
 }
 .main-hearder{
   margin-bottom: 5vh;
@@ -367,6 +369,7 @@ p.form-para::after {
     justify-content: space-between;
     border-radius: 9px 9px 9px 9px;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
+    background: #fff
 }
 .blog-box-layout5 .item-img {
     flex: 1;
@@ -540,51 +543,74 @@ p.form-para::after {
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto text-center">
+              <li style="display: contents;">
+                    @if($job_design)
+                       @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
+                        <div class="social mr-md-3">
+                        @if($job_design->facebook)
+                        <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
+                        @endif
+                        @if($job_design->instagram)
+                        <a href="{{$job_design->instagram}}" target="_blank"><em class="icon ni ni-instagram-round"></em></a>
+                        @endif
+                        @if($job_design->linkedIn)
+                        <a href="{{$job_design->linkedIn}}" target="_blank"><em class="icon ni ni-linkedin-round"></em></a>
+                        @endif
+                        @if($job_design->twitter)
+                        <a href="{{$job_design->twitter}}" target="_blank"><em class="icon ni ni-twitter-round"></em></a>
+                        @endif
+                        @if($job_design->whatsApp)
+                        <a href="{{$job_design->whatsApp}}" target="_blank"><em class="icon ni ni-whatsapp-round"></em></a>
+                         @endif
+                        </div>
+                      @endif
+                   @endif
+              </li>
                 @if(Auth::user())
                     @if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'admin')
 
                         <li class="nav-item">
-                            <a class="nav-link fs-1 mr-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
+                            <a class="nav-link fs-1 mr-md-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             @if($job_design && $job_design->profile_status != '2')
-                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
+                                <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
                             @endif
                         </li>
                         <li class="nav-item">
                             @if($job_design && $job_design->blog_status != '2')
-                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
+                                <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/blogs') }}">Blog</a>
                             @endif
                         </li>
                     @else
 
                         <li class="nav-item">
-                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-provider') }}">Dashboard</a>
+                            <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/service-provider') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             @if($job_design && $job_design->profile_status != '2')
-                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
+                                <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
                             @endif
                         </li>
                         <li class="nav-item">
-                            @if($job_design->blog_status != '2')
-                                <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
+                            @if($job_design && $job_design->blog_status != '2')
+                                <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/blogs') }}">Blog</a>
                             @endif
                         </li>
                     @endif
                 @else
                     <li class="nav-item">
                         @if($job_design && $job_design->profile_status != '2')
-                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/service-providers') }}">Service Providers</a>
+                            <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
                         @endif
                     </li>
                     <li class="nav-item">
                         @if( $job_design && $job_design->blog_status != '2')
-                            <a class="nav-link fs-1 mr-4 login" href="{{ url('/blogs') }}">Blog</a>
+                            <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/blogs') }}">Blog</a>
                         @endif
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-1 mr-4 login" href="{{ url('/users/login') }}">Log in</a>
+                        <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/users/login') }}">Log in</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary" href="{{ url('/users/register') }}">Register Business</a>
@@ -595,7 +621,7 @@ p.form-para::after {
     </nav>
 </header>
 
-<div class="container mt-5">
+<div class="container mt-5 p-4">
 <div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
 <div class="col-lg-7 col-md-8 col-sm-10 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
@@ -729,7 +755,7 @@ aria-hidden="true">
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
-      <h4>Service Providers</h4>
+      <h4>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h4>
       <a href="{{ url('service-providers') }}" class="link-color">View All</a>
     </div>
   </div>
@@ -738,7 +764,7 @@ aria-hidden="true">
     @foreach($users as $user)
     <div class="item">
     <div class="col-sm-12 mb-4 mt-4 p-4">
-    <div class="card text-center" style="min-height: 355px;border-radius: 10px; box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
+    <div class="card text-center" style="min-height: 355px;border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.125); box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
           <div class="mr-auto ml-auto mt-4">
             <a href="{{ url('sp-profile/'.$user->id) }}">
             @if($user->user_img)
@@ -835,26 +861,29 @@ aria-hidden="true">
     <div class="container">
 
         <div class="row g-3 align-items-center justify-content-md-between py-3">
-            <div class="col-md-6">
-                <div class="footer-logo d-flex">
-                    <a href="{{ url('/') }}" class="logo-link">
+          <div class="col-md-3">
+              <a href="{{ url('/') }}" class="logo-link">
                         <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
                         <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                     </a>
+          </div>
+            <div class="col-md-5">
+                <div class="footer-logo">
+                  
                     <div class="mt-2 ml-5">
-                         <ul class="link-inline gx-4">
-                            <li><a href="#">How it works</a></li>
-                            <li><a href="#">Service</a></li>
+                         <ul class="link-inline gx-4  d-flex justify-content-between">
+                            <!-- <li><a href="#">How it works</a></li> -->
+                            <li><a href="#">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul><!-- .footer-nav -->
-                        <div class="text-base" style="font-size: 13px"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
+                        <div class="text-base text-center" style="font-size: 13px"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
 
                     </div>
                  
                 </div><!-- .footer-logo -->
             </div><!-- .col -->
-            <div class="col-md-6 d-flex justify-content-md-end">
+            <div class="col-md-4 d-flex justify-content-md-end">
             @if($job_design)
                @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
               <div class="centered-text">
