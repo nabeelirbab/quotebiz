@@ -1,12 +1,12 @@
 @include('blog.header')
-
+<?php $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
         <!-- Header Area End Here -->
         <!-- Blog Area Start Here -->
         <section class="blog-wrap-layout9">
             <div class="container">
                 <div class="section-heading-3">
-                    <h2>Service Providers</h2>
-                    <p>Browse our service providers.</p>
+                    <h2>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h2>
+                    <p>Browse our {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'service providers' }}.</p>
                 </div>
                 <div class="row gutters-40 menu-list" id="no-equal-gallery">
                     @foreach($users as $user)

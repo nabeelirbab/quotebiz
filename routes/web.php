@@ -260,7 +260,13 @@ Route::get('users/logout', 'UserController@logout');
 
     Route::match(['get', 'post'],'/stripekey', 'StripeController@stripeKey');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
-    Route::match(['get', 'post'],'/form-design', 'UserController@formdesign');
+    Route::match(['get', 'post'],'/page-design', 'UserController@formdesign');
+    Route::match(['get', 'post'],'/social', 'UserController@socialdesign');
+    Route::match(['get', 'post'],'/terms', 'UserController@termsdesign');
+    Route::match(['get', 'post'],'/seo', 'UserController@seo');
+    Route::match(['get', 'post'],'/logo-setting', 'UserController@sitesetting');
+    Route::post('/text-update', 'UserController@text_change');
+
     Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain')->middleware('subscription_rules');
     Route::match(['get', 'post'],'/google-site-verification', 'SettingController@googledomain');
     Route::post('/add-meta-tag', 'HomeController@addMetaTag');
@@ -397,7 +403,6 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::match(['get','post'],'account/api', 'AccountController@api');
     Route::match(['get','post'],'account/currency', 'AccountController@currency');
     Route::match(['get','post'],'account/location-setting', 'AccountController@locationsetting');
-    Route::match(['get', 'post'],'account/site-setting', 'HomeController@sitesetting');
 
     // Mail list
     Route::get('lists/{uid}/email-verification/chart', 'MailListController@emailVerificationChart');
