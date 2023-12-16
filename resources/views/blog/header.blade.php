@@ -103,6 +103,7 @@ if (isset($post)) {
             box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
             background: white;
         }
+
         .blog-box-layout5 .item-img {
             flex: 1;
             position: relative;
@@ -203,7 +204,11 @@ if (isset($post)) {
             right: 85px;
             color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
           }
-
+        .profile_read-more:hover {
+            background-color: #f2f2f2; /* Replace with your desired background color */
+            color: #fff; /* Change text color if needed */
+            outline: none; /* Remove default focus outline if desired */
+        }
           .post_read-more {
             text-transform: uppercase;
             margin-top: 20px;
