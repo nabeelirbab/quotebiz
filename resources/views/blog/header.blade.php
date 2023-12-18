@@ -262,30 +262,34 @@ if (isset($post)) {
         <!-- Add your site or application content here -->
         <!-- Header Area Start Here -->
         <header class="has-mobile-menu">
-           <!--  <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
+            @if(Request::segment(1) == 'sp-profile')
+            <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
                 <div class="container" style="height: 100px;display: grid;">
-                    <div class="row d-flex align-items-center">
+                    <div class="row align-items-center  d-flex justify-content-center">
                        
                         <div class="col-lg-4 d-flex justify-content-center">
                             <div class="logo-area" id="sitesmall">
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
-                                    <img  src="{{$sitelightlogo}}" alt="{{$sitename}}" class="img-fluid">
+                                    <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" class="img-fluid">
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="rt-sticky-placeholder"></div> -->
+            <div id="rt-sticky-placeholder"></div>
+            @endif
             <div id="header-menu" class="header-menu menu-layout1 bg--light">
                 <div class="container">
                     <div class="row">
                          <div class="col-lg-2 d-flex justify-content-center">
+                            @if(Request::segment(1) != 'sp-profile')
                             <div class="logo-area d-flex"style="align-content: center;" >
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
                                     <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" id="sitesmall" class="img-fluid">
                                 </a>
                             </div>
+                            @endif
                         </div>
                         <div class="col-lg-7" style="display: flex;justify-content: center;align-items: center;">
                             <nav id="dropdown" class="template-main-menu">
