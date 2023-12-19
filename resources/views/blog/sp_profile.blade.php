@@ -133,7 +133,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row mt-4 mb-3">
+				<div class="row mt-4">
 					<div class="col-md-12 d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
 							<img src="{{ asset('frontend-assets/location.png') }}" class="mr-4">
@@ -141,19 +141,20 @@
 						<div>
 						   <h4 class="m-0">Service Area</h4>
                           <p class="">
-                          	@if($user->city)
-		                     {{Acelle\Jobs\HelperJob::cityname($user->city)->name}}
+                          	@if($user->country)
+		                     {{Acelle\Jobs\HelperJob::countryname($user->country)->name}}
 		                     @elseif($user->state)
 		                      {{Acelle\Jobs\HelperJob::statename($user->state)->name}}
 		                     @else
-		                     {{Acelle\Jobs\HelperJob::countryname($user->country)->name}}
+		                     {{Acelle\Jobs\HelperJob::cityname($user->city)->name}}
+		                     
 		                     @endif
 		                    </p>
 						</div>
 					</div>
 				</div>
 				@if($user->experience)
-				<div class="row mt-3 mb-5 pb-5 border-bottom">
+				<div class="row mb-5 pb-5 border-bottom">
 					<div class="col-md-12 d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
 							<img src="{{ asset('frontend-assets/medal.png') }}" class="mr-4">
@@ -272,7 +273,7 @@
 			    <div class="modal-dialog modal-dialog-centered">
 			        <div class="modal-content">
 			            <div class="modal-header">
-			                <h5 class="modal-title" id="imageModalLabel">Send Quote to {{$user->first_name}} {{$user->last_name}} </h5>
+			                <h5 class="modal-title" id="imageModalLabel">Send a quote request to {{$user->first_name}} {{$user->last_name}} </h5>
 			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                    <span aria-hidden="true">&times;</span>
 			                </button>

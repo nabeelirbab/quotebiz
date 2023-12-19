@@ -5,11 +5,13 @@ $sitelightlogo = action('SettingController@file', \Acelle\Model\Setting::get('si
 $logo_height = \Acelle\Model\Setting::get("logo_height");
 $logo_width = \Acelle\Model\Setting::get("logo_width");
 $job_design = Acelle\Jobs\HelperJob::form_design(); 
+
+$subject = ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers';
 if (isset($post)) {
-  $title = @$post->title;
+  $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - '.@$post->title;
   $image = asset('frontend-assets/images/posts/' . @$post->cover_img);
 } else {
-  $title = \Acelle\Model\Setting::get("site_name"). '-'. 'Blogs';
+  $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - Discover Exceptional '.$subject.' and Elevate Your Experience';
   $image = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
 }
 ?>
@@ -83,7 +85,11 @@ if (isset($post)) {
         .gallery-img:hover {
             transform: scale(1.05);
         }
-
+        .badge-info{
+          color: #fff !important;
+          background-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+          border-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+        }
         /* Adjust modal styles */
         .modal-content {
             border-radius: 10px;
@@ -205,10 +211,13 @@ if (isset($post)) {
             color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
           }
         .profile_read-more:hover {
-            background-color: #f2f2f2; /* Replace with your desired background color */
-            color: #fff; /* Change text color if needed */
-            outline: none; /* Remove default focus outline if desired */
-        }
+              background-color: #f2f2f2; /* Replace with your desired background color */
+              color: #fff; /* Change text color if needed */
+              outline: none; /* Remove default focus outline if desired */
+              padding: 0 7px;
+              border-radius: 12px;
+              font-size: 11px;
+             }
           .post_read-more {
             text-transform: uppercase;
             margin-top: 20px;
@@ -262,30 +271,34 @@ if (isset($post)) {
         <!-- Add your site or application content here -->
         <!-- Header Area Start Here -->
         <header class="has-mobile-menu">
-           <!--  <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
+            @if(Request::segment(1) == 'sp-profile')
+            <div id="header-middlebar" class="pt--29 pb--29 bg--light border-bootom border-color-accent2">
                 <div class="container" style="height: 100px;display: grid;">
-                    <div class="row d-flex align-items-center">
+                    <div class="row align-items-center  d-flex justify-content-center">
                        
                         <div class="col-lg-4 d-flex justify-content-center">
                             <div class="logo-area" id="sitesmall">
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
-                                    <img  src="{{$sitelightlogo}}" alt="{{$sitename}}" class="img-fluid">
+                                    <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" class="img-fluid">
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="rt-sticky-placeholder"></div> -->
+            <div id="rt-sticky-placeholder"></div>
+            @endif
             <div id="header-menu" class="header-menu menu-layout1 bg--light">
                 <div class="container">
                     <div class="row">
                          <div class="col-lg-2 d-flex justify-content-center">
+                            @if(Request::segment(1) != 'sp-profile')
                             <div class="logo-area d-flex"style="align-content: center;" >
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
                                     <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" id="sitesmall" class="img-fluid">
                                 </a>
                             </div>
+                            @endif
                         </div>
                         <div class="col-lg-7" style="display: flex;justify-content: center;align-items: center;">
                             <nav id="dropdown" class="template-main-menu">
