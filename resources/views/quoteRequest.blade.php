@@ -117,6 +117,7 @@ color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 .badge-info{
   color: #fff !important;
   background-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+  border-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
 }
 
 .link-color{
@@ -334,6 +335,7 @@ p.form-para::after {
 }
 .social a {
  font-size: 25px;
+ padding-left: 15px;
  color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#6200EA !important'}};
 }
 #footer{
@@ -472,10 +474,13 @@ p.form-para::after {
   color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
 }
 .profile_read-more:hover {
-            background-color: #f2f2f2; /* Replace with your desired background color */
-            color: #fff; /* Change text color if needed */
-            outline: none; /* Remove default focus outline if desired */
-        }
+  background-color: #f2f2f2; /* Replace with your desired background color */
+  color: #fff; /* Change text color if needed */
+  outline: none; /* Remove default focus outline if desired */
+  padding: 0 7px;
+  border-radius: 12px;
+  font-size: 11px;
+ }
 .post_read-more {
   text-transform: uppercase;
   margin-top: 20px;
