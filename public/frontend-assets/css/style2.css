@@ -19,7 +19,6 @@
   box-sizing: border-box; }
 
 body {
-  font-family: "Google-Open-Sans";
   font-size: 15px;
   color: #fff;
   margin: 0; }
@@ -32,7 +31,6 @@ textarea {
 }
 
 input, textarea, select, button {
-  font-family: "Google-Open-Sans";
   font-size: 18px;
   color: #333; 
 }
@@ -99,7 +97,7 @@ form {
     font-size: 18px;
   }
   .form-header a {
-    font-family: "Google-Open-Sans";
+    
     color: #fff;
     display: inline-block;
     padding: 5px 15px;
@@ -107,7 +105,7 @@ form {
     background: #e4bd37; }
 
 h3 {
-  font-family: "Google-Open-Sans";
+  
   font-size: 22px;
   /*text-transform: uppercase;*/
   margin-bottom: 46px;
@@ -142,16 +140,7 @@ h3 {
     left: 29.4%;
     transition: all 0.5s ease;
     color: #8039f2;*/ }
-  .wizard > .steps ul:after {
-    content: "";
-    width: 10.33%;
-    height: 8px;
-    background: rgb(128 57 242);
-    border-radius: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.5s ease; }
+
   .wizard > .steps ul.step-2:before {
     left: 62.5%;
     transition: all 0.5s ease; }
@@ -242,8 +231,6 @@ textarea.form-control {
   width: 180px;
   letter-spacing: 1.3px;
   align-items: center;
-  background: rgb(128 57 242);
-  font-family: "Google-Open-Sans";
   cursor: pointer;
   position: relative;
   padding-left: 34px;
@@ -280,8 +267,7 @@ textarea.form-control {
 .actions li:first-child a {
   width: 136px;
   background: #fff;
-  color: #666;
-  font-family: "Google-Open-Sans";
+  color: #fff;
   padding-left: 57px; 
   box-shadow: rgb(0 0 0 / 35%) 0px 4px 10px;
 }

@@ -5,11 +5,13 @@ $sitelightlogo = action('SettingController@file', \Acelle\Model\Setting::get('si
 $logo_height = \Acelle\Model\Setting::get("logo_height");
 $logo_width = \Acelle\Model\Setting::get("logo_width");
 $job_design = Acelle\Jobs\HelperJob::form_design(); 
+
+$subject = ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers';
 if (isset($post)) {
-  $title = @$post->title;
+  $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - '.@$post->title;
   $image = asset('frontend-assets/images/posts/' . @$post->cover_img);
 } else {
-  $title = \Acelle\Model\Setting::get("site_name"). '-'. 'Blogs';
+  $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - Discover Exceptional '.$subject.' and Elevate Your Experience';
   $image = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
 }
 ?>
@@ -205,10 +207,13 @@ if (isset($post)) {
             color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
           }
         .profile_read-more:hover {
-            background-color: #f2f2f2; /* Replace with your desired background color */
-            color: #fff; /* Change text color if needed */
-            outline: none; /* Remove default focus outline if desired */
-        }
+              background-color: #f2f2f2; /* Replace with your desired background color */
+              color: #fff; /* Change text color if needed */
+              outline: none; /* Remove default focus outline if desired */
+              padding: 0 7px;
+              border-radius: 12px;
+              font-size: 11px;
+             }
           .post_read-more {
             text-transform: uppercase;
             margin-top: 20px;

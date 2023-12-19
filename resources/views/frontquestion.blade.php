@@ -65,7 +65,31 @@
 			width: <?php echo $i*$final; ?>%;
 			transition: all 0.5s ease; }
 		<?php } ?>
+		
+body {
+  background: #f7f8fa;
+  color: #222222;
+  font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
 
+}
+  .wizard > .steps ul:after {
+    content: "";
+    width: 10.33%;
+    height: 8px;
+    background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease; }
+    .actions li a {
+     border: none !important;
+     background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+    }
+    .form-control:focus {
+    /* box-shadow: 0px 0px 7px 0px rgb(116 107 107); */
+    border: 1px solid {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+}
 .actions li button {
     padding: 0;
     border: none;
@@ -74,8 +98,7 @@
     width: 180px;
     letter-spacing: 1.3px;
     align-items: center;
-    background: rgb(128 57 242);
-    font-family: "Open-Sans";
+    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
     cursor: pointer;
     position: relative;
     padding-left: 34px;
@@ -93,7 +116,6 @@
     position: absolute;
     top: 17px;
     right: 17px;
-    font-family: Material-Design-Iconic-Font;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
@@ -151,12 +173,11 @@
 		input[type="radio"]:checked + label {
 		  /*background: hsla(150, 75%, 50%, 1);*/
 		  color: black;
-		  border: 1px solid #843ff2;
+		  border: 1px solid {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 		  &::after {
 		    color:black;
-		    font-family: FontAwesome;
-		    border: 2px solid hsla(150, 75%, 45%, 1);
-		    content: "\f00c";
+		    /*border: 2px solid hsla(150, 75%, 45%, 1);*/
+		    /*content: "\f00c";*/
 		    font-size: 24px;
 		    position: absolute;
 		    top: -25px;
@@ -174,12 +195,11 @@
 		input[type="checkbox"]:checked + label {
 		  /*background: hsla(150, 75%, 50%, 1);*/
 		  color: black;
-		  border: 1px solid #843ff2;
+		  border: 1px solid {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
 		  &::after {
 		    color: black;
-		    font-family: FontAwesome;
-		    border: 2px solid hsla(150, 75%, 45%, 1);
-		    content: "\f00c";
+		    /*border: 2px solid hsla({{ ($job_design) ? $job_design->underline_color:'#6200EA'}});*/
+		    /*content: "\f00c";*/
 		    font-size: 24px;
 		    position: absolute;
 		    top: -25px;
@@ -316,7 +336,7 @@
                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
 						  	
-						    <h2 style="padding-top: 10px" class="font-class">{{$choices->choice}}</h2>
+						    <h2 style="padding-top: 15px" class="font-class">{{$choices->choice}}</h2>
 						   
 						  </label>
 						</div>
@@ -332,7 +352,7 @@
 						  	@else
                               <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif
-						      <h2 style="padding-top: 10px" class="font-class">{{$choices->choice}}</h2>
+						      <h2 style="padding-top: 15px" class="font-class">{{$choices->choice}}</h2>
 						  </label>
 						</div>
 						@endforeach
@@ -386,7 +406,7 @@
 						  	@else
                               <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 						  	@endif -->
-						      <h2 style="padding-top: 10px" class="font-class">{{$cat->category_name}}</h2>
+						      <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
 						  </label>
 						</div>
 						@endforeach
@@ -430,7 +450,7 @@
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
 	                    		<input type="password"  name="password" id="id_password" class="form-control" placeholder="Enter Password"  required>
-	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: #8039f2;bottom: 13px"></i>
+	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};bottom: 13px"></i>
 	                    	</div>
 	                    </div>
 	                    <div class="form-row col-md-6" id="city">
@@ -486,7 +506,7 @@
 	                    	<div class="form-holder">
 	                    		<span>Password</span>
 	                    		<input type="password" name="password" id="id_password" class="form-control" placeholder="Enter Password" required>
-	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: #8039f2;bottom: 13px;"></i>
+	                    		<i class="zmdi zmdi-eye zmdi-hc-lg" id="togglePassword" style="cursor: pointer;color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};bottom: 13px;"></i>
 	                    	</div>
 	                    </div>
 
