@@ -85,7 +85,11 @@ if (isset($post)) {
         .gallery-img:hover {
             transform: scale(1.05);
         }
-
+        .badge-info{
+          color: #fff !important;
+          background-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+          border-color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+        }
         /* Adjust modal styles */
         .modal-content {
             border-radius: 10px;
