@@ -95,8 +95,9 @@
 		    border: none;
 		    display: inline-flex;
 		    height: 54px;
-		    width: 180px;
+		    width: 160px;
 		    letter-spacing: 1.3px;
+		    font-size: 0.8rem
 		    align-items: center;
 		    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
 		    cursor: pointer;
@@ -131,7 +132,7 @@
 		.mainclass > div {
 		  flex: 1;
 		  padding: 0.5rem;
-		  max-width: 25%;
+		  max-width: 29%;
 		}
 		input[type="radio"] {
 		  display: none;
@@ -404,7 +405,7 @@
 				    @foreach($categories as $key => $cat)
 				        <div class="text-center">
 				            <input type="checkbox" id="cat_0{{$cat->id}}" name="category_id[]" value="{{$cat->id}}">
-				            <label for="cat_0{{$cat->id}}" style="padding: 50px 0px 50px 0px;">
+				            <label for="cat_0{{$cat->id}}" style="padding: 1rem !important">
 				                <!-- If you want to include an image -->
 				                <!-- @if($cat->category_icon)
 				                    <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}">
