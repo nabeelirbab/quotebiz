@@ -97,7 +97,7 @@
 		    height: 54px;
 		    width: 160px;
 		    letter-spacing: 1.3px;
-		    font-size: 0.8rem
+		    font-size: 0.8rem;
 		    align-items: center;
 		    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
 		    cursor: pointer;
