@@ -279,7 +279,7 @@ if (isset($post)) {
                         <div class="col-lg-4 d-flex justify-content-center">
                             <div class="logo-area" id="sitesmall">
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
-                                    <img  src="{{$sitesmalllogo}}" alt="{{$sitename}}" class="img-fluid">
+                                    <img  src="{{$sitelightlogo}}" alt="{{$sitename}}" class="img-fluid">
                                 </a>
                             </div>
                         </div>
@@ -291,7 +291,7 @@ if (isset($post)) {
             <div id="header-menu" class="header-menu menu-layout1 bg--light">
                 <div class="container">
                     <div class="row">
-                         <div class="col-lg-2 d-flex justify-content-center">
+                         <div class="col-lg-2 d-flex " style="align-items: center;">
                             @if(Request::segment(1) != 'sp-profile')
                             <div class="logo-area d-flex"style="align-content: center;" >
                                 <a href="{{url('/')}}" class="temp-logo" id="temp-logo">
@@ -337,7 +337,7 @@ if (isset($post)) {
                                 </ul>
                             </nav>
                         </div>
-                         <div class="col-lg-3 d-flex">
+                         <div class="col-lg-3 d-flex justify-content-end">
                             @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
                             <div class="header-action-items">
                                 <ul>

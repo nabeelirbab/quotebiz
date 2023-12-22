@@ -35,12 +35,12 @@ class QuestionController extends Controller
    public function categoriesbyid($account,$id){
 
         if($id == 0){
-            $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent_id',0)->where('cat_parent','1')->orderBy('category_name','desc')->get();
+            $categories = Category::with('questions','subquestions','questions.choices')->where('subdomain',Setting::subdomain())->where('cat_parent','1')->orderBy('category_name','asc')->get();
             $subcategories = [];
         }
         else{
 
-            $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
+            $categories = Category::with('questions','subquestions','questions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','asc')->get();
             $subcategories = Category::where('cat_parent_id',$id)->where('cat_parent','1')->orderBy('category_name','desc')->get();
         }
 
@@ -49,19 +49,41 @@ class QuestionController extends Controller
         return ['categories' => $categories, 'subcat' => $subcategories];
    }
 
-    public function subcategoriesbyid($account,$id){
-
-        if($id == 0){
-            $subcategories = Category::with('questions','subquestions','questions.choices','subquestions.choices')->where('cat_parent','1')->orderBy('category_name','desc')->get();
-        }
-        else{
-            $subcategories = Category::with('questions','subquestions','questions.choices','subquestions.choices')->where('cat_parent','1')->where('id',$id)->orderBy('category_name','desc')->get();
+  public function subcategoriesbyid($account, $id)
+    {
+        if ($id == 0) {
+            $subcategories = Category::with('questions', 'subquestions', 'questions.choices', 'subquestions.choices')
+                ->where('cat_parent', '1')
+                ->orderBy('category_name', 'desc')
+                ->get();
+        } else {
+            $subcategories = Category::with('questions', 'subquestions', 'questions.choices', 'subquestions.choices')
+                ->where('cat_parent', '1')
+                ->where('id', $id)
+                ->orderBy('category_name', 'desc')
+                ->get();
         }
 
         $subcategories = json_decode($subcategories);
-      
+
+        // Check if questions and subquestions are empty, then get main category questions
+        foreach ($subcategories as $subcategory) {
+            if (empty($subcategory->questions) && empty($subcategory->subquestions)) {
+                // Get main category questions
+                $mainCategoryQuestions = Category::with('questions', 'questions.choices')
+                    ->where('id', $subcategory->cat_parent_id)
+                    ->orderBy('category_name', 'desc')
+                    ->first(); // Use first() to get the first item of the collection
+
+                // Merge the main category questions into the current subcategory
+                $subcategory->subquestions = $mainCategoryQuestions->questions;
+            }
+        }
+
         return $subcategories;
-   }
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
