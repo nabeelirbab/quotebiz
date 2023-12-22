@@ -13,11 +13,12 @@
   $job_design = Acelle\Jobs\HelperJob::form_design(); 
 ?>
 @include('blog.header',['post' => $data])
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 <style type="text/css">
-	.pac-container {
+.pac-container {
     z-index: 1060 !important;
 }
-
 .select2-selection__rendered {
   line-height: 35px !important;
   color: #52648482 !important;
@@ -83,12 +84,39 @@
   opacity: 1;
   top: 12px;
 }
+.flatpickr-calendar.inline {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.flatpickr-day.selected,.flatpickr-day.selected:hover{
+	background: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+	border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+}
+.col-md-4{
+	flex: 0 0 30.333333%;
+    max-width: 30.333333%;
+}
+#seeMoreLink {
+	font-weight: bold;
+	text-decoration: underline;
+	margin-bottom: 5px;
+	color: {{ ($job_design) ? $job_design->button_color:'#6200EA'}} !important;
+}
+h2{
+	font-size: 24px;
+}
+@media screen and (max-width: 667px) {
+.col-md-4{
+	flex: 0 0 100%;
+    max-width: 100%;
+}
+}
 </style>
 <section style="border-top: 1px solid #c9c9c9; background-color: #f7f8fa ">
 
 	<div class="container mt-5 mb-5">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 			 <div class="card" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="text-center mt-4">
                 	@if($user->user_img)
@@ -107,6 +135,7 @@
                         @endif
                     @endforeach
                     </p>
+                    <div id="calendar"></div>
                     <div class=" text-center">
                       <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request A Quote</button>
                     </div>
@@ -166,16 +195,17 @@
 					</div>
 				</div>
 			    @endif
-                @if($user->biography)
-				<h2 class=" mt-3 mb-4">Biography</h2>
-				<div class="row mb-5 border-bottom">
-					<div class="col-md-12">
-						<p>
-						{{$user->biography}}
-						</p>
-					</div>
-				</div>
-				@endif
+			  
+			    @if ($user->biography)
+			    <h2 class="mt-3 mb-4">Biography</h2>
+			    <div class="row mb-5 border-bottom">
+			        <div class="col-md-12 mb-5">
+			            <p id="accommodationDescription" class="mb-1">
+			                {{ $user->biography }}
+			            </p>
+			        </div>
+			    </div>
+			    @endif
 				@if(count($user->gallery) > 0)
 				<h2 class="mb-5">Gallery</h2>
 				 <div class="row">
@@ -233,6 +263,23 @@
 						</div>
 						
 					</div>
+				</div>
+
+  	<!-- Modal -->
+				<div class="modal fade" id="biographyModal" tabindex="-1" role="dialog" aria-labelledby="biographyModalLabel" aria-hidden="true">
+				    <div class="modal-dialog modal-dialog-centered" role="document">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <h5 class="modal-title" id="biographyModalLabel"> Biography</h5>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">&times;</span>
+				                </button>
+				            </div>
+				            <div class="modal-body">
+				                <p> {{ $user->biography }}</p>
+				            </div>
+				        </div>
+				    </div>
 				</div>
 			    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
 			    <div class="modal-dialog modal-dialog-centered">
@@ -337,8 +384,75 @@
 </section>
 
 @include('blog.footer')
-<script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
 
+<script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
+   @php
+	    $charLimit = 400;
+	@endphp
+
+	@if (strlen($user->biography) > $charLimit)
+	    <script>
+	        document.addEventListener('DOMContentLoaded', function () {
+	            var biographyElement = document.getElementById('accommodationDescription');
+	            var fullBiography = {!! json_encode($user->biography) !!}; // Ensure proper escaping for JavaScript
+
+	            if (biographyElement.textContent.length > {{ $charLimit }}) {
+	                var shortText = biographyElement.textContent.substring(0, {{ $charLimit }}) + '...';
+
+	                biographyElement.textContent = shortText;
+
+	                var seeMoreLink = document.createElement('a');
+	                seeMoreLink.id = 'seeMoreLink';
+	                seeMoreLink.href = '#';
+	                seeMoreLink.textContent = 'See More >';
+
+	                seeMoreLink.addEventListener('click', function (e) {
+	                    e.preventDefault();
+	                    $('#biographyModal').modal('show');
+	                });
+
+	                biographyElement.insertAdjacentElement('afterend', seeMoreLink); // Insert the link after the paragraph
+	            }
+	        });
+	    </script>
+	@endif
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('#owl-carousel').owlCarousel({
+            items: 3, // Number of items displayed per slide
+            loop: false, // Loop through items
+            nav: false, // Show navigation buttons
+            responsive: {
+                0: { items: 1 }, // Responsive settings for different screen widths
+                768: { items: 2 },
+                992: { items: 3 },
+                1200: { items: 4 }
+            }
+        });
+        $('#owl-carousel2').owlCarousel({
+            items: 4, // Number of items displayed per slide
+            loop: false, // Loop through items
+            nav: false, // Show navigation buttons
+            responsive: {
+                0: { items: 1 }, // Responsive settings for different screen widths
+                768: { items: 2 },
+                992: { items: 3 }
+            }
+        });
+    });
+</script>
+    <script>
+        flatpickr("#calendar", {
+            defaultDate: new Date(),
+            minDate: "today",
+            inline: true,
+            onChange: function(selectedDates, dateStr, instance) {
+                // Update the hidden input value with the selected date
+                document.getElementById('selectedDate').value = dateStr;
+            },
+        });
+    </script>
 @if($provideradminlocation->admin_location_type == "World Wide")
 <script>
   google.maps.event.addDomListener(window, 'load', initialize);

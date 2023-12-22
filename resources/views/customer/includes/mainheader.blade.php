@@ -21,10 +21,14 @@
                                 <ul class="nk-quick-nav">
                                    <li class="nav-item d-none d-lg-block">
                                      @if(Auth::user()->user_relation == 'both' || Auth::user()->user_type == 'service_provider')
-                                        <a href="{{ url('service-provider') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to Service Provider</b></p></a>
+                                        <a href="{{ url('service-provider') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b><em class="icon ni ni-swap-alt-fill" style="font-size: 20px;font-weight: 700;"></em> Switch to Service Provider</b></p></a>
                                         @else
-                                        <a href="{{ url('customer/sp-register') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Register Your Business</b></p></a>
+                                        <a href="{{ url('customer/sp-register') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b><em class="icon ni ni-home-fill"  style="font-size: 20px;font-weight: 700;"></em> Register Your Business</b></p></a>
                                         @endif
+                                    </li>
+                                    <li class="nav-item d-none d-lg-block">
+                                        <a href="{{ url('customer/profile') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>
+                                       <span><em class="icon ni ni-user-circle-fill" style="font-size: 20px;font-weight: 700;"></em></span>  View My Profile</b></p></a>
                                     </li>
                                     <li class="dropdown chats-dropdown hide-mb-xs">
                                         <a href="{{ url('customer/inbox') }}" class="le nk-quick-nav-icon">

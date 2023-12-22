@@ -1,4 +1,5 @@
 <!-- <!DOCTYPE html> -->
+<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
