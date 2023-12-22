@@ -310,7 +310,7 @@ p.form-para::after {
 .dogcFe {
   background-size: cover !important;
   width: 100%;
-  height: 100% !important;
+  min-height: 100% !important;
   -webkit-box-align: start;
   align-items: start;
   -webkit-box-pack: center;
@@ -344,7 +344,7 @@ p.form-para::after {
 .dogcFe {
   background-size: cover !important;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   -webkit-box-align: start;
   align-items: start;
   -webkit-box-pack: center;
@@ -631,7 +631,7 @@ p.form-para::after {
 </header>
 
 <div class="container mt-5 p-4">
-<div class="row justify-content-{{($job_design) ? $job_design->position : 'end'}}"
+<div class="row mt-5 justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
 <div class="col-lg-7 col-md-8 col-sm-10 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">
 @if($errors->any())
@@ -764,7 +764,7 @@ aria-hidden="true">
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
-      <h4>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h4>
+      <h3>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
       <a href="{{ url('service-providers') }}" class="link-color">View All</a>
     </div>
   </div>
@@ -825,7 +825,7 @@ aria-hidden="true">
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
-      <h4>Featured Blogs</h4>
+      <h3>Featured Blogs</h3>
       <a href="{{ url('blogs') }}" class="link-color">View All</a>
     </div>
   </div>
@@ -870,7 +870,7 @@ aria-hidden="true">
     <div class="container">
 
         <div class="row g-3 align-items-center justify-content-md-between py-3">
-          <div class="col-md-3">
+          <div class="col-md-3 d-flex justify-content-center justify-content-sm-start">
               <a href="{{ url('/') }}" class="logo-link">
                         <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
                         <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
@@ -886,16 +886,15 @@ aria-hidden="true">
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul><!-- .footer-nav -->
-                        <div class="text-base text-center" style="font-size: 13px"><a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a></div>
 
                     </div>
                  
                 </div><!-- .footer-logo -->
             </div><!-- .col -->
-            <div class="col-md-4 d-flex justify-content-md-end">
+            <div class="col-md-4 d-md-flex justify-content-lg-end">
             @if($job_design)
                @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
-              <div class="centered-text">
+              <div class="centered-text mt-md-3 mt-2">
                 <div class="social">
                 @if($job_design->facebook)
                 <a href="{{$job_design->facebook}}" target="_blank"><em class="icon ni ni-facebook-fill"></em></a>
@@ -917,6 +916,13 @@ aria-hidden="true">
               @endif
               @endif
             </div><!-- .col -->
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <div class="text-base text-center" style="font-size: 13px">
+              <a href="">Copyright &copy; {{date("Y")}} {{$sitename}}.</a>
+            </div>
+          </div>
         </div>
       </div>
         

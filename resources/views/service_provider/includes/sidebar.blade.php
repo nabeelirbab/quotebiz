@@ -49,9 +49,9 @@
                         </a>
                     </li> -->
                     <li class="nk-menu-item has-sub">
-                        <a href="{{url('service-provider/location-setting')}}" class="nk-menu-link">
+                        <a href="{{url('service-provider/settings')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-setting-alt-fill"></em></span>
-                            <span class="nk-menu-text">Settings</span>
+                            <span class="nk-menu-text">My Profile</span>
                         </a>
                         
                     </li><!-- .nk-menu-item -->

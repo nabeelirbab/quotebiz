@@ -309,16 +309,17 @@ if (isset($post)) {
                                     <li class="hide-on-desktop-menu">
                                         <a href="{{ url('/') }}">Home</a>
                                     </li>
+                                     @if($job_design && $job_design->profile_status != '2')
+                                    <li>
+                                        <a href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
+                                    </li>
+                                    @endif
                                     @if($job_design && $job_design->blog_status != '2')
                                     <li>
                                         <a href="{{ url('/blogs') }}">BLOG</a>
                                     </li>
                                     @endif
-                                    @if($job_design && $job_design->profile_status != '2')
-                                    <li>
-                                        <a href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
-                                    </li>
-                                    @endif
+                                   
                                     @if(Auth::user())
                                       @if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'admin')
                                          <li>

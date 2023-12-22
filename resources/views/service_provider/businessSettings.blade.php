@@ -3,6 +3,9 @@
 @section('styling')
 <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/bootstrap-multiselect.min.css') }}">
     <style type="text/css">
+        .nav-tabs .nav-item {
+            padding-right: 4.25rem;
+        }
         .labelcls {
             display: flex;
             align-items: center;
@@ -203,8 +206,10 @@
                                             <div class="data-item">
                                                 <div class="data-col">
                                                     <span class="data-label">City</span>
-                                                    @if(Auth::user()->city)
+                                                    @if(Acelle\Jobs\HelperJob::cityname(Auth::user()->city) && Auth::user()->city)
                                                     <span class="data-value ">{{Acelle\Jobs\HelperJob::cityname(Auth::user()->city)->name}}</span>
+                                                    @else
+                                                    <span class="data-value ">{{ Auth::user()->city}}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -262,142 +267,7 @@
     </div>
     <!-- content @e -->
     <!-- @@ Profile Edit Modal @e -->
-    <div class="modal fade" role="dialog" id="profile-edit">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-                <div class="modal-body modal-body-md">
-                    <h5 class="title">Update Business Info</h5>
-                    <ul class="nk-nav nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#personal">Business</a>
-                        </li>
-                        <!--  <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#address">Address</a>
-                        </li> -->
-                    </ul><!-- .nav-tabs -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="personal">
-                            <form action="{{ url('service-provider/business-update') }}" method="post">
-                                {{ csrf_field() }}
-                                <div class="row gy-4">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="full-name">Business Name</label>
-                                            <input type="text" class="form-control" id="full-name"
-                                                   value="{{Auth::user()->business->business_name}}" name="business_name"
-                                                   placeholder="Enter business name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="display-name">Business Registration Number</label>
-                                            <input type="text" class="form-control" id="display-name"
-                                                   value="{{Auth::user()->business->business_reg}}" name="business_reg"
-                                                   placeholder="Enter business registration number">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="personal-email">Business Email</label>
-                                            <input type="email" class="form-control" id="personal-email"
-                                                   value="{{Auth::user()->business->business_email}}" name="business_email"  placeholder="Enter business email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="phone-no">Business Phone</label>
-                                            <input type="text" class="form-control" id="phone-no"
-                                                   value="{{Auth::user()->business->business_phone}}" name="business_phone"
-                                                   placeholder="Phone Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="phone-no">Business Category</label>
-                                            <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
-                                             <option value="" >Select Category</option>
-                                             @foreach(Acelle\Jobs\HelperJob::categories() as $category)
-                                             <option value="{{$category->id}}" {{$selectcat == $category->id ? 'selected': ''}}>{{$category->category_name}}</option>
-                                             @endforeach
-                                           </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" id="subcat">
-
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-label" for="birth-day">Business Website</label>
-                                            <input type="text" class="form-control" value="{{Auth::user()->business->business_website}}"
-                                                   name="business_website" placeholder="Enter business website">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                            <li>
-                                                <button type="submit" class="btn btn-primary">Update</button>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div><!-- .tab-pane -->
-                        <div class="tab-pane" id="address">
-                            <div class="row gy-4">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="address-l1">Address Line 1</label>
-                                        <input type="text" class="form-control" id="address-l1"
-                                               value="2337 Kildeer Drive">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="address-l2">Address Line 2</label>
-                                        <input type="text" class="form-control" id="address-l2" value="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="address-st">State</label>
-                                        <input type="text" class="form-control" id="address-st" value="Kentucky">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="address-county">Country</label>
-                                        <select class="form-select" id="address-county">
-                                            <option>Canada</option>
-                                            <option>United State</option>
-                                            <option>United Kindom</option>
-                                            <option>Australia</option>
-                                            <option>India</option>
-                                            <option>Bangladesh</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                        <li>
-                                            <a href="#" data-dismiss="modal" class="btn btn-primary">Update Address</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!-- .tab-pane -->
-                    </div><!-- .tab-content -->
-                </div><!-- .modal-body -->
-            </div><!-- .modal-content -->
-        </div><!-- .modal-dialog -->
-    </div><!-- .modal -->
+@include('service_provider.includes.profile-update-modal')
     <!-- language modal -->
 
 @endsection

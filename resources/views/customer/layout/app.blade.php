@@ -1,3 +1,4 @@
+<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
