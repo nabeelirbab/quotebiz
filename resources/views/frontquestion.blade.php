@@ -66,64 +66,64 @@
 			transition: all 0.5s ease; }
 		<?php } ?>
 		
-body {
-  background: #f7f8fa;
-  color: #222222;
-  font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+		body {
+		  background: #f7f8fa;
+		  color: #222222;
+		  font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
 
-}
-  .wizard > .steps ul:after {
-    content: "";
-    width: 10.33%;
-    height: 8px;
-    background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
-    border-radius: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.5s ease; }
-    .actions li a {
-     border: none !important;
-     background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-    }
-    .form-control:focus {
-    /* box-shadow: 0px 0px 7px 0px rgb(116 107 107); */
-    border: 1px solid {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
-}
-.actions li button {
-    padding: 0;
-    border: none;
-    display: inline-flex;
-    height: 54px;
-    width: 180px;
-    letter-spacing: 1.3px;
-    align-items: center;
-    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-    cursor: pointer;
-    position: relative;
-    padding-left: 34px;
-    /*text-transform: uppercase;*/
-    color: #fff;
-    border-radius: 27px;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-}
-.actions li button:before {
-    content: '\f2ee';
-    font-size: 18px;
-    position: absolute;
-    top: 17px;
-    right: 17px;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
-.images-icons{
-	max-width: 100%;
-	border-top-right-radius: 15px;
-	border-top-left-radius: 15px; 
-}
+		}
+		  .wizard > .steps ul:after {
+		    content: "";
+		    width: 10.33%;
+		    height: 8px;
+		    background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+		    border-radius: 2px;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    transition: all 0.5s ease; }
+		    .actions li a {
+		     border: none !important;
+		     background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+		    }
+		    .form-control:focus {
+		    /* box-shadow: 0px 0px 7px 0px rgb(116 107 107); */
+		    border: 1px solid {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+		}
+		.actions li button {
+		    padding: 0;
+		    border: none;
+		    display: inline-flex;
+		    height: 54px;
+		    width: 180px;
+		    letter-spacing: 1.3px;
+		    align-items: center;
+		    background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+		    cursor: pointer;
+		    position: relative;
+		    padding-left: 34px;
+		    /*text-transform: uppercase;*/
+		    color: #fff;
+		    border-radius: 27px;
+		    -webkit-transform: perspective(1px) translateZ(0);
+		    transform: perspective(1px) translateZ(0);
+		    -webkit-transition-duration: 0.3s;
+		    transition-duration: 0.3s;
+		}
+		.actions li button:before {
+		    content: '\f2ee';
+		    font-size: 18px;
+		    position: absolute;
+		    top: 17px;
+		    right: 17px;
+		    -webkit-transform: translateZ(0);
+		    transform: translateZ(0);
+		}
+		.images-icons{
+			max-width: 100%;
+			border-top-right-radius: 15px;
+			border-top-left-radius: 15px; 
+		}
 		.mainclass {
 		  display: flex;
 		  flex-flow: row wrap;
@@ -162,7 +162,7 @@ body {
 		  display: block;
 		  background: white;
 		  border-radius: 15px;
-		  /*padding: 1rem;*/
+		  padding: 0.8rem;
 		  color: black;
 		  margin-bottom: 1rem;
 		  //margin: 1rem;
@@ -222,67 +222,70 @@ body {
 		  font-weight: 900;
 		}
 
-.d-flex {
-    display: flex;
-}
-.justify-content-center {
-    justify-content: center;
-}
-.row {
-    margin-right: -15px;
-    margin-left: -15px;
-}
-.content.clearfix{
-	padding: 15px;
-}
-@media only screen and (min-width: 992px) {
-.col-md-6 {
-    width: 50%;
-    float: left;
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
+		.d-flex {
+		    display: flex;
+		}
+		.justify-content-center {
+		    justify-content: center;
+		}
+		.row {
+		    margin-right: -15px;
+		    margin-left: -15px;
+		}
+		.content.clearfix{
+			padding: 15px;
+		}
+		@media only screen and (min-width: 992px) {
+		.col-md-6 {
+		    width: 50%;
+		    float: left;
+		    position: relative;
+		    min-height: 1px;
+		    padding-right: 15px;
+		    padding-left: 15px;
+		}
 
-}
-@media only screen and (max-width: 700px) {
-  section {
-    flex-direction: column;
-  }
-  .mainclass > div {
-    flex: 1;
-    padding: 0.5rem;
-    max-width: 100% !important;
- }
- .font-class{
- 	font-size: 12px;
- }
- label img{
-    vertical-align: middle;
-    max-height: 140px !important;
-    max-width: 140px !important;
+		}
+		@media only screen and (max-width: 700px) {
+		  section {
+		    flex-direction: column;
+		  }
+		  .mainclass > div {
+		    flex: 1;
+		    padding: 0.5rem;
+		    max-width: 100% !important;
+		 }
+		 .font-class{
+		 	font-size: 18px;
+		 }
+		 .actions li a{
+		 	width: 156px;
+		 }
+		 label img{
+		    vertical-align: middle;
+		    max-height: 140px !important;
+		    max-width: 140px !important;
 
- }
-}
-.swyft-box-shadow-down {
-    box-shadow: 0 6px 6px 0 rgb(0 0 0 / 16%);
-    z-index: 100;
-}
-.jss3 {
-    height: 100px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 255, 255);
-}
-.iti__flag {background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/img/flags.png");
-}
+		 }
+		}
+		.swyft-box-shadow-down {
+		    box-shadow: 0 6px 6px 0 rgb(0 0 0 / 16%);
+		    z-index: 100;
+		}
+		.jss3 {
+		    height: 100px;
+		    width: 100%;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    background-color: rgb(255, 255, 255);
+		}
+		.iti__flag {background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/img/flags.png");
+		}
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .iti__flag {background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/img/flags@2x.png");}
-}
+		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		  .iti__flag {background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/img/flags@2x.png");}
+		}
 		</style>
 	</head>
 	<body class="dogcFe">
@@ -395,22 +398,29 @@ body {
 	                @if(!$sp_id)
 	                 <h4></h4>
 	                <section>
-	                	<h3 style="text-align: center;color: black">Other Services</h3>
+	                	<h3 style="margin-bottom: 8px;text-align: center;color: black">Other Services</h3>
+	                	<p style="margin-bottom: 46px;font-size: 14px;font-weight: 200;text-align: center;">Interested in more services? Select additional categories and receive up to 3 quotes for each one to explore more options for your event</p>
 	                	<div class="mainclass justify-content-center" style="padding-bottom: 48px">
-	                    @foreach($categories as $key => $cat)
-	                     <div>
-						  <input type="checkbox" id="cat_0{{$cat->id}}" name="category_id[]" value="{{$cat->id}}">
-						  <label for="cat_0{{$cat->id}}" style="padding:10px">
-						  <!-- 	@if($cat->category_icon)
-                              <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}" >
-						  	@else
-                              <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
-						  	@endif -->
-						      <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
-						  </label>
-						</div>
-						@endforeach
-	                    </div>
+				    @foreach($categories as $key => $cat)
+				        <div class="text-center">
+				            <input type="checkbox" id="cat_0{{$cat->id}}" name="category_id[]" value="{{$cat->id}}">
+				            <label for="cat_0{{$cat->id}}" style="padding: 50px 0px 50px 0px;">
+				                <!-- If you want to include an image -->
+				                <!-- @if($cat->category_icon)
+				                    <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}">
+				                @else
+				                    <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
+				                @endif -->
+
+				                <!-- Wrapping h2 in a div for centering -->
+				                <div>
+				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
+				                </div>
+				            </label>
+				        </div>
+				    @endforeach
+				</div>
+
 	                </section>
 	                @endif
 				@if(Auth::user())

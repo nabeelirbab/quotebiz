@@ -7,7 +7,26 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnout.com/toastr.js"></script>
+<script type="text/javascript">
+      document.getElementById('images').addEventListener('change', function (event) {
+        const imagePreviews = document.getElementById('imagePreviews');
+        imagePreviews.innerHTML = ''; // Clear existing previews
 
+        for (const file of event.target.files) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '100px'; // Adjust image size if needed
+                img.style.marginRight = '10px'; // Adjust margin between images if needed
+                imagePreviews.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
     <script type="text/javascript">
 

@@ -21,10 +21,15 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="nav-item d-none d-lg-block">
-                                        <a href="{{ url('customer') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>Switch to Customer</b></p></a>
+                                        <a href="{{ url('customer') }}" class="nk-quick-nav-icon"><p style="font-size: 16px">
+                                            <b> <em class="icon ni ni-swap-alt-fill" style="font-size: 20px;font-weight: 700;"></em> Switch to Customer</b></p></a>
+                                    </li>
+                                     <li class="nav-item d-none d-lg-block">
+                                        <a href="{{ url('service-provider/settings') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b>
+                                        <em class="icon ni ni-user-circle-fill" style="font-size: 20px;font-weight: 700;"></em> View My Profile</b></p></a>
                                     </li>
                                     <li class="nav-item d-none d-lg-block">
-                                        <a href="{{ url('service-provider/buy-credits') }}" class="nk-quick-nav-icon"><p style="font-size: 16px">Credits <b>{{ Auth::user()->credits}}</b></p></a>
+                                        <a href="{{ url('service-provider/buy-credits') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b> Credits {{ Auth::user()->credits}}</b></p></a>
                                     </li>
                                     <li class="dropdown chats-dropdown hide-mb-xs">
                                         <a href="{{ url('service-provider/quotes-responses') }}" class="le nk-quick-nav-icon">

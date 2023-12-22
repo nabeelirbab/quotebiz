@@ -148,6 +148,7 @@ class QuoteController extends Controller
         }
        $user = User::find(Auth::user()->id);
        $user->category_id = json_encode($category);
+       $user->experience = $request->experience;
        $user->save();
        $business = SpBusiness::where('user_id',Auth::user()->id)->first();
        $business->business_name = $request->business_name;
@@ -163,17 +164,8 @@ class QuoteController extends Controller
     public function profileUpdate(Request $request)
     {
 
-        $user = User::find(Auth::user()->id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->mobileno = $request->mobileno;
-        $user->city = $request->city;
-        $user->zipcode = $request->zipcode;
-        $user->address = $request->address;
-        $user->experience = $request->experience;
-        $user->biography = $request->biography;
-        $user->save();
-
+       $user = User::find(Auth::user()->id);
+       $user->update($request->only(['first_name', 'last_name', 'mobileno', 'city', 'zipcode', 'address', 'biography']));
         return redirect()->back()->with('success', 'Profile Update Successfully');
     }
 

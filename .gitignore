@@ -3,6 +3,7 @@
 /public/demo.php
 /storage/*.key
 /vendor
+vendor
 .env
 .env.backup
 composer.lock
