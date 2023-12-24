@@ -107,7 +107,7 @@ h2{
         .labelcls {
             display: flex;
             align-items: center;
-            padding: 0.625rem 1.25rem;
+            padding: 0.3rem 1rem;
             font-size: 12px;
             font-weight: 500;
             color: #526484;
@@ -115,6 +115,13 @@ h2{
             line-height: 1.3rem;
             position: relative;
             margin-bottom: 0px !important;
+            width: 66%;
+            margin-top: -23px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease-in-out;
+            border-radius: 29px;
+            margin-left: 20px;
         }
          .btn-group{
             width: 100%;
@@ -277,7 +284,7 @@ h2{
                                                 <div class="row mb-5 border-bottom">
                                                     <div class="col-md-12 mb-5">
                                                         <p id="accommodationDescription" class="mb-1">
-                                                            {{ Auth::user()->biography }}
+                                                            {!! Auth::user()->biography !!}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -343,7 +350,7 @@ h2{
 
                                     <!-- Modal -->
                                                 <div class="modal fade" id="biographyModal" tabindex="-1" role="dialog" aria-labelledby="biographyModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="biographyModalLabel"> Biography</h5>
@@ -352,7 +359,7 @@ h2{
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p> {{ Auth::user()->biography }}</p>
+                                                                <textarea rows="24" style="border: none; background:none; color:  #222222; width: 100%" disabled>{!! Auth::user()->biography !!}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -486,7 +493,7 @@ h2{
                     processData: false,
 
                     success: function (data) {
-                        $('.uploadimg').html('<div style="margin-right: 15px;" class="nk-msg-media user-avatar"><img src="' + data + '" alt=""></div>');
+                        $('.uploadimg').html('<img class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;" src="' + data + '" alt="">');
                     }
                 });
             }
@@ -544,7 +551,7 @@ h2{
                     processData: false,
 
                     success: function (data) {
-                        $('.uploadimg').html('<div style="margin-right: 15px;" class="nk-msg-media user-avatar"><img src="' + data + '" alt=""></div>');
+                        $('.uploadimg').html('<img class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;" src="' + data + '" alt="">');
                     }
                 });
             }

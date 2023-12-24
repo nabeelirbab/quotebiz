@@ -310,6 +310,9 @@
             		<input type="hidden" name="local_business" value="{{$local_business}}">
             		<input type="hidden" name="admin_id" value="{{\Acelle\Model\Setting::subdomain()}}">
             		<input type="hidden" name="sp_id" value="{{@$sp_id}}">
+            		@if($booking_date)
+            		<input type="hidden" name="booking_date" value="{{@$booking_date}}">
+            		@endif
             	</div>
             	<div id="wizard">
             		
@@ -396,6 +399,22 @@
 	                   
 	                	</div>
 	                </section>
+	                @if(!$booking_date)
+	                 <h4></h4>
+	                <section>
+	                	<h3 style="text-align: center;color: black">Select Booking Date</h3>
+	                	<div class="mainclass justify-content-center" style="padding-bottom: 48px">
+	                	 <div style="max-width: 50%">
+                            <div class="form-row">
+	                    	<div class="form-holder">
+	                    		<!-- <span>Where do you need it?</span> -->
+	                    		<input type="date" class="form-control zipclass" name="booking_date"  required>
+	                    	</div>
+	                    </div>
+	                </div>
+	                	</div>
+	                </section>
+	                @endif
 	                @if(!$sp_id)
 	                 <h4></h4>
 	                <section>

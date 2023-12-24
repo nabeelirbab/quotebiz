@@ -36,6 +36,7 @@ class QuestionChoiceController extends Controller
         $latitude = $request->latitude;
         $longitude = $request->longitude;
         $sp_id = $request->sp_id;
+        $booking_date = $request->booking_date;
         $state = $request->state;
         $local_business = "";
         if (isset($request->local_business)) {
@@ -54,7 +55,7 @@ class QuestionChoiceController extends Controller
         }
 
 
-        return view('frontquestion', compact('category', 'zipcode', 'latitude', 'longitude', 'local_business', 'state','categories','sp_id'));
+        return view('frontquestion', compact('category', 'zipcode', 'latitude', 'longitude', 'local_business', 'booking_date', 'state','categories','sp_id'));
     }
 
 

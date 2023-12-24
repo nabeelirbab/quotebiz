@@ -14,6 +14,12 @@
         <link rel="shortcut icon" type="image/png" href="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_favicon')) }}"/>
     @endif 
     @include('customer.includes.head-css')
+      <style type="text/css">
+          body {
+             color: #222 !important;
+             font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+        }
+    </style>
     @yield('styling')
 </head>
 
