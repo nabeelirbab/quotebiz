@@ -14,76 +14,10 @@
 ?>
 @include('blog.header',['post' => $data])
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+ <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+ <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
 <style type="text/css">
-.pac-container {
-    z-index: 1060 !important;
-}
-.select2-selection__rendered {
-  line-height: 35px !important;
-  color: #52648482 !important;
-  font-size: 1.1rem;
-}
-.select2-container .select2-selection--single {
-  height: 50px !important;
-  border-radius: 6px;
-  border: 1px solid #c1c1c1;
-}
-.select2-selection__arrow {
-  height: 50px !important;
-}
-.form-group {
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-.floatright {
- float: right;
-}
-.btn-primary {
-  border: none !important;
-  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-  height: 35px !important;
-}
-.btn-success {
-  width: 100%;
-  border: none !important;
-  border-radius: 0.55rem;
-  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-  font-size: 1.5rem;
-  height: 43px;
-  font-weight: 500;
-}
-.form-control {
-  border-radius: 6px;
-  font-size: 1.1rem;
-  outline: 0;
-}
-.select2-container--default.select2-container--open .select2-selection--single {
-  border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
-}
-.select2-container--default .select2-selection--single:focus {
-  box-shadow: none;
-  border-radius: 6px;
-  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
-}
-.form-control:focus {
-  box-shadow: none;
-  border-radius: 6px;
-  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
-}
-.form-control-placeholder {
-  font-weight: 500;
-  color: #364a63;
-  margin-bottom: 8px;
-}
-.form-control:focus + .form-control-placeholder,
-.form-control:valid + .form-control-placeholder {
-  font-size: 60%;
-  transform: translate3d(0, -75%, 0);
-  border-radius: 6px;
-  opacity: 1;
-  top: 12px;
-}
+
 .flatpickr-calendar.inline {
   width: 100%;
   margin-bottom: 15px;
@@ -114,7 +48,7 @@ h2{
 </style>
 <section style="border-top: 1px solid #c9c9c9; background-color: #f7f8fa ">
 
-	<div class="container mt-5 mb-5">
+	<div class="container mt-5 mb-5" style="width: 93%">
 		<div class="row">
 			<div class="col-md-4">
 			 <div class="card" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
@@ -135,12 +69,14 @@ h2{
                         @endif
                     @endforeach
                     </p>
+                    <p class="text-center mb-2">What is the date of your event?</p>
                     <div id="calendar"></div>
                     <div class=" text-center">
                       <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request A Quote</button>
                     </div>
                 </div>
             </div>
+            <p class="text-center mt-3" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share.png') }}" style="width: 4%;"> <span style="text-decoration: underline;cursor: pointer;">Share</span> </p>
 			</div>
 			<div class="col-md-8 ml-md-auto">
 				<h2 class="ml-0">About {{$user->first_name}} </h2>
@@ -208,7 +144,7 @@ h2{
 			    @endif
 				@if(count($user->gallery) > 0)
 				<h2 class="mb-5">Gallery</h2>
-				 <div class="row">
+				 <div class="row border-bottom mb-5">
 				  @foreach($user->gallery as  $key => $gallery)
 				    <div class="col-md-3 mb-4 text-center">
 				        <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
@@ -220,7 +156,7 @@ h2{
 			    </div>
 			    @endif
 			    <h2 class="mb-4 ml-0">Preferred music genres</h2>
-				<div class="row mr-1 mb-5">
+				<div class="row mr-1 mb-5 border-bottom">
 					<div class="col-md-6">
 						<div class="d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
@@ -265,9 +201,130 @@ h2{
 					</div>
 				</div>
 
+				<h2 class="form-heading ml-0 mb-1">
+				{{ ($job_design) ? $job_design->title_heading : 'What are you looking for?'}}</h2>
+				<p class="form-para">
+				{{ ($job_design) ? $job_design->titlesub_heading : 'Let us know what you are looking for and we will provide you up to 3 quotes.'}}
+				</p>
+				<div class="container mt-5">
+				<div class="row mt-5"
+				style="height: 100%;align-items: center;">
+				<div class="col-lg-12 pl-0" style="box-shadow: -1px -1px 6px -6px rgba(0,0,0,0.27);border-radius: 12px">
+				@if($errors->any())
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  {{$errors->first()}}
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				  </button>
+				</div>
+				@endif
+			
+				<form class="information" action="{{ url('quote-form')}}" method="post" style="padding: 0.5rem "
+				autocomplete="off">
+				{{ csrf_field()}}
+				
+				<div class="row">
+				<div class="col-md-6">
+				<div class="form-group">
+				  <label class="form-control-placeholder"
+				         for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
+				  @if($job_design && $job_design->search_box == 'auto_suggest')     
+				  <input type="text" class="form-control" name="category_name" id="search"
+				         placeholder="eg {{Acelle\Jobs\HelperJob::categoryDetail(Acelle\Jobs\HelperJob::categoryname())->category_name}}... etc"
+				         required>
+				  <ul class="list-group" id="result">
+				  </ul>
+				  @else
+				  <select class="form-control select2" name="category_name" id="mySelect" style="height: 50px !important" required="">
+				     <option value="" disabled selected="" style="color: #333;">Select Service</option>
+				     @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
+				     <option>{{$category->category_name}}</option>
+				     @endforeach
+				  </select>
+				  @endif
+				</div>
+				</div>
+				<div class="col-md-6">
+				<div class="form-group">
+				 <label class="form-control-placeholder" for="zipcode">{{ ($job_design) ? $job_design->postcode_text : 'Where you need ?'}}</label>
+				  <input type="text" style="height: 50px !important;" class="form-control" name="zipcode" id="zipcode" placeholder="Location"
+				         required>
+				  @if(Session::has('error'))
+				      <strong style="color: red">Location Error : <span>{{Session::get('error')}}</span></strong>
+				  @endif
+				  <div class="custom-control custom-control-sm custom-checkbox notext mt-2">
+				    <input type="checkbox" class="custom-control-input" id="local_business"
+				           name="local_business" value="local business">
+				    <label class="custom-control-label" for="local_business" style="font-size: 13px;color: #9f9f9f;">I prefer a local business</label>
+				  </div>
+				  <input type="hidden" id="latitude" name="latitude">
+				  <input type="hidden" id="longitude" name="longitude">
+				  <input type="hidden" id="state" name="state">
+				</div>
+				</div>
+				<div class="col-md-5">
+				<div class="form-group">
+				  <button type="submit" class="btn rounded-2 btn-primary d-block login-button py-2 fw-600 w-100" style="border-radius: 0.55rem;"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}</span></button>
+				</div>
+				</div>
+				</div>
+				<p class="terms mt-4">By clicking "{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}",
+				you consent to the {{$sitename}} storing the information submitted on this page so you can get most
+				up-to-date quotes, no matter what device you are using. You also agree to The {{$sitename}}'s
+				 <a href="#" class="link-color" data-toggle="modal" data-target="#terms">Terms of Service</a> and 
+				 <a href="#" class="link-color" data-toggle="modal" data-target="#privacy">Privacy Policy.</a>
+				</p>
+				</form>
+				</div>
+				<!-- Terms Modal -->
+				<div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Terms of Service</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				@if($job_design)
+				{{$job_design->terms}}
+				@endif
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+				</div>
+				</div>
+				</div>
+				<!-- Privacy Modal -->
+				<div class="modal fade" id="privacy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Privacy Policy</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				@if($job_design)
+				{{$job_design->privacy_policy}}
+				@endif
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+
+				</div>
   	<!-- Modal -->
 				<div class="modal fade" id="biographyModal" tabindex="-1" role="dialog" aria-labelledby="biographyModalLabel" aria-hidden="true">
-				    <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 				        <div class="modal-content">
 				            <div class="modal-header">
 				                <h5 class="modal-title" id="biographyModalLabel"> Biography</h5>
@@ -276,13 +333,15 @@ h2{
 				                </button>
 				            </div>
 				            <div class="modal-body">
-				                <p> {{ $user->biography }}</p>
+				                <div class="modal-body">
+                                <textarea rows="24" style="border: none; background:none; color:  #222222;width: 100%" disabled>{!! $user->biography !!}</textarea>
+                            </div>
 				            </div>
 				        </div>
 				    </div>
 				</div>
 			    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-			    <div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-dialog modal-dialog-centered modal-lg">
 			        <div class="modal-content">
 			            <div class="modal-header">
 			                <h5 class="modal-title" id="imageModalLabel">Gallery Slider</h5>
@@ -341,6 +400,7 @@ h2{
 								{{ csrf_field()}}
 
 								<input type="hidden" name="sp_id" value="{{ $user->id }}">
+								<input type="hidden" id="selectedDate" name="booking_date" value="{{date('Y-m-d') }}">
 								
 								<div class="row">
 								<div class="col-md-12">
@@ -348,7 +408,7 @@ h2{
 								  <label class="form-control-placeholder"
 								         for="search">{{ ($job_design) ? $job_design->category_heading : 'What service do you need?'}}</label>
 								
-								  <select class="form-control select2" name="category_name" required="" style="height: calc(4.25rem + 2px);">
+								  <select class="form-control select2" name="category_name" required="" style="height: calc(5.25rem + 2px) !important;">
 								     <option value="" disabled selected="">Select Service</option>
 								     @foreach(json_decode($user->category_id) as $category) 
 								     <option>{{\Acelle\Jobs\HelperJob::categoryDetail($category)->category_name}}</option>
@@ -376,6 +436,33 @@ h2{
 			        </div>
 			    </div>
 			</div>
+
+
+			<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			            <h2 class="item-title">{{$user->first_name}} {{$user->last_name}}</h2>
+			                
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                    <span aria-hidden="true">&times;</span>
+			                </button>
+			            </div>
+			            <div class="modal-body">
+                        <div class="single-blog-banner-layout1" style="position: static;">
+                      	<div class="banner-content" style="bottom: 0">
+                        <ul class="item-social mb-2 text-center">
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i>SHARE</a></li>
+                            <li><a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}&text={{ urlencode($user->first_name) }}" target="_blank" class="twitter"><i class="fab fa-twitter"></i>SHARE</a></li>
+                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(Request::url()) }}&title={{ urlencode($user->first_name) }}" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i>SHARE</a></li>
+                        </ul>
+                       </div>
+                      </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
 			</div>
 			
 		</div>
@@ -417,6 +504,7 @@ h2{
 	    </script>
 	@endif
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
        $('#owl-carousel').owlCarousel({
@@ -452,6 +540,19 @@ h2{
                 document.getElementById('selectedDate').value = dateStr;
             },
         });
+    </script>
+    <script type="text/javascript">
+    	 $('#mySelect').on('change', function () {
+		  var selectedValue = $(this).val();
+		  var textColor = selectedValue ? '#3c4d62' : '#c1c1c1';
+
+		  // Remove !important from the inline style
+		  $('.select2-container--default .select2-selection--single .select2-selection__rendered').css('color', textColor);
+
+		  // Add a more specific rule with !important to override Select2 styles
+		  var styleTag = $('<style>.select2-container--default .select2-selection--single .select2-selection__rendered { color: ' + textColor + ' !important; }</style>');
+		  $('head').append(styleTag);
+		});
     </script>
 @if($provideradminlocation->admin_location_type == "World Wide")
 <script>

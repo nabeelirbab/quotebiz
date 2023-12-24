@@ -9,7 +9,7 @@
         .labelcls {
             display: flex;
             align-items: center;
-            padding: 0.625rem 1.25rem;
+            padding: 0.3rem 1rem;
             font-size: 12px;
             font-weight: 500;
             color: #526484;
@@ -17,6 +17,13 @@
             line-height: 1.3rem;
             position: relative;
             margin-bottom: 0px !important;
+            width: 66%;
+            margin-top: -23px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease-in-out;
+            border-radius: 29px;
+            margin-left: 20px;
         }
         .btn-group{
             width: 100%;
@@ -312,7 +319,7 @@
                     processData: false,
 
                     success: function (data) {
-                        $('.uploadimg').html('<div style="margin-right: 15px;" class="nk-msg-media user-avatar"><img src="' + data + '" alt=""></div>');
+                        $('.uploadimg').html('<img class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;" src="' + data + '" alt="">');
                     }
                 });
             }

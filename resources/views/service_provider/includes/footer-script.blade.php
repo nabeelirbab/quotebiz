@@ -1,6 +1,9 @@
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 
+    <script src="{{ asset('frontend-assets/assets/js/libs/editors/quill.js?ver=2.9.1') }}"></script>
+    <script src="{{ asset('frontend-assets/assets/js/editors.js?ver=2.9.1') }}"></script>
+
     <script src="https://{{\Acelle\Model\Setting::subdomain()}}.quotebiz.io:3000/socket.io/socket.io.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
@@ -26,6 +29,18 @@
             reader.readAsDataURL(file);
         }
     });
+      const textarea = document.getElementById('myTextarea');
+      const charCount = document.getElementById('charCount');
+      const maxLength = parseInt(textarea.getAttribute('maxlength'));
+
+      textarea.addEventListener('input', function() {
+        const remainingChars = maxLength - textarea.value.length;
+        charCount.textContent = `Characters remaining: ${remainingChars}`;
+
+        if (remainingChars < 0) {
+          textarea.value = textarea.value.slice(0, maxLength);
+        }
+      });
 </script>
 
     <script type="text/javascript">

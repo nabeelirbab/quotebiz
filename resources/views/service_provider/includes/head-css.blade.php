@@ -2,7 +2,11 @@
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/account.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/editors/quill.css?ver=2.9.1') }}">
     <style type="text/css">
+    	  .close{
+            font-size: 30px;
+        }
     	.chat.is-me .chat-msg {
 		    background-color:  {{ ($job_design) ? $job_design->button_color.'!important':'#0fac81 !important'}};
 		    color: #fff;

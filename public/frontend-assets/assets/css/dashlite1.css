@@ -42,7 +42,7 @@ html { font-family: sans-serif; line-height: 1.15; -webkit-text-size-adjust: 100
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section { display: block; }
 
-body { margin: 0; font-family: Roboto, sans-serif, "Helvetica Neue", Arial, "Noto Sans", sans-serif; font-size: 0.875rem; font-weight: 400; line-height: 1.65; color: #526484; text-align: left; background-color: #f5f6fa; }
+body { margin: 0; font-size: 0.875rem; font-weight: 400; line-height: 1.65; color: #222; text-align: left; background-color: #f5f6fa; }
 
 [tabindex="-1"]:focus:not(:focus-visible) { outline: 0 !important; }
 
@@ -84,7 +84,7 @@ a:not([href]) { color: inherit; text-decoration: none; }
 
 a:not([href]):hover { color: inherit; text-decoration: none; }
 
-pre, code, kbd, samp { font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 1em; }
+pre, code, kbd, samp { font-size: 1em; }
 
 pre { margin-top: 0; margin-bottom: 1rem; overflow: auto; -ms-overflow-style: scrollbar; }
 
@@ -148,7 +148,7 @@ template { display: none; }
 
 [hidden] { display: none !important; }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-bottom: 0.5rem; font-family: Nunito, sans-serif; font-weight: 700; line-height: 1.1; color: #364a63; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-bottom: 0.5rem;  font-weight: 700; line-height: 1.1; color: #364a63; }
 
 h1, .h1 { font-size: 2rem; }
 
@@ -859,7 +859,7 @@ textarea.form-control, .dual-listbox textarea.dual-listbox__search { height: aut
   .form-inline .custom-control { align-items: center; justify-content: center; }
   .form-inline .custom-control-label { margin-bottom: 0; } }
 
-.btn, .dual-listbox .dual-listbox__button { display: inline-block; font-family: Nunito, sans-serif; font-weight: 700; color: #526484; text-align: center; vertical-align: middle; user-select: none; background-color: transparent; border: 1px solid transparent; padding: 0.4375rem 1.125rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 4px; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+.btn, .dual-listbox .dual-listbox__button { display: inline-block;  font-weight: 700; color: #526484; text-align: center; vertical-align: middle; user-select: none; background-color: transparent; border: 1px solid transparent; padding: 0.4375rem 1.125rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 4px; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 
 @media (prefers-reduced-motion: reduce) { .btn, .dual-listbox .dual-listbox__button { transition: none; } }
 
@@ -5354,7 +5354,7 @@ input[type="radio"]:checked ~ label { cursor: default; }
 
 .nav .nav-link .icon { font-size: 1.3em; }
 
-.nav-tabs { font-family: Nunito, sans-serif; margin: 0; font-size: 0.8125rem; border-bottom: 1px solid #dbdfea; }
+.nav-tabs {  margin: 0; font-size: 0.8125rem; border-bottom: 1px solid #dbdfea; }
 
 .nav-tabs-s2 { border-bottom: none; justify-content: center; }
 
@@ -10848,7 +10848,7 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu > .nk-menu-item.menu-without-icon > .nk-menu-sub .nk-menu-link { padding-left: 0; }
 
-.nk-menu-link { padding: 0.625rem 40px 0.625rem 24px; color: #6e82a5; font-family: Nunito, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.01em; text-transform: none; line-height: 1.25rem; }
+.nk-menu-link { padding: 0.625rem 40px 0.625rem 24px; color: #6e82a5;  font-weight: 700; font-size: 15px; letter-spacing: 0.01em; text-transform: none; line-height: 1.25rem; }
 
 .nk-menu-link:hover, .active > .nk-menu-link { color: #7f8dff; }
 
@@ -11663,7 +11663,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .input-group-addon:not(:first-child) { border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; }
 
-.page-title { font-family: Nunito, sans-serif; font-size: 1.5rem; font-weight: 700; }
+.page-title {  font-size: 1.5rem; font-weight: 700; }
 
 @media (min-width: 992px) { .page-title { font-size: 1.75rem; } }
 

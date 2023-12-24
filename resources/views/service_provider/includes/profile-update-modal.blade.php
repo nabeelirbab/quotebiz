@@ -180,7 +180,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="form-label" for="experience">Biography</label>
-                                            <textarea name="biography" class="form-control" rows="4" cols="6">{{Auth::user()->biography}}</textarea>
+                                            <div id="charCount" class="float-right">Characters remaining: 2500</div>
+                                            <textarea name="biography" style="height: auto !important" class="form-control" rows="20" cols="16" id="myTextarea" maxlength="2500">{{Auth::user()->biography}}</textarea>
                                             
                                         </div>
                                     </div>

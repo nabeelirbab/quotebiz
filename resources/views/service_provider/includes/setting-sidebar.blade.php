@@ -3,29 +3,21 @@
         <div class="card-inner-group" data-simplebar>
             <div class="card-inner">
                    <div class="card" style="border:none">
-
-                    <div class="user-action" style="position: absolute;right: 0;">
-                        <div class="dropdown">
-                            <a class="btn btn-icon btn-trigger mr-n2" data-toggle="dropdown"
-                               href="#"><em class="icon ni ni-more-v"></em></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="link-list-opt no-bdr">
-                                    <li>
-                                        <input type="file" accept="image/*" name="image" id="uploadImg" onchange="uploadImg(this)"
-                                               class="d-none">
-                                        <label for="uploadImg" class="labelcls"><em class="icon ni ni-camera-fill cameraicon"></em><span>Change Photo</span></label>
-
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
+                    <div class="d-flex justify-content-center">
+                        <div>
+                         <input type="file" accept="image/*" name="image" id="uploadImg" onchange="uploadImg(this)" class="d-none">
                         @if(Auth::user()->user_img)
-                        <img src="{{asset('frontend-assets/images/users/'.Auth::user()->user_img)}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
+                        <div class="uploadimg">
+                             <img src="{{asset('frontend-assets/images/users/'.Auth::user()->user_img)}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
+                        </div>
+                           <label for="uploadImg" class="labelcls justify-content-center" style="margin-top:-17px"><em class="icon ni ni-camera-fill cameraicon"></em><span style="line-height: 1;">Edit</span></label>
                         @else
-                        <img src="{{asset('frontend-assets/images/avt.jpeg')}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
+                        <div class="uploadimg">
+                            <img src="{{asset('frontend-assets/images/avt.jpeg')}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
+                        </div>
+                           <label for="uploadImg" class="labelcls justify-content-center" style="margin-top:-17px"><em class="icon ni ni-camera-fill cameraicon"></em><span style="line-height: 1;">Edit</span></label>
                         @endif
+                    </div>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center mb-0">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h5>
@@ -48,6 +40,12 @@
           
             <div class="card-inner p-0">
                 <ul class="link-list-menu">
+                    <li>
+                        <a href="{{url('service-provider/settings')}}">
+                            <em class="icon ni ni-user-fill-c"></em>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
                   <li>
                         <a href="{{url('service-provider/location-setting')}}">
                             <em class="icon ni ni-location"></em>
@@ -58,12 +56,6 @@
                         <a  href="{{url('service-provider/business-setting')}}">
                             <em class="icon ni ni-user-fill-c"></em>
                             <span>Business Infomation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('service-provider/settings')}}">
-                            <em class="icon ni ni-user-fill-c"></em>
-                            <span>Personal Infomation</span>
                         </a>
                     </li>
                     <li>
