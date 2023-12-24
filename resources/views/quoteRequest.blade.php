@@ -63,11 +63,13 @@ body {
 .main-hearder{
   margin-bottom: 10vh;
 }
+
 .select2-selection__rendered {
   line-height: 35px !important;
   color: #b6cae9 !important;
   font-size: 1.1rem;
 }
+
 .select2-container .select2-selection--single {
   height: 50px !important;
   border-radius: 6px;
@@ -201,6 +203,7 @@ p.form-para::after {
   border-radius: 6px;
   border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
 }
+
 .form-control:focus {
   box-shadow: none;
   border-radius: 6px;
@@ -341,6 +344,9 @@ p.form-para::after {
 #footer{
  background-color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
 }
+.close{
+    font-size: 30px;
+    }
 .dogcFe {
   background-size: cover !important;
   width: 100%;
@@ -669,8 +675,8 @@ autocomplete="off">
   <ul class="list-group" id="result">
   </ul>
   @else
-  <select class="form-control select2" name="category_name" style="height: 200px" required="">
-     <option value="" disabled selected="">Select Service</option>
+  <select class="form-control select2" name="category_name" id="mySelect" style="height: 200px" required="">
+     <option value="" disabled selected="" style="color: #333;">Select Service</option>
      @foreach(Acelle\Jobs\HelperJob::allcategories() as $category) 
      <option>{{$category->category_name}}</option>
      @endforeach
@@ -935,6 +941,17 @@ aria-hidden="true">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
 <script>
+ $('#mySelect').on('change', function () {
+  var selectedValue = $(this).val();
+  var textColor = selectedValue ? '#3c4d62' : '#c1c1c1';
+
+  // Remove !important from the inline style
+  $('.select2-container--default .select2-selection--single .select2-selection__rendered').css('color', textColor);
+
+  // Add a more specific rule with !important to override Select2 styles
+  var styleTag = $('<style>.select2-container--default .select2-selection--single .select2-selection__rendered { color: ' + textColor + ' !important; }</style>');
+  $('head').append(styleTag);
+});
     function toggleMobileMenu() {
         // Toggle the visibility of your mobile menu or add your custom logic here
         var mobileMenu = document.querySelector('.mobile-menu');

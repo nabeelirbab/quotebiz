@@ -16,6 +16,12 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link href="https://cdnout.com/toastr.js/css/base.css" rel="stylesheet" media="all">
     @include('service_provider.includes.head-css')  
+    <style type="text/css">
+          body {
+             color: #222 !important;
+             font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+        }
+    </style>
     @yield('styling')
 </head>
 <body>

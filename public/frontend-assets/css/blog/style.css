@@ -81,7 +81,7 @@ html {
   }
 }
 body {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   height: 100%;
   line-height: 28px;
@@ -89,12 +89,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  color: #646464;
+  color: #222;
   background-color: #ffffff;
 }
 p {
   margin: 0 0 20px 0;
-  color: #646464;
+  color: #222;
 }
 h1,
 h2,

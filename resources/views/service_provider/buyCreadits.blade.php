@@ -22,6 +22,170 @@
  </style>
 @endsection
 @section('content')
+<?php 
+
+$currencySymbols = [
+    'AED' => 'د.إ',
+    'AFN' => 'Af',
+    'ALL' => 'Lek',
+    'AMD' => 'դ',
+    'ANG' => 'ƒ',
+    'AOA' => 'Kz',
+    'ARS' => '$',
+    'AUD' => '$',
+    'AWG' => 'ƒ',
+    'AZN' => '₼',
+    'BAM' => 'KM',
+    'BBD' => '$',
+    'BDT' => '৳',
+    'BGN' => 'лв',
+    'BHD' => '.د.ب', 
+    'BIF' => 'FBu',
+    'BMD' => '$',
+    'BND' => '$',
+    'BOB' => '$b',
+    'BRL' => 'R$',
+    'BSD' => '$',
+    'BTN' => 'Nu.',
+    'BWP' => 'P',
+    'BYR' => 'p.',
+    'BZD' => 'BZ$',
+    'CAD' => '$',
+    'CDF' => 'FC',
+    'CHF' => 'CHF',
+    'CLF' => 'UF',
+    'CLP' => '$',
+    'CNY' => '¥',
+    'COP' => '$',
+    'CRC' => '₡',
+    'CUP' => '⃌',
+    'CVE' => '$', 
+    'CZK' => 'Kč',
+    'DJF' => 'Fdj',
+    'DKK' => 'kr',
+    'DOP' => 'RD$',
+    'DZD' => 'دج',
+    'EGP' => 'E£',
+    'ETB' => 'Br',
+    'EUR' => '€',
+    'FJD' => '$',
+    'FKP' => '£',
+    'GBP' => '£',
+    'GEL' => 'ლ',
+    'GHS' => '¢',
+    'GIP' => '£',
+    'GMD' => 'D', 
+    'GNF' => 'FG',
+    'GTQ' => 'Q',
+    'GYD' => '$',
+    'HKD' => '$',
+    'HNL' => 'L',
+    'HRK' => 'kn',
+    'HTG' => 'G',
+    'HUF' => 'Ft',
+    'IDR' => 'Rp',
+    'ILS' => '₪',
+    'INR' => '₹',
+    'IQD' => 'ع.د',
+    'IRR' => '﷼',
+    'ISK' => 'kr',
+    'JEP' => '£',
+    'JMD' => 'J$',
+    'JOD' => 'JD',
+    'JPY' => '¥',
+    'KES' => 'KSh',
+    'KGS' => 'лв',
+    'KHR' => '៛',
+    'KMF' => 'CF', 
+    'KPW' => '₩',
+    'KRW' => '₩',
+    'KWD' => 'د.ك',
+    'KYD' => '$',
+    'KZT' => '₸',
+    'LAK' => '₭',
+    'LBP' => '£',
+    'LKR' => '₨',
+    'LRD' => '$',
+    'LSL' => 'L',
+    'LTL' => 'Lt',
+    'LVL' => 'Ls',
+    'LYD' => 'ل.د', 
+    'MAD' => 'د.م.',
+    'MDL' => 'L',
+    'MGA' => 'Ar',
+    'MKD' => 'ден',
+    'MMK' => 'K',
+    'MNT' => '₮',
+    'MOP' => 'MOP$', 
+    'MRO' => 'UM', 
+    'MUR' => '₨', 
+    'MVR' => '.ރ',
+    'MWK' => 'MK',
+    'MXN' => '$',
+    'MYR' => 'RM',
+    'MZN' => 'MT',
+    'NAD' => '$',
+    'NGN' => '₦',
+    'NIO' => 'C$',
+    'NOK' => 'kr',
+    'NPR' => '₨',
+    'NZD' => '$',
+    'OMR' => '﷼',
+    'PAB' => 'B/.',
+    'PEN' => 'S/.',
+    'PGK' => 'K',
+    'PHP' => '₱',
+    'PKR' => '₨',
+    'PLN' => 'zł',
+    'PYG' => 'Gs',
+    'QAR' => '﷼',
+    'RON' => 'lei',
+    'RSD' => 'Дин.',
+    'RUB' => '₽',
+    'RWF' => 'ر.س',
+    'SAR' => '﷼',
+    'SBD' => '$',
+    'SCR' => '₨',
+    'SDG' => '£',
+    'SEK' => 'kr',
+    'SGD' => '$',
+    'SHP' => '£',
+    'SLL' => 'Le', 
+    'SOS' => 'S',
+    'SRD' => '$',
+    'STD' => 'Db',
+    'SVC' => '$',
+    'SYP' => '£',
+    'SZL' => 'L',
+    'THB' => '฿',
+    'TJS' => 'TJS',
+    'TMT' => 'm',
+    'TND' => 'د.ت',
+    'TOP' => 'T$',
+    'TRY' => '₤',
+    'TTD' => '$',
+    'TWD' => 'NT$',
+    'TZS' => 'TSh',
+    'UAH' => '₴',
+    'UGX' => 'USh',
+    'USD' => '$',
+    'UYU' => '$U',
+    'UZS' => 'лв',
+    'VEF' => 'Bs',
+    'VND' => '₫',
+    'VUV' => 'VT',
+    'WST' => 'WS$',
+    'XAF' => 'FCFA',
+    'XCD' => '$',
+    'XDR' => 'SDR',
+    'XOF' => 'FCFA',
+    'XPF' => 'F',
+    'YER' => '﷼',
+    'ZAR' => 'R',
+    'ZMK' => 'ZK', 
+    'ZWL' => 'Z$',
+];
+?>
 <div class="container mt-5">
  @if(Session::has('success'))
      <div class="alert alert-success  fade show mt-5" role="alert">
@@ -62,7 +226,15 @@
                 <?php 
                    $currencyConvert = Acelle\Jobs\HelperJob::setcurrency($creadit->currency,$creadit->credit_amount);
                 ?>
-                <option value="{{$creadit->credit}},{{$currencyConvert['convert']}},{{$creadit->id}},{{$currencyConvert['currency']}}">{{$creadit->credit}} for {{$currencyConvert['currency']}} {{$currencyConvert['convert']}}</option>
+                <option value="{{$creadit->credit}},{{$currencyConvert['convert']}},{{$creadit->id}},{{$currencyConvert['currency']}}, <?php   foreach($currencySymbols as $key=>$value){
+                                if($key == $currencyConvert['currency']){
+                                  echo $value;
+                                }
+                            }?>">{{$creadit->credit}} Credits for  <?php   foreach($currencySymbols as $key=>$value){
+                                if($key == $currencyConvert['currency']){
+                                  echo $value;
+                                }
+                            }?>{{$currencyConvert['convert']}} {{$currencyConvert['currency']}}</option>
                 @endforeach
             </select>
           </div>
@@ -131,10 +303,11 @@
                console.log(creadits);
                var sum = 0;
                var result = $(this).val().split(',');
+               console.log(result);
                var sum = Number(creadits) + Number(result[0]);
                console.log(sum);
                $('#new-balance').text(sum);
-               $('#charge-amount').text(result[3]+' '+result[1]);
+               $('#charge-amount').text(result[4]+result[1]+' '+result[3]);
                $('#paymentValue').val(result[2]);
         });
     </script>
