@@ -117,7 +117,7 @@ h2{
                     </div>
                 </div>
             </div>
-            <p class="text-center mt-5" style="cursor: pointer" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share_Icon.svg') }}" style="width: 5%;" class="mb-1"> <span style="text-decoration: underline;">Share</span> </p>
+            <p class="text-center" style="cursor: pointer; margin-top: 100px; font-weight: bold" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share_Icon.svg') }}" style="width: 5%;" class="mb-1"> <span style="text-decoration: underline;">Share</span> </p>
 			</div>
 			<div class="col-md-8 ml-md-auto">
 				<h2 class="ml-0">About {{$user->first_name}} </h2>
@@ -481,7 +481,7 @@ h2{
 
 			<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
 			    <div class="modal-dialog modal-dialog-centered">
-			        <div class="modal-content">
+			        <div class="modal-content" style="padding: 0 15px;">
 			            <div class="modal-header">
 			            <h2 class="item-title mb-2">Share this profile</h2>
 			                
