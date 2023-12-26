@@ -307,7 +307,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <div class="preview-block">
     <h5 class="text-center">Add Category</h5>
-    <form action="{{ url('admin/service-categories/store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/service-categories/store') }}" id="mainForm" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row d-flex justify-content-center gy-4">
 
@@ -344,13 +344,13 @@
     <div class="form-group">
     <label class="form-label" for="default-01">Credits Cost to Quote</label>
     <div class="form-control-wrap">
-    <input type="text" class="form-control" name="credit_cost" id="default-01" placeholder="Credits Cost to Quote" >
+    <input type="text" class="form-control" value="{{( isset(Acelle\Jobs\HelperJob::quoteprice()->price) ? : '10')}}" name="credit_cost" id="default-01" placeholder="Credits Cost to Quote" >
     </div>
     </div>
     </div>
 
     <div class="col-sm-10 text-center mb-5">
-    <button class="btn btn-success btn-lg" type="submit">Save</button>
+    <button class="btn btn-success btn-lg" type="submit"  onclick="disableButton2()" id="saveButton2">Save</button>
     </div>
 
 
@@ -365,7 +365,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closesub()">×</a>
     <div class="preview-block">
     <h5 class="text-center">Add Sub Category</h5>
-    <form action="{{ url('admin/service-categories/storesub') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/service-categories/storesub') }}" id="subForm" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row d-flex justify-content-center gy-4">
 
@@ -420,7 +420,7 @@
     </div>
     </div>
     <div class="col-sm-10 text-center mb-5">
-    <button class="btn btn-success btn-lg" type="submit">Save</button>
+    <button class="btn btn-success btn-lg" type="submit"  onclick="disableButton()" id="saveButton">Save</button>
     </div>
 
 
@@ -441,7 +441,24 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+    <script>
+        function disableButton() {
+            // Disable the button
+            document.getElementById('saveButton').disabled = true;
 
+            $('#subForm').submit();
+           
+        }
+
+          function disableButton2() {
+            // Disable the button
+            document.getElementById('saveButton2').disabled = true;
+
+            // You can also add additional logic or actions here if needed
+            $('#mainForm').submit();
+           
+        }
+    </script>
     <script>
     function selectVal(id){
      $('#dropdownid').val(id);

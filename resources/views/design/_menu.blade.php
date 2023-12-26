@@ -34,6 +34,14 @@
                     </a>
                 </li>
 
+                  <li rel0="UserController@formdesign" class="nav-item">
+                    <a href="{{ url("admin/page-layout") }}" class="nav-link {{ request()->is('admin/page-layout') ? 'active' : '' }}">
+                        <span class="material-icons-outlined">
+                            maps_home_work
+                        </span> Page Layout
+                    </a>
+                </li>
+
                 <li rel0="UserController@socialdesign" class="nav-item">
                     <a href="{{ url("admin/social") }}" class="nav-link {{ request()->is('admin/social') ? 'active' : '' }}">
                         <span class="material-icons-outlined">

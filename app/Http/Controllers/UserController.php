@@ -547,6 +547,29 @@ public function formdesign(Request $request){
     return view('design.formdesign');
 }
 
+public function formlayout(Request $request){
+    if($request->isMethod('post'))
+    {
+        if($request->id){
+          $job_design =JobDesign::find($request->id);
+        }else{
+          $job_design = new JobDesign;
+        }
+
+        
+            $job_design->admin_id = Auth::user()->id;
+            $job_design->subdomain = Setting::subdomain();
+            $job_design->position = $request->position;
+            $job_design->blog_status = $request->blog_status;
+            $job_design->profile_status = $request->profile_status;
+      
+            $job_design->save();
+            return redirect('/admin/page-layout')->with('success', 'Design Update Successfully');
+      
+    }
+    return view('design.formlayout');
+}
+
 public function text_change(Request $request){
     $job_design =JobDesign::where('subdomain',Setting::subdomain())->first();
     $job_design->sp_text = $request->text_value;
