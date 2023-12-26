@@ -138,7 +138,7 @@ class HelperJob extends Base
         ->to($code)->amount($amount)->round(2)
         ->get();
           // dd(['convert' => $covert, 'currency' => $code]);
-        return ['convert' => $covert, 'currency' => $code] ;
+        return ['convert' => ceil($covert), 'currency' => $code] ;
     }
 
    public static function convertusd($amount){

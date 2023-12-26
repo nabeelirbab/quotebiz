@@ -265,6 +265,8 @@ Route::get('users/logout', 'UserController@logout');
     Route::match(['get', 'post'],'/terms', 'UserController@termsdesign');
     Route::match(['get', 'post'],'/seo', 'UserController@seo');
     Route::match(['get', 'post'],'/logo-setting', 'UserController@sitesetting');
+    Route::match(['get', 'post'],'/page-layout', 'UserController@formlayout');
+
     Route::post('/text-update', 'UserController@text_change');
 
     Route::match(['get', 'post'],'/custom-domain', 'SettingController@customdomain')->middleware('subscription_rules');
