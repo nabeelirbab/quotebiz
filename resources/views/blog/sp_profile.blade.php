@@ -492,7 +492,7 @@ h2{
 			            <div class="modal-body m-4 body-padding">
 			            <div class="row d-flex justify-content-around mb-2">
 		            		<div class="col-lg-5 col-sm-12 p-4 _mnf8sq">
-		            			<input type="text" value="{{Request::url()}}" id="myInput" class="d-none">
+		            			<input type="text" value="{{Request::url()}}" id="myInput" style="z-index: -4;position: absolute;">
 
 		            			<div class="row" onclick="copyToClipboard()">
 		            				<div class="col-lg-3 col-sm-3 svgcenter">
