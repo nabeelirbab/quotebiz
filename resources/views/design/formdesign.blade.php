@@ -74,12 +74,80 @@
                    
                     <div class="col-sm-8">
                       <input type="hidden" name="id" @if($formdesign) value="{{$formdesign->id}}" @endif>
+                      <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                        <label class="form-label" for="default-01">Search Box</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="search_box" id="option1" autocomplete="off" value="auto_suggest" {{$formdesign && $formdesign->search_box == 'auto_suggest' ? 'checked':''}} > Auto Suggestion
+                        </label>
+                        <label >
+                          <input type="radio" name="search_box" {{$formdesign && $formdesign->search_box == 'dropdown' ? 'checked':''}} id="option2" value="dropdown" autocomplete="off"> Dropdowm
+                        </label>
+                        </div>
+                        </div>
+                       
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                          <label class="form-label" for="default-01">Business Number Visibility</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
+                          </label>
+                          <label >
+                            <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
+                          </label>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
                         <div class="form-group">
+                            <label class="form-label" for="Facebook">Font Family</label>
+                           
+                              <div  class="input-group" title="Using input value">
+                              <select  class="form-control js-example-basic-single" name="font_family">
+                                <option>Select Font</option>
+                                <option value="Arial" style="font-family: Arial !important" {{ $formdesign->font_family === 'Arial' ? 'selected' : '' }}>Arial</option>
+                                <option value="DM Sans" {{ $formdesign->font_family === 'DM Sans' ? 'selected' : '' }}>DM Sans</option>
+                                <option value="Helvetica" {{ $formdesign->font_family === 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                <option value="Times New Roman" {{ $formdesign->font_family === 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                <option value="Georgia" {{ $formdesign->font_family === 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                <option value="Courier New" {{ $formdesign->font_family === 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                <option value="Verdana" {{ $formdesign->font_family === 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                <option value="Tahoma" {{ $formdesign->font_family === 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                <option value="Palatino" {{ $formdesign->font_family === 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                <option value="Garamond" {{ $formdesign->font_family === 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                <option value="Bookman" {{ $formdesign->font_family === 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                <option value="Comic Sans MS" {{ $formdesign->font_family === 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                              </select>
+                           
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                             <div class="form-group">
                             <label class="form-label" for="default-01">Main Heading </label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->title_heading}}" @else value="What are you looking for?" @endif name="title_heading" id="default-01" placeholder="Enter main heading" required>
                             </div>
                         </div>
+                          </div>
+                           <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Main Heading Color</label>
+                            <div id="cp1" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text_color}}" @else value="#FFFFFF" @endif name="button_text_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                          
+                        </div>
+                       
                         <div class="form-group">
                             <label class="form-label" for="default-01">Sub Heading</label>
                             <div class="form-control-wrap">
@@ -162,96 +230,7 @@
                          </div>
                          </div>
                       </div>
-                       <div class="form-group">
-                            <label class="form-label" for="Facebook">Font Family</label>
-                           
-                              <div  class="input-group" title="Using input value">
-                              <select  class="form-control js-example-basic-single" name="font_family">
-                                <option>Select Font</option>
-                                <option value="Arial" style="font-family: Arial !important" {{ $formdesign->font_family === 'Arial' ? 'selected' : '' }}>Arial</option>
-                                <option value="DM Sans" {{ $formdesign->font_family === 'DM Sans' ? 'selected' : '' }}>DM Sans</option>
-                                <option value="Helvetica" {{ $formdesign->font_family === 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
-                                <option value="Times New Roman" {{ $formdesign->font_family === 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
-                                <option value="Georgia" {{ $formdesign->font_family === 'Georgia' ? 'selected' : '' }}>Georgia</option>
-                                <option value="Courier New" {{ $formdesign->font_family === 'Courier New' ? 'selected' : '' }}>Courier New</option>
-                                <option value="Verdana" {{ $formdesign->font_family === 'Verdana' ? 'selected' : '' }}>Verdana</option>
-                                <option value="Tahoma" {{ $formdesign->font_family === 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
-                                <option value="Palatino" {{ $formdesign->font_family === 'Palatino' ? 'selected' : '' }}>Palatino</option>
-                                <option value="Garamond" {{ $formdesign->font_family === 'Garamond' ? 'selected' : '' }}>Garamond</option>
-                                <option value="Bookman" {{ $formdesign->font_family === 'Bookman' ? 'selected' : '' }}>Bookman</option>
-                                <option value="Comic Sans MS" {{ $formdesign->font_family === 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
-                              </select>
-                           
-                            </div>
-                        </div>
-                      <div class="form-group">
-                        <label class="form-label" for="default-01">Quote Box Position</label>
-                        <div class="form-control-wrap">
-                         <label>
-                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} > Left
-                        </label>
-                         <label>
-                          <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
-                        </label>
-                        <label >
-                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
-                        </label>
-                        </div>
-                        </div>
-
-                     <div class="form-group">
-                        <label class="form-label" for="default-01">Search Box</label>
-                        <div class="form-control-wrap">
-                         <label>
-                          <input type="radio" name="search_box" id="option1" autocomplete="off" value="auto_suggest" {{$formdesign && $formdesign->search_box == 'auto_suggest' ? 'checked':''}} > Auto Suggestion
-                        </label>
-                        <label >
-                          <input type="radio" name="search_box" {{$formdesign && $formdesign->search_box == 'dropdown' ? 'checked':''}} id="option2" value="dropdown" autocomplete="off"> Dropdowm
-                        </label>
-                        </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="form-label" for="default-01">Business Number Visibility</label>
-                          <div class="form-control-wrap">
-                           <label>
-                            <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
-                          </label>
-                          <label >
-                            <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
-                          </label>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="form-label" for="default-01">Blog Section Visibility</label>
-                          <div class="form-control-wrap">
-                           <label>
-                            <input type="radio" name="blog_status" autocomplete="off" value="0" {{$formdesign && $formdesign->blog_status == '0' ? 'checked':''}} > Show Featured & Menu
-                          </label>
-                          <label >
-                            <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Show Only in Menu
-                          </label>
-                          <label >
-                            <input type="radio" name="blog_status" {{$formdesign && $formdesign->blog_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
-                          </label>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="form-label" for="default-01">Profile Section Visibility</label>
-                          <div class="form-control-wrap">
-                           <label>
-                            <input type="radio" name="profile_status" autocomplete="off" value="0" {{$formdesign && $formdesign->profile_status == '0' ? 'checked':''}} > Show Featured & Menu
-                          </label>
-                          <label >
-                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off">Show Only in Menu
-                          </label>
-                          <label >
-                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
-                          </label>
-                          </div>
-                        </div>
-                       
+                     
                         <div class="row mb-3" id="businessno">
                         <div class="col-md-6 col-sm-6">
                         <div class="form-group">
@@ -279,12 +258,15 @@
                          <div class="form-group">
                             <label class="form-label" for="default-01">Background Image (1800 x 250)</label>
                             <div class="form-control-wrap">
-                                <input type="file" class="form-control" accept="image/*" onchange="loadFile(event)" name="backgroup_image" id="default-01" @if( $formdesign && !$formdesign->backgroup_image) required @endif>
-                                @if($formdesign && $formdesign->backgroup_image)
+                                <input type="file" class="form-control" accept="image/*" onchange="loadFile(event)" name="backgroup_image" id="backimg" @if( $formdesign && !$formdesign->backgroup_image) required @endif>
+                                <label for="backimg">
+                                    @if($formdesign && $formdesign->backgroup_image)
                                   <img id="output" src="{{asset('frontend-assets/images/'.$formdesign->backgroup_image)}}" class="mt-3" />
                                 @else
                                   <img id="output" class="mt-3" />
                                @endif
+                                </label>
+                              
                             </div>
                         </div>
                     </div>

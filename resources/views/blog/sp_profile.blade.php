@@ -39,10 +39,51 @@
 h2{
 	font-size: 24px;
 }
+.box-border{
+	border: 1px solid #7977771f;border-radius: 12px;
+}
+
+._mnf8sq {
+    outline: none !important;
+    cursor: pointer !important;
+    border: 1px solid rgb(221, 221, 221) !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    background: rgb(255, 255, 255) !important;
+    margin-bottom: 16px !important;
+}
+._1141qqg {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    overflow: hidden !important;
+    color: rgb(34, 34, 34) !important;
+    text-overflow: ellipsis !important;
+}
+._mnf8sq:hover {
+    background: rgb(247, 247, 247) !important;
+}
 @media screen and (max-width: 667px) {
 .col-md-4{
 	flex: 0 0 100%;
     max-width: 100%;
+}
+._mnf8sq{
+	height: 70px;
+	display: flex;
+    align-items: center;
+}
+.svgcenter{
+  width: 30%;
+}
+
+._1141qqg{
+  width: 70%;
+}
+.text-sm-center{
+	text-align: center;
+}
+.body-padding{
+	padding: 15px;
 }
 }
 </style>
@@ -69,14 +110,14 @@ h2{
                         @endif
                     @endforeach
                     </p>
-                    <p class="text-center mb-2">What is the date of your event?</p>
+                    <h4 class="text-center mb-2">What is the date of your event?</h4>
                     <div id="calendar"></div>
                     <div class=" text-center">
                       <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request A Quote</button>
                     </div>
                 </div>
             </div>
-            <p class="text-center mt-3" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share.png') }}" style="width: 4%;"> <span style="text-decoration: underline;cursor: pointer;">Share</span> </p>
+            <p class="text-center mt-5" style="cursor: pointer" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share_Icon.svg') }}" style="width: 5%;" class="mb-1"> <span style="text-decoration: underline;">Share</span> </p>
 			</div>
 			<div class="col-md-8 ml-md-auto">
 				<h2 class="ml-0">About {{$user->first_name}} </h2>
@@ -144,7 +185,7 @@ h2{
 			    @endif
 				@if(count($user->gallery) > 0)
 				<h2 class="mb-5">Gallery</h2>
-				 <div class="row border-bottom mb-5">
+				 <div class="row border-bottom mb-5 pb-5">
 				  @foreach($user->gallery as  $key => $gallery)
 				    <div class="col-md-3 mb-4 text-center">
 				        <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
@@ -156,7 +197,7 @@ h2{
 			    </div>
 			    @endif
 			    <h2 class="mb-4 ml-0">Preferred music genres</h2>
-				<div class="row mr-1 mb-5 border-bottom">
+				<div class="row mr-1 mb-5 border-bottom pb-5">
 					<div class="col-md-6">
 						<div class="d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
@@ -209,7 +250,7 @@ h2{
 				<div class="container mt-5">
 				<div class="row mt-5"
 				style="height: 100%;align-items: center;">
-				<div class="col-lg-12 pl-0" style="box-shadow: -1px -1px 6px -6px rgba(0,0,0,0.27);border-radius: 12px">
+				<div class="col-lg-12 pl-md-0" style="box-shadow: -1px -1px 6px -6px rgba(0,0,0,0.27);border-radius: 12px">
 				@if($errors->any())
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				  {{$errors->first()}}
@@ -439,17 +480,62 @@ h2{
 
 
 			<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-			    <div class="modal-dialog">
+			    <div class="modal-dialog modal-dialog-centered">
 			        <div class="modal-content">
 			            <div class="modal-header">
-			            <h2 class="item-title">{{$user->first_name}} {{$user->last_name}}</h2>
+			            <h2 class="item-title mb-2">Share this profile</h2>
 			                
 			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                    <span aria-hidden="true">&times;</span>
+			                    <span aria-hidden="true">X</span>
 			                </button>
 			            </div>
-			            <div class="modal-body">
-                        <div class="single-blog-banner-layout1" style="position: static;">
+			            <div class="modal-body m-4 body-padding">
+			            <div class="row d-flex justify-content-around mb-2">
+		            		<div class="col-lg-5 col-sm-12 p-4 _mnf8sq">
+		            			<input type="text" value="{{Request::url()}}" id="myInput" class="d-none">
+
+		            			<div class="row" onclick="copyToClipboard()">
+		            				<div class="col-lg-3 col-sm-3 svgcenter">
+		            					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 32px; width: 32px; fill: currentcolor;"><path d="M25 5a4 4 0 0 1 4 4v17a5 5 0 0 1-5 5H12a5 5 0 0 1-5-5V10a5 5 0 0 1 5-5h13zm0 2H12a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2zm-3-6v2H11a6 6 0 0 0-6 5.78V22H3V9a8 8 0 0 1 7.75-8H22z"></path></svg>
+		            				</div>
+		            				<div class="col-lg-8 col-sm-8 _1141qqg">Copy Link
+		            				</div>
+		            			</div>
+		            		</div>
+		            		<div class="col-lg-5 col-sm-12 p-4 _mnf8sq">
+		            			<div class="row" onclick="sendEmail()">
+		            				<div class="col-lg-3 col-sm-3 svgcenter">
+		            					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 32px; width: 32px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><g fill="none"><rect width="28" height="24" x="2" y="4" rx="4"></rect><path d="m3 6 10.42 8.81a4 4 0 0 0 5.16 0L29 6"></path></g></svg>
+		            				</div>
+		            				<div class="col-lg-8 col-sm-8 _1141qqg text-sm-center">Email
+		            				</div>
+		            			</div>
+		            		</div>
+			            </div>
+			                 <div class="row d-flex justify-content-around mb-2">
+		            		<div class="col-lg-5 col-sm-12 p-4 _mnf8sq">
+		            			<div class="row" onclick="shareOnFacebook()">
+		            				<div class="col-lg-3 col-sm-3 svgcenter">
+		            					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 32px; width: 32px;border-radius: 6px;"><path fill="#1877F2" d="M32 0v32H0V0z"></path><path fill="#FFF" d="M22.94 16H18.5v-3c0-1.27.62-2.5 2.6-2.5h2.02V6.56s-1.83-.31-3.58-.31c-3.65 0-6.04 2.21-6.04 6.22V16H9.44v4.63h4.06V32h5V20.62h3.73l.7-4.62z"></path></svg>
+		            				</div>
+		            				<div class="col-lg-8 col-sm-8 _1141qqg">
+		            					Facebook
+		            				</div>
+		            			</div>
+		            		</div>
+		            		<div class="col-lg-5 col-sm-12 p-4 _mnf8sq">
+		            			<div class="row"  onclick="shareOnTwitter()">
+		            				<div class="col-lg-3 col-sm-3 svgcenter">
+		            				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 32px; width: 32px;border-radius: 6px;"><path fill="#1DA1F2" d="M0 0h32v32H0z"></path><path fill="#FFF" d="M18.66 7.99a4.5 4.5 0 0 0-2.28 4.88A12.31 12.31 0 0 1 7.3 8.25a4.25 4.25 0 0 0 1.38 5.88c-.69 0-1.38-.13-2-.44a4.54 4.54 0 0 0 3.5 4.31 4.3 4.3 0 0 1-2 .06 4.64 4.64 0 0 0 4.18 3.13A8.33 8.33 0 0 1 5.82 23a12.44 12.44 0 0 0 19.31-11.19 7.72 7.72 0 0 0 2.2-2.31 8.3 8.3 0 0 1-2.5.75 4.7 4.7 0 0 0 2-2.5c-.88.5-1.82.88-2.82 1.06A4.5 4.5 0 0 0 18.66 8z"></path></svg>
+		            				</div>
+		            				<div class="col-lg-8 col-sm-8 _1141qqg">
+		            					Twitter
+		            				</div>
+		            			</div>
+		            		</div>
+			            </div>
+			         
+                        <div class="single-blog-banner-layout1 d-none" style="position: static;">
                       	<div class="banner-content" style="bottom: 0">
                         <ul class="item-social mb-2 text-center">
                             <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i>SHARE</a></li>
@@ -506,6 +592,34 @@ h2{
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
+	    function copyToClipboard() {
+            // Get the input element by its ID
+            var inputElement = document.getElementById("myInput");
+
+            // Select the text in the input element
+            inputElement.select();
+
+            // Execute the copy command
+            document.execCommand("copy");
+
+            // Provide user feedback (you can customize this part)
+            alert("Link copied to clipboard!");
+        }
+
+        function sendEmail() {
+            // You can use the "mailto:" protocol to open the user's default email client
+            window.location.href = "mailto:?subject=Check%20out%20this%20link&body=" + encodeURIComponent(window.location.href);
+        }
+
+        function shareOnFacebook() {
+            // You can customize the URL and other parameters based on your requirements
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href), "_blank");
+        }
+
+        function shareOnTwitter() {
+            // You can customize the URL and other parameters based on your requirements
+            window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(window.location.href), "_blank");
+        }
     $(document).ready(function(){
        $('#owl-carousel').owlCarousel({
             items: 3, // Number of items displayed per slide

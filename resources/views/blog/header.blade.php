@@ -264,116 +264,121 @@ if (isset($post)) {
           font-size: 1.2rem;
         }
         p.form-para {
-  font-size: 15px;
-  font-weight: 500;
-  color: #9f9f9f;
-  line-height: 17px;
-}
-p.form-para::after {
-  content: ".";
-  font-size: 0;
-  display: block;
-  width: 8%;
-  height: 4px;
-  background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
-  margin: 10px 10px;
-  transform: translateX(-10px);
-}
-.pac-container {
-    z-index: 1060 !important;
-}
-.select2-selection__rendered {
-  line-height: 35px !important;
-  color: #52648482 !important;
-  font-size: 1.1rem;
-}
-.select2-container .select2-selection--single {
-  height: 50px !important;
-  border-radius: 6px;
-  border: 1px solid #c1c1c1;
-}
-.select2-selection__arrow {
-  height: 50px !important;
-}
-.form-group {
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-.floatright {
- float: right;
-}
-.btn-primary {
-  border: none !important;
-  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-  height: 46px !important;
-}
-.custom-control-label::after {
-    position: absolute;
-    top: 0.5rem;
-    left: -2rem;
-    display: block;
-    width: 1.7rem;
-    height: 1.7rem;
-    content: "";
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-}
-.custom-control-label::before {
-    position: absolute;
-    top: 0.7rem;
-    left: -2rem;
-    display: block;
-    width: 1.4rem;
-    height: 1.4rem;
-    pointer-events: none;
-    content: "";
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #dee2e6;
-}
-.btn-success {
-  width: 100%;
-  border: none !important;
-  border-radius: 0.55rem;
-  background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-  font-size: 1.5rem;
-  height: 43px;
-  font-weight: 500;
-}
-.form-control {
-  border-radius: 6px;
-  font-size: 1.6rem !important;
-  outline: 0;
-}
-.select2-container--default.select2-container--open .select2-selection--single {
-  border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
-}
-.select2-container--default .select2-selection--single:focus {
-  box-shadow: none;
-  border-radius: 6px;
-  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
-}
-.form-control:focus {
-  box-shadow: none;
-  border-radius: 6px;
-  border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
-}
-.form-control-placeholder {
-  font-weight: 500;
-  color: #364a63;
-  margin-bottom: 8px;
-}
-.form-control:focus + .form-control-placeholder,
-.form-control:valid + .form-control-placeholder {
-  font-size: 60%;
-  transform: translate3d(0, -75%, 0);
-  border-radius: 6px;
-  opacity: 1;
-  top: 12px;
-}
+          font-size: 15px;
+          font-weight: 500;
+          color: #9f9f9f;
+          line-height: 17px;
+        }
+        p.form-para::after {
+          content: ".";
+          font-size: 0;
+          display: block;
+          width: 8%;
+          height: 4px;
+          background: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+          margin: 10px 10px;
+          transform: translateX(-10px);
+        }
+        .terms {
+            font-size: 10px;
+            color: #0000009e;
+            font-weight: 500;
+        }
+        .pac-container {
+            z-index: 1060 !important;
+        }
+        .select2-selection__rendered {
+          line-height: 35px !important;
+          color: #52648482 !important;
+          font-size: 1.1rem;
+        }
+        .select2-container .select2-selection--single {
+          height: 50px !important;
+          border-radius: 6px;
+          border: 1px solid #c1c1c1;
+        }
+        .select2-selection__arrow {
+          height: 50px !important;
+        }
+        .form-group {
+          position: relative;
+          margin-bottom: 0.5rem;
+        }
+        .floatright {
+         float: right;
+        }
+        .btn-primary {
+          border: none !important;
+          background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+          height: 46px !important;
+        }
+        .custom-control-label::after {
+            position: absolute;
+            top: 0.5rem;
+            left: -2rem;
+            display: block;
+            width: 1.7rem;
+            height: 1.7rem;
+            content: "";
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 50% 50%;
+        }
+        .custom-control-label::before {
+            position: absolute;
+            top: 0.7rem;
+            left: -2rem;
+            display: block;
+            width: 1.4rem;
+            height: 1.4rem;
+            pointer-events: none;
+            content: "";
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #dee2e6;
+        }
+        .btn-success {
+          width: 100%;
+          border: none !important;
+          border-radius: 0.55rem;
+          background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+          font-size: 1.5rem;
+          height: 43px;
+          font-weight: 500;
+        }
+        .form-control {
+          border-radius: 6px;
+          font-size: 1.6rem !important;
+          outline: 0;
+        }
+        .select2-container--default.select2-container--open .select2-selection--single {
+          border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
+        }
+        .select2-container--default .select2-selection--single:focus {
+          box-shadow: none;
+          border-radius: 6px;
+          border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+        }
+        .form-control:focus {
+          box-shadow: none;
+          border-radius: 6px;
+          border: 1px solid {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}};
+        }
+        .form-control-placeholder {
+          font-weight: 500;
+          color: #364a63;
+          margin-bottom: 8px;
+        }
+        .form-control:focus + .form-control-placeholder,
+        .form-control:valid + .form-control-placeholder {
+          font-size: 60%;
+          transform: translate3d(0, -75%, 0);
+          border-radius: 6px;
+          opacity: 1;
+          top: 12px;
+        }
        /* .item-social-layout2 a{
            color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#333 !important'}};
         }
