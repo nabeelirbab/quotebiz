@@ -1575,7 +1575,7 @@ h6 {
 }
 .footer-wrap-layout2 {
   background-color: #111111;
-  padding: 6.5rem 0;
+  padding: 0.5rem 0;
 }
 .footer-wrap-layout3 {
   padding: 7rem 0 7.5rem;
@@ -1631,7 +1631,7 @@ h6 {
 }
 .footer-box-layout2 .footer-logo {
   padding: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 .footer-box-layout2 .footer-logo a {
   display: block;
@@ -2630,7 +2630,7 @@ nav.template-main-menu > ul > li > ul > li:hover ul.third-level {
   background-color: #acacac;
 }
 .bg--light .item-social-layout2 a {
-  color: #444444;
+  color: #222222;
 }
 .bg--light .item-social-layout2 a:hover {
   color: #000000;

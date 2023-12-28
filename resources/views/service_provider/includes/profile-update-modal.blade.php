@@ -119,14 +119,14 @@
                                         <div class="form-group">
                                             <label class="form-label" for="personal-email">Business Email</label>
                                             <input type="email" class="form-control" id="personal-email"
-                                                   value="{{Auth::user()->business->business_email}}" name="business_email"  placeholder="Enter business email">
+                                                   value="{{Auth::user()->business->business_email ? Auth::user()->business->business_email : Auth::user()->email}}" name="business_email"  placeholder="Enter business email">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="phone-no">Business Phone</label>
                                             <input type="text" class="form-control" id="phone-no"
-                                                   value="{{Auth::user()->business->business_phone}}" name="business_phone"
+                                                   value="{{Auth::user()->business->business_phone ? Auth::user()->business->business_phone : Auth::user()->mobileno}}" name="business_phone"
                                                    placeholder="Phone Number">
                                         </div>
                                     </div>
@@ -179,10 +179,10 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="form-label" for="experience">Biography</label>
-                                            <div id="charCount" class="float-right">Characters remaining: 2500</div>
-                                            <textarea name="biography" style="height: auto !important" class="form-control" rows="20" cols="16" id="myTextarea" maxlength="2500">{{Auth::user()->biography}}</textarea>
+                                            <!-- <label class="form-label" for="experience">Biography</label> -->
                                             
+                                            <textarea name="biography" style="font-size: 1rem;height: auto !important" class="form-control" rows="20" cols="16" id="myTextarea" maxlength="2500">{{Auth::user()->biography}}</textarea>
+                                            <div id="charCount" class="float-right">Characters remaining: 2500</div>
                                         </div>
                                     </div>
                                       <div class="col-12">

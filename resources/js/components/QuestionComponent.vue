@@ -79,7 +79,7 @@
                            <div class="nk-tb-list nk-tb-ulist">
                             <div class="nk-tb-item nk-tb-head" style="background: #253a46e3;">
                           
-                            <div class="nk-tb-col"><span class="sub-text">ID</span></div>
+                            <div class="nk-tb-col"><span class="sub-text">#</span></div>
                             <div class="nk-tb-col"><span class="sub-text">Question</span></div>
                             <div class="nk-tb-col tb-col-mb"><span class="sub-text">Category Name</span></div>
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Selection</span></div>
@@ -91,10 +91,10 @@
                           
                       <template v-if="category.subquestions.length > 0">
                       <draggable class="drag-area" :list="category.subquestions" :options="{animation:200, group:'status'}" :element="'tbody'"  @change="dragCard($event, keyIndex)">
-                        <div class="nk-tb-item" v-for="question in category.subquestions" style="cursor:pointer">
+                        <div class="nk-tb-item" v-for="(question, index) in category.subquestions" style="cursor:pointer">
                         
                             <div class="nk-tb-col">
-                               <span>{{question.id}}</span>
+                               <span>{{index + 1}}</span>
                             </div>
                             <div class="nk-tb-col">
                                 <span class="tb-amount">{{question.question}}</span>
@@ -144,17 +144,17 @@
                                             <div class="nk-tb-list nk-tb-ulist">
                                                 <div class="nk-tb-item nk-tb-head" style="background: #253a46e3;">
                                                   
-                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">ID</span></div>
+                                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">#</span></div>
                                                     <div class="nk-tb-col"><span class="sub-text">Option</span></div>
                                                     <div class="nk-tb-col tb-col-mb"><span class="sub-text">Icon</span></div>
                                                     <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>
                                                     
                                                 </div><!-- .nk-tb-item -->
                                                 
-                                                <div class="nk-tb-item" v-for="option in question.choices">
+                                                <div class="nk-tb-item" v-for="(option,indexing) in question.choices">
                                                 
                                                     <div class="nk-tb-col">
-                                                       <span>{{option.id}}</span>
+                                                       <span>{{indexing + 1}}</span>
                                                     </div>
                                                     <div class="nk-tb-col tb-col-mb">
                                                         <span class="tb-amount">{{option.choice}}</span>
@@ -178,10 +178,10 @@
                              </draggable>
                       </template>
                         <draggable class="drag-area" :list="category.questions" :options="{animation:200, group:'status'}" :element="'tbody'"  @change="dragCard($event, keyIndex)">
-                        <div class="nk-tb-item" v-for="question in category.questions" style="cursor:pointer">
+                        <div class="nk-tb-item" v-for="(question, indx) in category.questions" style="cursor:pointer">
                         
                             <div class="nk-tb-col">
-                               <span>{{question.id}}</span>
+                               <span>{{indx+1}}</span>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
                                 <span class="tb-amount">{{question.question}}</span>
@@ -233,17 +233,17 @@
                                             <div class="nk-tb-list nk-tb-ulist">
                                                 <div class="nk-tb-item nk-tb-head" style="background: #253a46e3;">
                                                   
-                                                    <div class="nk-tb-col "><span class="sub-text">ID</span></div>
+                                                    <div class="nk-tb-col "><span class="sub-text">#</span></div>
                                                     <div class="nk-tb-col"><span class="sub-text">Option</span></div>
                                                     <div class="nk-tb-col tb-col-mb"><span class="sub-text">Icon</span></div>
                                                     <div class="nk-tb-col tb-col-lg"><span class="sub-text">Created At</span></div>
                                                     
                                                 </div><!-- .nk-tb-item -->
                                                 
-                                                <div class="nk-tb-item" v-for="option in question.choices">
+                                                <div class="nk-tb-item" v-for="(option, ind) in question.choices">
                                                 
                                                     <div class="nk-tb-col">
-                                                       <span>{{option.id}}</span>
+                                                       <span>{{ind+1}}</span>
                                                     </div>
                                                     <div class="nk-tb-col tb-col-mb">
                                                         <span class="tb-amount">{{option.choice}}</span>
