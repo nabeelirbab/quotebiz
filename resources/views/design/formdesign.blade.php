@@ -80,10 +80,10 @@
                         <label class="form-label" for="default-01">Search Box</label>
                         <div class="form-control-wrap">
                          <label>
-                          <input type="radio" name="search_box" id="option1" autocomplete="off" value="auto_suggest" {{$formdesign && $formdesign->search_box == 'auto_suggest' ? 'checked':''}} > Auto Suggestion
+                          <input type="radio" name="search_box" id="option1" required autocomplete="off" value="auto_suggest" {{$formdesign && $formdesign->search_box == 'auto_suggest' ? 'checked':''}} > Auto Suggestion
                         </label>
                         <label >
-                          <input type="radio" name="search_box" {{$formdesign && $formdesign->search_box == 'dropdown' ? 'checked':''}} id="option2" value="dropdown" autocomplete="off"> Dropdowm
+                          <input type="radio" name="search_box"  required {{$formdesign && $formdesign->search_box == 'dropdown' ? 'checked':''}} id="option2" value="dropdown" autocomplete="off" > Dropdowm
                         </label>
                         </div>
                         </div>
@@ -94,10 +94,10 @@
                           <label class="form-label" for="default-01">Business Number Visibility</label>
                           <div class="form-control-wrap">
                            <label>
-                            <input type="radio" name="no_status" id="option1" autocomplete="off" value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
+                            <input type="radio" name="no_status" id="option1" autocomplete="off" required value="0" {{$formdesign && $formdesign->no_status == '0' ? 'checked':''}} > Hide
                           </label>
                           <label >
-                            <input type="radio" name="no_status" {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Want to speak with an agent ?
+                            <input type="radio" name="no_status" required {{$formdesign && $formdesign->no_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off" > Want to speak with an agent ?
                           </label>
                           </div>
                         </div>
@@ -107,20 +107,20 @@
                             <label class="form-label" for="Facebook">Font Family</label>
                            
                               <div  class="input-group" title="Using input value">
-                              <select  class="form-control js-example-basic-single" name="font_family">
+                              <select  class="form-control js-example-basic-single" name="font_family" required>
                                 <option>Select Font</option>
-                                <option value="Arial" style="font-family: Arial !important" {{ $formdesign->font_family === 'Arial' ? 'selected' : '' }}>Arial</option>
-                                <option value="DM Sans" {{ $formdesign->font_family === 'DM Sans' ? 'selected' : '' }}>DM Sans</option>
-                                <option value="Helvetica" {{ $formdesign->font_family === 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
-                                <option value="Times New Roman" {{ $formdesign->font_family === 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
-                                <option value="Georgia" {{ $formdesign->font_family === 'Georgia' ? 'selected' : '' }}>Georgia</option>
-                                <option value="Courier New" {{ $formdesign->font_family === 'Courier New' ? 'selected' : '' }}>Courier New</option>
-                                <option value="Verdana" {{ $formdesign->font_family === 'Verdana' ? 'selected' : '' }}>Verdana</option>
-                                <option value="Tahoma" {{ $formdesign->font_family === 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
-                                <option value="Palatino" {{ $formdesign->font_family === 'Palatino' ? 'selected' : '' }}>Palatino</option>
-                                <option value="Garamond" {{ $formdesign->font_family === 'Garamond' ? 'selected' : '' }}>Garamond</option>
-                                <option value="Bookman" {{ $formdesign->font_family === 'Bookman' ? 'selected' : '' }}>Bookman</option>
-                                <option value="Comic Sans MS" {{ $formdesign->font_family === 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                <option value="Arial" style="font-family: Arial !important" {{ $formdesign && $formdesign->font_family === 'Arial' ? 'selected' : '' }}>Arial</option>
+                                <option value="DM Sans" {{ $formdesign && $formdesign->font_family === 'DM Sans' ? 'selected' : '' }}>DM Sans</option>
+                                <option value="Helvetica" {{ $formdesign && $formdesign->font_family === 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                <option value="Times New Roman" {{ $formdesign && $formdesign->font_family === 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                <option value="Georgia" {{ $formdesign && $formdesign->font_family === 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                <option value="Courier New" {{ $formdesign && $formdesign->font_family === 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                <option value="Verdana" {{ $formdesign && $formdesign->font_family === 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                <option value="Tahoma" {{ $formdesign && $formdesign->font_family === 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                <option value="Palatino" {{ $formdesign && $formdesign->font_family === 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                <option value="Garamond" {{ $formdesign && $formdesign->font_family === 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                <option value="Bookman" {{ $formdesign && $formdesign->font_family === 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                <option value="Comic Sans MS" {{ $formdesign && $formdesign->font_family === 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
                               </select>
                            
                             </div>

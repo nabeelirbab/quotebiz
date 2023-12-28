@@ -89,7 +89,7 @@ h2{
 </style>
 <section style="border-top: 1px solid #c9c9c9; background-color: #f7f8fa ">
 
-	<div class="container mt-5 mb-5" style="width: 93%">
+	<div class="container mt-5" style="width: 93%">
 		<div class="row">
 			<div class="col-md-4">
 			 <div class="card" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
@@ -121,6 +121,7 @@ h2{
 			</div>
 			<div class="col-md-8 ml-md-auto">
 				<h2 class="ml-0">About {{$user->first_name}} </h2>
+				<div class=" mb-5 border-bottom">
 				<div class="row mt-5 mb-4 ">
 					<div class="col-md-12 d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
@@ -160,7 +161,7 @@ h2{
 					</div>
 				</div>
 				@if($user->experience)
-				<div class="row mb-5 pb-5 border-bottom">
+				<div class="row pb-4">
 					<div class="col-md-12 d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
 							<img src="{{ asset('frontend-assets/medal.png') }}" class="mr-4">
@@ -172,6 +173,7 @@ h2{
 					</div>
 				</div>
 			    @endif
+			</div>
 			  
 			    @if ($user->biography)
 			    <h2 class="mt-3 mb-4">Biography</h2>
