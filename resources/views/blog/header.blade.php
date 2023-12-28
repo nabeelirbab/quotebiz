@@ -282,7 +282,7 @@ if (isset($post)) {
         .terms {
             font-size: 10px;
             color: #0000009e;
-            font-weight: 500;
+            font-weight: 600;
         }
         .pac-container {
             z-index: 1060 !important;

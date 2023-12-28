@@ -730,7 +730,7 @@ aria-hidden="true">
 </div>
 <div class="modal-body">
 @if($job_design)
-{{$job_design->terms}}
+<textarea  style="border: none; background:none; color:  #222222;width: 100%; min-height: 58vh;" disabled>{!! $job_design->terms !!}</textarea>
 @endif
 </div>
 <div class="modal-footer">
@@ -752,7 +752,9 @@ aria-hidden="true">
 </div>
 <div class="modal-body">
 @if($job_design)
-{{$job_design->privacy_policy}}
+<textarea  style="border: none; background:none; color:  #222222;width: 100%; min-height: 58vh;" disabled>{!! $job_design->privacy_policy !!}</textarea>
+@else
+
 @endif
 </div>
 <div class="modal-footer">
