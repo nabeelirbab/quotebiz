@@ -288,10 +288,19 @@ h2{
                                                         </p>
                                                     </div>
                                                 </div>
+                                                @else
+                                                <h2 class="mt-3 mb-4">Biography</h2>
+                                                <div class="row mb-5 border-bottom">
+                                                    <div class="col-md-12 mb-5">
+                                                        <p class="ml-1" style="font-size: 16px;text-decoration-line: underline; cursor: pointer;" id="bio" class="mb-1">
+                                                           Add bio
+                                                        </p>
+                                                    </div>
+                                                </div>
                                                 @endif
                                                 @if(count(Auth::user()->gallery) > 0)
                                                 <h2 class="mb-5">Gallery</h2>
-                                                 <div class="row">
+                                                 <div class="row border-bottom mb-5 pb-3">
                                                   @foreach(Auth::user()->gallery as  $key => $gallery)
                                                     <div class="col-md-3 mb-4 text-center">
                                                         <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
@@ -455,6 +464,13 @@ h2{
         </script>
     @endif
         <script type="text/javascript">
+            $(document).ready(function() {
+            $('#bio').on('click', function() {
+                $('#profile-edit').modal('show');
+                // Activate the "Biography" tab
+                $('a[href="#biography"]').tab('show');
+            });
+        });
         $(document).ready(function() {
             var obj = {
                 value : '{{$selectcat}}'
