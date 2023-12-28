@@ -113,8 +113,7 @@
                                                 </div>
                                             </div>
                                             <div class="nk-tab-actions mr-n1">
-                                                <a href="#" class="btn btn-icon btn-trigger" data-toggle="modal"
-                                                   data-target="#profile-edit">
+                                                <a href="#" class="btn btn-icon btn-trigger" id="businessModal">
                                                     <em class="icon ni ni-edit"></em>
                                                 </a>
                                             </div>
@@ -281,6 +280,13 @@
 @section('script')
 <script src="{{ asset('frontend-assets/js/bootstrap-multiselect.min.js') }}"></script>
     <script type="text/javascript">
+             $(document).ready(function() {
+            $('#businessModal').on('click', function() {
+                $('#profile-edit').modal('show');
+                // Activate the "Biography" tab
+                $('a[href="#business"]').tab('show');
+            });
+        });
         $(document).ready(function() {
             var obj = {
                 value : '{{$selectcat}}'

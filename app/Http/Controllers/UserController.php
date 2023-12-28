@@ -362,6 +362,10 @@ public function register(Request $request)
         $subscription->customer_id = $user->customer_id;
         $subscription->plan_id = 1;
         $subscription->save();
+        $job_design = new JobDesign;
+        $job_design->admin_id = $user->id;
+        $job_design->subdomain = $request->subdomain;
+        $job_design->save();
         // user email verification
     if (true) {
     // Send registration confirmation email

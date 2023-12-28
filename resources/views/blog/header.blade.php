@@ -72,7 +72,7 @@ if (isset($post)) {
             font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
         }
         #header-middlebar {
-            background-image: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image) : 'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg' }});
+           background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):asset('frontend-assets/images/default.jpg')}}) no-repeat rgb(238, 238, 238);
             background-position: center;
             height: 160px;
             background-color: rgb(238, 238, 238);
@@ -310,12 +310,17 @@ if (isset($post)) {
         .btn-primary {
           border: none !important;
           background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-          height: 46px !important;
+          border: none !important;
+          background: #000000!important;
+          height: 38px !important;
+          padding: 22px;
+          line-height: 0;
+          font-size: 13px;
         }
         .custom-control-label::after {
             position: absolute;
             top: 0.5rem;
-            left: -2rem;
+            left: -2.2rem;
             display: block;
             width: 1.7rem;
             height: 1.7rem;
@@ -337,7 +342,8 @@ if (isset($post)) {
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            background-color: #dee2e6;
+            background-color: #fff;
+            border: 1px solid;
         }
         .btn-success {
           width: 100%;

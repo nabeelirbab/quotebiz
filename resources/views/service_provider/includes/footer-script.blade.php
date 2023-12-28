@@ -29,6 +29,7 @@
             reader.readAsDataURL(file);
         }
     });
+      $(document).ready(function(){
       const textarea = document.getElementById('myTextarea');
       const charCount = document.getElementById('charCount');
       const maxLength = parseInt(textarea.getAttribute('maxlength'));
@@ -41,6 +42,7 @@
           textarea.value = textarea.value.slice(0, maxLength);
         }
       });
+       });
 </script>
 
     <script type="text/javascript">
