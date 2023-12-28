@@ -24,7 +24,7 @@
 <div class="card-inner">
 <div class="card-title-group">
     <div class="card-title">
-        <h5 class="title">All Orders</h5>
+        <h5 class="title">All Payments</h5>
     </div>
     <div class="card-tools mr-n1">
         <ul class="btn-toolbar gx-1">
