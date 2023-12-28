@@ -203,6 +203,9 @@ $currencySymbols = [
       </button>
     </div>
  @endif
+ <div class="row justify-content-center">
+   <div class="col-md-7">
+   
   <div class="up-card pt-0 pb-0 maincard mt-5 mb-3">
       <header class="up-card-header cardheader">
         <h3 id="heading" class="mb-0">
@@ -271,7 +274,9 @@ $currencySymbols = [
             </button> 
     </footer>
 </div>
-
+  
+   </div>
+ </div>
 </div>
 @endsection
 @section('script')
