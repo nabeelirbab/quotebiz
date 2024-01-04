@@ -23,7 +23,7 @@
                       </div>
                       <a href="{{ url('sp-profile/'.$user->id) }}">
                       <div class="card-body">
-                          <h5 class="card-title text-center mb-0 mt-0">{{$user->first_name}} {{$user->last_name}}</h5>
+                          <h4 class="card-title text-center mb-0 mt-0">{{$user->first_name}} {{$user->last_name}}</h4>
                           <p class="mb-1"> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                            @else
                            {{$user->city}}
