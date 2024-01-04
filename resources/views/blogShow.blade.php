@@ -193,12 +193,11 @@
                 </div>
                 <div class="banner-content">
                     <div class="container heading-padding">
+                        
+                        <h2 class="item-title mb-1">{{$post->title}}</h2>
                         <ul class="entry-meta meta-color-light2">
-                            <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
-                            <li><i class="fas fa-user"></i>BY <a href="#">Mark Willy</a></li>
+                            <li><i class="fas fa-calendar-alt mr-0"></i>{{ $post->created_at->format('M j, Y') }}</li>
                         </ul>
-                        <h2 class="item-title">{{$post->title}}</h2>
-                      
                         <ul class="item-social">
                             <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url('blog/'.$post->slug)) }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i>SHARE</a></li>
                             <li><a href="https://twitter.com/intent/tweet?url={{ urlencode(url('blog/'.$post->slug)) }}&text={{ urlencode($post->title) }}" target="_blank" class="twitter"><i class="fab fa-twitter"></i>SHARE</a></li>
