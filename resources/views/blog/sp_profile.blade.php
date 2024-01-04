@@ -110,7 +110,7 @@ h2{
                         @endif
                     @endforeach
                     </p>
-                    <h4 class="text-center mb-2">What is the date of your event?</h4>
+                    <h4 class="text-center mb-2"> {{ ($job_design) ? $job_design->event_text : 'What is the date of your event?'}}</h4>
                     <div id="calendar"></div>
                     <div class=" text-center">
                       <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request A Quote</button>

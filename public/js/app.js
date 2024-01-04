@@ -2163,7 +2163,7 @@ __webpack_require__.r(__webpack_exports__);
     draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_0___default()),
     VueEasyLightbox: vue_easy_lightbox__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['dateformat'],
+  props: ['dateformat', 'eventtext'],
   data: function data() {
     return {
       categorieslist: [],
@@ -2172,55 +2172,81 @@ __webpack_require__.r(__webpack_exports__);
       subCategoriesHtml: false,
       hostname: '',
       noData: false,
-      noDataMsg: ''
+      noDataMsg: '',
+      eventTitle: 'What is your event date?',
+      eventField: false
     };
   },
+  created: function created() {
+    // Update eventTitle with the value of the eventtext prop
+    if (this.eventtext) {
+      this.eventTitle = this.eventtext;
+    }
+  },
   methods: {
+    showInput: function showInput() {
+      this.eventField = true;
+    },
+    hideInput: function hideInput() {
+      this.eventField = false;
+    },
+    saveText: function saveText() {
+      var _this = this;
+
+      axios.post('admin/event-text-update', {
+        event_text: this.eventTitle
+      }).then(function (response) {
+        console.log(response.data);
+        _this.eventField = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     dateFormat: function dateFormat(date) {
       return moment__WEBPACK_IMPORTED_MODULE_4___default()(date).format(this.dateformat);
     },
     categories: function categories() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('admin/questions/categories').then(function (response) {
         console.log(response.data);
-        _this.categorieslist = response.data;
-        _this.categoriesData = response.data;
+        _this2.categorieslist = response.data;
+        _this2.categoriesData = response.data;
       })["catch"](function (error) {
         return console.log(error);
       });
     },
     subcategoriesbyid: function subcategoriesbyid(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       var id = event.target.value;
       axios.get('admin/questions/subcategories/' + id).then(function (response) {
         console.log(response.data);
 
         if (response.data[0].subquestions.length < 1) {
-          _this2.noData = true;
-          _this2.noDataMsg = 'This sub category does not have any questions';
+          _this3.noData = true;
+          _this3.noDataMsg = 'This sub category does not have any questions';
         } else {
-          _this2.noData = false;
-          _this2.categoriesData = response.data;
+          _this3.noData = false;
+          _this3.categoriesData = response.data;
         }
       })["catch"](function (error) {
         return console.log(error);
       });
     },
     categoriesbyid: function categoriesbyid(event) {
-      var _this3 = this;
+      var _this4 = this;
 
       var id = event.target.value;
       axios.get('admin/questions/categories/' + id).then(function (response) {
         console.log(response.data);
-        _this3.categoriesData = response.data.categories;
-        _this3.subCategories = response.data.subcat;
+        _this4.categoriesData = response.data.categories;
+        _this4.subCategories = response.data.subcat;
 
-        if (_this3.subCategories.length > 0 && _this3.categoriesData.length > 0) {
-          _this3.subCategoriesHtml = true;
+        if (_this4.subCategories.length > 0 && _this4.categoriesData.length > 0) {
+          _this4.subCategoriesHtml = true;
         } else {
-          _this3.subCategoriesHtml = false;
+          _this4.subCategoriesHtml = false;
         }
       })["catch"](function (error) {
         return console.log(error);
@@ -4228,6 +4254,59 @@ var render = function render() {
     staticClass: "nk-block-tools g-3"
   }, [_c("li", {
     staticClass: "nk-block-tools-opt"
+  }, [!_vm.eventField ? _c("div", [_c("em", {
+    staticClass: "icon ni ni-edit",
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: _vm.showInput
+    }
+  }), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.eventTitle))])]) : _vm._e(), _vm._v(" "), _vm.eventField ? _c("div", {
+    staticClass: "d-flex align-center"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.eventTitle,
+      expression: "eventTitle"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: ""
+    },
+    domProps: {
+      value: _vm.eventTitle
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.eventTitle = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("em", {
+    staticClass: "icon ni ni-check",
+    staticStyle: {
+      cursor: "pointer",
+      "font-size": "20px",
+      "padding-right": "5px",
+      "padding-left": "5px"
+    },
+    on: {
+      click: _vm.saveText
+    }
+  }), _vm._v(" "), _c("em", {
+    staticClass: "icon ni ni-cross",
+    staticStyle: {
+      cursor: "pointer",
+      "font-size": "20px"
+    },
+    on: {
+      click: _vm.hideInput
+    }
+  })]) : _vm._e()]), _vm._v(" "), _c("li", {
+    staticClass: "nk-block-tools-opt"
   }, [_c("a", {
     staticClass: "btn btn-primary",
     attrs: {
@@ -4664,7 +4743,7 @@ var render = function render() {
         }, [_c("span", [_vm._v(_vm._s(_vm.dateFormat(option.created_at)))])])]);
       })], 2)])])])])])]);
     }), 0)], 2)])])])])])];
-  })], 2)])])])])])])]);
+  })], 2)])])])])]), _vm._v(" "), _vm._m(4)])]);
 };
 
 var staticRenderFns = [function () {
@@ -4674,10 +4753,20 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "nk-block-head-content"
   }, [_c("h3", {
-    staticClass: "nk-block-title page-title"
+    staticClass: "nk-block-title page-title pb-2"
   }, [_vm._v("Question Lists")]), _vm._v(" "), _c("div", {
     staticClass: "nk-block-des text-soft"
-  }, [_c("p", [_vm._v("You have total  questions.")])])]);
+  }, [_c("a", {
+    staticClass: "mb-1",
+    staticStyle: {
+      color: "#222"
+    },
+    attrs: {
+      href: "#",
+      "data-toggle": "modal",
+      "data-target": "#howitwork"
+    }
+  }, [_vm._v("How it works")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", [_vm._v("At QuoteBiz, we understand that every service category and subcategory may have unique requirements..")])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -4738,6 +4827,54 @@ var staticRenderFns = [function () {
   }, [_c("span", {
     staticClass: "sub-text"
   }, [_vm._v("Action")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      tabindex: "-1",
+      "aria-labelledby": "imageModalLabel",
+      "aria-hidden": "true",
+      id: "howitwork"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-lg",
+    attrs: {
+      role: "document"
+    }
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_c("div", {
+    staticClass: "modal-header"
+  }, [_c("h5", {
+    staticClass: "modal-title"
+  }, [_vm._v(" How it works")]), _vm._v(" "), _c("a", {
+    staticClass: "close",
+    attrs: {
+      href: "#",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c("em", {
+    staticClass: "icon ni ni-cross"
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("p", {
+    staticStyle: {
+      "font-weight": "bold"
+    }
+  }, [_vm._v("Customize Your Question Lists")]), _vm._v(" "), _c("p", [_vm._v("At QuoteBiz, we understand that every service category and subcategory may have unique requirements. That's why we give you the power to create custom lists of questions tailored to each category or subcategory.")]), _vm._v(" "), _c("p", {
+    staticStyle: {
+      "font-weight": "bold"
+    }
+  }, [_vm._v("How it works:")]), _vm._v(" "), _c("ul", {
+    staticClass: "howitwork ml-5 mb-2",
+    staticStyle: {
+      padding: "0"
+    }
+  }, [_c("li", [_c("strong", [_vm._v("Create Custom Questions:")]), _vm._v(" To get started, click the edit pencil icon on the right side of the row you want to edit. This will allow you to add, modify, or delete questions for that specific category or subcategory.\n                        ")]), _vm._v(" "), _c("li", [_c("strong", [_vm._v("Select Subcategory:")]), _vm._v(" If you want to add questions to a new subcategory, first select that subcategory from the drop-down menu. Then, click the edit pencil icon to customize the questions for that subcategory.\n                        ")]), _vm._v(" "), _c("li", [_c("strong", [_vm._v("Use Parent Category Questions:")]), _vm._v(" If you don't create custom questions for a specific subcategory, it will automatically use the question list from the parent category. This makes customization easy and efficient.\n                        ")])]), _vm._v(" "), _c("p", [_vm._v("With the ability to tailor your questions to suit your needs, you can provide a more personalized and effective quoting experience for your customers. Don't hesitate to make your categories and subcategories truly your own.")]), _vm._v(" "), _c("p", [_vm._v("Need assistance or have questions? Feel free to reach out to our support team for help.")])])])])]);
 }];
 render._withStripped = true;
 
@@ -11902,7 +12039,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.edit-icon{\n  position: absolute;\n    right: 4rem;\n    top: 50%;\n    font-size: 1rem;\n    color: #364a63;\n    transform: translateY(-50%);\n    transition: rotate 0.4s;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.edit-icon{\n  position: absolute;\n    right: 4rem;\n    top: 50%;\n    font-size: 1rem;\n    color: #364a63;\n    transform: translateY(-50%);\n    transition: rotate 0.4s;\n}\n.howitwork li{\n    list-style: disc;\n}\n.howitwork li strong{\n    font-weight: bold !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

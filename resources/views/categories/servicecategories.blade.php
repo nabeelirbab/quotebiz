@@ -11,6 +11,12 @@
         .form-group:last-child {
             margin-bottom: 0px !important;
         }
+        .custom-radio:hover label {
+            color: #222;
+        }
+        .custom-radio input[type=radio]:checked ~ label {
+             color: #222; 
+        }
         .sub-categoryli{
             box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
             transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
@@ -92,8 +98,13 @@
     <div class="d-flex justify-content-between align-items-start mb-3">
     <a href="#"  data-toggle="modal" data-target="#modalEdit{{$category->id}}" class="d-flex align-items-center">
     @if($category->category_icon)
+    @if($category->icon_option == 'upload')
     <div class="" style="width: 60px"><img src="{{asset('frontend-assets/images/categories/'.$category->category_icon)}}">
     </div>
+    @else
+    <div class="" style="width: 35px"><img src="{{asset('images/icons/'.$category->category_icon)}}">
+    </div>
+    @endif
     @else
     <div class="user-avatar sq bg-purple"><span><?php $words = explode(' ', $category->category_name);
     if(count($words) > 1){
@@ -128,8 +139,13 @@
     @foreach($category->subcategory as $key=>$subcategory)
     <li  class="w-100 sub-categoryli mt-1 mb-1" style="padding: 10px !important;">
    @if($subcategory->category_icon)
-   <div class="" style="width: 40px"><img src="{{asset('frontend-assets/images/categories/'.$subcategory->category_icon)}}">
+   @if($subcategory->icon_option == 'upload')
+    <div class="" style="width: 40px"><img src="{{asset('frontend-assets/images/categories/'.$subcategory->category_icon)}}">
     </div>
+    @else
+    <div class="" style="width: 30px"><img src="{{asset('images/icons/'.$subcategory->category_icon)}}">
+    </div>
+    @endif
     @else
     <div class="user-avatar sq {{$arraycalss[$key]}}">
     <span>
@@ -189,14 +205,46 @@
             </div>
         </div>
     </div>
-        <div class="col-sm-10">
+    <div class="col-sm-10">
         <div class="form-group">
-            <label class="form-label" for="default-06">Category Icon</label>
+            <label class="form-label">Choose an option:</label>
+            <div class="form-control-wrap">
+                <div class="d-flex">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="uploadOption{{$subcategory->id}}" name="iconOption{{$subcategory->id}}" class="custom-control-input" value="upload" checked>
+                <label class="custom-control-label" for="uploadOption{{$subcategory->id}}">Upload icons</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="libraryOption{{$subcategory->id}}" name="iconOption{{$subcategory->id}}" class="custom-control-input" value="library">
+                <label class="custom-control-label" for="libraryOption{{$subcategory->id}}">Select icon from library</label>
+            </div>
+
+                </div>
+               
+            </div>
+        </div>
+
+        <div id="uploadSection{{$subcategory->id}}" class="form-group">
+            <label class="form-label" for="customFile">Upload Category Icon (optional)</label>
             <div class="form-control-wrap">
                 <div class="custom-file">
                     <input type="file" name="category_icon" class="custom-file-input" id="customFile">
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
+            </div>
+        </div>
+
+        <div id="librarySection{{$subcategory->id}}" class="form-group" style="display: none;">
+            <label class="form-label" for="dropdownicons{{$subcategory->id}}">Select Category Icon (optional)</label>
+            <div class="form-control-wrap">
+                <select class="form-control selectsearch" id="dropdownicons{{$subcategory->id}}" name="category_icon">
+                    <option value="">Select Category</option>
+                    @foreach(Acelle\Jobs\HelperJob::allicons() as $icon)
+                        <option value="{{ $icon->icon }}" data-icon="{{ asset('images/icons/'.$icon->icon) }}">
+                            {{ $icon->icon }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
@@ -259,14 +307,46 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-10">
+   <div class="col-sm-10">
         <div class="form-group">
-            <label class="form-label" for="default-06">Category Icon</label>
+            <label class="form-label">Choose an option:</label>
+            <div class="form-control-wrap">
+                <div class="d-flex">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="uploadOption{{$category->id}}" name="iconOption{{$category->id}}" class="custom-control-input" value="upload" checked>
+                <label class="custom-control-label" for="uploadOption{{$category->id}}">Upload icons</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="libraryOption{{$category->id}}" name="iconOption{{$category->id}}" class="custom-control-input" value="library">
+                <label class="custom-control-label" for="libraryOption{{$category->id}}">Select icon from library</label>
+            </div>
+
+                </div>
+               
+            </div>
+        </div>
+
+        <div id="uploadSection{{$category->id}}" class="form-group">
+            <label class="form-label" for="customFile">Upload Category Icon (optional)</label>
             <div class="form-control-wrap">
                 <div class="custom-file">
                     <input type="file" name="category_icon" class="custom-file-input" id="customFile">
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
+            </div>
+        </div>
+
+        <div id="librarySection{{$category->id}}" class="form-group" style="display: none;">
+            <label class="form-label" for="dropdownicons{{$category->id}}">Select Category Icon (optional)</label>
+            <div class="form-control-wrap">
+                <select class="form-control selectsearch" id="dropdownicons{{$category->id}}" name="category_icon">
+                    <option value="">Select Category</option>
+                    @foreach(Acelle\Jobs\HelperJob::allicons() as $icon)
+                        <option value="{{ $icon->icon }}" data-icon="{{ asset('images/icons/'.$icon->icon) }}">
+                            {{ $icon->icon }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
@@ -328,16 +408,46 @@
     </div>
     </div>
     <div class="col-sm-10">
-    <div class="form-group">
-    <label class="form-label" for="default-06">Category Icon (optional)</label>
-    <div class="form-control-wrap">
-    <div class="custom-file">
-    <input type="file" name="category_icon" class="custom-file-input" id="customFile">
-    <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
-    </div>
-    </div>
+        <div class="form-group">
+            <label class="form-label">Choose an option:</label>
+            <div class="form-control-wrap">
+                <div class="d-flex">
+                     <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="uploadOption" name="iconOption" class="custom-control-input" value="upload" checked>
+                    <label class="custom-control-label" for="uploadOption">Upload icons</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="libraryOption" name="iconOption" class="custom-control-input" value="library">
+                    <label class="custom-control-label" for="libraryOption">Select icon from library</label>
+                </div>
+                </div>
+               
+            </div>
+        </div>
 
+        <div id="uploadSection" class="form-group">
+            <label class="form-label" for="customFile">Upload Category Icon (optional)</label>
+            <div class="form-control-wrap">
+                <div class="custom-file">
+                    <input type="file" name="category_icon" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="librarySection" class="form-group" style="display: none;">
+            <label class="form-label" for="dropdownicons">Select Category Icon (optional)</label>
+            <div class="form-control-wrap">
+                <select class="form-control selectsearch" id="dropdownicons" name="category_icon">
+                    <option value="">Select Category</option>
+                    @foreach(Acelle\Jobs\HelperJob::allicons() as $icon)
+                        <option value="{{ $icon->icon }}" data-icon="{{ asset('images/icons/'.$icon->icon) }}">
+                            {{ $icon->icon }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-10">
@@ -398,9 +508,26 @@
     </div>
     </div>
     </div>
-       <div class="col-sm-10">
+     <div class="col-sm-10">
         <div class="form-group">
-            <label class="form-label" for="default-06">Category Icon</label>
+            <label class="form-label">Choose an option:</label>
+            <div class="form-control-wrap">
+                <div class="d-flex">
+                     <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="uploadOpt" name="iconOption" class="custom-control-input" value="upload" checked>
+                    <label class="custom-control-label" for="uploadOpt">Upload icons</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="libraryOpt" name="iconOption" class="custom-control-input" value="library">
+                    <label class="custom-control-label" for="libraryOpt">Select icon from library</label>
+                </div>
+                </div>
+               
+            </div>
+        </div>
+
+        <div id="uploadSub" class="form-group">
+            <label class="form-label" for="customFile">Upload Category Icon (optional)</label>
             <div class="form-control-wrap">
                 <div class="custom-file">
                     <input type="file" name="category_icon" class="custom-file-input" id="customFile">
@@ -408,7 +535,20 @@
                 </div>
             </div>
         </div>
-       
+
+        <div id="librarySub" class="form-group" style="display: none;">
+            <label class="form-label" for="dropdown">Select Category Icon (optional)</label>
+            <div class="form-control-wrap">
+                <select class="form-control selectsearch" id="dropdown" name="category_icon">
+                    <option value="">Select Category</option>
+                    @foreach(Acelle\Jobs\HelperJob::allicons() as $icon)
+                        <option value="{{ $icon->icon }}" data-icon="{{ asset('images/icons/'.$icon->icon) }}">
+                            {{ $icon->icon }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-10">
@@ -441,6 +581,98 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
+    <script>
+    // Add event listener to radio buttons
+   document.querySelectorAll('input[name^="iconOption"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+        toggleIconSections(this.value, this.id);
+    });
+});
+
+    function toggleIconSections(selectedOption, radioId) {
+        // Extract category ID from the radio button's ID
+        var categoryIdMatch = radioId.match(/\d+/);
+        var categoryId = categoryIdMatch ? categoryIdMatch[0] : '';
+
+        // Display the selected option and category ID
+        console.log('Selected Option: ' + selectedOption + '\nCategory ID: ' + categoryId);
+
+        var uploadSection = document.getElementById('uploadSection' + categoryId);
+        var librarySection = document.getElementById('librarySection' + categoryId);
+
+        if (selectedOption === 'upload') {
+            uploadSection.style.display = 'block';
+            librarySection.style.display = 'none';
+        } else {
+            uploadSection.style.display = 'none';
+            librarySection.style.display = 'block';
+        }
+    }
+
+
+    $(document).ready(function() {
+        $('.selectsearch').select2({
+            templateResult: formatIcon,
+            templateSelection: formatIconSelection,
+        });
+
+        function formatIcon(icon) {
+            console.log(icon);
+            if (!icon.id) {
+                return icon.text;
+            }
+            var $icon = $('<span><img src="' + icon.element.getAttribute('data-icon') + '" style="width:10%" class="img-icon" /> ' + icon.text + '</span>');
+            return $icon;
+        }
+
+        function formatIconSelection(icon) {
+            if (!icon.id) {
+                return icon.text;
+            }
+            var $icon = $('<span><img src="' + icon.element.getAttribute('data-icon') + '" style="width:12%" class="img-icon" /> ' + icon.text + '</span>');
+            return $icon;
+        }
+    });
+    document.querySelectorAll('input[name="iconOption"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            toggleIconSection();
+        });
+    });
+
+    // Function to toggle visibility of icon sections based on radio button selection
+    function toggleIconSection() {
+        var uploadSection = document.getElementById('uploadSection');
+        var librarySection = document.getElementById('librarySection');
+
+        if (document.getElementById('uploadOption').checked) {
+            uploadSection.style.display = 'block';
+            librarySection.style.display = 'none';
+        } else {
+            uploadSection.style.display = 'none';
+            librarySection.style.display = 'block';
+        }
+    }
+
+    document.querySelectorAll('input[name="iconOption"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            toggleIcon();
+        });
+    });
+
+    // Function to toggle visibility of icon s based on radio button selection
+    function toggleIcon() {
+        var uploadSection = document.getElementById('uploadSub');
+        var librarySection = document.getElementById('librarySub');
+
+        if (document.getElementById('uploadOpt').checked) {
+            uploadSection.style.display = 'block';
+            librarySection.style.display = 'none';
+        } else {
+            uploadSection.style.display = 'none';
+            librarySection.style.display = 'block';
+        }
+    }
+</script>
     <script>
         function disableButton() {
             // Disable the button

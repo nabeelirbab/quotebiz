@@ -18,6 +18,7 @@ use Acelle\Model\Country;
 use Acelle\Model\State;
 use Acelle\Model\FreeCredit;
 use Acelle\Model\City;
+use Acelle\Model\Icon;
 use Acelle\Library\ExtendedSwiftMessage;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,10 @@ class HelperJob extends Base
     
     public static function supercategories(){
         return Category::where('cat_parent','0')->orderBy('category_name','desc')->get();
+    }
+
+    public static function allicons(){
+      return Icon::all();
     }
 
     public static function categories(){

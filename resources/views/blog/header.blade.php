@@ -266,7 +266,7 @@ if (isset($post)) {
         p.form-para {
           font-size: 15px;
           font-weight: 500;
-          color: #9f9f9f;
+          color: #666666;
           line-height: 17px;
         }
         p.form-para::after {
