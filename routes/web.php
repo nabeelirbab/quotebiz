@@ -266,6 +266,9 @@ Route::get('users/logout', 'UserController@logout');
     Route::match(['get', 'post'],'/seo', 'UserController@seo');
     Route::match(['get', 'post'],'/logo-setting', 'UserController@sitesetting');
     Route::match(['get', 'post'],'/page-layout', 'UserController@formlayout');
+    Route::post('/text-update', 'UserController@text_change');
+    Route::post('/event-text-update', 'UserController@changeEventText');
+
 
     Route::post('/text-update', 'UserController@text_change');
 

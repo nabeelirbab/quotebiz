@@ -170,7 +170,7 @@ h4.form-heading {
 p.form-para {
   font-size: 15px;
   font-weight: 500;
-  color: #9f9f9f;
+  color: #666666;
   line-height: 17px;
 }
 p.form-para::after {
@@ -584,7 +584,7 @@ p.form-para::after {
                 @if(Auth::user())
                     @if(Auth::user()->user_type == 'client' || Auth::user()->user_type == 'admin')
 
-                        <li class="nav-item">
+                        <li class="nav-item  d-block d-sm-none">
                             <a class="nav-link fs-1 mr-md-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
@@ -597,11 +597,11 @@ p.form-para::after {
                                 <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/blogs') }}">Blog</a>
                             @endif
                         </li>
+                        <li class="nav-item d-none d-sm-block">
+                            <a class="nav-link fs-1 mr-md-4 login" href="{{ Auth::user()->user_type == 'client' ? url('/customer') : url('/admin') }}">Dashboard</a>
+                        </li>
                     @else
 
-                        <li class="nav-item">
-                            <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/service-provider') }}">Dashboard</a>
-                        </li>
                         <li class="nav-item">
                             @if($job_design && $job_design->profile_status != '2')
                                 <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
@@ -612,6 +612,7 @@ p.form-para::after {
                                 <a class="nav-link fs-1 mr-md-4 login" href="{{ url('/blogs') }}">Blog</a>
                             @endif
                         </li>
+
                     @endif
                 @else
                     <li class="nav-item">
@@ -636,7 +637,7 @@ p.form-para::after {
     </nav>
 </header>
 
-<div class="container mt-5 p-4">
+<div class="container mt-md-5 p-4">
 <div class="row mt-5 justify-content-{{($job_design) ? $job_design->position : 'end'}}"
 style="height: 100%;align-items: center;">
 <div class="col-lg-7 col-md-8 col-sm-10 formclass" style="box-shadow: -1px -1px 13px 7px rgba(0,0,0,0.27);border-radius: 12px">

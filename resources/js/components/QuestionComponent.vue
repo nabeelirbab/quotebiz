@@ -7,9 +7,11 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Question Lists</h3>
+                            <h3 class="nk-block-title page-title pb-2">Question Lists</h3>
                             <div class="nk-block-des text-soft">
-                                <p>You have total  questions.</p>
+                              <a href="#" class="mb-1" style="color:#222;" data-toggle="modal" data-target="#howitwork">How it works</a>
+                               <br>
+                                <span>At QuoteBiz, we understand that every service category and subcategory may have unique requirements..</span>
                             </div>
                         </div><!-- .nk-block-head-content -->
                         <div class="nk-block-head-content">
@@ -17,7 +19,17 @@
                                 <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                     <ul class="nk-block-tools g-3">
-                                     
+                                          <li class="nk-block-tools-opt">
+                                            <div v-if="!eventField">
+                                             <em class="icon ni ni-edit" @click="showInput" style="cursor:pointer"></em>
+                                             <span>{{eventTitle}}</span>
+                                            </div>
+                                            <div class="d-flex align-center" v-if="eventField">
+                                             <input type="text" name="" class="form-control" v-model="eventTitle">
+                                             <em class="icon ni ni-check" style="cursor:pointer;font-size: 20px;padding-right: 5px; padding-left: 5px;" @click="saveText"></em>
+                                             <em class="icon ni ni-cross" @click="hideInput" style="cursor:pointer;font-size: 20px;"></em>
+                                            </div>
+                                          </li>
                                           <li class="nk-block-tools-opt"><a :href="hostname+'/admin/questions/add-question'" class="btn btn-primary" ><em class="icon ni ni-plus"></em><span>Add Question</span></a></li>
                                     </ul>
                                 </div>
@@ -288,7 +300,47 @@
              
         </div>
     </div>
+
+      <div class="modal fade" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" id="howitwork">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> How it works</h5>
+                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                        <em class="icon ni ni-cross"></em>
+                    </a>
+                </div>
+                <div class="modal-body">
+                  <p style="font-weight: bold;">Customize Your Question Lists</p>
+
+                    <p >At QuoteBiz, we understand that every service category and subcategory may have unique requirements. That's why we give you the power to create custom lists of questions tailored to each category or subcategory.</p>
+
+                    <p style="font-weight: bold;">How it works:</p>
+
+                  <ul class="howitwork ml-5 mb-2" style="padding: 0;">
+                        <li>
+                            <strong>Create Custom Questions:</strong> To get started, click the edit pencil icon on the right side of the row you want to edit. This will allow you to add, modify, or delete questions for that specific category or subcategory.
+                        </li>
+                        <li>
+                            <strong>Select Subcategory:</strong> If you want to add questions to a new subcategory, first select that subcategory from the drop-down menu. Then, click the edit pencil icon to customize the questions for that subcategory.
+                        </li>
+                        <li>
+                            <strong>Use Parent Category Questions:</strong> If you don't create custom questions for a specific subcategory, it will automatically use the question list from the parent category. This makes customization easy and efficient.
+                        </li>
+                    </ul>
+
+
+                    <p >With the ability to tailor your questions to suit your needs, you can provide a more personalized and effective quoting experience for your customers. Don't hesitate to make your categories and subcategories truly your own.</p>
+
+                    <p>Need assistance or have questions? Feel free to reach out to our support team for help.</p>
+
+                </div>
+              
+            </div>
+        </div>
+    </div>
 </div>
+
 </div>
 </template>
 
@@ -308,7 +360,8 @@ export default {
   },
 props: [
           'dateformat',
-          ],
+          'eventtext'
+       ],
 data() {
     return {
       categorieslist: [],
@@ -317,13 +370,35 @@ data() {
       subCategoriesHtml : false,
       hostname: '',
       noData: false,
-      noDataMsg:''
+      noDataMsg:'',
+      eventTitle: 'What is your event date?',
+      eventField: false,
         };
 },
-
+created() {
+    // Update eventTitle with the value of the eventtext prop
+    if (this.eventtext) {
+      this.eventTitle = this.eventtext;
+    }
+  },
 
 methods: {
-
+        showInput(){
+            this.eventField = true;
+        },
+        hideInput(){
+            this.eventField = false;
+        },
+        saveText(){
+              axios.post('admin/event-text-update', {
+                    event_text: this.eventTitle
+                }).then((response) => {
+                    console.log(response.data);
+                    this.eventField = false;
+                }).catch((error) => {
+                    console.log(error);
+                })
+        },
         dateFormat(date) {
           return moment(date).format(this.dateformat);
         },
@@ -404,5 +479,11 @@ mounted() {
     color: #364a63;
     transform: translateY(-50%);
     transition: rotate 0.4s;
+}
+.howitwork li{
+    list-style: disc;
+}
+.howitwork li strong{
+    font-weight: bold !important; 
 }
 </style>

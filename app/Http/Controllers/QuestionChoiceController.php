@@ -184,6 +184,7 @@ class QuestionChoiceController extends Controller
                 $quote->type = "local business";
             }
             $quote->additional_info = $request->additional_info;
+            $quote->booking_date = $request->booking_date;
             $quote->user_id = Auth::user()->id;
             $quote->save();
 
@@ -406,6 +407,7 @@ class QuestionChoiceController extends Controller
     }
 
     public function specialQuote($data){
+        // dd($data->all);
       foreach ($data->category_id as $key => $category) {
             $quote = new Quote;
             $quote->category_id = $category;
@@ -419,6 +421,7 @@ class QuestionChoiceController extends Controller
                 $quote->type = "local business";
             }
             $quote->additional_info = $data->additional_info;
+            $quote->booking_date = $data->booking_date;
             $quote->user_id = Auth::user()->id;
             $quote->save();
 

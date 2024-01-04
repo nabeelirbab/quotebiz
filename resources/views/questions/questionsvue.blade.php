@@ -1,7 +1,7 @@
 @extends('layouts.core.frontend')
 
 @section('title', trans('messages.dashboard'))
-
+<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 @section('head')
   <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite.css?ver=2.9.1') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
@@ -33,7 +33,7 @@
 ?>
  <!-- content @s -->
  <div id="app" class="mt-4">
-        <question-component dateformat='{{$date}}'></question-component>
+        <question-component dateformat='{{$date}}' eventtext='{{ $job_design->event_text}}'></question-component>
   </div>
 <!-- content @e -->
 @endsection
