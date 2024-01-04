@@ -875,7 +875,7 @@ By using our enquiry quote form or interacting with our website, you agree to th
           </div>
           <a href="{{ url('sp-profile/'.$user->id) }}">
           <div class="card-body">
-              <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
+              <h4 class="card-title text-center" style="font-size: 18px">{{$user->first_name}} {{$user->last_name}}</h4>
               
               <p class="mb-1"> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                @else
