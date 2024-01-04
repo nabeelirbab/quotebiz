@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
 	@elseif (Auth::user()->customer->getMenuLayout() == 'left')
 		<meta name="theme-color" content="#eff3f5">
 	@endif
-
 	<script>
 		@if (Auth::user()->customer->theme_mode == 'auto')
 			var ECHARTS_THEME = isDarkMode() ? 'dark' : null

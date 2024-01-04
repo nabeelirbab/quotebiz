@@ -402,7 +402,7 @@
 	                @if(!$booking_date)
 	                 <h4></h4>
 	                <section>
-	                	<h3 style="text-align: center;color: black">Select Booking Date</h3>
+	                	<h3 style="text-align: center;color: black">{{ ($job_design) ? $job_design->event_text : 'What is the date of your event?'}}</h3>
 	                	<div class="mainclass justify-content-center" style="padding-bottom: 48px">
 	                	 <div style="max-width: 50%">
                             <div class="form-row">
@@ -424,18 +424,39 @@
 				    @foreach($categories as $key => $cat)
 				        <div class="text-center">
 				            <input type="checkbox" id="cat_0{{$cat->id}}" name="category_id[]" value="{{$cat->id}}">
-				            <label for="cat_0{{$cat->id}}" style="padding: 1rem !important">
+				            <label for="cat_0{{$cat->id}}" style="padding: 1rem !important; display: flex;align-items: center;justify-content: center;">
 				                <!-- If you want to include an image -->
-				                <!-- @if($cat->category_icon)
+				                @if($cat->category_icon)
+				                @if($cat->icon_option == 'upload')
+				                <div class="" >
+				                	<div style="max-width: 60px; min-width: 60px; margin: 0 auto;">
 				                    <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}">
-				                @else
-				                    <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
-				                @endif -->
+				                		
+				                	</div>
+				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
 
-				                <!-- Wrapping h2 in a div for centering -->
+				                </div>
+				                @else
+				                <div class="">
+				                	<div  style="max-width: 60px; min-width: 60px; margin: 0 auto;">
+                                     <img src="{{asset('images/icons/'.$cat->category_icon)}}">
+				                		
+				                	</div>
+				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
+
+                                 </div>
+				                @endif
+				                @else
 				                <div>
+				                	
+				                    <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
 				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
 				                </div>
+
+				                @endif
+
+				                <!-- Wrapping h2 in a div for centering -->
+				                
 				            </label>
 				        </div>
 				    @endforeach

@@ -42,17 +42,24 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
-
        $category = new Category;
-       if($request->file('category_icon')){
-            $image = $request->file('category_icon');
-            $new_image = time().$image->getClientOriginalName();
-            $destination = 'frontend-assets/images/categories';
-            $image->move(public_path($destination),$new_image);
-            $category->category_icon = $new_image;
+       if($request->iconOption == 'library'){
+        if($request->category_icon){
+          $category->category_icon = $request->category_icon;
+        }
+
+       }else if($request->iconOption == 'upload'){
+         if($request->file('category_icon')){
+              $image = $request->file('category_icon');
+              $new_image = time().$image->getClientOriginalName();
+              $destination = 'frontend-assets/images/categories';
+              $image->move(public_path($destination),$new_image);
+              $category->category_icon = $new_image;
+         }
        }
+       $category->icon_option = $request->iconOption;
        $category->user_id = $request->user()->id;
        $category->category_name = $request->category_name;
        $category->cat_parent = 1;
@@ -69,13 +76,20 @@ class CategoryController extends Controller
     {
 
        $category = new Category;
-       if($request->file('category_icon')){
-            $image = $request->file('category_icon');
-            $new_image = time().$image->getClientOriginalName();
-            $destination = 'frontend-assets/images/categories';
-            $image->move(public_path($destination),$new_image);
-            $category->category_icon = $new_image;
-       }
+        if($request->iconOption == 'library'){
+          if($request->category_icon){
+            $category->category_icon = $request->category_icon;
+          }
+
+         }else if($request->iconOption == 'upload'){
+           if($request->file('category_icon')){
+                $image = $request->file('category_icon');
+                $new_image = time().$image->getClientOriginalName();
+                $destination = 'frontend-assets/images/categories';
+                $image->move(public_path($destination),$new_image);
+                $category->category_icon = $new_image;
+           }
+         }
        $category->user_id = $request->user()->id;
        $category->category_name = $request->category_name;
        $category->cat_parent_id = $request->category_id;
@@ -119,14 +133,34 @@ class CategoryController extends Controller
      public function update(Request $request, Category $category)
     {
         // dd($request->all());
+          $categoryId = null;
+          $iconOptionValue = null;
+
+          foreach ($request->all() as $key => $value) {
+              if (strpos($key, 'iconOption') === 0) {
+                  // Extract the category ID from the field name
+                  $categoryId = preg_replace('/[^0-9]/', '', $key);
+                  $iconOptionValue = $value;
+                  break; // Stop the loop after finding the first matching field
+              }
+          }
         $update = Category::find($request->id);
-        if($request->file('category_icon')){
-            $image = $request->file('category_icon');
-            $new_image = time().$image->getClientOriginalName();
-            $destination = 'frontend-assets/images/categories';
-            $image->move(public_path($destination),$new_image);
-            $update->category_icon = $new_image;
+          if($iconOptionValue == 'library'){
+        if($request->category_icon){
+          $update->category_icon = $request->category_icon;
+        }
+
+       }else if($iconOptionValue == 'upload'){
+         if($request->file('category_icon')){
+              $image = $request->file('category_icon');
+              $new_image = time().$image->getClientOriginalName();
+              $destination = 'frontend-assets/images/categories';
+              $image->move(public_path($destination),$new_image);
+              $update->category_icon = $new_image;
+         }
        }
+
+        $update->icon_option = $iconOptionValue;
         $update->category_name = $request->category_name;
         $update->credit_cost = $request->credit_cost;
         $update->category_description = $request->category_description; 

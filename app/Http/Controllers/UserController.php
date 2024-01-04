@@ -504,6 +504,14 @@ public function dateformet(Request $request){
     return view('dateformet',compact('formet'));
 }
 
+public function changeEventText(Request $request){
+
+  $job_design =JobDesign::where('subdomain',Setting::subdomain())->first();
+  $job_design->event_text = $request->event_text;
+  $job_design->save();
+  
+}
+
 public function formdesign(Request $request){
     if($request->isMethod('post'))
     {

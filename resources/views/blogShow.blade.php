@@ -1,3 +1,4 @@
+<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 @extends('layouts.core.frontend')
 
 @section('title', trans('messages.dashboard'))
@@ -10,13 +11,34 @@
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/somestyle.css') }}">
 <style type="text/css">
-.post-body {
-    max-width:100%; /* adjust this value as needed */
-    overflow-y: auto;
-}
-.container, .container-sm {
-    max-width: 100%;
-}
+
+        h1, h2, h3, h4, h5, h6, p, span {
+          font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+          
+        }
+        .post-body {
+            max-width:100%; /* adjust this value as needed */
+            overflow-y: auto;
+        }
+        .container, .container-sm {
+            max-width: 100%;
+        }
+        .leftbar .page-container {
+            position: relative;
+            width: 100%!important;
+            max-width: none;
+            padding-left: 230px!important;
+            padding-right: 0px!important;
+            padding-top: 0px!important;
+            min-height: 100vh;
+        }
+        .body-padding{
+          padding-left: 160px;
+          padding-right: 160px;
+        }
+        .heading-padding{
+          padding-left: 160px;
+        }
         .single-blog-banner-layout1 .banner-content .item-social li .linkedin {
             background-color: #0A66C2;
         }
@@ -142,6 +164,23 @@
           max-width: 100%;
           overflow-y: auto;
         }
+        @media only screen and (max-width: 692px) {
+        .leftbar .page-container {
+            position: relative;
+            width: 100%!important;
+            max-width: none;
+            padding-left: 6px!important;
+            padding-right: 6px!important;
+            padding-top: 3px!important;
+            min-height: 100vh;
+        }
+        .body-padding{
+          padding-left: 0px;padding-right: 0px;
+        }
+         .heading-padding{
+          padding-left: 0px;
+        }
+      }
 </style>
 @endsection
 
@@ -153,7 +192,7 @@
                     <img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="blog">
                 </div>
                 <div class="banner-content">
-                    <div class="container">
+                    <div class="container heading-padding">
                         <ul class="entry-meta meta-color-light2">
                             <li><i class="fas fa-calendar-alt"></i>{{ $post->created_at->format('M j, Y') }}</li>
                             <li><i class="fas fa-user"></i>BY <a href="#">Mark Willy</a></li>
@@ -169,8 +208,9 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row gutters-50">
-                	<div class="d-flex justify-content-center mb-3">
+                <div class="row gutters-50 body-padding">
+                	<div class="d-flex justify-content-start mb-3">
+                    <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary" target="_blank" style="margin-right: 15px">Preview</a>
                 		<a href="{{ url('admin/posts/edit/'.$post->id) }}" class="btn btn-success" style="margin-right: 15px">Edit</a>
                 		<a href="{{ url('admin/posts/delete/'.$post->id) }}" class="btn btn-warning">Delete</a>
                 	</div>
@@ -184,13 +224,13 @@
                     <div class="col-lg-4 sidebar-widget-area sidebar-break-md">
                         <div class="widget">
                             <div class="section-heading heading-dark">
-                                <h3 class="item-heading">POPULAR POSTS</h3>
+                                <h3 class="item-heading mt-0">POPULAR POSTS</h3>
                             </div>
                             <div class="widget-latest">
                                 <ul class="block-list">
                                     @foreach($relatedPosts as $post)
                                     <li class="single-item">
-                                        <div class="item-img" style="width: 150px;">
+                                        <div class="item-img" style="width: 150px;border-radius: 5px;">
                                             <a href="{{ url('blog/'.$post->slug) }}"><img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Post"></a>
                                         </div>
                                         <div class="item-content">

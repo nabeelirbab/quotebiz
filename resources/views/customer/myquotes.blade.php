@@ -1,3 +1,4 @@
+<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 @extends('customer.layout.app')
 @section('title', 'My Quotes')
 @section('styling')
@@ -117,6 +118,12 @@
                                              <h6>Additional Information</h6>
                                              <p>{{$request->additional_info}}</p>
                                              </div>
+                                             @if($request->booking_date)
+                                             <div class="mt-4">
+                                             <h6>{{ ($job_design) ? $job_design->event_text : 'What is the date of your event?'}}</h6>
+                                             <p>{{$request->booking_date}}</p>
+                                             </div>
+                                             @endif
                                          </div>
                                        </div>
                                     @endforeach

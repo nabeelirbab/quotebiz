@@ -55,10 +55,10 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $post->title }}</h5>
                 <div class="d-flex justify-content-between">
-                <a href="{{ url('admin/posts/'.$post->slug) }}" class="btn btn-primary" style="background: #253a46; border: none;">View</a>
+                <a href="{{ url('admin/posts/'.$post->slug) }}" target="_blank" class="btn btn-sm btn-primary" style="background: #253a46; border: none;">View</a>
 
-                <a href="{{ url('admin/posts/edit/'.$post->id) }}" class="btn  btn-success" style="background: #b4b4b4; border: none;">Edit</a>
-                <a href="{{ url('admin/posts/delete/'.$post->id) }}" class="btn  btn-warning" style="background: #cf91aa; border: none;">Delete</a>
+                <a href="{{ url('admin/posts/edit/'.$post->id) }}" class="btn btn-sm btn-success" style="background: #b4b4b4; border: none;">Edit</a>
+                <a href="{{ url('admin/posts/delete/'.$post->id) }}" class="btn btn-sm btn-warning" style="background: #cf91aa; border: none;">Delete</a>
                 </div>
             </div>
         </div>
