@@ -35,7 +35,7 @@ class QuestionController extends Controller
    public function categoriesbyid($account,$id){
 
         if($id == 0){
-            $categories = Category::with('questions','subquestions','questions.choices')->where('subdomain',Setting::subdomain())->where('cat_parent','1')->orderBy('category_name','asc')->get();
+            $categories = Category::with('questions','subquestions','questions.choices')->where('subdomain',Setting::subdomain())->where('cat_parent_id',0)->orderBy('category_name','asc')->get();
             $subcategories = [];
         }
         else{
