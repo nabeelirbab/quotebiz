@@ -9,7 +9,7 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
 $subject = ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers';
 if (isset($post)) {
   $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - '.@$post->title;
-  $image = asset('frontend-assets/images/posts/' . @$post->cover_img);
+  $image = @$post->image;
 } else {
   $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - Discover Exceptional '.$subject.' and Elevate Your Experience';
   $image = action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));

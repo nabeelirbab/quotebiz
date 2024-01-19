@@ -67,31 +67,15 @@
      @endif
         <div class="card-inner">
             <div class="preview-block">
-                <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
+                <p class="text-center">The Profiles section or Blogs section will not be visible until there are more than 3 blogs or more than 3 profiles.</p>
                  <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                       <input type="hidden" name="id" @if($formdesign) value="{{$formdesign->id}}" @endif>
                       <div class="row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                        <label class="form-label" for="default-01">Quote Box Position</label>
-                        <div class="form-control-wrap">
-                         <label>
-                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} > Left
-                        </label>
-                         <label>
-                          <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
-                        </label>
-                        <label >
-                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
-                        </label>
-                        </div>
-                        </div>
-
-                        </div>
+                  
                         <div class="col-md-6">
                           
                         <div class="form-group">
@@ -119,13 +103,45 @@
                             <input type="radio" name="profile_status" autocomplete="off" value="0" {{$formdesign && $formdesign->profile_status == '0' ? 'checked':''}} > Show Featured & Menu
                           </label>
                           <label >
-                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off">Show Only in Menu
+                            <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '1' ? 'checked':''}} id="option2" value="1" autocomplete="off"> Show Only in Menu
                           </label>
                           <label >
                             <input type="radio" name="profile_status" {{$formdesign && $formdesign->profile_status == '2' ? 'checked':''}} id="option2" value="2" autocomplete="off"> Completely Hide
                           </label>
                           </div>
                         </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="form-label" for="default-01">Quote Box Position</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="position" id="option1" autocomplete="off" value="start" {{$formdesign && $formdesign->position == 'start' ? 'checked':''}} > Left
+                        </label>
+                         <label>
+                          <input type="radio" name="position" id="option2" autocomplete="off" value="center" {{$formdesign && $formdesign->position == 'center' ? 'checked':''}} > Center
+                        </label>
+                        <label >
+                          <input type="radio" name="position" {{$formdesign && $formdesign->position == 'end' ? 'checked':''}} id="option2" value="end" autocomplete="off"> Right
+                        </label>
+                        </div>
+                        </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="form-label" for="default-01">Footer Visibility</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="footer" id="option1" autocomplete="off" value="yes" {{$formdesign && $formdesign->footer == 'yes' ? 'checked':''}} > Show
+                        </label>
+                         <label>
+                          <input type="radio" name="footer" id="option2" autocomplete="off" value="no" {{$formdesign && $formdesign->footer == 'no' ? 'checked':''}} > Hide
+                        </label>
+                        </div>
+                        </div>
+
                         </div>
                       </div>
                   

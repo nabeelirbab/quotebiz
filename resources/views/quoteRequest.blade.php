@@ -5,6 +5,7 @@
   $logo_height = \Acelle\Model\Setting::get("logo_height");
   $logo_width = \Acelle\Model\Setting::get("logo_width");
   $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
+  $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
   $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
   $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
   $job_design = Acelle\Jobs\HelperJob::form_design(); 
@@ -163,9 +164,8 @@ strong {
   font-size: 16px;
   color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}};
 }
-h4.form-heading {
-  font-weight: bold;
-  font-size: 28px !important
+h3.form-heading {
+   color: {{ ($job_design) ? $job_design->main_heading_color:'#222222'}};
 }
 p.form-para {
   font-size: 15px;
@@ -342,7 +342,7 @@ p.form-para::after {
  color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#6200EA !important'}};
 }
 #footer{
- background-color: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+ background-color: {{ ($job_design) ? $job_design->footer_color.'!important':'#6200EA !important'}};
 }
 .close{
     font-size: 30px;
@@ -956,14 +956,20 @@ By using our enquiry quote form or interacting with our website, you agree to th
 </div>
 </div>
 @endif
+ @if($job_design->footer == 'yes')
 <footer class="footer bg-indigo is-dark bg-lighter" id="footer">
     <div class="container">
 
         <div class="row g-3 align-items-center justify-content-md-between py-3">
           <div class="col-md-3 d-flex justify-content-center justify-content-sm-start">
               <a href="{{ url('/') }}" class="logo-link">
-                        <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
-                        <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                @if($job_design->footer_logo == 'dark')
+                  <img class="logo-light logo-img" src="{{$sitedarklogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
+                  <img class="logo-dark logo-img" src="{{$sitedarklogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                  @else
+                  <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
+                  <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                  @endif
                     </a>
           </div>
             <div class="col-md-5">
@@ -1017,6 +1023,7 @@ By using our enquiry quote form or interacting with our website, you agree to th
       </div>
         
 </footer><!-- .footer -->
+@endif
 @endif
 </body>
 <script rel="preload" src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>

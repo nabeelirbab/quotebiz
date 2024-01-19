@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="tabbable pb-2">
-            <ul class="nav nav-tabs nav-tabs-top nav-underline mb-4" style="background: white;
+            <ul class="nav nav-tabs nav-tabs-top nav-underline mb-2" style="background: white;
                 padding: 6px;
                 padding-left: 25px;
 

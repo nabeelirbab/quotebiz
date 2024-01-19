@@ -1,5 +1,11 @@
 <?php
-   
+  $data = new stdClass();
+  $data->title = $post->title;
+  if($post->cover_img){
+        $data->image = asset('frontend-assets/images/posts/' . $post->cover_img);
+  }else{
+        $data->image =  action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
+  }
     $job_design = Acelle\Jobs\HelperJob::form_design(); 
     $sitename = \Acelle\Model\Setting::get("site_name");
   $sitetitle = \Acelle\Model\Setting::get("site_title");
@@ -9,7 +15,7 @@
   $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
   $job_design = Acelle\Jobs\HelperJob::form_design(); 
 ?>
-@include('blog.header',['post' => $post])
+@include('blog.header',['post' => $data])
         <!-- Header Area End Here -->
         <!-- Single Blog Banner Start Here -->
         <section class="single-blog-wrap-layout1">

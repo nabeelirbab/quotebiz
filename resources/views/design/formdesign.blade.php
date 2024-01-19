@@ -58,7 +58,7 @@
     <div class="card card-preview">
       @include("design._menu")
         @if(Session::has('success'))
-         <div class="alert alert-success  fade show" role="alert">
+         <div class="alert alert-success fade show mb-0" role="alert">
           {{Session::get('success')}}
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -134,26 +134,17 @@
                             </div>
                         </div>
                           </div>
-                           <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label class="form-label" for="default-01">Main Heading Color</label>
-                            <div id="cp1" class="input-group" title="Using input value">
-                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->button_text_color}}" @else value="#FFFFFF" @endif name="button_text_color" id="default-01" placeholder="Enter sun heading" required/>
-                              <span class="input-group-append">
-                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
-                              </span>
-                            </div>
-                        </div>
-                    </div>
-                          
-                        </div>
-                       
+                   
+                        <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Sub Heading</label>
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->titlesub_heading}}" @else value="Let us know what you are looking for and we will provide you up to 3 quotes." @endif name="titlesub_heading" id="default-01" placeholder="Enter sub heading" required>
                             </div>
                         </div>
+                        </div>
+                      </div>
+                     
                         <div class="form-group">
                             <label class="form-label" for="default-01">Category Input Heading</label>
                             <div class="form-control-wrap">
@@ -173,7 +164,29 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Main Heading Color</label>
+                            <div id="cp1" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->main_heading_color}}" @else value="#FFFFFF" @endif name="main_heading_color" id="default-01" placeholder="Enter main heading color" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Navbar Font Color</label>
+                            <div id="cp1" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->login_color}}" @else value="#FFFFFF" @endif name="login_color" id="default-01" placeholder="Enter sun heading" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Color</label>
                               <div id="cp0" class="input-group" title="Using input value">
@@ -184,7 +197,7 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Button Text Color</label>
                             <div id="cp1" class="input-group" title="Using input value">
@@ -195,7 +208,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Underline Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
@@ -218,7 +231,33 @@
                           
                         </div>
                        </div>
-                       <div class="col-md-6 col-sm-6">
+                      <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Footer Color</label>
+                             <div id="cp2" class="input-group" title="Using input value">
+                              <input type="text" class="form-control" @if($formdesign) value="{{$formdesign->footer_color}}" @endif name="footer_color" id="default-01" placeholder="Enter Link Color" required/>
+                              <span class="input-group-append">
+                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                              </span>
+                            </div>
+                          
+                        </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="form-group">
+                        <label class="form-label" for="default-01">Footer Logo</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="footer_logo" id="option1" required autocomplete="off" value="dark" {{$formdesign && $formdesign->footer_logo == 'dark' ? 'checked':''}} > Dark
+                        </label>
+                        <label >
+                          <input type="radio" name="footer_logo"  required {{$formdesign && $formdesign->footer_logo == 'light' ? 'checked':''}} id="option2" value="light" autocomplete="off" > Light
+                        </label>
+                        </div>
+                        </div>
+                       
+                        </div>
+                    <!--    <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Login Text Color</label>
                              <div id="cp2" class="input-group" title="Using input value">
@@ -228,7 +267,7 @@
                               </span>
                             </div>
                          </div>
-                         </div>
+                         </div> -->
                       </div>
                      
                         <div class="row mb-3" id="businessno">

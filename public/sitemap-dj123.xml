@@ -2,121 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://dj123.com.au/</loc>
-        <lastmod>2024-01-04T00:00:22+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:03+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://dj123.com.au/service-providers</loc>
-        <lastmod>2024-01-04T00:00:24+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/users/login</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/users/register</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/sp-profile/7445</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/sp-profile/7474</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/sp-profile/7457</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/sp-profile/110</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:05+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://dj123.com.au/sp-profile/100</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:06+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
-        <loc>https://dj123.com.au/sp-profile/7435</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
+        <loc>https://dj123.com.au/sp-profile/7445</loc>
+        <lastmod>2024-01-19T00:00:06+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
-        <loc>https://dj123.com.au/blogs</loc>
-        <lastmod>2024-01-04T00:00:27+00:00</lastmod>
+        <loc>https://dj123.com.au/users/register</loc>
+        <lastmod>2024-01-19T00:00:06+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/sp-profile/7457</loc>
+        <lastmod>2024-01-19T00:00:06+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/sp-profile/7474</loc>
+        <lastmod>2024-01-19T00:00:07+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://dj123.com.au/sp-profile/7434</loc>
-        <lastmod>2024-01-04T00:00:28+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:07+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
-        <loc>https://dj123.com.au/password/reset</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/login</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/sp-profile/99</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/sp-profile/94</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://dj123.com.au/blog/3-things-to-look-for-when-choosing-a-dj</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
+        <loc>https://dj123.com.au/sp-profile/7435</loc>
+        <lastmod>2024-01-19T00:00:08+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://dj123.com.au/blog/the-best-first-wedding-dance-songs</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/sp-profile/94</loc>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://dj123.com.au/blog/top-10-tunes-for-your-21st-birthday</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/sp-profile/99</loc>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/blog/3-things-to-look-for-when-choosing-a-dj</loc>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/blogs</loc>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://dj123.com.au</loc>
-        <lastmod>2024-01-04T00:00:29+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/users/login</loc>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/sp-profile/110</loc>
+        <lastmod>2024-01-19T00:00:09+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/login</loc>
+        <lastmod>2024-01-19T00:00:10+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://dj123.com.au/password/reset</loc>
+        <lastmod>2024-01-19T00:00:10+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
