@@ -173,7 +173,7 @@
         </span>
     </div>
    </li>
-    <div class="modal fade zoom" tabindex="-1" id="modalsubEdit{{$subcategory->id}}">
+    <div class="modal fade zoom"  id="modalsubEdit{{$subcategory->id}}">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
     <div class="modal-header">
@@ -275,7 +275,7 @@
     </div>
     </div>
     <!-- Modal Zoom -->
-    <div class="modal fade zoom" tabindex="-1" id="modalEdit{{$category->id}}">
+    <div class="modal fade zoom"  id="modalEdit{{$category->id}}">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
     <div class="modal-header">

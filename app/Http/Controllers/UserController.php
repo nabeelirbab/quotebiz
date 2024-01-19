@@ -22,6 +22,7 @@ use Acelle\Model\Category;
 use Acelle\Model\SpBusiness;
 use Acelle\Model\SiteSetting;
 use Acelle\Model\FreeCredit;
+use Acelle\Model\Post;
 use Acelle\Model\Subscription;
 use Acelle\Library\Facades\Hook;
 use Auth;
@@ -538,17 +539,20 @@ public function formdesign(Request $request){
             $job_design->titlesub_heading = $request->titlesub_heading;
             $job_design->postcode_text = $request->postcode_text;
             $job_design->button_color = $request->button_color;
+            $job_design->main_heading_color = $request->main_heading_color;
             $job_design->button_text = $request->button_text;
             $job_design->font_family = $request->font_family;
             $job_design->search_box = $request->search_box;
             $job_design->login_color = $request->login_color;
             $job_design->button_text_color = $request->button_text_color;
+            $job_design->footer_color = $request->footer_color;
+            $job_design->footer_logo = $request->footer_logo;
             $job_design->agent_no = $request->agent_no;
-            $job_design->position = $request->position;
+            // $job_design->position = $request->position;
             $job_design->business_no = $request->business_no;
             $job_design->no_status = $request->no_status;
-            $job_design->blog_status = $request->blog_status;
-            $job_design->profile_status = $request->profile_status;
+            // $job_design->blog_status = $request->blog_status;
+            // $job_design->profile_status = $request->profile_status;
         if($request->preview){
         return view('previewdesign',compact('job_design'));
      }else{
@@ -569,15 +573,26 @@ public function formlayout(Request $request){
           $job_design = new JobDesign;
         }
 
-        
+        $user = User::where('user_type','service_provider')->where('subdomain',Setting::subdomain())->count();
+        $post = Post::where('subdomain',Setting::subdomain())->count();
             $job_design->admin_id = Auth::user()->id;
             $job_design->subdomain = Setting::subdomain();
             $job_design->position = $request->position;
-            $job_design->blog_status = $request->blog_status;
-            $job_design->profile_status = $request->profile_status;
+            $job_design->footer = $request->footer;
+            if($post > 3 && $request->blog_status == 0){
+              $job_design->blog_status = $request->blog_status;
+            }else if($request->blog_status == 1 || $request->blog_status == 2){
+                $job_design->blog_status = $request->blog_status;
+            }
+            if($user > 3 && $request->profile_status == 0){
+              $job_design->profile_status = $request->profile_status;
+            }
+            else if($request->profile_status == 1 || $request->profile_status ==2 ){
+              $job_design->profile_status = $request->profile_status;
+            }
       
             $job_design->save();
-            return redirect('/admin/page-layout')->with('success', 'Design Update Successfully');
+            return redirect('/admin/page-layout')->with('success', 'Setting Update Successfully');
       
     }
     return view('design.formlayout');
@@ -672,14 +687,13 @@ public function termsdesign(Request $request){
                 }
 
                 $sitesetting->subdomain = Setting::subdomain();
-                $sitesetting->site_name = $request->site_name;
-                $sitesetting->site_keyword = $request->site_keyword;
-                $sitesetting->site_title = $request->site_title;
-                $sitesetting->site_tagline = $request->site_tagline;
+                // $sitesetting->site_name = $request->site_name;
+                // $sitesetting->site_keyword = $request->site_keyword;
+                // $sitesetting->site_title = $request->site_title;
+                // $sitesetting->site_tagline = $request->site_tagline;
+                // $sitesetting->site_description = $request->site_description;
                 $sitesetting->logo_width = $request->logo_width;
                 $sitesetting->logo_height = $request->logo_height;
-                $sitesetting->site_description = $request->site_description;
-
                 if ($request->file('site_smalllogo')) {
                     $sitesetting->site_logo_small = $this->fileUpload($request->file('site_smalllogo'), false);
                 }

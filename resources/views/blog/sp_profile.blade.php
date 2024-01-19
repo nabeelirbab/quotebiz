@@ -2,7 +2,11 @@
 <?php
 	$data = new stdClass();
 	$data->title = $user->first_name . ' ' . $user->last_name;
-	$data->image = $user->user_img;
+	if($user->user_img){
+        $data->image = asset('frontend-assets/images/users/'.$user->user_img);
+	}else{
+        $data->image =  action('SettingController@file', \Acelle\Model\Setting::get('site_favicon'));
+	}
 	$job_design = Acelle\Jobs\HelperJob::form_design(); 
 	$sitename = \Acelle\Model\Setting::get("site_name");
   $sitetitle = \Acelle\Model\Setting::get("site_title");

@@ -2,55 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://noblebrains.com/</loc>
-        <lastmod>2023-12-10T00:00:23+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:10+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/service-providers</loc>
-        <lastmod>2023-12-10T00:00:24+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:11+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/blogs</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:11+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/users/login</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://noblebrains.com</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:12+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/users/register</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:13+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/sp-profile/7430</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:14+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/password/reset</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:14+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://noblebrains.com/login</loc>
-        <lastmod>2023-12-10T00:00:25+00:00</lastmod>
+        <lastmod>2024-01-19T00:00:14+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://noblebrains.com</loc>
+        <lastmod>2024-01-19T00:00:14+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>

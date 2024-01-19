@@ -42,7 +42,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
 		<style>
 		<?php
-		  $total = count($questions)+2;
+		  $total = count($questions)+3;
 		  $mid = 90/$total;
 		  $final = 100/$total;
 		// dd($total,$final,'dddd'); 
@@ -290,10 +290,13 @@
 		</style>
 	</head>
 	<body class="dogcFe">
-
 		<div class="MuiBox-root jss3 swyft-box-shadow-down">
 			<a href="{{url('/')}}" rel="noreferrer" style="text-align: center; max-width: 250px">
+			@if(request('account') == 'dj123.com.au')
+			  <img src="{{$sitesmalllogo}}" alt="Logo" style="max-width: 40%">
+			  @else
 			  <img src="{{$sitesmalllogo}}" alt="Logo">
+			  @endif
 			</a>
 		</div>
 		<div class="wrapper">
@@ -621,7 +624,7 @@ var jqOld = jQuery.noConflict();
 
 
 		<?php
-		$total = count($questions)+2;
+		$total = count($questions)+3;
 
 		$subtotal = count($questions);
 		for($i =1; $i <= $total; $i++){ ?>
