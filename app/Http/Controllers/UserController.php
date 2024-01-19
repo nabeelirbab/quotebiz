@@ -515,6 +515,7 @@ public function changeEventText(Request $request){
 public function formdesign(Request $request){
     if($request->isMethod('post'))
     {
+        dd($request->all());
         if($request->id){
           $job_design =JobDesign::find($request->id);
         }else{
