@@ -4,6 +4,8 @@
   $sitetagline = \Acelle\Model\Setting::get("site_tagline");
   $logo_height = \Acelle\Model\Setting::get("logo_height");
   $logo_width = \Acelle\Model\Setting::get("logo_width");
+  $mobile_logo_height = \Acelle\Model\Setting::get("mobile_logo_height");
+  $mobile_logo_width = \Acelle\Model\Setting::get("mobile_logo_width");
   $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
   $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
   $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
@@ -256,7 +258,8 @@ p.form-para::after {
     width: 96%;
 }
 #sitesmall{
-	width: 80px;
+	width: {{ ($mobile_logo_width) ? $mobile_logo_width:'100px'}};
+  height: {{ ($mobile_logo_height) ? $mobile_logo_height:'auto'}};
 }
 .social{
   float: none !important;
@@ -656,7 +659,7 @@ style="height: 100%;align-items: center;">
 <p class="ml-auto"><strong><i class="fas fa-phone-volume"></i>{{$job_design->agent_no}}</strong></p>
 </div>
 @endif
-<form class="information" action="{{ url('quote-form')}}" method="post" style="padding: 0.5rem "
+<form class="information" action="{{ url('quote-form')}}" method="post" style="padding: 0.5rem; padding-top: 10px; padding-bottom: 10px "
 autocomplete="off">
 {{ csrf_field()}}
 <h3 class="form-heading">
@@ -978,8 +981,11 @@ By using our enquiry quote form or interacting with our website, you agree to th
                     <div class="mt-2 ml-5">
                          <ul class="link-inline gx-4  d-flex justify-content-between">
                             <!-- <li><a href="#">How it works</a></li> -->
-                            <li><a href="#">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a></li>
+                            @if($job_design && $job_design->profile_status != '2')<li><a href="#">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a></li>
+                            @endif
+                            @if($job_design && $job_design->blog_status != '2')
                             <li><a href="#">Blog</a></li>
+                            @endif
                             <li><a href="#">Contact</a></li>
                         </ul><!-- .footer-nav -->
 

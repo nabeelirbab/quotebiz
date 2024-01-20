@@ -49,6 +49,7 @@
                 </div>
             </div><!-- .nk-block-head-content -->
            <div class="nk-block-head-content">
+          <button class="btn btn-success" id="submitBtn" >@if($formdesign) Update @else Save @endif</button>
            <a href="{{ url('/')}}" target="_blank" class="btn btn-primary" ><span>Preview Design</span></a>
         </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
@@ -68,7 +69,7 @@
         <div class="card-inner">
             <div class="preview-block">
                 <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
-                 <form action="" method="post" enctype="multipart/form-data">
+                 <form action="" method="post" enctype="multipart/form-data" id="myForm">
                     {{ csrf_field() }}
                 <div class="row d-flex justify-content-center gy-4">
                    
@@ -317,7 +318,7 @@
                    </a>
                    </div>
                     <div class="col-sm-7 text-center">
-                        <button class="btn btn-success btn-lg" type="submit">@if($formdesign) Update @else Save @endif</button>
+                       
                        <!--  <input type="submit" class="btn btn-default btn-lg" name="preview" value="Preview" type="submit"> -->
                     </div>
                 </div>
@@ -343,6 +344,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
           $(document).ready(function() {
+            $("#submitBtn").click(function() {
+                $("#myForm").submit();
+              });
         $('.js-example-basic-single').select2({
             templateResult: formatFont,
             templateSelection: formatFontSelection,

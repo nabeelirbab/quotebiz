@@ -67,31 +67,7 @@
                             <span>Form Builder</span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown language-switch"  rel0="CustomerController">
-                    <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                       <em class="icon ni ni-tranx fs-5 mr-1"></em>
-                        <span>Blogs</span>
-                         <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                    
-                    <li class="nav-item" rel2="HomeController">
-                        <a href="{{ url('admin/posts') }}" title="All Blogs" class="dropdown-item d-flex align-items-center">
-                          <em class="icon ni ni-tranx fs-5 mr-1"></em>
-                            <span>All Blogs</span>
-                        </a>
-                    </li>      
-                    <li class="nav-item" rel2="HomeController">
-                        <a href="{{ url('admin/posts/add') }}" title="Add Blogs" class="dropdown-item d-flex align-items-center">
-                            <em class="icon ni ni-invest fs-5 mr-1"></em>
-                            <span>Add Blog</span>
-                        </a>
-                    </li>
-                       
-                   </ul>
-                </li>
-              
-                    <li class="nav-item dropdown language-switch" rel1="CustomerController" >
+                            <li class="nav-item dropdown language-switch" rel1="CustomerController" >
                         <a role="button" class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                            <em class="icon ni ni-card-view fs-5 mr-1"></em>
                             <span>Settings</span>
@@ -153,6 +129,30 @@
                        </ul>
                     </li>
         
+                    <li class="nav-item dropdown language-switch"  rel0="CustomerController">
+                    <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                       <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                        <span>Blogs</span>
+                         <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                    
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/posts') }}" title="All Blogs" class="dropdown-item d-flex align-items-center">
+                          <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                            <span>All Blogs</span>
+                        </a>
+                    </li>      
+                    <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/posts/add') }}" title="Add Blogs" class="dropdown-item d-flex align-items-center">
+                            <em class="icon ni ni-invest fs-5 mr-1"></em>
+                            <span>Add Blog</span>
+                        </a>
+                    </li>
+                       
+                   </ul>
+                </li>
+              
                 <li class="nav-item" rel2="HomeController">
                     <a href="{{ url('admin/support') }}" title="Support" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
                        <em class="icon ni ni-headphone fs-5 mr-1"></em>

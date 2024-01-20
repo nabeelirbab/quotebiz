@@ -108,9 +108,12 @@ h2{
                     <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
                     <p class="card-text text-center">
                       @foreach(json_decode($user->category_id) as $key => $cat)
-                        <span class="data-value badge badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                        <span class="data-value badge badge-pill badge-info">
+                       @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent == 1)
+                        	 {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                         @if ($key < count(json_decode($user->category_id)) - 1)
                              
+                        @endif
                         @endif
                     @endforeach
                     </p>
@@ -135,9 +138,12 @@ h2{
 						   <h4 class="m-0">Category</h4>
                           <p class="card-text text-center">
 		                      @foreach(json_decode($user->category_id) as $key => $cat)
-		                        <span class="data-value">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+		                        <span class="data-value">
+                                @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent == 1)
+		                        	{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
 		                        @if ($key < count(json_decode($user->category_id)) - 1)
 		                             ,
+		                        @endif
 		                        @endif
 		                    @endforeach
 		                    </p>
