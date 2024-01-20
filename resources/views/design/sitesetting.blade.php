@@ -77,6 +77,8 @@ $sitetitle = '';
 $sitetagline = '';
 $logo_width = '';
 $logo_height = '';
+$mobile_logo_width = '';
+$mobile_logo_height = '';
 $sitedesc = '';
 $sitesmalllogo = '';
 $sitelargelogo = '';
@@ -88,6 +90,8 @@ $sitetitle = \Acelle\Model\Setting::get("site_title");
 $sitetagline = \Acelle\Model\Setting::get("site_tagline");
 $logo_width = \Acelle\Model\Setting::get("logo_width");
 $logo_height = \Acelle\Model\Setting::get("logo_height");
+$mobile_logo_width = \Acelle\Model\Setting::get("mobile_logo_width");
+$mobile_logo_height = \Acelle\Model\Setting::get("mobile_logo_height");
 $sitedesc = \Acelle\Model\Setting::get("site_description");
 $sitesmalllogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_small'));
 $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
@@ -194,27 +198,45 @@ $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('sit
                         <div class="row">
                           <div class="col-sm-6">
                             <div class="form-group">
-                            <label class="form-label" for="default-01">Logo Width</label>
+                            <label class="form-label" for="default-01">Web Screen Logo Width</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$logo_width}}" name="logo_width"  placeholder="Enter Logo Width In px" >
+                                <input type="text" class="form-control" value="{{$logo_width}}" name="logo_width"  placeholder="Eg 100px" >
                             </div>
                            </div>
                           </div>
                           <div class="col-sm-6">
                             <div class="form-group">
-                            <label class="form-label" for="default-01">Logo Height</label>
+                            <label class="form-label" for="default-01">Web Screen Logo Height</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" value="{{$logo_height}}" name="logo_height"  placeholder="Enter Logo Height In px" >
+                                <input type="text" class="form-control" value="{{$logo_height}}" name="logo_height"  placeholder="Eg 100px" >
                             </div>
                            </div>
                           </div>
 
                         </div>
                       </div>
-                 
-                     
-                   
-                  
+                      <div class="col-md-6  mb-4">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                            <label class="form-label" for="default-01">Mobile Screen Logo Width</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$mobile_logo_width}}" name="mobile_logo_width"  placeholder="Eg 100px" >
+                            </div>
+                           </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                            <label class="form-label" for="default-01">Mobile Screen Logo Height</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" value="{{$mobile_logo_height}}" name="mobile_logo_height"  placeholder="Eg 100px" >
+                            </div>
+                           </div>
+                          </div>
+
+                        </div>
+                      </div>
+                                       
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-success btn-lg" type="submit">@if($sitesetting) Update @else Save @endif</button>
                         @if($sitesetting)

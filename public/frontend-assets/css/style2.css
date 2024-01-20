@@ -80,6 +80,7 @@ body {
   display: flex;
   /*background-color: white;*/
   padding-top: 50px;
+  padding-bottom: 50px;
 
  }
 
@@ -240,7 +241,7 @@ textarea.form-control {
   cursor: pointer;
   position: relative;
   padding-left: 34px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #fff;
   border-radius: 27px;
   -webkit-transform: perspective(1px) translateZ(0);
