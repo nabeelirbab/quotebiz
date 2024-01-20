@@ -516,7 +516,6 @@ public function changeEventText(Request $request){
 public function formdesign(Request $request){
     if($request->isMethod('post'))
     {
-        dd($request->all());
         if($request->id){
           $job_design =JobDesign::find($request->id);
         }else{
@@ -694,6 +693,8 @@ public function termsdesign(Request $request){
                 // $sitesetting->site_description = $request->site_description;
                 $sitesetting->logo_width = $request->logo_width;
                 $sitesetting->logo_height = $request->logo_height;
+                $sitesetting->mobile_logo_width = $request->mobile_logo_width;
+                $sitesetting->mobile_logo_height = $request->mobile_logo_height;
                 if ($request->file('site_smalllogo')) {
                     $sitesetting->site_logo_small = $this->fileUpload($request->file('site_smalllogo'), false);
                 }

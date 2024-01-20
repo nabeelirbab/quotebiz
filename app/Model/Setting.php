@@ -126,7 +126,7 @@ class Setting extends Model
             }
         }
         if($adminsetting && $adminsetting->$name != null){
-            if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_title' || $name == 'site_tagline' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'logo_width' || $name == 'logo_height' || $name == 'meta_tag' || $name == 'site_favicon'){
+            if($name == 'site_name' || $name == 'site_keyword' || $name == 'site_description' || $name == 'site_title' || $name == 'site_tagline' || $name == 'site_logo_small' || $name == 'site_logo_big' || $name == 'site_logo_dark' || $name == 'logo_width' || $name == 'logo_height' || $name == 'mobile_logo_width' || $name == 'mobile_logo_height' || $name == 'meta_tag' || $name == 'site_favicon'){
                 
                     return $adminsetting->$name; 
                 }else{

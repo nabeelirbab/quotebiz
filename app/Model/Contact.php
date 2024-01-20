@@ -48,12 +48,12 @@ class Contact extends Model
         'email' => 'required|email',
         'first_name' => 'required',
         'last_name' => 'required',
-        'address_1' => 'required',
+        // 'address_1' => 'required',
         'city' => 'required',
         'zip' => 'required',
         'url' => 'nullable|regex:/^https{0,1}:\/\//',
         //'url' => 'url', # do not use the default 'url' validator of Laravel, otherwise, error: preg_match(): Compilation failed: invalid range in character class at offset 20
-        'company' => 'required',
+        // 'company' => 'required',
         'country_id' => 'required',
     );
 

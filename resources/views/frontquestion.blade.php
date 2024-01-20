@@ -264,8 +264,8 @@
 		 }
 		 label img{
 		    vertical-align: middle;
-		    max-height: 140px !important;
-		    max-width: 140px !important;
+		    max-height: 60px !important;
+		    max-width: 60px !important;
 
 		 }
 		}
