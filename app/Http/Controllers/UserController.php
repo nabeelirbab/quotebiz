@@ -642,7 +642,7 @@ public function termsdesign(Request $request){
         $job_design->terms = $request->terms;
         $job_design->privacy_policy = $request->privacy_policy;
         $job_design->save();
-        return redirect('/admin/terms')->with('success', 'Update Successfully');;
+        return redirect('/admin/terms')->with('success', 'Update Successfully');
 
     }
     return view('design.termspolicy');
@@ -671,6 +671,30 @@ public function termsdesign(Request $request){
         }
 
         return view('design/seo', compact('sitesetting'));
+    }
+
+    public function bus_info(Request $request)
+    {
+
+        $sitesetting = JobDesign::where('subdomain', Setting::subdomain())->first();
+        if ($request->isMethod('post')) {
+                if ($sitesetting) {
+                    $sitesetting = $sitesetting;
+                }
+                else{
+                 $sitesetting = new JobDesign;
+                }
+
+                $sitesetting->subdomain = Setting::subdomain();
+                $sitesetting->business_name = $request->business_name;
+                $sitesetting->business_email = $request->business_email;
+                $sitesetting->business_website = $request->business_website;
+                $sitesetting->business_number = $request->business_number;
+                $sitesetting->save();
+            
+        }
+
+        return redirect('admin/serviceproviders')->with('success', 'Update Successfully');
     }
 
   public function sitesetting(Request $request)

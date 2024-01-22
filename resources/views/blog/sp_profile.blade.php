@@ -106,10 +106,32 @@ h2{
                 </div>
                 <div class="card-body">
                     <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
+                    @if($job_design->business_name == 'yes' && $user->business->business_name)
+                    <p class="card-text text-center mb-1">
+                       <span class="data-value badge badge-pill badge-info" style="background-color: #4d4646f2 !important;border-color: #4d4646f2 !important;">
+                    	{{ $user->business->business_name }}
+                       </span>
+                    </p>
+                    @endif
+                    @if($job_design->business_email == 'yes' && $user->business->business_email)
+                    <p class="card-text text-center mb-0">
+                    	{{ $user->business->business_email }}
+                    </p>
+                    @endif
+                    @if($job_design->business_number == 'yes' && $user->business->business_phone)
+                    <p class="card-text text-center mb-0">
+                    	{{ $user->business->business_phone }}
+                    </p>
+                    @endif
+                    @if($job_design->business_website == 'yes' && $user->business->business_website)
+                    <p class="card-text text-center mb-0">
+                    	<a href="{{ $user->business->business_website }}" target="_blank">{{ $user->business->business_website }}</a>
+                    </p>
+                    @endif
                     <p class="card-text text-center">
                       @foreach(json_decode($user->category_id) as $key => $cat)
+                       @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                         <span class="data-value badge badge-pill badge-info">
-                       @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent == 1)
                         	 {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                         @if ($key < count(json_decode($user->category_id)) - 1)
                              
@@ -138,8 +160,8 @@ h2{
 						   <h4 class="m-0">Category</h4>
                           <p class="card-text text-center">
 		                      @foreach(json_decode($user->category_id) as $key => $cat)
+                                @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
 		                        <span class="data-value">
-                                @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent == 1)
 		                        	{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
 		                        @if ($key < count(json_decode($user->category_id)) - 1)
 		                             ,

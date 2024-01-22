@@ -28,7 +28,10 @@ class PostController extends Controller
 
     public function allSps()
     {
-       $users = User::where('user_type','service_provider')->where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(20);
+       $users = User::where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(20);
        return view('blog.sps',compact('users'));
     }
     /**
