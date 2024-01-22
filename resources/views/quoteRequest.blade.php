@@ -534,6 +534,9 @@ p.form-para::after {
     .navbar-set {
         display: none;
     }
+    .profile_read-more{
+      right: 36%;
+    }
 
     .mobile-menu {
         display: block;
@@ -886,8 +889,10 @@ By using our enquiry quote form or interacting with our website, you agree to th
                @endif</p>
               <p class="card-text text-center m-0">
                 @foreach(json_decode($user->category_id) as $key => $cat)
+                 @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                   <span class="data-value text-soft  badge badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                   @if ($key < count(json_decode($user->category_id)) - 1)
+                  @endif
                   @endif
 
               @endforeach

@@ -24,9 +24,11 @@
                          <p class="card-text text-center mb-2">{{Auth::user()->email}}</p>
                         <p class="card-text text-center">
                           @foreach(json_decode(Auth::user()->category_id) as $key => $cat)
+                           @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                             <span class="data-value badge badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                             @if ($key < count(json_decode(Auth::user()->category_id)) - 1)
                                  
+                            @endif
                             @endif
                         @endforeach
                         </p>

@@ -154,8 +154,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="birth-day">Business Website</label>
-                                            <input type="text" class="form-control" value="{{Auth::user()->business->business_website}}"
-                                                   name="business_website" placeholder="Enter business website">
+                                            <input type="url" class="form-control" value="{{Auth::user()->business->business_website}}"
+                                                   name="business_website" placeholder="Enter business website" pattern="https?://.+">
                                         </div>
                                     </div>
 

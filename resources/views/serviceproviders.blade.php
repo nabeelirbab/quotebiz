@@ -61,6 +61,7 @@
 
 </div><!-- .nk-block-head-content -->
 <div class="float-right">
+<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#setting">Business Dirctory</button>
 <a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit">Invite</button>
 <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal23">Bulk Invite</button>
@@ -387,6 +388,103 @@
 
             <div class="p-3">
                 <button type="submit" class="btn btn-success btn-user float-right mb-3">Send Invitation</button>
+                <a class="btn btn-default float-right mr-3 mb-3" data-dismiss="modal">Cancel</a>
+            </div>
+        </form>
+    </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content card shadow mb-4">
+      <div class="modal-body card-header py-3" style="background: white">
+        <div class="">
+            <h6 class="m-0 font-weight-bold text-primary">Business Info</h6>
+        </div>
+        <form method="POST" action="{{ url('admin/update_bus_info') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body">
+                
+                <div class="form-group row">
+                    
+                    <div class="col-md-12 mb-3 mt-3">
+                        <p><b>If you wish to use your quotebiz as a business dirctory then you can allow your {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }} to show their business information.</b></p>
+                    </div>
+                    {{-- File Input --}}
+                 
+         
+                </div>
+                  <div class="row d-flex justify-content-center gy-4">
+                   
+                    <div class="col-sm-12">
+                      <input type="hidden" name="id" @if($job_design) value="{{$job_design->id}}" @endif>
+                      <div class="row">
+                  
+                        <div class="col-md-6">
+                          
+                        <div class="form-group">
+                          <label class="form-label" for="default-01">Business Name Visibility</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="business_name" autocomplete="off" value="yes" {{$job_design && $job_design->business_name == 'yes' ? 'checked':''}} > Show
+                          </label>
+                          <label >
+                            <input type="radio" name="business_name" {{$job_design && $job_design->business_name == 'no' ? 'checked':''}} id="option2" value="no" autocomplete="off"> Hide
+                          </label>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="default-01">Business Website Visibility</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="business_website" autocomplete="off" value="yes" {{$job_design && $job_design->business_website == 'yes' ? 'checked':''}} > Show  </label>
+                          <label >
+                            <input type="radio" name="business_website" {{$job_design && $job_design->business_website == 'no' ? 'checked':''}} id="option2" value="no" autocomplete="off"> Hide
+                          </label>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="form-label" for="default-01">Business Number Visibility</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="business_number" id="option1" autocomplete="off" value="yes" {{$job_design && $job_design->business_number == 'yes' ? 'checked':''}} > Show
+                        </label>
+                         <label>
+                          <input type="radio" name="business_number" id="option2" autocomplete="off" value="no" {{$job_design && $job_design->business_number == 'no' ? 'checked':''}} > Hide
+                        </label>
+                        </div>
+                        </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="form-label" for="default-01">Business Email Visibility</label>
+                        <div class="form-control-wrap">
+                         <label>
+                          <input type="radio" name="business_email" id="option1" autocomplete="off" value="yes" {{$job_design && $job_design->business_email == 'yes' ? 'checked':''}} > Show
+                        </label>
+                         <label>
+                          <input type="radio" name="business_email" id="option2" autocomplete="off" value="no" {{$job_design && $job_design->business_email == 'no' ? 'checked':''}} > Hide
+                        </label>
+                        </div>
+                        </div>
+
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="p-3">
+                <button type="submit" class="btn btn-success btn-user float-right mb-3">Update</button>
                 <a class="btn btn-default float-right mr-3 mb-3" data-dismiss="modal">Cancel</a>
             </div>
         </form>

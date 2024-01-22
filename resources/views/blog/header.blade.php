@@ -385,6 +385,13 @@ if (isset($post)) {
           opacity: 1;
           top: 12px;
         }
+        @media only screen and (max-width: 768px) {
+            
+            .profile_read-more{
+              right: 36%;
+            }
+
+        }
        /* .item-social-layout2 a{
            color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#333 !important'}};
         }
