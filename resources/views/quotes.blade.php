@@ -41,13 +41,13 @@
 <div class="tab-pane active" id="parmanent">
     <div class="nk-tb-list nk-tb-ulist border-light">
         <div class="nk-tb-item nk-tb-head" style="background: #f5f6fa;">
-          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#ID</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">#</span></div>
           <div class="nk-tb-col h2"><span class="sub-text">Customer</span></div>
           <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Category</span></div>
           <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Address</span></div>
           <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Additional Information</span></div>
           <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Quotations</span></div>
-          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Posted on</span></div>
+          <div class="nk-tb-col tb-col-md h2"><span class="sub-text">Inquiry Date</span></div>
           <div class="nk-tb-col tb-col-lg h2"><span class="sub-text">Status</span></div>
           <div class="nk-tb-col h2"><span class="sub-text">Action</span></div>
         </div>

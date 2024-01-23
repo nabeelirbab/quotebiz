@@ -48,10 +48,10 @@ class QuestionChoiceController extends Controller
         $count = Category::where('subdomain', Setting::subdomain())->count();
         if ($count > 0) {
             $category = Category::where('cat_parent', '1')->where('subdomain', Setting::subdomain())->where('category_name', $request->category_name)->first();
-            $categories = Category::where('cat_parent', '1')->where('subdomain', Setting::subdomain())->where('category_name','<>',$request->category_name)->get();
+            $categories = Category::where('cat_parent_id', '0')->where('subdomain', Setting::subdomain())->where('category_name','<>',$request->category_name)->get();
         } else {
             $category = Category::where('cat_parent', '0')->where('category_name', $request->category_name)->first();
-            $categories = Category::where('cat_parent', '0')->where('category_name','<>',$request->category_name)->get();
+            $categories = Category::where('cat_parent_id', '0')->where('category_name','<>',$request->category_name)->get();
         }
 
 

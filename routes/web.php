@@ -55,6 +55,10 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('/demo/go/{view}', 'Controller@demoGo');
     Route::get('/autologin/{api_token}', 'Controller@autoLogin');
     Route::get('/migrate/run', 'Admin\Upgrade@migrate');
+    Route::get('forget-password', 'Auth\ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
+    Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post'); 
+    Route::get('reset-password/{token}', 'Auth\ForgotPasswordController@showResetPasswordForm')->name('reset.password.get');
+    Route::post('reset-password', 'Auth\ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
 
     //Subscriber avatar
     Route::get('assets/images/avatar/subscriber-{uid?}.jpg', 'SubscriberController@avatar');
