@@ -532,6 +532,30 @@ $currencySymbols = [
 </div><!-- .col -->
 
 </div><!-- .row -->
+<div class="row d-flex justify-content-end mt-4">
+<div class="col-xxl-6 col-sm-6">
+<div class="card">
+    <div class="nk-ecwg nk-ecwg6">
+        <div class="card-inner">
+            <div class="d-flex">
+                <div style="margin-right: 30px;">
+                    <em class="icon ni ni-headphone" style="font-size: 55px;"></em>
+                </div>
+                <div class="info">
+                    <a href="https://calendly.com/eventmasterpro/quotebiz-setup-call" target="_blank">
+                    <h4>Contact Us</h4>
+                    <span style="color: #364a63">
+                        Need help with setup?
+Jumpstart your QuoteBiz experience! Let our personalized web consultants expertly set up and customize your account. Enjoy a hassle-free start with 3 featured blogs included. Contact us today to elevate your QuoteBiz journey!
+                    </span>
+                    </a>
+                </div>
+            </div>
+        </div><!-- .card-inner -->
+    </div><!-- .nk-ecwg -->
+</div><!-- .card -->
+</div><!-- .col -->
+</div>
 </div><!-- .nk-block -->
 </div>
 </div>

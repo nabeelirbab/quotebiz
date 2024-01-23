@@ -5,7 +5,7 @@
 @section('content')
     
     <!-- send reset password email -->
-    <form class="" role="form" method="POST" action="{{ url('/password/reset') }}">
+    <form class="" role="form" method="POST" action="{{ url('/reset-password') }}">
         {{ csrf_field() }}
         
         <input type="hidden" name="token" value="{{ $token }}">
@@ -15,6 +15,12 @@
             @if (session('status'))
                 <div class="alert alert-success">
         {{ session('status') }}
+                </div>
+            @endif
+
+             @if (session('error'))
+                <div class="alert alert-danger">
+        {{ session('error') }}
                 </div>
             @endif
             

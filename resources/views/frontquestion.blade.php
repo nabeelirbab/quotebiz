@@ -257,7 +257,7 @@
 		    max-width: 100% !important;
 		 }
 		 .font-class{
-		 	font-size: 18px;
+		 	font-size: 16px;
 		 }
 		 .actions li a{
 		 	width: 156px;
@@ -436,7 +436,7 @@
 				                    <img class="images-icons" src="{{ asset('/frontend-assets/images/categories/'.$cat->category_icon) }}">
 				                		
 				                	</div>
-				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
+				                    <h3 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h3>
 
 				                </div>
 				                @else
@@ -445,15 +445,15 @@
                                      <img src="{{asset('images/icons/'.$cat->category_icon)}}">
 				                		
 				                	</div>
-				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
+				                    <h3 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h3>
 
                                  </div>
 				                @endif
 				                @else
 				                <div>
 				                	
-				                    <img src="{{ asset('/frontend-assets/images/icons/option.png') }}">
-				                    <h2 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h2>
+				                    <img src="{{ asset('/frontend-assets/images/icons/option.png') }}" style="max-width: 45%">
+				                    <h3 style="padding-top: 15px" class="font-class">{{$cat->category_name}}</h3>
 				                </div>
 
 				                @endif
@@ -586,8 +586,9 @@
             	</div>
             </form>
 		</div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="{{ asset('frontend-assets/js/jquery.steps.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.js"></script>
 <script type="text/javascript">
 var jqOld = jQuery.noConflict();
@@ -609,66 +610,87 @@ var jqOld = jQuery.noConflict();
 
  jqOld(function(){
 	jqOld('input').attr('autocomplete', 'off');
-	jqOld("#wizard").steps({
+
+    // Add validation rules to your form
+    jqOld("#form").validate({
+        rules: {
+            // Add validation rules for your form fields
+            // Example:
+            'input[]': {
+                required: true,
+            },
+            // Add rules for other fields as needed
+        },
+        messages: {
+            // Add custom error messages if needed
+        },
+    });
+
+    jqOld("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
         transitionEffect: "fade",
         enableAllSteps: false,
-        onStepChanging: function (event, currentIndex, newIndex) { 
-        	if ( newIndex === 1 ) {
-        	
+        onStepChanging: function (event, currentIndex, newIndex) {
+            // Check if the "Continue" button is clicked
+            if (newIndex > currentIndex) {
+                // Trigger form validation before proceeding to the next step
+                if (!jqOld("#form").valid()) {
+                    return false;
+                }
+            }
+
+            // Your existing code for onStepChanging
+            if (newIndex === 1) {
                 jqOld('.wizard > .steps ul').addClass('step-0');
-            }else{
-            	jqOld('.wizard > .steps ul').removeClass('step-0');
-            }
-
-
-		<?php
-		$total = count($questions)+3;
-
-		$subtotal = count($questions);
-		for($i =1; $i <= $total; $i++){ ?>
-			// alert(<?php echo $total; ?>);
-            if ( newIndex === <?php echo $i; ?> ) {
-            	// alert(newIndex);
-                jqOld('.wizard > .steps ul').addClass('step-<?php echo $i; ?>');
-                // $('#wizard .actions li:last').hide();
-
             } else {
-            	if (newIndex === <?php echo $total; ?>) { //if last step
-		   //remove default #finish button
-				   jqOld('#wizard').find('a[href="#finish"]').remove(); 
-				   //append a submit type button
-				   jqOld('#wizard .actions li:last').show();
-				   jqOld('#wizard .actions li:last').html('<button id="FinalSubmit" type="submit">Get Quotes</button>');
-				}else{
-
-		          jqOld('#wizard .actions li:last').hide();
-				}
-				// jqOld(".actions ul li:nth-child(2)").css("cssText", "display: list-item !important;");
-                jqOld('.wizard > .steps ul').removeClass('step-<?php echo $i; ?>');
+                jqOld('.wizard > .steps ul').removeClass('step-0');
             }
-           
-		<?php } ?>
-            return true; 
+
+            <?php
+            $total = count($questions) + 3;
+            $subtotal = count($questions);
+            for ($i = 1; $i <= $total; $i++) { ?>
+                if (newIndex === <?php echo $i; ?>) {
+                    jqOld('.wizard > .steps ul').addClass('step-<?php echo $i; ?>');
+                } else {
+                    if (newIndex === <?php echo $total; ?>) { //if last step
+                        jqOld('#wizard').find('a[href="#finish"]').remove();
+                        jqOld('#wizard .actions li:last').show();
+                        jqOld('#wizard .actions li:last').html('<button id="FinalSubmit" type="submit">Get Quotes</button>');
+                    } else {
+                        jqOld('#wizard .actions li:last').hide();
+                    }
+                    jqOld('.wizard > .steps ul').removeClass('step-<?php echo $i; ?>');
+                }
+            <?php } ?>
+
+            return true;
         },
         onFinished: function (event, currentIndex) {
-		 
-		  jqOld("#form").submit();
-		},
+            // Check if the form is valid before submitting
+            if (jqOld("#form").valid()) {
+                jqOld("#form").submit();
+            }
+        },
         labels: {
             finish: "Get Quotes",
             next: "Continue",
             previous: "Back"
         }
     });
+
     // Custom Button Jquery Steps
-    jqOld('.forward').click(function(){
-    	jqOld("#wizard").steps('next');
-    })
-    jqOld('.backward').click(function(){
+    jqOld('.forward').click(function () {
+        // Trigger form validation before proceeding to the next step
+        if (jqOld("#form").valid()) {
+            jqOld("#wizard").steps('next');
+        }
+    });
+
+    jqOld('.backward').click(function () {
         jqOld("#wizard").steps('previous');
-    })
+    });
     var input = document.querySelector("#phone");
 	window.intlTelInput(input, {
 	  initialCountry: "au",

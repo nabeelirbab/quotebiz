@@ -100,6 +100,10 @@ body {
 .login{
 color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
 }
+.gx-4 > li, .gx-4 > div {
+    padding-left: 0px !important;
+    padding-right: 5px !important;
+}
 /*.col-md-4 {
   background: #F9F8F4;
   text-align: center;
@@ -510,6 +514,16 @@ p.form-para::after {
   font-size: 12px;
   color: #adadad;
 }
+.link-inline li {
+    display: inline-block;
+    margin-right: 5px; /* Adjust as needed for spacing */
+    border-right: 2px solid #fff; /* Border color and style */
+    padding-right: 10px; /* Adjust as needed for spacing */
+  }
+
+  .link-inline li:last-child {
+      border-right: none; /* Remove border from the last item */
+  }
 @media (min-width: 768px) {
   .text-md-end {
     text-align: right;
@@ -980,25 +994,26 @@ By using our enquiry quote form or interacting with our website, you agree to th
                   @endif
                     </a>
           </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="footer-logo">
                   
-                    <div class="mt-2 ml-5">
-                         <ul class="link-inline gx-4  d-flex justify-content-between">
+                    <div class="mt-2 text-center">
+                         <ul class="link-inline gx-4" style="text-transform: uppercase;line-height: 0.9;">
                             <!-- <li><a href="#">How it works</a></li> -->
-                            @if($job_design && $job_design->profile_status != '2')<li><a href="#">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a></li>
-                            @endif
-                            @if($job_design && $job_design->blog_status != '2')
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Home</a></li>
+                            @if($job_design && $job_design->profile_status != '2')<li><a href="{{ url('/service-providers') }}">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a></li>
                             @endif
                             <li><a href="#">Contact</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#terms">Terms</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#privacy">Privacy</a></li>
+                            <li><a href="#">Sitemap</a></li>
                         </ul><!-- .footer-nav -->
 
                     </div>
                  
                 </div><!-- .footer-logo -->
             </div><!-- .col -->
-            <div class="col-md-4 d-md-flex justify-content-lg-end">
+            <div class="col-md-3 d-md-flex justify-content-lg-end">
             @if($job_design)
                @if($job_design && $job_design->facebook || $job_design->instagram || $job_design->linkedIn || $job_design->twitter || $job_design->whatsApp )
               <div class="centered-text mt-md-3 mt-2">

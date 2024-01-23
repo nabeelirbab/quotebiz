@@ -1,0 +1,11 @@
+@font-face { font-family: "Nioicon"; src: url("../fonts/Nioicon.eot"); src: url("../fonts/Nioicon.eot#iefix") format("embedded-opentype"), url("../fonts/Nioicon.ttf") format("truetype"), url("../fonts/Nioicon.woff") format("woff"), url("../fonts/Nioicon.svg#Nioicon") format("svg"); font-weight: normal; font-style: normal; font-display: block; }
+
+.ni { /* use !important to prevent issues with browser extensions that change fonts */ font-family: "Nioicon" !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.ni-call:before { content: ""; }
+.ni-mail:before {
+    content: "";
+}
+.ni-globe:before {
+    content: "";
+}
