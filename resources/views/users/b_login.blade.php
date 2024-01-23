@@ -19,7 +19,11 @@ $subdomain= request("account");
     <div class="panel panel-body p-4 rounded-3 bg-white shadow">
 
         <h4 class="text-semibold mt-0 mb-4 fw-600 fs-5">{{ trans('messages.login') }}</h4>
-
+           @if (session('status'))
+                        <div class="alert alert-success">
+                {{ session('status') }}
+                        </div>
+           @endif
         <div class="form-group login-email-input has-feedback has-feedback-left{{ $errors->has('email') ? ' has-error' : '' }}">
             <input id="email" type="email" class="form-control" name="email" placeholder="{{ trans("messages.email") }}"
 	 value="{{ old('email') ? old('email') : (isset(\Acelle\Model\User::getAuthenticateFromFile()['email']) ? \Acelle\Model\User::getAuthenticateFromFile()['email'] : "") }}"

@@ -17,6 +17,7 @@
   $job_design = Acelle\Jobs\HelperJob::form_design(); 
 ?>
 @include('blog.header',['post' => $data])
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/ni.css?ver=2.9.1') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
  <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
  <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
@@ -40,8 +41,12 @@
 	margin-bottom: 5px;
 	color: {{ ($job_design) ? $job_design->button_color:'#6200EA'}} !important;
 }
+
 h2{
 	font-size: 24px;
+}
+a {
+	color: #222222;
 }
 .box-border{
 	border: 1px solid #7977771f;border-radius: 12px;
@@ -104,31 +109,8 @@ h2{
                     <img src="{{asset('frontend-assets/images/avt.jpeg')}}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; border: 3px solid #ddd;">
                     @endif
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">{{$user->first_name}} {{$user->last_name}}</h5>
-                    @if($job_design->business_name == 'yes' && $user->business->business_name)
-                    <p class="card-text text-center mb-1">
-                       <span class="data-value badge badge-pill badge-info" style="background-color: #4d4646f2 !important;border-color: #4d4646f2 !important;">
-                    	{{ $user->business->business_name }}
-                       </span>
-                    </p>
-                    @endif
-                    @if($job_design->business_email == 'yes' && $user->business->business_email)
-                    <p class="card-text text-center mb-0">
-                    	{{ $user->business->business_email }}
-                    </p>
-                    @endif
-                    @if($job_design->business_number == 'yes' && $user->business->business_phone)
-                    <p class="card-text text-center mb-0">
-                    	{{ $user->business->business_phone }}
-                    </p>
-                    @endif
-                    @if($job_design->business_website == 'yes' && $user->business->business_website)
-                    <p class="card-text text-center mb-0">
-                    	<a href="{{ $user->business->business_website }}" target="_blank">{{ $user->business->business_website }}</a>
-                    </p>
-                    @endif
-                    <p class="card-text text-center">
+                <div class="card-body pt-0">
+                	  <p class="card-text text-center mb-6">
                       @foreach(json_decode($user->category_id) as $key => $cat)
                        @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                         <span class="data-value badge badge-pill badge-info">
@@ -139,6 +121,33 @@ h2{
                         @endif
                     @endforeach
                     </p>
+                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->first_name}} {{$user->last_name}}</h5>
+                 <div class="mb-3">
+                    @if($job_design->business_name == 'yes' && $user->business->business_name)
+                    <p class="card-text text-center mb-4">
+                       <span class="data-value badge badge-pill badge-info" style="background-color: #364a63 !important;border-color: #364a63 !important;">
+                    	{{ $user->business->business_name }}
+                       </span>
+                    </p>
+                    @endif
+                  
+                     @if($job_design->business_number == 'yes' && $user->business->business_phone)
+                    <p class="card-text text-center mb-0">
+                    	 <em class="icon ni ni-call"></em><span> <a href="tel:{{ $user->business->business_phone }}">{{ $user->business->business_phone }}</a></span>
+                    </p>
+                    @endif
+                    @if($job_design->business_email == 'yes' && $user->business->business_email)
+                    <p class="card-text text-center mb-0">
+                    	<em class="icon ni ni-mail"></em><span> <a href="mailto:{{ $user->business->business_email }}">{{ $user->business->business_email }}</a></span>
+                    </p>
+                    @endif
+                   
+                    @if($job_design->business_website == 'yes' && $user->business->business_website)
+                    <p class="card-text text-center mb-0">
+                    	<em class="icon ni ni-globe"></em><span><a href="{{ $user->business->business_website }}" target="_blank"> {{ $user->business->business_website }}</a></span>
+                    </p>
+                    @endif
+                  </div>
                     <h4 class="text-center mb-2"> {{ ($job_design) ? $job_design->event_text : 'What is the date of your event?'}}</h4>
                     <div id="calendar"></div>
                     <div class=" text-center">
@@ -158,13 +167,13 @@ h2{
 						</div>
 						<div>
 						   <h4 class="m-0">Category</h4>
-                          <p class="card-text text-center">
+                          <p class="card-text">
 		                      @foreach(json_decode($user->category_id) as $key => $cat)
                                 @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
 		                        <span class="data-value">
 		                        	{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
 		                        @if ($key < count(json_decode($user->category_id)) - 1)
-		                             ,
+		                             
 		                        @endif
 		                        @endif
 		                    @endforeach

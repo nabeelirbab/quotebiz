@@ -138,7 +138,11 @@
                 <a href="{{ url('admin/profile_detail/'.$user->id) }}">
                     <div class="user-card">
                         <div class="user-avatar bg-primary">
+                            @if($user->user_img)
+                            <img src="{{asset('frontend-assets/images/users/'.$user->user_img)}}" alt="Profile Image" class="rounded-circle">
+                            @else
                             <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
+                            @endif
                         </div>
                         <div class="user-info">
                             <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}
@@ -213,6 +217,7 @@
                             <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <ul class="link-list-opt no-bdr">
+                                    <li><a href="{{ url('sp-profile/'.$user->id) }}" target="_blank"><em class="icon ni ni-eye"></em><span>Public View</span></a></li>
                                     <li><a href="{{ url('admin/profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
                                     <li onclick="addCredits('{{$user->id}}')"><a href="#"><em class="icon ni ni-invest"></em><span>Add Credits</span></a></li>
                                     <li><a href="{{ url('admin/location_setting/'.$user->id) }}"><em class="icon ni ni-location"></em><span>Location Setting</span></a></li>
