@@ -234,12 +234,12 @@ h2{
                                                         </div>
                                                         <div>
                                                            <h4 class="m-0">Category</h4>
-                                                          <p class="card-text text-center">
+                                                          <p class="card-text">
                                                               @foreach(json_decode(Auth::user()->category_id) as $key => $cat)
                                                               @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                                                                 <span class="data-value">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
                                                                 @if ($key < count(json_decode(Auth::user()->category_id)) - 1)
-                                                                     ,
+                                                                     
                                                                 @endif
                                                                 @endif
                                                             @endforeach
