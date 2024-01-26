@@ -1006,7 +1006,7 @@ By using our enquiry quote form or interacting with our website, you agree to th
                             <li><a href="#">Contact</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#terms">Terms</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#privacy">Privacy</a></li>
-                            <li><a href="#">Sitemap</a></li>
+                            <li><a href="{{ url('sitemap') }}" target="_blank">Sitemap</a></li>
                         </ul><!-- .footer-nav -->
 
                     </div>

@@ -33,6 +33,8 @@ Route::domain($account_prefix)->group(function ($account) {
 
     Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function ($account) {
     // Helper method to generate other routes for authentication
+     
+    Route::get('sitemap', 'UserController@convertXmlToHtml');
     Route::get('/', 'QuoteController@home');
     Route::get('/blog/{slug}', 'PostController@singleBlog');
     Route::get('/blogs', 'PostController@allBlogs');

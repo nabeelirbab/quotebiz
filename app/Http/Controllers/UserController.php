@@ -34,6 +34,8 @@ use Acelle\Imports\SPImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Redirect;
+use Illuminate\Support\Facades\View;
+use SimpleXMLElement;
 
 class UserController extends Controller
 {
@@ -876,6 +878,26 @@ public function searchUser(Request $request){
         }
 
         return $filename;
+    }
+    public function convertXmlToHtml()
+    {
+        // Path to your XML file (adjust the path as needed)
+        $xmlFilePath = public_path('sitemap-'.Setting::subdomain().'.xml');
+
+        // Check if the file exists
+        if (file_exists($xmlFilePath)) {
+            // Read the contents of the XML file
+            $xmlData = file_get_contents($xmlFilePath);
+
+            // Parse XML string
+            $xml = new SimpleXMLElement($xmlData);
+
+            // Pass XML data to the view
+            return View::make('xmlToHtml')->with('xml', $xml);
+        } else {
+            // Handle the case when the file doesn't exist
+            return response('XML file not found', 404);
+        }
     }
 
   public function logout(){

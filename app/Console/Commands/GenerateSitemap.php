@@ -43,10 +43,7 @@ class GenerateSitemap extends Command
     {
         
         $subdomains = Subdomain::where('status','active')->get();
-        // foreach ($subdomains as $key => $subdomain) {
-        //     SitemapGenerator::create('https://'.$subdomain->parent)
-        //     ->writeToFile(public_path('sitemap-'.$subdomain->subdomain.'.xml'));
-        // }
+       
         foreach ($subdomains as $subdomain) {
         $sitemap = SitemapGenerator::create('https://' . $subdomain->parent)
             ->getSitemap();
@@ -56,6 +53,25 @@ class GenerateSitemap extends Command
         if(count($posts) > 0 ){
             foreach ($posts as $post) {
                 $url = 'https://' . $subdomain->parent.'/blog/'.$post->slug;
+
+                $sitemap->add($url, Carbon::now());
+            }
+        }
+
+        $sitemap->writeToFile(public_path("sitemap-{$subdomain->subdomain}.xml"));
+    }
+
+      $subdomains = Subdomain::where('status','inactive')->get();
+       
+        foreach ($subdomains as $subdomain) {
+        $sitemap = SitemapGenerator::create('https://' . $subdomain->subdomain.'.quotebiz.io')
+            ->getSitemap();
+
+        $posts = Post::where('subdomain', $subdomain->subdomain)
+            ->get();
+        if(count($posts) > 0 ){
+            foreach ($posts as $post) {
+                $url = 'https://' . $subdomain->subdomain.'.quotebiz.io/blog/'.$post->slug;
 
                 $sitemap->add($url, Carbon::now());
             }
