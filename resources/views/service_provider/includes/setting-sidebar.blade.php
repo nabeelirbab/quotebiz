@@ -20,8 +20,6 @@
                     </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title text-center mb-0">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h5>
-                         <p class="card-text text-center mb-2">{{Auth::user()->email}}</p>
                         <p class="card-text text-center">
                           @foreach(json_decode(Auth::user()->category_id) as $key => $cat)
                            @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
@@ -32,6 +30,38 @@
                             @endif
                         @endforeach
                         </p>
+                       <h5 class="card-title text-center mb-1">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h5>
+                    <div class="mb-4">
+                    @if($job_design->business_name == 'yes' && Auth::user()->business->business_name)
+                    <p class="card-text text-center mb-4">
+                       <span class="badge badge-pill badge-info" style="background-color: #364a63 !important;border-color: #364a63 !important;">
+                        {{ Auth::user()->business->business_name }}
+                       </span>
+                    </p>
+                    </div>
+                        @endif
+                        @if( Auth::user()->business->business_website ||  Auth::user()->business->business_phone || Auth::user()->business->business_website )
+                        <div class="mb-4">
+                      <hr>
+                         @if($job_design->business_number == 'yes' && Auth::user()->business->business_phone)
+                        <p class="card-text text-center mt-4 mb-0" style="font-size: 14px;color: #222222">
+                             <em class="icon ni ni-call"></em><span> <a href="tel:{{ Auth::user()->business->business_phone }}" style="color: #222222">{{ Auth::user()->business->business_phone }}</a></span>
+                        </p>
+                        @endif
+                        @if($job_design->business_email == 'yes' && Auth::user()->business->business_email)
+                        <p class="card-text text-center mb-0" style="font-size: 14px;color: #222222">
+                            <em class="icon ni ni-mail"></em><span> <a href="mailto:{{ Auth::user()->business->business_email }}" style="color: #222222">Send Email</a></span>
+                        </p>
+                        @endif
+                       
+                        @if($job_design->business_website == 'yes' && Auth::user()->business->business_website)
+                        <p class="card-text text-center mb-0" style="font-size: 14px;color: #222222">
+                            <em class="icon ni ni-globe"></em><span><a href="{{ Auth::user()->business->business_website }}" target="_blank" style="color: #222222"> {{ Auth::user()->business->business_website }}</a></span>
+                        </p>
+                        @endif
+                      </div>
+                      <hr>
+                       @endif
                       
                     </div>
                 </div>

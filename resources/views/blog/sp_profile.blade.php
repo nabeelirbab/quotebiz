@@ -71,6 +71,12 @@ a {
 ._mnf8sq:hover {
     background: rgb(247, 247, 247) !important;
 }
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #e5e9f2;
+}
 @media screen and (max-width: 667px) {
 .col-md-4{
 	flex: 0 0 100%;
@@ -122,33 +128,38 @@ a {
                     @endforeach
                     </p>
                     <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->first_name}} {{$user->last_name}}</h5>
-                 <div class="mb-3">
+                 <div class="mb-4">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
-                    <p class="card-text text-center mb-4">
+                    <p class="card-text text-center mb-5">
                        <span class="data-value badge badge-pill badge-info" style="background-color: #364a63 !important;border-color: #364a63 !important;">
                     	{{ $user->business->business_name }}
                        </span>
                     </p>
+                </div>
                     @endif
-                  
+                    @if( $user->business->business_website ||  $user->business->business_phone || $user->business->business_website )
+                    <div class="mb-4">
+                  <hr>
                      @if($job_design->business_number == 'yes' && $user->business->business_phone)
-                    <p class="card-text text-center mb-0">
+                    <p class="card-text text-center mt-4 mb-0" style="font-size: 14px;">
                     	 <em class="icon ni ni-call"></em><span> <a href="tel:{{ $user->business->business_phone }}">{{ $user->business->business_phone }}</a></span>
                     </p>
                     @endif
                     @if($job_design->business_email == 'yes' && $user->business->business_email)
-                    <p class="card-text text-center mb-0">
-                    	<em class="icon ni ni-mail"></em><span> <a href="mailto:{{ $user->business->business_email }}">{{ $user->business->business_email }}</a></span>
+                    <p class="card-text text-center mb-0" style="font-size: 14px;">
+                    	<em class="icon ni ni-mail"></em><span> <a href="mailto:{{ $user->business->business_email }}">Send Email</a></span>
                     </p>
                     @endif
                    
                     @if($job_design->business_website == 'yes' && $user->business->business_website)
-                    <p class="card-text text-center mb-0">
+                    <p class="card-text text-center mb-0" style="font-size: 14px;">
                     	<em class="icon ni ni-globe"></em><span><a href="{{ $user->business->business_website }}" target="_blank"> {{ $user->business->business_website }}</a></span>
                     </p>
                     @endif
                   </div>
-                    <h4 class="text-center mb-2"> {{ ($job_design) ? $job_design->event_text : 'What is the date of your event?'}}</h4>
+                  <hr>
+                   @endif
+                    <h4 class="text-center mt-5 mb-2"> {{ ($job_design) ? $job_design->event_text : 'What is the date of your event?'}}</h4>
                     <div id="calendar"></div>
                     <div class=" text-center">
                       <button class="btn btn-success" data-toggle="modal" data-target="#quoteModal">Request A Quote</button>
