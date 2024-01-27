@@ -46,6 +46,8 @@ if (isset($post)) {
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/main.css') }}">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/dashlite2.css?ver=2.9.1') }}">
+<link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/theme.css?ver=2.9.1') }}">
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/bootstrap.min.css') }}">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="{{ asset('frontend-assets/css/blog/fontawesome-all.min.css') }}">
@@ -82,6 +84,42 @@ if (isset($post)) {
               max-width: {{ ($logo_width) ? $logo_width:'100px'}};
               height: {{ ($logo_height) ? $logo_height:'auto'}};
         }
+        .social a {
+           font-size: 25px;
+           padding-left: 15px;
+           color: {{ ($job_design) ? $job_design->button_text_color.'!important':'#6200EA !important'}};
+          }
+          #footer{
+           background-color: {{ ($job_design) ? $job_design->footer_color.'!important':'#6200EA !important'}};
+          }
+          .footer {
+            /*background-color: #333;*/
+            color: #fff;
+            padding: 20px;
+          }
+          .footer a{
+              color: {{ ($job_design) ? $job_design->button_text_color:'#fff'}} !important;
+            }
+
+          .link-inline li {
+            display: inline-block;
+            margin-right: 5px; /* Adjust as needed for spacing */
+            border-right: 2px solid #fff; /* Border color and style */
+            padding-right: 10px; /* Adjust as needed for spacing */
+          }
+
+          .link-inline li:last-child {
+              border-right: none; /* Remove border from the last item */
+          }
+
+          .terms {
+            font-size: 10px;
+            color: #0000009e;
+            font-weight: 500;
+          }
+          .terms a {
+            color: {{ ($job_design) ? $job_design->underline_color:'#6200EA'}};
+          }
         /* Add custom styles here */
         .gallery-img {
             border-radius: 10px; /* Add border radius */
@@ -311,7 +349,6 @@ if (isset($post)) {
           border: none !important;
           background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
           border: none !important;
-          background: #000000!important;
           height: 38px !important;
           padding: 22px;
           line-height: 0;
@@ -359,6 +396,24 @@ if (isset($post)) {
           font-size: 1.6rem !important;
           outline: 0;
         }
+        .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
+          display: block;
+          width: 100%;
+          height: calc(4.9rem + 2px) !important;
+          padding: 0.4375rem 1rem;
+          font-size: 0.8125rem;
+          font-weight: 400;
+          line-height: 1.25rem;
+          color: #3c4d62;
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #c1c1c1;
+          border-radius: 4px;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+      .modal-body{
+        padding: 25px;
+      }
         .select2-container--default.select2-container--open .select2-selection--single {
           border-color: {{ ($job_design) ? $job_design->button_color:'#c1c1c1'}} !important;
         }
