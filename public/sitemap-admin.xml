@@ -2,67 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://admin.quotebiz.io/</loc>
-        <lastmod>2024-01-27T00:00:16+00:00</lastmod>
+        <lastmod>2024-01-29T00:00:17+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://admin.quotebiz.io/service-providers</loc>
-        <lastmod>2024-01-27T00:00:17+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://admin.quotebiz.io/users/register</loc>
-        <lastmod>2024-01-27T00:00:17+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://admin.quotebiz.io/users/login</loc>
-        <lastmod>2024-01-27T00:00:18+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://admin.quotebiz.io/sp-profile/61</loc>
-        <lastmod>2024-01-27T00:00:18+00:00</lastmod>
+        <lastmod>2024-01-29T00:00:18+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://admin.quotebiz.io/blogs</loc>
-        <lastmod>2024-01-27T00:00:18+00:00</lastmod>
+        <lastmod>2024-01-29T00:00:18+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://admin.quotebiz.io/users/login</loc>
+        <lastmod>2024-01-29T00:00:18+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://admin.quotebiz.io/users/register</loc>
+        <lastmod>2024-01-29T00:00:18+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://admin.quotebiz.io/sp-profile/61</loc>
+        <lastmod>2024-01-29T00:00:18+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://admin.quotebiz.io/sitemap</loc>
-        <lastmod>2024-01-27T00:00:19+00:00</lastmod>
+        <lastmod>2024-01-29T00:00:19+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://admin.quotebiz.io/login</loc>
-        <lastmod>2024-01-27T00:00:19+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://admin.quotebiz.io/forget-password</loc>
-        <lastmod>2024-01-27T00:00:19+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://admin.quotebiz.io/sp-profile/88</loc>
-        <lastmod>2024-01-27T00:00:19+00:00</lastmod>
+        <lastmod>2024-01-29T00:00:19+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://admin.quotebiz.io</loc>
-        <lastmod>2024-01-27T00:00:19+00:00</lastmod>
+        <lastmod>2024-01-29T00:00:19+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://admin.quotebiz.io/sp-profile/88</loc>
+        <lastmod>2024-01-29T00:00:19+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://admin.quotebiz.io/forget-password</loc>
+        <lastmod>2024-01-29T00:00:19+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
