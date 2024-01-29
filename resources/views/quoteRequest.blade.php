@@ -157,7 +157,7 @@ h6.mt-3 {
 p.mb-0 {
   font-size: 10px;
   font-weight: bold;
-  color: #9f9f9f;
+  color: #222222;
 }
 strong {
   font-size: 12px;
@@ -484,7 +484,8 @@ p.form-para::after {
   position: absolute;
   bottom: 6px;
   right: 72px;
-  color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+  color: gray !important;
+  cursor: pointer;
 }
 .profile_read-more:hover {
   background-color: #f2f2f2; /* Replace with your desired background color */
@@ -768,35 +769,52 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
               </a>
           </div>
           <a href="{{ url('sp-profile/'.$user->id) }}">
-          <div class="card-body">
-              <h4 class="card-title text-center" style="font-size: 18px">{{$user->first_name}} {{$user->last_name}}</h4>
-              
-              <p class="mb-1"> @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
-               @else
-               {{$user->city}}
-               @endif</p>
-              <p class="card-text text-center m-0">
-                @foreach(json_decode($user->category_id) as $key => $cat)
-                 @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
-                  <span class="data-value text-soft  badge badge-pill badge-info">{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
-                  @if ($key < count(json_decode($user->category_id)) - 1)
-                  @endif
-                  @endif
-
-              @endforeach
-              </p>
-<!-- 
-              @if($user->biography)
-              <div class="post_excerpt">
-                <p>
-                   {!! clean(Str::limit($user->biography, 150)) !!}
+                 <div class="card-body pt-0 mt-1">
+                    <p class="card-text text-center mb-4">
+                      @foreach(json_decode($user->category_id) as $key => $cat)
+                       @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
+                        <span class="data-value badge badge-pill badge-info">
+                           {{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>
+                        @if ($key < count(json_decode($user->category_id)) - 1)
+                             
+                        @endif
+                        @endif
+                    @endforeach
+                    </p>
+                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->first_name}} {{$user->last_name}}</h5>
+                 <div class="mb-3">
+                    @if($job_design->business_name == 'yes' && $user->business->business_name)
+                    <p class="card-text text-center mt-1 mb-4">
+                       <span class="data-value badge badge-pill badge-info" style="background-color: #364a63 !important;border-color: #364a63 !important;">
+                      {{ $user->business->business_name }}
+                       </span>
+                    </p>
+                </div>
+                    @endif
+                    @if( $user->business->business_website ||  $user->business->business_phone || $user->business->business_website )
+                    <div class="mb-2">
+                  <hr style="border-top: 1px solid #e5e9f2">
+                     @if($job_design->business_number == 'yes' && $user->business->business_phone)
+                    <p class="card-text text-center mt-3 mb-0" style="font-size: 14px;font-weight: normal;">
+                       <em class="icon ni ni-call"></em><span> <a href="tel:{{ $user->business->business_phone }}">{{ $user->business->business_phone }}</a></span>
+                    </p>
+                    @endif
+                    @if($job_design->business_email == 'yes' && $user->business->business_email)
+                    <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
+                      <em class="icon ni ni-mail"></em><span> <a href="mailto:{{ $user->business->business_email }}">Send Email</a></span>
+                    </p>
+                    @endif
                    
-                </p>
-              </div>
-              
-              @endif -->
-              <span class="profile_read-more ">SEE PROFILE >></span>
-          </div>
+                    @if($job_design->business_website == 'yes' && $user->business->business_website)
+                    <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
+                      <em class="icon ni ni-globe"></em><span><a href="{{ $user->business->business_website }}" target="_blank"> {{ $user->business->business_website }}</a></span>
+                    </p>
+                    @endif
+                  </div>
+                  <hr style="border-top: 1px solid #e5e9f2">
+                   @endif
+                   <span class="profile_read-more ">SEE PROFILE >></span>
+                </div>
           </a>
       </div>
  
@@ -931,6 +949,33 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
+<script>
+$(document).ready(function () {
+    $('#contactform').submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        var submitButton = form.find('button[type="submit"]');
+            submitButton.prop('disabled', true);  // Disable the button
+
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function (data) {
+                // Display success message in the modal
+                $('.error-body').html('<div class="alert alert-success" role="alert">Message sent successfully!</div>');
+            },
+            error: function (data) {
+                // Display error message in the modal
+                $('.error-body').html('<div class="alert alert-danger" role="alert">Error sending message. Please try again.</div>');
+            },
+             complete: function () {
+                    submitButton.prop('disabled', false);  // Re-enable the button after completion
+            }
+        });
+    });
+});
+</script>
 <script>
  $('#mySelect').on('change', function () {
   var selectedValue = $(this).val();
