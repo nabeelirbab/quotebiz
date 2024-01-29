@@ -10,7 +10,8 @@ aria-hidden="true">
 </button>
 </div>
 <div class="modal-body">
-	<form action="{{ url('contactus') }}" method="post">
+	<div class="error-body"></div>
+	<form action="{{ url('contactus') }}" method="post" id="contactform">
 		 @csrf
 	<div class="row">
 		<div class="col-md-6">
@@ -37,7 +38,7 @@ aria-hidden="true">
 		     <label class="form-control-placeholder" for="search">Message</label>
 		     <textarea class="form-control" name="message" cols="40" rows="40" style="min-height: 215px"></textarea>
 		    </div>
-		</div>
+		</div>	
 	</div>
 	<div class="mt-5 text-center">
 		<button type="submit" class="btn btn-primary">Send Message</button>

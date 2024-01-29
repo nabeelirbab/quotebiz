@@ -116,7 +116,7 @@ hr {
                     @endif
                 </div>
                 <div class="card-body pt-0">
-                	  <p class="card-text text-center mb-6">
+                	  <p class="card-text text-center mb-5">
                       @foreach(json_decode($user->category_id) as $key => $cat)
                        @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                         <span class="data-value badge badge-pill badge-info">

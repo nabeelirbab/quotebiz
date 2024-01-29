@@ -253,11 +253,12 @@ if (isset($post)) {
             position: absolute;
             bottom: 6px;
             right: 85px;
-            color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
+            color: gray;
+            cursor: pointer;
           }
         .profile_read-more:hover {
               background-color: #f2f2f2; /* Replace with your desired background color */
-              color: #fff; /* Change text color if needed */
+              color: gray; /* Change text color if needed */
               outline: none; /* Remove default focus outline if desired */
               padding: 0 7px;
               border-radius: 12px;

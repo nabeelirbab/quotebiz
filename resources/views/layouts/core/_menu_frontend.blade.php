@@ -31,7 +31,7 @@
                     </li>
                     <li class="nav-item" rel0="HomeController">
                         <a href="{{ url('admin/quotes') }}" title="Quotes" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                           <em class="icon ni ni-folder-list fs-5 mr-1"></em>
+                           <em class="icon ni ni-coin-alt fs-5 mr-1"></em>
                             <span>Quotes</span>
                         </a>
                     </li>
@@ -57,7 +57,7 @@
                     </li>
                 <li class="nav-item" rel2="HomeController">
                         <a href="{{ url('admin/page-design') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
-                          <em class="icon ni ni-card-view fs-5 mr-1"></em>
+                          <em class="icon ni ni-color-palette fs-5 mr-1"></em>
                             <span>Website Designer</span>
                         </a>
                     </li>
@@ -69,7 +69,7 @@
                     </li>
                             <li class="nav-item dropdown language-switch" rel1="CustomerController" >
                         <a role="button" class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                           <em class="icon ni ni-card-view fs-5 mr-1"></em>
+                           <em class="icon ni ni-setting fs-5 mr-1"></em>
                             <span>Settings</span>
                             <span class="caret"></span>
                         </a>
@@ -131,7 +131,7 @@
         
                     <li class="nav-item dropdown language-switch"  rel0="CustomerController">
                     <a  class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                       <em class="icon ni ni-tranx fs-5 mr-1"></em>
+                       <em class="icon ni ni-file-docs fs-5 mr-1"></em>
                         <span>Blogs</span>
                          <span class="caret"></span>
                     </a>
@@ -145,7 +145,7 @@
                     </li>      
                     <li class="nav-item" rel2="HomeController">
                         <a href="{{ url('admin/posts/add') }}" title="Add Blogs" class="dropdown-item d-flex align-items-center">
-                            <em class="icon ni ni-invest fs-5 mr-1"></em>
+                            <em class="icon ni ni-blank fs-5 mr-1"></em>
                             <span>Add Blog</span>
                         </a>
                     </li>
