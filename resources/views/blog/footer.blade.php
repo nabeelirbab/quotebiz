@@ -99,7 +99,33 @@
     <script src="{{ asset('frontend-assets/js/blog/jquery.meanmenu.min.js') }}"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend-assets/js/blog/mains.js') }}"></script>
+<script>
+$(document).ready(function () {
+    $('#contactform').submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        var submitButton = form.find('button[type="submit"]');
+            submitButton.prop('disabled', true);  // Disable the button
 
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function (data) {
+                // Display success message in the modal
+                $('.error-body').html('<div class="alert alert-success" role="alert">Message sent successfully!</div>');
+            },
+            error: function (data) {
+                // Display error message in the modal
+                $('.error-body').html('<div class="alert alert-danger" role="alert">Error sending message. Please try again.</div>');
+            },
+             complete: function () {
+                    submitButton.prop('disabled', false);  // Re-enable the button after completion
+            }
+        });
+    });
+});
+</script>
 </body>
 
 </html>

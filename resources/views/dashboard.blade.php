@@ -541,7 +541,7 @@ $currencySymbols = [
               
                 <div class="info">
                     <a href="https://calendly.com/eventmasterpro/quotebiz-setup-call" target="_blank">
-                    <h4>Contact Us</h4>
+                    <h4>Fast-Track Your QuoteBiz Setup</h4>
                     <span style="color: #364a63">
                         Need help with setup?
 Jumpstart your QuoteBiz experience! Let our personalized web consultants expertly set up and customize your account. Enjoy a hassle-free start with 3 featured blogs included. Contact us today to elevate your QuoteBiz journey!

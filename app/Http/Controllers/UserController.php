@@ -28,6 +28,8 @@ use Acelle\Library\Facades\Hook;
 use Auth;
 use Mail;
 use Acelle\Mail\SendInvitation;
+use Acelle\Mail\Contactus;
+use Acelle\Mail\AdminContactus;
 use Acelle\Exports\UsersExport;
 use Acelle\Imports\UsersImport;
 use Acelle\Imports\SPImport;
@@ -574,7 +576,10 @@ public function formlayout(Request $request){
           $job_design = new JobDesign;
         }
 
-        $user = User::where('user_type','service_provider')->where('subdomain',Setting::subdomain())->count();
+        $user = User::where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->where('activated','1')->where('subdomain',Setting::subdomain())->count();
         $post = Post::where('subdomain',Setting::subdomain())->count();
             $job_design->admin_id = Auth::user()->id;
             $job_design->subdomain = Setting::subdomain();
@@ -899,6 +904,12 @@ public function searchUser(Request $request){
             return response('XML file not found', 404);
         }
     }
+
+  public function contactus(Request $request){
+   $adminemail = User::where('user_type','admin')->where('subdomain', Setting::subdomain())->first()->email;
+    Mail::to($request->email)->send(new Contactus($request->all()));
+    Mail::to($adminemail)->send(new AdminContactus($request->all()));
+  }  
 
   public function logout(){
         Auth::logout();

@@ -80,7 +80,7 @@ sub { bottom: -.25em; }
 
 sup { top: -.5em; }
 
-a { color: #798bff; text-decoration: none; background-color: transparent; }
+a { color: #222222; text-decoration: none; background-color: transparent; }
 
 a:hover { color: #465fff; text-decoration: underline; }
 
@@ -152,7 +152,7 @@ template { display: none; }
 
 [hidden] { display: none !important; }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-bottom: 0.5rem;font-weight: bold; line-height: 1.2; color: #364a63; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-bottom: 0.5rem;font-weight: bold; line-height: 1.2; color: #222222; }
 
 h1, .h1 { font-size: 2rem; }
 

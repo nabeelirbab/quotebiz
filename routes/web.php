@@ -35,6 +35,7 @@ Route::domain($account_prefix)->group(function ($account) {
     // Helper method to generate other routes for authentication
      
     Route::get('sitemap', 'UserController@convertXmlToHtml');
+    Route::post('contactus', 'UserController@contactus');
     Route::get('/', 'QuoteController@home');
     Route::get('/blog/{slug}', 'PostController@singleBlog');
     Route::get('/blogs', 'PostController@allBlogs');
