@@ -697,6 +697,7 @@ public function termsdesign(Request $request){
                 $sitesetting->business_email = $request->business_email;
                 $sitesetting->business_website = $request->business_website;
                 $sitesetting->business_number = $request->business_number;
+                $sitesetting->website_link_setting = $request->website_link_setting;
                 $sitesetting->save();
             
         }

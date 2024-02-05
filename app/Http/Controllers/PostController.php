@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Post;
 use Acelle\Model\User;
 use Acelle\Model\Setting;
+use Acelle\Model\Visit;
 
 class PostController extends Controller
 {
@@ -45,9 +46,25 @@ class PostController extends Controller
     }
 
     public function userProfile($account,$id){
+     Visit::firstOrCreate([
+            'user_id' => $id,
+            'track_type' => 'profile_view',
+            'visitor_ip' => request()->ip(),
+
+        ]);
       $user = User::with('gallery')->where('id',$id)->where('subdomain',Setting::subdomain())->first();
       return view('blog.sp_profile',compact('user'));
     }
+
+     public function trackuser(Request $request){
+
+         Visit::firstOrCreate([
+                'user_id' => $request->user_id,
+                'track_type' => $request->track_type,
+                'visitor_ip' => request()->ip(),
+                ]);
+         
+     }
     /**
      * Store a newly created resource in storage.
      *

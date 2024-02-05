@@ -101,6 +101,22 @@
     <script src="{{ asset('frontend-assets/js/blog/mains.js') }}"></script>
 <script>
 $(document).ready(function () {
+    $('.track-click').on('click', function() {
+        var type = $(this).data('type');
+        var userId = $(this).data('user-id');
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "{{ url('/track-click') }}",
+            method: 'POST',
+            data: { track_type: type, user_id: userId, _token: _token },
+            success: function(response) {
+                // Handle success (if needed)
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    });
     $('#contactform').submit(function (e) {
         e.preventDefault();
         var form = $(this);
