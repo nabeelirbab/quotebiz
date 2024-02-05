@@ -482,6 +482,20 @@
                         </div>
 
                         </div>
+                     <div class="col-md-12">
+                          
+                        <div class="form-group">
+                          <label class="form-label" for="default-01">Select 'DoFollow' to share ranking power with linked site, 'NoFollow' to withhold it</label>
+                          <div class="form-control-wrap">
+                           <label>
+                            <input type="radio" name="website_link_setting" autocomplete="off" value="DoFollow" {{$job_design && $job_design->website_link_setting == 'DoFollow' ? 'checked':''}} > DoFollow
+                          </label>
+                          <label >
+                            <input type="radio" name="website_link_setting" {{$job_design && $job_design->website_link_setting == 'NoFollow' ? 'checked':''}} id="option2" value="NoFollow" autocomplete="off"> NoFollow
+                          </label>
+                          </div>
+                        </div>
+                        </div>
                       </div>
                     </div>
                 </div>

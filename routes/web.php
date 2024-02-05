@@ -41,6 +41,7 @@ Route::domain($account_prefix)->group(function ($account) {
     Route::get('/blogs', 'PostController@allBlogs');
     Route::get('/service-providers', 'PostController@allSps');
     Route::get('/sp-profile/{id}', 'PostController@userProfile');
+    Route::post('/track-click', 'PostController@trackuser');
     Route::post('/addsupport', 'SupportController@addsupport');
     Route::post('/support-message', 'SupportController@storechat');
     Auth::routes();

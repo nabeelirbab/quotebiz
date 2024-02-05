@@ -69,21 +69,22 @@ hr {
                         @if( $user->business->business_website ||  $user->business->business_phone || $user->business->business_website )
                         <div class="mb-2">
                       <hr style="border-top: 1px solid #e5e9f2">
-                         @if($job_design->business_number == 'yes' && $user->business->business_phone)
+                        @if($job_design->business_number == 'yes' && $user->business->business_phone)
                         <p class="card-text text-center mt-3 mb-0" style="font-size: 14px;font-weight: normal;">
-                           <em class="icon ni ni-call"></em><span> <a href="tel:{{ $user->business->business_phone }}">{{ $user->business->business_phone }}</a></span>
+                            <em class="icon ni ni-call"></em><span> <a href="tel:{{ $user->business->business_phone }}" class="track-click" data-type="phone" data-user-id="{{ $user->id }}">{{ $user->business->business_phone }}</a></span>
                         </p>
                         @endif
+
                         @if($job_design->business_email == 'yes' && $user->business->business_email)
-                        <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
-                          <em class="icon ni ni-mail"></em><span> <a href="mailto:{{ $user->business->business_email }}">Send Email</a></span>
-                        </p>
+                            <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
+                                <em class="icon ni ni-mail"></em><span> <a href="mailto:{{ $user->business->business_email }}" class="track-click" data-type="email" data-user-id="{{ $user->id }}">Send Email</a></span>
+                            </p>
                         @endif
-                       
+
                         @if($job_design->business_website == 'yes' && $user->business->business_website)
-                        <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
-                          <em class="icon ni ni-globe"></em><span><a href="{{ $user->business->business_website }}" target="_blank"> {{ $user->business->business_website }}</a></span>
-                        </p>
+                            <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
+                                <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}>{{ $user->business->business_website }}</a></span>
+                            </p>
                         @endif
                       </div>
                       <hr style="border-top: 1px solid #e5e9f2">
