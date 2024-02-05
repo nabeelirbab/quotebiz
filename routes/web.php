@@ -403,6 +403,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
 });
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
+    Route::get('/serviceproviders-report', 'HomeController@serviceproviders_reporting');
     Route::post('/add-credits', 'UserController@spcredits');
     Route::get('/invitedserviceproviders', 'HomeController@invitedserviceproviders');
     Route::get('/location_setting/{id}', 'HomeController@location_setting');

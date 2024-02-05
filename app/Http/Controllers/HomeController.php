@@ -134,6 +134,16 @@ class HomeController extends Controller
         return view('serviceproviders', compact('users'));
     }
 
+    public function serviceproviders_reporting()
+    {
+        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->orderBy('id','desc')->paginate(10);
+        return view('sp_reporting', compact('users'));
+    }
+
+
     public function invitedserviceproviders()
     {
         $users = Invitation::where('subdomain', Auth::user()->subdomain)->orderBy('id','desc')->paginate(10);
