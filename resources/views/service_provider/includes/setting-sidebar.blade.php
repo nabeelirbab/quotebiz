@@ -91,6 +91,12 @@
                         </a>
                     </li>
                     <li>
+                        <a  href="{{url('service-provider/getcustom-field-questions')}}">
+                            <em class="icon ni ni-user-fill-c"></em>
+                            <span>Custom Field</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{url('service-provider/gallery')}}">
                             <em class="icon ni ni-user-fill-c"></em>
                             <span>Gallery</span>

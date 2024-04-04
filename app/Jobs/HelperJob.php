@@ -19,6 +19,8 @@ use Acelle\Model\State;
 use Acelle\Model\FreeCredit;
 use Acelle\Model\City;
 use Acelle\Model\Icon;
+use Acelle\Model\CustomFieldAnswer;
+use Acelle\Model\CustomField;
 use Acelle\Library\ExtendedSwiftMessage;
 use Illuminate\Support\Facades\Auth;
 
@@ -205,5 +207,70 @@ class HelperJob extends Base
     public static function allcategories(){
       return  Category::where('subdomain',Setting::subdomain())->get();
     }
+    public static function getquestions(){
+      $user = auth()->user(); 
+      $category_id = json_decode($user->category_id);
+      $ans = CustomFieldAnswer::where('user_id', $user->id)->count();
+      if($ans > 0){
+        return CustomField::with('choices')->whereIn('category_id',$category_id)->get();
+      }else{
+        return [];
+      }
 
+    }
+
+    public static function getanswers($custom_field_id){
+      $user_id = auth()->id(); // Get the current user ID
+      $answer = CustomFieldAnswer::where('custom_field_id', $custom_field_id)
+            ->where('user_id', $user_id)
+            ->first();
+     
+
+            if($answer){
+              return $answer;
+            }else{
+              return '';
+            }
+    }
+
+     public static function getchoiceanswers($choice_id){
+      $user_id = auth()->id(); // Get the current user ID
+      $answer = CustomFieldAnswer::where('custom_field_choice_id', $choice_id)
+            ->where('user_id', $user_id)
+            ->first();
+     
+
+            if($answer){
+              return $answer;
+            }else{
+              return '';
+            }
+    }
+     public static function getallchoiceanswers($choice_id,$custom_field_id){
+      $user_id = auth()->id(); // Get the current user ID
+      $answer = CustomFieldAnswer::where('custom_field_id', $custom_field_id)->where('custom_field_choice_id', $choice_id)
+            ->where('user_id', $user_id)
+            ->first();
+     
+        if($answer){
+            return $answer->answer;
+          }else{
+            return '';
+          }
+    }
+
+    public static function getallanswers($custom_field_id){
+      $user_id = auth()->id(); // Get the current user ID
+      $answer = CustomFieldAnswer::where('custom_field_id', $custom_field_id)
+            ->where('user_id', $user_id)
+            ->get();
+     
+        if(count($answer) > 0){
+            return $answer;
+          }else{
+            return [];
+          }
+    }
+
+    
 }

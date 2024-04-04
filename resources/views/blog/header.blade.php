@@ -524,7 +524,7 @@ if (isset($post)) {
                                           @endif
                                          @else
                                          <li>
-                                            <a href="{{ url('/login') }}">Login</a>
+                                            <a href="{{ url('/users/login') }}">Login</a>
                                          </li>
                                     @endif
                                 </ul>

@@ -76,6 +76,7 @@
 @endsection
 @section('content')
 <?php 
+$job_design = Acelle\Jobs\HelperJob::form_design(); 
   $categories = json_decode(Auth::user()->category_id);
   $array = array_intersect($categories,Acelle\Jobs\HelperJob::categories_select());
   if(count($array) > 0){
