@@ -5,7 +5,9 @@
 <?php $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocation(); ?>
 <?php $providerstatename = Acelle\Jobs\HelperJob::statename($provideradminlocation->state); ?>
 <?php $providercityname = Acelle\Jobs\HelperJob::cityname($provideradminlocation->city); ?>
-<?php $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country); ?>
+<?php $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country); 
+$job_design = Acelle\Jobs\HelperJob::form_design(); 
+?>
 
 
 @extends('service_provider.layout.app')

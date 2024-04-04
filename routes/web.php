@@ -234,6 +234,10 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::get('/getcities/{id}','ServiceProvider\QuoteController@getcities')->name("getcities");
     Route::get('/getprovidercities/{id}','ServiceProvider\QuoteController@getprovidercities')->name("getprovidercities");
 
+    Route::get('/getcustom-field-questions','CustomFieldController@show');
+    Route::post('/storequestions','CustomFieldController@storeQuestions');
+
+
     Route::get('/settings', function () {
         return view('service_provider.settings');
     });
@@ -323,6 +327,26 @@ Route::get('users/logout', 'UserController@logout');
  });
 
 
+   // Custom Fields
+   Route::name('custom-field.')->prefix('custom-field/')->group(function () {
+    Route::get('/', 'CustomFieldController@index')->name('nabeel');
+    Route::get('add', 'CustomFieldController@create');
+    Route::post('store', 'CustomFieldController@store');
+    Route::post('searchcategory', 'CustomFieldController@searchcategory');
+    Route::get('delete/{id}', 'CustomFieldController@destroy');
+    Route::get('editcustom/{id}', 'CustomFieldController@editcustom');
+    Route::get('subeditcustom/{id}', 'CustomFieldController@subeditcustom');
+    Route::get('deletecustom/{id}', 'CustomFieldController@deletecustom');
+    Route::get('deleteoption/{id}', 'CustomFieldController@deleteoption');
+    Route::get('deleteChoice/{id}', 'CustomFieldController@deletechoice');
+    Route::get('/categories', 'CustomFieldController@vuedata');
+    Route::get('/categories/{id}', 'CustomFieldController@categoriesbyid');
+    Route::get('/subcategories/{id}', 'CustomFieldController@subcategoriesbyid');
+    Route::post('updateOrder', 'CustomFieldController@updateOrder');
+
+ });
+
+
     // New subscription
     Route::get('account/subscription/select-plan', 'SubscriptionController@selectPlan');
     Route::get('account/subscription/order-box', 'SubscriptionController@orderBox');
@@ -374,6 +398,10 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/search/lists', 'SearchController@lists');
     Route::get('/search/campaigns', 'SearchController@campaigns');
     Route::get('/search/general', 'SearchController@general');
+
+//// Custom Fields /////
+    Route::get('/add-custome-fields', 'CustomFieldController@index');
+
 
     Route::get('/quotes', 'QuoteController@index');
     Route::get('/support', 'SupportController@adminsupport');

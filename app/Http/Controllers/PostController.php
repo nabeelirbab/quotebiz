@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Acelle\Model\Post;
 use Acelle\Model\User;
 use Acelle\Model\Setting;
+use Acelle\Model\Category;
 use Acelle\Model\Visit;
 
 class PostController extends Controller
@@ -52,8 +53,22 @@ class PostController extends Controller
             'visitor_ip' => request()->ip(),
 
         ]);
+
+       $category_id = json_decode(User::where('id',$id)->first()->category_id);
+       $customFields = Category::with(['customs' => function ($query) use ($id) {
+            $query->whereHas('answers', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->with(['answers' => function ($query) use ($id) {
+                $query->where('user_id', $id); // Filter answers by user ID
+            }, 'answers.choice']);
+        }])
+        ->where('cat_parent', '1')
+        ->where('cat_parent_id', '0')
+        ->whereIn('id', $category_id)
+        ->orderBy('category_name', 'desc')
+        ->get();
       $user = User::with('gallery')->where('id',$id)->where('subdomain',Setting::subdomain())->first();
-      return view('blog.sp_profile',compact('user'));
+      return view('blog.sp_profile',compact('user','customFields'));
     }
 
      public function trackuser(Request $request){

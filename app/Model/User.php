@@ -76,6 +76,11 @@ public static $itemsPerPage = 25;
     {
         return $this->belongsTo('Acelle\Model\Category');
     }
+
+     public function customans()
+    {
+        return $this->hasMany('Acelle\Model\CustomFieldAnswer');
+    }
     
     public function customer()
     {

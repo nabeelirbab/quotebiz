@@ -313,51 +313,38 @@ h2{
                                                     
                                                 </div>
                                                 @endif
+                                               @if(count(\Acelle\Jobs\HelperJob::getquestions()) > 0)
                                                 <h2 class="mb-4 ml-0">Preferred music genres</h2>
                                                 <div class="row mr-1 mb-5">
-                                                    <div class="col-md-6">
+                                                    @foreach(\Acelle\Jobs\HelperJob::getquestions() as $question)
+                                                    <div class="col-md-6 mb-3">
                                                         <div class="d-flex">
                                                         <div class="mr-5 mt-1" style="width: 25px">
-                                                            <img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+                                                            <img src="{{ asset('images/icons/'.$question->icon) }}" class="mr-4">
                                                         </div>
-                                                            <p class="font-weight-bold">Retro</p>
+                                                        <div>
+                                                           <p class="font-weight-bold mb-1">{{$question->question}}</p>
+                                                           @if($question->choice_selection == 'multiple')
+                                                             @foreach($question->choices as $choice)
+                                                              @if(@Acelle\Jobs\HelperJob::getchoiceanswers($choice->id)->custom_field_choice_id == $choice->id)
+                                                            <span>{{ $choice->choice }}@if (!$loop->last),@endif</span>
+                                                            @endif
+                                                            @endforeach
+                                                            @else
+                                                              @foreach( Acelle\Jobs\HelperJob::getallanswers($question->id) as $answer)
+                                                                    <span>{{ $answer->answer }}@if (!$loop->last),@endif</span>
+                                                             @endforeach
+                                                             @endif
                                                         </div>
-                                                        <div class="d-flex">
-                                                        <div class="mr-5 mt-1" style="width: 25px">
-                                                            <img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+                                                            
                                                         </div>
-                                                            <p class="font-weight-bold">Retro</p>
-                                                        </div>
-                                                        <div class="d-flex">
-                                                        <div class="mr-5 mt-1" style="width: 25px">
-                                                            <img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-                                                        </div>
-                                                            <p class="font-weight-bold">Retro</p>
-                                                        </div>
+                                                    
                                                         
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="d-flex">
-                                                        <div class="mr-5 mt-1" style="width: 25px">
-                                                            <img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-                                                        </div>
-                                                            <p class="font-weight-bold">Retro</p>
-                                                        </div>
-                                                        <div class="d-flex">
-                                                        <div class="mr-5 mt-1" style="width: 25px">
-                                                            <img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-                                                        </div>
-                                                            <p class="font-weight-bold">Retro</p>
-                                                        </div>
-                                                        <div class="d-flex">
-                                                        <div class="mr-5 mt-1" style="width: 25px">
-                                                            <img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-                                                        </div>
-                                                            <p class="font-weight-bold">Retro</p>
-                                                        </div>
-                                                        
-                                                    </div>
+                                                    @endforeach
+                                                
                                                 </div>
+                                                @endif
 
                                     <!-- Modal -->
                                                 <div class="modal fade" id="biographyModal" tabindex="-1" role="dialog" aria-labelledby="biographyModalLabel" aria-hidden="true">
