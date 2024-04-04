@@ -126,6 +126,27 @@ public static $itemsPerPage = 25;
     {
         return $this->hasMany('Acelle\Model\BuyCreadit')->orderBy('id','desc');
     }
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
+    }
+
+    public function profile()
+    {
+        return $this->visits()->where('track_type', 'profile_view');
+    }
+    public function website()
+    {
+        return $this->visits()->where('track_type', 'website');
+    }
+    public function emailview()
+    {
+        return $this->visits()->where('track_type', 'email');
+    }
+    public function mobile()
+    {
+        return $this->visits()->where('track_type', 'phone');
+    }
     public function language()
     {
         return $this->belongsTo('Acelle\Model\Language');

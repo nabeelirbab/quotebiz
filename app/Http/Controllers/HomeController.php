@@ -136,7 +136,7 @@ class HomeController extends Controller
 
     public function serviceproviders_reporting()
     {
-        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+        $users = User::with('profile','website','emailview','mobile')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->paginate(10);

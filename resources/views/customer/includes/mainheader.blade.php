@@ -1,5 +1,6 @@
 <?php
  $sitelargelogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big'));
+ $job_design = Acelle\Jobs\HelperJob::form_design();
  ?>
                 <div class="nk-header nk-header-fixed nk-header-fluid is-light">
                     <div class="container-fluid">
@@ -21,7 +22,7 @@
                                 <ul class="nk-quick-nav">
                                    <li class="nav-item d-none d-lg-block">
                                      @if(Auth::user()->user_relation == 'both' || Auth::user()->user_type == 'service_provider')
-                                        <a href="{{ url('service-provider') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b><em class="icon ni ni-swap-alt-fill" style="font-size: 20px;font-weight: 700;"></em> Switch to Service Provider</b></p></a>
+                                        <a href="{{ url('service-provider') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b><em class="icon ni ni-swap-alt-fill" style="font-size: 20px;font-weight: 700;"></em> Switch to {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</b></p></a>
                                         @else
                                         <a href="{{ url('customer/sp-register') }}" class="nk-quick-nav-icon"><p style="font-size: 16px"><b><em class="icon ni ni-home-fill"  style="font-size: 20px;font-weight: 700;"></em> Register Your Business</b></p></a>
                                         @endif

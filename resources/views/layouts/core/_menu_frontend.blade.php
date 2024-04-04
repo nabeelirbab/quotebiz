@@ -66,8 +66,14 @@
                           <em class="icon ni ni-card-view fs-5 mr-1"></em>
                             <span>Form Builder</span>
                         </a>
-                    </li>
-                            <li class="nav-item dropdown language-switch" rel1="CustomerController" >
+                  </li>
+                <li class="nav-item" rel2="HomeController">
+                        <a href="{{ url('admin/serviceproviders-report') }}" title="Customers" class="leftbar-tooltip nav-link d-flex align-items-center py-3 lvl-1">
+                          <em class="icon ni ni-card-view fs-5 mr-1"></em>
+                            <span>Reporting</span>
+                        </a>
+                  </li>
+                <li class="nav-item dropdown language-switch" rel1="CustomerController" >
                         <a role="button" class="nav-link lvl-1 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                            <em class="icon ni ni-setting fs-5 mr-1"></em>
                             <span>Settings</span>

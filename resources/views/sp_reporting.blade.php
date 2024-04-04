@@ -117,6 +117,10 @@
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Status</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Profile Views</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Website Clicks</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Phone Clicks</span></div>
+            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Email Clicks</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
            
         </div><!-- .nk-tb-item -->
@@ -157,6 +161,26 @@
                 @else
                 <span class="tb-status text-success">Active</span>
                 @endif
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                
+                <span >{{$user->profile->count()}}</span>
+               
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                
+                <span >{{$user->website->count()}}</span>
+               
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                
+                <span >{{$user->mobile->count()}}</span>
+               
+            </div>
+            <div class="nk-tb-col tb-col-lg">
+                
+                <span >{{$user->emailview->count()}}</span>
+               
             </div>
             <div class="nk-tb-col nk-tb-col-tools">
                 <ul class="gx-1">
