@@ -251,51 +251,32 @@ hr {
 			        
 			    </div>
 			    @endif
+			    @if(count($customFields[0]->customs) > 0)
 			    <h2 class="mb-4 ml-0">Preferred music genres</h2>
 				<div class="row mr-1 mb-5 border-bottom pb-5">
+					@foreach($customFields[0]->customs as $custom)
 					<div class="col-md-6">
 						<div class="d-flex">
-						<div class="mr-5 mt-1" style="width: 25px">
-							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						<div class="mr-5 mt-1" style="min-width: 25px; max-width: 26px;">
+							<img src="{{ asset('images/icons/'.$custom->icon) }}" class="mr-4">
 						</div>
-						    <p class="font-weight-bold">Retro</p>
+						<div class="mb-5">
+							 <p class="font-weight-bold mb-0">{{$custom->question}}</p>
+                               @foreach($custom->answers as $answer)
+						       @if($custom->choice_selection == 'multiple')
+                                <span>{{ $answer->choice->choice }}@if (!$loop->last),@endif</span>
+                                @else
+                                 <span>{{ $answer->answer}} </span>
+                                 @endif
+                                @endforeach
 						</div>
-						<div class="d-flex">
-						<div class="mr-5 mt-1" style="width: 25px">
-							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
+						   
 						</div>
-						    <p class="font-weight-bold">Retro</p>
-						</div>
-						<div class="d-flex">
-						<div class="mr-5 mt-1" style="width: 25px">
-							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-						</div>
-						    <p class="font-weight-bold">Retro</p>
-						</div>
-						
 					</div>
-					<div class="col-md-6">
-						<div class="d-flex">
-						<div class="mr-5 mt-1" style="width: 25px">
-							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-						</div>
-						    <p class="font-weight-bold">Retro</p>
-						</div>
-						<div class="d-flex">
-						<div class="mr-5 mt-1" style="width: 25px">
-							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-						</div>
-						    <p class="font-weight-bold">Retro</p>
-						</div>
-						<div class="d-flex">
-						<div class="mr-5 mt-1" style="width: 25px">
-							<img src="{{ asset('frontend-assets/music.png') }}" class="mr-4">
-						</div>
-						    <p class="font-weight-bold">Retro</p>
-						</div>
-						
-					</div>
+					@endforeach
+			
 				</div>
+				@endif
 
 				<h2 class="form-heading ml-0 mb-1">
 				{{ ($job_design) ? $job_design->title_heading : 'What are you looking for?'}}</h2>

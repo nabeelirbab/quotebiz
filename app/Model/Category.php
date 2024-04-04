@@ -24,6 +24,16 @@ class Category extends Model
         return $this->hasMany('Acelle\Model\Question','subcategory_id','id')->where('subcategory_id','!=', null)->orderBy('re_order','asc');
       }
 
+      public function customs()
+      {
+        return $this->hasMany('Acelle\Model\CustomField')->where('subcategory_id','=', null)->orderBy('re_order','asc');
+      }
+
+      public function subcustoms()
+      {
+        return $this->hasMany('Acelle\Model\CustomField','subcategory_id','id')->where('subcategory_id','!=', null)->orderBy('re_order','asc');
+      }
+
       public function subcategory()
       {
         return $this->hasMany('Acelle\Model\SubCategory');

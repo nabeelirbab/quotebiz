@@ -63,6 +63,9 @@ Vue.component('admin-support-component', require('./components/SupportComponent.
 // Question
 Vue.component('question-component', require('./components/QuestionComponent.vue').default);
 
+// Custom Field
+Vue.component('custom-component', require('./components/CustomFieldComponent.vue').default);
+
 // Admin Question
 Vue.component('question-admin-component', require('./components/QuestionAdminComponent.vue').default);
 

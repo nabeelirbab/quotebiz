@@ -744,6 +744,35 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 
 </div>
 </div>
+<!-- <div style="background-color: black; height: 10vh; display: flex;">
+  <div class="row m-auto">
+    <div class="col-md-3">
+      <div class="d-flex ">
+        <em class="icon ni ni-invest mr-3" style="color: white"></em>
+        <h6 style="color: white">Fast, Free Shipping</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="d-flex ">
+        <em class="icon ni ni-invest mr-3" style="color: white"></em>
+        <h6 style="color: white">Fast, Free Shipping</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="d-flex ">
+        <em class="icon ni ni-invest mr-3" style="color: white"></em>
+        <h6 style="color: white">Fast, Free Shipping</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="d-flex ">
+        <em class="icon ni ni-invest mr-3" style="color: white"></em>
+        <h6 style="color: white">Fast, Free Shipping</h6>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 @if($posts || $users)
  @if($job_design && $job_design->profile_status != '1' && $job_design->profile_status != '2')
 <div class="container mt-5 mb-5">

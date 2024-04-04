@@ -1,3 +1,6 @@
+<?php
+$job_design = Acelle\Jobs\HelperJob::form_design(); 
+?>
 @extends('service_provider.layout.app')
 @section('title', 'Profile')
 @section('styling')
