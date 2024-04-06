@@ -141,6 +141,11 @@ h6.mt-3 {
   font-weight: bold;
 }
 
+a:hover {
+    color: #222222;
+    text-decoration: underline;
+}
+
 .col-md-4 p {
   font-size: 12px;
   line-height: 15px;

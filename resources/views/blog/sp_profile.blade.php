@@ -48,6 +48,10 @@ h2{
 a {
 	color: #222222;
 }
+a:hover {
+    color: #222222;
+    text-decoration: underline;
+}
 .box-border{
 	border: 1px solid #7977771f;border-radius: 12px;
 }
@@ -169,7 +173,7 @@ hr {
             </div>
             <p class="text-center" style="cursor: pointer; margin-top: 100px; font-weight: bold" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share_Icon.svg') }}" style="width: 5%;" class="mb-1"> <span style="text-decoration: underline;">Share</span> </p>
 			</div>
-			<div class="col-md-8 ml-md-auto">
+			<div class="col-md-8 ml-md-auto mb-5 pt-4 ">
 				<h2 class="ml-0" style="margin-top: -6px;">About {{$user->first_name}} </h2>
 				<div class=" mb-5 border-bottom">
 				<div class="row mt-5 mb-4 ">

@@ -73,7 +73,7 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
                                     <div class="nk-block-head">
                                         <div class="nk-block-between d-flex justify-content-between">
                                             <div class="nk-block-head-content">
-                                                <h4 class="nk-block-title">Custom Field Questions</h4>
+                                                <h4 class="nk-block-title">Additional Info</h4>
                                                 <div class="nk-block-des">
                                                     
                                                 </div>

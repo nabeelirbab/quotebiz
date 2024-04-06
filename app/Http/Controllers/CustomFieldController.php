@@ -173,6 +173,7 @@ class CustomFieldController extends Controller
             $question->parent = '1';
             $question->subdomain = Setting::subdomain();
             $question->question = $request->question[$key];
+            $question->icon = $request->icon[$key];
             $question->save();
 
         if($question->choice_selection != 'input'  && isset($choices[$key])){

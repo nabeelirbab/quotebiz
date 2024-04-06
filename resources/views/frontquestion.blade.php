@@ -72,6 +72,11 @@
 		  font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
 
 		}
+		input{
+			font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
+
+		}
+
 		  .wizard > .steps ul:after {
 		    content: "";
 		    width: 10.33%;
