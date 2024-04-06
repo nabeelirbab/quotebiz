@@ -93,7 +93,7 @@
                     <li>
                         <a  href="{{url('service-provider/getcustom-field-questions')}}">
                             <em class="icon ni ni-user-fill-c"></em>
-                            <span>Custom Field</span>
+                            <span>Additional Info</span>
                         </a>
                     </li>
                     <li>

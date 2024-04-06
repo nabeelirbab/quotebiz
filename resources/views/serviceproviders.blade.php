@@ -22,6 +22,14 @@
         .edit-mode  {
             display: none !important;
         }
+        .user-info .icon {
+            display: none;
+        }
+
+        /* Show the eye icon when the user-card is hovered */
+        .user-card:hover .user-info .icon {
+            display: inline-block;
+        }
   </style>
 @endsection
 @section('content')
@@ -61,6 +69,7 @@
 
 </div><!-- .nk-block-head-content -->
 <div class="float-right">
+<a href="{{url('admin/custom-field')}}" class="btn btn-info btn-sm" target="_blank">Custom Fields</a>
 <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#setting">Business Dirctory</button>
 <a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-info btn-sm" >Invited {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
 <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit">Invite</button>
@@ -135,7 +144,7 @@
                 <span >{{$key + 1}}</span>
             </div>
             <div class="nk-tb-col">
-                <a href="{{ url('admin/profile_detail/'.$user->id) }}">
+                <a href="{{ url('admin/profile_detail/'.$user->id) }}" target="_blank">
                     <div class="user-card">
                         <div class="user-avatar bg-primary">
                             @if($user->user_img)
@@ -146,6 +155,7 @@
                         </div>
                         <div class="user-info">
                             <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}
+                                <em class="icon ni ni-eye float-right"></em>
                             </span>
                             <span>{{$user->email}}</span>
                         </div>

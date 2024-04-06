@@ -46,7 +46,7 @@
                     <a href="{{ url("admin/custom-field") }}" class="nav-link {{ request()->is('admin/custom-field') ? 'active' : '' }}">
                         <span class="material-icons-outlined">
                             maps_home_work
-                        </span> Custom Field
+                        </span> Custom Fields
                     </a>
                 </li>
                 <li rel0="UserController@socialdesign" class="nav-item">

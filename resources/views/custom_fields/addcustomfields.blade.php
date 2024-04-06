@@ -223,8 +223,10 @@
     });
 
 $(document).on('click','.removeQuestions',function(e){
-         
+    var result = confirm("Want to delete?");
+     if (result) {
         $(e.target).closest('.removeQuestion').last().remove();
+      }
  
 });
 
@@ -371,8 +373,10 @@ function setupRadioButtonsEventListeners(conID2) {
 // });
 
 $(document).on('click','.removeChoice',function(e){
-    
- $(e.target).closest('.removeChoices').remove();
+   var result = confirm("Want to delete?");
+    if (result) { 
+     $(e.target).closest('.removeChoices').remove();
+    }
  
 });
 $(document).on('click','.deleteChoice',function(e){
