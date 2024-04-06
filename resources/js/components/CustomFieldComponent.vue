@@ -14,12 +14,7 @@
                     <option v-for="category in categorieslist" :value="category.id">{{category.category_name}}</option>
                 </select>
                 </div>
-           <!--      <div v-if="subCategoriesHtml" class="form-wrap" style="width: 300px;">
-                <select class="form-select" data-search="off" @change="subcategoriesbyid($event)" data-placeholder="Bulk Action" style="opacity: 1">
-                    <option value="0">Select Sub Category</option>
-                    <option v-for="category in subCategories" :value="category.id">{{category.category_name}}</option>
-                </select>
-                </div> -->
+      
                 <div v-if="noData" class="form-wrap">
                     <p class="text-bold text-warning">{{noDataMsg}}</p>
                 </div>
@@ -267,47 +262,7 @@
                     </div><!-- .card -->
                 </div><!-- .nk-block -->
             </div>
-             
-        </div>
-    </div>
 
-      <div class="modal fade" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" id="howitwork">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"> How it works</h5>
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <em class="icon ni ni-cross"></em>
-                    </a>
-                </div>
-                <div class="modal-body">
-                  <p style="font-weight: bold;">Customize Your Question Lists</p>
-
-                    <p >At QuoteBiz, we understand that every service category and subcategory may have unique requirements. That's why we give you the power to create custom lists of questions tailored to each category or subcategory.</p>
-
-                    <p style="font-weight: bold;">How it works:</p>
-
-                  <ul class="howitwork ml-5 mb-2" style="padding: 0;">
-                        <li>
-                            <strong>Create Custom Questions:</strong> To get started, click the edit pencil icon on the right side of the row you want to edit. This will allow you to add, modify, or delete questions for that specific category or subcategory.
-                        </li>
-                        <li>
-                            <strong>Select Subcategory:</strong> If you want to add questions to a new subcategory, first select that subcategory from the drop-down menu. Then, click the edit pencil icon to customize the questions for that subcategory.
-                        </li>
-                        <li>
-                            <strong>Use Parent Category Questions:</strong> If you don't create custom questions for a specific subcategory, it will automatically use the question list from the parent category. This makes customization easy and efficient.
-                        </li>
-                    </ul>
-
-
-                    <p >With the ability to tailor your questions to suit your needs, you can provide a more personalized and effective quoting experience for your customers. Don't hesitate to make your categories and subcategories truly your own.</p>
-
-                    <p>Need assistance or have questions? Feel free to reach out to our support team for help.</p>
-
-                </div>
-              
-            </div>
-  
 </template>
 
 <script>

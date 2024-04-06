@@ -321,6 +321,7 @@ class CustomFieldController extends Controller
 	        }
 
 	        // Handle checkboxes
+          if($request->has('checkbox')){
 				 foreach ($request->input('checkbox') as $index2 => $checkbox) {
 			    $parts = explode(',', $checkbox); // Extract values from checkbox
 			    $firstValue = $parts[0];
@@ -338,6 +339,7 @@ class CustomFieldController extends Controller
 			        $this->choiceSaveUdateAnswer($key, $parts[1], $values);
 			    }
 			}
+    }
          return  redirect()->back();
     }
 
