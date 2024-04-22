@@ -200,7 +200,7 @@ if (isset($post)) {
             padding: 0px;
         }
         .blog-box-layout5 .item-content .item-title {
-            font-size: 20px;
+            /*font-size: 20px;
             font-weight: 600;
             margin-bottom: 10px;
             line-height: 1.5;
@@ -209,7 +209,7 @@ if (isset($post)) {
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            -webkit-box-orient: vertical;*/
             margin: 0;
         }
         .blog-box-layout5 .item-content .item-title a {

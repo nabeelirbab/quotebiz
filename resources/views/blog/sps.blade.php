@@ -56,7 +56,7 @@ hr {
                             @endif
                         @endforeach
                         </p>
-                        <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->first_name}} {{$user->last_name}}</h5>
+                        <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
                      <div class="mb-3">
                         @if($job_design->business_name == 'yes' && $user->business->business_name)
                         <p class="card-text text-center mt-1 mb-4">
