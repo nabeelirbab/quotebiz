@@ -131,7 +131,7 @@ hr {
                         @endif
                     @endforeach
                     </p>
-                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->first_name}} {{$user->last_name}}</h5>
+                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
                  <div class="mb-4">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
                     <p class="card-text text-center mb-5">
@@ -344,7 +344,7 @@ hr {
 				</div>
 				<div class="col-md-5">
 				<div class="form-group">
-				  <button type="submit" class="btn rounded-2 btn-primary d-block login-button py-2 fw-600 w-100" style="border-radius: 0.55rem;"><span style="font-size: 17px">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}</span></button>
+				  <button type="submit" class="btn btn-success">{{ ($job_design) ? $job_design->button_text : 'Send Me Quotes'}}</button>
 				</div>
 				</div>
 				</div>

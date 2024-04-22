@@ -11,6 +11,7 @@
   $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
   $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country);
   $job_design = Acelle\Jobs\HelperJob::form_design(); 
+  $featurebar = Acelle\Jobs\HelperJob::feature_bar();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +48,7 @@
 <link rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/libs/fontawesome-icons.css') }}">
 <script async rel="preload" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5462023016685790"
      crossorigin="anonymous"></script>
 
@@ -530,6 +532,20 @@ p.form-para::after {
   .link-inline li:last-child {
       border-right: none; /* Remove border from the last item */
   }
+  .function_quote{
+    background-color: {{ ($job_design) ? $job_design->featurebar_back:'#000'}} !important;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+  }
+  .function_quote span{
+    font-size: 35px;
+    margin-right: 15px;
+    color: {{ ($job_design) ? $job_design->featurebar_text_icon:'#fff'}} !important;
+  }
+  .function_quote h6{
+    color: {{ ($job_design) ? $job_design->featurebar_text_icon:'#fff'}} !important;
+  }
 @media (min-width: 768px) {
   .text-md-end {
     text-align: right;
@@ -549,6 +565,16 @@ p.form-para::after {
     cursor: pointer;
     font-size: 24px;
 }
+ .mobile-padding {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.function_quote{
+    background-color: {{ ($job_design) ? $job_design->featurebar_back:'#000'}} !important;
+    height: auto;
+    display: flex;
+    align-items: center;
+  }
 
 @media only screen and (max-width: 768px) {
     .navbar-set {
@@ -749,34 +775,44 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 
 </div>
 </div>
-<!-- <div style="background-color: black; height: 10vh; display: flex;">
-  <div class="row m-auto">
-    <div class="col-md-3">
-      <div class="d-flex ">
-        <em class="icon ni ni-invest mr-3" style="color: white"></em>
-        <h6 style="color: white">Fast, Free Shipping</h6>
+@if($featurebar && $featurebar->status == 'on')
+<div class="function_quote">
+  <div class="row w-100 justify-content-center">
+    @if($featurebar->feature1status == 'on')
+    <div class="col-md-3 d-flex justify-content-center mobile-padding">
+      <div class="d-flex align-items-center">
+        <span >{!! $featurebar->icon1 !!}</span>
+        <h6>{{$featurebar->feature1}}</h6>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="d-flex ">
-        <em class="icon ni ni-invest mr-3" style="color: white"></em>
-        <h6 style="color: white">Fast, Free Shipping</h6>
+    @endif
+    @if($featurebar->feature2status == 'on')
+    <div class="col-md-3 d-flex justify-content-center mobile-padding">
+      <div class="d-flex align-items-center">
+       <span >{!! $featurebar->icon2 !!}</span>
+        <h6>{{$featurebar->feature2}}</h6>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="d-flex ">
-        <em class="icon ni ni-invest mr-3" style="color: white"></em>
-        <h6 style="color: white">Fast, Free Shipping</h6>
+    @endif
+    @if($featurebar->feature3status == 'on')
+    <div class="col-md-3 d-flex justify-content-center mobile-padding">
+      <div class="d-flex align-items-center">
+        <span >{!! $featurebar->icon3 !!}</span>
+        <h6>{{$featurebar->feature3}}</h6>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="d-flex ">
-        <em class="icon ni ni-invest mr-3" style="color: white"></em>
-        <h6 style="color: white">Fast, Free Shipping</h6>
+    @endif
+    @if($featurebar->feature4status == 'on')
+    <div class="col-md-3 d-flex justify-content-center mobile-padding">
+      <div class="d-flex align-items-center">
+        <span >{!! $featurebar->icon4 !!}</span>
+        <h6>{{$featurebar->feature4}}</h6>
       </div>
     </div>
+    @endif
   </div>
-</div> -->
+</div>
+@endif
 
 @if($posts || $users)
  @if($job_design && $job_design->profile_status != '1' && $job_design->profile_status != '2')
@@ -815,7 +851,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
                         @endif
                     @endforeach
                     </p>
-                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->first_name}} {{$user->last_name}}</h5>
+                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
                  <div class="mb-3">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
                     <p class="card-text text-center mt-1 mb-4">

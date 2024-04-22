@@ -33,6 +33,7 @@ use Acelle\Mail\AdminContactus;
 use Acelle\Exports\UsersExport;
 use Acelle\Imports\UsersImport;
 use Acelle\Imports\SPImport;
+use Acelle\Model\FeatureBar;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Redirect;
@@ -904,6 +905,74 @@ public function searchUser(Request $request){
             // Handle the case when the file doesn't exist
             return response('XML file not found', 404);
         }
+    }
+
+    public function featurebar(Request $request){
+        $featurebar = FeatureBar::where('subdomain',Setting::subdomain())->first();
+        if(!$featurebar){
+          $data = [
+            'user_id' => Auth::user()->id,
+            'subdomain' => Setting::subdomain(),
+            'feature1' => 'Get 3 Quotes Fast!',
+            'feature2' => 'Speak With Qualified Professionals',
+            'feature3' => 'Make An Informed Decision',
+            'feature4' => 'Save Time & Money',
+            'icon1' => '<i class="fas fa-plane" aria-hidden="true"></i>',
+            'icon2' => '<i class="fas fa-dollar-sign" aria-hidden="true"></i>',
+            'icon3' => '<i class="fas fa-wrench" aria-hidden="true"></i>',
+            'icon4' => '<i class="fas fa-headphones" aria-hidden="true"></i>',
+            'feature1status' => '1',
+            'feature2status' => '1',
+            'feature3status' => '1',
+            'feature4status' => '1',
+            'status' => '1',
+        ];
+
+        $featurebar = new FeatureBar();
+        $featurebar->saveFeatureBar($data);
+
+        }
+          if($request->isMethod('post')){
+            // dd($request->all());
+                $featurebar = FeatureBar::find($request->id);
+                  $data = [
+                    'user_id' => Auth::user()->id,
+                    'subdomain' => Setting::subdomain(),
+                    'feature1' => $request->feature1,
+                    'feature2' => $request->feature2,
+                    'feature3' => $request->feature3,
+                    'feature4' => $request->feature4,
+                    'icon1' => '<i class="fas fa-plane" aria-hidden="true"></i>',
+                    'icon2' => '<i class="fas fa-dollar-sign" aria-hidden="true"></i>',
+                    'icon3' => '<i class="fas fa-wrench" aria-hidden="true"></i>',
+                    'icon4' => '<i class="fas fa-headphones" aria-hidden="true"></i>',
+                    'feature1status' => $request->feature1status ?? 'off',
+                    'feature2status' => $request->feature2status ?? 'off',
+                    'feature3status' => $request->feature3status ?? 'off',
+                    'feature4status' => $request->feature4status ?? 'off',
+                    'status' => $request->status,
+                ];
+
+              $featurebar->saveFeatureBar($data);
+
+              $sitesetting = JobDesign::where('subdomain', Setting::subdomain())->first();
+       
+                if ($sitesetting) {
+                    $sitesetting = $sitesetting;
+                }
+                else{
+                 $sitesetting = new JobDesign;
+                }
+
+                $sitesetting->subdomain = Setting::subdomain();
+                $sitesetting->featurebar_back = $request->featurebar_back;
+                $sitesetting->featurebar_text_icon = $request->featurebar_text_icon;
+                $sitesetting->save();
+            
+        
+
+            }
+        return view('design/featurebar',compact('featurebar'));
     }
 
   public function contactus(Request $request){

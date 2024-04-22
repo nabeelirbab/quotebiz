@@ -104,6 +104,7 @@ class QuoteController extends Controller
     {
         
        $user = User::find(Auth::user()->id);
+       // $user->title = $request->title;
        $user->first_name = $request->first_name;
        $user->last_name = $request->last_name;
        $user->mobileno = $request->mobileno;

@@ -121,7 +121,7 @@ class PostController extends Controller
     public function show($account, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->get();
+        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->limit(6)->get();
         return view('blogShow', compact('post','relatedPosts'));
     }
 
