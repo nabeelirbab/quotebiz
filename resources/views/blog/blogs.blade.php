@@ -30,7 +30,7 @@
                               </div>
                               <div class="post_excerpt">
                                 <p>
-                                  {!! clean(Str::limit($post->description, 140)) !!}
+                                  {!! clean(Str::limit($post->description, 200)) !!}
                                 </p>
                               </div>
                               <a href="{{ url('blog/'.$post->slug) }}" class="post_read-more float-right">Read More >></a>

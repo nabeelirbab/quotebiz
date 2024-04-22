@@ -39,10 +39,10 @@
                  <template v-for="(category, keyIndex) in categoriesData">
                   <div :id="'accordion'+category.id" class="accordion">
                   <div class="accordion-item">
-                      <div class="accordion-head" data-toggle="collapse" :data-target="'#accordion-item-'+category.id">
+                      <div class="accordion-head" >
                           <h6 class="title">{{category.category_name}}</h6>
                          <a :href="hostname+'/admin/custom-field/add?category_id='+category.id"> <em class="icon ni ni-edit-alt edit-icon"></em></a>
-                          <span class="accordion-icon"></span>
+                          <span data-toggle="collapse" :data-target="'#accordion-item-'+category.id" class="accordion-icon"></span>
                       </div>
                       <div class="accordion-body collapse" :id="'accordion-item-'+category.id" :data-parent="'#accordion'+category.id">
                           <div class="accordion-inner">

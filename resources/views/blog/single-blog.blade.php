@@ -20,7 +20,7 @@
         <!-- Single Blog Banner Start Here -->
         <section class="single-blog-wrap-layout1">
             <div class="single-blog-banner-layout1">
-                <div class="banner-img mt-4">
+                <div class="banner-img mt-md-4">
                     <img src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="blog">
                 </div>
                 <div class="banner-content">

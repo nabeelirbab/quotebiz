@@ -16,7 +16,34 @@
           overflow: hidden;
           position: relative;
           visibility: inherit !important;
-          height: 500px !important;
+          height: 1200px !important;
+      }
+      .form-control, div.dataTables_wrapper div.dataTables_filter input, .dual-listbox .dual-listbox__search {
+        display: block;
+        width: 100%;
+        height: calc(2.9rem + 2px) !important;
+        padding: 0.4375rem 1rem;
+        font-size: 1.6rem;
+        font-weight: bold;
+        line-height: 1.25rem;
+        color: #3c4d62;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c1c1c1;
+        border-radius: 4px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+      #tinymce p span{
+      font-size: 12pt !important;
+          /* font-family: Arial, sans-serif; */
+          color: #001e00;
+          background-color: transparent;
+          font-weight: 400;
+          font-style: normal;
+          font-variant: normal;
+          text-decoration: none;
+          vertical-align: baseline;
+          white-space: pre-wrap;
       }
       .editcurrency{
         padding: 0;
@@ -94,6 +121,13 @@ input:checked + .slider:before {
   transform: translateX(55px);
 }
 
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: #3c4d62;
+}
 /*------ ADDED CSS ---------*/
 .on
 {
@@ -162,12 +196,10 @@ input:checked + .slider .off
 <div class="row g-gs justify-center">
  <form action="{{ url('/admin/posts/update/'.$post->id) }}" target="" method="post" enctype="multipart/form-data" class="d-flex" id="postForm">
 
-<div class="col-xxl-8 col-sm-8">
+<div class="col-xxl-8 col-sm-8 px-0">
 <div class="card">
 <div class="card-inner-group p-0" >
-<div class="card-inner text-center" style="padding: 1.5em;border:0px">
 
-</div><!-- .card-inner -->
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
      {{ csrf_field() }}
@@ -179,7 +211,7 @@ input:checked + .slider .off
    </div>
    <div class="form-row p-2">
      <div class="form-group col-md-12">
-      <label for="inputState">Blog Text</label>
+      <label for="inputState">Content Area</label>
         <textarea class="form-control tinymce-basic" name="description" required>{{ $post->description }}</textarea>
      </div>
    </div>
@@ -194,25 +226,23 @@ input:checked + .slider .off
 <div class="col-xxl-4 col-sm-12">
 <div class="card">
 <div class="card-inner-group p-0" >
-<div class="card-inner text-center" style="padding: 1.5em;border:0px">
 
-</div><!-- .card-inner -->
 <div class="card-inner  p-0 ">
 <div class="nk-tb-list nk-tb-tnx">
 
    <div class="form-row p-2">
-     <div class="form-row p-2">
-     <div class="form-group col-md-12 text-center">
+     <div class="form-row p-2 mb-3 w-100">
+     <div class="form-group col-md-12 text-end">
      <input type="hidden" name="action" id="action" value="">
-      <input type="submit" value="Update" class="btn btn-success" onclick="setFormAction('update')">
       <input type="submit" value="Preview" class="btn btn-primary" onclick="setFormAction('preview')">
+      <input type="submit" value="Update" class="btn btn-success" onclick="setFormAction('update')">
      </div>
    </div>
-    <div class="form-group col-md-12">
-      <label for="inputState">Add Cover Image</label>
-      <input type="file" id="coverImgInput" name="cover_img" accept="image/*" class="form-control">
+    <div class="form-group col-md-12 mb-4">
+      <label for="coverImgInput" class="custom-file-upload font-weight-bold">Please select an image file</label>
+      <input type="file" id="coverImgInput" name="cover_img" accept="image/*" class="form-control d-none">
     </div>
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 text-center mb-4">
       <img id="coverImgPreview" src="{{ asset('frontend-assets/images/posts/' . $post->cover_img) }}" alt="Cover Image Preview" style="max-width: 100%; max-height: 200px;">
     </div>
    </div>

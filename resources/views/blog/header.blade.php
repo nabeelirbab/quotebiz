@@ -67,9 +67,9 @@ if (isset($post)) {
         .flatpickr-calendar.inline{
             box-shadow: none !important;
         }
-      h1, h2, h3, h4, h5, h6 {
+     /* h1, h2, h3, h4, h5, h6 {
           margin: 20px 5px 0;
-      }
+      }*/
       h1, h2, h3, h4, h5, h6, p, span {
             font-family: {{ ($job_design) ? $job_design->font_family:'DM Sans'}}, sans-serif !important;
         }
@@ -207,13 +207,16 @@ if (isset($post)) {
             overflow: hidden;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
-            display: -webkit-box;
+            /*display: -webkit-box;*/
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             margin: 0;
         }
         .blog-box-layout5 .item-content .item-title a {
           color: #000000;
+        }
+        .blog-details p{
+          font-size: 17px;
         }
         .footer {
           background-color: #333;
@@ -231,7 +234,7 @@ if (isset($post)) {
           margin-bottom: 0;
           width: 100%;
           flex-grow: 1;
-          height: 240px;
+          height: 270px;
         }
         .post_excerpt{
           /*margin-bottom: 25px;*/
@@ -241,7 +244,7 @@ if (isset($post)) {
         .post_excerpt p {
           margin: 0;
           line-height: 1.5em;
-          font-size: 14px;
+          font-size: 16px;
           color: #777;
         }
        .profile_read-more {

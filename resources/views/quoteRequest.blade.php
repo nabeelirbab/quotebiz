@@ -445,7 +445,7 @@ p.form-para::after {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    display: -webkit-box;
+    /*display: -webkit-box;*/
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     margin: 0;
@@ -469,7 +469,7 @@ p.form-para::after {
   margin-bottom: 0;
   width: 100%;
   flex-grow: 1;
-  height: 240px;
+  height: 270px;
 }
 .post_excerpt{
   /*margin-bottom: 25px;*/
@@ -479,7 +479,7 @@ p.form-para::after {
 .post_excerpt p {
   margin: 0;
   line-height: 1.5em;
-  font-size: 14px;
+  font-size: 16px;
   color: #777;
 }
 
@@ -785,7 +785,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
  @if($job_design && $job_design->profile_status != '1' && $job_design->profile_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="d-flex col-12 justify-content-between p-4">
+    <div class="d-flex col-12 justify-content-between px-4">
       <h3>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
       <a href="{{ url('service-providers') }}" class="link-color">View All</a>
     </div>
@@ -794,7 +794,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
     <div class="owl-carousel" id="owl-carousel">
     @foreach($users as $user)
     <div class="item">
-    <div class="col-sm-12 mb-4 mt-4 p-4">
+    <div class="col-sm-12 mb-4 mt-0 p-4">
     <div class="card text-center" style="min-height: 355px;border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.125); box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
           <div class="mr-auto ml-auto mt-4">
             <a href="{{ url('sp-profile/'.$user->id) }}">
@@ -867,7 +867,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 @if($job_design && $job_design->blog_status != '1' && $job_design->blog_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="d-flex col-12 justify-content-between p-4">
+    <div class="d-flex col-12 justify-content-between px-4">
       <h3>Featured Blogs</h3>
       <a href="{{ url('blogs') }}" class="link-color">View All</a>
     </div>
@@ -876,7 +876,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
     <div class="owl-carousel" id="owl-carousel2">
     @foreach($posts as $post)
     <div class="item">
-    <div class="col-sm-12 mb-4 mt-4 p-4">
+    <div class="col-sm-12 mb-4 mt-0 p-4">
         <div class="blog-box-layout5">
             <div class="item-img">
                 <a href="{{ url('/blog/'.$post->slug) }}">
