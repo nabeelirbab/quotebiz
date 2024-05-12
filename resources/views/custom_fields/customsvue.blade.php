@@ -19,6 +19,21 @@
             border: none;
             background: #fff;
         }
+        .edit-icon{
+          position: absolute;
+            right: 4rem;
+            top: 50%;
+            font-size: 1rem;
+            color: #364a63;
+            transform: translateY(-50%);
+            transition: rotate 0.4s;
+        }
+        .howitwork li{
+            list-style: disc;
+        }
+        .howitwork li strong{
+            font-weight: bold !important; 
+        }
     </style>
 @endsection
 

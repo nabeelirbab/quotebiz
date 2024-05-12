@@ -165,7 +165,7 @@ class QuoteController extends Controller
     {
 
        $user = User::find(Auth::user()->id);
-       $user->update($request->only(['first_name', 'last_name', 'mobileno', 'city', 'zipcode', 'address', 'biography']));
+       $user->update($request->only(['title','first_name', 'last_name', 'mobileno', 'city', 'zipcode', 'address', 'biography']));
         return redirect()->back()->with('success', 'Profile Update Successfully');
     }
 

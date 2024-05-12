@@ -1,6 +1,6 @@
 <template>
 <!-- content @s -->
-
+<div>
                 <div class="nk-block">
                 <div class="card card-bordered card-stretch">
                 <div class="card-inner-group">
@@ -39,8 +39,25 @@
                  <template v-for="(category, keyIndex) in categoriesData">
                   <div :id="'accordion'+category.id" class="accordion">
                   <div class="accordion-item">
-                      <div class="accordion-head" >
+                      <div class="accordion-head d-flex justify-content-between" >
+                      	<div style="width: 33%;">
                           <h6 class="title">{{category.category_name}}</h6>
+                         </div>
+                          <div>
+                             <div v-if="editIndex === keyIndex">
+						      <!-- Check if customtitles exists; if not, bind to a new data property -->
+						      <input type="text" name="editableContent" v-model="currentTitle">
+						      <em class="icon ni ni-check-thick" @click="saveChanges(keyIndex)"></em>
+						      <em class="icon ni ni-cross" @click="cancelEdit"></em>
+						    </div>
+						    <div v-else>
+						      <span v-if="category.customtitles">
+						        {{ category.customtitles.title }}
+						      </span>
+						      <span v-else>Preferred music genres</span>
+						      <em class="icon ni ni-edit-alt edit-icon" @click="editContent(keyIndex)" style="display: contents;"></em>
+						    </div>
+                          </div>
                          <a :href="hostname+'/admin/custom-field/add?category_id='+category.id"> <em class="icon ni ni-edit-alt edit-icon"></em></a>
                           <span data-toggle="collapse" :data-target="'#accordion-item-'+category.id" class="accordion-icon"></span>
                       </div>
@@ -262,7 +279,7 @@
                     </div><!-- .card -->
                 </div><!-- .nk-block -->
             </div>
-
+</div>
 </template>
 
 <script>
@@ -285,15 +302,18 @@ props: [
        ],
 data() {
     return {
-      categorieslist: [],
-      categoriesData: [],
-      subCategories: [],
-      subCategoriesHtml : false,
-      hostname: '',
-      noData: false,
-      noDataMsg:'',
-      eventTitle: 'What is your event date?',
-      eventField: false,
+	      categorieslist: [],
+	      categoriesData: [],
+	      subCategories: [],
+	      subCategoriesHtml : false,
+	      hostname: '',
+	      noData: false,
+	      noDataMsg:'',
+	      eventTitle: 'What is your event date?',
+	      eventField: false,
+	      editIndex: null,
+	      currentTitle: '',
+	      editableContent: 'Hello there'
         };
 },
 created() {
@@ -304,6 +324,38 @@ created() {
   },
 
 methods: {
+		editContent(index) {
+	      this.editIndex = index;
+	      // Determine whether to use an existing title or set up for a new entry
+	      if (this.categoriesData[index].customtitles) {
+	        this.currentTitle = this.categoriesData[index].customtitles.title;
+	      } else {
+	        this.currentTitle = ''; // Set up for new title entry
+	      }
+	    },
+	    saveChanges(index) {
+	    	let id = '';
+	      this.editIndex = null;  // Exit edit mode
+	      if (this.categoriesData[index].customtitles) {
+	        id = this.categoriesData[index].customtitles.id;
+	      }
+	       axios.post('admin/custom-field/custom-text-update', {
+                    custom_text: this.currentTitle,
+                    id: id,
+                    category_id: this.categoriesData[index].id
+                }).then((response) => {
+                    console.log(response.data);
+                    this.categoriesData[index].customtitles = response.data;
+                }).catch((error) => {
+                    console.log(error);
+                })
+	      // Save changes, e.g., to a server
+	    },
+	    cancelEdit() {
+	      this.editIndex = null;  // Exit edit mode
+	      this.currentTitle = '';
+	      // Optionally restore original content
+	    },
         showInput(){
             this.eventField = true;
         },
@@ -391,20 +443,4 @@ mounted() {
     }
 };
 </script>
-<style type="text/css">
-.edit-icon{
-  position: absolute;
-    right: 4rem;
-    top: 50%;
-    font-size: 1rem;
-    color: #364a63;
-    transform: translateY(-50%);
-    transition: rotate 0.4s;
-}
-.howitwork li{
-    list-style: disc;
-}
-.howitwork li strong{
-    font-weight: bold !important; 
-}
-</style>
+

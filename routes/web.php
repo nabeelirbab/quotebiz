@@ -274,6 +274,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::match(['get', 'post'],'/dateformat', 'UserController@dateformet');
     Route::match(['get', 'post'],'/page-design', 'UserController@formdesign');
     Route::match(['get', 'post'],'/social', 'UserController@socialdesign');
+    Route::match(['get', 'post'],'/feature-bar', 'UserController@featurebar');
     Route::match(['get', 'post'],'/terms', 'UserController@termsdesign');
     Route::match(['get', 'post'],'/seo', 'UserController@seo');
     Route::match(['get', 'post'],'/logo-setting', 'UserController@sitesetting');
@@ -343,6 +344,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::get('/categories/{id}', 'CustomFieldController@categoriesbyid');
     Route::get('/subcategories/{id}', 'CustomFieldController@subcategoriesbyid');
     Route::post('updateOrder', 'CustomFieldController@updateOrder');
+    Route::post('custom-text-update', 'CustomFieldController@changeCustomText');
 
  });
 

@@ -38,4 +38,8 @@ class Category extends Model
       {
         return $this->hasMany('Acelle\Model\SubCategory');
       }
+       public function customtitles()
+    {
+        return $this->hasOne('Acelle\Model\CustomFieldTitle');
+    }
 }

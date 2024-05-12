@@ -41,7 +41,7 @@ class StoreImageNames extends Command
      */
     public function handle()
     {
-        $folderPath = public_path('images/icons'); // Change this to the path of your images folder
+        $folderPath = public_path('images/flags'); // Change this to the path of your images folder
         $imageNames = File::files($folderPath);
         foreach ($imageNames as $imageFile) {
            $imageName = pathinfo($imageFile, PATHINFO_FILENAME);

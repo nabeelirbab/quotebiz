@@ -2,6 +2,7 @@
        $customer =  Request::user()->customer;
        $subscription = $customer->subscription;
     ?>
+ 
 <div class="row">
     <div class="col-md-12">
         <div class="tabbable pb-2">
@@ -49,6 +50,13 @@
                         </span> Custom Fields
                     </a>
                 </li>
+                <li rel0="UserController@socialdesign" class="nav-item">
+                    <a href="{{ url("admin/feature-bar") }}" class="nav-link {{ request()->is('admin/feature-bar') ? 'active' : '' }}">
+                        <span class="material-icons-outlined">
+                            share
+                        </span> Feature Bar
+                    </a>
+                </li> 
                 <li rel0="UserController@socialdesign" class="nav-item">
                     <a href="{{ url("admin/social") }}" class="nav-link {{ request()->is('admin/social') ? 'active' : '' }}">
                         <span class="material-icons-outlined">

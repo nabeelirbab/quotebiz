@@ -40,11 +40,26 @@
         selector: _tinymce_basic,
         content_css: true,
         skin: false,
+        oninit : "setPlainText",
         branding: false,
+        content_style: 'body { font-size: 15px; font-family: Arial, sans-serif; }',
         plugins: 'paste',
+         menubar: 'file edit view insert format tools table help',
+          toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | removeformat',
+          menu: {
+            file: { title: 'File', items: 'newdocument restoredraft | preview | print ' },
+            edit: { title: 'Edit', items: 'undo redo | cut copy paste | selectall | searchreplace' },
+            view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
+            insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },
+            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat' },
+            tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
+            table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
+            help: { title: 'Help', items: 'help' }
+          },
         paste_as_text: true,
         setup: function (editor) {
             editor.on('paste_preprocess', function (e) {
+               e.pasteAsPlainText = true;
                 var clipboardData = e.clipboardData || e.originalEvent.clipboardData;
                 var pastedData = clipboardData.getData('text/plain');
                 e.content = pastedData;
@@ -52,6 +67,24 @@
         }
     });
 }
+
+ function setPlainText() {
+        var ed = tinyMCE.get('elm1');
+alert('ggg');
+        ed.pasteAsPlainText = true;  
+
+        //adding handlers crossbrowser
+        if (tinymce.isOpera || /Firefox\/2/.test(navigator.userAgent)) {
+            ed.onKeyDown.add(function (ed, e) {
+                if (((tinymce.isMac ? e.metaKey : e.ctrlKey) && e.keyCode == 86) || (e.shiftKey && e.keyCode == 45))
+                    ed.pasteAsPlainText = true;
+            });
+        } else {            
+            ed.onPaste.addToTop(function (ed, e) {
+                ed.pasteAsPlainText = true;
+            });
+        }
+    }
 
 
     var _tinymce_menubar = '.tinymce-menubar';

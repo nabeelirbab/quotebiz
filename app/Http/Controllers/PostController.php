@@ -55,7 +55,7 @@ class PostController extends Controller
         ]);
 
        $category_id = json_decode(User::where('id',$id)->first()->category_id);
-       $customFields = Category::with(['customs' => function ($query) use ($id) {
+       $customFields = Category::with(['customtitles','customs' => function ($query) use ($id) {
             $query->whereHas('answers', function ($query) use ($id) {
                 $query->where('user_id', $id);
             })->with(['answers' => function ($query) use ($id) {
@@ -121,7 +121,7 @@ class PostController extends Controller
     public function show($account, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->get();
+        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->limit(6)->get();
         return view('blogShow', compact('post','relatedPosts'));
     }
 

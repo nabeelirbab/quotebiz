@@ -7,6 +7,7 @@ use Acelle\Model\CustomField;
 use Acelle\Model\CustomFieldChoice;
 use Acelle\Model\Category;
 use Acelle\Model\CustomFieldAnswer;
+use Acelle\Model\CustomFieldTitle;
 use Acelle\Model\Setting;
 use Auth;
 
@@ -21,7 +22,7 @@ class CustomFieldController extends Controller
        } 
 
    public function vuedata(){
-    $categories = Category::with('customs','subcustoms','customs.choices')->where('subdomain',Setting::subdomain())->where('cat_parent','1')->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
+    $categories = Category::with('customs','subcustoms','customs.choices','customtitles')->where('subdomain',Setting::subdomain())->where('cat_parent','1')->where('cat_parent_id',0)->orderBy('category_name','desc')->get();
     $categories = json_decode($categories);
     // dd($categories);
     return $categories;
@@ -385,6 +386,25 @@ class CustomFieldController extends Controller
         	}
            
         // }
+    }
+
+    public function changeCustomText(Request $request){
+
+      if($request->id){
+       $customText = CustomFieldTitle::find($request->id);
+       $customText->title = $request->custom_text;
+       $customText->save();
+       return $customText;
+      }
+      else{
+       $customText = new CustomFieldTitle();
+       $customText->title = $request->custom_text;
+       $customText->category_id = $request->category_id;
+       $customText->subdomain = Setting::subdomain();
+       $customText->save();
+       return $customText;
+      }
+
     }
 
 

@@ -21,6 +21,7 @@ use Acelle\Model\City;
 use Acelle\Model\Icon;
 use Acelle\Model\CustomFieldAnswer;
 use Acelle\Model\CustomField;
+use Acelle\Model\FeatureBar;
 use Acelle\Library\ExtendedSwiftMessage;
 use Illuminate\Support\Facades\Auth;
 
@@ -270,6 +271,10 @@ class HelperJob extends Base
           }else{
             return [];
           }
+    }
+
+    public static function feature_bar(){
+       return  FeatureBar::where('subdomain',Setting::subdomain())->first();
     }
 
     

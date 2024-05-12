@@ -2,85 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://afterparties.quotebiz.io/</loc>
-        <lastmod>2024-04-22T00:00:28+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:22+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://afterparties.quotebiz.io/users/login</loc>
-        <lastmod>2024-04-22T00:00:30+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://afterparties.quotebiz.io/service-providers</loc>
-        <lastmod>2024-04-22T00:00:30+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://afterparties.quotebiz.io/blogs</loc>
-        <lastmod>2024-04-22T00:00:30+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://afterparties.quotebiz.io/users/register</loc>
-        <lastmod>2024-04-22T00:00:30+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/sp-profile/7476</loc>
-        <lastmod>2024-04-22T00:00:30+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/blog/creating-the-perfect-afterparty-playlist</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/sitemap</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/forget-password</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/blog/hiring-a-dj-for-your-afterparty-what-you-need-to-know</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/blog/the-ultimate-guide-to-planning-a-memorable-afterparty</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://afterparties.quotebiz.io/sp-profile/7477</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://afterparties.quotebiz.io</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/forget-password</loc>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/sitemap</loc>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/blog/creating-the-perfect-afterparty-playlist</loc>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/blog/the-ultimate-guide-to-planning-a-memorable-afterparty</loc>
+        <lastmod>2024-05-12T00:00:23+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/sp-profile/7477</loc>
+        <lastmod>2024-05-12T00:00:24+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/blog/hiring-a-dj-for-your-afterparty-what-you-need-to-know</loc>
+        <lastmod>2024-05-12T00:00:24+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://afterparties.quotebiz.io/sp-profile/7476</loc>
+        <lastmod>2024-05-12T00:00:24+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://afterparties.quotebiz.io/login</loc>
-        <lastmod>2024-04-22T00:00:31+00:00</lastmod>
+        <lastmod>2024-05-12T00:00:24+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
