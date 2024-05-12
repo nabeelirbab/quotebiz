@@ -820,7 +820,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
       <h3>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
-      <a href="{{ url('service-providers') }}" class="link-color">View All</a>
+      <a href="{{ url('service-providers') }}" class="link-color font-weight-bold">View All</a>
     </div>
   </div>
   <div class="row">
@@ -828,7 +828,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
     @foreach($users as $user)
     <div class="item">
     <div class="col-sm-12 mb-4 mt-4 p-4">
-    <div class="card text-center" style="min-height: 355px;border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.125); box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
+    <div class="card text-center" style="min-height: 406px;border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.125); box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
           <div class="mr-auto ml-auto mt-4">
             <a href="{{ url('sp-profile/'.$user->id) }}">
             @if($user->user_img)
@@ -878,7 +878,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 
                     @if($job_design->business_website == 'yes' && $user->business->business_website)
                         <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
-                            <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}>{{ $user->business->business_website }}</a></span>
+                            <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}>Visit Website</a></span>
                         </p>
                     @endif
 
@@ -902,7 +902,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
   <div class="row">
     <div class="d-flex col-12 justify-content-between pt-5 pb-2">
       <h3>Featured Blogs</h3>
-      <a href="{{ url('blogs') }}" class="link-color">View All</a>
+      <a href="{{ url('blogs') }}" class="link-color font-weight-bold">View All</a>
     </div>
   </div>
   <div class="row" style="margin-bottom: 100px">

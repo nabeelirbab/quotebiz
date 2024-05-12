@@ -14,6 +14,9 @@
     .data{
         text-align: center;
     }
+    h6.title {
+        font-size: 1.6rem;
+    }
 </style>
 @endsection
 
@@ -193,6 +196,7 @@ $currencySymbols = [
 <!-- content @s -->
 <div class="nk-content ">
 <div class="container-fluid">
+<a href="{{ url('/') }}" class="btn btn-success" style="position: absolute;top: 10px;right: 15px"><em class="icon ni ni-eye-alt"></em> &nbsp; &nbsp;Visit Website</a>
 <div class="nk-content-inner">
 <div class="nk-content-body">
 <div class="nk-block-head nk-block-head-sm">
@@ -345,10 +349,10 @@ $currencySymbols = [
     </div>
     <div class="nk-tb-list mt-n2">
         <div class="nk-tb-item nk-tb-head">
-            <div class="nk-tb-col"><span>Quote No.</span></div>
+            <div class="nk-tb-col"><span>Quote #</span></div>
+            <div class="nk-tb-col tb-col-md"><span>Quoted On</span></div>
             <div class="nk-tb-col tb-col-sm"><span>Customer</span></div>
             <div class="nk-tb-col tb-col-sm"><span>Category</span></div>
-            <div class="nk-tb-col tb-col-md"><span>Created At</span></div>
             <div class="nk-tb-col"><span>Quotations</span></div>
             <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
         </div>
@@ -357,7 +361,11 @@ $currencySymbols = [
             <div class="nk-tb-col">
                 <span class="tb-lead"><a href="#">#{{$quote->id}}</a></span>
             </div>
+               <div class="nk-tb-col tb-col-md">
+                <span class="tb-sub">{{\Carbon\Carbon::parse($quote->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
+            </div>
             <div class="nk-tb-col tb-col-sm">
+                <a href="{{ url('sp-profile/'.$quote->user->id) }}" target="_blank">
                 <div class="user-card">
                     <div class="user-avatar sm bg-purple-dim">
                         <span>{{mb_substr($quote->user->first_name, 0, 1)}}{{mb_substr($quote->user->last_name, 0, 1)}}</span>
@@ -366,14 +374,13 @@ $currencySymbols = [
                         <span class="tb-lead">{{$quote->user->first_name}} {{$quote->user->last_name}}</span>
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="nk-tb-col tb-col-md">
                 <span>{{$quote->category->category_name}}</span>
             </div>
-            <div class="nk-tb-col tb-col-md">
-                <span class="tb-sub">{{\Carbon\Carbon::parse($quote->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
-            </div>
+         
             <div class="nk-tb-col">
                 <span class="tb-sub tb-amount">{{count($quote->quotations)}}</span>
             </div>
@@ -530,7 +537,40 @@ $currencySymbols = [
     </div>
 </div><!-- .card -->
 </div><!-- .col -->
-
+<div class="col-xxl-9">
+<div class="card card-full">
+    <div class="nk-ecwg nk-ecwg8 h-100">
+        <div class="card-inner">
+            <div class=" mb-3">
+                <div class="card-title">
+                    <h6 class="title">User Visits Statistics</h6>
+                </div>
+                <div class="card-tools">
+                    <div class="dropdown">
+                      
+                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="top: -35px;display: block;">
+                           <select id="timePeriod" class="form-select" onchange="updateChart()" style="opacity: 1 !important">
+                                <option value="7">Last 7 Days</option>
+                                <option value="30">Last 1 Month</option>
+                                <option value="180">Last 6 Months</option>
+                                <option value="365">Last 1 Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="nk-ecwg8-ck">
+                 <canvas class="sales-bar-chart" id="visitChart"></canvas>
+            </div>
+          <!--   <div class="chart-label-group pl-5">
+                <div class="chart-label" id="start">01 Jul, 2020</div>
+                <div class="chart-label" id="end">30 Jul, 2020</div>
+            </div> -->
+        </div><!-- .card-inner -->
+    </div>
+</div><!-- .card -->
+</div><!-- .col -->
 </div><!-- .row -->
 <div class="row d-flex justify-content-end mt-4">
 <div class="col-xxl-6 col-sm-6">
@@ -541,7 +581,7 @@ $currencySymbols = [
               
                 <div class="info">
                     <a href="https://calendly.com/eventmasterpro/quotebiz-setup-call" target="_blank">
-                    <h4>Fast-Track Your QuoteBiz Setup</h4>
+                    <h4>Fast-Track Your QuoteBiz Setupx</h4>
                     <span style="color: #364a63">
                         Need help with setup?
 Jumpstart your QuoteBiz experience! Let our personalized web consultants expertly set up and customize your account. Enjoy a hassle-free start with 3 featured blogs included. Contact us today to elevate your QuoteBiz journey!
@@ -577,7 +617,51 @@ Jumpstart your QuoteBiz experience! Let our personalized web consultants expertl
 <script src="{{ asset('frontend-assets/assets/js/bundle.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/gd-default.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/charts/chart-ecommerce.js?ver=2.9.1') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script type="text/javascript">
+    var ctx = document.getElementById('visitChart').getContext('2d');
+    var visitChart;
 
+    function fetchData(days) {
+        fetch(`/admin/visits/data?days=${days}`)
+            .then(response => response.json())
+            .then(data => {
+                if (visitChart) {
+                    visitChart.destroy();
+                }
+                visitChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'User Visits '+data.totalVisitors,
+                            data: data.counts,
+                            borderWidth: 1,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)'
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    }
+
+    function updateChart() {
+        var days = document.getElementById('timePeriod').value;
+        fetchData(days);
+    }
+
+    // Initial chart load
+    window.onload = function() {
+        updateChart();
+    };
+</script>
 @endsection
 
