@@ -981,6 +981,13 @@ public function searchUser(Request $request){
     Mail::to($adminemail)->send(new AdminContactus($request->all()));
   }  
 
+  public function updateusertitle(Request $request){
+    $user = User::find($request->id);
+    $user->title = $request->title;
+    $user->save();
+    return $user;
+  }
+
   public function logout(){
         Auth::logout();
         return redirect('users/login');

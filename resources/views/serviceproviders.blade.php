@@ -43,6 +43,29 @@
 <div class="nk-block-between">
 <div class="nk-block-head-content">
 <div class="view-mode d-flex">
+<div class="alert alert-pro alert-success alert-dismissible" style="display: none;position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9999;" id="successAlert">
+    <div class="alert-text">
+        <h6>Title Update Successfully</h6>
+        <!-- <p>Your order has been successfully placed for deposit. You will be redirected to make your payment.</p> -->
+    </div>
+    <button class="close" data-dismiss="alert"></button>
+</div>
+
+    @if(Session::has('success'))
+         <div class="alert alert-success  fade show" role="alert" style="position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9999;">
+          {{Session::get('success')}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+     @endif
+
 <?php  $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
 
 <h3 id="titleLabel" class="nk-block-title page-title">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
@@ -84,15 +107,9 @@
 <div class="card-inner position-relative card-tools-toggle">
     <div class="card-title-group">
         <div class="card-tools">
-     @if(Session::has('success'))
-         <div class="alert alert-success  fade show" role="alert">
-          {{Session::get('success')}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-     @endif
+ 
         </div><!-- .card-tools -->
+
         <div class="card-tools mr-n1">
             <ul class="btn-toolbar gx-1">
                 <li>
@@ -144,8 +161,9 @@
                 <span >{{$key + 1}}</span>
             </div>
             <div class="nk-tb-col">
-                <a href="{{ url('admin/profile_detail/'.$user->id) }}" target="_blank">
                     <div class="user-card">
+                <a href="{{ url('admin/profile_detail/'.$user->id) }}" target="_blank">
+
                         <div class="user-avatar bg-primary">
                             @if($user->user_img)
                             <img src="{{asset('frontend-assets/images/users/'.$user->user_img)}}" alt="Profile Image" class="rounded-circle">
@@ -153,14 +171,46 @@
                             <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
                             @endif
                         </div>
+                    </a>
+                     <select style="margin: 10px;" id="srname" onchange="updateSr({{$user->id}})">
+                                <option value="Mr." {{ Auth::user()->title == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                <option value="Mrs." {{ $user->title == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
+                                <option value="Ms." {{ $user->title == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                                <option value="Miss" {{ $user->title == 'Miss' ? 'selected' : '' }}>Miss</option>
+                                <option value="Mx." {{ $user->title == 'Mx.' ? 'selected' : '' }}>Mx.</option>
+                                <option value="DJ" {{ $user->title == 'DJ' ? 'selected' : '' }}>DJ</option>
+                                <option value="Dr." {{ $user->title == 'Dr.' ? 'selected' : '' }}>Dr.</option>
+                                <option value="Prof." {{ $user->title == 'Prof.' ? 'selected' : '' }}>Prof.</option>
+                                <option value="Rev." {{ $user->title == 'Rev.' ? 'selected' : '' }}>Rev.</option>
+                                <option value="Hon." {{ $user->title == 'Hon.' ? 'selected' : '' }}>Hon.</option>
+                                <option value="Sir" {{ $user->title == 'Sir' ? 'selected' : '' }}>Sir</option>
+                                <option value="Lady" {{ $user->title == 'Lady' ? 'selected' : '' }}>Lady</option>
+                                <option value="Capt." {{ $user->title == 'Capt.' ? 'selected' : '' }}>Capt.</option>
+                                <option value="Lt." {{ $user->title == 'Lt.' ? 'selected' : '' }}>Lt.</option>
+                                <option value="Maj." {{ $user->title == 'Maj.' ? 'selected' : '' }}>Maj.</option>
+                                <option value="Sgt." {{ $user->title == 'Sgt.' ? 'selected' : '' }}>Sgt.</option>
+                                <option value="Chief" {{ $user->title == 'Chief' ? 'selected' : '' }}>Chief</option>
+                                <option value="Sen." {{ $user->title == 'Sen.' ? 'selected' : '' }}>Sen.</option>
+                                <option value="Gov." {{ $user->title == 'Gov.' ? 'selected' : '' }}>Gov.</option>
+                                <option value="Pres." {{ $user->title == 'Pres.' ? 'selected' : '' }}>Pres.</option>
+                                <option value="Jr." {{ $user->title == 'Jr.' ? 'selected' : '' }}>Jr.</option>
+                                <option value="Sr." {{ $user->title == 'Sr.' ? 'selected' : '' }}>Sr.</option>
+                                <option value="Esq." {{ $user->title == 'Esq.' ? 'selected' : '' }}>Esq.</option>
+                                <option value="Rabbi" {{ $user->title == 'Rabbi' ? 'selected' : '' }}>Rabbi</option>
+                                <option value="Imam" {{ $user->title == 'Imam' ? 'selected' : '' }}>Imam</option>
+                                <option value="Sheikh" {{ $user->title == 'Sheikh' ? 'selected' : '' }}>Sheikh</option>  
+                      </select>
+                       <a href="{{ url('admin/profile_detail/'.$user->id) }}" target="_blank">
                         <div class="user-info">
+                          
                             <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}
                                 <em class="icon ni ni-eye float-right"></em>
                             </span>
                             <span>{{$user->email}}</span>
                         </div>
+                         </a>
                     </div>
-                </a>
+               
             </div>
 
             <div class="nk-tb-col tb-col-lg">
@@ -233,8 +283,10 @@
                                     <li><a href="{{ url('admin/location_setting/'.$user->id) }}"><em class="icon ni ni-location"></em><span>Location Setting</span></a></li>
                                   @if($user->activated == '1')
                                 <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
+
                                 @else
                                 <li><a href="{{ url('admin/account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
+                                  <li><a href="{{ url('admin/account_status/'.$user->id.'?status=3') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Delete Account</span></a></li>
                                 @endif                         
                           </ul>
                             </div>
@@ -533,6 +585,29 @@
 <script src="{{ asset('frontend-assets/assets/js/scripts.js?ver=2.9.1') }}"></script>
 <script src="{{ asset('frontend-assets/assets/js/jquery.email.multiple.js') }}"></script>
 <script>
+    function updateSr(id){
+        var title = document.getElementById('srname').value;
+         var _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "{{ url('admin/update-user-title')}}",
+                type: "post",
+                data: {title: title, _token: _token, id: id},
+                success: function (response) {
+                console.log(response);
+                  $('#successAlert').show();
+
+                // Automatically hide the alert after 5 seconds
+                setTimeout(function() {
+                    $('#successAlert').fadeOut('slow');
+                }, 5000);
+            // $('#result').html(response);
+                    },
+                    error: function (xhr) {
+
+                    }
+
+            });
+    }
       function enableEditMode() {
             document.querySelector('.edit-mode').style.setProperty('display', 'flex', 'important');
             document.querySelector('.view-mode').style.setProperty('display', 'none', 'important');
