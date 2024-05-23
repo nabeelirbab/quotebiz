@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                         'username'   =>     Setting::getmail('mailer.username',$domain),
                         'password'   =>     Setting::getmail('mailer.password',$domain),
                         'encryption' =>     Setting::getmail('mailer.encryption',$domain),
-                        'from'       =>     'support@quotebiz.io',
+                        'from'       =>     'admin@dj123.com.au',
                     );
         Config::set('mail', $config);
     }

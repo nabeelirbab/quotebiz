@@ -31,6 +31,20 @@
         border: solid 1px #bbb;
         height: 46px !important;
     }
+    .recaptcha-box{
+      margin-bottom: 0px !important;
+    }
+    .btn-view-password {
+      margin-top: -35px !important;
+    }
+   @media only screen and (max-width: 468px) {
+        
+        .pl-xm-0{
+         padding-left: 0px !important;
+        }
+       
+
+    }
 
 </style>
 
@@ -47,16 +61,11 @@
     <form enctype="multipart/form-data" action="{{ url('users/register') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
         <input type="hidden" name="invite" value="{{Request::get('invite')}}">
-        <div class="row mt-5 mc-form">
-            <div class="col-md-2"></div>
-            <div class="col-md-2 text-end mt-60">
-                <a class="main-logo-big" href="{{ url('/') }}">
-                    <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark')) }}" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h1 class="mb-20">{{ trans('messages.create_your_account') }}</h1>
-                <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.<a href="{{url("users/login")}}"> Login</a></p>
+        <div class="panel panel-body p-4 rounded-3 shadow" style="background: rgba(255, 255, 255, 0.9);">
+         <h4 class="text-semibold mt-0 mb-4 fw-600 fs-5">{{ trans('messages.create_your_account') }}</h4>
+         <!-- <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.<a href="{{url("users/login")}}"> Login</a></p> -->
+            <div class="">
+                
               @if($errors->any())
                 <div class="alert alert-danger alert-block" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button> 
@@ -90,22 +99,17 @@
                     <input id="subdomain" placeholder="" value="{{\Acelle\Model\Setting::subdomain()}}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id  ">
                 <input type="hidden" name="user_type" value="service_provider">
                     </div>
-
-                
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'email',
-                    'value' => $email,
-                    'help_class' => 'profile',
-                    'rules' => $user->registerRules($email)
-                ])
-                
+                <div class="row">
+  
+               <div class="col-md-6 p-0"> 
                 @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'first_name',
                     'value' => $name,
                     'rules' => $user->registerRules($name)
                 ])
+               </div>
+               <div class="col-md-6 pr-0 pl-xm-0"> 
                 
                 @include('helpers.form_control', [
                     'type' => 'text',
@@ -113,7 +117,17 @@
                     'value' => $user->last_name,
                     'rules' => $user->registerRules($user->subdomain)
                 ])
-                
+               </div>
+               <div class="col-md-6 p-0"> 
+                 @include('helpers.form_control', [
+                    'type' => 'text',
+                    'name' => 'email',
+                    'value' => $email,
+                    'help_class' => 'profile',
+                    'rules' => $user->registerRules($email)
+                ])
+                 </div>
+                 <div class="col-md-6 pr-0 pl-xm-0"> 
                 @include('helpers.form_control', [
                     'type' => 'password',
                     'label'=> trans('messages.password'),
@@ -121,6 +135,8 @@
                     'rules' => $user->registerRules($user->subdomain),
                     'eye' => true,
                 ])
+              </div>
+                </div>
                  <div class="form-group control-text">
                     <label>
                         <b>Where do you want to receive work</b>
@@ -310,7 +326,10 @@
 
                   </div>
               </div>
-                   <div class="form-group control-text" id="bus_address" style="display: none">
+              <div class="row">
+                
+                <div class="col-md-6 p-0" id="bus_address" style="display: none;">
+                   <div class="form-group control-text">
                     <label class="form-label">
                         Business Address
                         <span style="color: red">*</span>
@@ -319,8 +338,11 @@
                         <input type="hidden" id="latitude" name="latitude">
                         <input type="hidden" id="longitude" name="longitude">
                     </div>
-                     <div class="form-group control-text" id="appendType" style="display: none">
-                      <div class="form-group  mt-3">
+                  </div>
+                <div class="col-md-6 pr-0" id="appendType" style="display: none;">
+
+                     <div class="form-group control-text">
+                      <div class="form-group">
                           <label class="form-label" for="display-radius">
                               Radius(KM)
                               <span style="color: red">*</span>
@@ -331,6 +353,9 @@
                                  value="">
                       </div>
                   </div>
+                </div>
+
+              </div>
                   <div class="form-group control-text">
                     <label>
                         <b>Zipcode</b>
@@ -340,8 +365,7 @@
                   </div>
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
+                        <div class="col-md-12 pl-xm-0">
                             @if ($errors->has('recaptcha_invalid'))
                                 <div class="text-danger text-center">{{ $errors->first('recaptcha_invalid') }}</div>
                             @endif
@@ -351,16 +375,14 @@
                 @endif
                 <hr>
                 <div class="row flex align-items">
-                    <div class="col-md-4">
-                        <button type='submit' class="btn btn-secondary res-button"><i class="icon-check"></i> {{ trans('messages.get_started') }}</button>
+                    <div class="col-md-12">
+                        <button type='submit' class="btn rounded-2 btn-primary d-block login-button py-2 fw-600"
+            style="width:100%;text-transform:uppercase"><i class="icon-check"></i> {{ trans('messages.get_started') }}</button>
                     </div>
-                    <div class="col-md-8">
-                        {!! trans('messages.register.agreement_intro') !!}
-                    </div>
+                   
                         
                 </div>
             </div>
-            <div class="col-md-1"></div>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

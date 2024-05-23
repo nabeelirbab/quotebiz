@@ -28,6 +28,6 @@ class AdminContactus extends Mailable
      */
     public function build()
     {
-        return $this->subject(' New Contact Form Submission ')->from('support@quotebiz.io', \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.admin-contactus');
+        return $this->subject(' New Contact Form Submission ')->from(\Acelle\Model\Setting::get("mailer.from.address"), \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.admin-contactus');
     }
 }

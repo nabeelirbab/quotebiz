@@ -75,7 +75,15 @@ public function activate(Request $request, $account, $token)
       return view('notAuthorized');
     } else {
       $userActivation->user->setActivated();
-    if($userActivation->user->user_type == 'service_provider' || $userActivation->user->user_type == 'client'){
+      if($userActivation->user->user_type == 'service_provider'){
+        Auth::login($userActivation->user);
+
+            if(Auth::check()){
+              return redirect('/service-provider/info-update');
+            }
+            }
+    if($userActivation->user->user_type == 'client'){
+       $request->session()->put('user-activated', trans('messages.user.activated'));
        return redirect('/users/login');
     }
     // Execute registered hooks
@@ -830,6 +838,23 @@ public function sp_register(Request $request){
   return view('users.sp-register');
 }
 
+public function sp_info(Request $request){
+ if($request->isMethod('post')){
+   $user = Auth::user();
+   $user->experience = $request->experience;
+   $user->update();
+   $business = SpBusiness::where('user_id',$user->id)->first();
+   $business->business_name = $request->business_name;
+   $business->business_reg = $request->business_reg;
+   $business->business_phone = $request->business_phone;
+   $business->business_email = $request->business_email;
+   $business->business_website = $request->business_website;
+   $business->update();
+   return redirect('/service-provider/settings');
+ }
+  return view('users.sp_info');
+}
+
 public function uploadUsers(Request $request)
 {
     Excel::import(new UsersImport, $request->file);
@@ -980,6 +1005,13 @@ public function searchUser(Request $request){
     Mail::to($request->email)->send(new Contactus($request->all()));
     Mail::to($adminemail)->send(new AdminContactus($request->all()));
   }  
+
+  public function updateusertitle(Request $request){
+    $user = User::find($request->id);
+    $user->title = $request->title;
+    $user->save();
+    return $user;
+  }
 
   public function logout(){
         Auth::logout();

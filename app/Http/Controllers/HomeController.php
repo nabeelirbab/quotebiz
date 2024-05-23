@@ -105,6 +105,30 @@ class HomeController extends Controller
         return response()->json($result);
      }
 
+    public function getVisitData(Request $request)
+    {
+        $days = $request->days ?? 7; // default to 7 days
+        $date = Carbon::today()->subDays($days);
+
+        $visits = DB::table('visits')
+                    ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+                    ->where('created_at', '>=', $date)
+                    ->where('track_type', '=', 'website_view')
+                    ->groupBy('date')
+                    ->orderBy('date', 'asc')
+                    ->get();
+        $totalVisitors = $visits->sum('count');
+
+        $data = [
+            'labels' => $visits->pluck('date'),
+            'counts' => $visits->pluck('count'),
+            'totalVisitors' => $totalVisitors,
+        ];
+
+        return response()->json($data);
+        }
+    
+
     public function home()
     {
         return view('index');
@@ -164,9 +188,16 @@ class HomeController extends Controller
 
     public function accountstatus(Request $request, $account, $id)
     {
-        $update = User::where('id', $id)->update(['activated' => $request->get('status')]);
-        Session::flash('success', 'Account status change successfully!!');
-        return Redirect::back();
+        if($request->get('status') == 3){
+            $update = User::where('id', $id)->delete();
+            Session::flash('success', 'Account deleted successfully!!');
+            return Redirect::back();
+        }else{
+            $update = User::where('id', $id)->update(['activated' => $request->get('status')]);
+            Session::flash('success', 'Account status change successfully!!');
+            return Redirect::back();
+        }
+       
     }
 
     public function servicecategories()

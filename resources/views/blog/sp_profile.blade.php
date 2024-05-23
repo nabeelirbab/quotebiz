@@ -139,8 +139,8 @@ hr {
                     	{{ $user->business->business_name }}
                        </span>
                     </p>
-                </div>
                     @endif
+                   </div>
                     @if( $user->business->business_website ||  $user->business->business_phone || $user->business->business_website )
                     <div class="mb-4">
                   <hr>
@@ -197,7 +197,7 @@ hr {
 						</div>
 					</div>
 				</div>
-				<div class="row mt-4">
+				<div class="row mt-4 mb-4">
 					<div class="col-md-12 d-flex">
 						<div class="mr-5 mt-1" style="width: 25px">
 							<img src="{{ asset('frontend-assets/location.png') }}" class="mr-4">

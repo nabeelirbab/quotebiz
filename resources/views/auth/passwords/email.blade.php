@@ -8,7 +8,7 @@
     <form class="" role="form" method="POST" action="{{ url('/forget-password') }}">
         {{ csrf_field() }}
         
-        <div class="panel panel-body p-4 rounded-3 bg-white shadow">                        
+        <div class="panel panel-body p-4 rounded-3 shadow" style="background: rgba(255, 255, 255, 0.9);">                        
             
             @if (session('status'))
                 <div class="alert alert-success">
@@ -31,19 +31,22 @@
         </span>
                 @endif                            
             </div>
-            
-            <button type="submit" class="btn btn-secondary">
+            <div class="d-flex">
+            <button type="submit" class="btn rounded-2 btn-primary d-block login-button py-2 fw-600"
+            style="text-transform:uppercase">
                 {{ trans('messages.send_password_reset_link') }}  <i class="icon-circle-right2 position-right"></i>
             </button>
              @if(request('account'))
-            <a href="{{ url("/users/login") }}" class="btn btn-light">
+            <a href="{{ url("/users/login") }}" class="btn btn-light" style="height: 48px; display: flex; margin-left: 8px;">
                 {{ trans("messages.return_to_login") }}
             </a>
             @else
-               <a href="{{ url("/login") }}" class="btn btn-light">
+               <a href="{{ url("/login") }}" class="btn btn-light" style="height: 48px; display: flex; margin-left: 8px;">
                 {{ trans("messages.return_to_login") }}
             </a>
             @endif
+            </div>
+        
             
         </div>
     </form>

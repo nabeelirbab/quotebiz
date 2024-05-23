@@ -9,6 +9,7 @@ use Acelle\Model\Post;
 use Acelle\Model\Category;
 use Acelle\Model\Subdomain;
 use Acelle\Model\Setting;
+use Acelle\Model\Visit;
 use Redirect;
 
 
@@ -21,6 +22,11 @@ class QuoteController extends Controller
      */
     public function home(Request $request)
     {
+           Visit::firstOrCreate([
+            'track_type' => 'website_view',
+            'visitor_ip' => request()->ip(),
+
+        ]);
 
         $posts = [];
         $user = User::where('subdomain',Setting::subdomain())->where('user_type','admin')->first();

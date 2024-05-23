@@ -294,7 +294,7 @@
 
         $('#addemail').click(function(){
             var html ='<div class="removeQuestion mb-3"><div class="col-sm-5">'+
-                        '<div class="form-group mt-4">'+
+                        '<div class="form-group ">'+
                             '<label class="form-label" for="default-01">Name:</label>'+
                             '<div class="form-control-wrap">'+
                             ' <input type="text" class="form-control" name="name[]" placeholder="Enter Name">'+
@@ -302,7 +302,7 @@
                        ' </div>'+
                     '</div>'+
                     '<div class="col-sm-6">'+
-                       ' <div class="form-group mt-4">'+
+                       ' <div class="form-group ">'+
                             '<label class="form-label" for="default-01">Email:</label>'+
                             '<div class="form-control-wrap">'+
                             ' <input type="email" class="form-control" name="email[]" placeholder="Enter Email">'+

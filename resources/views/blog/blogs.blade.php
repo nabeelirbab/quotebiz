@@ -42,7 +42,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="loadmore-btn-layout1">
+                <div class="loadmore-btn-layout1 text-center">
                     {{$posts}}
                 </div>
             </div>

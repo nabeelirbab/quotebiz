@@ -197,6 +197,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::patch('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
 
     Route::match(['get', 'post'],'payment', 'ServiceProvider\StripeController@stripePayment');
+    Route::match(['get', 'post'],'info-update', 'UserController@sp_info');
+
     Route::post('stripe', 'ServiceProvider\StripeController@stripePost')->name('stripe.post');
 
     Route::get('/login', function () {
@@ -294,6 +296,7 @@ Route::get('users/logout', 'UserController@logout');
 
     Route::post('sendInvitation', 'UserController@sendInvitation');
     Route::post('resendInvitation', 'UserController@resendInvitation');
+    Route::post('update-user-title', 'UserController@updateusertitle');
     Route::get('/preview-design', 'UserController@formdesign');
     Route::match(['get','post'],'/user-search', 'UserController@searchUser');
 
@@ -393,6 +396,7 @@ Route::get('users/logout', 'UserController@logout');
 Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/charts', 'HomeController@charts');
+    Route::get('/visits/data', 'HomeController@getVisitData');
     // Search
     Route::get('/search/subscribers', 'SearchController@subscribers');
     Route::get('/search/templates', 'SearchController@templates');

@@ -1,5 +1,12 @@
 @extends('layouts.core.register')
 
+<?php
+  $provideradminlocation = Acelle\Jobs\HelperJob::provideradminlocationreg(\Acelle\Model\Setting::subdomain());
+  $countries = Acelle\Jobs\HelperJob::countries(); 
+  $providerstatename = Acelle\Jobs\HelperJob::statename($provideradminlocation->state);
+  $providercityname = Acelle\Jobs\HelperJob::cityname($provideradminlocation->city); 
+  $providercountry = Acelle\Jobs\HelperJob::countryname($provideradminlocation->country); 
+?>
 @section('title', trans('messages.create_your_account'))
 <style type="text/css">
     .btn-group{
@@ -21,14 +28,7 @@
   <form enctype="multipart/form-data" action="{{ url('customer/sp-register') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-        <div class="row mt-5 mc-form">
-            <div class="col-md-2"></div>
-            <div class="col-md-2 text-end mt-60">
-                <a class="main-logo-big" href="{{ url('/') }}">
-                    <img width="150px" src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark')) }}" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
+         <div class="panel panel-body p-4 rounded-3 shadow" style="background: rgba(255, 255, 255, 0.9);">
                 <h1 class="mb-20">Register Your Business</h1>
                 <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.</p>
                 @if($errors->any())
@@ -157,8 +157,7 @@
                
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             @if ($errors->has('recaptcha_invalid'))
                                 <div class="text-danger text-center">{{ $errors->first('recaptcha_invalid') }}</div>
                             @endif
@@ -167,23 +166,66 @@
                     </div>
                 @endif
                 <hr>
-                <div class="row flex align-items">
-                    <div class="col-md-4">
-                        <button type='submit' class="btn btn-secondary res-button"><i class="icon-check"></i> {{ trans('messages.get_started') }}</button>
-                    </div>
-                    <div class="col-md-8">
-                        {!! trans('messages.register.agreement_intro') !!}
-                    </div>
-                        
-                </div>
+                 <div class="row flex align-items">
+                            <div class="col-md-12">
+                                <button type='submit' class="btn rounded-2 btn-primary d-block login-button py-2 fw-600"
+                    style="width:100%;text-transform:uppercase"><i class="icon-check"></i> {{ trans('messages.get_started') }}</button>
+                            </div>
+                    
+                        </div>
             </div>
-            <div class="col-md-1"></div>
-        </div>
+           
     </form>
      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnout.com/toastr.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyC_b-7SwLA4kCWz514JTmVZZ3gc3M4hDAA&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
+    @if($provideradminlocation->admin_location_type=="World Wide")
 
+<script>
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function initialize() {
+var input = document.getElementById('address');
+var autocomplete = new google.maps.places.Autocomplete(input);
+autocomplete.addListener('place_changed', function () {
+var place = autocomplete.getPlace();
+console.log(place);
+$("#latitude").val(place.geometry['location'].lat());
+$("#longitude").val(place.geometry['location'].lng());
+});
+}
+
+</script>
+
+@else
+
+<script>
+  @if($providercountry)
+  var pc = "{{ $providercountry->code }}";
+  @else 
+    var pc = 'au';
+  @endif
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function initialize() {
+var options = {
+componentRestrictions: {country: pc}
+};
+
+var input = document.getElementById('address');
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+autocomplete.addListener('place_changed', function () {
+var place = autocomplete.getPlace();
+console.log(place);
+$("#latitude").val(place.geometry['location'].lat());
+$("#longitude").val(place.geometry['location'].lng());
+});
+}
+
+</script>
+
+@endif
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -199,18 +241,7 @@
                $('#business_address').hide();
             }
         }
-        google.maps.event.addDomListener(window, 'load', initialize);
 
-        function initialize() {
-            var input = document.getElementById('address');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.addListener('place_changed', function () {
-                var place = autocomplete.getPlace();
-                console.log(place);
-                $("#latitude").val(place.geometry['location'].lat());
-                $("#longitude").val(place.geometry['location'].lng());
-            });
-        }
 
         function GetStates(val) {
             $("#state").empty();

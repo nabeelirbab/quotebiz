@@ -212,13 +212,14 @@ h2{
                                                 <div class="nk-block-des">
                                                     <p>Basic info, like your name and address, that you use on {{\Acelle\Model\Setting::get("site_name")}}.</p>
                                                 </div>
-                                            </div>
-                                            <div class="nk-tab-actions mr-n1">
+                                                  <div class="nk-tab-actions mr-n1">
                                                 <a href="#" class="btn btn-icon btn-trigger" data-toggle="modal"
                                                    data-target="#profile-edit">
                                                     <em class="icon ni ni-edit"></em>
                                                 </a>
                                             </div>
+                                            </div>
+                                          
                                         </div>
                                     </div><!-- .nk-block-head -->
                                     <div class="nk-block">

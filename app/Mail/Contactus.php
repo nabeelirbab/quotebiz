@@ -28,6 +28,6 @@ class Contactus extends Mailable
      */
     public function build()
     {
-        return $this->subject('Acknowledgment of Your Inquiry from '.\Acelle\Model\Setting::get("site_name"))->from('support@quotebiz.io', \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.contactus');
+        return $this->subject('Acknowledgment of Your Inquiry from '.\Acelle\Model\Setting::get("site_name"))->from(\Acelle\Model\Setting::get("mailer.from.address"), \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.contactus');
     }
 }

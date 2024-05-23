@@ -210,9 +210,14 @@ public static $itemsPerPage = 25;
     {
         $layout = \Acelle\Model\Layout::where('alias', 'registration_confirmation_email')->first();
         $token = $this->getToken();
-
+        $sitename = \Acelle\Model\Setting::get("site_name");
+        $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
         $layout->content = str_replace('{ACTIVATION_URL}', join_url(url('user/activate/'.$token)), $layout->content);
         $layout->content = str_replace('{CUSTOMER_NAME}', $name, $layout->content);
+        $layout->content = str_replace('{SITE_NAME}', $sitename, $layout->content);
+        $layout->content = str_replace('{SITE_URL}', url('/'), $layout->content);
+        $layout->content = str_replace('{SITE_LOGO}', $sitedarklogo, $layout->content);
+        $layout->content = str_replace('{YEAR}', date('Y'), $layout->content);
 
         $name = is_null($name) ? trans('messages.to_email_name') : $name;
 
@@ -241,8 +246,14 @@ public static $itemsPerPage = 25;
         $layout = \Acelle\Model\Layout::where('alias', 'registration_confirmation_email')->first();
         $token = $this->getToken();
 
-        $layout->content = str_replace('{ACTIVATION_URL}', join_url(url('admin/activate/'.$token)), $layout->content);
+        $sitename = 'Quotebiz.io';
+        $sitedarklogo = 'https://www.quotebiz.io/wp-content/uploads/2022/03/QB_logo.png';
+        $layout->content = str_replace('{ACTIVATION_URL}', join_url(url('user/activate/'.$token)), $layout->content);
         $layout->content = str_replace('{CUSTOMER_NAME}', $name, $layout->content);
+        $layout->content = str_replace('{SITE_NAME}', $sitename, $layout->content);
+        $layout->content = str_replace('{SITE_URL}', url('/'), $layout->content);
+        $layout->content = str_replace('{SITE_LOGO}', $sitedarklogo, $layout->content);
+        $layout->content = str_replace('{YEAR}', date('Y'), $layout->content);
 
         $name = is_null($name) ? trans('messages.to_email_name') : $name;
 
@@ -487,8 +498,16 @@ public static $itemsPerPage = 25;
     {
         // $this->notify(new ResetPassword($token, url('password/reset', $token)));
 
-        $resetPasswordUrl = url('password/reset', $token);
-        $htmlContent = '<p>Please click the link below to reset your password:<br><a href="'.$resetPasswordUrl.'">'.$resetPasswordUrl.'</a>';
+        $layout = \Acelle\Model\Layout::where('alias', 'reset_password')->first();
+        $sitename = \Acelle\Model\Setting::get("site_name");
+        $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
+        $layout->content = str_replace('{RESET_URL}', join_url(url('password/reset', $token)), $layout->content);
+        
+        $layout->content = str_replace('{SITE_NAME}', $sitename, $layout->content);
+        $layout->content = str_replace('{SITE_URL}', url('/'), $layout->content);
+        $layout->content = str_replace('{SITE_LOGO}', $sitedarklogo, $layout->content);
+        
+        // $htmlContent = '<p>Please click the link below to reset your password:<br><a href="'.$resetPasswordUrl.'">'.$resetPasswordUrl.'</a>';
 
         // build the message
         $message = new ExtendedSwiftMessage();
@@ -498,7 +517,7 @@ public static $itemsPerPage = 25;
         $message->setSubject('Password Reset');
         $message->setTo($this->email);
         $message->setReplyTo(Setting::get('mail.reply_to'));
-        $message->addPart($htmlContent, 'text/html');
+        $message->addPart($layout->content, 'text/html');
 
         $mailer = App::make('xmailer');
         $result = $mailer->sendWithDefaultFromAddress($message);

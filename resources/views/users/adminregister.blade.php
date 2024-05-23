@@ -18,15 +18,8 @@
     
     <form enctype="multipart/form-data" action="{{ url('signup') }}" method="POST" class="form-validate-jqueryz subscription-form">
         {{ csrf_field() }}
-        <div class="row mt-5 mc-form">
-            <div class="col-md-2"></div>
-            <div class="col-md-2 text-end mt-60">
-                <a class="main-logo-big" href="{{ url('/') }}">
-
-                    <img width="150px" src="{{ URL::asset('images/logo-dark.png') }}" alt="">
-                </a>
-            </div>
-            <div class="col-12 col-md-5">
+         <div class="panel panel-body p-4 rounded-3 bg-white shadow" >
+           
                 
                 <h1 class="mb-20">{{ trans('messages.create_your_account') }}</h1>
                 <p>{!! trans('messages.register.intro', [
@@ -159,8 +152,7 @@
                </div>
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             @if ($errors->has('recaptcha_invalid'))
                                 <div class="text-danger text-center">{{ $errors->first('recaptcha_invalid') }}</div>
                             @endif
@@ -169,17 +161,14 @@
                     </div>
                 @endif
                 <hr>
-                <div class="row flex align-items">
-                    <div class="col-md-4">
-                        <button type='submit' class="btn btn-secondary res-button"><i class="icon-check"></i> {{ trans('messages.get_started') }}</button>
+             <div class="row flex align-items">
+                    <div class="col-md-12">
+                        <button type='submit' class="btn rounded-2 btn-primary d-block login-button py-2 fw-600"
+            style="width:100%;text-transform:uppercase"><i class="icon-check"></i> {{ trans('messages.get_started') }}</button>
                     </div>
-                    <div class="col-md-8">
-                        {!! trans('messages.register.agreement_intro') !!}
-                    </div>
+                   
                         
                 </div>
-            </div>
-            <div class="col-md-1"></div>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

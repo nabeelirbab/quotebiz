@@ -283,12 +283,13 @@ class QuestionChoiceController extends Controller
                             $userlang = $user->longitude;
                             $userradius = $user->type_value;
 
-                            $rawQuery = "users.* , ( 6371  * acos( cos( radians(" . $userlat . ") ) * cos( radians( " . $request->latitude . " ) ) * cos( radians( " . $request->longitude . " ) - radians(" . $userlang . ") ) + sin( radians(" . $userlat . ") ) * sin( radians(" . $request->latitude . ") ) ) ) AS distance";
-                            $getusersdata = User::where('id', $user->id)
-                                ->selectRaw($rawQuery)
-                                ->having("distance", "<=", $userradius)
-                                ->orderBy("distance", 'asc')
-                                ->first();
+                              $rawQuery = "users.* , ( 6371 * acos( cos( radians(" . $userlat . ") ) * cos( radians( " . $request->latitude . " ) ) * cos( radians( " . $request->longitude . " ) - radians(" . $userlang . ") ) + sin( radians(" . $userlat . ") ) * sin( radians(" . $request->latitude . ") ) ) ) AS distance";
+
+                                $getusersdata = User::where('id', $user->id)
+                                    ->selectRaw($rawQuery)
+                                    ->having("distance", "<=", $userradius)
+                                    ->orderBy("distance", 'asc')
+                                    ->first();
 
                             if ($getusersdata) {
                                 array_push($SPEmails, $getusersdata->email);
@@ -300,7 +301,6 @@ class QuestionChoiceController extends Controller
 
                     }
                     else {
-
                         $users = User::where('user_type', 'service_provider')->where('id','<>',$user->id)->where('activated', 1)->whereNotNull('type')->where('subdomain', Setting::subdomain())->where('category_id', 'like', '%' . $category . '%')->get();
 
                         foreach ($users as $user) {
@@ -310,15 +310,20 @@ class QuestionChoiceController extends Controller
                                 $userlang = $user->longitude;
                                 $userradius = $user->type_value;
 
-                                $rawQuery = "users.* , ( 6371  * acos( cos( radians(" . $userlat . ") ) * cos( radians( " . $request->latitude . " ) ) * cos( radians( " . $request->longitude . " ) - radians(" . $userlang . ") ) + sin( radians(" . $userlat . ") ) * sin( radians(" . $request->latitude . ") ) ) ) AS distance";
+                               if($userlat){
+
+                                $rawQuery = "users.* , ( 6371 * acos( cos( radians(" . $userlat . ") ) * cos( radians( " . $request->latitude . " ) ) * cos( radians( " . $request->longitude . " ) - radians(" . $userlang . ") ) + sin( radians(" . $userlat . ") ) * sin( radians(" . $request->latitude . ") ) ) ) AS distance";
+
                                 $getusersdata = User::where('id', $user->id)
                                     ->selectRaw($rawQuery)
                                     ->having("distance", "<=", $userradius)
                                     ->orderBy("distance", 'asc')
                                     ->first();
+
                                 $location = $request->zip_code;
                                 if ($getusersdata) {
                                     array_push($SPEmails, $getusersdata->email);
+                                }
                                 }
                             }
                             elseif ($user->type == "country" || $user->type == "world") {

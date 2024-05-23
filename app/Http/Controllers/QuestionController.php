@@ -111,7 +111,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $choices = $request->choice;
         $choice_icon = $request->choice_icon;
         // dd($choice_icon[0][1]);

@@ -54,8 +54,16 @@ class ForgotPasswordController extends Controller
               'created_at' => Carbon::now()
             ]);
   
-            $resetPasswordUrl = url('reset-password', $token);
-            $htmlContent = '<p>Please click the link below to reset your password:<br><a href="'.$resetPasswordUrl.'">'.$resetPasswordUrl.'</a>';
+            // $resetPasswordUrl = url('reset-password', $token);
+            $layout = \Acelle\Model\Layout::where('alias', 'reset_password')->first();
+            $sitename = \Acelle\Model\Setting::get("site_name");
+            $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
+            $layout->content = str_replace('{RESET_URL}', join_url(url('reset-password', $token)), $layout->content);
+            
+            $layout->content = str_replace('{SITE_NAME}', $sitename, $layout->content);
+            $layout->content = str_replace('{SITE_URL}', url('/'), $layout->content);
+            $layout->content = str_replace('{SITE_LOGO}', $sitedarklogo, $layout->content);
+            // $htmlContent = '<p>Please click the link below to reset your password:<br><a href="'.$resetPasswordUrl.'">'.$resetPasswordUrl.'</a>';
 
             // build the message
             $message = new ExtendedSwiftMessage();
@@ -65,7 +73,7 @@ class ForgotPasswordController extends Controller
             $message->setSubject('Password Reset');
             $message->setTo($request->email);
             $message->setReplyTo(Setting::get('mail.reply_to'));
-            $message->addPart($htmlContent, 'text/html');
+            $message->addPart($layout->content, 'text/html');
 
             $mailer = App::make('xmailer');
             $result = $mailer->sendWithDefaultFromAddress($message);

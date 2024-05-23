@@ -28,6 +28,6 @@ class OnJobPost extends Mailable
      */
     public function build()
     {
-       return $this->subject($this->maildata['subject'])->from('support@quotebiz.io', \Acelle\Model\Setting::get('site_name').' Team')->markdown('emails.jobpost');
+       return $this->subject($this->maildata['subject'])->from(\Acelle\Model\Setting::get("mailer.from.address"), \Acelle\Model\Setting::get('site_name').' Team')->markdown('emails.jobpost');
     }
 }

@@ -118,7 +118,9 @@ color: {{ ($job_design) ? $job_design->login_color:'#6200EA'}};
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }*/
-
+.w-100-lg{
+  width: 100%;
+}
 .logo {
   text-align: left !important;
   transform: translate(-40px, 20px);
@@ -272,6 +274,13 @@ p.form-para::after {
 @media screen and (max-width: 667px) {
   .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
     width: 96%;
+}
+.w-100-lg{
+  width: auto;
+}
+.mobile-padding {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 .link-inline a {
     font-size: 12px;
@@ -500,7 +509,7 @@ p.form-para::after {
   position: absolute;
   bottom: 6px;
   right: 72px;
-  color: #47b9bf !important;
+  color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
   cursor: pointer;
 }
 .profile_read-more:hover {
@@ -509,7 +518,7 @@ p.form-para::after {
   outline: none; /* Remove default focus outline if desired */
   padding: 0 7px;
   border-radius: 12px;
-  font-size: 11px;
+  font-size: 12px;
  }
 .post_read-more {
   text-transform: uppercase;
@@ -785,7 +794,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 </div>
 @if($featurebar && $featurebar->status == 'on')
 <div class="function_quote">
-  <div class="row w-100 justify-content-center">
+  <div class="row w-100-lg justify-content-center">
     @if($featurebar->feature1status == 'on')
     <div class="col-md-3 d-flex justify-content-center mobile-padding">
       <div class="d-flex align-items-center">
@@ -828,15 +837,16 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
   <div class="row">
     <div class="d-flex col-12 justify-content-between px-4">
       <h3>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
-      <a href="{{ url('service-providers') }}" class="link-color">View All</a>
+      <a href="{{ url('service-providers') }}" class="link-color font-weight-bold">View All</a>
     </div>
   </div>
   <div class="row">
     <div class="owl-carousel" id="owl-carousel">
     @foreach($users as $user)
     <div class="item">
-    <div class="col-sm-12 mb-4 mt-0 p-4">
-    <div class="card text-center" style="min-height: 355px;border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.125); box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
+
+    <div class="col-sm-12 mb-4 mt-4 p-2">
+    <div class="card text-center" style="min-height: 422px;border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.125); box-shadow: 4px 10px 18px rgb(0 0 0 / 7%)">
           <div class="mr-auto ml-auto mt-4">
             <a href="{{ url('sp-profile/'.$user->id) }}">
             @if($user->user_img)
@@ -846,9 +856,10 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
               @endif
               </a>
           </div>
-          <a href="{{ url('sp-profile/'.$user->id) }}">
+          
                  <div class="card-body pt-0 mt-1">
-                    <p class="card-text text-center mb-4">
+                  
+                    <p class="card-text text-center mb-1">
                       @foreach(json_decode($user->category_id) as $key => $cat)
                        @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                         <span class="data-value badge badge-pill badge-info">
@@ -859,7 +870,9 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
                         @endif
                     @endforeach
                     </p>
+                    <a href="{{ url('sp-profile/'.$user->id) }}">
                     <h5 class="card-title text-center mb-0">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
+                      </a>
                  <div class="mb-3">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
                     <p class="card-text text-center mt-1 mb-4">
@@ -867,11 +880,11 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
                       {{ $user->business->business_name }}
                        </span>
                     </p>
-                </div>
                     @endif
+                    </div>
                     @if( $user->business->business_website ||  $user->business->business_phone || $user->business->business_website )
                     <div class="mb-2">
-                  <hr style="border-top: 1px solid #e5e9f2">
+                    <hr style="border-top: 1px solid #e5e9f2">
                     @if($job_design->business_number == 'yes' && $user->business->business_phone)
                         <p class="card-text text-center mt-3 mb-0" style="font-size: 14px;font-weight: normal;">
                             <em class="icon ni ni-call"></em><span> <a href="tel:{{ $user->business->business_phone }}" class="track-click" data-type="phone" data-user-id="{{ $user->id }}">{{ $user->business->business_phone }}</a></span>
@@ -886,16 +899,18 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 
                     @if($job_design->business_website == 'yes' && $user->business->business_website)
                         <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
-                            <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}>{{ $user->business->business_website }}</a></span>
+                            <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}>Visit Website</a></span>
                         </p>
                     @endif
 
                   </div>
                   <hr style="border-top: 1px solid #e5e9f2">
                    @endif
+                   <a href="{{ url('sp-profile/'.$user->id) }}">
                    <span class="profile_read-more ">SEE PROFILE >></span>
+                     </a>
                 </div>
-          </a>
+        
       </div>
  
     </div>
@@ -910,7 +925,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
   <div class="row">
     <div class="d-flex col-12 justify-content-between px-4">
       <h3>Featured Blogs</h3>
-      <a href="{{ url('blogs') }}" class="link-color">View All</a>
+      <a href="{{ url('blogs') }}" class="link-color font-weight-bold">View All</a>
     </div>
   </div>
   <div class="row" style="margin-bottom: 100px">
@@ -958,11 +973,11 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
           <div class="col-md-3 d-flex justify-content-center justify-content-sm-start">
               <a href="{{ url('/') }}" class="logo-link">
                 @if($job_design->footer_logo == 'dark')
-                  <img class="logo-light logo-img" src="{{$sitedarklogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
-                  <img class="logo-dark logo-img" src="{{$sitedarklogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                  <!-- <img class="logo-light logo-img" src="{{$sitedarklogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo"> -->
+                  <img class="logo-dark logo-img" src="{{$sitedarklogo}}" alt="{{$sitename}}"  alt="logo-dark">
                   @else
-                  <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo2x.png 2x" alt="logo">
-                  <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                  <img class="logo-light logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}"  alt="logo">
+                  <!-- <img class="logo-dark logo-img" src="{{$sitesmalllogo}}" alt="{{$sitename}}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> -->
                   @endif
                     </a>
           </div>

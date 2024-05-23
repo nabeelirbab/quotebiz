@@ -20,6 +20,9 @@ hr {
     min-height: 1px;
     padding: 3rem;
 }
+h5 {
+    font-size: 2rem;
+}
 </style>
 <?php $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
         <!-- Header Area End Here -->
@@ -33,7 +36,7 @@ hr {
                 <div class="row" id="no-equal-gallery">
                     @foreach($users as $user)
                     <div class="col-lg-3 col-sm-12 mb-4 mt-4">
-                      <div class="card text-center" style="min-height: 350px;border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div class="card text-center" style="min-height: 422px;border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                       <div class="mr-auto ml-auto mt-4">
                         <a href="{{ url('sp-profile/'.$user->id) }}">
                         @if($user->user_img)
@@ -43,9 +46,10 @@ hr {
                           @endif
                           </a>
                       </div>
-                      <a href="{{ url('sp-profile/'.$user->id) }}">
+                     
                       <div class="card-body pt-0 mt-1">
-                        <p class="card-text text-center mb-4">
+                        
+                        <p class="card-text text-center mb-2">
                           @foreach(json_decode($user->category_id) as $key => $cat)
                            @if(\Acelle\Jobs\HelperJob::categoryDetail($cat)->cat_parent_id == 0)
                             <span class="data-value badge badge-pill badge-info">
@@ -56,7 +60,9 @@ hr {
                             @endif
                         @endforeach
                         </p>
-                        <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
+                         <a href="{{ url('sp-profile/'.$user->id) }}">
+                        <h5 class="card-title text-center mb-0" style="line-height: 1">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
+                         </a>
                      <div class="mb-3">
                         @if($job_design->business_name == 'yes' && $user->business->business_name)
                         <p class="card-text text-center mt-1 mb-4">
@@ -64,8 +70,8 @@ hr {
                           {{ $user->business->business_name }}
                            </span>
                         </p>
-                    </div>
                         @endif
+                         </div>
                         @if( $user->business->business_website ||  $user->business->business_phone || $user->business->business_website )
                         <div class="mb-2">
                       <hr style="border-top: 1px solid #e5e9f2">
@@ -83,15 +89,17 @@ hr {
 
                         @if($job_design->business_website == 'yes' && $user->business->business_website)
                             <p class="card-text text-center mb-0" style="font-size: 14px;font-weight: normal;">
-                                <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}>{{ $user->business->business_website }}</a></span>
+                                <em class="icon ni ni-globe"></em><span> <a href="{{ $user->business->business_website }}" class="track-click" data-type="website" data-user-id="{{ $user->id }}" {!! $job_design->website_link_setting == 'NoFollow' ? 'rel="nofollow" target="_blank"' : 'target="_blank"' !!}> Visit Website</a></span>
                             </p>
                         @endif
                       </div>
                       <hr style="border-top: 1px solid #e5e9f2">
                        @endif
-                       <span class="profile_read-more ">SEE PROFILE >></span>
+                        <a href="{{ url('sp-profile/'.$user->id) }}">
+                          <span class="profile_read-more ">SEE PROFILE >></span>
+                        </a>
                     </div>
-                    </a>
+                   
                   </div>
                     </div>
                     @endforeach

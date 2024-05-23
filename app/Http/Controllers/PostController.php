@@ -18,13 +18,13 @@ class PostController extends Controller
      */
     public function index()
     {
-       $posts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(20);
+       $posts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(12);
        return view('blogs',compact('posts'));
     }
 
     public function allBlogs()
     {
-       $posts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(20);
+       $posts = Post::where('subdomain',Setting::subdomain())->orderBy('id','desc')->paginate(12);
        return view('blog.blogs',compact('posts'));
     }
 
@@ -33,7 +33,7 @@ class PostController extends Controller
        $users = User::where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
-        })->where('subdomain',Setting::subdomain())->where('activated',1)->orderBy('id','desc')->paginate(20);
+        })->where('subdomain',Setting::subdomain())->where('activated',1)->orderBy('id','desc')->paginate(12);
        return view('blog.sps',compact('users'));
     }
     /**
@@ -128,7 +128,7 @@ class PostController extends Controller
     public function singleBlog($account, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->get();
+        $relatedPosts = Post::where('subdomain',Setting::subdomain())->where('slug','<>',$slug)->orderBy('id','desc')->limit(6)->get();
         return view('blog.single-blog', compact('post','relatedPosts'));
     }
 

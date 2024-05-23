@@ -16,7 +16,7 @@ $subdomain= request("account");
 <form class="" role="form" method="POST" action="">
     {{ csrf_field() }}
 
-    <div class="panel panel-body p-4 rounded-3 bg-white shadow">
+    <div class="panel panel-body p-4 rounded-3 shadow" style="background: rgba(255, 255, 255, 0.9);">
 
         <h4 class="text-semibold mt-0 mb-4 fw-600 fs-5">{{ trans('messages.login') }}</h4>
            @if (session('status'))

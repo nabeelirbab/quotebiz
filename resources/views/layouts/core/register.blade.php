@@ -4,15 +4,25 @@
 	<title>@yield('title') - {{ \Acelle\Model\Setting::get("site_name") }}</title>
 
 	@include('layouts.core._head')
+	<?php $job_design = Acelle\Jobs\HelperJob::form_design(); ?>
 	<style type="text/css">
     .row {
         margin-left: 0px;
         margin-right: 0px;
     }
+     .dogcFe {
+            background-size: cover !important;
+          background: url({{ ($job_design) ? asset('frontend-assets/images/'.$job_design->backgroup_image):'https://cdn.oneflare.com/static/client/hero/home-hero-4.jpg'}}) no-repeat rgb(238, 238, 238);
+         }
+         .btn-primary{
+                border: none!important;
+                background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
+                height: 46px!important;
+          }
    </style>
 </head>
 
-<body>
+<body class="bg-slate-800 dogcFe">
 
 	<!-- Page header -->
 	<div class="page-header">
@@ -25,28 +35,45 @@
 	<!-- /page header -->
 
 	<!-- Page container -->
-	<div class="page-container" style="min-height: 100vh">
+	<div class="page-container" >
 
 		<!-- Page content -->
-		<div class="page-content">
+	     <div class="page-content">
 
-			<!-- Main content -->
-			<div class="content-wrapper">
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <div class="row justify-content-md-center">
+                       
+                        <div class="col-sm-12 col-md-6">
 
-				<!-- main inner content -->
-				@yield('content')
+                            <div class="text-center loginheader mb-3">
+                                <a class="main-logo-big" href="{{ url('/') }}">
+                                    @if (\Acelle\Model\Setting::get('site_logo_big'))
+                                        <img src="{{ action('SettingController@file', \Acelle\Model\Setting::get('site_logo_big')) }}" style="max-width: 30%;" alt="">
+                                    @else
+                                        <img src="{{ URL::asset('images/logo_big.svg') }}" alt="">
+                                    @endif
+                                </a>
+                            </div>
 
-			</div>
-			<!-- /main content -->
+                            @yield('content')
+                         <!-- Footer -->
+                        <div class="small container mt-3">
+                            <div class=" text-white text-center py-3">
+                                 <a href="{{ url('/') }}" class="text-white" target="_blank">Copyright &copy; {{date("Y")}} {{\Acelle\Model\Setting::get("site_name")}}.</a>
+                            </div>
+                        </div>
+                        </div>
 
-		</div>
-		<!-- /page content -->
+                    </div>
 
+                </div>
+                <!-- /main content -->
 
-		<!-- Footer -->
-		<div class="footer text-muted">
-			{!! trans('messages.copy_right') !!}
-		</div>
+         
+            <!-- /footer -->
+            </div>
+            <!-- /page content -->
 		<!-- /footer -->
 
 	</div>

@@ -10,7 +10,7 @@
         
         <input type="hidden" name="token" value="{{ $token }}">
         
-        <div class="panel panel-body p-4 rounded-3 bg-white shadow">                        
+        <div class="panel panel-body p-4 rounded-3 shadow" style="background: rgba(255, 255, 255, 0.9);">                        
             
             @if (session('status'))
                 <div class="alert alert-success">

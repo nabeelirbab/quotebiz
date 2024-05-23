@@ -81,8 +81,8 @@
     <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
     <div class="toggle-expand-content" data-content="pageMenu">
     <ul class="nk-block-tools g-3">
-    <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-outline-light" onclick="opensubcategory()"><em class="icon ni ni-plus"></em><span>Add Sub Category</span></a></li>
-    <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em><span>Add Category</span></a></li>
+    <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-outline-light" onclick="opensubcategory()"><em class="icon ni ni-plus"></em>&nbsp;Add Sub Category</a></li>
+    <li class="nk-block-tools-opt"><a href="javascript:void(0)" class="btn btn-primary" onclick="openNav()"><em class="icon ni ni-plus"></em>&nbsp;Add Category</a></li>
     </ul>
     </div>
     </div><!-- .toggle-wrap -->

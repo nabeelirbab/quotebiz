@@ -28,6 +28,6 @@ class SendInvitation extends Mailable
      */
     public function build()
     {
-        return $this->subject('You have been invited to join a '.\Acelle\Model\Setting::get("site_name").' account')->from('support@quotebiz.io', \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.send-invitation');
+        return $this->subject('You have been invited to join a '.\Acelle\Model\Setting::get("site_name").' account')->from(\Acelle\Model\Setting::get("mailer.from.address"), \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.send-invitation');
     }
 }

@@ -67,6 +67,9 @@ if (isset($post)) {
         .flatpickr-calendar.inline{
             box-shadow: none !important;
         }
+        .loadmore-btn-layout1 nav {
+            justify-content: center !important;
+        }
      /* h1, h2, h3, h4, h5, h6 {
           margin: 20px 5px 0;
       }*/
@@ -256,7 +259,7 @@ if (isset($post)) {
             position: absolute;
             bottom: 6px;
             right: 85px;
-            color: gray;
+            color: {{ ($job_design) ? $job_design->link_color:'#fff'}} !important;
             cursor: pointer;
           }
         .profile_read-more:hover {
@@ -265,7 +268,7 @@ if (isset($post)) {
               outline: none; /* Remove default focus outline if desired */
               padding: 0 7px;
               border-radius: 12px;
-              font-size: 11px;
+              font-size: 12px;
              }
           .post_read-more {
             text-transform: uppercase;
@@ -448,6 +451,9 @@ if (isset($post)) {
             
             .profile_read-more{
               right: 36%;
+            }
+            .modal-body {
+                padding: 5px;
             }
 
         }
