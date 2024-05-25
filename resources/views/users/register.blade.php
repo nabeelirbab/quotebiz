@@ -62,8 +62,9 @@
         {{ csrf_field() }}
         <input type="hidden" name="invite" value="{{Request::get('invite')}}">
         <div class="panel panel-body p-4 rounded-3 shadow" style="background: rgba(255, 255, 255, 0.9);">
-         <h4 class="text-semibold mt-0 mb-4 fw-600 fs-5">{{ trans('messages.create_your_account') }}</h4>
-         <!-- <p>If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below.<a href="{{url("users/login")}}"> Login</a></p> -->
+         <h4 class="text-semibold mt-0 fw-600 fs-5">{{ trans('messages.create_your_account') }}</h4>
+         
+         <p class=" mb-4">If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below. If you already have an account, you can<a href="{{url("users/login")}}"> Login</a></p>
             <div class="">
                 
               @if($errors->any())
@@ -100,8 +101,39 @@
                 <input type="hidden" name="user_type" value="service_provider">
                     </div>
                 <div class="row">
-  
-               <div class="col-md-6 p-0"> 
+                <div class="col-md-2 pl-0">
+                  <label class="form-label" for="titleSelect">Title</label>
+                  <select id="titleSelect" class="form-control" name="title">
+                      <option value="Mr.">Mr.</option>
+                      <option value="Mrs.">Mrs.</option>
+                      <option value="Ms.">Ms.</option>
+                      <option value="Miss">Miss</option>
+                      <option value="Mx.">Mx.</option>
+                      <option value="DJ">DJ</option>
+                      <option value="Dr.">Dr.</option>
+                      <option value="Prof.">Prof.</option>
+                      <option value="Rev.">Rev.</option>
+                      <option value="Hon.">Hon.</option>
+                      <option value="Sir">Sir</option>
+                      <option value="Lady">Lady</option>
+                      <option value="Capt.">Capt.</option>
+                      <option value="Lt.">Lt.</option>
+                      <option value="Maj.">Maj.</option>
+                      <option value="Sgt.">Sgt.</option>
+                      <option value="Chief">Chief</option>
+                      <option value="Sen.">Sen.</option>
+                      <option value="Gov.">Gov.</option>
+                      <option value="Pres.">Pres.</option>
+                      <option value="Jr.">Jr.</option>
+                      <option value="Sr.">Sr.</option>
+                      <option value="Esq.">Esq.</option>
+                      <option value="Rabbi">Rabbi</option>
+                      <option value="Imam">Imam</option>
+                      <option value="Sheikh">Sheikh</option>
+                  </select>
+
+                </div>
+               <div class="col-md-5 p-0"> 
                 @include('helpers.form_control', [
                     'type' => 'text',
                     'name' => 'first_name',
@@ -109,7 +141,7 @@
                     'rules' => $user->registerRules($name)
                 ])
                </div>
-               <div class="col-md-6 pr-0 pl-xm-0"> 
+               <div class="col-md-5 pr-0 pl-xm-0"> 
                 
                 @include('helpers.form_control', [
                     'type' => 'text',
@@ -601,7 +633,7 @@ var long = $("#longitude").val();
          $('#appendbox').html(result);
             $('#example-getting-started').multiselect({
               templates: {
-                button: '<button type="button" class="multiselect dropdown-toggle btn btn-primary btn-lg" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+                button: '<button type="button" class="multiselect dropdown-toggle btn btn-lg" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
               },
                 header: true,
                 height: 150,

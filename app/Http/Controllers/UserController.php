@@ -27,6 +27,7 @@ use Acelle\Model\Subscription;
 use Acelle\Library\Facades\Hook;
 use Auth;
 use Mail;
+use Acelle\Model\GalleryImage;
 use Acelle\Mail\SendInvitation;
 use Acelle\Mail\Contactus;
 use Acelle\Mail\AdminContactus;
@@ -267,6 +268,7 @@ public function register(Request $request)
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
         $user->type = $request->business_type;
+        $user->title = $request->title;
         $user->type_value = $request->state_radius;
         $user->country = $request->country;
         $user->state = $request->state;
@@ -840,16 +842,33 @@ public function sp_register(Request $request){
 
 public function sp_info(Request $request){
  if($request->isMethod('post')){
+// dd($request->all());
    $user = Auth::user();
    $user->experience = $request->experience;
+   $user->biography = $request->biography;
    $user->update();
    $business = SpBusiness::where('user_id',$user->id)->first();
-   $business->business_name = $request->business_name;
    $business->business_reg = $request->business_reg;
    $business->business_phone = $request->business_phone;
    $business->business_email = $request->business_email;
    $business->business_website = $request->business_website;
    $business->update();
+   if($request->hasFile('images')){
+    foreach ($request->file('images') as $uploadedImage) {
+
+           $image = $uploadedImage;
+            $imagePath = time().$image->getClientOriginalName();
+            $destination = 'frontend-assets/images';
+            $image->move(public_path($destination),$imagePath);
+
+        $image = new GalleryImage([
+            'image' => $imagePath,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        $image->save();
+    }
+}
    return redirect('/service-provider/settings');
  }
   return view('users.sp_info');
