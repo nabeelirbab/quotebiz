@@ -426,7 +426,13 @@ h2{
    @php
         $charLimit = 400;
     @endphp
-
+    @if(Request::get('status') == 'true')
+    <script>
+    $(document).ready(function(){
+        $('#profile-edit').modal('show');
+    });
+    </script>
+    @endif
     @if (strlen(Auth::user()->biography) > $charLimit)
         <script>
             document.addEventListener('DOMContentLoaded', function () {

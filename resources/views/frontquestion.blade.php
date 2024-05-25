@@ -42,18 +42,18 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
 		<style>
 		<?php
-		  $total = count($questions)+3;
+		  $total = 4;
 		  $mid = 90/$total;
 		  $final = 100/$total;
 		// dd($total,$final,'dddd'); 
 		  ?>
-		  /*.wizard > .steps ul.step-1:before {
+		  .wizard > .steps ul.step-1:before {
 			left:<?php echo $mid; ?>%;
 			transition: all 0.5s ease; }
 		  .wizard > .steps ul.step-1:after {
 			width: <?php echo $final; ?>%;
 			transition: all 0.5s ease;
-			 }*/
+			 }
 
 		<?php
 		  for($i=1; $i <= $total; $i++){ ?>

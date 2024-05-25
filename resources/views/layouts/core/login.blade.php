@@ -22,6 +22,10 @@
                     margin: 0 auto;
                     margin-bottom: 25px;
                  }
+            .button-loading .loader {
+                    top: 9px !important;
+                    left: 20px !important;
+                }
         </style>
         @include('layouts.core._script_vars')
     </head>
