@@ -39,6 +39,14 @@ aria-hidden="true">
 		     <textarea class="form-control" name="message" cols="40" rows="40" style="min-height: 215px"></textarea>
 		    </div>
 		</div>	
+	    @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
+            <div class="col-md-12 mt-2">
+                @if ($errors->has('recaptcha_invalid'))
+                    <div class="text-danger text-center">{{ $errors->first('recaptcha_invalid') }}</div>
+                @endif
+                {!! Acelle\Library\Tool::showReCaptcha() !!}
+            </div>
+         @endif
 	</div>
 	<div class="mt-5 text-center">
 		<button type="submit" class="btn btn-primary">Send Message</button>

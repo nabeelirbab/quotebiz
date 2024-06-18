@@ -41,7 +41,7 @@ class SubscriptionDoneMailer extends Mailable
             ->with([
                 'customerName' => $this->subscription->user->displayName(),
                 'planName' => $this->subscription->plan->name,
-                'link' => action('SubscriptionController@index'),
+                'link' => url('admin/account/subscription'),
             ]);
     }
 }

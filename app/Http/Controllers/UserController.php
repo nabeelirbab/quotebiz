@@ -5,6 +5,7 @@ namespace Acelle\Http\Controllers;
 use Illuminate\Http\Request;
 use Acelle\Library\Log as MailLog;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use Illuminate\Support\Facades\Validator;
 use Acelle\Model\Customer;
 use Acelle\Jobs\HelperJob;
 use Acelle\Model\User;
@@ -293,6 +294,7 @@ public function register(Request $request)
        $business = new SpBusiness;
        $business->user_id = $user->id;
        $business->business_name = $request->business_name;
+       $business->business_email = $request->email;
        $business->save();
     // user email verification
     if (true) {
@@ -1020,10 +1022,37 @@ public function searchUser(Request $request){
     }
 
   public function contactus(Request $request){
-   $adminemail = User::where('user_type','admin')->where('subdomain', Setting::subdomain())->first()->email;
+     $rules = [
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+    ];
+
+     if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
+        $success = \Acelle\Library\Tool::checkReCaptcha($request);
+        if (!$success) {
+            $rules['recaptcha_invalid'] = 'required';
+        }
+    }
+    $validator = Validator::make($request->all(), $rules);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 'error',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    $adminemail = User::where('user_type', 'admin')->where('subdomain', Setting::subdomain())->first()->email;
+
     Mail::to($request->email)->send(new Contactus($request->all()));
     Mail::to($adminemail)->send(new AdminContactus($request->all()));
-  }  
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Your message has been sent successfully.'
+    ]);
+}
 
   public function updateusertitle(Request $request){
     $user = User::find($request->id);

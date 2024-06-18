@@ -213,9 +213,10 @@ h2{
                                                     <p>Basic info, like your name and address, that you use on {{\Acelle\Model\Setting::get("site_name")}}.</p>
                                                 </div>
                                                   <div class="nk-tab-actions mr-n1">
-                                                <a href="#" class="btn btn-icon btn-trigger" data-toggle="modal"
+                                                <a href="#" class="btn" data-toggle="modal"
                                                    data-target="#profile-edit">
                                                     <em class="icon ni ni-edit"></em>
+                                                    <span>Edit Profile Details</span>
                                                 </a>
                                             </div>
                                             </div>

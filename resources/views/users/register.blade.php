@@ -67,107 +67,90 @@
          <p class=" mb-4">If you would like to become part of our network and offer your business and provide your skills to people looking for your skills then please register below. If you already have an account, you can<a href="{{url("users/login")}}"> Login</a></p>
             <div class="">
                 
-              @if($errors->any())
+                @if($errors->any())
                 <div class="alert alert-danger alert-block" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button> 
-                    <strong>{{$errors->first()}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+                    <strong>{{ $errors->first() }}</strong>
                 </div>
-                @endif
-                 <div class="form-group control-text">
-                    <label>
-                        <b>Business Name</b>
-                         <span class="text-danger">*</span>
-                     </label>
-                     <input type="text" name="business_name" class="form-control" required>
-                  </div>
-                <div class="form-group control-text">
-                    <label>
-                        <b>Category</b>
-                         <span class="text-danger">*</span>
-                     </label>
-                     <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
-                         <option value="">Select Category</option>
-                         @foreach(Acelle\Jobs\HelperJob::categories() as $category)
-                         <option value="{{$category->id}}">{{$category->category_name}}</option>
-                         @endforeach
-                     </select>
-                  </div>
-                  <div id="appendbox">
-                      
-                  </div>
-                   <div class="form-group control-text">
-                
-                    <input id="subdomain" placeholder="" value="{{\Acelle\Model\Setting::subdomain()}}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id  ">
-                <input type="hidden" name="user_type" value="service_provider">
-                    </div>
-                <div class="row">
-                <div class="col-md-2 pl-0">
-                  <label class="form-label" for="titleSelect">Title</label>
-                  <select id="titleSelect" class="form-control" name="title">
-                      <option value="Mr.">Mr.</option>
-                      <option value="Mrs.">Mrs.</option>
-                      <option value="Ms.">Ms.</option>
-                      <option value="Miss">Miss</option>
-                      <option value="Mx.">Mx.</option>
-                      <option value="DJ">DJ</option>
-                      <option value="Dr.">Dr.</option>
-                      <option value="Prof.">Prof.</option>
-                      <option value="Rev.">Rev.</option>
-                      <option value="Hon.">Hon.</option>
-                      <option value="Sir">Sir</option>
-                      <option value="Lady">Lady</option>
-                      <option value="Capt.">Capt.</option>
-                      <option value="Lt.">Lt.</option>
-                      <option value="Maj.">Maj.</option>
-                      <option value="Sgt.">Sgt.</option>
-                      <option value="Chief">Chief</option>
-                      <option value="Sen.">Sen.</option>
-                      <option value="Gov.">Gov.</option>
-                      <option value="Pres.">Pres.</option>
-                      <option value="Jr.">Jr.</option>
-                      <option value="Sr.">Sr.</option>
-                      <option value="Esq.">Esq.</option>
-                      <option value="Rabbi">Rabbi</option>
-                      <option value="Imam">Imam</option>
-                      <option value="Sheikh">Sheikh</option>
-                  </select>
+            @endif
+            
+            <div class="form-group control-text">
+                <label><b>Business Name</b><span class="text-danger">*</span></label>
+                <input type="text" name="business_name" class="form-control" value="{{ old('business_name') }}" required>
+            </div>
 
+            <div class="form-group control-text">
+                <label><b>Category</b><span class="text-danger">*</span></label>
+                <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
+                    <option value="">Select Category</option>
+                    @foreach(Acelle\Jobs\HelperJob::categories() as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div id="appendbox"></div>
+
+            <input id="subdomain" placeholder="" value="{{ \Acelle\Model\Setting::subdomain() }}" type="hidden" name="subdomain" class="form-control required unique:users,subdomain,,id">
+            <input type="hidden" name="user_type" value="service_provider">
+            
+            <div class="row">
+                <div class="col-md-2 pl-0">
+                    <label class="form-label" for="titleSelect">Title</label>
+                    <select id="titleSelect" class="form-control" name="title">
+                        <option value="Mr.">Mr.</option>
+                        <option value="Mrs.">Mrs.</option>
+                        <option value="Ms.">Ms.</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Mx.">Mx.</option>
+                        <option value="DJ">DJ</option>
+                        <option value="Dr.">Dr.</option>
+                        <option value="Prof.">Prof.</option>
+                        <option value="Rev.">Rev.</option>
+                        <option value="Hon.">Hon.</option>
+                        <option value="Sir">Sir</option>
+                        <option value="Lady">Lady</option>
+                        <option value="Capt.">Capt.</option>
+                        <option value="Lt.">Lt.</option>
+                        <option value="Maj.">Maj.</option>
+                        <option value="Sgt.">Sgt.</option>
+                        <option value="Chief">Chief</option>
+                        <option value="Sen.">Sen.</option>
+                        <option value="Gov.">Gov.</option>
+                        <option value="Pres.">Pres.</option>
+                        <option value="Jr.">Jr.</option>
+                        <option value="Sr.">Sr.</option>
+                        <option value="Esq.">Esq.</option>
+                        <option value="Rabbi">Rabbi</option>
+                        <option value="Imam">Imam</option>
+                        <option value="Sheikh">Sheikh</option>
+                    </select>
                 </div>
-               <div class="col-md-5 p-0"> 
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'first_name',
-                    'value' => $name,
-                    'rules' => $user->registerRules($name)
-                ])
-               </div>
-               <div class="col-md-5 pr-0 pl-xm-0"> 
-                
-                @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'last_name',
-                    'value' => $user->last_name,
-                    'rules' => $user->registerRules($user->subdomain)
-                ])
-               </div>
-               <div class="col-md-6 p-0"> 
-                 @include('helpers.form_control', [
-                    'type' => 'text',
-                    'name' => 'email',
-                    'value' => $email,
-                    'help_class' => 'profile',
-                    'rules' => $user->registerRules($email)
-                ])
-                 </div>
-                 <div class="col-md-6 pr-0 pl-xm-0"> 
-                @include('helpers.form_control', [
-                    'type' => 'password',
-                    'label'=> trans('messages.password'),
-                    'name' => 'password',
-                    'rules' => $user->registerRules($user->subdomain),
-                    'eye' => true,
-                ])
-              </div>
+                <div class="col-md-5 p-0">
+                    <div class="form-group control-text">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $name) }}" required>
+                    </div>
+                </div>
+                <div class="col-md-5 pr-0 pl-xm-0">
+                    <div class="form-group control-text">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $user->last_name) }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0">
+                    <div class="form-group control-text">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" value="{{ old('email', $email) }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6 pr-0 pl-xm-0">
+                    <div class="form-group control-text">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+            </div>
                 </div>
                  <div class="form-group control-text">
                     <label>

@@ -171,9 +171,9 @@ hr {
                     </div>
                 </div>
             </div>
-            <p class="text-center" style="cursor: pointer; margin-top: 100px; font-weight: bold" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share_Icon.svg') }}" style="width: 5%;" class="mb-1"> <span style="text-decoration: underline;">Share</span> </p>
+            <p class="text-center mb-5" style="cursor: pointer; margin-top: 100px; font-weight: bold" data-toggle="modal" data-target="#shareModal"><img src="{{ asset('images/share_Icon.svg') }}" style="width: 5%;" class="mb-1"> <span style="text-decoration: underline;">Share</span> </p>
 			</div>
-			<div class="col-md-8 ml-md-auto mb-5 pt-4 ">
+			<div class="col-md-8 ml-md-auto mb-5 pt-4 p-5">
 				<h2 class="ml-0" style="margin-top: -6px;">About {{$user->first_name}} </h2>
 				<div class=" mb-5 border-bottom">
 				<div class="row mt-5 mb-4 ">

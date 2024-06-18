@@ -248,7 +248,7 @@ public static $itemsPerPage = 25;
 
         $sitename = 'Quotebiz.io';
         $sitedarklogo = 'https://www.quotebiz.io/wp-content/uploads/2022/03/QB_logo.png';
-        $layout->content = str_replace('{ACTIVATION_URL}', join_url(url('user/activate/'.$token)), $layout->content);
+        $layout->content = str_replace('{ACTIVATION_URL}', join_url(url('admin/activate/'.$token)), $layout->content);
         $layout->content = str_replace('{CUSTOMER_NAME}', $name, $layout->content);
         $layout->content = str_replace('{SITE_NAME}', $sitename, $layout->content);
         $layout->content = str_replace('{SITE_URL}', url('/'), $layout->content);

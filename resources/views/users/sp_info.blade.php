@@ -186,9 +186,11 @@ h2 {
                         </div>
                            <label for="uploadImg" class="labelcls justify-content-center" style="margin-top:-17px"><em class="icon ni ni-camera-fill cameraicon"></em><span style="line-height: 1;">Edit</span></label>
                         @endif
+
                     </div>
+
                 </div>
-        
+         <p class="mb-4">People want to know what you look like. Please upload a profile pic of yourself or your business logo by clicking 'Edit' above under the profile pic.</p>
                 <div class="form-group control-text">
                     <label><b>Business Registration Number</b></label>
                     <input type="text" name="business_reg" class="form-control">
@@ -197,10 +199,10 @@ h2 {
                     <label><b>Business Phone</b><span class="text-danger">*</span></label>
                     <input type="text" name="business_phone" class="form-control">
                 </div>
-                <div class="form-group control-text">
+              <!--   <div class="form-group control-text">
                     <label><b>Business Email</b><span class="text-danger">*</span></label>
                     <input type="text" name="business_email" class="form-control">
-                </div>
+                </div> -->
                 <div class="form-group control-text">
                     <label><b>Business Website</b></label>
                     <input type="text" name="business_website" class="form-control">
@@ -215,10 +217,10 @@ h2 {
                     value="Next Step" /> 
             </fieldset> 
             <fieldset> 
-                <h2>Biography</h2>
+                <h2>About Us / Biography</h2>
                   <div class="form-group control-text">
             
-                    <textarea name="biography" style="font-size: 1rem;height: auto !important; background-color: transparent;" class="form-control" rows="20" cols="16" id="myTextarea" maxlength="2500"></textarea>
+                    <textarea name="biography" style="font-size: 1rem;height: auto !important;" class="form-control" rows="20" cols="16" id="myTextarea" maxlength="2500"></textarea>
                     <!-- <div id="charCount" class="float-right">Characters remaining: 2500</div> -->
                   </div> 
                   <div>
@@ -235,6 +237,7 @@ h2 {
             </fieldset> 
             <fieldset> 
                 <h2>Gallery</h2> 
+                <p>Please add some photos of your work for people to see on your profile page.</p>
                     <div class="form-group mt-4">
                         <input type="file" class="form-control" name="images[]" id="images" multiple accept="image/*">
                     </div>

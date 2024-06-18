@@ -2,73 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://djtonychen.quotebiz.io/</loc>
-        <lastmod>2024-05-23T00:00:20+00:00</lastmod>
+        <lastmod>2024-06-18T00:00:15+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://djtonychen.quotebiz.io/users/login</loc>
-        <lastmod>2024-05-23T00:00:21+00:00</lastmod>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://djtonychen.quotebiz.io/service-providers</loc>
-        <lastmod>2024-05-23T00:00:21+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://djtonychen.quotebiz.io/sp-profile/7486</loc>
-        <lastmod>2024-05-23T00:00:21+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://djtonychen.quotebiz.io</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://djtonychen.quotebiz.io/sp-profile/7485</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://djtonychen.quotebiz.io/sp-profile/7484</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://djtonychen.quotebiz.io/sitemap</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://djtonychen.quotebiz.io/sp-profile/7483</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://djtonychen.quotebiz.io/users/register</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
-        <loc>https://djtonychen.quotebiz.io/forget-password</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
+        <loc>https://djtonychen.quotebiz.io/sitemap</loc>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://djtonychen.quotebiz.io/sp-profile/7484</loc>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://djtonychen.quotebiz.io/sp-profile/7486</loc>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://djtonychen.quotebiz.io/sp-profile/7483</loc>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://djtonychen.quotebiz.io</loc>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://djtonychen.quotebiz.io/sp-profile/7485</loc>
+        <lastmod>2024-06-18T00:00:16+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://djtonychen.quotebiz.io/login</loc>
-        <lastmod>2024-05-23T00:00:22+00:00</lastmod>
+        <lastmod>2024-06-18T00:00:17+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://djtonychen.quotebiz.io/forget-password</loc>
+        <lastmod>2024-06-18T00:00:17+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>

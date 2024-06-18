@@ -612,6 +612,15 @@ p.form-para::after {
 }
 
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F63WBJN845"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F63WBJN845');
+</script>
 </head>
 <body>
 <div class="container-fluid dogcFe">
@@ -1064,29 +1073,41 @@ $(document).ready(function () {
         });
     });
 
-    $('#contactform').submit(function (e) {
-        e.preventDefault();
-        var form = $(this);
-        var submitButton = form.find('button[type="submit"]');
-            submitButton.prop('disabled', true);  // Disable the button
+   $('#contactform').submit(function (e) {
+      e.preventDefault();
+      var form = $(this);
+      var submitButton = form.find('button[type="submit"]');
+      submitButton.prop('disabled', true);  // Disable the button
 
-        $.ajax({
-            type: form.attr('method'),
-            url: form.attr('action'),
-            data: form.serialize(),
-            success: function (data) {
-                // Display success message in the modal
-                $('.error-body').html('<div class="alert alert-success" role="alert">Message sent successfully!</div>');
-            },
-            error: function (data) {
-                // Display error message in the modal
-                $('.error-body').html('<div class="alert alert-danger" role="alert">Error sending message. Please try again.</div>');
-            },
-             complete: function () {
-                    submitButton.prop('disabled', false);  // Re-enable the button after completion
-            }
-        });
-    });
+      $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function (data) {
+              // Display success message in the modal
+              $('.error-body').html('<div class="alert alert-success" role="alert">Message sent successfully!</div>');
+          },
+          error: function (data) {
+              // Display error message in the modal
+              console.log(data);
+              if (data.status === 422) {
+                  var errors = data.responseJSON.errors;
+                  var errorMessage = '<div class="alert alert-danger" role="alert">';
+                  $.each(errors, function (key, value) {
+                      errorMessage += value[0] + '<br>'; // Assuming each field has one error message
+                  });
+                  errorMessage += '</div>';
+                  $('.error-body').html(errorMessage);
+              } else {
+                  $('.error-body').html('<div class="alert alert-danger" role="alert">Error sending message. Please try again.</div>');
+              }
+          },
+          complete: function () {
+              submitButton.prop('disabled', false);  // Re-enable the button after completion
+          }
+      });
+  });
+
 });
 </script>
 <script>
