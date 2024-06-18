@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="nk-tb-col tb-col-xxl">
-            <span class="tb-lead-sub">Stripe</span>
+            <span class="tb-lead-sub">{{$creadit->method}}</span>
         </div>
         <div class="nk-tb-col tb-col-lg">
             <span class="tb-lead-sub">{{$creadit->payment_id}}</span>

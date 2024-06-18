@@ -8,62 +8,195 @@
 
 
 	<div class="nk-block nk-block-lg">
-    <div class="nk-block-head nk-block-head-sm">
-        <div class="nk-block-between">
-            <div class="nk-block-head-content">
-                <h4 class="nk-block-title page-title">Stripe Payment</h3>
-                    <p>In order to receive payments from service providers you will need to setup a stripe account <a href="https://dashboard.stripe.com/login" target="_blank">Stripe Account</a>. Manage your API keys to authenticate requests with Stripe. <a href="https://stripe.com/docs/keys" target="_blank">API keys</a></p>
-               
-            </div><!-- .nk-block-head-content -->
-           
-        </div><!-- .nk-block-between -->
-    </div><!-- .nk-block-head -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-preview">
-        <div class="card-inner">
-            <div class="preview-block">
-                <!-- <span class="preview-title-lg overline-title">Create Category</span> -->
-                 <form action="" method="post" enctype="multipart/form-data">
+  
+        <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="sub-section">
+                <h2 style="margin-bottom: 10px;margin-top: 0">{{ trans('messages.payment.all_available_gateways') }}</h2>
+                <p>{!! trans('messages.payment.all_available_gateways.wording') !!}</p>
+                <div class="mc-list-setting mt-5">
+                <div class="list-setting bg-stripe
+                    current">
+                    <div class="list-setting-main" style="width: 50%">
+                        <div class="title">
+                            <label>Stripe</label>
+                        </div>
+                        <p>Receive payments from Credit / Debit card to your Stripe account</p>
+                    </div>
+                    <div class="list-setting-status text-nowrap pl-4">
+                        @if(Acelle\Jobs\HelperJob::payment_method('stripe'))
+                          @if(Acelle\Jobs\HelperJob::payment_method('stripe')->status == 'active' )
+                                <span class="label label-flat bg-active">
+                                    {{ trans('messages.payment.active') }}
+                                </span>
+                            @else
+                            <span class="label label-flat bg-inactive">
+                                {{ trans('messages.payment.inactive') }}
+                            </span>
+                            @endif
+                         @endif
+                    </div>
+                    <div class="list-setting-actions text-nowrap pl-4">
+                      @if(Acelle\Jobs\HelperJob::payment_method('stripe'))
+                           @if(Acelle\Jobs\HelperJob::payment_method('stripe')->status == 'active' )
+                           <a class="btn btn-secondary ml-5"
+                                    link-method="post" href="{{ url('admin/payment_method/status?method=stripe&status=inactive') }}">
+                                    {{ trans('messages.payment.disable') }}
+                                </a>
+                            @else
+                                <a class="btn btn-secondary ml-5"
+                                    link-method="post" href="{{ url('admin/payment_method/status?method=stripe&status=active') }}">
+                                    {{ trans('messages.payment.enable') }}
+                            </a>
+                             @endif
+                            <button class="btn btn-secondary ml-5" data-bs-toggle="modal" data-bs-target="#stripeModal">
+                                Setting
+                            </button>
+                            @else
+                             <button class="btn btn-secondary ml-5" data-bs-toggle="modal" data-bs-target="#stripeModal">
+                                Connect
+                            </button>
+                            @endif
+                    </div>
+                </div>
+
+                    <div class="list-setting bg-paypal
+                    current">
+                    <div class="list-setting-main" style="width: 50%">
+                        <div class="title">
+                            <label>Paypal</label>
+                        </div>
+                        <p>PayPal is the fast/safe way to send money, make an online payment, receive money or set up a merchant account</p>
+                    </div>
+                     <div class="list-setting-status text-nowrap pl-4">
+                        @if(Acelle\Jobs\HelperJob::payment_method('paypal'))
+                          @if(Acelle\Jobs\HelperJob::payment_method('paypal')->status == 'active' )
+                                <span class="label label-flat bg-active">
+                                    {{ trans('messages.payment.active') }}
+                                </span>
+                            @else
+                            <span class="label label-flat bg-inactive">
+                                {{ trans('messages.payment.inactive') }}
+                            </span>
+                            @endif
+                         @endif
+                    </div>
+                    <div class="list-setting-actions text-nowrap pl-4">
+                      @if(Acelle\Jobs\HelperJob::payment_method('paypal'))
+                           @if(Acelle\Jobs\HelperJob::payment_method('paypal')->status == 'active' )
+                           <a class="btn btn-secondary ml-5"
+                                    link-method="post" href="{{ url('admin/payment_method/status?method=paypal&status=inactive') }}">
+                                    {{ trans('messages.payment.disable') }}
+                                </a>
+                            @else
+                                <a class="btn btn-secondary ml-5"
+                                    link-method="post" href="{{ url('admin/payment_method/status?method=paypal&status=active') }}">
+                                    {{ trans('messages.payment.enable') }}
+                            </a>
+                             @endif
+                            <button class="btn btn-secondary ml-5" data-bs-toggle="modal" data-bs-target="#paypalModal">
+                                Setting
+                            </button>
+                            @else
+                             <button class="btn btn-secondary ml-5" data-bs-toggle="modal" data-bs-target="#paypalModal">
+                                Connect
+                            </button>
+                            @endif
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="stripeModal" tabindex="-1" aria-labelledby="stripeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Stripe Payment Method</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="stripe" value="stripe">
 
                 <div class="row d-flex justify-content-center gy-4">
                    
-                    <div class="col-sm-7">
-                        @if(!$stripeData)
-                        <div class="alert alert-danger  fade show mt-5" role="alert">
+                    <div class="col-sm-12 mt-0">
+                        @if(!Acelle\Jobs\HelperJob::payment_method('stripe'))
+                        <div class="alert alert-danger fade show" role="alert">
                         <strong> For Receive payments from Credit / Debit card to your Stripe account Please enter stripe keys</strong> 
                         </div>
                         @endif
                         <div class="form-group">
                             <label class="form-label" for="default-01">Publishable key </label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($stripeData) value="{{$stripeData->stripe_key}}" @endif name="stripe_key" id="default-01" placeholder="Enter Stripe Key" required>
+                                <input type="text" class="form-control" @if(Acelle\Jobs\HelperJob::payment_method('stripe')) value="{{Acelle\Jobs\HelperJob::payment_method('stripe')->stripe_key}}" @endif name="stripe_key" id="default-01" placeholder="Enter Stripe Key" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="form-group">
+                           <div class="form-group">
                             <label class="form-label" for="default-01">Stripe Secret</label>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" @if($stripeData) value="{{$stripeData->stripe_secret}}" @endif name="stripe_secret" id="default-01" placeholder="Enter Stripe Secret" required>
+                                <input type="text" class="form-control" @if(Acelle\Jobs\HelperJob::payment_method('stripe')) value="{{Acelle\Jobs\HelperJob::payment_method('stripe')->stripe_secret}}" @endif name="stripe_secret" id="default-01" placeholder="Enter Stripe Secret" required>
                             </div>
                         </div>
-                    </div>
-                   
-                    <div class="col-sm-7 text-center">
-                        <button class="btn btn-success btn-lg" type="submit">@if($stripeData) Update @else Save @endif</button>
-                    </div>
+                        <button class="btn btn-success btn-lg text-center" type="submit">@if(Acelle\Jobs\HelperJob::payment_method('stripe')) Update @else Save @endif</button>
 
-                   
+                    </div>
                 </div>
               </form>
-            </div>
-        </div>
-    </div><!-- .card-preview --> 
-        </div>
-        <div class="col-md-6">
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">PayPal Payment Method</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <form action="" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="paypal" value="paypal">
+
+                <div class="row d-flex justify-content-center gy-4">
+                   
+                    <div class="col-sm-12 mt-0">
+                        @if(!Acelle\Jobs\HelperJob::payment_method('paypal'))
+                        <div class="alert alert-danger fade show" role="alert">
+                        <strong> PayPal is the fast/safe way to send money, make an online payment, receive money or set up a merchant account.</strong> 
+                        </div>
+                        @endif
+                        <div class="form-group">
+                            <label class="form-label" for="default-01">Client Id</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" @if(Acelle\Jobs\HelperJob::payment_method('paypal')) value="{{Acelle\Jobs\HelperJob::payment_method('paypal')->stripe_key}}" @endif name="stripe_key" id="default-01" placeholder="Enter Client Id" required>
+                            </div>
+                        </div>
+                           <div class="form-group">
+                            <label class="form-label" for="default-01">Secret</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" @if(Acelle\Jobs\HelperJob::payment_method('paypal')) value="{{Acelle\Jobs\HelperJob::payment_method('paypal')->stripe_secret}}" @endif name="stripe_secret" id="default-01" placeholder="Enter Secret" required>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-lg text-center" type="submit">@if(Acelle\Jobs\HelperJob::payment_method('paypal')) Update @else Save @endif</button>
+
+                    </div>
+                </div>
+              </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+    <div class="row">
+     
+        <div class="col-md-4">
              <div class="card card-preview">
         <div class="card-inner">
            <div class="preview-block">
@@ -71,8 +204,8 @@
              <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="currency" value="currency">
-                <div class="row d-flex justify-content-center gy-4">
-                   <div class="col-sm-7">
+                <div class="row ">
+                   <div class="col-sm-12">
                     <div class="form-group">
                       <label class="form-label" for="default-01">Select Currency </label>
                        <div class="form-control-wrap">
@@ -188,7 +321,7 @@
                 </div>
                        </div>
                    </div>                   
-                    <div class="col-sm-7 text-center">
+                    <div class="col-sm-12 text-center">
                         <button class="btn btn-success btn-lg" type="submit">Save</button>
                     </div>
                 </div>

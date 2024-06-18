@@ -28,7 +28,100 @@ class QuoteController extends Controller
 
     public function leads()
     {
-        return view('service_provider.quotesLeads');
+             $pendingquotes = array();
+
+        //        if provider is local
+        if (Auth::user()->type == "local business") {
+
+            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+                ->where('status', 'pending')
+                ->where('user_id','<>',json_decode(Auth::user()->id))
+                ->select(
+                    DB::raw("quotes.*, ( 6371  * acos( cos( radians(" . Auth::user()->latitude . ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" . Auth::user()->longitude . ") ) + sin( radians(" . Auth::user()->latitude . ") ) * sin( radians( latitude ) ) ) ) AS distance")
+                )
+                ->having("distance", "<=", Auth::user()->type_value)
+                // ->where('type', 'local business')
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+        }
+
+        //        if provider is country base
+        if (Auth::user()->type == "country") {
+
+            $pendingquotesdata = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+                ->where('user_id','<>',json_decode(Auth::user()->id))
+                ->where('status', 'pending')
+                ->whereNull('type')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            if(sizeof($pendingquotesdata)>0)
+            {
+                $Quotesids = array();
+                foreach ($pendingquotesdata as $pendingquote)
+                {
+                    $deal_lat = $pendingquote->latitude;
+                    $deal_long = $pendingquote->longitude;
+                    if($deal_long !=null && $deal_lat !=null){
+                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&latlng=" . $deal_lat . "," . $deal_long . "&sensor=false";
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                    curl_setopt($ch, CURLOPT_HEADER, false);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_REFERER, $url);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3000); // 3 sec.
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10000); // 10 sec.
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    $output = json_decode($result);
+                   for ($j = 0; $j < count($output->results[0]->address_components); $j++) {
+
+                        $cn = array($output->results[0]->address_components[$j]->types[0]);
+
+                        if (in_array("country", $cn)) {
+                            $country = $output->results[0]->address_components[$j]->long_name;
+                        }
+                    }
+                   $usercountryname = HelperJob::countryname(Auth::user()->country)->name;
+                    if ($usercountryname == $country) {
+                        array_push($Quotesids, $pendingquote->id);
+                    }
+                    }
+                    
+
+                }
+                if(sizeof($Quotesids)>0)
+                {
+                    $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('id', $Quotesids)->orderBy('created_at', 'desc')->paginate(10);
+                }
+            }
+
+        }
+
+        //        if provider is state base
+        if (Auth::user()->type == "state") {
+
+            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+                ->where('status', 'pending')
+                ->where('user_id','<>',json_decode(Auth::user()->id))
+                ->whereNull('type')
+                ->where('state',HelperJob::statename(Auth::user()->state)->name)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } 
+         //        if provider is state base
+        if (Auth::user()->type == "world") {
+
+            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+                ->where('status', 'pending')
+                ->where('user_id','<>',json_decode(Auth::user()->id))
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        return view('service_provider.quotesLeads',compact('pendingquotes'));
     }
 
     public function leadsquotes()
