@@ -170,7 +170,7 @@ class AccountController extends Controller
      */
     public function api(Request $request)
     {
-        $stripeData = StripeKey::where('subdomain', Setting::subdomain())->first();
+        $stripeData = StripeKey::where('subdomain', Setting::subdomain())->where('method','stripe')->first();
         if ($request->stripe && $request->isMethod('post')) {
             if ($stripeData) {
                 $stripeData->stripe_key = $request->stripe_key;
@@ -180,6 +180,8 @@ class AccountController extends Controller
                 $stripeData = new StripeKey;
                 $stripeData->user_id = Auth::user()->id;
                 $stripeData->subdomain = Setting::subdomain();
+                $stripeData->method = $request->method;
+                $stripeData->status = 'active';
                 $stripeData->stripe_key = $request->stripe_key;
                 $stripeData->stripe_secret = $request->stripe_secret;
                 $stripeData->save();
@@ -187,6 +189,27 @@ class AccountController extends Controller
             }
 
         }
+
+        $stripeData = StripeKey::where('subdomain', Setting::subdomain())->where('method','paypal')->first();
+        if ($request->paypal && $request->isMethod('post')) {
+            if ($stripeData) {
+                $stripeData->stripe_key = $request->stripe_key;
+                $stripeData->stripe_secret = $request->stripe_secret;
+                $stripeData->update();
+            } else {
+                $stripeData = new StripeKey;
+                $stripeData->user_id = Auth::user()->id;
+                $stripeData->subdomain = Setting::subdomain();
+                $stripeData->method = 'paypal';
+                $stripeData->status = 'active';
+                $stripeData->stripe_key = $request->stripe_key;
+                $stripeData->stripe_secret = $request->stripe_secret;
+                $stripeData->save();
+                // dd($stripeData);
+            }
+
+        }
+
         $currencyData = AdminCurrency::where('subdomain', Setting::subdomain())->first();
 
         if ($request->currency && $request->isMethod('post')) {
@@ -228,6 +251,13 @@ class AccountController extends Controller
         }
 
         return view('account.setcurrency', compact('currencyData'));
+    }
+
+    public function updateStatus(Request $request){
+        $payment = StripeKey::where('subdomain', Setting::subdomain())->where('method',$request->method)->first();
+        $payment->status = $request->status;
+        $payment->update();
+        return redirect()->back();
     }
 
     /**
