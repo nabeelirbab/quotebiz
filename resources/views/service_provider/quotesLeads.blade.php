@@ -239,7 +239,7 @@
                                     <label style="position: absolute;bottom: 41px;">Quote Amount</label>
                                     <input type="number" class="form-control rounded-left" style="height: 50px" id="quoteAmount{{$quote->id}}" placeholder="What is the full amount you'd like to bid for this job?">
                                     <div class="input-group-append">
-                                      <button id="sendQuoteButton{{$quote->id}}" class="btn btn-success" onclick="sendQuotation('{{ json_encode($quote) }}', '{{ $quote->id }}')">Send Quote</button>
+                                      <button id="sendQuoteButton{{$quote->id}}" class="btn btn-success" onclick="sendQuotation({{ $quote }})">Send Quote</button>
                                       <button id="loadingButton{{$quote->id}}" class="btn btn-success" style="display: none; background-color: #816bff !important; border-color: #816bff !important">
                                           Send Quote
                                           <div class="spinner-border text-secondary" role="status">
@@ -344,51 +344,44 @@ function closeNav(id) {
         }
         let isLoading = false;
 
-    function sendQuotation(quoteQuestions, quoteId) {
-          if (typeof quoteQuestions === 'string') {
-        try {
-            quoteQuestions = JSON.parse(quoteQuestions);
-        } catch (e) {
-            console.error("Failed to parse JSON:", e);
-            return;
-        }
-    }
+    function sendQuotation(quoteQuestions) {
+     
 
     // Log the entire object to check its structure
-    console.log("Full quoteQuestions object:", quoteQuestions);
+    console.log("Full quoteQuestions object:", quoteQuestions.user_id);
 
     // Log the id property to verify it exists
-    var id = quoteQuestions.id;
+    var quoteId = quoteQuestions.id;
         var credits_cost = '';
         if (quoteQuestions.category && quoteQuestions.category.credit_cost) {
             credits_cost = quoteQuestions.category.credit_cost;
         } 
 
-         var price = $('#quoteAmount'quoteId).val();
-        var comment = $('#quoteAmountVal'quoteId).val();
-        console.log(price);
+         var price = $('#quoteAmount'+quoteId).val();
+        var comment = $('#commentVal'+quoteId).val();
+        console.log(comment);
 
         if (price === '' && comment === '') {
-            $('#commentVal'.id).css('border-color', 'red');
-            $('#quoteAmount'.id).css('border-color', 'red');
+            $('#commentVal'+quoteId).css('border-color', 'red');
+            $('#quoteAmount'+quoteId).css('border-color', 'red');
             showToast("Please fill all missing fields", "error");
         } else if (price === '') {
-            $('#quoteAmount'.id).css('border-color', 'red');
+            $('#quoteAmount'+quoteId).css('border-color', 'red');
             showToast("Please enter price", "error");
         } else if (comment === '') {
-            $('#commentVal'.id).css('border-color', 'red');
+            $('#commentVal'+quoteId).css('border-color', 'red');
             showToast("Please enter quote", "error");
         } else {
             var csrf_token = $('meta[name="csrf-token"]').attr('content');
-            $('#sendQuoteButton'.id).hide();
-            $('#loadingButton'.id).show();
+            $('#sendQuoteButton'+quoteId).hide();
+            $('#loadingButton'+quoteId).show();
 
             $.ajax({
                 url: '/service-provider/storequotation',
                 method: 'POST',
                 data: {
                     customer_id: quoteQuestions.user_id,
-                    quote_id: id,
+                    quote_id: quoteId,
                     quote_price: price,
                     credit_cost: credits_cost,
                     comment: comment,
@@ -397,10 +390,10 @@ function closeNav(id) {
                 success: function(response) {
                     showToast("Quotation Sent Successfully", "success");
 
-                    $('#loadingButton'.id).hide();
-                    $('#sendQuoteButton'.id).show();
-                    $('#comment'.id).val('');
-                    $('#quoteAmount'.id).val('');
+                    $('#loadingButton'+quoteId).hide();
+                    $('#sendQuoteButton'+quoteId).show();
+                    $('#comment'+quoteId).val('');
+                    $('#quoteAmount'+quoteId).val('');
                    
 
                  
@@ -408,8 +401,8 @@ function closeNav(id) {
                 error: function(error) {
                     console.log(error);
                     showToast("An error occurred while sending the quote.", "error");
-                    $('#loadingButton'.id).hide();
-                    $('#sendQuoteButton'.id).show();
+                    $('#loadingButton'+quoteId).hide();
+                    $('#sendQuoteButton'+quoteId).show();
                 }
             });
         }
