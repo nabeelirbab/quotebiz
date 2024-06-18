@@ -75,6 +75,11 @@ class HelperJob extends Base
     	return StripeKey::where('subdomain',Setting::subdomain())->first()->stripe_key;
     }
 
+     public static function payment_method($method){
+
+      return StripeKey::where('subdomain',Setting::subdomain())->where('method',$method)->first();
+    }
+
     public static function creditAmounts(){
 
         return CreditAmount::where('subdomain',Setting::subdomain())->orderBy('credit_amount','asc')->get();

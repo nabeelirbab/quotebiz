@@ -53,7 +53,7 @@ class StripeController extends Controller
           return redirect('service-provider/buy-credits');
       }
       
-    	$stripeData = StripeKey::where('subdomain',Setting::subdomain())->first();
+    	$stripeData = StripeKey::where('subdomain',Setting::subdomain())->where('method','stripe')->first();
         Stripe\Stripe::setApiKey($stripeData->stripe_secret);
         $customer = \Stripe\Customer::create([
         'email' => $user->email,
@@ -79,6 +79,7 @@ class StripeController extends Controller
           $paymentDone->user_id = Auth::user()->id;
           $paymentDone->subdomain = Setting::subdomain();
           $paymentDone->creadits = $creadit->credit;
+          $paymentDone->method = 'Stripe';
           $paymentDone->save();
           
 

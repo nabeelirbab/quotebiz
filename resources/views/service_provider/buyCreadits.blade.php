@@ -269,11 +269,32 @@ $currencySymbols = [
                  {{csrf_field()}}
                  <input type="hidden" name="id" id="paymentValue">
              </form>
-            <button id="footerButtonMain" type="submit" form="paymentForm" class="btn btn-primary up-btn-block-sm mb-0 d-none-mobile-app">
-              Buy Credits
-            </button> 
-    </footer>
-</div>
+             <button id="footerButtonMain" type="button" class="btn btn-primary up-btn-block-sm mb-0 d-none-mobile-app" data-toggle="modal" data-target="#paymentModal">
+        Buy Credits
+        </button>
+        </footer>
+        <!-- Modal HTML -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Choose Payment Method</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  @if(Acelle\Jobs\HelperJob::payment_method('paypal') && Acelle\Jobs\HelperJob::payment_method('paypal')->status == 'active')
+                    <button id="paypalButton" class="btn btn-primary">Pay with PayPal</button>
+                    @endif
+                     @if(Acelle\Jobs\HelperJob::payment_method('stripe') && Acelle\Jobs\HelperJob::payment_method('stripe')->status == 'active')
+                    <button id="stripeButton" class="btn btn-primary">Pay with Stripe</button>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
   
    </div>
  </div>
@@ -285,7 +306,23 @@ $currencySymbols = [
    
     <script src="{{ asset('frontend-assets/assets/js/libs/editors/quill.js?ver=2.9.1') }}"></script>
     <script src="{{ asset('frontend-assets/assets/js/editors.js?ver=2.9.1') }}"></script>
-    
+    <script>
+        $(document).ready(function() {
+            $('#paypalButton').click(function() {
+                // Update form action for PayPal
+                $('#paymentForm').attr('action', '{{ url('service-provider/paypal/payment') }}');
+                // Submit the form
+                $('#paymentForm').submit();
+            });
+
+            $('#stripeButton').click(function() {
+                // Update form action for Stripe
+                $('#paymentForm').attr('action', '{{ url('service-provider/payment') }}');
+                // Submit the form
+                $('#paymentForm').submit();
+            });
+        });
+    </script>
     <script type="text/javascript">
         
             var creadits = '{{ Auth::user()->credits}}';
