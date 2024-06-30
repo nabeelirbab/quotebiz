@@ -28,13 +28,35 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                      <li class="nk-menu-item has-sub">
-                   
-                    <li class="nk-menu-item">
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                            <span class="nk-menu-text">Quotes</span>
+                        </a>
+                        <ul class="nk-menu-sub mt-2">
+                            <li class="nk-menu-item">
+                                <a href="{{url('service-provider/quotes-leads')}}" class="nk-menu-link"><span class="nk-menu-text">New</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('service-provider/quotes-open')}}" class="nk-menu-link"><span class="nk-menu-text">Open</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('service-provider/quotes-done')}}" class="nk-menu-link"><span class="nk-menu-text">Done</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('service-provider/quotes-won')}}" class="nk-menu-link"><span class="nk-menu-text">Won</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('service-provider/quotes-lost')}}" class="nk-menu-link"><span class="nk-menu-text">Lost</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                <!--     <li class="nk-menu-item">
                             <a href="{{url('service-provider/quotes-leads')}}" class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                 <span class="nk-menu-text">Quotes</span>
                             </a>
-                        </li>
+                    </li> -->
                      <li class="nk-menu-item">
                         <a href="{{url('service-provider/quotes-responses')}}" class="nk-menu-link ">
                             <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>

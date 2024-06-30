@@ -223,6 +223,10 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
 
     Route::get('/quotes-responses','ServiceProvider\QuoteController@index');
     Route::get('/quotes-leads','ServiceProvider\QuoteController@leads');
+    Route::get('/quotes-won','ServiceProvider\QuoteController@wonquotes');
+    Route::get('/quotes-lost','ServiceProvider\QuoteController@lostquotes');
+    Route::get('/quotes-done','ServiceProvider\QuoteController@donequotes');
+    Route::get('/quotes-open','ServiceProvider\QuoteController@openquotes');
     Route::get('/leadsquotes','ServiceProvider\QuoteController@leadsquotes');
     Route::get('/newjob/{id}','ServiceProvider\QuoteController@newJob');
     Route::post('/profile-update', 'ServiceProvider\QuoteController@profileUpdate');
