@@ -45,7 +45,7 @@ class QuoteController extends Controller
                 ->having("distance", "<=", Auth::user()->type_value)
                 // ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
 
         }
 
@@ -157,7 +157,7 @@ class QuoteController extends Controller
                 ->having("distance", "<=", Auth::user()->type_value)
                 // ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
 
         }
 
@@ -269,7 +269,7 @@ public function wonquotes()
                 ->having("distance", "<=", Auth::user()->type_value)
                 // ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
 
         }
 
@@ -381,7 +381,7 @@ public function lostquotes()
                 ->having("distance", "<=", Auth::user()->type_value)
                 // ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
 
         }
 
@@ -493,7 +493,7 @@ public function donequotes()
                 ->having("distance", "<=", Auth::user()->type_value)
                 // ->where('type', 'local business')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
 
         }
 
