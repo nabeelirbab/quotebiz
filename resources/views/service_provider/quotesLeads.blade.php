@@ -31,7 +31,9 @@
  </style>
 @endsection
 @section('content')
- <?php $quotePrice = Acelle\Jobs\HelperJob::quoteprice();
+ <?php 
+ $quotePrice = 0;
+ $quotePrice = Acelle\Jobs\HelperJob::quoteprice();
        if($quotePrice){
            $quotePrice = $quotePrice->price;
        }else{
@@ -126,7 +128,7 @@
                     @endif
             </div>
             <div class="nk-tb-col">
-              <span class="badge"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
+              <span class="badge" style="border: none"> <button class="btn btn-sm btn-success" onclick="openNav('{{$quote->id}}')">View Details</button></span>
             </div>
         </div><!-- .nk-tb-item -->
          <div id="mySidepanel{{$quote->id}}" class="sidepanel mt-5" style="top: 0px;height: 100%;background: #f3f3f3;padding-top: 0px;margin-top: 4.5rem !important;">
@@ -168,7 +170,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title">Quotations</h5>
+                    <h5 class="modal-title">Quotation</h5>
                     <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                     </a>
@@ -230,8 +232,8 @@
                                     <h5 class="p-0 mt-3 creditsCost">{{ $quote->category->credit_cost }} Credits</h5>
                                     <input type="hidden" value="{{ $quote->category->credit_cost }}">
                                 @else
-                                    <h5 class="p-0 mt-3">{{ $quoteprice }} Credits</h5>
-                                    <input type="hidden" value="{{ $quoteprice }}">
+                                    <h5 class="p-0 mt-3">{{ $quotePrice }} Credits</h5>
+                                    <input type="hidden" value="{{ $quotePrice }}">
                                 @endif
                             </div>
                             <div class="col-md-7 col-xs-8">
@@ -252,6 +254,13 @@
                         @else
                             <div class="col-md-7">
                                 <span>Before sending a quotation, you need to buy credits.</span>
+                                  @if($quote->category && $quote->category->credit_cost)
+                                    <h5 class="p-0 mt-3 creditsCost">{{ $quote->category->credit_cost }} Credits</h5>
+                                    <input type="hidden" value="{{ $quote->category->credit_cost }}">
+                                @else
+                                    <h5 class="p-0 mt-3">{{ $quotePrice }} Credits</h5>
+                                    <input type="hidden" value="{{ $quotePrice }}">
+                                @endif
                             </div>
                             <div class="col-md-4">
                                 <a href="buy-credits" class="btn btn-success">Buy Credits</a>
@@ -277,7 +286,6 @@
     </div>
     <!-- .nk-tb-list -->
 </div>
-    {{$pendingquotes}}
 <!--tab pan active-->
 
 <!--tab pan-->
@@ -394,6 +402,8 @@ function closeNav(id) {
                     $('#sendQuoteButton'+quoteId).show();
                     $('#comment'+quoteId).val('');
                     $('#quoteAmount'+quoteId).val('');
+                    alert('Quotation Sent Successfully');
+                     location.reload();
                    
 
                  

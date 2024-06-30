@@ -197,8 +197,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'service_provider','vali
     Route::patch('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
 
     Route::match(['get', 'post'],'payment', 'ServiceProvider\StripeController@stripePayment');
-    Route::match(['get', 'post'],'paypal/payment', 'ServiceProvider\PaypalController@paypalPost');
-    Route::match(['get', 'post'],'paypal/status', 'ServiceProvider\PaypalController@getPaymentStatus');
+    Route::match(['get', 'post'],'paypal/payment', 'ServiceProvider\PayPalController@paypalPost');
+    Route::match(['get', 'post'],'paypal/status', 'ServiceProvider\PayPalController@getPaymentStatus');
     Route::match(['get', 'post'],'info-update', 'UserController@sp_info');
 
     Route::post('stripe', 'ServiceProvider\StripeController@stripePost')->name('stripe.post');
