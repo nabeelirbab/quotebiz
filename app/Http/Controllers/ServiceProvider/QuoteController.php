@@ -252,7 +252,7 @@ class QuoteController extends Controller
 
 public function wonquotes()
     {
-             $pendingquotes = array();
+             $wonquotes = array();
 
         //        if provider is local
         if (Auth::user()->type == "local business") {
@@ -364,7 +364,7 @@ public function wonquotes()
 
 public function lostquotes()
     {
-             $pendingquotes = array();
+             $lostquotes = array();
 
         //        if provider is local
         if (Auth::user()->type == "local business") {
@@ -476,12 +476,12 @@ public function lostquotes()
 
 public function donequotes()
     {
-             $pendingquotes = array();
+             $donequotes = array();
 
         //        if provider is local
         if (Auth::user()->type == "local business") {
 
-            $pendingquotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
+            $donequotes = Quote::with('user','category','myquotation','questionsget.questions','questionsget.choice.choice')->whereIn('category_id', json_decode(Auth::user()->category_id))
                 ->where('status', 'done')
                 ->where('user_id','<>',json_decode(Auth::user()->id))
                  ->whereHas('myquotation', function ($query) {
