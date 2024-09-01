@@ -113,6 +113,7 @@ class HomeController extends Controller
         $visits = DB::table('visits')
                     ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
                     ->where('created_at', '>=', $date)
+                    // ->where('subdomain', '=', Setting::subdomain())
                     ->where('track_type', '=', 'website_view')
                     ->groupBy('date')
                     ->orderBy('date', 'asc')
@@ -151,7 +152,7 @@ class HomeController extends Controller
 
     public function serviceproviders()
     {
-        $users = User::where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+        $users = User::with('business')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->paginate(10);

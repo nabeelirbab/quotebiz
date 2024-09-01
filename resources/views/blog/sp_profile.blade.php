@@ -1,7 +1,9 @@
 
 <?php
 	$data = new stdClass();
-	$data->title = $user->first_name . ' ' . $user->last_name;
+	$data->title = $user->title.' '. $user->first_name . ' ' . $user->last_name;
+	$data->subject = 'DJ Directory';
+	$data->type = 'sp_profile';
 	if($user->user_img){
         $data->image = asset('frontend-assets/images/users/'.$user->user_img);
 	}else{
@@ -45,6 +47,9 @@
 h2{
 	font-size: 24px;
 }
+h5{
+       font-size: 2rem;
+    }
 a {
 	color: #222222;
 }
@@ -131,8 +136,8 @@ hr {
                         @endif
                     @endforeach
                     </p>
-                    <h5 class="card-title text-center mb-0" style="line-height: 0.4">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
-                 <div class="mb-4">
+                    <h5 class="card-title text-center mb-0" style="line-height: 0.4;">{{ \Acelle\Jobs\HelperJob::getprefix(json_decode($user->category_id)) ?? '' }} {{$user->first_name}} {{$user->last_name}}</h5>
+                 <div class="mb-4 mt-1">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
                     <p class="card-text text-center mb-5">
                        <span class="data-value badge badge-pill badge-info" style="background-color: #364a63 !important;border-color: #364a63 !important;">

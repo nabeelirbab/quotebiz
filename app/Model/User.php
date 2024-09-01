@@ -227,6 +227,7 @@ public static $itemsPerPage = 25;
         $message->setContentType('text/html; charset=utf-8');
 
         $message->setSubject($layout->subject);
+        $message->setFrom(\Acelle\Model\Setting::get('mailer.from.address'), \Acelle\Model\Setting::get("site_name") . ' Team');
         $message->setTo([$this->email => $name]);
         $message->setReplyTo(Setting::get('mail.reply_to'));
         $message->addPart($layout->content, 'text/html');

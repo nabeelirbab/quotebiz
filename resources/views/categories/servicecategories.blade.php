@@ -51,7 +51,9 @@
     @endsection
 
     @section('content')
-    <?php $arraycalss=['bg-blue','bg-purple','bg-indigo','bg-pink','bg-red','bg-orange','bg-yellow','bg-green','bg-teal','bg-cyan']; 
+    <?php 
+      $arraycalss=['bg-blue','bg-purple','bg-indigo','bg-pink','bg-red','bg-orange','bg-yellow','bg-green','bg-teal','bg-cyan'];
+      $options = ['DJ', 'Dr.', 'Prof.', 'Rev.', 'Hon.', 'Sir', 'Lady', 'Capt.', 'Lt.', 'Maj.', 'Sgt.', 'Chief', 'Sen.', 'Gov.', 'Pres.', 'Jr.', 'Sr.', 'Esq.']; 
     ?>
     <!-- content @s -->
     <div class="nk-content ">
@@ -307,6 +309,16 @@
             </div>
         </div>
     </div>
+        <div class="col-sm-10">
+    <div class="form-group">
+    <label class="form-label" for="titleSelect"><b>Prefix (e.g., DJ Paul)</b></label>
+    <select id="titleSelect" class="form-control" name="prefix">
+    	@foreach($options as $option)
+         <option value="{{ $option }}"  {{ $option == $category->prefix ? 'selected' : '' }} >{{ $option }}</option>
+        @endforeach
+    </select>
+    </div>
+    </div>
    <div class="col-sm-10">
         <div class="form-group">
             <label class="form-label">Choose an option:</label>
@@ -405,6 +417,16 @@
     <div class="form-control-wrap">
     <textarea class="form-control" name="category_description"></textarea> 
     </div>
+    </div>
+    </div>
+    <div class="col-sm-10">
+    <div class="form-group">
+    <label class="form-label" for="titleSelect"><b>Prefix (e.g., DJ Paul)</b></label>
+    <select id="titleSelect" class="form-control" name="prefix">
+        @foreach($options as $option)
+         <option value="{{ $option }}">{{ $option }}</option>
+        @endforeach
+    </select>
     </div>
     </div>
     <div class="col-sm-10">

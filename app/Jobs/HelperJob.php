@@ -282,5 +282,21 @@ class HelperJob extends Base
        return  FeatureBar::where('subdomain',Setting::subdomain())->first();
     }
 
+ public static function getprefix($category)
+    {
+        // Ensure $category is an array
+        if (!is_array($category)) {
+            $category = [$category];
+        }
+
+        // Fetch the first category that matches the criteria
+        $categories = Category::whereIn('id', $category)->where('cat_parent_id', 0)->get();
+
+        // Return the prefix of the first matching category or null if none found
+        return $categories->isNotEmpty() ? $categories->first()->prefix : null;
+    }
+
+
+
     
 }

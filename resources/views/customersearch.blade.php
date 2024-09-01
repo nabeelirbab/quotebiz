@@ -63,6 +63,15 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                <ul class="link-list-opt no-bdr">
                                 <li><a href="{{ url('admin/customer_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                   <li>
+                                      <a href="#" onclick="document.getElementById('password-reset-form{{$user->id}}').submit();">
+                                        <em class="icon ni ni-unlock"></em><span>Send password reset</span>
+                                      </a>
+                                    </li>
+                                    <form id="password-reset-form{{$user->id}}" action="{{ url('/forget-password') }}" method="POST" style="display: none;">
+                                         {{ csrf_field() }}
+                                      <input type="hidden" name="email" value="{{ $user->email }}" />
+                                    </form>
                                   @if($user->activated == '1')
                                 <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
                                 @else

@@ -273,7 +273,7 @@
     </div>
     <!-- .nk-tb-list -->
 </div>
-    {{$donequotes}}
+  
 <!--tab pan active-->
 
 <!--tab pan-->

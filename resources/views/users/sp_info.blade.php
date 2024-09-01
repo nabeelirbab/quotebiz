@@ -172,6 +172,8 @@ h2 {
                     <strong>{{ $errors->first() }}</strong>
                 </div>
                 @endif
+
+                 <p class="mb-4">People want to know what you look like. Please upload a profile pic of yourself or your business logo by clicking 'Edit' below the profile pic.</p>
                 <div class="d-flex justify-content-center mb-4 mt-4">
                     <div>
                          <input type="file" accept="image/*" name="image" id="uploadImg" class="d-none">
@@ -190,23 +192,23 @@ h2 {
                     </div>
 
                 </div>
-         <p class="mb-4">People want to know what you look like. Please upload a profile pic of yourself or your business logo by clicking 'Edit' above under the profile pic.</p>
+        
                 <div class="form-group control-text">
                     <label><b>Business Registration Number</b></label>
                     <input type="text" name="business_reg" class="form-control">
                 </div>
-                <div class="form-group control-text">
+            <!--     <div class="form-group control-text">
                     <label><b>Business Phone</b><span class="text-danger">*</span></label>
                     <input type="text" name="business_phone" class="form-control">
-                </div>
+                </div> -->
               <!--   <div class="form-group control-text">
                     <label><b>Business Email</b><span class="text-danger">*</span></label>
                     <input type="text" name="business_email" class="form-control">
                 </div> -->
-                <div class="form-group control-text">
+              <!--   <div class="form-group control-text">
                     <label><b>Business Website</b></label>
                     <input type="text" name="business_website" class="form-control">
-                </div>
+                </div> -->
                 <div class="form-group control-text">
                     <label><b>Years In Business</b></label>
                     <input type="text" name="experience" class="form-control">

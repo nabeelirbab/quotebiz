@@ -11,6 +11,7 @@
 |
 */
 
+use Acelle\Mail\SettingMailerTest;
 
 function get_domain($url) {
     $pieces = parse_url($url);
@@ -33,7 +34,7 @@ Route::domain($account_prefix)->group(function ($account) {
 
     Route::group(['middleware' => ['not_installed', 'not_logged_in','validdomain']], function ($account) {
     // Helper method to generate other routes for authentication
-     
+
     Route::get('sitemap', 'UserController@convertXmlToHtml');
     Route::post('contactus', 'UserController@contactus');
     Route::get('/', 'QuoteController@home');

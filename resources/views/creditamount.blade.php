@@ -223,7 +223,7 @@
     <input type="hidden" @if($freeCredits) value="{{$freeCredits->id}}" @endif name="id">
    <div class="form-row p-2">
      <div class="form-group col-md-12"  id="addOption">
-      <label for="inputState">Global credit cost per category</label>
+      <label for="inputState">Free Credits</label>
        <input type="number" @if($freeCredits) value="{{$freeCredits->credits}}" @else value="" @endif name="credits" class="form-control" required > </div>
      <div class="form-group col-md-12">
        <label >Status</label>

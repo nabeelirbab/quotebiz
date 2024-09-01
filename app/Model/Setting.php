@@ -90,6 +90,7 @@ class Setting extends Model
 
     public static function getmail($name,$domain, $defaultValue=null)
     {
+        // dd(Setting::subdomain_email($domain));
         
         $mailsetting = MailSetting::where('subdomain',Setting::subdomain_email($domain))->first();
         if (is_object($mailsetting)) {

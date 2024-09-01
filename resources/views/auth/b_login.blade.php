@@ -59,7 +59,7 @@ $subdomain= request("account");
                 </div>
 
                 <div class="col-sm-6 text-end text-semibold fw-600">
-                    <a href="{{ url('/password/reset') }}">{{ trans("messages.forgot_password") }}</a>
+                    <a href="{{ url('/forget-password') }}">{{ trans("messages.forgot_password") }}</a>
                 </div>
             </div>
         </div>

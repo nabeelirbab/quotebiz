@@ -846,7 +846,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
   <div class="row">
     <div class="d-flex col-12 justify-content-between px-4">
       <h3>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
-      <a href="{{ url('service-providers') }}" class="link-color font-weight-bold">View All</a>
+      <a href="{{ url('service-providers') }}" class="link-color font-weight-bold">View All {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
     </div>
   </div>
   <div class="row">
@@ -880,7 +880,11 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
                     @endforeach
                     </p>
                     <a href="{{ url('sp-profile/'.$user->id) }}">
-                    <h5 class="card-title text-center mb-0">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
+                   <h5 class="card-title text-center mb-0">
+                        {{ \Acelle\Jobs\HelperJob::getprefix(json_decode($user->category_id)) ?? '' }} {{$user->first_name}} {{$user->last_name}}
+                    </h5>
+
+
                       </a>
                  <div class="mb-3">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
@@ -934,7 +938,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
   <div class="row">
     <div class="d-flex col-12 justify-content-between px-4">
       <h3>Featured Blogs</h3>
-      <a href="{{ url('blogs') }}" class="link-color font-weight-bold">View All</a>
+      <a href="{{ url('blogs') }}" class="link-color font-weight-bold">View All Blogs</a>
     </div>
   </div>
   <div class="row" style="margin-bottom: 100px">
@@ -1073,40 +1077,49 @@ $(document).ready(function () {
         });
     });
 
-   $('#contactform').submit(function (e) {
-      e.preventDefault();
-      var form = $(this);
-      var submitButton = form.find('button[type="submit"]');
-      submitButton.prop('disabled', true);  // Disable the button
+$('#contactform').submit(function (e) {
+    e.preventDefault();
+    var form = $(this);
+    var submitButton = form.find('button[type="submit"]');
+    submitButton.prop('disabled', true);  // Disable the button
 
-      $.ajax({
-          type: form.attr('method'),
-          url: form.attr('action'),
-          data: form.serialize(),
-          success: function (data) {
-              // Display success message in the modal
-              $('.error-body').html('<div class="alert alert-success" role="alert">Message sent successfully!</div>');
-          },
-          error: function (data) {
-              // Display error message in the modal
-              console.log(data);
-              if (data.status === 422) {
-                  var errors = data.responseJSON.errors;
-                  var errorMessage = '<div class="alert alert-danger" role="alert">';
-                  $.each(errors, function (key, value) {
-                      errorMessage += value[0] + '<br>'; // Assuming each field has one error message
-                  });
-                  errorMessage += '</div>';
-                  $('.error-body').html(errorMessage);
-              } else {
-                  $('.error-body').html('<div class="alert alert-danger" role="alert">Error sending message. Please try again.</div>');
-              }
-          },
-          complete: function () {
-              submitButton.prop('disabled', false);  // Re-enable the button after completion
-          }
-      });
-  });
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function (data) {
+            // Display success message in the modal
+            $('.error-body').html('<div class="alert alert-success" role="alert">Message sent successfully!</div>');
+            
+            // Hide the modal after a short delay
+            setTimeout(function() {
+                $('#contactus').modal('hide');
+            }, 2000); // Adjust the delay as needed (2000ms = 2 seconds)
+
+            // Clear all form inputs after hiding the modal
+            form[0].reset();
+        },
+        error: function (data) {
+            // Display error message in the modal
+            console.log(data);
+            if (data.status === 422) {
+                var errors = data.responseJSON.errors;
+                var errorMessage = '<div class="alert alert-danger" role="alert">';
+                $.each(errors, function (key, value) {
+                    errorMessage += value[0] + '<br>'; // Assuming each field has one error message
+                });
+                errorMessage += '</div>';
+                $('.error-body').html(errorMessage);
+            } else {
+                $('.error-body').html('<div class="alert alert-danger" role="alert">Error sending message. Please try again.</div>');
+            }
+        },
+        complete: function () {
+            submitButton.prop('disabled', false);  // Re-enable the button after completion
+        }
+    });
+});
+
 
 });
 </script>

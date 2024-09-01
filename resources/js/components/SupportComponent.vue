@@ -39,10 +39,10 @@
                <template v-for="ticket in allTickets">
                 <div class="nk-msg-list" :index="ticket.id">
                     <div class="nk-msg-item" v-bind:class="{current: ticket.id == ticketChat.id }" @click="openChat($event,ticket)">
-                        <div class="nk-msg-media user-avatar" v-if="ticket.supportuser.user_img">
-                        <img :src="hostname+'/frontend-assets/images/users/'+ticket.supportuser.user_img" alt="">
-		                </div>
-		                <div class="user-avatar bg-purple" v-else>
+                       <div class="nk-msg-media user-avatar" v-if="ticket.supportuser && ticket.supportuser.user_img">
+                            <img :src="hostname+'/frontend-assets/images/users/'+ticket.supportuser.user_img" alt="">
+                        </div>
+		                <div class="user-avatar bg-purple" v-else-if="ticket.supportuser && ticket.supportuser.first_name">
 		                    <span>{{getFirstLetter(ticket.supportuser.first_name)}}{{getFirstLetter(ticket.supportuser.last_name)}}</span>
 		                </div>
                         <div class="nk-msg-info">

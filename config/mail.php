@@ -14,6 +14,7 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
+    'local_domain' => env('MAIL_HOST', 'mail.mydomain.com'),
 
     /*
     |--------------------------------------------------------------------------

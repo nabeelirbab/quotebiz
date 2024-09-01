@@ -32,6 +32,7 @@
 @endsection
 @section('content')
  <?php 
+ 
  $quotePrice = 0;
  $quotePrice = Acelle\Jobs\HelperJob::quoteprice();
        if($quotePrice){
@@ -226,7 +227,7 @@
                     </div>
                 @else
                     <div class="row mt-3 justify-content-end">
-                        @if($quotePrice >= 10)
+                        @if(Auth::user()->credits >= $quote->category->credit_cost)
                             <div class="col-md-3 col-3 p-0">
                                 @if($quote->category && $quote->category->credit_cost)
                                     <h5 class="p-0 mt-3 creditsCost">{{ $quote->category->credit_cost }} Credits</h5>

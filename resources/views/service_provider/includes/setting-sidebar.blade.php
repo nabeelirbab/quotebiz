@@ -30,7 +30,7 @@
                             @endif
                         @endforeach
                         </p>
-                       <h5 class="card-title text-center mb-1">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h5>
+                       <h5 class="card-title text-center mb-1">{{ \Acelle\Jobs\HelperJob::getprefix(json_decode(Auth::user()->category_id)) ?? '' }} {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h5>
                     <div class="mb-4">
                     @if($job_design->business_name == 'yes' && Auth::user()->business->business_name)
                     <p class="card-text text-center mb-4">

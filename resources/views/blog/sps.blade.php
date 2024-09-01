@@ -61,7 +61,7 @@ h5 {
                         @endforeach
                         </p>
                          <a href="{{ url('sp-profile/'.$user->id) }}">
-                        <h5 class="card-title text-center mb-0" style="line-height: 1">{{$user->title}} {{$user->first_name}} {{$user->last_name}}</h5>
+                        <h5 class="card-title text-center mb-0" style="line-height: 1">{{ \Acelle\Jobs\HelperJob::getprefix(json_decode($user->category_id)) ?? '' }} {{$user->first_name}} {{$user->last_name}}</h5>
                          </a>
                      <div class="mb-3">
                         @if($job_design->business_name == 'yes' && $user->business->business_name)

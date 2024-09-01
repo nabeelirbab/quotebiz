@@ -23,6 +23,7 @@ class CategoryController extends Controller
        foreach ($categories as $key => &$value) {
          $value->subcategory = Category::where('cat_parent_id',$value->id)->get();
        }
+       
         return view('categories.servicecategories',compact('categories'));
     }
 
@@ -64,6 +65,7 @@ class CategoryController extends Controller
        $category->category_name = $request->category_name;
        $category->cat_parent = 1;
        $category->cat_parent_id = 0;
+       $category->prefix = $request->prefix;
        $category->subdomain = Setting::subdomain();
        $category->credit_cost = $request->credit_cost;
        $category->category_description = $request->category_description;
@@ -148,6 +150,7 @@ class CategoryController extends Controller
           if($iconOptionValue == 'library'){
         if($request->category_icon){
           $update->category_icon = $request->category_icon;
+          $update->icon_option = $iconOptionValue;
         }
 
        }else if($iconOptionValue == 'upload'){
@@ -157,12 +160,14 @@ class CategoryController extends Controller
               $destination = 'frontend-assets/images/categories';
               $image->move(public_path($destination),$new_image);
               $update->category_icon = $new_image;
+              $update->icon_option = $iconOptionValue;
          }
        }
 
-        $update->icon_option = $iconOptionValue;
+        
         $update->category_name = $request->category_name;
         $update->credit_cost = $request->credit_cost;
+        $update->prefix = $request->prefix;
         $update->category_description = $request->category_description; 
         $update->update();
         return redirect('admin/service-categories')->with('message', 'Category update successfully');

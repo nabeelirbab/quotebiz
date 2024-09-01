@@ -273,7 +273,7 @@
     </div>
     <!-- .nk-tb-list -->
 </div>
-    {{$lostquotes}}
+  
 <!--tab pan active-->
 
 <!--tab pan-->

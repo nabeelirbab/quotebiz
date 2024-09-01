@@ -40,17 +40,29 @@ class AppServiceProvider extends ServiceProvider
         // Disabled plugin may also register hooks
         $this->loadPlugins();
           // $mailer = Setting::get('mailer.mailer') ?: Setting::get('mailer.driver');
-        $domain = $this->get_domain(request()->getHost());
-        // dd($domain);
-        $config = array(
-                        'driver'     =>     Setting::getmail('mailer.mailer',$domain),
-                        'host'       =>     Setting::getmail('mailer.host',$domain),
-                        'port'       =>     Setting::getmail('mailer.port',$domain),
-                        'username'   =>     Setting::getmail('mailer.username',$domain),
-                        'password'   =>     Setting::getmail('mailer.password',$domain),
-                        'encryption' =>     Setting::getmail('mailer.encryption',$domain),
-                        'from'       =>     'admin@dj123.com.au',
-                    );
+        // $domain = $this->get_domain(request()->getHost());
+        $domain = request()->getHost();
+          $config = [
+        'default' => Setting::getmail('mailer.mailer', $domain),
+        'local_domain' =>  Setting::getmail('mailer.host', $domain),
+        'mailers' => [
+            'smtp' => [
+                'transport' => 'smtp',
+                'host' => Setting::getmail('mailer.host', $domain),
+                'port' => Setting::getmail('mailer.port', $domain),
+                'username' => Setting::getmail('mailer.username', $domain),
+                'password' => Setting::getmail('mailer.password', $domain),
+                'encryption' => Setting::getmail('mailer.encryption', $domain),
+                'timeout' => null,
+                'auth_mode' => null,
+            ],
+            // Add other mailers if needed
+        ],
+        'from' => [
+            'address' => 'info@floridadjs.com', // This can be dynamic as well if needed
+            'name' => 'Your Name or Default Name',
+        ],
+    ];
         Config::set('mail', $config);
     }
 

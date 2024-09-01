@@ -39,42 +39,8 @@
                             <form action="{{ url('service-provider/profile-update') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row gy-4">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label class="form-label" for="titleSelect">Title</label>
-                                            <select id="titleSelect" class="form-control" name="title">
-                                                <option value="Mr." {{ Auth::user()->title == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                                                <option value="Mrs." {{ Auth::user()->title == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
-                                                <option value="Ms." {{ Auth::user()->title == 'Ms.' ? 'selected' : '' }}>Ms.</option>
-                                                <option value="Miss" {{ Auth::user()->title == 'Miss' ? 'selected' : '' }}>Miss</option>
-                                                <option value="Mx." {{ Auth::user()->title == 'Mx.' ? 'selected' : '' }}>Mx.</option>
-                                                <option value="DJ" {{ Auth::user()->title == 'DJ' ? 'selected' : '' }}>DJ</option>
-                                                <option value="Dr." {{ Auth::user()->title == 'Dr.' ? 'selected' : '' }}>Dr.</option>
-                                                <option value="Prof." {{ Auth::user()->title == 'Prof.' ? 'selected' : '' }}>Prof.</option>
-                                                <option value="Rev." {{ Auth::user()->title == 'Rev.' ? 'selected' : '' }}>Rev.</option>
-                                                <option value="Hon." {{ Auth::user()->title == 'Hon.' ? 'selected' : '' }}>Hon.</option>
-                                                <option value="Sir" {{ Auth::user()->title == 'Sir' ? 'selected' : '' }}>Sir</option>
-                                                <option value="Lady" {{ Auth::user()->title == 'Lady' ? 'selected' : '' }}>Lady</option>
-                                                <option value="Capt." {{ Auth::user()->title == 'Capt.' ? 'selected' : '' }}>Capt.</option>
-                                                <option value="Lt." {{ Auth::user()->title == 'Lt.' ? 'selected' : '' }}>Lt.</option>
-                                                <option value="Maj." {{ Auth::user()->title == 'Maj.' ? 'selected' : '' }}>Maj.</option>
-                                                <option value="Sgt." {{ Auth::user()->title == 'Sgt.' ? 'selected' : '' }}>Sgt.</option>
-                                                <option value="Chief" {{ Auth::user()->title == 'Chief' ? 'selected' : '' }}>Chief</option>
-                                                <option value="Sen." {{ Auth::user()->title == 'Sen.' ? 'selected' : '' }}>Sen.</option>
-                                                <option value="Gov." {{ Auth::user()->title == 'Gov.' ? 'selected' : '' }}>Gov.</option>
-                                                <option value="Pres." {{ Auth::user()->title == 'Pres.' ? 'selected' : '' }}>Pres.</option>
-                                                <option value="Jr." {{ Auth::user()->title == 'Jr.' ? 'selected' : '' }}>Jr.</option>
-                                                <option value="Sr." {{ Auth::user()->title == 'Sr.' ? 'selected' : '' }}>Sr.</option>
-                                                <option value="Esq." {{ Auth::user()->title == 'Esq.' ? 'selected' : '' }}>Esq.</option>
-                                                <option value="Rabbi" {{ Auth::user()->title == 'Rabbi' ? 'selected' : '' }}>Rabbi</option>
-                                                <option value="Imam" {{ Auth::user()->title == 'Imam' ? 'selected' : '' }}>Imam</option>
-                                                <option value="Sheikh" {{ Auth::user()->title == 'Sheikh' ? 'selected' : '' }}>Sheikh</option>
-                                               
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-5">
+                              
+                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="full-name">First Name</label>
                                             <input type="text" class="form-control" id="full-name"
@@ -82,7 +48,7 @@
                                                    placeholder="Enter Full name">
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label" for="display-name">Last Name</label>
                                             <input type="text" class="form-control" id="display-name"
@@ -94,7 +60,7 @@
                                         <div class="form-group">
                                             <label class="form-label" for="phone-no">Mobile Number</label>
                                             <input type="text" class="form-control" id="phone-no"
-                                                   value="{{Auth::user()->mobileno}}" name="mobileno"
+                                                   value="{{Auth::user()->mobileno ? Auth::user()->mobileno : Auth::user()->business->business_phone }}" name="mobileno"
                                                    placeholder="Phone Number">
                                         </div>
                                     </div>

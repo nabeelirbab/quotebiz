@@ -365,7 +365,7 @@ $currencySymbols = [
                 <span class="tb-sub">{{\Carbon\Carbon::parse($quote->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
             </div>
             <div class="nk-tb-col tb-col-sm">
-                <a href="{{ url('sp-profile/'.$quote->user->id) }}" target="_blank">
+                <a href="{{ url('admin/customer_detail/'.$quote->user->id) }}" target="_blank">
                 <div class="user-card">
                     <div class="user-avatar sm bg-purple-dim">
                         <span>{{mb_substr($quote->user->first_name, 0, 1)}}{{mb_substr($quote->user->last_name, 0, 1)}}</span>
@@ -560,8 +560,8 @@ $currencySymbols = [
                 </div>
             </div>
           
-            <div class="nk-ecwg8-ck">
-                 <canvas class="sales-bar-chart" id="visitChart"></canvas>
+            <div class="nk-ecwg8-ck" style="height: auto !important">
+                 <canvas class="sales-bar-chart" id="visitChart" style="width: auto !important; height: auto !important;"></canvas>
             </div>
           <!--   <div class="chart-label-group pl-5">
                 <div class="chart-label" id="start">01 Jul, 2020</div>

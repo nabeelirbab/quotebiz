@@ -418,7 +418,7 @@
    
 </div><!-- .nk-chat-body -->
 
-<div class="nk-msg-profile"  id="chatPanel" style="display:none" v-bind:class="{visible: isVisible}" >
+<div class="nk-msg-profile"  id="chatPanel"  v-bind:class="{visible: isVisible}" >
   <div class="user-card user-card-s2 my-4"  v-if="quoteChat.chatcustomer">
     <div class="nk-msg-media user-avatar" v-if="quoteChat.chatcustomer.user_img">
         <img :src="hostname+'/frontend-assets/images/users/'+quoteChat.chatcustomer.user_img" alt="">
@@ -444,7 +444,7 @@
     <div class="chat-profile">
         <div class="chat-profile-group">
             <a href="#" class="chat-profile-head" data-toggle="collapse" data-target="#chat-options">
-                <h6 class="title overline-title">Quote Detail</h6>
+                <h6 class="title overline-title">Quote Details</h6>
                 <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
             </a>
             <div class="chat-profile-body collapse " id="chat-options">
@@ -925,7 +925,7 @@ methods: {
         },
 
         msgprofile(){
-
+            $('#chatPanel').show();
             this.isActive = !this.isActive;
             this.isProfileshown = !this.isProfileshown;
             this.isVisible = !this.isVisible;

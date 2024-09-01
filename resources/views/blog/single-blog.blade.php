@@ -1,6 +1,8 @@
 <?php
   $data = new stdClass();
   $data->title = $post->title;
+  $data->subject = 'Blog';
+  $data->type = 'single_blog';
   if($post->cover_img){
         $data->image = asset('frontend-assets/images/posts/' . $post->cover_img);
   }else{

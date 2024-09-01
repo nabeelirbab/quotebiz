@@ -29,24 +29,30 @@ aria-hidden="true">
 		<div class="col-md-12 mt-2">
 			<div class="form-group">
 		     <label class="form-control-placeholder" for="search">Email</label>
-		     <input type="email" name="email" class="form-control" required="">
+		     <input type="email" name="email_address" class="form-control" required="">
 		    </div>
 		</div>
 
 		<div class="col-md-12 mt-2">
 			<div class="form-group">
 		     <label class="form-control-placeholder" for="search">Message</label>
-		     <textarea class="form-control" name="message" cols="40" rows="40" style="min-height: 215px"></textarea>
+		     <textarea class="form-control" name="message" cols="40" rows="40" style="min-height: 215px" required></textarea>
 		    </div>
 		</div>	
-	    @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
-            <div class="col-md-12 mt-2">
-                @if ($errors->has('recaptcha_invalid'))
-                    <div class="text-danger text-center">{{ $errors->first('recaptcha_invalid') }}</div>
+	       <div class="col-md-12 mt-2">
+                @php
+                    // Generate two random numbers
+                    $digit1 = rand(1, 9);
+                    $digit2 = rand(1, 9);
+                @endphp
+                <label for="captcha">What is {{ $digit1 }} + {{ $digit2 }}?</label>
+                <input type="text" name="captcha" class="form-control" required="">
+                <input type="hidden" name="digit1" value="{{ $digit1 }}">
+                <input type="hidden" name="digit2" value="{{ $digit2 }}">
+                @if ($errors->has('captcha'))
+                    <div class="text-danger">{{ $errors->first('captcha') }}</div>
                 @endif
-                {!! Acelle\Library\Tool::showReCaptcha() !!}
             </div>
-         @endif
 	</div>
 	<div class="mt-5 text-center">
 		<button type="submit" class="btn btn-primary">Send Message</button>

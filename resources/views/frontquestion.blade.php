@@ -42,7 +42,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
 		<style>
 		<?php
-		  $total = 4;
+		  $total = count($questions)+3;
 		  $mid = 90/$total;
 		  $final = 100/$total;
 		// dd($total,$final,'dddd'); 

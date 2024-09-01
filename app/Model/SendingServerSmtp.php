@@ -104,7 +104,7 @@ class SendingServerSmtp extends SendingServer
     public static function instantiateFromSettings($settings = [])
     {
         $properties = [ 'host', 'smtp_port',  'smtp_protocol', 'smtp_username', 'smtp_password', 'from_name', 'from_address' ];
-        $required = ['host', 'smtp_port', 'smtp_username', 'smtp_password', 'from_address'];
+        $required = ['host', 'smtp_port', 'smtp_username', 'smtp_password', 'from_address', 'from_name'];
 
         $server = new self();
 

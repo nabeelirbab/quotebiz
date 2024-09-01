@@ -137,43 +137,24 @@
 
                                                             </div>
 
-                                                            <div class="col-md-6 mb-3">
-
-                                                                <label class="form-label" for="full-name">State
+                                                         <div class="col-md-6 mb-3">
+                                                                <label class="form-label" for="state">State
                                                                     <span style="color: red">*</span>
                                                                 </label>
-                                                                <select name="state" id="state"
-                                                                        class="form-control select2"
-                                                                        required onchange="GetCities(this.value)">
-                                                                    @if($statename)
-                                                                        <option selected
-                                                                                value="{{ $userdetail->state }}">{{ ($statename) ? $statename->name : '' }}
-                                                                        </option>
-                                                                    @else
-                                                                        <option disabled selected value="">
-                                                                            Select Country First
-                                                                        </option>
-                                                                    @endif
+                                                                <select name="state" id="state" class="form-control select2" required onchange="GetCities(this.value)">
+                                                                    <option value="" disabled selected>Select State</option>
+                                                                    <!-- Options will be dynamically added by AJAX -->
                                                                 </select>
-
                                                             </div>
 
                                                             <div class="col-md-6 mb-3">
-
-                                                                <label class="form-label" for="full-name">City
+                                                                <label class="form-label" for="city">City
                                                                     <span style="color: red">*</span>
                                                                 </label>
-                                                                <select name="city" id="city"
-                                                                        class="form-control select2" required>
-                                                                    @if($cityname)
-                                                                        <option value="{{ $userdetail->city }}">{{ ($cityname) ? $cityname->name : '' }}</option>
-                                                                    @else
-                                                                        <option disabled selected value="">Select State
-                                                                            First
-                                                                        </option>
-                                                                    @endif
+                                                                <select name="city" id="city" class="form-control select2" required>
+                                                                    <option value="" disabled selected>Select City</option>
+                                                                    <!-- Options will be dynamically added by AJAX -->
                                                                 </select>
-
                                                             </div>
 
                                                             <div class="col-md-6 mb-3">
@@ -312,29 +293,63 @@
             }
         }
 
-        function GetStates(val) {
-            $("#state").empty();
-            $("#city").empty();
-            $("#city").html("<option value='' selected disabled>Select State First</option>");
-            $.ajax({
-                url: "{{ url('admin/getstates') }}/" + val,
-                method: "get",
-                success: function (data) {
-                    $("#state").html(data);
-                }
-            });
-        }
+     function GetStates(countryId) {
+        $("#state").empty();
+        $("#city").empty();
+        $("#city").html("<option value='' selected disabled>Select City</option>");
+        
+        $.ajax({
+            url: "{{ url('admin/getstates') }}/" + countryId,
+            method: "get",
+            success: function (data) {
+                $("#state").html(data);
 
-        function GetCities(val) {
-            $.ajax({
-                url: "{{ url('admin/getcities') }}/" + val,
-                method: "get",
-                success: function (data) {
-                    $("#city").html(data);
+                // Automatically select the state if it's already set
+                var selectedState = "{{ $userdetail->state }}";
+                if (selectedState) {
+                    $("#state").val(selectedState).trigger('change');
                 }
-            });
-        }
+            }
+        });
+    }
 
+    function GetCities(stateId) {
+        $.ajax({
+            url: "{{ url('admin/getcities') }}/" + stateId,
+            method: "get",
+            success: function (data) {
+                $("#city").html(data);
+
+                // Automatically select the city if it's already set
+                var selectedCity = "{{ $userdetail->city }}";
+                if (selectedCity) {
+                    $("#city").val(selectedCity);
+                }
+            }
+        });
+    }
+
+    // Function to run on page load
+    function initializePage() {
+        var country = "{{ $userdetail->country }}"; // Assuming you have a country value
+        var state = "{{ $userdetail->state }}"; // Assuming you have a state value
+
+        // Trigger GetStates if country is set
+        if (country) {
+            GetStates(country);
+
+            // Optionally trigger GetCities if state is set after states are loaded
+            if (state) {
+                // Adding a small delay to ensure states are loaded before cities
+                setTimeout(function() {
+                    GetCities(state);
+                }, 500);
+            }
+        }
+    }
+
+    // Run initializePage function when the window loads
+    window.onload = initializePage;
     </script>
 
 @endsection

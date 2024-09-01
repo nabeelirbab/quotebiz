@@ -156,7 +156,7 @@
                               <span>{{$quotation->id}}</span>
                           </div>
                           <div class="nk-tb-col">
-                             <a href="{{ url('admin/customer_detail/'.$quotation->user_id) }}"> <span>{{$quotation->sp->first_name}} {{$quotation->sp->last_name}}</span>
+                             <a href="{{ url('admin/profile_detail/'.$quotation->user_id) }}"> <span>{{$quotation->sp->first_name}} {{$quotation->sp->last_name}}</span>
                              </a>
                           </div>
                           <div class="nk-tb-col">

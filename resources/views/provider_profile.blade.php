@@ -85,7 +85,7 @@
                 <div class="profile-ud-item">
                     <div class="profile-ud wider">
                         <span class="profile-ud-label">Mobile Number</span>
-                        <span class="profile-ud-value">{{$userdetail->mobileno}}</span>
+                        <span class="profile-ud-value">{{$userdetail->mobileno ? $userdetail->mobileno : $userdetail->business->business_phone }}</span>
                     </div>
                 </div>
                 <div class="profile-ud-item">

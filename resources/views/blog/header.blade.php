@@ -8,7 +8,7 @@ $job_design = Acelle\Jobs\HelperJob::form_design();
 
 $subject = ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers';
 if (isset($post)) {
-  $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - '.@$post->title;
+  $title = \Acelle\Model\Setting::get("site_name"). ' | '.$post->subject.' | '.@$post->title. ' | Get A Quote';
   $image = @$post->image;
 } else {
   $title = \Acelle\Model\Setting::get("site_name"). ' - '.$subject.' - Discover Exceptional '.$subject.' and Elevate Your Experience';
@@ -394,7 +394,7 @@ if (isset($post)) {
           border: none !important;
           border-radius: 0.55rem;
           background: {{ ($job_design) ? $job_design->button_color.'!important':'#6200EA !important'}};
-          font-size: 1.5rem;
+          font-size: 17px;
           height: 43px;
           font-weight: 500;
         }
@@ -447,6 +447,9 @@ if (isset($post)) {
           opacity: 1;
           top: 12px;
         }
+         h5 {
+                font-size: 2rem;
+            }
         @media only screen and (max-width: 768px) {
             
             .profile_read-more{
@@ -454,6 +457,9 @@ if (isset($post)) {
             }
             .modal-body {
                 padding: 5px;
+            }
+            h5 {
+                font-size: 2.5rem !important;
             }
 
         }

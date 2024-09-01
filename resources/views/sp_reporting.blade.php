@@ -134,7 +134,7 @@
             <div class="nk-tb-col">
                 <a href="{{ url('admin/profile_detail/'.$user->id) }}">
                     <div class="user-card">
-                        <div class="user-avatar bg-primary">
+                        <div class="user-avatar bg-primary mr-3">
                             @if($user->user_img)
                             <img src="{{asset('frontend-assets/images/users/'.$user->user_img)}}" alt="Profile Image" class="rounded-circle">
                             @else
@@ -142,7 +142,7 @@
                             @endif
                         </div>
                         <div class="user-info">
-                            <span class="tb-lead">{{$user->first_name}} {{$user->last_name}}
+                            <span class="tb-lead">{{ \Acelle\Jobs\HelperJob::getprefix(json_decode($user->category_id)) ?? '' }} {{$user->first_name}} {{$user->first_name}} {{$user->last_name}}
                             </span>
                             <span>{{$user->email}}</span>
                         </div>

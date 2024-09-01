@@ -81,10 +81,10 @@
 
             <div class="form-group control-text">
                 <label><b>Category</b><span class="text-danger">*</span></label>
-                <select class="form-control" name="category_id[]" required onchange="subCategory(this)">
+                <select class="form-control" name="category_id[]"  required onchange="subCategory(this)">
                     <option value="">Select Category</option>
                     @foreach(Acelle\Jobs\HelperJob::categories() as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
+                        <option value="{{ $category->id }}" {{ old('category_id[]') == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -95,59 +95,41 @@
             <input type="hidden" name="user_type" value="service_provider">
             
             <div class="row">
-                <div class="col-md-2 pl-0">
-                    <label class="form-label" for="titleSelect">Title</label>
-                    <select id="titleSelect" class="form-control" name="title">
-                        <option value="Mr.">Mr.</option>
-                        <option value="Mrs.">Mrs.</option>
-                        <option value="Ms.">Ms.</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Mx.">Mx.</option>
-                        <option value="DJ">DJ</option>
-                        <option value="Dr.">Dr.</option>
-                        <option value="Prof.">Prof.</option>
-                        <option value="Rev.">Rev.</option>
-                        <option value="Hon.">Hon.</option>
-                        <option value="Sir">Sir</option>
-                        <option value="Lady">Lady</option>
-                        <option value="Capt.">Capt.</option>
-                        <option value="Lt.">Lt.</option>
-                        <option value="Maj.">Maj.</option>
-                        <option value="Sgt.">Sgt.</option>
-                        <option value="Chief">Chief</option>
-                        <option value="Sen.">Sen.</option>
-                        <option value="Gov.">Gov.</option>
-                        <option value="Pres.">Pres.</option>
-                        <option value="Jr.">Jr.</option>
-                        <option value="Sr.">Sr.</option>
-                        <option value="Esq.">Esq.</option>
-                        <option value="Rabbi">Rabbi</option>
-                        <option value="Imam">Imam</option>
-                        <option value="Sheikh">Sheikh</option>
-                    </select>
-                </div>
-                <div class="col-md-5 p-0">
+              
+                <div class="col-md-6 p-0">
                     <div class="form-group control-text">
-                        <label for="first_name">First Name</label>
+                        <label for="first_name"><b>First Name</b><span class="text-danger">*</span></label>
                         <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $name) }}" required>
                     </div>
                 </div>
-                <div class="col-md-5 pr-0 pl-xm-0">
+                <div class="col-md-6 pr-0 pl-xm-0">
                     <div class="form-group control-text">
-                        <label for="last_name">Last Name</label>
+                        <label for="last_name"><b>Last Name</b><span class="text-danger">*</span></label>
                         <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $user->last_name) }}" required>
                     </div>
                 </div>
                 <div class="col-md-6 p-0">
                     <div class="form-group control-text">
-                        <label for="email">Email</label>
+                        <label for="email"><b>Email</b><span class="text-danger">*</span></label>
                         <input type="email" name="email" class="form-control" value="{{ old('email', $email) }}" required>
                     </div>
                 </div>
                 <div class="col-md-6 pr-0 pl-xm-0">
                     <div class="form-group control-text">
-                        <label for="password">Password</label>
+                        <label for="password"><b>Password</b><span class="text-danger">*</span></label>
                         <input type="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0">
+                    <div class="form-group control-text">
+                        <label for="mobile"><b>Mobile No.</b><span class="text-danger">*</span></label>
+                        <input type="tel" id="mobile" name="business_phone" class="form-control" value="{{ old('business_phone') }}"  required>
+                    </div>
+                </div>
+                <div class="col-md-6 pr-0 pl-xm-0">
+                    <div class="form-group control-text">
+                        <label for="website"><b>Website</b></label>
+                        <input type="url" name="business_website" class="form-control" value="{{ old('business_website') }}" pattern="https?://.+">
                     </div>
                 </div>
             </div>
@@ -376,7 +358,7 @@
                         <b>Zipcode</b>
                          <span class="text-danger">*</span>
                      </label>
-                     <input type="text" name="zipcode" class="form-control" required>
+                     <input type="text" name="zipcode" class="form-control" value="{{ old('zipcode') }}" required>
                   </div>
                 @if (Acelle\Model\Setting::get('registration_recaptcha') == 'yes')
                     <div class="row">

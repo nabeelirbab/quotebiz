@@ -243,6 +243,7 @@ public function register(Request $request)
     // $customer = Customer::newCustomer();
      $user = new User();
     if ($request->isMethod('post')) {
+        // dd($request->all());
         $user->fill($request->all());
         $rules = $user->registerRules2(Setting::subdomain());
     // Captcha check
@@ -269,7 +270,6 @@ public function register(Request $request)
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
         $user->type = $request->business_type;
-        $user->title = $request->title;
         $user->type_value = $request->state_radius;
         $user->country = $request->country;
         $user->state = $request->state;
@@ -295,6 +295,8 @@ public function register(Request $request)
        $business->user_id = $user->id;
        $business->business_name = $request->business_name;
        $business->business_email = $request->email;
+       $business->business_phone = $request->business_phone;
+       $business->business_website = $request->business_website;
        $business->save();
     // user email verification
     if (true) {
@@ -484,7 +486,6 @@ public function freecredits(Request $request){
     if($request->id){
         $freecredits = FreeCredit::find($request->id);
         $freecredits->credits = $request->input('credits');
-        $freecredits->price = $request->input('price');
         $freecredits->save();
         return redirect()->back()->with('success', 'Update Successfully');
     }else{
@@ -851,9 +852,7 @@ public function sp_info(Request $request){
    $user->update();
    $business = SpBusiness::where('user_id',$user->id)->first();
    $business->business_reg = $request->business_reg;
-   $business->business_phone = $request->business_phone;
-   $business->business_email = $request->business_email;
-   $business->business_website = $request->business_website;
+   // $business->business_phone = $request->business_phone;
    $business->update();
    if($request->hasFile('images')){
     foreach ($request->file('images') as $uploadedImage) {
@@ -1021,38 +1020,45 @@ public function searchUser(Request $request){
         return view('design/featurebar',compact('featurebar'));
     }
 
-  public function contactus(Request $request){
-     $rules = [
-        'first_name' => 'required|string|max:255',
-        'last_name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-    ];
+    public function contactus(Request $request){
+        // Define validation rules
+        $rules = [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email_address' => 'required|email|max:255',
+            'captcha' => 'required|numeric', // Add a rule for the captcha input
+        ];
 
-     if (\Acelle\Model\Setting::get('registration_recaptcha') == 'yes') {
-        $success = \Acelle\Library\Tool::checkReCaptcha($request);
-        if (!$success) {
-            $rules['recaptcha_invalid'] = 'required';
+        // Validate the CAPTCHA
+        $expectedSum = $request->digit1 + $request->digit2;
+        if ($request->captcha != $expectedSum) {
+            $rules['captcha'] = 'required|numeric';
+            $validator = Validator::make($request->all(), $rules);
+            $validator->after(function($validator) {
+                $validator->errors()->add('captcha', 'The CAPTCHA is incorrect.');
+            });
+        } else {
+            $validator = Validator::make($request->all(), $rules);
         }
-    }
-    $validator = Validator::make($request->all(), $rules);
 
-    if ($validator->fails()) {
+        // If validation fails, return errors
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Send emails if validation passes
+        $adminemail = User::where('user_type', 'admin')->where('subdomain', Setting::subdomain())->first()->email;
+        Mail::to($request->email)->send(new Contactus($request->all()));
+        Mail::to($adminemail)->send(new AdminContactus($request->all()));
+
         return response()->json([
-            'status' => 'error',
-            'errors' => $validator->errors()
-        ], 422);
+            'status' => 'success',
+            'message' => 'Your message has been sent successfully.'
+        ]);
     }
-
-    $adminemail = User::where('user_type', 'admin')->where('subdomain', Setting::subdomain())->first()->email;
-
-    Mail::to($request->email)->send(new Contactus($request->all()));
-    Mail::to($adminemail)->send(new AdminContactus($request->all()));
-
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Your message has been sent successfully.'
-    ]);
-}
 
   public function updateusertitle(Request $request){
     $user = User::find($request->id);

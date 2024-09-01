@@ -164,9 +164,10 @@ class SettingController extends Controller
 
     public function mailerTest(Request $request)
     {
+
         // validate and save posted data
         if ($request->isMethod('post')) {
-
+// dd($request->all());
             // Prenvent save from demo mod
             if ($this->isDemoMode()) {
                 return view('somethingWentWrong', ['message' => trans('messages.operation_not_allowed_in_demo')]);
@@ -179,6 +180,7 @@ class SettingController extends Controller
                 $message->setContentType('text/html; charset=utf-8');
 
                 $message->setSubject($request->input('subject'));
+                $message->setFrom(array('sender@domain.com' => 'Sender'));
                 $message->setTo($request->input('to_email'));
                 $message->addPart($request->input('content'), 'text/html');
 

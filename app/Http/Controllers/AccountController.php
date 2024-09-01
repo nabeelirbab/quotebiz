@@ -180,7 +180,7 @@ class AccountController extends Controller
                 $stripeData = new StripeKey;
                 $stripeData->user_id = Auth::user()->id;
                 $stripeData->subdomain = Setting::subdomain();
-                $stripeData->method = $request->method;
+                $stripeData->method = 'stripe';
                 $stripeData->status = 'active';
                 $stripeData->stripe_key = $request->stripe_key;
                 $stripeData->stripe_secret = $request->stripe_secret;
