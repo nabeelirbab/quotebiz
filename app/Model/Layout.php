@@ -179,7 +179,18 @@ class Layout extends Model
     public static function filter($request)
     {
         $user = $request->user();
-        $query = self::select('layouts.*');
+        $subdomain = Setting::subdomain(); // Assuming the subdomain is associated with the user
+
+        $query = self::select('layouts.*')
+            ->where('subdomain', $subdomain)
+            ->orWhere(function ($query) use ($subdomain) {
+                $query->where('related', 'main_admin')
+                      ->whereNotExists(function ($subQuery) use ($subdomain) {
+                          $subQuery->select(\DB::raw(1))
+                                   ->from('layouts')
+                                   ->where('subdomain', $subdomain);
+                      });
+            });
 
         return $query;
     }
