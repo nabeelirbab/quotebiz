@@ -767,7 +767,8 @@ public function sendInvitation(Request $request){
         $maildata = [
          'credits' => $request->credits,
          'code' => $code,
-         'name' => $request->name[$key]
+         'name' => $request->name[$key],
+         'email' => $email
         ];
         $invite = new Invitation;
         $invite->subdomain = Setting::subdomain();
@@ -776,7 +777,7 @@ public function sendInvitation(Request $request){
         $invite->credits = $request->credits;
         $invite->token =  $code;
         $invite->save();
-        Mail::to($email)->send(new SendInvitation($maildata));
+        $this->sendInviteMail($maildata);
     }
     return $request->email;
 }
@@ -788,19 +789,54 @@ public function resendInvitation(Request $request){
     $maildata = [
      'credits' => $request->credits,
      'code' => $code,
-     'name' => $invite->name 
+     'name' => $invite->name,
+     'email' => $invite->email 
     ];
 
     $invite->credits = $request->credits;
     $invite->token =  $code;
     $invite->save();
 
-    Mail::to($invite->email)->send(new SendInvitation($maildata));
+    $this->sendInviteMail($maildata);
+
     if(count(Mail::failures()) > 0){
       dd(Mail::failures());
     }
 
 return 1;
+}
+
+public function sendInviteMail($maildata)
+{
+    $subdomain = Setting::subdomain();
+    $layout = \Acelle\Model\Layout::where('subdomain', Setting::subdomain())->where('alias','invite_user')
+        ->orWhere(function ($query) use ($subdomain) {
+            $query->where('related', 'main_admin')
+                  ->whereNotExists(function ($subQuery) use ($subdomain) {
+                      $subQuery->select(\DB::raw(1))
+                               ->from('layouts')
+                               ->where('subdomain', $subdomain);
+                  });
+        })
+        ->first();
+    $sitename = \Acelle\Model\Setting::get("site_name");
+    $sitedarklogo = action('SettingController@file', \Acelle\Model\Setting::get('site_logo_dark'));
+    
+    // Replace placeholders with actual values
+    $layout->content = str_replace('{INVITE_URL}', join_url(url('users/register?invite='.$maildata['code'])), $layout->content);
+    $layout->content = str_replace('{USER_NAME}', $maildata['name'], $layout->content);
+    $layout->content = str_replace('{SITE_NAME}', $sitename, $layout->content);
+    $layout->content = str_replace('{CREDITS}', $maildata['credits'], $layout->content);
+    $layout->content = str_replace('{SITE_URL}', url('/'), $layout->content);
+    $layout->content = str_replace('{SITE_LOGO}', $sitedarklogo, $layout->content);
+    $layout->content = str_replace('{YEAR}', date('Y'), $layout->content);
+
+
+    // Send the email using the Mailable
+    Mail::to($maildata['email'])
+        ->send(new SendInvitation($layout->content, $layout->subject));
+
+    MailLog::info('Sent activation email to '.$this->email);
 }
 
 public function userImage(Request $request){

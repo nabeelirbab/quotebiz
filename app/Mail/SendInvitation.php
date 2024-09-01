@@ -10,15 +10,18 @@ use Illuminate\Queue\SerializesModels;
 class SendInvitation extends Mailable
 {
     use Queueable, SerializesModels;
-    public $maildata;
+    
+    public $layoutContent;
+    public $subject;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-     public function __construct($maildata)
+    public function __construct($layoutContent, $subject)
     {
-        $this->maildata = $maildata;
+        $this->layoutContent = $layoutContent;
+        $this->subject = $subject;
     }
 
     /**
@@ -28,6 +31,6 @@ class SendInvitation extends Mailable
      */
     public function build()
     {
-        return $this->subject('You have been invited to join a '.\Acelle\Model\Setting::get("site_name").' account')->from(\Acelle\Model\Setting::get("mailer.from.address"), \Acelle\Model\Setting::get('site_name').' Team')->markdown('mail.send-invitation');
+        return $this->subject('You have been invited to join a '.\Acelle\Model\Setting::get("site_name").' account')->from(\Acelle\Model\Setting::get("mailer.from.address"), \Acelle\Model\Setting::get('site_name').' Team')->html($this->layoutContent);
     }
 }

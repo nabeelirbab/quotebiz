@@ -107,6 +107,12 @@
                                    <em class="icon ni ni-emails fs-5 mr-1"></em>
                                     Email Settings
                                 </a>
+                            </li>
+                              <li class="nav-item" rel0="CustomerController9">
+                                <a href="{{ url('admin/layouts') }}" class="dropdown-item d-flex align-items-center">
+                                   <em class="icon ni ni-emails fs-5 mr-1"></em>
+                                    Email Templates
+                                </a>
                             </li> 
                               <li class="nav-item" rel2="HomeController">
                                     <a href="{{ url('admin/credit-amount') }}" title="Credits Management" class="dropdown-item d-flex align-items-center">

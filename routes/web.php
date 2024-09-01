@@ -861,6 +861,11 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('site/products/listing', 'Site\ProductController@listing');
     Route::get('site/products', 'Site\ProductController@index');
 
+    // Layout
+    Route::get('layouts/listing/{page?}', 'LayoutController@listing');
+    Route::get('layouts/sort', 'LayoutController@sort');
+    Route::resource('layouts', 'LayoutController');
+
     // Site - Template
     Route::post('site/templates/{id}/activate', 'Site\TemplateController@activate');
     Route::get('site/templates/listing', 'Site\TemplateController@listing');
