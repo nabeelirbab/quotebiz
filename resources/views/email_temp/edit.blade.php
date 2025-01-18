@@ -88,9 +88,8 @@
         var editor;
         $(document).ready(function() {
             editor = tinymce.init({
-                language: '{{ Auth::user()->admin->getLanguageCode() }}',
+                language: 'en',
                 selector: '.template-editor',
-                directionality: "{{ Auth::user()->admin->text_direction }}",
                 height: $(window).height()-53,
                 convert_urls: false,
                 remove_script_host: false,

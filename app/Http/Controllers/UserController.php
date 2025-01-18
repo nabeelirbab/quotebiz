@@ -836,7 +836,6 @@ public function sendInviteMail($maildata)
     Mail::to($maildata['email'])
         ->send(new SendInvitation($layout->content, $layout->subject));
 
-    MailLog::info('Sent activation email to '.$this->email);
 }
 
 public function userImage(Request $request){

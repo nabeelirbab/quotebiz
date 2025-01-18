@@ -24,7 +24,12 @@
  <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/assets/css/style.css') }}">
  <link id="skin-default" rel="stylesheet" href="{{ asset('frontend-assets/css/blog/style.css') }}">
 <style type="text/css">
-
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: 100% 100%;
+}
 .flatpickr-calendar.inline {
   width: 100%;
   margin-bottom: 15px;
@@ -136,7 +141,7 @@ hr {
                         @endif
                     @endforeach
                     </p>
-                    <h5 class="card-title text-center mb-0" style="line-height: 0.4;">{{ \Acelle\Jobs\HelperJob::getprefix(json_decode($user->category_id)) ?? '' }} {{$user->first_name}} {{$user->last_name}}</h5>
+                    <h5 class="card-title text-center mb-0" >{{ \Acelle\Jobs\HelperJob::getprefix(json_decode($user->category_id)) ?? '' }} {{$user->first_name}} {{$user->last_name}}</h5>
                  <div class="mb-4 mt-1">
                     @if($job_design->business_name == 'yes' && $user->business->business_name)
                     <p class="card-text text-center mb-5">
@@ -210,10 +215,10 @@ hr {
 						<div>
 						   <h4 class="m-0">Service Area</h4>
                           <p class="">
-                          	@if($user->country)
-		                     {{Acelle\Jobs\HelperJob::countryname($user->country)->name}}
-		                     @elseif($user->state)
+                          	@if($user->state)
 		                      {{Acelle\Jobs\HelperJob::statename($user->state)->name}}
+                          	@elseif($user->country)
+		                     {{Acelle\Jobs\HelperJob::countryname($user->country)->name}}
 		                     @else
 		                     {{Acelle\Jobs\HelperJob::cityname($user->city)->name}}
 		                     
@@ -247,19 +252,18 @@ hr {
 			        </div>
 			    </div>
 			    @endif
-				@if(count($user->gallery) > 0)
-				<h2 class="mb-5">Gallery</h2>
-				 <div class="row border-bottom mb-5 pb-5">
-				  @foreach($user->gallery as  $key => $gallery)
-				    <div class="col-md-3 mb-4 text-center">
-				        <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
-				            <img src="{{ asset('frontend-assets/images/'.$gallery->image)}}" alt="Image {{ $key + 1 }}" class="img-fluid gallery-img" >
-				        </a>
+			    @if(count($user->gallery) > 0)
+				    <h2 class="mb-5">Gallery</h2>
+				    <div class="row mb-5">
+				        @foreach($user->gallery as $key => $gallery)
+				            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 text-center">
+				                <a href="#" data-toggle="modal" data-target="#imageModal" data-slide-to="{{ $key }}">
+				                    <img src="{{ asset('frontend-assets/images/'.$gallery->image) }}" alt="Image {{ $key + 1 }}" class="img-fluid gallery-img ">
+				                </a>
+				            </div>
+				        @endforeach
 				    </div>
-				    @endforeach
-			        
-			    </div>
-			    @endif
+				@endif
 			    @if(count($customFields[0]->customs) > 0)
 			    <h2 class="mb-4 ml-0">@if($customFields[0]->customtitles) {{$customFields[0]->customtitles->title}} @else Preferred music genres @endif</h2>
 				<div class="row mr-1 mb-5 border-bottom pb-5">
