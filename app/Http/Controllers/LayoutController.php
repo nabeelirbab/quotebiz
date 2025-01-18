@@ -45,9 +45,7 @@ class LayoutController extends Controller
      */
     public function listing(Request $request)
     {
-        // if ($request->user()->admin->getPermission('layout_read') == 'no') {
-        //     return $this->notAuthorized();
-        // }
+       
 
         $items = \Acelle\Model\Layout::search($request)->paginate($request->per_page);
 
@@ -100,10 +98,7 @@ class LayoutController extends Controller
         $user = $request->user();
         $layout = \Acelle\Model\Layout::where('uid', $id)->first();
 
-        // // authorize
-        // if (\Gate::denies('update', $layout)) {
-        //     return $this->notAuthorized();
-        // }
+   
 
         // Get old post values
         if (null !== $request->old()) {
@@ -124,20 +119,14 @@ class LayoutController extends Controller
      */
     public function update(Request $request, $account, $id)
     {
-        // dd($request->all());
-        // Generate info
-        // $user = $request->user();
-        // $layout = \Acelle\Model\Layout::findByUid($id);
+      
 
         // Prenvent save from demo mod
         if ($this->isDemoMode()) {
             return view('somethingWentWrong', ['message' => trans('messages.operation_not_allowed_in_demo')]);
         }
 
-        // // authorize
-        // if (\Gate::denies('update', $layout)) {
-        //     return $this->notAuthorized();
-        // }
+       
 
         // validate and save posted data
         if ($request->isMethod('patch')) {
