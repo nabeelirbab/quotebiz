@@ -9,7 +9,11 @@
 @extends('layouts.core.register')
 
 @section('title', trans('messages.create_your_account'))
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.0/css/intlTelInput.css">
 <style type="text/css">
+    .iti{
+      width: 100%
+    }
     .btn-group{
         width: 100%;
         height: 50px;
@@ -121,10 +125,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 p-0">
-                    <div class="form-group control-text">
-                        <label for="mobile"><b>Mobile No.</b><span class="text-danger">*</span></label>
-                        <input type="tel" id="mobile" name="business_phone" class="form-control" value="{{ old('business_phone') }}"  required>
-                    </div>
+                  <div class="form-group control-text">
+                      <label for="mobile"><b>Mobile No.</b><span class="text-danger">*</span></label>
+                      <input type="tel" id="mobile" name="business_phone" class="form-control" value="{{ old('business_phone') }}" required>
+                  </div>
                 </div>
                 <div class="col-md-6 pr-0 pl-xm-0">
                     <div class="form-group control-text">
@@ -132,7 +136,7 @@
                         <input type="url" name="business_website" class="form-control" value="{{ old('business_website') }}" pattern="https?://.+">
                     </div>
                 </div>
-            </div>
+                </div>
                 </div>
                  <div class="form-group control-text">
                     <label>
@@ -385,6 +389,29 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnout.com/toastr.js"></script>
    <script rel="preload" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBNL_1BSqiKF5qf0WqLbMT4xF1dB1Aux1M&libraries=places"></script>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize intl-tel-input
+             var input = document.querySelector("#mobile");
+            window.intlTelInput(input, {
+              initialCountry: "au",
+              nationalMode: false, // Set to false to enforce international format
+              autoPlaceholder: "aggressive",
+              geoIpLookup: function(callback) {
+                $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                  var countryCode = (resp && resp.country) ? resp.country : "au";
+                  console.log(countryCode)
+                  callback(countryCode);
+                });
+              },
+              utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js" // just for formatting/placeholders etc
+            });
+        });
+    </script>
 
     <script type="text/javascript">
 

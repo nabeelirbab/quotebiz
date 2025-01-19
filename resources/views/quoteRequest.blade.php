@@ -844,7 +844,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
  @if($job_design && $job_design->profile_status != '1' && $job_design->profile_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="d-flex col-12 justify-content-between px-4">
+    <div class="d-flex col-12 justify-content-between">
       <h3>{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
       <a href="{{ url('service-providers') }}" class="link-color font-weight-bold">View All {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</a>
     </div>
@@ -936,7 +936,7 @@ up-to-date quotes, no matter what device you are using. You also agree to The {{
 @if($job_design && $job_design->blog_status != '1' && $job_design->blog_status != '2')
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="d-flex col-12 justify-content-between px-4">
+    <div class="d-flex col-12 justify-content-between">
       <h3>Featured Blogs</h3>
       <a href="{{ url('blogs') }}" class="link-color font-weight-bold">View All Blogs</a>
     </div>

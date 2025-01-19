@@ -699,6 +699,8 @@ var jqOld = jQuery.noConflict();
     var input = document.querySelector("#phone");
 	window.intlTelInput(input, {
 	  initialCountry: "au",
+	  nationalMode: false, // Set to false to enforce international format
+      autoPlaceholder: "aggressive",
 	  geoIpLookup: function(callback) {
 	    $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
 	      var countryCode = (resp && resp.country) ? resp.country : "au";
