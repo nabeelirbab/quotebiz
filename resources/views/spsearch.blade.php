@@ -11,10 +11,10 @@
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Category</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Service Location Setting</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div>
+            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">Service Location Setting</span></div> -->
+            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div> -->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
+            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div> -->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registered On</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
@@ -65,7 +65,7 @@
                     <span>{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>,
                  @endforeach
             </div>
-            <div class="nk-tb-col tb-col-lg">
+       <!--      <div class="nk-tb-col tb-col-lg">
                 @if($user->type == 'world')
                 <span>WorldWide</span>
                 @elseif($user->type == 'country')
@@ -78,14 +78,14 @@
                 <span>City</span>
                 @endif
 
-            </div>
-            <div class="nk-tb-col tb-col-lg">
+            </div> -->
+        <!--     <div class="nk-tb-col tb-col-lg">
                 @if(Acelle\Jobs\HelperJob::countryname($user->country))
                 <span>{{Acelle\Jobs\HelperJob::countryname($user->country)->name}}</span>
                 @else
                 <span>{{$user->country}}</span>
                 @endif
-            </div>
+            </div> -->
             <div class="nk-tb-col tb-col-lg">
                 @if(Acelle\Jobs\HelperJob::statename($user->state))
                 <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
@@ -93,12 +93,12 @@
                 <span>{{$user->state}}</span>
                 @endif
             </div>
-            <div class="nk-tb-col tb-col-lg">
+        <!--     <div class="nk-tb-col tb-col-lg">
               @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                @else
                {{$user->city}}
                @endif
-            </div>
+            </div> -->
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
             </div>

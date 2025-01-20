@@ -201,6 +201,21 @@ class HomeController extends Controller
        
     }
 
+    public function is_featured(Request $request, $account, $id)
+    {
+        if($request->get('status') == 1){
+            $update = User::where('id', $id)->update(['is_featured' => $request->get('status')]);
+
+            Session::flash('success', 'Account set featured');
+            return Redirect::back();
+        }else{
+            $update = User::where('id', $id)->update(['is_featured' => $request->get('status')]);
+            Session::flash('success', 'Account set in featured');
+            return Redirect::back();
+        }
+       
+    }
+
     public function servicecategories()
     {
 

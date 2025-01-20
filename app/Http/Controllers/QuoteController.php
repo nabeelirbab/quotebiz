@@ -35,7 +35,7 @@ class QuoteController extends Controller
         $users = User::where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
-        })->where('subdomain',Setting::subdomain())->where('activated',1)->orderBy('id','desc')->limit(10)->get();
+        })->where('subdomain',Setting::subdomain())->where('activated',1)->where('is_featured', '1')->orderBy('id','desc')->limit(10)->get();
         // }
             return view('quoteRequest',compact('posts','users'));
 
