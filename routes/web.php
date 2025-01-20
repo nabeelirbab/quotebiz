@@ -453,6 +453,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/profile_detail/{id}', 'HomeController@provider_detail');
     Route::get('/customer_detail/{id}', 'HomeController@customer_detail');
     Route::get('/account_status/{id}', 'HomeController@accountstatus');
+    Route::get('/account_featured/{id}', 'HomeController@is_featured');
     Route::get('frontend/docs/api/v1', 'Controller@docsApiV1');
 
     Route::get('account/api/renew', 'AccountController@renewToken');

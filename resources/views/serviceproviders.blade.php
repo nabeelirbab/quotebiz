@@ -158,10 +158,10 @@
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Category</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Service Location Setting</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div>
+            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">Service Location Setting</span></div> -->
+            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div> -->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
-            <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
+            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div> -->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Registered On</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
@@ -180,9 +180,15 @@
 
                         <div class="user-avatar bg-primary mr-3">
                             @if($user->user_img)
-                            <img src="{{asset('frontend-assets/images/users/'.$user->user_img)}}" alt="Profile Image" class="rounded-circle">
+                            <img src="{{asset('frontend-assets/images/users/'.$user->user_img)}}" alt="Profile Image" style="position: relative;" class="rounded-circle">
+                            @if($user->is_featured == '1')
+                            <em class="icon ni ni-star-fill" style="position: absolute;right: -4px;top: -1px;color: black;background: white; border-radius: 13px;"></em>
+                            @endif
                             @else
-                            <span>{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
+                            <span style="position: relative;">{{mb_substr($user->first_name, 0, 1)}}{{mb_substr($user->last_name, 0, 1)}}</span>
+                            @if($user->is_featured == '1')
+                            <em class="icon ni ni-star-fill" style="position: absolute;right: -4px;top: -1px;color: black;background: white; border-radius: 13px;"></em>
+                            @endif
                             @endif
                         </div>
                     </a>
@@ -213,7 +219,7 @@
                     <span>{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>,
                  @endforeach
             </div>
-            <div class="nk-tb-col tb-col-lg">
+      <!--       <div class="nk-tb-col tb-col-lg">
                 @if($user->type == 'world')
                 <span>WorldWide</span>
                 @elseif($user->type == 'country')
@@ -226,14 +232,14 @@
                 <span>City</span>
                 @endif
 
-            </div>
-            <div class="nk-tb-col tb-col-lg">
+            </div> -->
+        <!--     <div class="nk-tb-col tb-col-lg">
                 @if(Acelle\Jobs\HelperJob::countryname($user->country))
                 <span>{{Acelle\Jobs\HelperJob::countryname($user->country)->name}}</span>
                 @else
                 <span>{{$user->country}}</span>
                 @endif
-            </div>
+            </div> -->
             <div class="nk-tb-col tb-col-lg">
                 @if(Acelle\Jobs\HelperJob::statename($user->state))
                 <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
@@ -241,12 +247,12 @@
                 <span>{{$user->state}}</span>
                 @endif
             </div>
-            <div class="nk-tb-col tb-col-lg">
+          <!--   <div class="nk-tb-col tb-col-lg">
               @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                @else
                {{$user->city}}
                @endif
-            </div>
+            </div> -->
             <div class="nk-tb-col tb-col-lg">
                 <span>{{\Carbon\Carbon::parse($user->created_at)->format(Acelle\Jobs\HelperJob::dateFormat())}}</span>
             </div>
@@ -278,14 +284,19 @@
                                       <input type="hidden" name="email" value="{{ $user->email }}" />
                                     </form>
 
-                                  @if($user->activated == '1')
-                                <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
+                                     @if($user->is_featured == '1')
+                                       <li><a href="{{ url('admin/account_featured/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to hide this account on home page');" title="Featured Account"><em class="icon ni ni-shield-off"></em><span>Remove featured</span></a></li>
+                                     @else 
+                                        <li><a href="{{ url('admin/account_featured/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to show this account on home page?');" title="Featured Account"><em class="icon ni ni-shield-check"></em><span>Set as featured Account</span></a></li>
+                                     @endif
+                                      @if($user->activated == '1')
+                                        <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
 
-                                @else
-                                <li><a href="{{ url('admin/account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
-                                  <li><a href="{{ url('admin/account_status/'.$user->id.'?status=3') }}" onclick="return confirm('Are you sure you want to delete this account?');" title="Suspend Account"><em class="icon ni ni-trash"></em><span>Delete Account</span></a></li>
-                                @endif                         
-                          </ul>
+                                        @else
+                                        <li><a href="{{ url('admin/account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
+                                          <li><a href="{{ url('admin/account_status/'.$user->id.'?status=3') }}" onclick="return confirm('Are you sure you want to delete this account?');" title="Suspend Account"><em class="icon ni ni-trash"></em><span>Delete Account</span></a></li>
+                                        @endif                         
+                                     </ul>
                             </div>
                         </div>
                     </li>
