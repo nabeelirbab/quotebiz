@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://phatak.quotebiz.io/</loc>
-        <lastmod>2025-01-18T00:00:29+00:00</lastmod>
+        <lastmod>2025-03-08T00:00:24+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://phatak.quotebiz.io/users/login</loc>
-        <lastmod>2025-01-18T00:00:29+00:00</lastmod>
+        <lastmod>2025-03-08T00:00:24+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://phatak.quotebiz.io/users/register</loc>
-        <lastmod>2025-01-18T00:00:29+00:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-        </url>
-    <url>
-        <loc>https://phatak.quotebiz.io/forget-password</loc>
-        <lastmod>2025-01-18T00:00:29+00:00</lastmod>
+        <lastmod>2025-03-08T00:00:24+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>
     <url>
         <loc>https://phatak.quotebiz.io</loc>
-        <lastmod>2025-01-18T00:00:29+00:00</lastmod>
+        <lastmod>2025-03-08T00:00:24+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        </url>
+    <url>
+        <loc>https://phatak.quotebiz.io/forget-password</loc>
+        <lastmod>2025-03-08T00:00:24+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         </url>

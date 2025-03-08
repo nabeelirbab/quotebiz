@@ -215,9 +215,9 @@
                 @endif
             </div>
             <div class="nk-tb-col tb-col-md" style="width: 15%;">
-                 @foreach(json_decode($user->category_id) as $cat)
-                    <span>{{\Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name}}</span>,
-                 @endforeach
+                @foreach(array_slice(json_decode($user->category_id), 0, 3) as $cat)
+				    <span class="badge badge-info">{{ \Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name }}</span>
+				@endforeach
             </div>
       <!--       <div class="nk-tb-col tb-col-lg">
                 @if($user->type == 'world')
