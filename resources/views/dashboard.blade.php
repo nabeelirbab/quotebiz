@@ -202,7 +202,7 @@ $currencySymbols = [
 <div class="nk-block-head nk-block-head-sm">
 <div class="nk-block-between">
 <div class="nk-block-head-content">
-<h3 class="nk-block-title page-title">{!! trans('messages.frontend_dashboard_hello', ['name' => Auth::user()->displayName()]) !!}</h3>
+<h3 class="nk-block-title mt-5">{!! trans('messages.frontend_dashboard_hello', ['name' => Auth::user()->displayName()]) !!}</h3>
 <div class="nk-block-des text-soft">
     <p>Welcome back to your account dashboard</p>
 </div>
@@ -210,19 +210,29 @@ $currencySymbols = [
 <div class="nk-block-head-content">
 <div class="toggle-wrap nk-block-tools-toggle">
     <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-    <div class="toggle-expand-content" data-content="pageMenu">
+    <div class="toggle-expand-content mt-5" data-content="pageMenu">
         <ul class="nk-block-tools g-3">
             <li>
-                <div class="drodown">
-                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <ul class="link-list-opt no-bdr">
-                            <li><a href="#"><span>Last 30 Days</span></a></li>
-                            <li><a href="#"><span>Last 6 Months</span></a></li>
-                            <li><a href="#"><span>Last 1 Years</span></a></li>
-                        </ul>
-                    </div>
-                </div>
+             <a  href="{{url('admin/approval-requests')}}">
+            <div class="card">
+                <div class="nk-ecwg nk-ecwg6">
+                    <div class="card-inner p-2">
+                   
+                        <div class="d-flex align-items-center">
+                           <?php  $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
+                            <div class="info">
+                                <h6 style="font-size: 0.9rem">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }} Approval Requests</h6>
+                                </a>
+                            </div>
+                            <div class="ml-4" >
+                                <h6 style="font-size: 0.9rem"> {{$unverified}} <em class="icon ni ni-chevron-right mt-1"></em> </h6>
+                            </div>
+                        </div>
+                        
+                    </div><!-- .card-inner -->
+                </div><!-- .nk-ecwg -->
+            </div><!-- .card -->
+            </a>
             </li>
             <?php  
                $customer =  Request::user()->customer;
