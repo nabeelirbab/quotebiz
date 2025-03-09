@@ -445,6 +445,7 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
 });
     Route::get('/servicecategories', 'CategoryController@index');
     Route::get('/serviceproviders', 'HomeController@serviceproviders');
+    Route::get('/approval-requests', 'HomeController@sp_approval');
     Route::get('/serviceproviders-report', 'HomeController@serviceproviders_reporting');
     Route::post('/add-credits', 'UserController@spcredits');
     Route::get('/invitedserviceproviders', 'HomeController@invitedserviceproviders');
@@ -454,6 +455,8 @@ Route::group(['middleware' => ['not_installed', 'auth', 'admin', 'subscription']
     Route::get('/customer_detail/{id}', 'HomeController@customer_detail');
     Route::get('/account_status/{id}', 'HomeController@accountstatus');
     Route::get('/account_featured/{id}', 'HomeController@is_featured');
+    Route::post('/bulk_update_user_status', 'HomeController@bulk_user_status');
+    Route::get('/account_verified/{id}', 'HomeController@is_verified');
     Route::get('frontend/docs/api/v1', 'Controller@docsApiV1');
 
     Route::get('account/api/renew', 'AccountController@renewToken');

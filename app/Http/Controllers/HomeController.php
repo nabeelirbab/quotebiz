@@ -152,22 +152,34 @@ class HomeController extends Controller
 
     public function serviceproviders()
     {
-        $users = User::with('business')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+        $users = User::with('business')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('is_verified','1')->where('activated','!=','3')->where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->paginate(10);
-        return view('serviceproviders', compact('users'));
+        $unverified = User::where('subdomain', Auth::user()->subdomain)->where('is_verified', '0')->where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->orderBy('id','desc')->count();
+        return view('serviceproviders', compact('users','unverified'));
+    }
+
+    public function sp_approval()
+    {
+        $users = User::with('business')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('is_verified','0')->where('activated','!=','3')->where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->orderBy('id','desc')->paginate(10);
+        return view('spapprovalrequests', compact('users'));
     }
 
     public function serviceproviders_reporting()
     {
-        $users = User::with('profile','website','emailview','mobile')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where(function($q) {
+        $users = User::with('profile','website','emailview','mobile')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('is_verified','1')->where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->paginate(10);
         return view('sp_reporting', compact('users'));
     }
-
 
     public function invitedserviceproviders()
     {
@@ -201,6 +213,29 @@ class HomeController extends Controller
        
     }
 
+    public function bulk_user_status(Request $request, $account){
+       $userStatus = explode(",",$request->status);
+       if($userStatus[0] == 'feature'){
+           foreach($request->user_ids as $userid){
+             $update = User::where('id', $userid)->update(['is_featured' => $userStatus[1]]);
+           }
+            Session::flash('success', 'Account set featured');
+            return Redirect::back();
+        }elseif($userStatus[0] == 'active'){
+            foreach($request->user_ids as $userid){
+              $update = User::where('id', $userid)->update(['activated' => $userStatus[1]]);
+            }
+            Session::flash('success', 'Account status change successfully!!');
+            return Redirect::back();
+        }elseif($userStatus[0] == 'verified'){
+             foreach($request->user_ids as $userid){
+              $update = User::where('id', $userid)->update(['is_verified' => $userStatus[1]]);
+            }
+            Session::flash('success', 'Account status change successfully!!');
+            return Redirect::back();
+        }
+    }
+
     public function is_featured(Request $request, $account, $id)
     {
         if($request->get('status') == 1){
@@ -211,6 +246,22 @@ class HomeController extends Controller
         }else{
             $update = User::where('id', $id)->update(['is_featured' => $request->get('status')]);
             Session::flash('success', 'Account set in featured');
+            return Redirect::back();
+        }
+       
+    }
+
+    
+    public function is_verified(Request $request, $account, $id)
+    {
+        if($request->get('status') == 1){
+            $update = User::where('id', $id)->update(['is_verified' => $request->get('status')]);
+
+            Session::flash('success', 'Account set verified');
+            return Redirect::back();
+        }else{
+            $update = User::where('id', $id)->update(['is_verified' => $request->get('status')]);
+            Session::flash('success', 'Account set in verified');
             return Redirect::back();
         }
        
