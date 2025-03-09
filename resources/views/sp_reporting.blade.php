@@ -54,7 +54,7 @@
     font-size: 25px;"></em>
 </div>
 <div class="nk-block-des text-soft">
-    <p>You have total  {{count($users)}} users.</p>
+    <p>You have total {{$users->total()}} users.</p>
 </div>
 </div><!-- .nk-block-head-content -->
 <div class="nk-block-head-content">

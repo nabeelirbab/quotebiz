@@ -305,8 +305,8 @@ public static $itemsPerPage = 25;
     {
         $rules = array(
             'email' => 'required|email|unique:users,email,'.$this->id.',id',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|string|max:10|min:2', // First name: 2-10 characters
+            'last_name' => 'required|string|max:10|min:2',  // Last name: 2-10 characters
             'timezone' => 'required',
             'language_id' => 'required',
             'date_format' => 'required',
@@ -331,8 +331,8 @@ public static $itemsPerPage = 25;
         $rules = array(
             'subdomain' => 'required|unique:subdomains,subdomain,'.$this->id.',id',
             'email' => 'required|email|unique:users,email,'.$this->id.',id,subdomain,'.$subdomain,
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|string|max:10|min:2', // First name: 2-10 characters
+            'last_name' => 'required|string|max:10|min:2',  // Last name: 2-10 characters
         );
 
         if (isset($this->id)) {
@@ -349,8 +349,8 @@ public static $itemsPerPage = 25;
         $rules = array(
             
             'email' => 'required|email|unique:users,email,'.$this->id.',id,subdomain,'.$subdomain,
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|string|max:10|min:2', // First name: 2-10 characters
+            'last_name' => 'required|string|max:10|min:2',  // Last name: 2-10 characters
             'category_id' => 'required',
         );
 

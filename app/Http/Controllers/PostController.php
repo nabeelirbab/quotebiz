@@ -33,7 +33,7 @@ class PostController extends Controller
        $users = User::where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
-        })->where('subdomain',Setting::subdomain())->where('activated',1)->orderBy('id','desc')->paginate(12);
+        })->where('subdomain',Setting::subdomain())->where('activated',1)->where('is_verified','1')->orderBy('id','desc')->paginate(12);
        return view('blog.sps',compact('users'));
     }
     /**

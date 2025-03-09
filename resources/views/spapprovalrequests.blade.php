@@ -39,96 +39,8 @@
 <div class="container-fluid mt-4">
 <div class="nk-content-inner">
 <div class="nk-content-body">
-<div class="nk-block-head nk-block-head-sm">
-<div class="nk-block-between">
-<div class="nk-block-head-content">
-<div class="view-mode d-flex">
-<div class="alert alert-pro alert-success alert-dismissible" style="display: none;position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 9999;" id="successAlert">
-    <div class="alert-text">
-        <h6>Title Update Successfully</h6>
-        <!-- <p>Your order has been successfully placed for deposit. You will be redirected to make your payment.</p> -->
-    </div>
-    <button class="close" data-dismiss="alert"></button>
-</div>
-
-    @if(Session::has('success'))
-         <div class="alert alert-success  fade show" role="alert" style="position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 9999;">
-          {{Session::get('success')}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-     @endif
-
-     @if(Session::has('status'))
-         <div class="alert alert-success  fade show" role="alert" style="position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 9999;">
-          {{Session::get('status')}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-     @endif
-
 <?php  $job_design = Acelle\Jobs\HelperJob::form_design();  ?>
-
-<h3 id="titleLabel" class="nk-block-title page-title">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}</h3>
-<em class="icon ni ni-pen2"  onclick="enableEditMode()" style="align-items: center;
-    display: flex;
-    margin-left: 18px; font-size: 25px"></em>
-</div>
-<div class="edit-mode d-flex">
-        <input type="text" id="titleInput" class="form-control" value="{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}">
-        <em class="icon ni ni-check-thick" onclick="updateTitle()" style="display: flex;
-    align-items: center;
-    font-size: 25px;
-    margin-left: 12px;
-    margin-right: 12px;"></em>
-        <em class="icon ni ni-cross" onclick="updateTitle()" style="display: flex;
-    align-items: center;
-    font-size: 25px;"></em>
-</div>
-<div class="nk-block-des text-soft">
-    <p>You have total {{$users->total()}} users.</p>
-</div>
-</div><!-- .nk-block-head-content -->
-<div class="nk-block-head-content">
-
-</div><!-- .nk-block-head-content -->
-<div class="float-right d-flex flex-wrap gap-2">
-    <a href="{{url('admin/approval-requests')}}" class="btn btn-warning btn-sm d-flex align-items-center justify-content-between" style="white-space: nowrap; padding: 6px 12px; font-weight: 600;">
-        {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }} Approval Requests
-        <span class="badge badge-light ml-2" style="font-size: 12px;padding: 1px 5px;border-radius: 38px;line-height: 1;">{{ $unverified }}</span>
-    </a>
-
-    <a href="{{url('admin/custom-field')}}" class="btn btn-outline-info btn-sm" target="_blank">
-       Custom Fields
-    </a>
-    <button class="btn btn-outline-primary btn-sm " data-toggle="modal" data-target="#setting">
-       Business Directory
-    </button>
-    <a href="{{url('admin/invitedserviceproviders')}}" class="btn btn-outline-secondary btn-sm ">
-      Invited {{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }}
-    </a>
-    <button class="btn btn-success btn-sm " data-toggle="modal" data-target="#modalEdit">
-        Invite
-    </button>
-    <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal23">
-       Bulk Invite
-    </button>
-</div>
-
-
-</div><!-- .nk-block-between -->
-</div><!-- .nk-block-head -->
+<h3 id="titleLabel" class="nk-block-title page-title">{{ ($job_design && $job_design->sp_text) ? $job_design->sp_text : 'Service Providers' }} Approval Requests</h3>
 <div class="nk-block">
 <div class="card card-bordered card-stretch">
 <div class="card-inner-group">
@@ -160,17 +72,16 @@
 </div><!-- .card-inner -->
 <div class="card-inner p-0" style="border-bottom: none;width: 100%;
     overflow: auto;
-    white-space: nowrap;" id="result">
-  <form id="bulkUserUpdateForm" action="{{ url('admin/bulk_update_user_status') }}" method="POST">
+    white-space: nowrap;min-height: 200px" id="result">
+   <form id="bulkUserUpdateForm" action="{{ url('admin/bulk_update_user_status') }}" method="POST">
     @csrf
        <div id="bulkActionContainer" class="mt-3 mb-3 ml-3 m d-none" >
         <select name="status" class="form-control w-20 d-inline" style="height: calc(2.2rem + 2px) !important">
             <option value="">Select Status</option>
+            <option value="verified,1">Approve Account</option>
             <option value="active,1">Active Account</option>
             <option value="active,0">Suspend Account</option>
             <option value="active,3">Delete Account</option>
-            <option value="feature,1">Set As Feature Account</option>
-            <option value="feature,0">Remove Feature</option>
         </select>
             <button type="submit" class="btn btn-primary">Update Selected</button>
         </div>
@@ -197,10 +108,10 @@
            
         </div><!-- .nk-tb-item -->
         @if($users->count() > 0)
-     
+       
         @foreach($users as $key => $user)
         <div class="nk-tb-item">
-        <div class="nk-tb-col nk-tb-col-check">
+            <div class="nk-tb-col nk-tb-col-check">
             <div class="custom-control custom-control-sm custom-checkbox notext checked">
                 <input type="checkbox" class="custom-control-input user-checkbox" name="user_ids[]" value="{{$user->id}}" id="uid{{$user->id}}">
                     <label class="custom-control-label" for="uid{{$user->id}}"></label>
@@ -210,7 +121,7 @@
                 <span >{{$key + 1}}</span>
             </div>
             <div class="nk-tb-col">
-             <div class="user-card">
+                    <div class="user-card">
                 <a href="{{ url('admin/profile_detail/'.$user->id) }}" target="_blank">
 
                         <div class="user-avatar bg-primary mr-3">
@@ -302,34 +213,19 @@
                 <ul class="gx-1">
                     <li>
                         <div class="drodown">
-                            <a href="#" class="dropdown-toggle btn btn-icon" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                            <a href="#" class="dropdown-toggle btn btn-icon " data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <ul class="link-list-opt no-bdr">
                                     <li><a href="{{ url('sp-profile/'.$user->id) }}" target="_blank"><em class="icon ni ni-eye"></em><span>Public View Profile</span></a></li>
-                                    <li><a href="{{ url('admin/profile_detail/'.$user->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                    <li onclick="addCredits('{{$user->id}}')"><a href="#"><em class="icon ni ni-invest"></em><span>Add Credits</span></a></li>
-                                    <li><a href="{{ url('admin/location_setting/'.$user->id) }}"><em class="icon ni ni-location"></em><span>Location Setting</span></a></li>
-                                    <li>
-                                      <a href="#" onclick="document.getElementById('password-reset-form{{$user->id}}').submit();">
-                                        <em class="icon ni ni-unlock"></em><span>Send password reset</span>
-                                      </a>
-                                    </li>
-                                    <form id="password-reset-form{{$user->id}}" action="{{ url('/forget-password') }}" method="POST" style="display: none;">
-                                         {{ csrf_field() }}
-                                      <input type="hidden" name="email" value="{{ $user->email }}" />
-                                    </form>
-
-                                     @if($user->is_featured == '1')
-                                       <li><a href="{{ url('admin/account_featured/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to hide this account on home page');" title="Featured Account"><em class="icon ni ni-shield-off"></em><span>Remove featured</span></a></li>
-                                     @else 
-                                        <li><a href="{{ url('admin/account_featured/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to show this account on home page?');" title="Featured Account"><em class="icon ni ni-shield-check"></em><span>Set as featured Account</span></a></li>
-                                     @endif
-                                      @if($user->activated == '1')
+                            
+                                       <li><a href="{{ url('admin/account_verified/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to approve this account');" title="Approve Account"><em class="icon ni ni-check-circle-fill"></em></em><span>Approve Account</span></a></li>
+   
+                                       @if($user->activated == '1')
                                         <li><a href="{{ url('admin/account_status/'.$user->id.'?status=0') }}" onclick="return confirm('Are you sure you want to suspend this account?');" title="Suspend Account"><em class="icon ni ni-na"></em><span>Suspend Account</span></a></li>
 
                                         @else
                                         <li><a href="{{ url('admin/account_status/'.$user->id.'?status=1') }}" onclick="return confirm('Are you sure you want to active this account?');" title="Active Account"><em class="icon ni ni-shield-check"></em><span>Active Account</span></a></li>
-                                          <li><a href="{{ url('admin/account_status/'.$user->id.'?status=3') }}" onclick="return confirm('Are you sure you want to delete this account?');" title="Delete Account"><em class="icon ni ni-trash"></em><span>Delete Account</span></a></li>
+                                          <li><a href="{{ url('admin/account_status/'.$user->id.'?status=3') }}" onclick="return confirm('Are you sure you want to delete this account?');" title="Suspend Account"><em class="icon ni ni-trash"></em><span>Delete Account</span></a></li>
                                         @endif                         
                                      </ul>
                             </div>
@@ -339,8 +235,7 @@
             </div>
         </div><!-- .nk-tb-item -->
         @endforeach
-     
-        </form>
+         </form>
         @endif
        
     </div><!-- .nk-tb-list -->
@@ -674,7 +569,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
     function updateSr(id){
         var title = document.getElementById('srname'+id).value;
          var _token = $('meta[name="csrf-token"]').attr('content');
