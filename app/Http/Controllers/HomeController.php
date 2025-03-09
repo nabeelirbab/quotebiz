@@ -74,6 +74,10 @@ class HomeController extends Controller
             // dd($currencyConvert);
             $result['amount'][] = $currencyConvert['convert'];
         }
+        $unverified = User::where('subdomain', Auth::user()->subdomain)->where('is_verified', '0')->where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->orderBy('id','desc')->count();
         // dd($result);
         return view('dashboard', [
             'customerCount' => $customerCount,
@@ -85,7 +89,8 @@ class HomeController extends Controller
             'wonQuote' => $wonQuote,
             'doneQuote' => $doneQuote,
             'result' => $result,
-            'topSp' => $topSP
+            'topSp' => $topSP,
+            'unverified' => $unverified
         ]);
     }
      public function charts(){
