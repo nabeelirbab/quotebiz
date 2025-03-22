@@ -7,13 +7,41 @@ use Illuminate\Support\Facades\Log as LaravelLog;
 use Acelle\Model\Subscription;
 use Acelle\Model\Setting;
 use Acelle\Model\Plan;
-use Acelle\Cashier\Cashier;
 use Acelle\Cashier\Services\StripeGatewayService;
+use Acelle\Cashier\Cashier;
+use Acelle\Library\Contracts\PaymentGatewayInterface;
 use Carbon\Carbon;
+use Sample\PayPalClient;
+use PayPalCheckoutSdk\Orders\OrdersGetRequest;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Core\ProductionEnvironment;
 use Acelle\Model\SubscriptionLog;
 
 class SubscriptionController extends Controller
 {
+    public $clientId;
+    public $secret;
+    public $client;
+    public $environment;
+    
+    public function __construct()
+    {
+        $this->environment = Setting::get('cashier.paypal.environment', 'sandbox');
+        $this->clientId = Setting::get('cashier.paypal.client_id');
+        $this->secret = Setting::get('cashier.paypal.secret');
+
+        if (!$this->clientId || !$this->secret) {
+            throw new \Exception('PayPal credentials are missing.');
+        }
+
+        if ($this->environment == 'sandbox') {
+            $this->client = new PayPalHttpClient(new SandboxEnvironment($this->clientId, $this->secret));
+        } else {
+            $this->client = new PayPalHttpClient(new ProductionEnvironment($this->clientId, $this->secret));
+        }
+    }
+
     public function index(Request $request)
     {
         // init
@@ -337,7 +365,9 @@ class SubscriptionController extends Controller
 
         $customer = $request->user()->customer;
         $subscription = $customer->subscription;
-
+        if($subscription->paypal_subscription_id){
+           $this->cancelSubscription($subscription->paypal_subscription_id);
+        }
         if ($request->user()->customer->can('cancelNow', $subscription)) {
             $subscription->cancelNow();
         }
@@ -345,6 +375,72 @@ class SubscriptionController extends Controller
         // Redirect to my subscription page
         $request->session()->flash('alert-success', trans('messages.subscription.cancelled_now'));
         return redirect('admin/account/subscription');
+    }
+
+    public function cancelSubscription($subscriptionID)
+        {
+        try {
+        // Get Access Token
+        $accessToken = $this->getAccessToken();
+
+        // PayPal API Endpoint
+        $url = "https://api.sandbox.paypal.com/v1/billing/subscriptions/{$subscriptionID}/cancel";
+
+        // cURL Request
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Content-Type: application/json",
+            "Authorization: Bearer $accessToken"
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+            "reason" => "Customer requested cancellation"
+        ]));
+
+        // Execute API Call
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        // Check Response
+        if ($httpCode == 204) {
+            return [
+                "status" => "success",
+                "message" => "Subscription has been canceled successfully."
+            ];
+        } else {
+            return [
+                "status" => "error",
+                "message" => "Failed to cancel subscription. Response: " . $response
+            ];
+        }
+        } catch (\Exception $e) {
+        return [
+            "status" => "error",
+            "message" => "Error canceling subscription: " . $e->getMessage()
+        ];
+        }
+    }
+
+ public function getAccessToken()
+    {
+       
+        $url = "https://api-m.sandbox.paypal.com/v1/oauth2/token";
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Accept: application/json",
+            "Accept-Language: en_US"
+        ]);
+        curl_setopt($ch, CURLOPT_USERPWD, $this->clientId . ":" . $this->secret);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        $response = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+        
+        return $response['access_token'] ?? null;
     }
 
     public function orderBox(Request $request)
