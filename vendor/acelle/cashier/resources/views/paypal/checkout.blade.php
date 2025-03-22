@@ -28,8 +28,9 @@
                 ]) !!}</p>
 
                 <script
-                    src="https://www.paypal.com/sdk/js?client-id={{ $service->clientId }}&currency={{ $invoice->currency->code }}"> // Required. Replace SB_clientId with your sandbox client ID.
+                    src="https://www.paypal.com/sdk/js?client-id={{ $service->clientId }}&vault=true&intent=subscription&currency={{ $invoice->currency->code }}">
                 </script>
+
                     
                 <div id="paypal-button-container"></div>
 
@@ -49,32 +50,24 @@
                     $('body').append(form);
 
                     paypal.Buttons({
-                        createOrder: function(data, actions) {
-                            // This function sets up the details of the transaction, including the amount and line item details.
-                            return actions.order.create({
-                                purchase_units: [{
-                                    amount: {
-                                        value: Math.round(parseFloat('{{ $invoice->total() }}') * 100) / 100, // keep 2 number in decimal
-                                    }
-                                }]
+                        createSubscription: function(data, actions) {
+                            return actions.subscription.create({
+                                plan_id: '{{ $plan->paypal_plan_id }}' // Use PayPal Plan ID from database
                             });
                         },
                         onApprove: function(data, actions) {
-                            // This function captures the funds from the transaction.
-                            return actions.order.capture().then(function(details) {
-                                form.append(jQuery('<input>', {
-                                    'name': 'orderID',
-                                    'value': data.orderID,
-                                    'type': 'hidden'
-                                }));
-                                form.submit();
-                            });
+                            form.append(jQuery('<input>', {
+                                'name': 'subscriptionID',
+                                'value': data.subscriptionID,
+                                'type': 'hidden'
+                            }));
+                            form.submit();
                         },
-                        onError: function (err) {
-                            // For example, redirect to a specific error page
+                        onError: function(err) {
                             alert(err);
                         }
                     }).render('#paypal-button-container');
+
                 </script>
 
                 <div class="my-4">

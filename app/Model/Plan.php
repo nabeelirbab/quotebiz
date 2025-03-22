@@ -61,6 +61,7 @@ class Plan extends Model
         'currency_id',
         'paddle_plan_id',
         'admin_id',
+        'paypal_plan_id'
     ];
 
     /**
