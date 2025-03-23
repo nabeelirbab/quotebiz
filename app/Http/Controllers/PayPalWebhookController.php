@@ -11,92 +11,83 @@ use Carbon\Carbon;
 
 class PayPalWebhookController extends Controller
 {
-  public function handle(Request $request)
+    public function handle(Request $request)
     {
-        // Get PayPal Webhook Event
         $payload = $request->all();
         Log::info('PayPal Webhook Received: ', $payload);
 
-        // Verify Event Type
         if (!isset($payload['event_type'])) {
+            Log::warning('Webhook missing event_type.');
             return response()->json(['error' => 'Invalid webhook data'], 400);
         }
 
-        // Check for Subscription Payment Success
-        if ($payload['event_type'] == "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED") {
-            return $this->handleSubscriptionPaymentSuccess($payload);
+        switch ($payload['event_type']) {
+            case "PAYMENT.SALE.COMPLETED":
+                return $this->handlePaymentCompleted($payload);
+
+            // Optional: still keep these if needed
+            case "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED":
+                return $this->handleSubscriptionPaymentSuccess($payload);
+
+            case "BILLING.SUBSCRIPTION.RENEWED":
+                return $this->handleSubscriptionRenewed($payload);
+
+            default:
+                Log::info('Unhandled PayPal event type: ' . $payload['event_type']);
+                return response()->json(['message' => 'Event ignored'], 200);
+        }
+    }
+
+    private function handlePaymentCompleted($payload)
+    {
+        $resource = $payload['resource'] ?? [];
+        $subscriptionId = $resource['billing_agreement_id'] ?? null;
+        $amount = $resource['amount']['total'] ?? null;
+        $currency = $resource['amount']['currency'] ?? null;
+
+        if (!$subscriptionId) {
+            Log::error('Missing billing_agreement_id in PAYMENT.SALE.COMPLETED webhook.');
+            return response()->json(['error' => 'Missing subscription ID'], 400);
         }
 
-        // Subscription Renewed Event
-        if ($payload['event_type'] == "BILLING.SUBSCRIPTION.RENEWED") {
-            return $this->handleSubscriptionRenewed($payload);
+        $subscription = Subscription::where('paypal_subscription_id', $subscriptionId)->first();
+
+        if (!$subscription) {
+            Log::error("Subscription not found: {$subscriptionId}");
+            return response()->json(['error' => 'Subscription not found'], 404);
         }
 
-        return response()->json(['message' => 'Webhook received'], 200);
+        // Renew subscription using your existing logic
+        $subscription->renew(); // uses Subscription::renew()
+        Log::info("Subscription renewed via webhook: {$subscriptionId}");
+
+        // Save transaction
+        $invoice = $subscription->getUnpaidInvoice();
+
+        if ($invoice) {
+            Transaction::create([
+                'invoice_id' => $invoice->id,
+                'status' => 'success',
+                'method' => 'paypal',
+                'amount' => $amount,
+                'currency' => $currency,
+            ]);
+        } else {
+            Log::warning("No unpaid invoice found for subscription: {$subscriptionId}");
+        }
+
+        return response()->json(['message' => 'Payment processed and subscription renewed'], 200);
     }
 
     private function handleSubscriptionPaymentSuccess($payload)
     {
-        $subscriptionId = $payload['resource']['billing_agreement_id'] ?? null;
-        $amount = $payload['resource']['amount']['value'];
-        $currency = $payload['resource']['amount']['currency_code'];
-
-        if (!$subscriptionId) {
-            Log::error('Missing subscription ID in webhook.');
-            return response()->json(['error' => 'Missing subscription ID'], 400);
-        }
-
-        // Find Subscription by PayPal ID
-        $subscription = Subscription::where('paypal_subscription_id', $subscriptionId)->first();
-
-        if (!$subscription) {
-            Log::error("Subscription not found: {$subscriptionId}");
-            return response()->json(['error' => 'Subscription not found'], 404);
-        }
-
-        // Renew Subscription in Database
-        $subscription->status = 'active';
-        $subscription->current_period_ends_at = Carbon::now()->addMonths(1);
-        $subscription->save();
-
-        // Create Transaction Record
-        Transaction::create([
-            'invoice_id' => $subscription->getUnpaidInvoice()->id,
-            'status' => 'success',
-            'method' => 'paypal',
-            'amount' => $amount,
-            'currency' => $currency,
-        ]);
-
-        Log::info("Subscription renewed successfully: {$subscriptionId}");
-
-        return response()->json(['message' => 'Subscription payment recorded'], 200);
+        Log::info('Received deprecated event BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED');
+        return response()->json(['message' => 'Event received (not used)'], 200);
     }
 
     private function handleSubscriptionRenewed($payload)
     {
-        $subscriptionId = $payload['resource']['id'] ?? null;
-
-        if (!$subscriptionId) {
-            Log::error('Missing subscription ID in webhook.');
-            return response()->json(['error' => 'Missing subscription ID'], 400);
-        }
-
-        // Find Subscription by PayPal ID
-        $subscription = Subscription::where('paypal_subscription_id', $subscriptionId)->first();
-
-        if (!$subscription) {
-            Log::error("Subscription not found: {$subscriptionId}");
-            return response()->json(['error' => 'Subscription not found'], 404);
-        }
-
-        // Update Subscription Status
-        $subscription->status = 'active';
-        $subscription->current_period_ends_at = Carbon::now()->addMonths(1);
-        $subscription->save();
-
-        Log::info("Subscription renewed successfully: {$subscriptionId}");
-
-        return response()->json(['message' => 'Subscription renewal updated'], 200);
+        Log::info('Received deprecated event BILLING.SUBSCRIPTION.RENEWED');
+        return response()->json(['message' => 'Event received (not used)'], 200);
     }
 }

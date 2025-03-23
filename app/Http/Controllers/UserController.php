@@ -943,6 +943,27 @@ public function searchUser(Request $request){
       return view('spsearch',compact('users'));
      }
 }
+
+public function searchapproveUser(Request $request){
+     $keyword = $request->input('search');
+     if($keyword == ''){
+         $users = User::with('business')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('is_verified','0')->where('activated','!=','3')->where(function($q) {
+            $q->where('user_type', 'service_provider')
+                ->orWhere('user_relation', 'both');
+        })->orderBy('id','desc')->get();
+     }else{
+        $users = User::with('business')->where('subdomain', Auth::user()->subdomain)->where('id', '<>', Auth::user()->id)->where('is_verified','0')->where('activated','!=','3')->where(function ($query) use($keyword) {
+        $query->orWhere('id', 'like', '%' . $keyword . '%')
+           ->orWhere('email', 'like', '%' . $keyword . '%')
+           ->orWhere('first_name', 'like', '%' . $keyword . '%')
+           ->orWhere('last_name', 'like', '%' . $keyword . '%');
+      })->orderBy('id','desc')->paginate(50);
+     }
+ 
+      return view('searchrequests',compact('users'));
+     
+}
+
  public function fileUpload($file, $thumbnail = true)
     {
 

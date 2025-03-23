@@ -308,6 +308,7 @@ Route::get('users/logout', 'UserController@logout');
     Route::post('update-user-title', 'UserController@updateusertitle');
     Route::get('/preview-design', 'UserController@formdesign');
     Route::match(['get','post'],'/user-search', 'UserController@searchUser');
+    Route::match(['get','post'],'/user-search-approve', 'UserController@searchapproveUser');
 
    //Blogs
     Route::name('posts.')->prefix('posts/')->group(function () {
