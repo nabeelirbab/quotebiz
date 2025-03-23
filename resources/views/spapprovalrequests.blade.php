@@ -95,14 +95,9 @@
             </div>
             <div class="nk-tb-col tb-col-md"><span class="sub-text">#</span></div>
             <div class="nk-tb-col"><span class="sub-text">User</span></div>
-            <!--<div class="nk-tb-col tb-col-lg"><span class="sub-text">Mobile No</span></div>-->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Business Name</span></div>
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Category</span></div>
-            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">Service Location Setting</span></div> -->
-            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div> -->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div>
-            <!-- <div class="nk-tb-col tb-col-lg"><span class="sub-text">City</span></div> -->
-            <!--<div class="nk-tb-col tb-col-lg"><span class="sub-text">Registered On</span></div>-->
             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Status</span></div>
             <div class="nk-tb-col"><span class="sub-text">Actions</span></div>
            
@@ -165,34 +160,7 @@
 				    <span class="">{{ \Acelle\Jobs\HelperJob::categoryDetail($cat)->category_name }}</span>
 				@endforeach
             </div>
-      <!--       <div class="nk-tb-col tb-col-lg">
-                @if($user->type == 'world')
-                <span>WorldWide</span>
-                @elseif($user->type == 'country')
-                <span>CountryWide</span>
-                @elseif($user->type == 'state')
-                <span>StateWide</span>
-                @elseif($user->type == 'local business')
-                <span>Local Business</span>
-                @else
-                <span>City</span>
-                @endif
-
-            </div> -->
-        <!--     <div class="nk-tb-col tb-col-lg">
-                @if(Acelle\Jobs\HelperJob::countryname($user->country))
-                <span>{{Acelle\Jobs\HelperJob::countryname($user->country)->name}}</span>
-                @else
-                <span>{{$user->country}}</span>
-                @endif
-            </div> -->
-            <!--<div class="nk-tb-col tb-col-lg">
-                @if(Acelle\Jobs\HelperJob::statename($user->state))
-                <span>{{Acelle\Jobs\HelperJob::statename($user->state)->name}}</span>
-                @else
-                <span>{{$user->state}}</span>
-                @endif
-            </div>-->
+  
              <div class="nk-tb-col tb-col-lg">
               @if(Acelle\Jobs\HelperJob::cityname($user->city)) <span >{{Acelle\Jobs\HelperJob::cityname($user->city)->name}}</span> 
                @else
@@ -627,7 +595,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var value = $(this).val();
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-        url: "{{ url('admin/user-search')}}",
+        url: "{{ url('admin/user-search-approve')}}",
         type: "post",
         data: {search: value,user_type: 'service_provider', _token: _token},
         success: function (response) {

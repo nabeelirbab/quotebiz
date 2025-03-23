@@ -18,7 +18,7 @@
 			var sidebar = new Sidebar();
 			if(!sidebar.showed()) {
 				sidebar.load({
-					url: '{{ url('account/activity') }}'
+					url: '{{ url('admin/account/activity') }}'
 				});
 			} else {
 				sidebar.hide();

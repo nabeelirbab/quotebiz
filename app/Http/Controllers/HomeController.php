@@ -74,7 +74,7 @@ class HomeController extends Controller
             // dd($currencyConvert);
             $result['amount'][] = $currencyConvert['convert'];
         }
-        $unverified = User::where('subdomain', Auth::user()->subdomain)->where('is_verified', '0')->where(function($q) {
+        $unverified = User::where('subdomain', Auth::user()->subdomain)->where('is_verified', '0')->where('activated','!=','3')->where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->count();
@@ -161,7 +161,7 @@ class HomeController extends Controller
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->paginate(10);
-        $unverified = User::where('subdomain', Auth::user()->subdomain)->where('is_verified', '0')->where(function($q) {
+        $unverified = User::where('subdomain', Auth::user()->subdomain)->where('is_verified', '0')->where('activated','!=','3')->where(function($q) {
             $q->where('user_type', 'service_provider')
                 ->orWhere('user_relation', 'both');
         })->orderBy('id','desc')->count();
